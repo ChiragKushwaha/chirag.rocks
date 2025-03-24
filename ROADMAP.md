@@ -1,0 +1,1 @@
+- Setup NextJS repository with tailwind, typescript and eslint
