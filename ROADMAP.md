@@ -1,1 +1,2 @@
 - Setup NextJS repository with tailwind, typescript and eslint
+- eslint support and prettier setup
