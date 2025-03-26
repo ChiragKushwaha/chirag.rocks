@@ -1,6 +1,6 @@
 import { ComponentType } from 'react';
 
-type Process = {
+export type Process = {
   Component: ComponentType;
 };
 
