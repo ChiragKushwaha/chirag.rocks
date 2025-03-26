@@ -1,9 +1,10 @@
 import dynamic from 'next/dynamic';
-import type { Processes } from '../types/process-directory';
+import { Processes } from '../types/context/process';
 
 const processDirectory: Processes = {
   HelloWorld: {
-    Component: dynamic(() => import('../components/hello-world'))
+    Component: dynamic(() => import('../components/hello-world')),
+    hasWindow: true
   }
 };
 
