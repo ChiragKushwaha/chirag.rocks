@@ -1,2 +1,4 @@
 - Setup NextJS repository with tailwind, typescript and eslint
 - eslint support and prettier setup
+- jest and ci testing setup
+- zustand state management setup

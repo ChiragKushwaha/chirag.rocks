@@ -2,6 +2,17 @@
   "name": "chirag.rocks",
   "version": "0.1.0",
   "private": true,
+  "description": "MacOS Simulation",
+  "author": {
+    "name": "Chirag Kushwaha",
+    "email": "chiragkushwaha1811+portfolio@gmail.com",
+    "url": "https://www.linkedin.com/in/chirag-kushwaha/"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChiragKushwaha/chirag.rocks"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -15,7 +26,8 @@
   "dependencies": {
     "next": "15.2.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -32,6 +44,7 @@
     "husky": "^9.1.7",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "jest-next-dynamic": "^1.0.2",
     "lint-staged": "^15.5.0",
     "prettier": "^3.5.3",
     "tailwindcss": "^4",

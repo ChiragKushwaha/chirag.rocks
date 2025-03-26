@@ -3490,6 +3490,11 @@ jest-mock@^29.7.0:
     "@types/node" "*"
     jest-util "^29.7.0"
 
+jest-next-dynamic@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/jest-next-dynamic/-/jest-next-dynamic-1.0.2.tgz#25888dd4f5b425132b0ea8650657da2064f86023"
+  integrity sha512-4vKTkNji+fytsAeGyZF0pSRwtTEaa3Z4pnPDDNAe0aQXz2yenUU/L03vB9vt/6gdcl8vmBVa9m9smZ9FZCerDw==
+
 jest-pnp-resolver@^1.2.2:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/jest-pnp-resolver/-/jest-pnp-resolver-1.2.3.tgz#930b1546164d4ad5937d5540e711d4d38d4cad2e"
@@ -5457,3 +5462,8 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+
+zustand@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-5.0.3.tgz#b323435b73d06b2512e93c77239634374b0e407f"
+  integrity sha512-14fwWQtU3pH4dE0dOpdMiWjddcH+QzKIgk1cl8epwSE7yag43k/AD/m4L6+K7DytAOr9gGBe3/EXj9g7cdostg==
