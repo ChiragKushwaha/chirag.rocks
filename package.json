@@ -24,7 +24,8 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "next": "15.2.3",
+    "browserfs": "github:jvilk/BrowserFS",
+    "next": "^15.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "three": "0.124.0",
