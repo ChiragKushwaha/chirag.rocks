@@ -15,7 +15,8 @@
   },
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "yarn build:fs next build",
+    "build:fs": "cd public && node ../node_modules/browserfs/dist/scripts/make_http_indes.js > ../public.json",
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier . --write",

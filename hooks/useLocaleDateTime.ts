@@ -8,7 +8,7 @@ type LocaleTimeDate = {
   dateTime: string;
 };
 
-const useLocaleTimeDate = (now: Date): LocaleTimeDate => {
+const useLocaleDateTime = (now: Date): LocaleTimeDate => {
   const locale =
     typeof window !== 'undefined'
       ? navigator.language
@@ -21,7 +21,7 @@ const useLocaleTimeDate = (now: Date): LocaleTimeDate => {
   };
 };
 
-export default useLocaleTimeDate;
+export default useLocaleDateTime;
 
 const formats: {
   date: Intl.DateTimeFormatOptions;

@@ -1,6 +1,6 @@
 'use client';
 import React, { useCallback, useState } from 'react';
-import useLocaleTimeDate from '../../hooks/useLocaleTimeDate';
+import useLocaleTimeDate from '../../hooks/useLocaleDateTime';
 import useSyncedClock from '../../hooks/useSyncedClock';
 
 const Clock = () => {
