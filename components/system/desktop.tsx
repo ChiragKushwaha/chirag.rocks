@@ -12,7 +12,7 @@ const Desktop = ({
 
   return (
     <main
-      className="w-screen h-screen fixed top-0 left-0 bottom-0 right-0"
+      className="w-screen h-screen fixed top-0 left-0 bottom-0 right-0 overflow-hidden"
       ref={desktopRef}
     >
       {children}

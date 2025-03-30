@@ -14,32 +14,37 @@ const settings = {
   scale: 1.0,
   scaleMobile: 1.0
 };
+const isWebGLAvailable = typeof WebGLRenderingContext != 'undefined';
 
 const useWallpaper = (desktopRef: React.RefObject<HTMLElement | null>) => {
-  // useEffect(() => {
-  //   //@ts-expect-error WAVES does not have types//
-  //   const vantaEffect = WAVES({
-  //     el: desktopRef.current,
-  //     THREE,
-  //     ...disableControls,
-  //     ...settings
-  //   });
-
-  //   return () => {
-  //     if (vantaEffect) {
-  //       vantaEffect.destroy();
-  //     }
-  //   };
-  // }, [desktopRef]);
   useEffect(() => {
-    if (desktopRef.current) {
-      desktopRef.current.style.backgroundImage =
-        "url('/wallpapers/wallpaper.jpg')";
-      desktopRef.current.style.backgroundSize = 'cover';
-      desktopRef.current.style.backgroundPosition = 'center';
-      desktopRef.current.style.width = '100vw';
-      desktopRef.current.style.height = '100vh';
+    const element = desktopRef.current;
+    const vantaEffect =
+      element && isWebGLAvailable
+        ? //@ts-expect-error WAVES does not have types//
+          WAVES({
+            el: desktopRef.current,
+            THREE,
+            ...disableControls,
+            ...settings
+          })
+        : undefined;
+
+    if (vantaEffect == undefined) {
+      if (element) {
+        element.style.backgroundImage = "url('/wallpapers/wallpaper.jpg')";
+        element.style.backgroundSize = 'cover';
+        element.style.backgroundPosition = 'center';
+        element.style.width = '100vw';
+        element.style.height = '100vh';
+      }
     }
+
+    return () => {
+      if (vantaEffect) {
+        vantaEffect.destroy();
+      }
+    };
   }, [desktopRef]);
 };
 

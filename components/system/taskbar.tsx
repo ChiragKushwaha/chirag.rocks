@@ -94,7 +94,7 @@ const Taskbar = () => {
       item.addEventListener('mouseover', (e) => {
         focus(e.target as HTMLElement, index);
       });
-      item.addEventListener('mouseleave', (e) => {
+      item.addEventListener('mouseleave', () => {
         icons.forEach((item) => {
           (item as HTMLElement).style.transform = 'scale(1)  translateY(0px)';
         });
