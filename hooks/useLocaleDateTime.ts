@@ -1,6 +1,5 @@
-'use client';
-
 import nextConfig from '../next.config';
+import { timeFormats } from '../utils/time-formats';
 
 type LocaleTimeDate = {
   time: string;
@@ -14,29 +13,11 @@ const useLocaleDateTime = (now: Date): LocaleTimeDate => {
       ? navigator.language
       : nextConfig.i18n?.defaultLocale;
 
-  return {
-    time: new Intl.DateTimeFormat(locale, formats.time).format(now),
-    date: new Intl.DateTimeFormat(locale, formats.date).format(now),
-    dateTime: now.toISOString()
-  };
+  const date = new Intl.DateTimeFormat(locale, timeFormats.date).format(now);
+  const time = new Intl.DateTimeFormat(locale, timeFormats.time).format(now);
+  const dateTime = now.toISOString();
+
+  return { time, date, dateTime };
 };
 
 export default useLocaleDateTime;
-
-const formats: {
-  date: Intl.DateTimeFormatOptions;
-  time: Intl.DateTimeFormatOptions;
-} = {
-  date: {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric'
-  },
-  time: {
-    hour: 'numeric',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: true
-  }
-};
