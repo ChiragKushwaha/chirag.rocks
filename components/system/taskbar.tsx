@@ -1,5 +1,6 @@
 'use client';
 import { useEffect } from 'react';
+import useProcessesState from '../../contexts/process';
 import TaskbarEntry from './taskbar-entry';
 
 export type DockItem = {
@@ -86,6 +87,8 @@ const list: DockItem[] = [
   }
 ];
 const Taskbar = () => {
+  const processes = useProcessesState((state) => state.processes);
+
   useEffect(() => {
     const icons = document.querySelectorAll('.ico');
     const length = icons.length;
@@ -130,9 +133,12 @@ const Taskbar = () => {
   }, []);
   return (
     <nav className="flex justify-center absolute bottom-5 left-1/2 -translate-x-1/2 p-1 w-auto h-15 items-center rounded-xl bg-gray-500 backdrop-blur-sm border-[0.1px] border-gray-400">
-      {list.map((item) => {
-        return <TaskbarEntry key={item.title} item={item} />;
+      {Object.entries(processes).map(([id, process]) => {
+        return <TaskbarEntry key={id} {...process} />;
       })}
+      {/* {list.map((item) => {
+        return <TaskbarEntry key={item.title} item={item} />;
+      })} */}
     </nav>
   );
 };

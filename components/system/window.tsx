@@ -3,7 +3,7 @@ const Window = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  return <div className="bg-amber-200">{children}</div>;
+  return <div className="bg-amber-200 absolute">{children}</div>;
 };
 
 export default Window;

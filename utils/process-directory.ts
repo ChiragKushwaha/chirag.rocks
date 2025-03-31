@@ -7,11 +7,15 @@ const STARTUP_PROCESSES: string[] = ['Clock', 'HelloWorld'];
 export const processDirectory: Processes = {
   Clock: {
     Component: Clock,
-    hasWindow: true
+    hasWindow: true,
+    title: 'Clock',
+    icon: '/favicon.ico'
   },
   HelloWorld: {
     Component: dynamic(() => import('../components/app/hello-world')),
-    hasWindow: true
+    hasWindow: true,
+    title: 'Hello World',
+    icon: '/favicon.ico'
   }
 };
 
