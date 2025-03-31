@@ -9,83 +9,83 @@ export type DockItem = {
   onClick: React.MouseEventHandler<HTMLLIElement> | undefined;
   className?: string;
 };
-const list: DockItem[] = [
-  {
-    title: 'Finder',
-    icon: '/icons/finder.png',
-    onClick: () => console.log('Finder clicked')
-  },
-  {
-    title: 'Siri',
-    icon: '/icons/siri.png',
-    onClick: () => console.log('Siri clicked')
-  },
-  {
-    title: 'LaunchPad',
-    icon: '/icons/launchpad.png',
-    onClick: () => console.log('LaunchPad clicked')
-  },
-  {
-    title: 'Contacts',
-    icon: '/icons/contacts.png',
-    onClick: () => console.log('Contacts clicked')
-  },
-  {
-    title: 'Notes',
-    icon: '/icons/notes.png',
-    onClick: () => console.log('Notes clicked')
-  },
-  {
-    title: 'Reminders',
-    icon: '/icons/reminders.png',
-    onClick: () => console.log('Reminders clicked')
-  },
-  {
-    title: 'Photos',
-    icon: '/icons/photos.png',
-    onClick: () => console.log('Photos clicked')
-  },
-  {
-    title: 'Messages',
-    icon: '/icons/messages.png',
-    onClick: () => console.log('Messages clicked')
-  },
-  {
-    title: 'FaceTime',
-    icon: '/icons/facetime.png',
-    onClick: () => console.log('FaceTime clicked')
-  },
-  {
-    title: 'Music',
-    icon: '/icons/music.png',
-    onClick: () => console.log('Music clicked')
-  },
-  {
-    title: 'Podcasts',
-    icon: '/icons/podcasts.png',
-    onClick: () => console.log('Podcasts clicked')
-  },
-  {
-    title: 'TV',
-    icon: '/icons/tv.png',
-    onClick: () => console.log('TV clicked')
-  },
-  {
-    title: 'App Store',
-    icon: '/icons/appstore.png',
-    onClick: () => console.log('App Store clicked')
-  },
-  {
-    title: 'Safari',
-    icon: '/icons/safari.png',
-    onClick: () => console.log('Safari clicked')
-  },
-  {
-    title: 'Bin',
-    icon: '/icons/trash.png',
-    onClick: () => console.log('Bin clicked')
-  }
-];
+// const list: DockItem[] = [
+//   {
+//     title: 'Finder',
+//     icon: '/icons/finder.png',
+//     onClick: () => console.log('Finder clicked')
+//   },
+//   {
+//     title: 'Siri',
+//     icon: '/icons/siri.png',
+//     onClick: () => console.log('Siri clicked')
+//   },
+//   {
+//     title: 'LaunchPad',
+//     icon: '/icons/launchpad.png',
+//     onClick: () => console.log('LaunchPad clicked')
+//   },
+//   {
+//     title: 'Contacts',
+//     icon: '/icons/contacts.png',
+//     onClick: () => console.log('Contacts clicked')
+//   },
+//   {
+//     title: 'Notes',
+//     icon: '/icons/notes.png',
+//     onClick: () => console.log('Notes clicked')
+//   },
+//   {
+//     title: 'Reminders',
+//     icon: '/icons/reminders.png',
+//     onClick: () => console.log('Reminders clicked')
+//   },
+//   {
+//     title: 'Photos',
+//     icon: '/icons/photos.png',
+//     onClick: () => console.log('Photos clicked')
+//   },
+//   {
+//     title: 'Messages',
+//     icon: '/icons/messages.png',
+//     onClick: () => console.log('Messages clicked')
+//   },
+//   {
+//     title: 'FaceTime',
+//     icon: '/icons/facetime.png',
+//     onClick: () => console.log('FaceTime clicked')
+//   },
+//   {
+//     title: 'Music',
+//     icon: '/icons/music.png',
+//     onClick: () => console.log('Music clicked')
+//   },
+//   {
+//     title: 'Podcasts',
+//     icon: '/icons/podcasts.png',
+//     onClick: () => console.log('Podcasts clicked')
+//   },
+//   {
+//     title: 'TV',
+//     icon: '/icons/tv.png',
+//     onClick: () => console.log('TV clicked')
+//   },
+//   {
+//     title: 'App Store',
+//     icon: '/icons/appstore.png',
+//     onClick: () => console.log('App Store clicked')
+//   },
+//   {
+//     title: 'Safari',
+//     icon: '/icons/safari.png',
+//     onClick: () => console.log('Safari clicked')
+//   },
+//   {
+//     title: 'Bin',
+//     icon: '/icons/trash.png',
+//     onClick: () => console.log('Bin clicked')
+//   }
+// ];
 const Taskbar = () => {
   const processes = useProcessesState((state) => state.processes);
 
