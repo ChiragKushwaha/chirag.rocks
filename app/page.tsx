@@ -6,8 +6,8 @@ import Taskbar from '../components/system/taskbar';
 export default function Home() {
   return (
     <Desktop>
-      <FileManager directory="/desktop" />
       <Taskbar />
+      <FileManager directory="/desktop" />
       <ProcessLoader />
     </Desktop>
   );

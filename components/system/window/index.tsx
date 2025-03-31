@@ -20,6 +20,7 @@ const Window = ({
 
   return (
     <Rnd
+      style={{ zIndex: 1 }}
       disableDragging={maximized}
       enableResizing={!maximized}
       size={size}

@@ -132,7 +132,10 @@ const Taskbar = () => {
     };
   }, []);
   return (
-    <nav className="flex justify-center absolute bottom-5 left-1/2 -translate-x-1/2 p-1 w-auto h-15 items-center rounded-xl bg-gray-500 backdrop-blur-sm border-[0.1px] border-gray-400">
+    <nav
+      style={{ zIndex: 2 }}
+      className="flex justify-center absolute bottom-5 left-1/2 -translate-x-1/2 p-1 w-auto h-15 items-center rounded-xl bg-gray-500 backdrop-blur-sm border-[0.1px] border-gray-400"
+    >
       {Object.entries(processes).map(([id, process]) => {
         return <TaskbarEntry key={id} {...process} />;
       })}
