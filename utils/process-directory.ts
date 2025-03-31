@@ -1,9 +1,8 @@
 import dynamic from 'next/dynamic';
-import Taskbar from '../components/system/taskbar';
-import type { Processes } from '../types/context/process';
 import Clock from '../components/system/clock';
+import type { Processes } from '../types/context/process';
 
-const STARTUP_PROCESSES: string[] = ['Clock', 'HelloWorld', 'Taskbar'];
+const STARTUP_PROCESSES: string[] = ['Clock', 'HelloWorld'];
 
 export const processDirectory: Processes = {
   Clock: {
@@ -13,9 +12,6 @@ export const processDirectory: Processes = {
   HelloWorld: {
     Component: dynamic(() => import('../components/app/hello-world')),
     hasWindow: true
-  },
-  Taskbar: {
-    Component: Taskbar
   }
 };
 
