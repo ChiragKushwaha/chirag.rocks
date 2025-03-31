@@ -1,10 +1,9 @@
 import { Rnd } from 'react-rnd';
 import useProcessesState from '../../../contexts/process';
-import useResizable from '../../../hooks/useResizable';
+import useDraggableAndResizable from '../../../hooks/useDraggableAndResizable';
+import rndDefaults from '../../../utils/rndDefaults';
 import type { ProcessComponentProps } from '../processes/render-process';
 import Titlebar from './titlebar';
-import rndDefaults from '../../../utils/rndDefaults';
-import useDraggable from '../../../hooks/useDraggable';
 
 const Window = ({
   children,
@@ -16,8 +15,8 @@ const Window = ({
 >) => {
   const processes = useProcessesState((state) => state.processes);
   const { minimized, maximized } = processes[pid];
-  const { size, updateSize } = useResizable(maximized);
-  const { position, updatePosition } = useDraggable(maximized);
+  const { size, updateSize, position, updatePosition } =
+    useDraggableAndResizable(maximized);
 
   return (
     <Rnd
