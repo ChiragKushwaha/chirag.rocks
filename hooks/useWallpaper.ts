@@ -1,5 +1,5 @@
 'use client';
-import WAVES from '@/public/libs/vanta.waves.min';
+import WAVES from '@/libs/vanta.waves.min';
 import { useEffect } from 'react';
 import * as THREE from 'three';
 

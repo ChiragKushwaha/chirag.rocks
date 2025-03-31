@@ -16,7 +16,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "yarn build:fs next build",
-    "build:fs": "./node_modules/browserfs/dist/scripts/make_xhrfs_index.js > ./public.json",
+    "build:fs": "cd public && ../node_modules/browserfs/dist/scripts/make_xhrfs_index.js > ../public.json",
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier . --write",
