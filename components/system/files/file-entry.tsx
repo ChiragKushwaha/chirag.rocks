@@ -16,10 +16,10 @@ const FileEntry = ({ path, name }: FileEntryProps) => {
   const onClick = useCallback(() => open(pid), [open, pid]);
 
   return (
-    <li>
+    <li className="">
       <button onClick={useDoubleClick(onClick)}>
         <figure>
-          {icon && <img src={icon} alt={name} />}
+          {icon && <img draggable={false} src={icon} alt={name} />}
           <figcaption>{name}</figcaption>
         </figure>
       </button>

@@ -1,14 +1,10 @@
 'use client';
-import React, { useCallback, useState } from 'react';
+import useClock from '../../hooks/useClock';
 import useLocaleTimeDate from '../../hooks/useLocaleDateTime';
-import useSyncedClock from '../../hooks/useSyncedClock';
 
 const Clock = () => {
-  const [now, setNow] = useState(new Date());
+  const now = useClock();
   const { time } = useLocaleTimeDate(now);
-  const updateClock = useCallback(() => setNow(new Date()), []);
-
-  useSyncedClock(updateClock);
 
   return <div suppressHydrationWarning>{time}</div>;
 };

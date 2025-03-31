@@ -15,10 +15,10 @@ const Titlebar = ({ pid }: { pid: string }) => {
   const onClose = useCallback(() => close(pid), [close, pid]);
 
   return (
-    <header className="flex items-center justify-between p-4 handle bg-amber-700 select-none">
-      <h1 onClick={onMinimize} className="">
+    <header className="flex items-center justify-between p-4 handle bg-amber-700">
+      <h1 onClick={onMaximize} className="">
         <figure className="w-8">
-          {icon && <img src={icon} alt={title} />}
+          {icon && <img draggable={false} src={icon} alt={title} />}
           <figcaption>{title}</figcaption>
         </figure>
       </h1>

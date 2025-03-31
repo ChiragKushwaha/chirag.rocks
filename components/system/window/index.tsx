@@ -21,17 +21,20 @@ const Window = ({
 
   return (
     <Rnd
-      className={`bg-amber-200 ${minimized ? 'hidden' : 'block'}`}
       disableDragging={maximized}
       enableResizing={!maximized}
       size={size}
       position={position}
       onDragStop={updatePosition}
-      onResizeStop={updateSize}
+      onResize={updateSize}
       {...rndDefaults}
     >
-      <Titlebar pid={pid} />
-      {children}
+      <div
+        className={`bg-amber-200 w-full h-full ${minimized ? 'hidden' : 'block'}`}
+      >
+        <Titlebar pid={pid} />
+        {children}
+      </div>
     </Rnd>
   );
 };

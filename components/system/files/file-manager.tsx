@@ -10,7 +10,7 @@ type FileManagerProps = {
 
 const FileManager = ({ directory }: FileManagerProps) => {
   return (
-    <ol>
+    <ol className="max-w-min">
       {useFiles(directory, (file) => (
         <FileEntry
           key={file}

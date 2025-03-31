@@ -20,7 +20,9 @@ const TaskbarEntry = (props: Process) => {
     <ol>
       <button onClick={useDoubleClick(minimizeFunction)}>
         <figure>
-          {props.icon && <img src={props.icon} alt={props.title} />}
+          {props.icon && (
+            <img draggable={false} src={props.icon} alt={props.title} />
+          )}
           <figcaption>{props.title}</figcaption>
         </figure>
       </button>
