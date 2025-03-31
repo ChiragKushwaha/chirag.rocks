@@ -7,6 +7,7 @@ type FileEntryProps = {
   path: string;
   name: string;
 };
+
 const FileEntry = ({ path, name }: FileEntryProps) => {
   const { icon, pid } = useFileInfo(path);
   const open = useProcessesState((state) => state.open);
@@ -17,7 +18,7 @@ const FileEntry = ({ path, name }: FileEntryProps) => {
     <li>
       <button onClick={onActivate} onKeyDown={onActivate}>
         <figure>
-          <img src={icon} alt={name} />
+          {icon && <img src={icon} alt={name} />}
           <figcaption>{name}</figcaption>
         </figure>
       </button>

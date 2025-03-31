@@ -1,9 +1,20 @@
+import type { JSX } from 'react';
 import { create } from 'zustand';
-import type { ProcessState } from '../types/context/process';
 import {
   getStartupProcesses,
   processDirectory
 } from '../utils/process-directory';
+import type { Process, Processes } from '../utils/process-directory';
+
+export type ProcessesMap = (
+  callback: ([id, process]: [string, Process]) => JSX.Element
+) => JSX.Element[];
+
+export type ProcessState = {
+  processes: Processes;
+  close: (pid: string) => void;
+  open: (pid: string) => void;
+};
 
 const useProcessesState = create<ProcessState>((set) => ({
   processes: getStartupProcesses(),

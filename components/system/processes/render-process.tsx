@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import type { Process } from '../../../types/context/process';
+import type { Process } from '../../../utils/process-directory';
 
 const Window = dynamic(() => import('../../system/window'));
 

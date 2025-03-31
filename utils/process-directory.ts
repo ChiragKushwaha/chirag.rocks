@@ -1,16 +1,19 @@
 import dynamic from 'next/dynamic';
-import Clock from '../components/system/clock';
-import type { Processes } from '../types/context/process';
+
+export type Process = {
+  Component: React.ComponentType;
+  hasWindow?: boolean;
+  title: string;
+  icon: string;
+};
+
+export type Processes = {
+  [pid: string]: Process;
+};
 
 const STARTUP_PROCESSES: string[] = [];
 
 export const processDirectory: Processes = {
-  Clock: {
-    Component: Clock,
-    hasWindow: true,
-    title: 'Clock',
-    icon: '/favicon.ico'
-  },
   HelloWorld: {
     Component: dynamic(() => import('../components/app/hello-world')),
     hasWindow: true,
