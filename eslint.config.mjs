@@ -23,7 +23,8 @@ const eslintConfig = [
       '*.config.js',
       '*.config.mjs',
       '.eslintrc.js',
-      'next-env.d.ts'
+      'next-env.d.ts',
+      'libs/**'
     ]
   },
   {
@@ -31,6 +32,7 @@ const eslintConfig = [
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
+          argsIgnorePattern: '^_',
           varsIgnorePattern: '^_'
         }
       ]
