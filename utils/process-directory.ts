@@ -24,7 +24,7 @@ export const processDirectory: Processes = {
     title: 'Hello World',
     icon: '/favicon.ico',
     minimized: false,
-    maximized: true,
+    maximized: false,
     pid: 'HelloWorld'
   }
 };

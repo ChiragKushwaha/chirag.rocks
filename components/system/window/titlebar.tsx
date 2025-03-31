@@ -16,7 +16,7 @@ const Titlebar = ({ pid }: { pid: string }) => {
 
   return (
     <header className="flex items-center justify-between p-2">
-      <h1>
+      <h1 onClick={onMinimize}>
         <figure className="w-8">
           {icon && <img src={icon} alt={title} />}
           <figcaption>{title}</figcaption>

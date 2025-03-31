@@ -1,6 +1,9 @@
+import { Rnd } from 'react-rnd';
 import useProcessesState from '../../../contexts/process';
-import { ProcessComponentProps } from '../processes/render-process';
+import useResizable from '../../../hooks/useResizable';
+import type { ProcessComponentProps } from '../processes/render-process';
 import Titlebar from './titlebar';
+import rndDefaults from '../../../utils/rndDefaults';
 
 const Window = ({
   children,
@@ -11,13 +14,23 @@ const Window = ({
   } & ProcessComponentProps
 >) => {
   const processes = useProcessesState((state) => state.processes);
-  const { minimized } = processes[pid];
-  console.log(minimized);
+  const { minimized, maximized } = processes[pid];
+  const { size, updateSize } = useResizable(maximized);
+
   return (
-    <div className={`bg-amber-200 absolute ${minimized ? 'hidden' : 'block'}`}>
-      <Titlebar pid={pid} />
-      {children}
-    </div>
+    <Rnd
+      enableResizing={!maximized}
+      size={size}
+      onResizeStop={updateSize}
+      {...rndDefaults}
+    >
+      <div
+        className={`bg-amber-200 w-full h-full absolute ${minimized ? 'hidden' : 'block'}`}
+      >
+        <Titlebar pid={pid} />
+        {children}
+      </div>
+    </Rnd>
   );
 };
 
