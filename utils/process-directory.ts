@@ -23,8 +23,8 @@ export const processDirectory: Processes = {
     hasWindow: true,
     title: 'Hello World',
     icon: '/favicon.ico',
-    minimize: true,
-    maximize: true,
+    minimized: false,
+    maximized: true,
     pid: 'HelloWorld'
   }
 };

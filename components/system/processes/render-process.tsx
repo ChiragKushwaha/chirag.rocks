@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import type { Process } from '../../../utils/process-directory';
 
-const Window = dynamic(() => import('../../system/window'));
+const Window = dynamic(() => import('../window'));
 
 export type ProcessComponentProps = {
   pid: string;

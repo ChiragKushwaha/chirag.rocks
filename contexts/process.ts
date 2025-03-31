@@ -14,7 +14,7 @@ export type ProcessState = {
   processes: Processes;
   close: (pid: string) => void;
   open: (pid: string) => void;
-  toggleSetting: (pid: string, setting: 'minimize' | 'maximize') => void;
+  toggleSetting: (pid: string, setting: 'minimized' | 'maximized') => void;
   minimized: (pid: string) => void;
   maximized: (pid: string) => void;
 };
@@ -65,10 +65,10 @@ const useProcessesState = create<ProcessState>((set, get) => ({
     });
   },
   maximized: (pid) => {
-    get().toggleSetting(pid, 'maximize');
+    get().toggleSetting(pid, 'maximized');
   },
   minimized: (pid) => {
-    get().toggleSetting(pid, 'minimize');
+    get().toggleSetting(pid, 'minimized');
   }
 }));
 
