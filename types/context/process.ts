@@ -8,7 +8,7 @@ export type Process = {
 };
 
 export type Processes = {
-  [id: string]: Process;
+  [pid: string]: Process;
 };
 
 export type ProcessesMap = (
@@ -17,6 +17,6 @@ export type ProcessesMap = (
 
 export type ProcessState = {
   processes: Processes;
-  close: (processId: string) => void;
-  open: (processId: string) => void;
+  close: (pid: string) => void;
+  open: (pid: string) => void;
 };

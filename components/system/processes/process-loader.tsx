@@ -1,4 +1,5 @@
-import useProcessesState from '../../contexts/process';
+'use client';
+import useProcessesState from '../../../contexts/process';
 import RenderProcess from './render-process';
 
 const ProcessLoader = () => {

@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { Process } from '../../types/context/process';
-import useProcessesState from '../../contexts/process';
+import { Process } from '../../../types/context/process';
+import useProcessesState from '../../../contexts/process';
 
 const TaskbarEntry = (props: Process) => {
   const open = useProcessesState((state) => state.open);

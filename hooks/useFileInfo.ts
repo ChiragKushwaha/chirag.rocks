@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import useFileSystem from './useFileSystem';
 import { extname } from 'path';
-import { IMAGE_FILE_EXTENSION } from '../utils/constants';
+import { useEffect, useState } from 'react';
+import { IMAGE_FILE_EXTENSIONS } from '../utils/constants';
 import {
   getProcessByFileExtension,
   getShortcut
 } from '../utils/file-functions';
+import useFileSystem from './useFileSystem';
 
 type FileInfo = {
   icon: string;
@@ -13,8 +13,8 @@ type FileInfo = {
 };
 
 const useFileInfo = (path: string): FileInfo => {
-  const [_icon, setIcon] = useState<string>();
-  const [_pid, setPid] = useState<string>();
+  const [icon, setIcon] = useState<string>('');
+  const [pid, setPid] = useState<string>('');
   const { fs } = useFileSystem();
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const useFileInfo = (path: string): FileInfo => {
           setPid(URL);
           setIcon(IconFile);
         });
-      } else if (IMAGE_FILE_EXTENSION.includes(extension)) {
+      } else if (IMAGE_FILE_EXTENSIONS.has(extension)) {
         setIcon(path);
         setPid('ImageViewer');
       } else {
@@ -33,9 +33,6 @@ const useFileInfo = (path: string): FileInfo => {
       }
     }
   }, [fs, path]);
-  return {
-    icon: '',
-    pid: ''
-  };
+  return { icon, pid };
 };
 export default useFileInfo;

@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import Clock from '../components/system/clock';
 import type { Processes } from '../types/context/process';
 
-const STARTUP_PROCESSES: string[] = ['Clock', 'HelloWorld'];
+const STARTUP_PROCESSES: string[] = [];
 
 export const processDirectory: Processes = {
   Clock: {
@@ -21,9 +21,9 @@ export const processDirectory: Processes = {
 
 export const getStartupProcesses = (): Processes => {
   return STARTUP_PROCESSES.reduce(
-    (processes, processId) => ({
+    (processes, pid) => ({
       ...processes,
-      [processId]: processDirectory[processId]
+      [pid]: processDirectory[pid]
     }),
     {}
   );

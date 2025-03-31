@@ -7,23 +7,22 @@ import {
 
 const useProcessesState = create<ProcessState>((set) => ({
   processes: getStartupProcesses(),
-  close: (processId) => {
+  close: (pid) => {
     set((state) => {
-      const { [processId]: _closedProcess, ...remainingProcess } =
-        state.processes;
+      const { [pid]: _closedProcess, ...remainingProcess } = state.processes;
       return { ...state, processes: remainingProcess };
     });
   },
-  open: (processId) => {
+  open: (pid) => {
     set((state) => {
-      if (state.processes[processId] || !processDirectory[processId]) {
+      if (state.processes[pid] || !processDirectory[pid]) {
         return state;
       } else {
         return {
           ...state,
           processes: {
             ...state.processes,
-            [processId]: processDirectory[processId]
+            [pid]: processDirectory[pid]
           }
         };
       }

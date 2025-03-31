@@ -1,6 +1,6 @@
 'use client';
 import { useEffect } from 'react';
-import useProcessesState from '../../contexts/process';
+import useProcessesState from '../../../contexts/process';
 import TaskbarEntry from './taskbar-entry';
 
 export type DockItem = {

@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
-import type { Process } from '../../types/context/process';
+import type { Process } from '../../../types/context/process';
 
-const Window = dynamic(() => import('../system/window'));
+const Window = dynamic(() => import('../../system/window'));
 
 const RenderProcess: React.FC<Process> = ({ Component, hasWindow }) => {
   return hasWindow ? (

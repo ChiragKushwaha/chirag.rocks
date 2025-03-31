@@ -1,11 +1,12 @@
-'use client';
 import Desktop from '../components/system/desktop';
-import ProcessLoader from '../components/system/process-loader';
+import FileManager from '../components/system/files/file-manager';
+import ProcessLoader from '../components/system/processes/process-loader';
 import Taskbar from '../components/system/taskbar';
 
 export default function Home() {
   return (
     <Desktop>
+      <FileManager directory="/desktop" />
       <Taskbar />
       <ProcessLoader />
     </Desktop>
