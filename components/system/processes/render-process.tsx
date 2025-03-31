@@ -3,7 +3,7 @@ import type { Process } from '../../../utils/process-directory';
 
 const Window = dynamic(() => import('../../system/window'));
 
-const RenderProcess: React.FC<Process> = ({ Component, hasWindow }) => {
+const RenderProcess: React.FC<Process> = ({ Component, hasWindow = false }) => {
   return hasWindow ? (
     <Window>
       <Component />
