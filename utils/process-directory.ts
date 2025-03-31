@@ -1,10 +1,14 @@
 import dynamic from 'next/dynamic';
+import { ProcessComponentProps } from '../components/system/processes/render-process';
 
 export type Process = {
-  Component: React.ComponentType;
+  pid: string;
+  Component: React.ComponentType<ProcessComponentProps>;
   hasWindow?: boolean;
   title: string;
   icon: string;
+  minimized?: boolean;
+  maximized?: boolean;
 };
 
 export type Processes = {
@@ -18,7 +22,10 @@ export const processDirectory: Processes = {
     Component: dynamic(() => import('../components/app/hello-world')),
     hasWindow: true,
     title: 'Hello World',
-    icon: '/favicon.ico'
+    icon: '/favicon.ico',
+    minimize: true,
+    maximize: true,
+    pid: 'HelloWorld'
   }
 };
 
