@@ -1,5 +1,5 @@
 {
-  "name": "my-turborepo",
+  "name": "chirag.rocks",
   "private": true,
   "scripts": {
     "build": "turbo run build",
