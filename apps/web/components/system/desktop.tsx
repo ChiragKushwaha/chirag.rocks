@@ -1,4 +1,5 @@
 'use client';
+import Script from 'next/script';
 import { useRef } from 'react';
 import useWallpaper from '../../hooks/useWallpaper';
 
@@ -12,12 +13,15 @@ const Desktop = ({
   useWallpaper(desktopRef);
 
   return (
-    <main
-      className="w-screen h-screen fixed top-0 left-0 bottom-0 right-0"
-      ref={desktopRef}
-    >
-      {children}
-    </main>
+    <>
+      <Script src="libs/vanta.waves.min.js" strategy="beforeInteractive" />
+      <main
+        className="w-screen h-screen fixed top-0 left-0 bottom-0 right-0"
+        ref={desktopRef}
+      >
+        {children}
+      </main>
+    </>
   );
 };
 

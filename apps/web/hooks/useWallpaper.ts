@@ -1,7 +1,6 @@
 'use client';
 import { useEffect } from 'react';
 import * as THREE from 'three';
-import WAVES from '@/libs/vanta.waves.min';
 
 const disableControls = {
   mouseControls: true,
@@ -22,7 +21,7 @@ const useWallpaper = (desktopRef: React.RefObject<HTMLElement | null>) => {
     const vantaEffect =
       element && isWebGLAvailable
         ? //@ts-expect-error WAVES does not have types//
-          WAVES({
+          VANTA.WAVES({
             el: desktopRef.current,
             THREE,
             ...disableControls,
