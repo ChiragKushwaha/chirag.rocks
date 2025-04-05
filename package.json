@@ -1,6 +1,18 @@
 {
   "name": "chirag.rocks",
   "private": true,
+  "version": "0.1.0",
+  "description": "MacOS Simulation",
+  "author": {
+    "name": "Chirag Kushwaha",
+    "email": "chiragkushwaha1811+portfolio@gmail.com",
+    "url": "https://www.linkedin.com/in/chirag-kushwaha/"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChiragKushwaha/chirag.rocks"
+  },
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
