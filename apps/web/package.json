@@ -16,7 +16,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@repo/ui": "*",
+    "@repo/ui": "workspace:*",
     "browserfs": "^1.4.3",
     "ini": "^5.0.0",
     "next": "^15.2.4",
@@ -28,8 +28,8 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -42,7 +42,6 @@
     "@types/react-rnd": "^7.4.4",
     "@types/three": "^0.175.0",
     "autoprefixer": "^10.4.21",
-    "eslint-config-next": "15.2.4",
     "eslint": "^9",
     "husky": "^9.1.7",
     "jest": "^29.7.0",

@@ -4,7 +4,7 @@ const AppLogo = ({ variant }: { variant: 'light' | 'dark' }) => {
       <img
         width={15}
         height={20}
-        src={'./stories/assets/logos/Apple Logo Light.png'}
+        src={'/assets/logos/Apple Logo Light.png'}
         alt="App Logo Light"
       />
     </div>
@@ -13,7 +13,7 @@ const AppLogo = ({ variant }: { variant: 'light' | 'dark' }) => {
       <img
         width={20}
         height={28}
-        src={'./stories/assets/logos/Apple Logo Dark.png'}
+        src={'/assets/logos/Apple Logo Dark.png'}
         alt="App Logo Dark"
       />
     </div>
