@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Notification from './notification';
 import OpenIndicator from './open-indicator';
 
