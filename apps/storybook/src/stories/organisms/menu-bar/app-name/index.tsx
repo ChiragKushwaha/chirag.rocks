@@ -1,10 +1,4 @@
-const AppName = ({
-  name,
-  variant
-}: {
-  name: string;
-  variant: 'light' | 'dark';
-}) => {
+const AppName = () => {
   return <div>App Name</div>;
 };
 

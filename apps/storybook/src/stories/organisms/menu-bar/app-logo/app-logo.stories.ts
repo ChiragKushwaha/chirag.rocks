@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { default as AppLogo, default as WindowControls } from '.';
+import { default as AppLogo } from './';
 
 const meta = {
   title: 'Organisms/Menu Bar/App Logo',

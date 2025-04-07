@@ -1,8 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import WindowControls from '.';
-import DocIcon from '.';
-import Notification from '.';
-import OpenIndicator from '.';
 import Separator from '.';
 
 const meta = {

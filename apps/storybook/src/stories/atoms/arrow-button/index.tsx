@@ -1,11 +1,9 @@
-import { Button } from '@repo/ui/button';
-
 const ArrowButton = () => {
   return (
     <div>
-      <Button appName="storybook">
+      <button>
         <span className="material-symbols-outlined">arrow_forward</span>
-      </Button>
+      </button>
     </div>
   );
 };

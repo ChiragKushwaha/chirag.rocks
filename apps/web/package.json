@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint --max-warnings 0",
     "check-types": "tsc --noEmit",
-    "build:fs": "cd public && ../../../node_modules/browserfs/dist/scripts/make_xhrfs_index.js > ../public.json",
+    "build:fs": "cd public && ../node_modules/browserfs/dist/scripts/make_xhrfs_index.js > ../public.json",
     "prettier": "prettier . --write",
     "eslint": "eslint --fix",
     "test": "jest",

@@ -1,5 +1,3 @@
-import React from 'react';
-
 const OpenIndicator = ({ variant }: { variant: 'light' | 'dark' }) => {
   return (
     <svg

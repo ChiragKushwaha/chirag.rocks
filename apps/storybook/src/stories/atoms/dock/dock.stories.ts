@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { default as Dock, default as WindowControls } from '.';
+import { default as Dock } from '.';
 
 const meta = {
   title: 'Atoms/Dock',

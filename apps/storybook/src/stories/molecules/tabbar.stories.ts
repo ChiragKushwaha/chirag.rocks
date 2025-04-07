@@ -1,16 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ArrowButton from '.';
+import { TabBar } from '../../../../../packages/ui';
+import '../../../../../packages/ui/dist/index.css';
 
 const meta = {
-  title: 'Atoms/Arrow Button',
-  component: ArrowButton,
+  title: 'Molecules/TabBar',
+  component: TabBar,
   parameters: {
     layout: 'centered'
   },
   tags: ['autodocs'],
   argTypes: {},
   args: {}
-} satisfies Meta<typeof ArrowButton>;
+} satisfies Meta<typeof TabBar>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
