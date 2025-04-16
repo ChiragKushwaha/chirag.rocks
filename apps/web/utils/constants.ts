@@ -1,3 +1,13 @@
+import { Position } from '../hooks/useDraggable';
+import { Size } from '../hooks/useResizable';
+
+export const DEFAULT_WINDOW_POSITION: Position = { x: 0, y: 0 };
+
+export const DEFAULT_WINDWOW_SIZE: Size = {
+  height: '200px',
+  width: '250px'
+};
+
 export const MILLISECONDS_IN_SECONDS = 1000;
 
 export const HEIF_IMAGE_FORMATS = new Set([

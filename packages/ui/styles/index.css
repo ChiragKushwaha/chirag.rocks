@@ -1,1 +1,7 @@
 @import 'tailwindcss';
+
+/* @utility {
+  .bg-primary {
+    @apply bg-blue-500;
+  }
+} */

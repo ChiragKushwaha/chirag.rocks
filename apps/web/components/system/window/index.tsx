@@ -1,7 +1,7 @@
 import { Rnd } from 'react-rnd';
+import { WindowDrillInNavigation } from '../../../../../packages/ui';
 import useProcessesState from '../../../contexts/process';
-import useDraggableAndResizable from '../../../hooks/useDraggableAndResizable';
-import rndDefaults from '../../../utils/rndDefaults';
+import useRnd from '../../../hooks/useRnd';
 import type { ProcessComponentProps } from '../processes/render-process';
 import Titlebar from './titlebar';
 
@@ -14,25 +14,14 @@ const Window = ({
   } & ProcessComponentProps
 >) => {
   const processes = useProcessesState((state) => state.processes);
-  const { minimized, maximized } = processes[pid];
-  const { size, updateSize, position, updatePosition } =
-    useDraggableAndResizable(maximized);
+  const { minimized, maximized } = processes[pid] || {};
+  const props = useRnd(maximized);
 
   return (
-    <Rnd
-      style={{ zIndex: 1 }}
-      disableDragging={maximized}
-      enableResizing={!maximized}
-      size={size}
-      position={position}
-      onDragStop={updatePosition}
-      onResize={updateSize}
-      {...rndDefaults}
-    >
-      <div
-        className={`bg-amber-200 w-full h-full ${minimized ? 'hidden' : 'block'}`}
-      >
+    <Rnd style={{ zIndex: 1 }} {...props}>
+      <div className={`w-full h-full ${minimized ? 'hidden' : 'block'}`}>
         <Titlebar pid={pid} />
+        <WindowDrillInNavigation />
         {children}
       </div>
     </Rnd>

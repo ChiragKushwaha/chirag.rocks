@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import WindowControls from '.';
+import { Tooltip, WindowControls } from '../../../../../packages/ui';
 
 const meta = {
-  title: 'Molecules/Window Controls',
-  component: WindowControls,
+  title: 'Molecules/Tooltip',
+  component: Tooltip,
   parameters: {
     layout: 'centered'
   },
   tags: ['autodocs'],
   argTypes: {},
   args: {}
-} satisfies Meta<typeof WindowControls>;
+} satisfies Meta<typeof Tooltip>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

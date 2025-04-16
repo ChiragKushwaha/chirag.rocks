@@ -7,15 +7,16 @@ import {
 } from '../../../icons/src';
 import WindowControls from '../views/window/window-controls';
 
-enum ToolbarType {
+export enum ToolbarType {
   STANDARD = 'standard',
   MONO = 'mono'
 }
-type TToolbarType = {
+export type TToolbarType = {
   type: ToolbarType;
   className?: string;
   title: string;
   subtitle?: string;
+  hideWindowControls?: boolean;
 };
 const Toolbar = ({ type = ToolbarType.STANDARD, ...props }: TToolbarType) => {
   switch (type) {
@@ -30,7 +31,7 @@ const ToolbarVariation = (props: Omit<TToolbarType, 'type'>) => {
   const { className = '' } = props;
   return (
     <div
-      className={`bg-[#ffffff01] flex items-center justify-between w-[720px] px-[12px] ${className}`}
+      className={`bg-[#ffffff01] flex items-center justify-between w-full px-[12px] ${className}`}
     >
       <Leading {...props} />
       <Trailing />
@@ -38,9 +39,10 @@ const ToolbarVariation = (props: Omit<TToolbarType, 'type'>) => {
   );
 };
 const Leading = (props: Omit<TToolbarType, 'type'>) => {
+  const { hideWindowControls = false } = props;
   return (
     <div className="flex items-center">
-      <WindowControls />
+      {!hideWindowControls && <WindowControls />}
       <Spacer width={14} />
       <BackwardForward />
       <Spacer width={14} />

@@ -5,7 +5,7 @@ import {
   name as packageName
 } from '../../../package.json';
 import './globals.css';
-
+import '../../../packages/ui/dist/index.css';
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin']

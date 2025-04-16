@@ -4,7 +4,7 @@ import useWindowActions from '../../../hooks/useWindowActions';
 
 const Titlebar = ({ pid }: { pid: string }) => {
   const processess = useProcessesState((state) => state.processes);
-  const { title, icon } = processess[pid];
+  const { title, icon } = processess[pid] ?? {};
 
   const { onMinimize, onMaximize, onClose } = useWindowActions(pid);
 

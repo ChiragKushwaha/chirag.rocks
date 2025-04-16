@@ -3,7 +3,7 @@ import TitleBar from './title-bar';
 
 const TabBar = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-[720px]">
       <TitleBar />
       <TabBarItems />
     </div>
@@ -12,7 +12,7 @@ const TabBar = () => {
 
 const TabBarItems = () => {
   return (
-    <div className="space-x-[2px] flex items-center justify-center w-full h-[45px] bg-amber-300">
+    <div className="space-x-[2px] flex items-center justify-center w-full h-[45px]">
       <TabBarItem selected />
       <TabBarItem />
       <TabBarItem />
@@ -21,14 +21,19 @@ const TabBarItems = () => {
 };
 
 const TabBarItem = ({ selected = false }: { selected?: boolean }) => {
-  const selectedClassName = selected ? 'bg-[#115511971]' : 'bg-[#ffffff01]';
-  const textColor = selected ? 'text-[#007AFF]' : 'text-[#000000]';
   return (
     <div
-      className={`flex flex-col items-center justify-center w-[75px] h-[45px] space-y-[3px] rounded-[2px] ${textColor} ${selectedClassName}}`}
+      style={{
+        backgroundColor: selected ? '#00000005' : '#ffff',
+        boxShadow: selected ? '#000000 0 0.75 3 0' : 'none',
+        border: selected ? '#979797' : 'transparent',
+        color: selected ? '#007AFF' : '#000000',
+        opacity: selected ? 1 : 0.5
+      }}
+      className={`flex flex-col items-center pt-[] justify-center w-[75px] h-[45px] space-y-[3px] rounded-[6px]`}
     >
       <SquareDashed height={18} />
-      <span className="text-[14px]">Tab Item</span>
+      <div className="h-[14px] text-center text-[12px]">Tab Item</div>
     </div>
   );
 };
