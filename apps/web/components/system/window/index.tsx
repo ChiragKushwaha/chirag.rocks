@@ -1,8 +1,7 @@
-import { Rnd } from 'react-rnd';
 import { WindowDrillInNavigation } from '../../../../../packages/ui';
 import useProcessesState from '../../../contexts/process';
-import useRnd from '../../../hooks/useRnd';
 import type { ProcessComponentProps } from '../processes/render-process';
+import RndWindow from './rnd-window';
 import Titlebar from './titlebar';
 
 const Window = ({
@@ -14,17 +13,16 @@ const Window = ({
   } & ProcessComponentProps
 >) => {
   const processes = useProcessesState((state) => state.processes);
-  const { minimized, maximized } = processes[pid] || {};
-  const props = useRnd(maximized);
+  const { minimized } = processes[pid] || {};
 
   return (
-    <Rnd style={{ zIndex: 1 }} {...props}>
+    <RndWindow pid={pid}>
       <div className={`w-full h-full ${minimized ? 'hidden' : 'block'}`}>
         <Titlebar pid={pid} />
         <WindowDrillInNavigation />
         {children}
       </div>
-    </Rnd>
+    </RndWindow>
   );
 };
 

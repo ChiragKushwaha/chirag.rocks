@@ -3,10 +3,16 @@ import type { Props, RndDragCallback, RndResizeCallback } from 'react-rnd';
 import useDraggable from './useDraggable';
 import useResizable from './useResizable';
 import rndDefaults from '../utils/rndDefaults';
+import { pid } from 'process';
+import useSession from './useSession';
 
-const useRnd = (maximized: boolean = false): Props => {
-  const [size, setSize] = useResizable(maximized);
-  const [position, setPosition] = useDraggable(maximized);
+const useRnd = (pid: string, maximized: boolean = false): Props => {
+  const { windowStates } = useSession();
+  console.log(windowStates);
+  const { size: previousSize, position: previousPosition } =
+    windowStates[pid] || {};
+  const [size, setSize] = useResizable(maximized, previousSize);
+  const [position, setPosition] = useDraggable(maximized, previousPosition);
 
   const onDragStop = useCallback<RndDragCallback>(
     (_event, data) => {

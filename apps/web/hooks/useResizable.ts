@@ -9,8 +9,11 @@ export type Size = {
 
 type Resizable = [Size, React.Dispatch<React.SetStateAction<Size>>];
 
-const useResizable = (maximized: boolean = false): Resizable => {
-  const [{ height, width }, setSize] = useState<Size>(DEFAULT_WINDWOW_SIZE);
+const useResizable = (
+  maximized: boolean = false,
+  size: Size = DEFAULT_WINDWOW_SIZE
+): Resizable => {
+  const [{ height, width }, setSize] = useState<Size>(size);
 
   const tasbarHeight = '40px';
 
