@@ -107,12 +107,16 @@ export const MenuBar: React.FC = () => {
 
   return (
     <header
-      className="h-7 bg-black/40 backdrop-blur-xl flex items-center justify-between px-2 text-white shadow-sm fixed top-0 w-full z-[8000] select-none"
+      className="h-[28px] bg-black/40 backdrop-blur-xl flex items-center justify-between px-4 text-white shadow-sm fixed top-0 w-full z-[8000] select-none"
       onClick={(e) => e.stopPropagation()} // Prevent clicking bar from closing menus
     >
-      <div className="flex items-center h-full">
+      <div className="flex items-center h-full gap-1">
         {/* Apple Menu */}
-        <MenuButton id="apple" label="" items={appleItems} />
+        <MenuButton
+          id="apple"
+          label={<span className="text-[15px] pb-0.5"></span>}
+          items={appleItems}
+        />
 
         {/* App Name */}
         <MenuButton
@@ -158,10 +162,10 @@ export const MenuBar: React.FC = () => {
       </div>
 
       {/* Right Side Status */}
-      <div className="flex items-center space-x-4 px-2 text-[12px]">
+      <div className="flex items-center gap-5 px-2 text-[13px] font-medium">
         <span className="opacity-90">🔋 100%</span>
         <span>
-          {time.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+          {time.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}
         </span>
       </div>
     </header>

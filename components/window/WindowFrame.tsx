@@ -159,7 +159,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
       }}
       className={`
         absolute top-0 left-0 rounded-xl shadow-2xl border border-white/20 overflow-hidden
-        flex flex-col bg-[#1e1e1e]/90 backdrop-blur-xl transition-shadow duration-200
+        flex flex-col bg-[#1e1e1e]/90 backdrop-blur-xl transition-shadow duration-200 pointer-events-auto
         ${
           process.isMaximized
             ? "!transform-none !top-8 !left-0 !right-0 !bottom-0 !rounded-none !border-0"

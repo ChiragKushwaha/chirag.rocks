@@ -6,13 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "server": "tsx server/server.ts",
     "lint": "eslint"
   },
   "dependencies": {
+    "@types/express": "^5.0.5",
+    "express": "^5.1.0",
     "lucide-react": "^0.555.0",
     "next": "16.0.5",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "ts-node": "^10.9.2",
     "zustand": "^5.0.9"
   },
   "devDependencies": {
@@ -24,6 +30,7 @@
     "eslint": "^9.39.1",
     "eslint-config-next": "16.0.5",
     "tailwindcss": "^4.1.17",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }

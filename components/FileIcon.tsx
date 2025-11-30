@@ -7,9 +7,20 @@ import { useIcon } from "./hooks/useIconManager";
 interface FileIconProps {
   name: string;
   kind: "file" | "directory";
+  isRenaming?: boolean;
+  onRename?: (newName: string) => void;
+  onRenameCancel?: () => void;
+  onContextMenu?: (e: React.MouseEvent) => void;
 }
 
-export const FileIcon: React.FC<FileIconProps> = ({ name, kind }) => {
+export const FileIcon: React.FC<FileIconProps> = ({
+  name,
+  kind,
+  isRenaming,
+  onRename,
+  onRenameCancel,
+  onContextMenu,
+}) => {
   const { selectedFile, setSelectedFile } = useSystemStore();
   const isSelected = selectedFile === name;
 
@@ -110,23 +121,28 @@ export const FileIcon: React.FC<FileIconProps> = ({ name, kind }) => {
   return (
     <div
       className={`
-        flex flex-col items-center w-24 p-2 rounded-md 
+        flex flex-col items-center w-[84px] p-1 rounded-[4px]
         ${
-          isSelected
+          isSelected && !isRenaming
             ? "bg-white/20 border border-white/30"
+            : isRenaming
+            ? ""
             : "hover:bg-white/10 hover:border hover:border-white/20"
         }
         transition-colors cursor-pointer
       `}
       onClick={(e) => {
         e.stopPropagation();
-        // Simple selection logic
-        const event = new CustomEvent("file-selected", { detail: name });
-        window.dispatchEvent(event);
+        if (!isRenaming) {
+          // Simple selection logic
+          const event = new CustomEvent("file-selected", { detail: name });
+          window.dispatchEvent(event);
+        }
       }}
-      onDoubleClick={() => console.log(`Opening ${name}...`)}
+      onContextMenu={onContextMenu}
+      onDoubleClick={() => !isRenaming && console.log(`Opening ${name}...`)}
     >
-      <div className="text-4xl filter drop-shadow-lg mb-1">
+      <div className="w-[64px] h-[64px] mb-1 filter drop-shadow-lg">
         <img
           src={iconUrl}
           alt={name}
@@ -136,14 +152,46 @@ export const FileIcon: React.FC<FileIconProps> = ({ name, kind }) => {
           }}
         />
       </div>
-      <span
-        className={`
-        text-xs font-medium text-white text-center leading-tight px-1 py-0.5 rounded
-        ${isSelected ? "bg-blue-600" : "drop-shadow-md"}
-      `}
-      >
-        {name}
-      </span>
+
+      {isRenaming ? (
+        <input
+          autoFocus
+          defaultValue={name}
+          className="text-[12px] text-center text-black bg-white/90 border border-blue-500 rounded-sm px-1 py-0.5 w-full outline-none shadow-sm"
+          onBlur={(e) => {
+            console.log("Input blurred, value:", e.target.value);
+            onRename?.(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              console.log("Enter pressed");
+              e.currentTarget.blur(); // Trigger blur to save
+            }
+            if (e.key === "Escape") {
+              console.log("Escape pressed");
+              onRenameCancel?.();
+            }
+          }}
+          onClick={(e) => e.stopPropagation()}
+        />
+      ) : (
+        <span
+          className={`
+            text-[12px] font-medium text-white text-center leading-tight px-1.5 py-0.5 rounded-[3px]
+            ${
+              isSelected
+                ? "bg-[#0058D0]"
+                : "drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
+            }
+            line-clamp-2 break-words w-full
+          `}
+          style={{
+            textShadow: isSelected ? "none" : "0 1px 2px rgba(0,0,0,0.5)",
+          }}
+        >
+          {name}
+        </span>
+      )}
     </div>
   );
 };

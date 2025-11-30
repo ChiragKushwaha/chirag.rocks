@@ -1,6 +1,6 @@
-import React from 'react';
-import { useProcessStore } from '../store/processStore';
-import { WindowFrame } from './window/WindowFrame';
+import React from "react";
+import { useProcessStore } from "../store/processStore";
+import { WindowFrame } from "./window/WindowFrame";
 
 export const WindowManager: React.FC = () => {
   const { processes } = useProcessStore();
@@ -10,7 +10,7 @@ export const WindowManager: React.FC = () => {
       {/* pointer-events-none allows clicking on desktop items "behind" the window manager layer.
          We re-enable pointer-events inside the WindowFrame.
       */}
-      <div className="relative w-full h-full pointer-events-auto">
+      <div className="relative w-full h-full">
         {processes.map((process) => (
           <WindowFrame key={process.pid} process={process} />
         ))}

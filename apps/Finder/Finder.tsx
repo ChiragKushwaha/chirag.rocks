@@ -12,10 +12,16 @@ import {
 import { MacFileEntry } from "../../lib/types";
 import { MacOSButton, MacOSInput } from "../../components/ui/MacOSDesignSystem"; // Import new UI
 
-export const Finder: React.FC = () => {
+interface FinderProps {
+  initialPath?: string;
+}
+
+export const Finder: React.FC<FinderProps> = ({
+  initialPath = "/Users/Guest",
+}) => {
   // Navigation State
-  const [currentPath, setCurrentPath] = useState("/Users/Guest");
-  const [history, setHistory] = useState<string[]>(["/Users/Guest"]);
+  const [currentPath, setCurrentPath] = useState(initialPath);
+  const [history, setHistory] = useState<string[]>([initialPath]);
   const [historyIndex, setHistoryIndex] = useState(0);
 
   // Data State
@@ -182,7 +188,7 @@ export const Finder: React.FC = () => {
       {/* STATUS BAR */}
       <div className="h-6 bg-[#F6F6F6] dark:bg-[#282828] border-t border-[#D1D1D6] dark:border-black/50 flex items-center px-4 text-[11px] text-gray-500 dark:text-gray-400 select-none justify-between">
         <span>{files.length} items</span>
-        <span>{Math.floor(Math.random() * 50) + 100} GB available</span>
+        <span>499 GB available</span>
       </div>
     </div>
   );

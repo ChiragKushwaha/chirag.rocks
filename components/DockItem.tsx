@@ -2,7 +2,12 @@ import React, { useRef } from "react";
 import { useSystemStore } from "../store/systemStore";
 import { useProcessStore } from "../store/processStore";
 import { Finder } from "../apps/Finder/Finder";
-import { useIcon } from "./hooks/useIconManager"; // New
+import { useIcon } from "./hooks/useIconManager";
+import { Terminal } from "../apps/Terminal";
+import { Calculator } from "../apps/Calculator";
+import { Trash } from "../apps/Trash";
+import { Messages } from "../apps/Messages";
+import { FaceTime } from "../apps/FaceTime";
 
 interface DockItemProps {
   name: string;
@@ -19,22 +24,32 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
   const isActive = runningProcess?.pid === activePid;
 
   const handleClick = () => {
-    const component = (
+    let component = (
       <div className="p-10 text-white">Placeholder for {name}</div>
     );
+    const title = name;
 
     if (name === "Finder") {
-      launchProcess(name, "Finder", icon, <Finder />, {
+      launchProcess("finder", "Finder", icon, <Finder />, {
         width: 900,
         height: 600,
         x: 50,
         y: 50,
       });
+      return;
+    } else if (name === "Terminal") {
+      component = <Terminal />;
+    } else if (name === "Calculator") {
+      component = <Calculator />;
+    } else if (name === "Trash") {
+      component = <Trash />;
+    } else if (name === "Messages") {
+      component = <Messages />;
+    } else if (name === "FaceTime") {
+      component = <FaceTime />;
     }
 
-    // NOTE: For 'Finder', we specifically want a larger default window
-    // You might want to update your processStore launchProcess to accept dimensions
-    launchProcess(name, "Finder", icon, component);
+    launchProcess(name.toLowerCase(), title, icon, component);
   };
 
   const imgRef = useRef<HTMLButtonElement>(null);

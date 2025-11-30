@@ -178,6 +178,81 @@ export class MacFileSystem {
       return [];
     }
   }
+  /**
+   * Delete a file or directory
+   */
+  async delete(path: string, filename: string): Promise<void> {
+    try {
+      const dirHandle = await this.resolvePath(path);
+      await dirHandle.removeEntry(filename, { recursive: true });
+      console.log(`[FS] Deleted: ${path}/${filename}`);
+    } catch (e) {
+      console.error(`[FS] Error deleting ${filename}:`, e);
+    }
+  }
+  /**
+   * Rename a file or directory
+   */
+  async rename(path: string, oldName: string, newName: string): Promise<void> {
+    try {
+      const dirHandle = await this.resolvePath(path);
+      const oldHandle = await dirHandle
+        .getDirectoryHandle(oldName)
+        .catch(() => dirHandle.getFileHandle(oldName));
+
+      // Try native move if available (Chrome 111+)
+      if ((oldHandle as any).move) {
+        await (oldHandle as any).move(dirHandle, newName);
+        console.log(`[FS] Renamed (native): ${path}/${oldName} -> ${newName}`);
+        return;
+      }
+
+      // Fallback: Copy and Delete
+      if (oldHandle.kind === "file") {
+        const file = await (oldHandle as FileSystemFileHandle).getFile();
+        const content = await file.arrayBuffer();
+        await this.writeBlob(path, newName, content);
+        await dirHandle.removeEntry(oldName);
+      } else if (oldHandle.kind === "directory") {
+        // Recursive copy for directories
+        await this.copyDirectory(
+          oldHandle as FileSystemDirectoryHandle,
+          dirHandle,
+          newName
+        );
+        await dirHandle.removeEntry(oldName, { recursive: true });
+      }
+      console.log(
+        `[FS] Renamed (copy/delete): ${path}/${oldName} -> ${newName}`
+      );
+    } catch (e) {
+      console.error(`[FS] Error renaming ${oldName} to ${newName}:`, e);
+      throw e;
+    }
+  }
+
+  private async copyDirectory(
+    source: FileSystemDirectoryHandle,
+    destParent: FileSystemDirectoryHandle,
+    newName: string
+  ) {
+    const newDir = await destParent.getDirectoryHandle(newName, {
+      create: true,
+    });
+    // @ts-ignore
+    for await (const [name, handle] of source.entries()) {
+      if (handle.kind === "file") {
+        const file = await handle.getFile();
+        const content = await file.arrayBuffer();
+        const newFile = await newDir.getFileHandle(name, { create: true });
+        const writable = await (newFile as any).createWritable();
+        await writable.write(content);
+        await writable.close();
+      } else if (handle.kind === "directory") {
+        await this.copyDirectory(handle, newDir, name);
+      }
+    }
+  }
 }
 
 export const fs = new MacFileSystem();
