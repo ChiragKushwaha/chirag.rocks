@@ -2,6 +2,8 @@ import React, { useRef } from "react";
 import { useSystemStore } from "../store/systemStore";
 import { useProcessStore } from "../store/processStore";
 import { Finder } from "../apps/Finder/Finder";
+import { useIcon } from "./hooks/useIconManager"; // New
+
 interface DockItemProps {
   name: string;
   icon: string;
@@ -10,6 +12,7 @@ interface DockItemProps {
 
 export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
   const { launchProcess, processes, activePid } = useProcessStore();
+  const iconUrl = useIcon(icon); // Get Blob URL from OPFS
 
   const runningProcess = processes.find((p) => p.id === name);
   const isOpen = !!runningProcess;
@@ -95,16 +98,45 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
         `}
       >
         <span className="filter drop-shadow-md transform translate-y-[1px] w-full h-full p-1.5">
-          <img
-            src={`/icons/${icon}.png`}
-            alt={name}
-            className="w-full h-full object-contain"
-            onError={(e) => {
-              e.currentTarget.style.display = "none";
-              e.currentTarget.parentElement!.innerHTML =
-                icon === "safari" ? "🧭" : icon;
-            }}
-          />
+          {iconUrl ? (
+            <img
+              src={iconUrl}
+              alt={name}
+              className="w-full h-full object-contain"
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+                const fallbacks: Record<string, string> = {
+                  launchpad: "🚀",
+                  apps: "🚀",
+                  calendar: "📅",
+                  safari: "🧭",
+                  finder: "😊",
+                  mail: "✉️",
+                  messages: "💬",
+                  maps: "🗺️",
+                  photos: "📸",
+                  facetime: "📹",
+                  contacts: "📒",
+                  reminders: "✅",
+                  notes: "📝",
+                  music: "🎵",
+                  news: "📰",
+                  tv: "📺",
+                  app_store: "🅰️",
+                  settings: "⚙️",
+                  terminal: "💻",
+                  calculator: "🧮",
+                  freeform: "✏️",
+                  trash: "🗑️",
+                  trash_full: "🗑️",
+                };
+                e.currentTarget.parentElement!.innerHTML =
+                  fallbacks[icon] || icon;
+              }}
+            />
+          ) : (
+            <span className="text-2xl">{icon}</span> // Temporary fallback while loading
+          )}
         </span>
       </button>
 

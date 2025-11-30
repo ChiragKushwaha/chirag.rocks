@@ -2,6 +2,8 @@
 import React from "react";
 import { useSystemStore } from "../store/systemStore";
 
+import { useIcon } from "./hooks/useIconManager";
+
 interface FileIconProps {
   name: string;
   kind: "file" | "directory";
@@ -12,94 +14,127 @@ export const FileIcon: React.FC<FileIconProps> = ({ name, kind }) => {
   const isSelected = selectedFile === name;
 
   // Simple icon logic (expand later with real SVGs)
-  const getIconPath = (name: string, type: string) => {
+  const getIconName = (name: string, type: string) => {
     const lowerName = name.toLowerCase();
 
     // System Apps
-    if (lowerName.includes("finder")) return "/icons/finder.png";
-    if (lowerName.includes("launchpad")) return "/icons/launchpad.png";
-    if (lowerName.includes("safari")) return "/icons/safari.png";
-    if (lowerName.includes("messages")) return "/icons/messages.png";
-    if (lowerName.includes("mail")) return "/icons/mail.png";
-    if (lowerName.includes("maps")) return "/icons/maps.png";
-    if (lowerName.includes("photos")) return "/icons/photos.png";
-    if (lowerName.includes("facetime")) return "/icons/facetime.png";
-    if (lowerName.includes("calendar")) return "/icons/calendar.png";
-    if (lowerName.includes("contacts")) return "/icons/contacts.png";
-    if (lowerName.includes("reminders")) return "/icons/reminders.png";
-    if (lowerName.includes("notes")) return "/icons/notes.png";
-    if (lowerName.includes("music")) return "/icons/music.png";
-    if (lowerName.includes("podcasts")) return "/icons/podcasts.png";
-    if (lowerName.includes("tv")) return "/icons/tv.png";
-    if (lowerName.includes("app store")) return "/icons/appstore.png";
+    if (lowerName.includes("finder")) return "finder";
+    if (lowerName.includes("launchpad")) return "launchpad";
+    if (lowerName.includes("safari")) return "safari";
+    if (lowerName.includes("messages")) return "messages";
+    if (lowerName.includes("mail")) return "mail";
+    if (lowerName.includes("maps")) return "maps";
+    if (lowerName.includes("photos")) return "photos";
+    if (lowerName.includes("facetime")) return "facetime";
+    if (lowerName.includes("calendar")) return "calendar";
+    if (lowerName.includes("contacts")) return "contacts";
+    if (lowerName.includes("reminders")) return "reminders";
+    if (lowerName.includes("notes")) return "notes";
+    if (lowerName.includes("music")) return "music";
+    if (lowerName.includes("podcasts")) return "podcasts";
+    if (lowerName.includes("tv")) return "tv";
+    if (lowerName.includes("app store")) return "appstore";
     if (
       lowerName.includes("settings") ||
       lowerName.includes("system preferences")
     )
-      return "/icons/settings.png";
-    if (lowerName.includes("terminal")) return "/icons/terminal.png";
-    if (lowerName.includes("calculator")) return "/icons/calculator.png";
+      return "settings";
+    if (lowerName.includes("terminal")) return "terminal";
+    if (lowerName.includes("calculator")) return "calculator";
+
+    // Folders
+    if (type === "directory") {
+      if (lowerName === "applications") return "folder_applications";
+      if (lowerName === "desktop") return "folder_desktop";
+      if (lowerName === "documents") return "folder_documents";
+      if (lowerName === "downloads") return "folder_downloads";
+      if (lowerName === "music") return "folder_music";
+      if (lowerName === "pictures") return "folder_pictures";
+      if (lowerName === "public") return "folder_public";
+      // if (lowerName === "movies") return "folder_movies"; // Not extracted yet
+
+      return "folder"; // Generic folder icon
+    }
+
+    // Files based on extension
+    if (
+      lowerName.endsWith(".png") ||
+      lowerName.endsWith(".jpg") ||
+      lowerName.endsWith(".jpeg")
+    )
+      return "preview";
+    if (lowerName.endsWith(".mp3") || lowerName.endsWith(".m4a"))
+      return "music";
+    if (lowerName.endsWith(".mp4") || lowerName.endsWith(".mov"))
+      return "quicktime_player";
+    if (lowerName.endsWith(".pdf")) return "preview";
+    if (lowerName.endsWith(".txt") || lowerName.endsWith(".md"))
+      return "textedit";
+    if (
+      lowerName.endsWith(".json") ||
+      lowerName.endsWith(".js") ||
+      lowerName.endsWith(".ts") ||
+      lowerName.endsWith(".tsx")
+    )
+      return "vscode";
 
     // Third Party Apps
-    if (lowerName.includes("chrome")) return "/icons/chrome.png";
+    if (lowerName.includes("chrome")) return "chrome";
     if (lowerName.includes("vscode") || lowerName.includes("code"))
-      return "/icons/vscode.png";
-    if (lowerName.includes("slack")) return "/icons/slack.png";
-    if (lowerName.includes("spotify")) return "/icons/spotify.png";
+      return "vscode";
+    if (lowerName.includes("slack")) return "slack";
+    if (lowerName.includes("spotify")) return "spotify";
 
     // Generic App Icon Fallback
-    // If it looks like an app name, try to find a matching icon
-    // e.g. "Activity Monitor" -> "activity_monitor.png"
-    if (type === "app" || lowerName.endsWith(".app")) {
+    if (
+      type === "file" &&
+      (lowerName.endsWith(".app") || !name.includes("."))
+    ) {
       const cleanName = lowerName
         .replace(".app", "")
         .replace(/[^a-z0-9]/g, "_");
-      return `/icons/${cleanName}.png`;
+      return cleanName;
     }
-
-    // Fallback for generic types
-    if (type === "folder") return "/icons/finder.png"; // Use finder icon for folders for now or a generic folder icon if available
 
     return null;
   };
 
-  const iconPath = getIconPath(name, kind || "file");
+  const iconName = getIconName(name, kind);
+  const iconUrl = useIcon(iconName || "file"); // Fallback to a generic file icon if null, though we handle nulls below
+
+  // Fallback emoji logic if no icon found
+  if (!iconName || !iconUrl) {
+    return <span className="text-4xl">📄</span>;
+  }
 
   return (
     <div
       className={`
-        flex flex-col items-center justify-center w-24 p-2 rounded-md cursor-default
+        flex flex-col items-center w-24 p-2 rounded-md 
         ${
           isSelected
-            ? "bg-white/20 border border-white/30 backdrop-blur-sm"
-            : "hover:bg-white/10"
+            ? "bg-white/20 border border-white/30"
+            : "hover:bg-white/10 hover:border hover:border-white/20"
         }
+        transition-colors cursor-pointer
       `}
       onClick={(e) => {
         e.stopPropagation();
-        setSelectedFile(name);
+        // Simple selection logic
+        const event = new CustomEvent("file-selected", { detail: name });
+        window.dispatchEvent(event);
       }}
       onDoubleClick={() => console.log(`Opening ${name}...`)}
     >
       <div className="text-4xl filter drop-shadow-lg mb-1">
-        {iconPath ? (
-          <img
-            src={iconPath}
-            alt={name}
-            className="w-full h-full object-contain drop-shadow-md"
-            onError={(e) => {
-              // Fallback to Lucide icon if image fails
-              e.currentTarget.style.display = "none";
-              // Assuming a fallback element exists or can be rendered
-              // For now, if image fails, nothing will show in its place unless explicitly handled
-            }}
-          />
-        ) : // Original emoji fallback if no specific iconPath is found
-        kind === "directory" ? (
-          <span className="text-blue-400">📁</span>
-        ) : (
-          <span className="text-gray-200">📄</span>
-        )}
+        <img
+          src={iconUrl}
+          alt={name}
+          className="w-full h-full object-contain drop-shadow-md"
+          onError={(e) => {
+            e.currentTarget.style.display = "none";
+          }}
+        />
       </div>
       <span
         className={`

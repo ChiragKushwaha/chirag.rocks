@@ -39,7 +39,7 @@ export const Dock: React.FC = () => {
         <div className="w-[1px] h-10 bg-black/10 dark:bg-white/10 mx-1 self-center rounded-full" />
 
         {/* Trash Can */}
-        <DockItem name="Bin" icon="🗑️" mouseX={mouseX} />
+        <DockItem name="Bin" icon="trash" mouseX={mouseX} />
       </div>
     </div>
   );

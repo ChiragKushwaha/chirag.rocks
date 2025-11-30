@@ -85,6 +85,49 @@ export class MacFileSystem {
   }
 
   /**
+   * Write binary content (Blob/Buffer) to a file.
+   */
+  async writeBlob(
+    path: string,
+    filename: string,
+    content: Blob | ArrayBuffer
+  ): Promise<void> {
+    try {
+      const dirHandle = await this.resolvePath(path, true);
+      const fileHandle = await dirHandle.getFileHandle(filename, {
+        create: true,
+      });
+
+      const writable = await (fileHandle as any).createWritable();
+      await writable.write(content);
+      await writable.close();
+
+      console.log(`[FS] Wrote Blob: ${path}/${filename}`);
+    } catch (e) {
+      console.error(`[FS] Error writing blob ${filename}:`, e);
+    }
+  }
+
+  /**
+   * Read file as Blob
+   */
+  async readBlob(path: string, filename: string): Promise<Blob | null> {
+    try {
+      const dirHandle = await this.resolvePath(path);
+      const fileHandle = await dirHandle.getFileHandle(filename);
+      const file = await fileHandle.getFile();
+      return file;
+    } catch (e: any) {
+      if (e.name === "NotFoundError") {
+        // File not found is expected for cache misses
+        return null;
+      }
+      console.error(`[FS] Read Blob Error: ${path}/${filename}`, e);
+      return null;
+    }
+  }
+
+  /**
    * Check if a specific path exists
    */
   async exists(fullPath: string): Promise<boolean> {

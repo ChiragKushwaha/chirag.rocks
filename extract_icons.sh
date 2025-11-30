@@ -70,4 +70,43 @@ process_directory "/System/Applications/Utilities"
 process_directory "/Applications"
 process_directory "/System/Library/CoreServices" # Finder is here usually, but we handled it manually above
 
+# 3. Extract System Folder Icons
+CORE_TYPES="/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources"
+convert_icon_from_path() {
+    src="$1"
+    name="$2"
+    if [ -f "$src" ]; then
+        echo "Extracting $name from $src..."
+        sips -s format png -z 128 128 "$src" --out "public/icons/$name.png" > /dev/null 2>&1
+    else
+        echo "Icon not found: $src"
+    fi
+}
+
+convert_icon_from_path "$CORE_TYPES/GenericFolderIcon.icns" "folder"
+convert_icon_from_path "$CORE_TYPES/OpenFolderIcon.icns" "folder_open"
+convert_icon_from_path "$CORE_TYPES/DesktopFolderIcon.icns" "folder_desktop"
+convert_icon_from_path "$CORE_TYPES/DocumentsFolderIcon.icns" "folder_documents"
+convert_icon_from_path "$CORE_TYPES/DownloadsFolder.icns" "folder_downloads"
+convert_icon_from_path "$CORE_TYPES/ApplicationsFolderIcon.icns" "folder_applications"
+convert_icon_from_path "$CORE_TYPES/MusicFolderIcon.icns" "folder_music"
+convert_icon_from_path "$CORE_TYPES/PicturesFolderIcon.icns" "folder_pictures"
+convert_icon_from_path "$CORE_TYPES/PublicFolderIcon.icns" "folder_public"
+
 echo "Icon extraction complete."
+
+# Generate manifest.json
+echo "Generating manifest.json..."
+echo "[" > public/icons/manifest.json
+first=true
+for file in public/icons/*.png; do
+    if [ "$first" = true ]; then
+        first=false
+    else
+        echo "," >> public/icons/manifest.json
+    fi
+    filename=$(basename "$file")
+    echo "  \"$filename\"" >> public/icons/manifest.json
+done
+echo "]" >> public/icons/manifest.json
+echo "Manifest generated at public/icons/manifest.json"

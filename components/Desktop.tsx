@@ -13,6 +13,8 @@ import { MacFileEntry } from "../lib/types";
 import { TextEdit } from "../apps/TextEdit";
 import { Spotlight } from "../apps/Spotlight";
 
+import { useIconManager, useAsset } from "./hooks/useIconManager"; // New
+
 export const Desktop: React.FC = () => {
   const { wallpaper, isBooting, setBooting, setSelectedFile } =
     useSystemStore();
@@ -20,24 +22,56 @@ export const Desktop: React.FC = () => {
   const { launchProcess } = useProcessStore();
   const [files, setFiles] = useState<MacFileEntry[]>([]);
 
-  // ... (Keep existing boot logic) ...
+  // Initialize Icon System (Cache icons to OPFS)
+  const { isReady: assetsReady } = useIconManager();
+
+  // Load wallpaper from OPFS
+  const wallpaperUrl = useAsset(wallpaper);
+
+  // Boot Logic
   useEffect(() => {
     const load = async () => {
-      if (isBooting) {
-        await new Promise((r) => setTimeout(r, 2000));
-        setBooting(false);
-      }
+      // Wait for assets to be ready
+      if (!assetsReady) return;
+
+      // Simulate minimum boot time or wait for assets
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setBooting(false);
+
+      // Load desktop files after booting
       const f = await fs.ls("/Users/Guest/Desktop");
       setFiles(f);
     };
-    load();
-  }, [isBooting]);
+
+    if (isBooting) {
+      load();
+    }
+  }, [isBooting, setBooting, assetsReady]);
+
+  // --- ACTIONS ---
+  const createFolder = async () => {
+    const baseName = "untitled folder";
+    let name = baseName;
+    let counter = 2;
+
+    // Find unique name
+    while (await fs.exists(`/Users/Guest/Desktop/${name}`)) {
+      name = `${baseName} ${counter}`;
+      counter++;
+    }
+
+    await fs.mkdir(`/Users/Guest/Desktop/${name}`);
+
+    // Refresh files
+    const f = await fs.ls("/Users/Guest/Desktop");
+    setFiles(f);
+  };
 
   // --- RIGHT CLICK HANDLER ---
   const handleContextMenu = (e: React.MouseEvent) => {
     e.preventDefault();
     openContextMenu(e.clientX, e.clientY, [
-      { label: "New Folder", action: () => alert("New Folder logic here") },
+      { label: "New Folder", action: createFolder },
       { label: "Get Info", disabled: true },
       { label: "Change Wallpaper...", action: () => alert("Wallpaper Picker") },
       { separator: true },
@@ -63,13 +97,19 @@ export const Desktop: React.FC = () => {
 
   return (
     <main
-      className="h-screen w-screen bg-cover bg-center overflow-hidden relative"
-      style={{ backgroundImage: `url(${wallpaper})` }}
+      className="h-screen w-screen overflow-hidden relative"
       onClick={() => {
         setSelectedFile(null);
       }}
       onContextMenu={handleContextMenu} // Capture Right Click on Desktop
     >
+      {/* Wallpaper Layer */}
+      <div
+        className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out"
+        style={{
+          backgroundImage: `url(${wallpaperUrl || wallpaper})`, // Fallback to store path (which might be local public path if not in OPFS yet)
+        }}
+      />
       <MenuBar />
 
       {/* GLOBAL CONTEXT MENU LAYER */}

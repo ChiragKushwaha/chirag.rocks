@@ -25,7 +25,7 @@ export const useSystemStore = create<SystemState>()(
       isBooting: true,
       isSetupComplete: false,
       theme: "light",
-      wallpaper: "/wallpapers/sequoia-light.jpg",
+      wallpaper: "/System/Library/Desktop Pictures/Sonoma.heic", // Default to Sonoma
       activeApp: "Finder",
       selectedFile: null,
 
