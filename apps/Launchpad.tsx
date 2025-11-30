@@ -21,6 +21,7 @@ import { Freeform } from "./Freeform";
 import { Terminal } from "./Terminal";
 import { Calculator } from "./Calculator";
 import { Trash } from "./Trash";
+import { Photos } from "./Photos";
 import { CalendarIcon } from "../components/icons/CalendarIcon";
 
 interface AppDef {
@@ -36,6 +37,7 @@ const APPS: AppDef[] = [
   { id: "messages", name: "Messages", icon: "messages", component: Messages },
   { id: "mail", name: "Mail", icon: "mail", component: Mail },
   { id: "maps", name: "Maps", icon: "maps", component: Maps },
+  { id: "photos", name: "Photos", icon: "photos", component: Photos },
   { id: "facetime", name: "FaceTime", icon: "facetime", component: FaceTime },
   { id: "calendar", name: "Calendar", icon: "calendar", component: Calendar },
   { id: "contacts", name: "Contacts", icon: "contacts", component: Contacts },

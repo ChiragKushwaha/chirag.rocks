@@ -5,6 +5,14 @@ import { useProcessStore } from "../store/processStore";
 import { TopDropdown } from "./Menus";
 import { AboutMac } from "../apps/AboutMac";
 import { Clock } from "./Clock";
+import {
+  Battery,
+  Wifi,
+  Search,
+  Clipboard,
+  Cloud,
+  PlayCircle,
+} from "lucide-react";
 
 // --- RENDER HELPERS ---
 const MenuButton: React.FC<{
@@ -43,6 +51,30 @@ const MenuButton: React.FC<{
     </div>
   );
 };
+
+const SiriIcon = () => (
+  <div className="w-4 h-4 rounded-full bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 opacity-90 shadow-sm" />
+);
+
+const ControlCenterIcon = () => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M6 8a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+    <path d="M8 10V20" />
+    <path d="M8 4v2" />
+    <path d="M14 16a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+    <path d="M16 18v2" />
+    <path d="M16 4v10" />
+  </svg>
+);
 
 export const MenuBar: React.FC = () => {
   const { activeApp } = useSystemStore();
@@ -159,8 +191,54 @@ export const MenuBar: React.FC = () => {
       </div>
 
       {/* Right Side Status */}
-      <div className="flex items-center gap-5 px-2 text-[13px] font-medium">
-        <span className="opacity-90">🔋 100%</span>
+      <div className="flex items-center gap-4 px-2 text-[13px] font-medium">
+        {/* Clipboard */}
+        <div className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default">
+          <Clipboard size={16} strokeWidth={2} />
+        </div>
+
+        {/* Weather */}
+        <div className="flex items-center gap-1.5 opacity-90 hover:bg-white/10 px-1.5 py-0.5 rounded cursor-default">
+          <Cloud
+            size={16}
+            strokeWidth={2}
+            fill="currentColor"
+            className="text-white/90"
+          />
+          <span>11°C</span>
+        </div>
+
+        {/* Media */}
+        <div className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default">
+          <PlayCircle size={16} strokeWidth={2} />
+        </div>
+
+        {/* Battery */}
+        <div className="flex items-center gap-1.5 opacity-90 hover:bg-white/10 px-1.5 py-0.5 rounded cursor-default">
+          <Battery size={20} strokeWidth={2} className="rotate-0" />
+        </div>
+
+        {/* Wifi */}
+        <div className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default">
+          <Wifi size={16} strokeWidth={2.5} />
+        </div>
+
+        {/* Search */}
+        <div className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default">
+          <Search size={15} strokeWidth={2.5} />
+        </div>
+
+        {/* Control Center */}
+        <div className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default">
+          <ControlCenterIcon />
+        </div>
+
+        {/* Siri */}
+        <div className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default">
+          <SiriIcon />
+        </div>
+
+        {/* Clock */}
         <Clock />
       </div>
     </header>

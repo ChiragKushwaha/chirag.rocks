@@ -23,6 +23,7 @@ import { News } from "../apps/News";
 import { AppStore } from "../apps/AppStore";
 import { Launchpad } from "../apps/Launchpad";
 import { Freeform } from "../apps/Freeform";
+import { Photos } from "../apps/Photos";
 
 interface DockItemProps {
   name: string;
@@ -98,6 +99,8 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
       component = <Launchpad />;
     } else if (name === "Freeform") {
       component = <Freeform />;
+    } else if (name === "Photos") {
+      component = <Photos />;
     }
 
     launchProcess(name.toLowerCase(), title, icon, component);
