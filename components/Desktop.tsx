@@ -109,7 +109,23 @@ export const Desktop: React.FC = () => {
     if (isBooting) {
       load();
     }
+    if (isBooting) {
+      load();
+    }
   }, [isBooting, setBooting, assetsReady, wallpaperUrl, wallpaper]);
+
+  // Spotlight Hotkey (Cmd+K / Ctrl+K)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        useSystemStore.getState().toggleSpotlight();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   // --- ACTIONS ---
   const createFolder = async () => {

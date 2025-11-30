@@ -40,7 +40,8 @@ export const useSystemStore = create<SystemState>()(
       isBooting: true,
       isSetupComplete: false,
       theme: "light",
-      wallpaper: "/System/Library/Desktop Pictures/Sonoma.heic", // Default to Sonoma
+      wallpaper:
+        "https://images.unsplash.com/photo-1605142859619-db2aeff7bc86?q=80&w=3840&auto=format&fit=crop", // macOS Big Sur Abstract
       activeApp: "Finder",
       selectedFile: null,
 

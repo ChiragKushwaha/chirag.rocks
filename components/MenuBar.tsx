@@ -12,7 +12,9 @@ import {
   Clipboard,
   Cloud,
   PlayCircle,
+  BatteryCharging,
 } from "lucide-react";
+import { useBattery } from "../hooks/useBattery";
 
 // --- RENDER HELPERS ---
 const MenuButton: React.FC<{
@@ -73,8 +75,50 @@ const ControlCenterIcon = () => (
     <path d="M14 16a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
     <path d="M16 18v2" />
     <path d="M16 4v10" />
+    <path d="M16 4v10" />
   </svg>
 );
+
+const BatteryDisplay = () => {
+  const { level, charging, loading, supported } = useBattery();
+
+  // Fallback for SSR or unsupported browsers
+  if (!supported || loading || level === null) {
+    return (
+      <div className="flex items-center gap-1.5 opacity-90 hover:bg-white/10 px-1.5 py-0.5 rounded cursor-default">
+        <Battery size={22} strokeWidth={2} className="rotate-0 text-gray-400" />
+      </div>
+    );
+  }
+
+  const percentage = Math.round(level * 100);
+  const isLow = percentage <= 20 && !charging;
+
+  return (
+    <div
+      className="flex items-center gap-1.5 opacity-90 hover:bg-white/10 px-1.5 py-0.5 rounded cursor-default"
+      title={`${percentage}% ${charging ? "Charging" : ""}`}
+    >
+      <div className="relative">
+        {charging ? (
+          <BatteryCharging
+            size={22}
+            strokeWidth={2}
+            className="text-green-400"
+          />
+        ) : (
+          <Battery
+            size={22}
+            strokeWidth={2}
+            className={`rotate-0 ${isLow ? "text-red-500" : ""}`}
+          />
+        )}
+        {/* Fill level overlay could be added here for more realism, but Lucide icons don't support partial fill easily. 
+            For now, color indication is good. */}
+      </div>
+    </div>
+  );
+};
 
 export const MenuBar: React.FC = () => {
   const { activeApp } = useSystemStore();
@@ -136,7 +180,7 @@ export const MenuBar: React.FC = () => {
 
   return (
     <header
-      className="h-[28px] bg-black/40 backdrop-blur-xl flex items-center justify-between px-4 text-white shadow-sm fixed top-0 w-full z-[8000] select-none"
+      className="h-[30px] bg-white/30 dark:bg-black/30 backdrop-blur-[50px] saturate-150 flex items-center justify-between px-4 text-black dark:text-white shadow-sm fixed top-0 w-full z-[8000] select-none transition-colors duration-300"
       onClick={(e) => e.stopPropagation()} // Prevent clicking bar from closing menus
     >
       <div className="flex items-center h-full gap-1">
@@ -214,9 +258,7 @@ export const MenuBar: React.FC = () => {
         </div>
 
         {/* Battery */}
-        <div className="flex items-center gap-1.5 opacity-90 hover:bg-white/10 px-1.5 py-0.5 rounded cursor-default">
-          <Battery size={20} strokeWidth={2} className="rotate-0" />
-        </div>
+        <BatteryDisplay />
 
         {/* Wifi */}
         <div className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default">
@@ -224,7 +266,10 @@ export const MenuBar: React.FC = () => {
         </div>
 
         {/* Search */}
-        <div className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default">
+        <div
+          className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default active:bg-white/20"
+          onClick={() => useSystemStore.getState().toggleSpotlight()}
+        >
           <Search size={15} strokeWidth={2.5} />
         </div>
 

@@ -15,14 +15,14 @@ export const Dock: React.FC = () => {
       */}
       <div
         className="
-          flex items-end gap-4 px-3 pb-3 pt-2
-          bg-[rgba(255,255,255,0.2)] dark:bg-[rgba(0,0,0,0.2)]
-          backdrop-blur-2xl
-          border border-[rgba(255,255,255,0.2)] dark:border-[rgba(255,255,255,0.1)]
-          rounded-[24px] shadow-[0_4px_30px_rgba(0,0,0,0.1)]
+          flex items-end gap-3 px-3 pb-3 pt-2.5
+          bg-[rgba(245,245,245,0.3)] dark:bg-[rgba(30,30,30,0.3)]
+          backdrop-blur-[25px] saturate-150
+          border border-[rgba(255,255,255,0.15)] dark:border-[rgba(255,255,255,0.1)]
+          rounded-[22px] shadow-[0_15px_30px_rgba(0,0,0,0.2)]
           transition-all ease-out duration-300
         "
-        style={{ height: "auto", minHeight: "4.5rem" }}
+        style={{ height: "auto", minHeight: "5rem" }}
         onMouseMove={(e) => setMouseX(e.clientX)}
         onMouseLeave={() => setMouseX(null)}
       >

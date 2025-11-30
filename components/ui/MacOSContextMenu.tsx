@@ -54,7 +54,7 @@ export const MacOSContextMenu: React.FC<MacOSContextMenuProps> = ({
       {visible && (
         <div
           ref={menuRef}
-          className="fixed z-50 min-w-[180px] py-1.5 bg-[var(--background)]/90 backdrop-blur-xl border border-[var(--separator)] rounded-lg shadow-lg"
+          className="fixed z-50 min-w-[220px] py-1.5 bg-white/70 dark:bg-[#1e1e1e]/70 backdrop-blur-xl border border-black/5 dark:border-white/10 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.2)]"
           style={{ top: position.y, left: position.x }}
         >
           {items.map((item, index) => {

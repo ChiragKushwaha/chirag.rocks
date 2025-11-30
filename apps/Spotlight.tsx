@@ -6,10 +6,60 @@ import { fs } from "../lib/FileSystem";
 import { MacFileEntry } from "../lib/types";
 import { Finder } from "./Finder/Finder";
 import { TextEdit } from "./TextEdit";
+import { APPS } from "./Launchpad";
+import { Safari } from "./Safari";
+import { useIcon } from "../components/hooks/useIconManager";
+import { CalendarIcon } from "../components/icons/CalendarIcon";
 
-interface SearchResult extends MacFileEntry {
-  path: string;
-}
+const SpotlightIcon: React.FC<{ icon: string; name: string }> = ({
+  icon,
+  name,
+}) => {
+  const iconUrl = useIcon(icon);
+
+  if (name === "Calendar") {
+    return (
+      <div className="w-8 h-8">
+        <CalendarIcon size={32} />
+      </div>
+    );
+  }
+
+  if (iconUrl) {
+    return (
+      <img
+        src={iconUrl}
+        alt={name}
+        className="w-8 h-8 drop-shadow-sm"
+        onError={(e) => {
+          e.currentTarget.style.display = "none";
+        }}
+      />
+    );
+  }
+
+  return (
+    <div className="w-8 h-8 bg-gray-400/20 rounded flex items-center justify-center text-lg">
+      📱
+    </div>
+  );
+};
+
+type SearchResult =
+  | (MacFileEntry & { path: string })
+  | {
+      name: string;
+      kind: "app";
+      path: string;
+      appId: string;
+      component: React.FC<any>;
+      icon: string;
+    }
+  | {
+      name: string;
+      kind: "web";
+      path: string;
+    };
 
 export const Spotlight: React.FC = () => {
   const { isSpotlightOpen, toggleSpotlight } = useSystemStore();
@@ -29,15 +79,31 @@ export const Spotlight: React.FC = () => {
     }
   }, [isSpotlightOpen]);
 
-  // Recursive Search Logic
+  // Search Logic
   useEffect(() => {
     if (!query.trim()) {
       setResults([]);
       return;
     }
 
-    const searchFiles = async () => {
+    const search = async () => {
       const hits: SearchResult[] = [];
+      const lowerQuery = query.toLowerCase();
+
+      // 1. Search Apps
+      const appHits = APPS.filter((app) =>
+        app.name.toLowerCase().includes(lowerQuery)
+      ).map((app) => ({
+        name: app.name,
+        kind: "app" as const, // Custom kind for apps
+        path: `/Applications/${app.name}.app`,
+        appId: app.id,
+        component: app.component,
+        icon: app.icon,
+      }));
+
+      // 2. Search Files (Recursive)
+      const fileHits: SearchResult[] = [];
       const queue = ["/"];
       let checks = 0;
       const maxChecks = 500;
@@ -49,8 +115,8 @@ export const Spotlight: React.FC = () => {
           checks++;
 
           for (const entry of entries) {
-            if (entry.name.toLowerCase().includes(query.toLowerCase())) {
-              hits.push({
+            if (entry.name.toLowerCase().includes(lowerQuery)) {
+              fileHits.push({
                 ...entry,
                 path:
                   currentPath === "/"
@@ -70,11 +136,26 @@ export const Spotlight: React.FC = () => {
           // Ignore access errors
         }
       }
-      setResults(hits.slice(0, 8)); // Top 8 matches
+
+      // Combine Results
+      // Apps first, then files
+      const combined = [
+        ...appHits,
+        ...fileHits.slice(0, 8), // Limit file results
+      ];
+
+      // 3. Add "Search Web" Option
+      combined.push({
+        name: `Search Web for "${query}"`,
+        kind: "web",
+        path: `https://www.google.com/search?q=${encodeURIComponent(query)}`,
+      } as SearchResult);
+
+      setResults(combined);
       setSelectedIndex(0);
     };
 
-    const timer = setTimeout(searchFiles, 200);
+    const timer = setTimeout(search, 200);
     return () => clearTimeout(timer);
   }, [query]);
 
@@ -98,8 +179,43 @@ export const Spotlight: React.FC = () => {
 
     toggleSpotlight(false);
 
-    if (item.kind === "directory") {
-      launchProcess("finder", "Finder", "😊", <Finder />);
+    if (item.kind === "web") {
+      // Open Safari with Google Search
+      launchProcess(
+        "safari",
+        "Safari",
+        "safari",
+        <Safari initialUrl={item.path} />
+      );
+    } else if (item.kind === "app") {
+      // Launch App
+      if (item.name === "Finder") {
+        launchProcess("finder", "Finder", "finder", <Finder />, {
+          width: 900,
+          height: 600,
+          x: 50,
+          y: 50,
+        });
+      } else {
+        // Use the component from the item if available (it should be for apps)
+        // We need to cast or ensure type safety, but for now we know it's there
+        const Component = (item as any).component;
+        if (Component) {
+          launchProcess(
+            (item as any).appId,
+            item.name,
+            (item as any).icon,
+            <Component />
+          );
+        }
+      }
+    } else if (item.kind === "directory") {
+      launchProcess(
+        "finder",
+        "Finder",
+        "😊",
+        <Finder initialPath={item.path} />
+      );
     } else {
       if (item.name.endsWith(".txt")) {
         const parentDir = item.path.substring(0, item.path.lastIndexOf("/"));
@@ -156,7 +272,7 @@ export const Spotlight: React.FC = () => {
           <div className="py-2 bg-white/30 dark:bg-black/10 max-h-[400px] overflow-y-auto">
             {results.map((item, idx) => (
               <div
-                key={item.path}
+                key={item.path + idx} // Add idx to key because web search path changes with query
                 onClick={() => handleOpen(item)}
                 onMouseEnter={() => setSelectedIndex(idx)}
                 className={`
@@ -170,7 +286,13 @@ export const Spotlight: React.FC = () => {
               >
                 {/* File Icon */}
                 <div className="shrink-0">
-                  {item.kind === "directory" ? (
+                  {item.kind === "web" ? (
+                    <div className="w-8 h-8 flex items-center justify-center">
+                      <Search className="w-5 h-5 opacity-80" />
+                    </div>
+                  ) : item.kind === "app" ? (
+                    <SpotlightIcon icon={item.icon} name={item.name} />
+                  ) : item.kind === "directory" ? (
                     <div className="w-8 h-8 flex items-center justify-center">
                       <Folder
                         className={`w-7 h-7 fill-current ${
@@ -201,11 +323,15 @@ export const Spotlight: React.FC = () => {
                     {item.name}
                   </span>
                   <div className="flex items-center gap-2 text-[11px] opacity-80 truncate leading-tight mt-0.5">
-                    <span className="font-semibold opacity-70">
-                      {item.kind === "directory" ? "Folder" : "Document"}
+                    <span className="font-semibold opacity-70 capitalize">
+                      {item.kind === "web" ? "Web Search" : item.kind}
                     </span>
-                    <span className="opacity-50">•</span>
-                    <span className="truncate opacity-70">{item.path}</span>
+                    {item.kind !== "web" && (
+                      <>
+                        <span className="opacity-50">•</span>
+                        <span className="truncate opacity-70">{item.path}</span>
+                      </>
+                    )}
                   </div>
                 </div>
 

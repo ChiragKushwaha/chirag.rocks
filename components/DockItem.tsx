@@ -110,7 +110,7 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
   const { activeApp, setActiveApp } = useSystemStore();
 
   // CONFIGURATION
-  const baseWidth = 48; // Base icon size (px)
+  const baseWidth = 50; // Base icon size (px) - Big Sur style
   const distanceLimit = 150; // How far the magnification reaches (px)
   const maxScale = 1.5; // Maximum magnification (1.5x)
 

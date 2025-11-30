@@ -12,16 +12,21 @@ import {
 import { MacFileEntry } from "../../lib/types";
 import { MacOSButton, MacOSInput } from "../../components/ui/MacOSDesignSystem"; // Import new UI
 
+import { useSystemStore } from "../../store/systemStore";
+
 interface FinderProps {
   initialPath?: string;
 }
 
-export const Finder: React.FC<FinderProps> = ({
-  initialPath = "/Users/Guest",
-}) => {
+export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
+  const { user } = useSystemStore();
+  const defaultPath = `/Users/${user.name || "Guest"}`;
+
   // Navigation State
-  const [currentPath, setCurrentPath] = useState(initialPath);
-  const [history, setHistory] = useState<string[]>([initialPath]);
+  const [currentPath, setCurrentPath] = useState(initialPath || defaultPath);
+  const [history, setHistory] = useState<string[]>([
+    initialPath || defaultPath,
+  ]);
   const [historyIndex, setHistoryIndex] = useState(0);
 
   // Data State
@@ -76,31 +81,30 @@ export const Finder: React.FC<FinderProps> = ({
   };
 
   return (
-    <div className="flex flex-col h-full w-full text-gray-800 font-sans">
+    <div className="flex flex-col h-full w-full text-gray-800 font-sans bg-white dark:bg-[#1E1E1E] rounded-xl overflow-hidden shadow-2xl border border-black/10 dark:border-white/10">
       {/* TOOLBAR */}
-      <div className="h-[52px] bg-[#F6F6F6] dark:bg-[#282828] border-b border-[#D1D1D6] dark:border-black/50 flex items-center px-4 justify-between flex-shrink-0 window-drag-handle">
+      <div className="h-[52px] bg-[#F5F5F5]/90 dark:bg-[#282828]/90 backdrop-blur-xl border-b border-[#D1D1D6] dark:border-black/50 flex items-center px-4 justify-between flex-shrink-0 window-drag-handle">
         <div className="flex items-center gap-4">
-          {/* Navigation Arrows - Using simple buttons for icon-only */}
-          <div className="flex items-center gap-0">
+          {/* Navigation Arrows */}
+          <div className="flex items-center gap-1">
             <button
               onClick={handleBack}
               disabled={historyIndex === 0}
               className="p-1.5 rounded-md hover:bg-black/5 dark:hover:bg-white/10 disabled:opacity-30 transition-colors text-gray-600 dark:text-gray-300"
             >
-              <ChevronLeft size={16} strokeWidth={2.5} />
+              <ChevronLeft size={18} strokeWidth={2} />
             </button>
             <button
               onClick={handleForward}
               disabled={historyIndex === history.length - 1}
               className="p-1.5 rounded-md hover:bg-black/5 dark:hover:bg-white/10 disabled:opacity-30 transition-colors text-gray-600 dark:text-gray-300"
             >
-              <ChevronRight size={16} strokeWidth={2.5} />
+              <ChevronRight size={18} strokeWidth={2} />
             </button>
           </div>
 
           {/* Current Folder Title */}
-          <div className="font-semibold text-[13px] flex items-center gap-2 text-gray-700 dark:text-gray-200">
-            <Folder size={16} className="text-[#007AFF] fill-[#007AFF]/10" />
+          <div className="font-semibold text-[14px] flex items-center gap-2 text-gray-700 dark:text-gray-200">
             {currentPath.split("/").pop() || "Macintosh HD"}
           </div>
         </div>
@@ -109,22 +113,24 @@ export const Finder: React.FC<FinderProps> = ({
         <div className="flex items-center gap-3">
           <div className="flex bg-black/5 dark:bg-white/10 p-0.5 rounded-[6px]">
             <button className="p-1 rounded-[4px] hover:bg-white dark:hover:bg-gray-600 shadow-sm transition-all text-gray-700 dark:text-gray-200">
-              <LayoutGrid size={14} />
+              <LayoutGrid size={15} />
             </button>
             <button className="p-1 rounded-[4px] hover:bg-white dark:hover:bg-gray-600 transition-all text-gray-500 dark:text-gray-400">
-              <ListIcon size={14} />
+              <ListIcon size={15} />
             </button>
           </div>
 
-          <div className="w-48">
-            <MacOSInput placeholder="Search" icon={<Search size={12} />} />
+          <div className="w-56">
+            <MacOSInput placeholder="Search" icon={<Search size={13} />} />
           </div>
         </div>
       </div>
 
       {/* MAIN CONTENT SPLIT */}
       <div className="flex flex-1 overflow-hidden">
-        <Sidebar currentPath={currentPath} onNavigate={handleNavigate} />
+        <div className="w-[200px] bg-[#F5F5F5]/50 dark:bg-[#282828]/50 backdrop-blur-xl border-r border-[#D1D1D6] dark:border-black/50 flex-shrink-0">
+          <Sidebar currentPath={currentPath} onNavigate={handleNavigate} />
+        </div>
 
         {/* FILE GRID */}
         <div
@@ -137,11 +143,11 @@ export const Finder: React.FC<FinderProps> = ({
             </div>
           ) : files.length === 0 ? (
             <div className="h-full w-full flex flex-col items-center justify-center text-gray-400 text-sm">
-              <span className="text-4xl mb-2 opacity-20">📂</span>
+              <span className="text-5xl mb-4 opacity-20">📂</span>
               <span>Folder is empty</span>
             </div>
           ) : (
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-4 auto-rows-min">
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(110px,1fr))] gap-4 auto-rows-min">
               {files.map(
                 (file) =>
                   !file.isHidden && (
@@ -153,7 +159,7 @@ export const Finder: React.FC<FinderProps> = ({
                       }}
                       onDoubleClick={() => handleDoubleClick(file)}
                       className={`
-                      flex flex-col items-center justify-start p-2 rounded-[6px] cursor-default group
+                      flex flex-col items-center justify-start p-3 rounded-[8px] cursor-default group transition-colors
                       ${
                         selectedItem === file.name
                           ? "bg-[#0058D0]/10 dark:bg-[#0058D0]/30"
@@ -161,12 +167,12 @@ export const Finder: React.FC<FinderProps> = ({
                       }
                     `}
                     >
-                      <div className="w-16 h-16 mb-1 flex items-center justify-center text-5xl filter drop-shadow-sm transition-transform">
+                      <div className="w-16 h-16 mb-2 flex items-center justify-center text-6xl filter drop-shadow-sm transition-transform">
                         {file.kind === "directory" ? "📁" : "📄"}
                       </div>
                       <span
                         className={`
-                        text-[12px] text-center leading-tight px-1.5 py-0.5 rounded-[4px]
+                        text-[13px] text-center leading-tight px-2 py-0.5 rounded-[4px]
                         ${
                           selectedItem === file.name
                             ? "bg-[#0058D0] text-white font-medium"

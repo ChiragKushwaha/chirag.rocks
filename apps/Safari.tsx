@@ -9,10 +9,22 @@ import {
   X,
 } from "lucide-react";
 
-export const Safari: React.FC = () => {
+interface SafariProps {
+  initialUrl?: string;
+}
+
+export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
   const [tabs, setTabs] = useState([
-    { id: 1, title: "Apple", url: "https://www.apple.com" },
-    { id: 2, title: "Google", url: "https://www.google.com/webhp?igu=1" },
+    {
+      id: 1,
+      title: initialUrl ? "Search" : "Apple",
+      url: initialUrl || "https://www.apple.com",
+    },
+    ...(initialUrl
+      ? []
+      : [
+          { id: 2, title: "Google", url: "https://www.google.com/webhp?igu=1" },
+        ]),
   ]);
   const [activeTabId, setActiveTabId] = useState(1);
   const [urlInput, setUrlInput] = useState(tabs[0].url);

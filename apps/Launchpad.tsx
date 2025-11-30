@@ -24,14 +24,14 @@ import { Trash } from "./Trash";
 import { Photos } from "./Photos";
 import { CalendarIcon } from "../components/icons/CalendarIcon";
 
-interface AppDef {
+export interface AppDef {
   id: string;
   name: string;
   icon: string;
   component: React.FC<any>;
 }
 
-const APPS: AppDef[] = [
+export const APPS: AppDef[] = [
   { id: "finder", name: "Finder", icon: "finder", component: Finder },
   { id: "safari", name: "Safari", icon: "safari", component: Safari },
   { id: "messages", name: "Messages", icon: "messages", component: Messages },

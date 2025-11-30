@@ -64,12 +64,9 @@ export const FileIcon: React.FC<FileIconProps> = ({
       if (lowerName === "music") return "folder_music";
       if (lowerName === "pictures") return "folder_pictures";
       if (lowerName === "public") return "folder_public";
-      // if (lowerName === "movies") return "folder_movies"; // Not extracted yet
 
-      // Check if empty
-      if (isEmpty === false) return "folder_full";
-
-      return "folder"; // Generic folder icon
+      // Use the remote "folder" icon (cached by useIconManager) for generic folders
+      return "folder";
     }
 
     // Files based on extension

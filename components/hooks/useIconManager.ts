@@ -12,6 +12,38 @@ export const useIconManager = () => {
     const initAssets = async () => {
       try {
         // 1. Initialize Icons (Legacy / Flat structure)
+        const REMOTE_ICONS: Record<string, string> = {
+          finder:
+            "https://upload.wikimedia.org/wikipedia/commons/c/c9/Finder_Icon_macOS_Big_Sur.png",
+          trash:
+            "https://raw.githubusercontent.com/KevinGutowski/Big-Sur-Icons/master/Trash%20Icon.png", // Fallback/Candidate
+          trash_full:
+            "https://raw.githubusercontent.com/KevinGutowski/Big-Sur-Icons/master/Trash%20Icon.png", // Using same for now, or find full variant
+          launchpad:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Launchpad_icon_macOS_Big_Sur.png/1024px-Launchpad_icon_macOS_Big_Sur.png", // Candidate
+          folder:
+            "https://raw.githubusercontent.com/devantler/big-sur-folder-icons/main/icons/default_folder.png",
+        };
+
+        // Check and fetch remote icons
+        await Promise.all(
+          Object.entries(REMOTE_ICONS).map(async ([name, url]) => {
+            const filename = `${name}.png`;
+            const exists = await fs.exists(`${ICONS_DIR}/${filename}`);
+            if (!exists) {
+              try {
+                const res = await fetch(url);
+                if (res.ok) {
+                  const blob = await res.blob();
+                  await fs.writeBlob(ICONS_DIR, filename, blob);
+                }
+              } catch (e) {
+                console.error(`Failed to fetch remote icon ${name}`, e);
+              }
+            }
+          })
+        );
+
         const hasIcons = await fs.exists(`${ICONS_DIR}/finder.png`);
 
         if (!hasIcons) {
@@ -24,6 +56,9 @@ export const useIconManager = () => {
             await Promise.all(
               manifest.map(async (filename: string) => {
                 try {
+                  // Skip if we already fetched a remote version
+                  if (await fs.exists(`${ICONS_DIR}/${filename}`)) return;
+
                   const res = await fetch(`/icons/${filename}`);
                   const blob = await res.blob();
                   await fs.writeBlob(ICONS_DIR, filename, blob);
