@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently \"tsx server/server.ts\" \"next dev\"",
     "build": "next build",
-    "start": "concurrently \"tsx server/server.ts\" \"next start\"",
+    "start": "next start",
     "server": "tsx server/server.ts",
     "lint": "eslint"
   },
