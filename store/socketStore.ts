@@ -51,7 +51,7 @@ export const useSocketStore = create<SocketState>((set, get) => ({
   connect: (name: string) => {
     if (get().socket) return;
 
-    const socket = io("http://localhost:3001");
+    const socket = io("https://chirag-rocks.vercel.app:3001");
 
     socket.on("connect", () => {
       set({ isConnected: true, me: { id: socket.id!, name } });
