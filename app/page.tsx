@@ -5,6 +5,7 @@ import { SetupAssistant } from "../apps/SetupAssistant";
 import { fs } from "../lib/FileSystem";
 import { MacInstaller } from "../lib/Installer";
 import { useSystemStore } from "../store/systemStore";
+import { Analytics } from "@vercel/analytics/next";
 
 function App() {
   const { isSetupComplete, theme, user } = useSystemStore();
@@ -61,6 +62,7 @@ function App() {
   return (
     <div className="w-full h-full overflow-hidden">
       {isSetupComplete ? <Desktop /> : <SetupAssistant />}
+      <Analytics />
     </div>
   );
 }

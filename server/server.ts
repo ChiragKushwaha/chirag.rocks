@@ -11,6 +11,24 @@ const io = new Server(httpServer, {
   },
 });
 
+// Health check endpoint
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    connections: Object.keys(users).length,
+  });
+});
+
+// CORS middleware for Express routes
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
+
 interface User {
   id: string;
   name: string;
