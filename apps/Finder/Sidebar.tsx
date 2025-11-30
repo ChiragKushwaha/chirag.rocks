@@ -1,0 +1,86 @@
+import React from "react";
+import {
+  Airplay,
+  Clock,
+  Download,
+  FileText,
+  Folder,
+  HardDrive,
+  Home,
+  Image,
+  LayoutGrid,
+  Monitor,
+} from "lucide-react";
+import { MacOSTableRow } from "../../components/ui/MacOSDesignSystem"; // New import
+
+interface SidebarProps {
+  currentPath: string;
+  onNavigate: (path: string) => void;
+}
+
+export const Sidebar: React.FC<SidebarProps> = ({
+  currentPath,
+  onNavigate,
+}) => {
+  const menuItems = [
+    {
+      title: "Favorites",
+      items: [
+        { name: "AirDrop", icon: Airplay, path: "/AirDrop" },
+        { name: "Recents", icon: Clock, path: "/Recents" },
+        { name: "Applications", icon: LayoutGrid, path: "/Applications" },
+        { name: "Desktop", icon: Monitor, path: "/Users/Guest/Desktop" },
+        { name: "Documents", icon: FileText, path: "/Users/Guest/Documents" },
+        { name: "Downloads", icon: Download, path: "/Users/Guest/Downloads" },
+        { name: "Pictures", icon: Image, path: "/Users/Guest/Pictures" },
+        { name: "Home", icon: Home, path: "/Users/Guest" },
+      ],
+    },
+    {
+      title: "Locations",
+      items: [
+        { name: "Macintosh HD", icon: HardDrive, path: "/" },
+        {
+          name: "iCloud Drive",
+          icon: Folder,
+          path: "/Users/Guest/Library/Mobile Documents",
+        },
+      ],
+    },
+  ];
+
+  return (
+    <div className="w-48 flex-shrink-0 bg-[#F2F2F7]/50 dark:bg-[#282828]/50 backdrop-blur-xl border-r border-[#D1D1D6] dark:border-black/50 text-[13px] pt-3 pb-4 overflow-y-auto select-none">
+      {menuItems.map((section, idx) => (
+        <div key={idx} className="mb-4 px-2">
+          <h3 className="text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-1 px-3 opacity-80">
+            {section.title}
+          </h3>
+          <ul>
+            {section.items.map((item) => {
+              const isActive = currentPath === item.path;
+              // Use Icon component dynamically
+              const Icon = item.icon;
+
+              return (
+                <li key={item.name} onClick={() => onNavigate(item.path)}>
+                  <MacOSTableRow
+                    label={item.name}
+                    selected={isActive}
+                    icon={
+                      <Icon
+                        size={16}
+                        className={isActive ? "text-white" : "text-[#007AFF]"}
+                        strokeWidth={2}
+                      />
+                    }
+                  />
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+};

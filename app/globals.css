@@ -1,26 +1,219 @@
 @import "tailwindcss";
 
 :root {
+  /* System Colors - Light Mode */
+  --system-blue: #007aff;
+  --system-red: #ff3b30;
+  --system-green: #34c759;
+  --system-orange: #ff9500;
+  --system-yellow: #ffcc00;
+  --system-purple: #af52de;
+  --system-pink: #ff2d55;
+  --system-gray: #8e8e93;
+
+  /* Background Colors - Light Mode */
   --background: #ffffff;
-  --foreground: #171717;
+  --secondary-background: #f2f2f7;
+  --tertiary-background: #ffffff;
+
+  /* Label Colors - Light Mode */
+  --label: #000000;
+  --secondary-label: #3c3c4399; /* 60% opacity */
+  --tertiary-label: #3c3c434d; /* 30% opacity */
+  --quaternary-label: #3c3c432e; /* 18% opacity */
+
+  /* Separator Colors - Light Mode */
+  --separator: #3c3c434a; /* 29% opacity */
+  --opaque-separator: #c6c6c8;
+
+  /* Fill Colors - Light Mode */
+  --fill: #78788033; /* 20% opacity */
+  --secondary-fill: #78788029; /* 16% opacity */
+  --tertiary-fill: #7878801f; /* 12% opacity */
+  --quaternary-fill: #78788014; /* 8% opacity */
+
+  --foreground: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* System Colors - Dark Mode */
+    --system-blue: #0a84ff;
+    --system-red: #ff453a;
+    --system-green: #30d158;
+    --system-orange: #ff9f0a;
+    --system-yellow: #ffd60a;
+    --system-purple: #bf5af2;
+    --system-pink: #ff375f;
+    --system-gray: #8e8e93;
+
+    /* Background Colors - Dark Mode */
+    --background: #000000; /* Or #1C1C1E for grouped content */
+    --secondary-background: #1c1c1e;
+    --tertiary-background: #2c2c2e;
+
+    /* Label Colors - Dark Mode */
+    --label: #ffffff;
+    --secondary-label: #ebebf599; /* 60% opacity */
+    --tertiary-label: #ebebf54d; /* 30% opacity */
+    --quaternary-label: #ebebf52e; /* 18% opacity */
+
+    /* Separator Colors - Dark Mode */
+    --separator: #54545899; /* 60% opacity */
+    --opaque-separator: #38383a;
+
+    /* Fill Colors - Dark Mode */
+    --fill: #7878805c; /* 36% opacity */
+    --secondary-fill: #78788052; /* 32% opacity */
+    --tertiary-fill: #7878803d; /* 24% opacity */
+    --quaternary-fill: #7878802e; /* 18% opacity */
+
+    --foreground: #ffffff;
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-system-blue: var(--system-blue);
+  --color-system-red: var(--system-red);
+  --color-system-green: var(--system-green);
+  --color-system-orange: var(--system-orange);
+  --color-system-yellow: var(--system-yellow);
+  --color-system-purple: var(--system-purple);
+  --color-system-pink: var(--system-pink);
+  --color-system-gray: var(--system-gray);
+
+  --color-secondary-background: var(--secondary-background);
+  --color-tertiary-background: var(--tertiary-background);
+
+  --color-label: var(--label);
+  --color-secondary-label: var(--secondary-label);
+  --color-tertiary-label: var(--tertiary-label);
+  --color-quaternary-label: var(--quaternary-label);
+
+  --color-separator: var(--separator);
+  --color-opaque-separator: var(--opaque-separator);
+
+  --color-fill: var(--fill);
+  --color-secondary-fill: var(--secondary-fill);
+  --color-tertiary-fill: var(--tertiary-fill);
+  --color-quaternary-fill: var(--quaternary-fill);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Helvetica Neue", sans-serif;
+  --font-mono: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography Utilities */
+@layer utilities {
+  .text-large-title {
+    font-size: 34px;
+    line-height: 41px;
+    font-weight: 400; /* Regular */
+    letter-spacing: 0.37px;
+  }
+
+  .text-title-1 {
+    font-size: 28px;
+    line-height: 34px;
+    font-weight: 400;
+    letter-spacing: 0.36px;
+  }
+
+  .text-title-2 {
+    font-size: 22px;
+    line-height: 28px;
+    font-weight: 400;
+    letter-spacing: 0.35px;
+  }
+
+  .text-title-3 {
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 400;
+    letter-spacing: 0.38px;
+  }
+
+  .text-headline {
+    font-size: 17px;
+    line-height: 22px;
+    font-weight: 600; /* Semibold */
+    letter-spacing: -0.41px;
+  }
+
+  .text-body {
+    font-size: 17px;
+    line-height: 22px;
+    font-weight: 400;
+    letter-spacing: -0.41px;
+  }
+
+  .text-callout {
+    font-size: 16px;
+    line-height: 21px;
+    font-weight: 400;
+    letter-spacing: -0.32px;
+  }
+
+  .text-subhead {
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 400;
+    letter-spacing: -0.24px;
+  }
+
+  .text-footnote {
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 400;
+    letter-spacing: -0.08px;
+  }
+
+  .text-caption-1 {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .text-caption-2 {
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: 400;
+    letter-spacing: 0.07px;
+  }
+}
+
+/* iOS Specific Variables */
+:root {
+  --ios-system-blue: #007aff;
+  --ios-background: #f2f2f7;
+  --ios-grouped-background: #f2f2f7;
+  --ios-separator: #c6c6c8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ios-system-blue: #0a84ff;
+    --ios-background: #000000;
+    --ios-grouped-background: #1c1c1e;
+    --ios-separator: #38383a;
+  }
+}
+
+@theme inline {
+  --color-ios-background: var(--ios-background);
+  --color-ios-grouped-background: var(--ios-grouped-background);
+  --color-ios-separator: var(--ios-separator);
 }
