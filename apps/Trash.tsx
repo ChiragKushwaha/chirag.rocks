@@ -9,7 +9,7 @@ import { useSystemStore } from "../store/systemStore";
 export const Trash: React.FC = () => {
   const [files, setFiles] = useState<MacFileEntry[]>([]);
   const { openContextMenu } = useMenuStore();
-  const { user } = useSystemStore();
+  const { user, setTrashCount } = useSystemStore();
 
   const userName = user?.name || "Guest";
   const trashPath = `/Users/${userName}/.Trash`;
@@ -22,10 +22,15 @@ export const Trash: React.FC = () => {
     }
     const f = await fs.ls(trashPath);
     setFiles(f);
+    setTrashCount(f.length);
   };
 
   useEffect(() => {
     loadFiles();
+
+    const handleRefresh = () => loadFiles();
+    window.addEventListener("trash-updated", handleRefresh);
+    return () => window.removeEventListener("trash-updated", handleRefresh);
   }, []);
 
   const emptyTrash = async () => {
@@ -48,9 +53,11 @@ export const Trash: React.FC = () => {
   const putBack = async (file: MacFileEntry) => {
     // Move back to Desktop (simplification, ideally we remember original location)
     // We need a move command. If not, read and write then delete.
-    const content = await fs.readFile(trashPath, file.name);
-    await fs.writeFile(desktopPath, file.name, content);
-    await fs.delete(trashPath, file.name);
+    try {
+      await fs.move(trashPath, file.name, desktopPath, file.name);
+    } catch (e) {
+      console.error("Failed to put back item", e);
+    }
     loadFiles();
 
     // Trigger a desktop refresh if possible?
@@ -97,7 +104,11 @@ export const Trash: React.FC = () => {
             }}
           >
             <div className="w-16 h-16 mb-1">
-              <FileIcon name={file.name} kind={file.kind} />
+              <FileIcon
+                name={file.name}
+                kind={file.kind}
+                isEmpty={file.isEmpty}
+              />
             </div>
             <span className="text-xs text-center text-gray-600 group-hover:bg-blue-100 px-1 rounded">
               {file.name}

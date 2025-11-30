@@ -10,6 +10,19 @@ import { Messages } from "../apps/Messages";
 import { FaceTime } from "../apps/FaceTime";
 import { CalendarIcon } from "./icons/CalendarIcon";
 import { SystemSettings } from "../apps/SystemSettings";
+import { Calendar } from "../apps/Calendar";
+import { Notes } from "../apps/Notes";
+import { Reminders } from "../apps/Reminders";
+import { Contacts } from "../apps/Contacts";
+import { Safari } from "../apps/Safari";
+import { Mail } from "../apps/Mail";
+import { Maps } from "../apps/Maps";
+import { Music } from "../apps/Music";
+import { TV } from "../apps/TV";
+import { News } from "../apps/News";
+import { AppStore } from "../apps/AppStore";
+import { Launchpad } from "../apps/Launchpad";
+import { Freeform } from "../apps/Freeform";
 
 interface DockItemProps {
   name: string;
@@ -19,7 +32,15 @@ interface DockItemProps {
 
 export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
   const { launchProcess, processes, activePid } = useProcessStore();
-  const iconUrl = useIcon(icon); // Get Blob URL from OPFS
+  const { trashCount } = useSystemStore();
+
+  // Dynamic Icon Logic
+  let displayIcon = icon;
+  if (name === "Trash" && trashCount > 0) {
+    displayIcon = "trash_full";
+  }
+
+  const iconUrl = useIcon(displayIcon); // Get Blob URL from OPFS
 
   const runningProcess = processes.find((p) => p.id === name);
   const isOpen = !!runningProcess;
@@ -51,6 +72,32 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
       component = <FaceTime />;
     } else if (name === "System Settings") {
       component = <SystemSettings />;
+    } else if (name === "Calendar") {
+      component = <Calendar />;
+    } else if (name === "Notes") {
+      component = <Notes />;
+    } else if (name === "Reminders") {
+      component = <Reminders />;
+    } else if (name === "Contacts") {
+      component = <Contacts />;
+    } else if (name === "Safari") {
+      component = <Safari />;
+    } else if (name === "Mail") {
+      component = <Mail />;
+    } else if (name === "Maps") {
+      component = <Maps />;
+    } else if (name === "Music") {
+      component = <Music />;
+    } else if (name === "TV") {
+      component = <TV />;
+    } else if (name === "News") {
+      component = <News />;
+    } else if (name === "App Store") {
+      component = <AppStore />;
+    } else if (name === "Launchpad") {
+      component = <Launchpad />;
+    } else if (name === "Freeform") {
+      component = <Freeform />;
     }
 
     launchProcess(name.toLowerCase(), title, icon, component);

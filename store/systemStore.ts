@@ -29,6 +29,9 @@ interface SystemState {
 
   isSpotlightOpen: boolean;
   toggleSpotlight: (force?: boolean) => void;
+
+  trashCount: number;
+  setTrashCount: (count: number) => void;
 }
 
 export const useSystemStore = create<SystemState>()(
@@ -88,6 +91,9 @@ export const useSystemStore = create<SystemState>()(
         set((state) => ({
           isSpotlightOpen: force !== undefined ? force : !state.isSpotlightOpen,
         })),
+
+      trashCount: 0,
+      setTrashCount: (count) => set({ trashCount: count }),
     }),
     {
       name: "macOS-system-storage", // unique name for localStorage

@@ -24,8 +24,14 @@ import { useIconManager, useAsset } from "./hooks/useIconManager";
 import { BootScreen } from "./BootScreen";
 
 export const Desktop: React.FC = () => {
-  const { wallpaper, isBooting, setBooting, setSelectedFile, user } =
-    useSystemStore();
+  const {
+    wallpaper,
+    isBooting,
+    setBooting,
+    setSelectedFile,
+    user,
+    setTrashCount,
+  } = useSystemStore();
   const { openContextMenu } = useMenuStore();
   const { launchProcess } = useProcessStore();
   const [files, setFiles] = useState<MacFileEntry[]>([]);
@@ -247,13 +253,16 @@ export const Desktop: React.FC = () => {
     // Read and write to move (simplification)
     // TODO: Add fs.move to FileSystem
     try {
-      const content = await fs.readFile(desktopPath, file.name);
-      await fs.writeFile(trashPath, file.name, content);
-      await fs.delete(desktopPath, file.name);
+      await fs.move(desktopPath, file.name, trashPath, file.name);
 
-      // Refresh
+      // Refresh Desktop Files
       const f = await fs.ls(desktopPath);
       setFiles(f);
+
+      // Refresh Trash Count & Notify Trash App
+      const trashFiles = await fs.ls(trashPath);
+      setTrashCount(trashFiles.length);
+      window.dispatchEvent(new Event("trash-updated"));
     } catch (e) {
       console.error("Failed to move to bin", e);
       alert("Failed to move to bin. Folder moves not fully supported yet.");

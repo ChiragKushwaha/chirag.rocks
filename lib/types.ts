@@ -7,6 +7,7 @@ export interface MacFileEntry {
   kind: FileSystemEntryKind;
   isHidden: boolean;
   path: string;
+  isEmpty?: boolean;
 }
 
 export interface SymlinkConfig {

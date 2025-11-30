@@ -11,6 +11,7 @@ interface FileIconProps {
   onRename?: (newName: string) => void;
   onRenameCancel?: () => void;
   onContextMenu?: (e: React.MouseEvent) => void;
+  isEmpty?: boolean;
 }
 
 export const FileIcon: React.FC<FileIconProps> = ({
@@ -20,6 +21,7 @@ export const FileIcon: React.FC<FileIconProps> = ({
   onRename,
   onRenameCancel,
   onContextMenu,
+  isEmpty,
 }) => {
   const { selectedFile, setSelectedFile } = useSystemStore();
   const isSelected = selectedFile === name;
@@ -64,6 +66,9 @@ export const FileIcon: React.FC<FileIconProps> = ({
       if (lowerName === "public") return "folder_public";
       // if (lowerName === "movies") return "folder_movies"; // Not extracted yet
 
+      // Check if empty
+      if (isEmpty === false) return "folder_full";
+
       return "folder"; // Generic folder icon
     }
 
@@ -105,6 +110,13 @@ export const FileIcon: React.FC<FileIconProps> = ({
         .replace(".app", "")
         .replace(/[^a-z0-9]/g, "_");
       return cleanName;
+    }
+
+    // Heuristic for folders identified as files (e.g. corrupted move)
+    if (type === "file" && !name.includes(".")) {
+      // If it has no extension, it might be a folder or a binary file.
+      // For now, if it contains "folder", treat as folder.
+      if (lowerName.includes("folder")) return "folder";
     }
 
     return null;

@@ -160,11 +160,21 @@ export class MacFileSystem {
 
       // @ts-ignore - TS sometimes misses the async iterator on handles depending on lib version
       for await (const [name, handle] of dirHandle.entries()) {
+        let isEmpty = false;
+        if (handle.kind === "directory") {
+          // Check if empty without iterating all
+          // @ts-ignore
+          const iterator = handle.entries();
+          const first = await iterator.next();
+          isEmpty = first.done;
+        }
+
         entries.push({
           name,
           kind: handle.kind,
           isHidden: name.startsWith("."),
           path: `${path === "/" ? "" : path}/${name}`,
+          isEmpty,
         });
       }
 
@@ -227,6 +237,68 @@ export class MacFileSystem {
       );
     } catch (e) {
       console.error(`[FS] Error renaming ${oldName} to ${newName}:`, e);
+      throw e;
+    }
+  }
+
+  /**
+   * Move a file or directory to a new location
+   */
+  async move(
+    sourcePath: string,
+    sourceName: string,
+    destPath: string,
+    destName: string = sourceName
+  ): Promise<void> {
+    try {
+      const sourceDirHandle = await this.resolvePath(sourcePath);
+      const destDirHandle = await this.resolvePath(destPath, true);
+
+      let sourceHandle: FileSystemHandle;
+      try {
+        sourceHandle = await sourceDirHandle.getDirectoryHandle(sourceName);
+        console.log(`[FS] Found directory source: ${sourceName}`);
+      } catch (e) {
+        try {
+          sourceHandle = await sourceDirHandle.getFileHandle(sourceName);
+          console.log(`[FS] Found file source: ${sourceName}`);
+        } catch (e2) {
+          throw new Error(`Entry not found: ${sourcePath}/${sourceName}`);
+        }
+      }
+
+      // Try native move if available (Chrome 111+)
+      if ((sourceHandle as any).move) {
+        await (sourceHandle as any).move(destDirHandle, destName);
+        console.log(
+          `[FS] Moved (native): ${sourcePath}/${sourceName} -> ${destPath}/${destName}`
+        );
+        return;
+      }
+
+      // Fallback: Copy and Delete
+      if (sourceHandle.kind === "file") {
+        const file = await (sourceHandle as FileSystemFileHandle).getFile();
+        // Use writeBlob to ensure binary data is preserved
+        await this.writeBlob(destPath, destName, await file.arrayBuffer());
+        await sourceDirHandle.removeEntry(sourceName);
+      } else if (sourceHandle.kind === "directory") {
+        // Recursive copy for directories
+        await this.copyDirectory(
+          sourceHandle as FileSystemDirectoryHandle,
+          destDirHandle,
+          destName
+        );
+        await sourceDirHandle.removeEntry(sourceName, { recursive: true });
+      }
+      console.log(
+        `[FS] Moved (copy/delete): ${sourcePath}/${sourceName} -> ${destPath}/${destName}`
+      );
+    } catch (e) {
+      console.error(
+        `[FS] Error moving ${sourcePath}/${sourceName} to ${destPath}/${destName}:`,
+        e
+      );
       throw e;
     }
   }
