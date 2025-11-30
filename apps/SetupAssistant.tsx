@@ -1,12 +1,165 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSystemStore } from "../store/systemStore";
-import { ArrowRight, Globe, MapPin, Moon, Sun, Check } from "lucide-react";
+import {
+  ArrowRight,
+  Globe,
+  MapPin,
+  Moon,
+  Sun,
+  Check,
+  UserCircle,
+} from "lucide-react";
+
+// --- SETUP WINDOW COMPONENT ---
+const SetupWindow = ({
+  title,
+  icon: Icon,
+  children,
+  onBack,
+  onContinue,
+  continueDisabled = false,
+  description,
+}: any) => (
+  <div className="fixed inset-0 bg-[#2b2b2b] flex items-center justify-center z-[9999] font-sans selection:bg-[#007AFF] selection:text-white">
+    {/* Background Ambient Glow */}
+    <div className="absolute inset-0 bg-gradient-to-tr from-gray-900 via-[#1c1c1c] to-black opacity-80 pointer-events-none" />
+
+    {/* Main Window - Dimensions matched to macOS Setup Assistant */}
+    <div className="w-[780px] h-[560px] bg-[#F2F2F7]/95 dark:bg-[#1E1E1E]/95 backdrop-blur-2xl rounded-[12px] shadow-2xl border border-white/20 dark:border-white/10 flex flex-col overflow-hidden animate-in zoom-in-95 duration-300">
+      {/* Title Bar (Empty/Draggable) */}
+      <div className="h-8 w-full flex-shrink-0 drag-region" />
+
+      {/* Content Area */}
+      <div className="flex-1 flex flex-col items-center pt-8 px-12 overflow-y-auto">
+        {/* Feature Icon Style - Matching 'Template - Icon - Feature' */}
+        <div className="mb-6 relative">
+          <div className="w-[72px] h-[72px] bg-gradient-to-b from-[#007AFF] to-[#0055B3] rounded-full flex items-center justify-center shadow-lg border border-white/10">
+            <Icon
+              size={36}
+              className="text-white drop-shadow-md"
+              strokeWidth={2}
+            />
+          </div>
+        </div>
+
+        <h1 className="text-[26px] font-bold text-center text-black dark:text-white mb-3 tracking-tight leading-tight">
+          {title}
+        </h1>
+
+        {description && (
+          <p className="text-[#6e6e73] dark:text-[#98989d] text-[13px] text-center mb-8 max-w-md leading-relaxed">
+            {description}
+          </p>
+        )}
+
+        <div className="w-full flex-1 flex flex-col items-center">
+          {children}
+        </div>
+      </div>
+
+      {/* Footer Actions - Matching macOS Button Styles */}
+      <div className="h-[60px] flex items-center justify-between px-8 pb-4">
+        <div className="w-24">
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="text-[#007AFF] text-[13px] font-medium hover:text-[#0055B3] dark:hover:text-[#409CFF] transition-colors"
+            >
+              Back
+            </button>
+          )}
+        </div>
+
+        {/* Pagination Indicators */}
+        {/* Note: Pagination logic moved to parent or passed as prop if needed dynamic active state */}
+        <div className="flex gap-2">
+          {["language", "region", "account", "theme"].map((s) => (
+            <div
+              key={s}
+              className={`w-1.5 h-1.5 rounded-full transition-colors bg-[#D1D1D6] dark:bg-[#3A3A3C]`}
+            />
+          ))}
+        </div>
+
+        <div className="w-24 flex justify-end">
+          <button
+            onClick={onContinue}
+            disabled={continueDisabled}
+            className={`
+              flex items-center justify-center gap-1.5 bg-[#007AFF] text-white px-4 py-[5px] rounded-[6px] 
+              text-[13px] font-medium shadow-sm hover:bg-[#0071E3] active:bg-[#005BB5] transition-all
+              disabled:opacity-30 disabled:cursor-default
+            `}
+          >
+            Continue
+            <ArrowRight size={14} strokeWidth={2.5} />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
 export const SetupAssistant: React.FC = () => {
-  const { setSetupComplete, setTheme, theme } = useSystemStore();
+  const { setSetupComplete, setTheme, theme, updateUser } = useSystemStore();
   const [step, setStep] = useState<
-    "hello" | "language" | "region" | "theme" | "finish"
+    "hello" | "language" | "region" | "account" | "theme" | "finish"
   >("hello");
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    age: "",
+    phone: "",
+  });
+
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    age: "",
+    phone: "",
+  });
+
+  const validateAccount = () => {
+    let isValid = true;
+    const newErrors = { name: "", email: "", age: "", phone: "" };
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Full name is required.";
+      isValid = false;
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required.";
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Enter a valid email address.";
+      isValid = false;
+    }
+
+    if (!formData.age.trim()) {
+      newErrors.age = "Age is required.";
+      isValid = false;
+    } else if (isNaN(Number(formData.age)) || Number(formData.age) < 1) {
+      newErrors.age = "Enter a valid age.";
+      isValid = false;
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone number is required.";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+  const handleAccountSubmit = () => {
+    if (validateAccount()) {
+      updateUser(formData);
+      nextStep("theme");
+    }
+  };
 
   // Hello Animation State
   const [helloIndex, setHelloIndex] = useState(0);
@@ -145,99 +298,6 @@ export const SetupAssistant: React.FC = () => {
     );
   }
 
-  // --- SETUP WINDOW LAYOUT ---
-  const SetupWindow = ({
-    title,
-    icon: Icon,
-    children,
-    onBack,
-    onContinue,
-    continueDisabled = false,
-    description,
-  }: any) => (
-    <div className="fixed inset-0 bg-[#2b2b2b] flex items-center justify-center z-[9999] font-sans selection:bg-[#007AFF] selection:text-white">
-      {/* Background Ambient Glow */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-gray-900 via-[#1c1c1c] to-black opacity-80 pointer-events-none" />
-
-      {/* Main Window - Dimensions matched to macOS Setup Assistant */}
-      <div className="w-[780px] h-[560px] bg-[#F2F2F7]/95 dark:bg-[#1E1E1E]/95 backdrop-blur-2xl rounded-[12px] shadow-2xl border border-white/20 dark:border-white/10 flex flex-col overflow-hidden animate-in zoom-in-95 duration-300">
-        {/* Title Bar (Empty/Draggable) */}
-        <div className="h-8 w-full flex-shrink-0 drag-region" />
-
-        {/* Content Area */}
-        <div className="flex-1 flex flex-col items-center pt-8 px-12 overflow-y-auto">
-          {/* Feature Icon Style - Matching 'Template - Icon - Feature' */}
-          <div className="mb-6 relative">
-            <div className="w-[72px] h-[72px] bg-gradient-to-b from-[#007AFF] to-[#0055B3] rounded-full flex items-center justify-center shadow-lg border border-white/10">
-              <Icon
-                size={36}
-                className="text-white drop-shadow-md"
-                strokeWidth={2}
-              />
-            </div>
-          </div>
-
-          <h1 className="text-[26px] font-bold text-center text-black dark:text-white mb-3 tracking-tight leading-tight">
-            {title}
-          </h1>
-
-          {description && (
-            <p className="text-[#6e6e73] dark:text-[#98989d] text-[13px] text-center mb-8 max-w-md leading-relaxed">
-              {description}
-            </p>
-          )}
-
-          <div className="w-full flex-1 flex flex-col items-center">
-            {children}
-          </div>
-        </div>
-
-        {/* Footer Actions - Matching macOS Button Styles */}
-        <div className="h-[60px] flex items-center justify-between px-8 pb-4">
-          <div className="w-24">
-            {onBack && (
-              <button
-                onClick={onBack}
-                className="text-[#007AFF] text-[13px] font-medium hover:text-[#0055B3] dark:hover:text-[#409CFF] transition-colors"
-              >
-                Back
-              </button>
-            )}
-          </div>
-
-          {/* Pagination Indicators */}
-          <div className="flex gap-2">
-            {["language", "region", "theme"].map((s) => (
-              <div
-                key={s}
-                className={`w-1.5 h-1.5 rounded-full transition-colors ${
-                  step === s
-                    ? "bg-[#8E8E93] dark:bg-[#98989D]"
-                    : "bg-[#D1D1D6] dark:bg-[#3A3A3C]"
-                }`}
-              />
-            ))}
-          </div>
-
-          <div className="w-24 flex justify-end">
-            <button
-              onClick={onContinue}
-              disabled={continueDisabled}
-              className={`
-                flex items-center justify-center gap-1.5 bg-[#007AFF] text-white px-4 py-[5px] rounded-[6px] 
-                text-[13px] font-medium shadow-sm hover:bg-[#0071E3] active:bg-[#005BB5] transition-all
-                disabled:opacity-30 disabled:cursor-default
-              `}
-            >
-              Continue
-              <ArrowRight size={14} strokeWidth={2.5} />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
   // --- STEPS ---
 
   if (step === "language") {
@@ -299,7 +359,7 @@ export const SetupAssistant: React.FC = () => {
         title="Select Your Country or Region"
         description="Select the country or region where you are currently located."
         icon={MapPin}
-        onContinue={() => nextStep("theme")}
+        onContinue={() => nextStep("account")}
         onBack={() => setStep("language")}
       >
         <div className="w-[360px] h-[240px] bg-white dark:bg-[#1C1C1E] rounded-md border border-[#D1D1D6] dark:border-[#38383A] overflow-hidden shadow-sm flex flex-col">
@@ -338,6 +398,122 @@ export const SetupAssistant: React.FC = () => {
     );
   }
 
+  if (step === "account") {
+    return (
+      <SetupWindow
+        title="Create Your Computer Account"
+        description="Enter your name and account details to set up your computer."
+        icon={UserCircle}
+        onContinue={handleAccountSubmit}
+        onBack={() => setStep("region")}
+      >
+        <div className="w-full max-w-sm space-y-4 mt-2">
+          {/* Full Name */}
+          <div>
+            <input
+              type="text"
+              placeholder="Full Name"
+              value={formData.name}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
+              className={`
+                w-full bg-white dark:bg-[#1C1C1E] border rounded-[6px] px-3 py-2 text-[13px] text-black dark:text-white outline-none focus:ring-2 focus:ring-[#007AFF]/50 transition-all
+                ${
+                  errors.name
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-[#D1D1D6] dark:border-[#38383A] focus:border-[#007AFF]"
+                }
+              `}
+            />
+            {errors.name && (
+              <p className="text-red-500 text-[11px] mt-1 ml-1">
+                {errors.name}
+              </p>
+            )}
+          </div>
+
+          {/* Email */}
+          <div>
+            <input
+              type="email"
+              placeholder="Email Address"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+              className={`
+                w-full bg-white dark:bg-[#1C1C1E] border rounded-[6px] px-3 py-2 text-[13px] text-black dark:text-white outline-none focus:ring-2 focus:ring-[#007AFF]/50 transition-all
+                ${
+                  errors.email
+                    ? "border-red-500 focus:border-red-500"
+                    : "border-[#D1D1D6] dark:border-[#38383A] focus:border-[#007AFF]"
+                }
+              `}
+            />
+            {errors.email && (
+              <p className="text-red-500 text-[11px] mt-1 ml-1">
+                {errors.email}
+              </p>
+            )}
+          </div>
+
+          {/* Age & Phone Row */}
+          <div className="flex gap-3">
+            <div className="w-24">
+              <input
+                type="text"
+                placeholder="Age"
+                value={formData.age}
+                onChange={(e) =>
+                  setFormData({ ...formData, age: e.target.value })
+                }
+                className={`
+                  w-full bg-white dark:bg-[#1C1C1E] border rounded-[6px] px-3 py-2 text-[13px] text-black dark:text-white outline-none focus:ring-2 focus:ring-[#007AFF]/50 transition-all
+                  ${
+                    errors.age
+                      ? "border-red-500 focus:border-red-500"
+                      : "border-[#D1D1D6] dark:border-[#38383A] focus:border-[#007AFF]"
+                  }
+                `}
+              />
+            </div>
+            <div className="flex-1">
+              <input
+                type="tel"
+                placeholder="Mobile Number"
+                value={formData.phone}
+                onChange={(e) =>
+                  setFormData({ ...formData, phone: e.target.value })
+                }
+                className={`
+                  w-full bg-white dark:bg-[#1C1C1E] border rounded-[6px] px-3 py-2 text-[13px] text-black dark:text-white outline-none focus:ring-2 focus:ring-[#007AFF]/50 transition-all
+                  ${
+                    errors.phone
+                      ? "border-red-500 focus:border-red-500"
+                      : "border-[#D1D1D6] dark:border-[#38383A] focus:border-[#007AFF]"
+                  }
+                `}
+              />
+            </div>
+          </div>
+          <div className="flex gap-3">
+            {errors.age && (
+              <p className="text-red-500 text-[11px] ml-1 w-24 leading-tight">
+                {errors.age}
+              </p>
+            )}
+            {errors.phone && (
+              <p className="text-red-500 text-[11px] ml-1 flex-1 leading-tight">
+                {errors.phone}
+              </p>
+            )}
+          </div>
+        </div>
+      </SetupWindow>
+    );
+  }
+
   if (step === "theme") {
     return (
       <SetupWindow
@@ -345,7 +521,7 @@ export const SetupAssistant: React.FC = () => {
         description="Select Light or Dark appearance. The system interface and apps will adapt automatically."
         icon={Moon}
         onContinue={() => setSetupComplete(true)}
-        onBack={() => setStep("region")}
+        onBack={() => setStep("account")}
       >
         <div className="flex gap-8 mt-4">
           {/* Light Mode Option */}

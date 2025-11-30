@@ -9,8 +9,16 @@ interface SystemState {
   activeApp: string;
   selectedFile: string | null;
 
+  user: {
+    name: string;
+    email: string;
+    phone: string;
+    age: string;
+  };
+
   setBooting: (status: boolean) => void;
   setSetupComplete: (status: boolean) => void;
+  updateUser: (details: Partial<SystemState["user"]>) => void;
   setTheme: (theme: "light" | "dark") => void;
   setActiveApp: (appName: string) => void;
   setSelectedFile: (filename: string | null) => void;
@@ -29,8 +37,17 @@ export const useSystemStore = create<SystemState>()(
       activeApp: "Finder",
       selectedFile: null,
 
+      user: {
+        name: "",
+        email: "",
+        phone: "",
+        age: "",
+      },
+
       setBooting: (status) => set({ isBooting: status }),
       setSetupComplete: (status) => set({ isSetupComplete: status }),
+      updateUser: (details) =>
+        set((state) => ({ user: { ...state.user, ...details } })),
       setTheme: (theme) => {
         // Apply tailwind dark mode class immediately
         if (theme === "dark") {
@@ -55,6 +72,7 @@ export const useSystemStore = create<SystemState>()(
         // Only persist these fields
         isSetupComplete: state.isSetupComplete,
         theme: state.theme,
+        user: state.user,
       }),
     }
   )
