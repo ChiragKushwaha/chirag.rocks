@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "tsx server/server.ts && next dev",
+    "dev": "concurrently \"tsx server/server.ts\" \"next dev\"",
     "build": "next build",
-    "start": "tsx server/server.ts && next start",
+    "start": "concurrently \"tsx server/server.ts\" \"next start\"",
     "server": "tsx server/server.ts",
     "lint": "eslint"
   },
@@ -27,6 +27,7 @@
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "baseline-browser-mapping": "^2.8.32",
+    "concurrently": "^9.2.1",
     "eslint": "^9.39.1",
     "eslint-config-next": "16.0.5",
     "tailwindcss": "^4.1.17",
