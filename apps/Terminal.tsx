@@ -5,14 +5,21 @@ interface TerminalProps {
   initialPath?: string;
 }
 
-export const Terminal: React.FC<TerminalProps> = ({
-  initialPath = "/Users/Guest",
-}) => {
+import { useSystemStore } from "../store/systemStore";
+
+export const Terminal: React.FC<TerminalProps> = ({ initialPath }) => {
+  const { user } = useSystemStore();
+  const userName = user?.name || "Guest";
+  const userHome = `/Users/${userName}`;
+
+  // Use initialPath if provided, otherwise default to userHome
+  const startPath = initialPath || userHome;
+
   const [history, setHistory] = useState<string[]>([
     "Welcome to Terminal",
     "Type 'help' for a list of commands.",
   ]);
-  const [currentPath, setCurrentPath] = useState(initialPath);
+  const [currentPath, setCurrentPath] = useState(startPath);
   const [input, setInput] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -41,7 +48,7 @@ export const Terminal: React.FC<TerminalProps> = ({
           output = currentPath;
           break;
         case "whoami":
-          output = "guest";
+          output = userName.toLowerCase();
           break;
         case "ls":
           const targetPath = args[0]
@@ -61,7 +68,7 @@ export const Terminal: React.FC<TerminalProps> = ({
           break;
         case "cd":
           if (!args[0]) {
-            setCurrentPath("/Users/Guest");
+            setCurrentPath(userHome);
           } else {
             const newPath = args[0].startsWith("/")
               ? args[0]

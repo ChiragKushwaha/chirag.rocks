@@ -18,10 +18,16 @@ interface SidebarProps {
   onNavigate: (path: string) => void;
 }
 
+import { useSystemStore } from "../../store/systemStore";
+
 export const Sidebar: React.FC<SidebarProps> = ({
   currentPath,
   onNavigate,
 }) => {
+  const { user } = useSystemStore();
+  const userName = user?.name || "Guest";
+  const userHome = `/Users/${userName}`;
+
   const menuItems = [
     {
       title: "Favorites",
@@ -29,11 +35,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
         { name: "AirDrop", icon: Airplay, path: "/AirDrop" },
         { name: "Recents", icon: Clock, path: "/Recents" },
         { name: "Applications", icon: LayoutGrid, path: "/Applications" },
-        { name: "Desktop", icon: Monitor, path: "/Users/Guest/Desktop" },
-        { name: "Documents", icon: FileText, path: "/Users/Guest/Documents" },
-        { name: "Downloads", icon: Download, path: "/Users/Guest/Downloads" },
-        { name: "Pictures", icon: Image, path: "/Users/Guest/Pictures" },
-        { name: "Home", icon: Home, path: "/Users/Guest" },
+        { name: "Desktop", icon: Monitor, path: `${userHome}/Desktop` },
+        { name: "Documents", icon: FileText, path: `${userHome}/Documents` },
+        { name: "Downloads", icon: Download, path: `${userHome}/Downloads` },
+        { name: "Pictures", icon: Image, path: `${userHome}/Pictures` },
+        { name: "Home", icon: Home, path: userHome },
       ],
     },
     {
@@ -43,7 +49,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         {
           name: "iCloud Drive",
           icon: Folder,
-          path: "/Users/Guest/Library/Mobile Documents",
+          path: `${userHome}/Library/Mobile Documents`,
         },
       ],
     },

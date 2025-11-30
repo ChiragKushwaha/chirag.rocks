@@ -21,13 +21,19 @@ import { Messages } from "../apps/Messages";
 import { FaceTime } from "../apps/FaceTime";
 
 import { useIconManager, useAsset } from "./hooks/useIconManager";
+import { BootScreen } from "./BootScreen";
 
 export const Desktop: React.FC = () => {
-  const { wallpaper, isBooting, setBooting, setSelectedFile } =
+  const { wallpaper, isBooting, setBooting, setSelectedFile, user } =
     useSystemStore();
   const { openContextMenu } = useMenuStore();
   const { launchProcess } = useProcessStore();
   const [files, setFiles] = useState<MacFileEntry[]>([]);
+
+  const userName = user?.name || "Guest";
+  const userHome = `/Users/${userName}`;
+  const desktopPath = `${userHome}/Desktop`;
+  const trashPath = `${userHome}/.Trash`;
 
   // Initialize Icon System (Cache icons to OPFS)
   const { isReady: assetsReady } = useIconManager();
@@ -47,9 +53,9 @@ export const Desktop: React.FC = () => {
 
     try {
       console.log("Executing fs.rename...");
-      await fs.rename("/Users/Guest/Desktop", file.name, newName);
+      await fs.rename(desktopPath, file.name, newName);
       console.log("fs.rename success, refreshing list...");
-      const f = await fs.ls("/Users/Guest/Desktop");
+      const f = await fs.ls(desktopPath);
       setFiles(f);
     } catch (err) {
       console.error("Failed to rename:", err);
@@ -58,24 +64,46 @@ export const Desktop: React.FC = () => {
   };
 
   // Boot Logic
+  const [bootProgress, setBootProgress] = useState(0);
+
   useEffect(() => {
     const load = async () => {
-      // Wait for assets to be ready
-      if (!assetsReady) return;
+      // 1. Wait for Icon System (20%)
+      if (!assetsReady) {
+        setBootProgress(10);
+        return;
+      }
+      setBootProgress(20);
 
-      // Simulate minimum boot time or wait for assets
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      setBooting(false);
-
-      // Load desktop files after booting
-      const f = await fs.ls("/Users/Guest/Desktop");
+      // 2. Load Desktop Files (40%)
+      const f = await fs.ls(desktopPath);
       setFiles(f);
+      setBootProgress(40);
+
+      // 3. Preload Wallpaper (100%)
+      if (!wallpaperUrl) return; // Wait for useAsset to resolve
+
+      const img = new Image();
+      img.src = wallpaperUrl;
+
+      img.onload = () => {
+        setBootProgress(100);
+        // Small delay to show 100% before transition
+        setTimeout(() => setBooting(false), 500);
+      };
+
+      img.onerror = () => {
+        console.error("Failed to load wallpaper:", wallpaperUrl);
+        // Only proceed if we really fail, but ideally we shouldn't
+        setBootProgress(100);
+        setTimeout(() => setBooting(false), 500);
+      };
     };
 
     if (isBooting) {
       load();
     }
-  }, [isBooting, setBooting, assetsReady]);
+  }, [isBooting, setBooting, assetsReady, wallpaperUrl, wallpaper]);
 
   // --- ACTIONS ---
   const createFolder = async () => {
@@ -84,15 +112,15 @@ export const Desktop: React.FC = () => {
     let counter = 2;
 
     // Find unique name
-    while (await fs.exists(`/Users/Guest/Desktop/${name}`)) {
+    while (await fs.exists(`${desktopPath}/${name}`)) {
       name = `${baseName} ${counter}`;
       counter++;
     }
 
-    await fs.mkdir(`/Users/Guest/Desktop/${name}`);
+    await fs.mkdir(`${desktopPath}/${name}`);
 
     // Refresh files
-    const f = await fs.ls("/Users/Guest/Desktop");
+    const f = await fs.ls(desktopPath);
     setFiles(f);
   };
 
@@ -193,10 +221,7 @@ export const Desktop: React.FC = () => {
         app.id,
         file.name,
         app.icon,
-        <app.component
-          initialPath="/Users/Guest/Desktop"
-          initialFilename={file.name}
-        />
+        <app.component initialPath={desktopPath} initialFilename={file.name} />
       );
     } else {
       alert(`No application available to open .${ext} files.`);
@@ -206,7 +231,7 @@ export const Desktop: React.FC = () => {
   // Listen for external FS changes (e.g. from Trash Put Back)
   useEffect(() => {
     const handleRefresh = () => {
-      fs.ls("/Users/Guest/Desktop").then(setFiles);
+      fs.ls(desktopPath).then(setFiles);
     };
     window.addEventListener("file-system-change", handleRefresh);
     return () =>
@@ -215,19 +240,19 @@ export const Desktop: React.FC = () => {
 
   const moveToBin = async (file: MacFileEntry) => {
     // Ensure trash exists
-    if (!(await fs.exists("/Users/Guest/.Trash"))) {
-      await fs.mkdir("/Users/Guest/.Trash");
+    if (!(await fs.exists(trashPath))) {
+      await fs.mkdir(trashPath);
     }
 
     // Read and write to move (simplification)
     // TODO: Add fs.move to FileSystem
     try {
-      const content = await fs.readFile("/Users/Guest/Desktop", file.name);
-      await fs.writeFile("/Users/Guest/.Trash", file.name, content);
-      await fs.delete("/Users/Guest/Desktop", file.name);
+      const content = await fs.readFile(desktopPath, file.name);
+      await fs.writeFile(trashPath, file.name, content);
+      await fs.delete(desktopPath, file.name);
 
       // Refresh
-      const f = await fs.ls("/Users/Guest/Desktop");
+      const f = await fs.ls(desktopPath);
       setFiles(f);
     } catch (e) {
       console.error("Failed to move to bin", e);
@@ -248,20 +273,7 @@ export const Desktop: React.FC = () => {
     ]);
   };
 
-  if (isBooting)
-    return (
-      <div className="h-screen w-screen bg-black flex items-center justify-center text-white">
-        <div className="flex flex-col items-center">
-          <span className="text-6xl mb-8"></span>
-          <div className="w-48 h-1 bg-gray-800 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-white animate-[loading_2s_ease-in-out_infinite]"
-              style={{ width: "50%" }}
-            />
-          </div>
-        </div>
-      </div>
-    );
+  if (isBooting) return <BootScreen progress={bootProgress} />;
 
   return (
     <main
@@ -327,7 +339,7 @@ export const Desktop: React.FC = () => {
                             "TextEdit",
                             "📝",
                             <TextEdit
-                              initialPath="/Users/Guest/Desktop"
+                              initialPath={desktopPath}
                               initialFilename={file.name}
                             />
                           ),
@@ -355,7 +367,7 @@ export const Desktop: React.FC = () => {
                                 "TextEdit",
                                 "📝",
                                 <TextEdit
-                                  initialPath="/Users/Guest/Desktop"
+                                  initialPath={desktopPath}
                                   initialFilename={file.name}
                                 />
                               ),
@@ -367,7 +379,7 @@ export const Desktop: React.FC = () => {
                                 "terminal",
                                 "Terminal",
                                 "terminal",
-                                <Terminal initialPath="/Users/Guest/Desktop" />
+                                <Terminal initialPath={desktopPath} />
                               ),
                           },
                         ],

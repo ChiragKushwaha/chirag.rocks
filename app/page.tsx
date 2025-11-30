@@ -7,7 +7,7 @@ import { MacInstaller } from "../lib/Installer";
 import { useSystemStore } from "../store/systemStore";
 
 function App() {
-  const { isSetupComplete, theme } = useSystemStore();
+  const { isSetupComplete, theme, user } = useSystemStore();
 
   // 1. Initialize OS Layer
   useEffect(() => {
@@ -17,7 +17,8 @@ function App() {
       const isInstalled = await fs.exists("/System");
       if (!isInstalled) {
         const installer = new MacInstaller();
-        await installer.install();
+        // Use stored name or default to Guest if empty (though setup should handle this)
+        await installer.install(user.name || "Guest");
       }
     };
     initOS();

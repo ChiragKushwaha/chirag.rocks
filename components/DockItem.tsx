@@ -8,6 +8,8 @@ import { Calculator } from "../apps/Calculator";
 import { Trash } from "../apps/Trash";
 import { Messages } from "../apps/Messages";
 import { FaceTime } from "../apps/FaceTime";
+import { CalendarIcon } from "./icons/CalendarIcon";
+import { SystemSettings } from "../apps/SystemSettings";
 
 interface DockItemProps {
   name: string;
@@ -47,6 +49,8 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
       component = <Messages />;
     } else if (name === "FaceTime") {
       component = <FaceTime />;
+    } else if (name === "System Settings") {
+      component = <SystemSettings />;
     }
 
     launchProcess(name.toLowerCase(), title, icon, component);
@@ -61,8 +65,9 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
   const maxScale = 1.5; // Maximum magnification (1.5x)
 
   // 1. CALCULATE WIDTH ON THE FLY (No useEffect)
-  let scale = 1;
+  const scale = 1;
 
+  /* Magnification disabled as per user request
   if (mouseX !== null && imgRef.current) {
     const rect = imgRef.current.getBoundingClientRect();
     const iconCenterX = rect.left + rect.width / 2;
@@ -78,6 +83,7 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
       scale = 1 + (maxScale - 1) * (bump * bump * bump); // Sharpen the curve slightly
     }
   }
+  */
 
   const width = baseWidth * scale;
 
@@ -102,8 +108,11 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
           fontSize: `${width * 0.55}px`, // Scale emoji text dynamically
         }}
         className={`
-          flex items-center justify-center rounded-2xl shadow-lg border border-white/10
-          bg-white/10 backdrop-blur-sm select-none
+          flex items-center justify-center rounded-2xl 
+            /* Removed background/border to fix "black space" issue */
+            name === "Calendar" ? "" : ""
+          }
+          select-none
           /* KEY FIX: Only animate when mouse leaves (mouseX is null) */
           ${
             mouseX === null
@@ -112,12 +121,17 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
           }
         `}
       >
-        <span className="filter drop-shadow-md transform translate-y-[1px] w-full h-full p-1.5">
-          {iconUrl ? (
+        <span
+          className="filter drop-shadow-md transform translate-y-[1px]"
+          style={{ width: width, height: width }}
+        >
+          {name === "Calendar" ? (
+            <CalendarIcon size={width} />
+          ) : iconUrl ? (
             <img
               src={iconUrl}
               alt={name}
-              className="w-full h-full object-contain"
+              className="w-full h-full scale-[1.28]"
               onError={(e) => {
                 e.currentTarget.style.display = "none";
                 const fallbacks: Record<string, string> = {

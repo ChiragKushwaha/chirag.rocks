@@ -61,10 +61,28 @@ export class MacInstaller {
     { path: "/tmp", target: "/private/tmp" },
   ];
 
-  public async install(): Promise<void> {
-    console.log("🍏 Starting macOS Factory Installation...");
+  public async install(username: string = "Guest"): Promise<void> {
+    console.log(
+      `🍏 Starting macOS Factory Installation for user: ${username}...`
+    );
 
-    const allDirs = [...this.unixDirs, ...this.systemDirs, ...this.userDirs];
+    // Dynamic User Dirs
+    const dynamicUserDirs = [
+      "/Applications",
+      "/Applications/Utilities",
+      "/Users/Shared",
+      `/Users/${username}/Desktop`,
+      `/Users/${username}/Documents`,
+      `/Users/${username}/Downloads`,
+      `/Users/${username}/Movies`,
+      `/Users/${username}/Music`,
+      `/Users/${username}/Pictures`,
+      `/Users/${username}/Public`,
+      `/Users/${username}/Library/Application Support`,
+      `/Users/${username}/Library/Preferences`,
+    ];
+
+    const allDirs = [...this.unixDirs, ...this.systemDirs, ...dynamicUserDirs];
 
     // Create Folders
     for (const dir of allDirs) {
@@ -99,7 +117,7 @@ export class MacInstaller {
 
     // Create User Welcome File
     await fs.writeFile(
-      "/Users/Guest/Desktop",
+      `/Users/${username}/Desktop`,
       "Welcome.txt",
       "Welcome to the Web-Based Mac Simulation."
     );

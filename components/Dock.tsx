@@ -15,7 +15,7 @@ export const Dock: React.FC = () => {
       */}
       <div
         className="
-          flex items-end gap-2 px-3 pb-3 pt-2
+          flex items-end gap-4 px-3 pb-3 pt-2
           bg-[rgba(255,255,255,0.2)] dark:bg-[rgba(0,0,0,0.2)]
           backdrop-blur-2xl
           border border-[rgba(255,255,255,0.2)] dark:border-[rgba(255,255,255,0.1)]

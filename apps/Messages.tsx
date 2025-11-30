@@ -1,33 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useSocketStore } from "../store/socketStore";
+import { useSystemStore } from "../store/systemStore";
 
 export const Messages: React.FC = () => {
   const { users, messages, sendMessage, isConnected, connect, me } =
     useSocketStore();
+  const { user } = useSystemStore();
   const [selectedUser, setSelectedUser] = useState<string | null>(null);
   const [inputText, setInputText] = useState("");
   const [loginName, setLoginName] = useState("");
+
+  // Auto-login
+  useEffect(() => {
+    if (!isConnected && me?.name !== user.name && user.name) {
+      connect(user.name);
+    }
+  }, [isConnected, user.name, connect, me]);
 
   if (!isConnected) {
     return (
       <div className="flex flex-col items-center justify-center h-full bg-white p-4">
         <div className="text-2xl font-bold mb-4">iMessage</div>
-        <input
-          type="text"
-          placeholder="Enter your name"
-          className="border p-2 rounded mb-2 w-64"
-          value={loginName}
-          onChange={(e) => setLoginName(e.target.value)}
-          onKeyDown={(e) =>
-            e.key === "Enter" && loginName && connect(loginName)
-          }
-        />
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          onClick={() => loginName && connect(loginName)}
-        >
-          Sign In
-        </button>
+        <div className="animate-pulse text-gray-400">
+          Signing in as {user.name}...
+        </div>
       </div>
     );
   }

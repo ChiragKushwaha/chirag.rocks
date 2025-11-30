@@ -1,22 +1,53 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useSystemStore } from "../store/systemStore";
 import { useMenuStore, MenuItem } from "../store/menuStore";
 import { useProcessStore } from "../store/processStore";
 import { TopDropdown } from "./Menus";
 import { AboutMac } from "../apps/AboutMac";
+import { Clock } from "./Clock";
+
+// --- RENDER HELPERS ---
+const MenuButton: React.FC<{
+  id: string;
+  label: string | React.ReactNode;
+  items: MenuItem[];
+  bold?: boolean;
+}> = ({ id, label, items, bold }) => {
+  const { activeMenuId, setActiveMenu } = useMenuStore();
+  const isActive = activeMenuId === id;
+
+  return (
+    <div className="relative h-full flex items-center">
+      <button
+        onMouseEnter={() => activeMenuId && setActiveMenu(id)}
+        onClick={() => setActiveMenu(isActive ? null : id)}
+        className={`
+          h-full px-3 text-[13px] rounded transition-colors
+          ${
+            isActive
+              ? "bg-white/20 text-white"
+              : "hover:bg-white/10 active:bg-white/20"
+          }
+          ${bold ? "font-bold" : "font-normal"}
+        `}
+      >
+        {label}
+      </button>
+      {/* Dropdown Positioned Relative to Button */}
+      <TopDropdown
+        items={items}
+        isOpen={isActive}
+        xOffset={0} // Adjust via CSS in TopDropdown if needed, simplified here
+        onClose={() => setActiveMenu(null)}
+      />
+    </div>
+  );
+};
 
 export const MenuBar: React.FC = () => {
   const { activeApp } = useSystemStore();
   const { activeMenuId, setActiveMenu } = useMenuStore();
   const { launchProcess } = useProcessStore();
-
-  const [time, setTime] = useState(new Date());
-
-  // Clock
-  useEffect(() => {
-    const timer = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(timer);
-  }, []);
 
   // --- MENU CONFIGURATIONS ---
   const handleAppleClick = () => {
@@ -69,41 +100,7 @@ export const MenuBar: React.FC = () => {
   };
 
   // --- RENDER HELPERS ---
-  const MenuButton: React.FC<{
-    id: string;
-    label: string | React.ReactNode;
-    items: MenuItem[];
-    bold?: boolean;
-  }> = ({ id, label, items, bold }) => {
-    const isActive = activeMenuId === id;
-
-    return (
-      <div className="relative h-full flex items-center">
-        <button
-          onMouseEnter={() => activeMenuId && setActiveMenu(id)}
-          onClick={() => setActiveMenu(isActive ? null : id)}
-          className={`
-            h-full px-3 text-[13px] rounded transition-colors
-            ${
-              isActive
-                ? "bg-white/20 text-white"
-                : "hover:bg-white/10 active:bg-white/20"
-            }
-            ${bold ? "font-bold" : "font-normal"}
-          `}
-        >
-          {label}
-        </button>
-        {/* Dropdown Positioned Relative to Button */}
-        <TopDropdown
-          items={items}
-          isOpen={isActive}
-          xOffset={0} // Adjust via CSS in TopDropdown if needed, simplified here
-          onClose={() => setActiveMenu(null)}
-        />
-      </div>
-    );
-  };
+  // MenuButton moved outside
 
   return (
     <header
@@ -164,9 +161,7 @@ export const MenuBar: React.FC = () => {
       {/* Right Side Status */}
       <div className="flex items-center gap-5 px-2 text-[13px] font-medium">
         <span className="opacity-90">🔋 100%</span>
-        <span>
-          {time.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}
-        </span>
+        <Clock />
       </div>
     </header>
   );

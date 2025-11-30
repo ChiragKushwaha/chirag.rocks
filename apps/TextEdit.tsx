@@ -6,16 +6,22 @@ interface TextEditProps {
   initialFilename?: string; // e.g., 'Notes.txt'
 }
 
+import { useSystemStore } from "../store/systemStore";
+
 export const TextEdit: React.FC<TextEditProps> = ({
   initialPath,
   initialFilename,
 }) => {
+  const { user } = useSystemStore();
+  const userName = user?.name || "Guest";
+  const defaultPath = `/Users/${userName}/Documents`;
+
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
 
   // Save State
   const [filename, setFilename] = useState(initialFilename || "Untitled.txt");
-  const [path, setPath] = useState(initialPath || "/Users/Guest/Documents");
+  const [path] = useState(initialPath || defaultPath);
 
   useEffect(() => {
     if (initialPath && initialFilename) {

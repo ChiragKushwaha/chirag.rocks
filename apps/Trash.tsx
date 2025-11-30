@@ -4,16 +4,23 @@ import { MacFileEntry } from "../lib/types";
 import { FileIcon } from "../components/FileIcon";
 import { useMenuStore } from "../store/menuStore";
 
+import { useSystemStore } from "../store/systemStore";
+
 export const Trash: React.FC = () => {
   const [files, setFiles] = useState<MacFileEntry[]>([]);
   const { openContextMenu } = useMenuStore();
+  const { user } = useSystemStore();
+
+  const userName = user?.name || "Guest";
+  const trashPath = `/Users/${userName}/.Trash`;
+  const desktopPath = `/Users/${userName}/Desktop`;
 
   const loadFiles = async () => {
     // Ensure trash directory exists
-    if (!(await fs.exists("/Users/Guest/.Trash"))) {
-      await fs.mkdir("/Users/Guest/.Trash");
+    if (!(await fs.exists(trashPath))) {
+      await fs.mkdir(trashPath);
     }
-    const f = await fs.ls("/Users/Guest/.Trash");
+    const f = await fs.ls(trashPath);
     setFiles(f);
   };
 
@@ -33,7 +40,7 @@ export const Trash: React.FC = () => {
       // Looking at FileSystem.ts (I recall it takes path and name or just path?)
       // Let's assume we can delete by path
       // Wait, fs.delete(path, name)
-      await fs.delete("/Users/Guest/.Trash", file.name);
+      await fs.delete(trashPath, file.name);
     }
     loadFiles();
   };
@@ -41,9 +48,9 @@ export const Trash: React.FC = () => {
   const putBack = async (file: MacFileEntry) => {
     // Move back to Desktop (simplification, ideally we remember original location)
     // We need a move command. If not, read and write then delete.
-    const content = await fs.readFile("/Users/Guest/.Trash", file.name);
-    await fs.writeFile("/Users/Guest/Desktop", file.name, content);
-    await fs.delete("/Users/Guest/.Trash", file.name);
+    const content = await fs.readFile(trashPath, file.name);
+    await fs.writeFile(desktopPath, file.name, content);
+    await fs.delete(trashPath, file.name);
     loadFiles();
 
     // Trigger a desktop refresh if possible?
@@ -81,7 +88,7 @@ export const Trash: React.FC = () => {
                 {
                   label: "Delete Immediately",
                   action: async () => {
-                    await fs.delete("/Users/Guest/.Trash", file.name);
+                    await fs.delete(trashPath, file.name);
                     loadFiles();
                   },
                   danger: true,
