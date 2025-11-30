@@ -1,34 +1,46 @@
 import React from "react";
 
-interface SegmentedControlProps {
-  options: string[];
-  selected: string;
-  onChange: (value: string) => void;
+interface Segment {
+  value: string;
+  label: string;
+  icon?: React.ReactNode;
 }
 
-export const MacOSSegmentedControl: React.FC<SegmentedControlProps> = ({
-  options,
-  selected,
+interface MacOSSegmentedControlProps {
+  segments: Segment[];
+  value: string;
+  onChange: (value: string) => void;
+  className?: string;
+}
+
+export const MacOSSegmentedControl: React.FC<MacOSSegmentedControlProps> = ({
+  segments,
+  value,
   onChange,
+  className = "",
 }) => {
   return (
-    <div className="flex bg-[#D8D8D8] dark:bg-[#3A3A3C] p-[2px] rounded-[6px]">
-      {options.map((opt) => {
-        const isSelected = selected === opt;
+    <div
+      className={`inline-flex bg-[var(--control-background)] p-0.5 rounded-lg border border-[var(--control-border)] shadow-sm ${className}`}
+    >
+      {segments.map((segment) => {
+        const isSelected = segment.value === value;
         return (
           <button
-            key={opt}
-            onClick={() => onChange(opt)}
+            key={segment.value}
+            onClick={() => onChange(segment.value)}
             className={`
-              flex-1 px-3 py-0.5 text-[12px] font-medium rounded-[4px] transition-all
+              relative px-3 py-1 text-[13px] font-medium rounded-[6px] transition-all duration-200
+              flex items-center gap-1.5
               ${
                 isSelected
-                  ? "bg-white dark:bg-[#636366] shadow-sm text-black dark:text-white"
-                  : "text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white"
+                  ? "bg-white dark:bg-[#636366] text-black dark:text-white shadow-sm"
+                  : "text-[var(--secondary-label)] hover:text-[var(--label)] hover:bg-black/5 dark:hover:bg-white/10"
               }
             `}
           >
-            {opt}
+            {segment.icon && <span className="opacity-80">{segment.icon}</span>}
+            {segment.label}
           </button>
         );
       })}

@@ -15,6 +15,15 @@ import {
   MacOSSlider,
   IOSAlert,
   IOSActionSheet,
+  MacOSWindow,
+  MacOSDatePicker,
+  MacOSColorPicker,
+  MacOSSegmentedControl,
+  MacOSActivityIndicator,
+  MacOSKeyboard,
+  MacOSHomeIndicator,
+  MacOSList,
+  MacOSMenuBar,
 } from "@/components/ui/MacOSDesignSystem";
 import { useDevice } from "@/components/ui/design-system/DeviceContext";
 import {
@@ -27,6 +36,9 @@ import {
   Smartphone,
   Monitor,
   Tablet,
+  ChevronRight,
+  Wifi,
+  Battery,
 } from "lucide-react";
 
 export default function DesignDemoPage() {
@@ -39,6 +51,10 @@ export default function DesignDemoPage() {
 
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [isActionSheetOpen, setIsActionSheetOpen] = useState(false);
+
+  const [date, setDate] = useState(new Date());
+  const [color, setColor] = useState("#007AFF");
+  const [segment, setSegment] = useState("map");
 
   const sidebarSections = [
     {
@@ -75,9 +91,29 @@ export default function DesignDemoPage() {
 
   return (
     <div className="flex h-screen bg-[var(--background)] text-[var(--foreground)] font-sans overflow-hidden">
+      {/* Menu Bar (Desktop Only) */}
+      {isDesktop && (
+        <div className="fixed top-0 left-0 right-0 z-50">
+          <MacOSMenuBar
+            appName="Design Demo"
+            menus={[
+              { label: "File" },
+              { label: "Edit" },
+              { label: "View" },
+              { label: "Window" },
+              { label: "Help" },
+            ]}
+          />
+        </div>
+      )}
+
       {/* Sidebar - Hidden on Mobile */}
       {!isMobile && (
-        <div className="flex-none h-full border-r border-[var(--separator)]">
+        <div
+          className={`flex-none h-full border-r border-[var(--separator)] ${
+            isDesktop ? "pt-[24px]" : ""
+          }`}
+        >
           <MacOSSidebar
             sections={sidebarSections}
             activeItemId={activeSidebarItem}
@@ -88,7 +124,11 @@ export default function DesignDemoPage() {
       )}
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col min-w-0 relative">
+      <div
+        className={`flex-1 flex flex-col min-w-0 relative ${
+          isDesktop ? "pt-[24px]" : ""
+        }`}
+      >
         <MacOSNavigationBar
           title="Design System Demo"
           leading={
@@ -134,6 +174,124 @@ export default function DesignDemoPage() {
                 >
                   {orientation} Orientation
                 </MacOSTypography>
+              </div>
+            </div>
+          </section>
+
+          {/* New Components Showcase */}
+          <section className="space-y-4">
+            <div className="pb-2 border-b border-[var(--separator)]">
+              <MacOSTypography variant="title2">New Components</MacOSTypography>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Controls */}
+              <div className="space-y-6 p-4 bg-[var(--secondary-background)] rounded-xl border border-[var(--separator)]">
+                <MacOSTypography variant="headline">Controls</MacOSTypography>
+
+                <div className="space-y-2">
+                  <MacOSTypography variant="subhead">
+                    Segmented Control
+                  </MacOSTypography>
+                  <MacOSSegmentedControl
+                    value={segment}
+                    onChange={setSegment}
+                    segments={[
+                      { value: "map", label: "Map" },
+                      { value: "transit", label: "Transit" },
+                      { value: "satellite", label: "Satellite" },
+                    ]}
+                  />
+                </div>
+
+                <div className="flex items-center gap-8">
+                  <div className="space-y-2">
+                    <MacOSTypography variant="subhead">
+                      Date Picker
+                    </MacOSTypography>
+                    <MacOSDatePicker value={date} onChange={setDate} />
+                  </div>
+                  <div className="space-y-2">
+                    <MacOSTypography variant="subhead">
+                      Color Picker
+                    </MacOSTypography>
+                    <MacOSColorPicker color={color} onChange={setColor} />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <MacOSTypography variant="subhead">
+                    Activity Indicator
+                  </MacOSTypography>
+                  <div className="flex gap-4 items-center">
+                    <MacOSActivityIndicator size="small" />
+                    <MacOSActivityIndicator size="medium" />
+                    <MacOSActivityIndicator size="large" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Window Demo */}
+              <div className="relative h-[300px] bg-[url('/wallpapers/sequoia-light.jpg')] bg-cover rounded-xl border border-[var(--separator)] overflow-hidden">
+                <MacOSWindow
+                  title="Demo Window"
+                  initialPosition={{ x: 20, y: 20 }}
+                  initialSize={{ width: 300, height: 200 }}
+                  onClose={() => console.log("Close")}
+                >
+                  <div className="p-4 flex flex-col items-center justify-center h-full text-center">
+                    <MacOSTypography variant="body">
+                      This is a draggable, resizable macOS window component.
+                    </MacOSTypography>
+                  </div>
+                </MacOSWindow>
+              </div>
+            </div>
+          </section>
+
+          {/* Lists & Keyboard */}
+          <section className="space-y-4">
+            <div className="pb-2 border-b border-[var(--separator)]">
+              <MacOSTypography variant="title2">Lists & Input</MacOSTypography>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <MacOSTypography variant="headline">
+                  iOS Style List
+                </MacOSTypography>
+                <MacOSList
+                  inset
+                  items={[
+                    {
+                      id: "1",
+                      title: "Wi-Fi",
+                      subtitle: "Connected",
+                      leading: <Wifi size={18} />,
+                      trailing: <ChevronRight size={14} />,
+                    },
+                    {
+                      id: "2",
+                      title: "Bluetooth",
+                      subtitle: "On",
+                      leading: <Battery size={18} />,
+                      trailing: <ChevronRight size={14} />,
+                    },
+                    {
+                      id: "3",
+                      title: "Notifications",
+                      leading: <Bell size={18} />,
+                      trailing: <ChevronRight size={14} />,
+                    },
+                  ]}
+                />
+              </div>
+
+              <div className="space-y-4">
+                <MacOSTypography variant="headline">
+                  Virtual Keyboard
+                </MacOSTypography>
+                <MacOSKeyboard onKeyPress={(key) => console.log(key)} />
               </div>
             </div>
           </section>
@@ -218,6 +376,9 @@ export default function DesignDemoPage() {
             onTabChange={setActiveTab}
           />
         </div>
+
+        {/* Home Indicator (Mobile Only) */}
+        {isMobile && <MacOSHomeIndicator />}
 
         {/* iOS Overlays */}
         <IOSAlert

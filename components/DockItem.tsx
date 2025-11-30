@@ -94,8 +94,17 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
           }
         `}
       >
-        <span className="filter drop-shadow-md transform translate-y-[1px]">
-          {icon === "safari" ? "🧭" : icon}
+        <span className="filter drop-shadow-md transform translate-y-[1px] w-full h-full p-1.5">
+          <img
+            src={`/icons/${icon}.png`}
+            alt={name}
+            className="w-full h-full object-contain"
+            onError={(e) => {
+              e.currentTarget.style.display = "none";
+              e.currentTarget.parentElement!.innerHTML =
+                icon === "safari" ? "🧭" : icon;
+            }}
+          />
         </span>
       </button>
 
