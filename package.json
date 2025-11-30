@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "tsx server/server.ts && next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "tsx server/server.ts && next start",
     "server": "tsx server/server.ts",
     "lint": "eslint"
   },
