@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Search } from "lucide-react";
 import { useProcessStore } from "../store/processStore";
@@ -24,12 +24,18 @@ import { Calculator } from "./Calculator";
 import { Trash } from "./Trash";
 import { Photos } from "./Photos";
 import { CalendarIcon } from "../components/icons/CalendarIcon";
+import dynamic from "next/dynamic";
+
+const PDFViewer = dynamic(
+  () => import("./PDFViewer").then((mod) => mod.PDFViewer),
+  { ssr: false }
+);
 
 export interface AppDef {
   id: string;
   name: string;
   icon: string;
-  component: React.FC<any>;
+  component: React.ComponentType<any>;
 }
 
 export const APPS: AppDef[] = [
@@ -68,6 +74,7 @@ export const APPS: AppDef[] = [
     component: Calculator,
   },
   { id: "trash", name: "Trash", icon: "trash", component: Trash },
+  { id: "preview", name: "Preview", icon: "preview", component: PDFViewer },
 ];
 
 const LaunchpadItem: React.FC<{
@@ -84,23 +91,24 @@ const LaunchpadItem: React.FC<{
         onClick();
       }}
     >
-      <div className="w-24 h-24 transition-transform duration-200 group-hover:scale-110 group-active:scale-95">
+      <div className="w-[112px] h-[112px] min-w-[112px] min-h-[112px] transition-transform duration-300 ease-out group-hover:scale-105 group-active:scale-95 flex items-center justify-center">
         {app.name === "Calendar" ? (
-          <CalendarIcon size={96} />
+          <CalendarIcon size={90} />
         ) : iconUrl ? (
           <Image
             src={iconUrl}
             alt={app.name}
-            width={96}
-            height={96}
-            className="w-full h-full drop-shadow-xl object-contain"
-            unoptimized // Since we might be using blob URLs or local assets not optimized by Next.js image server
+            width={112}
+            height={112}
+            className="w-[112px] h-[112px] drop-shadow-2xl object-contain"
+            unoptimized
+            draggable={false}
           />
         ) : (
-          <div className="w-full h-full bg-gray-500/50 rounded-2xl animate-pulse" />
+          <div className="w-full h-full bg-gray-500/50 rounded-[26px] animate-pulse" />
         )}
       </div>
-      <span className="text-white text-sm font-medium drop-shadow-md tracking-wide">
+      <span className="text-white text-[15px] font-semibold drop-shadow-lg tracking-tight opacity-90 group-hover:opacity-100">
         {app.name}
       </span>
     </div>
@@ -109,7 +117,10 @@ const LaunchpadItem: React.FC<{
 
 export const Launchpad: React.FC = () => {
   const { launchProcess, closeProcess, processes } = useProcessStore();
+  const dialogRef = useRef<HTMLDialogElement>(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(0);
+  const ITEMS_PER_PAGE = 35;
 
   const filteredApps = useMemo(() => {
     return APPS.filter((app) =>
@@ -117,70 +128,171 @@ export const Launchpad: React.FC = () => {
     );
   }, [searchTerm]);
 
-  const handleAppClick = (app: AppDef) => {
-    // Close Launchpad first
+  // Reset to first page when search changes
+  React.useEffect(() => {
+    setCurrentPage(0);
+  }, [searchTerm]);
+
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredApps.length / ITEMS_PER_PAGE)
+  );
+  const currentApps = filteredApps.slice(
+    currentPage * ITEMS_PER_PAGE,
+    (currentPage + 1) * ITEMS_PER_PAGE
+  );
+
+  const handleAppClick = React.useCallback(
+    (app: AppDef) => {
+      // Close Launchpad first
+      const launchpadPid = processes.find((p) => p.id === "launchpad")?.pid;
+      if (launchpadPid) closeProcess(launchpadPid);
+
+      // Launch the app
+      // Special handling for Finder which might need specific props or just default
+      if (app.name === "Finder") {
+        launchProcess("finder", "Finder", app.icon, <Finder />, {
+          width: 900,
+          height: 600,
+          x: 50,
+          y: 50,
+        });
+      } else {
+        launchProcess(app.id, app.name, app.icon, <app.component />);
+      }
+    },
+    [processes, closeProcess, launchProcess]
+  );
+
+  const [selectedIndex, setSelectedIndex] = useState<number>(-1);
+
+  useEffect(() => {
+    setSearchTerm("");
+    setCurrentPage(0);
+    setSelectedIndex(-1);
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        const launchpadPid = processes.find((p) => p.id === "launchpad")?.pid;
+        if (launchpadPid) closeProcess(launchpadPid);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [processes, closeProcess]);
+
+  // Keyboard Navigation
+  useEffect(() => {
+    const handleNav = (e: KeyboardEvent) => {
+      if (searchTerm) return; // Disable grid nav when searching
+
+      const cols = 7;
+      const rows = 5;
+      const itemsPerPage = cols * rows;
+      const maxIndex = currentApps.length - 1;
+
+      if (e.key === "ArrowRight") {
+        setSelectedIndex((prev) => Math.min(prev + 1, maxIndex));
+      } else if (e.key === "ArrowLeft") {
+        setSelectedIndex((prev) => Math.max(prev - 1, 0));
+      } else if (e.key === "ArrowDown") {
+        setSelectedIndex((prev) => Math.min(prev + cols, maxIndex));
+      } else if (e.key === "ArrowUp") {
+        setSelectedIndex((prev) => Math.max(prev - cols, 0));
+      } else if (e.key === "Enter") {
+        if (selectedIndex >= 0 && selectedIndex <= maxIndex) {
+          handleAppClick(currentApps[selectedIndex]);
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleNav);
+    return () => window.removeEventListener("keydown", handleNav);
+  }, [currentApps, selectedIndex, searchTerm, handleAppClick]);
+
+  // Reset selection when page changes
+  useEffect(() => {
+    setSelectedIndex(-1);
+  }, [currentPage]);
+
+  useEffect(() => {
+    if (dialogRef.current && !dialogRef.current.open) {
+      dialogRef.current.showModal();
+    }
+  }, []);
+
+  const handleClose = () => {
     const launchpadPid = processes.find((p) => p.id === "launchpad")?.pid;
     if (launchpadPid) closeProcess(launchpadPid);
-
-    // Launch the app
-    // Special handling for Finder which might need specific props or just default
-    if (app.name === "Finder") {
-      launchProcess("finder", "Finder", app.icon, <Finder />, {
-        width: 900,
-        height: 600,
-        x: 50,
-        y: 50,
-      });
-    } else {
-      launchProcess(app.id, app.name, app.icon, <app.component />);
-    }
+    dialogRef.current?.close();
   };
 
   return (
-    <div
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-start pt-20 bg-black/40 backdrop-blur-2xl animate-in fade-in zoom-in-95 duration-200"
-      onClick={() => {
-        const launchpadPid = processes.find((p) => p.id === "launchpad")?.pid;
-        if (launchpadPid) closeProcess(launchpadPid);
-      }}
+    <dialog
+      ref={dialogRef}
+      className="w-screen h-screen max-w-none max-h-none bg-transparent m-0 p-0 backdrop:bg-black/40 backdrop:backdrop-blur-[100px] animate-in fade-in zoom-in-95 duration-200 ease-out overflow-hidden outline-none pointer-events-auto"
+      onClick={handleClose}
+      onCancel={handleClose}
     >
-      {/* Search Bar */}
-      <div
-        className="w-full max-w-[280px] mb-16"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="relative group">
+      <div className="flex flex-col items-center w-full h-full pt-[4vh] pb-[2vh]">
+        {/* Search Bar */}
+        <div
+          className="flex items-center group w-full max-w-[240px] mb-6"
+          onClick={(e) => e.stopPropagation()}
+        >
           <Search
-            className="absolute left-2.5 top-2 text-gray-400 group-focus-within:text-white transition-colors"
-            size={16}
+            className="relative z-1 left-8 text-white/50 group-focus-within:text-white transition-colors"
+            size={14}
           />
           <input
             type="text"
             placeholder="Search"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-white/10 border border-white/20 rounded-md pl-9 pr-4 py-1.5 text-white placeholder-gray-400 text-sm focus:outline-none focus:bg-white/20 focus:border-white/30 transition-all"
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setSelectedIndex(0); // Select first result on search
+            }}
+            className="w-full bg-white/10 border border-white/20 rounded-[8px] pl-9 pr-3 py-1.5 text-white placeholder-white/50 text-[14px] font-light focus:outline-none focus:bg-white/20 focus:border-white/30 transition-all text-center focus:text-left focus:placeholder-transparent shadow-lg backdrop-blur-md"
             autoFocus
           />
         </div>
-      </div>
 
-      {/* App Grid */}
-      <div className="grid grid-cols-7 gap-x-12 gap-y-16 p-12 max-w-7xl w-full px-24">
-        {filteredApps.map((app) => (
-          <LaunchpadItem
-            key={app.id}
-            app={app}
-            onClick={() => handleAppClick(app)}
-          />
-        ))}
-      </div>
+        {/* App Grid - 7x5 Layout */}
+        <div className="flex-1 w-full px-[4vw]">
+          <div className="grid grid-cols-7 grid-rows-5 w-full h-full place-items-center">
+            {currentApps.map((app, index) => (
+              <div
+                onClick={(e) => e.stopPropagation()}
+                key={app.id}
+                className={`relative group rounded-xl transition-all duration-200 ${
+                  index === selectedIndex
+                    ? "bg-white/10 ring-1 ring-white/20"
+                    : ""
+                }`}
+              >
+                <LaunchpadItem app={app} onClick={() => handleAppClick(app)} />
+              </div>
+            ))}
+          </div>
+        </div>
 
-      {/* Page Indicators (Visual Only for now) */}
-      <div className="absolute bottom-8 flex gap-2">
-        <div className="w-2 h-2 rounded-full bg-white" />
-        <div className="w-2 h-2 rounded-full bg-white/30" />
+        {/* Page Indicators */}
+        <div className="flex gap-3 mt-8" onClick={(e) => e.stopPropagation()}>
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <div
+              key={i}
+              className={`w-[8px] h-[8px] rounded-full shadow-sm transition-all duration-200 cursor-pointer border border-white/10 ${
+                i === currentPage
+                  ? "bg-white scale-110"
+                  : "bg-white/30 hover:bg-white/50"
+              }`}
+              onClick={() => setCurrentPage(i)}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </dialog>
   );
 };

@@ -15,8 +15,10 @@
     "express": "^5.1.0",
     "lucide-react": "^0.555.0",
     "next": "16.0.5",
+    "pdfjs-dist": "^5.4.449",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "react-pdf": "^10.2.0",
     "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1",
     "ts-node": "^10.9.2",
@@ -25,6 +27,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.17",
     "@types/node": "^24.10.1",
+    "@types/pdfjs-dist": "^2.10.378",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "baseline-browser-mapping": "^2.8.32",

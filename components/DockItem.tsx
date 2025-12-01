@@ -53,7 +53,6 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
       <div className="p-10 text-white">Placeholder for {name}</div>
     );
     const title = name;
-
     if (name === "Finder") {
       launchProcess("finder", "Finder", icon, <Finder />, {
         width: 900,
@@ -97,7 +96,20 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
     } else if (name === "App Store") {
       component = <AppStore />;
     } else if (name === "Launchpad") {
-      component = <Launchpad />;
+      launchProcess(
+        "launchpad",
+        "Launchpad",
+        icon,
+        <Launchpad />,
+        {
+          width: window.innerWidth,
+          height: window.innerHeight,
+          x: 0,
+          y: 0,
+        },
+        false
+      );
+      return;
     } else if (name === "Freeform") {
       component = <Freeform />;
     } else if (name === "Photos") {

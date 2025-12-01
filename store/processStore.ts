@@ -13,7 +13,8 @@ interface ProcessState {
     title: string,
     icon: string,
     component: ReactNode,
-    initDimension?: WindowSize
+    initDimension?: WindowSize,
+    windowRequired?: boolean
   ) => void;
   closeProcess: (pid: number) => void;
   focusProcess: (pid: number) => void;
@@ -36,7 +37,14 @@ export const useProcessStore = create<ProcessState>((set, get) => ({
   nextPid: 1000,
   maxZIndex: 100,
 
-  launchProcess: (id, title, icon, component, initDimension) => {
+  launchProcess: (
+    id,
+    title,
+    icon,
+    component,
+    initDimension,
+    windowRequired = true
+  ) => {
     const { processes, nextPid, maxZIndex } = get();
 
     // Single Instance Check
@@ -71,6 +79,7 @@ export const useProcessStore = create<ProcessState>((set, get) => ({
         y: 60 + processes.length * 30,
       },
       memoryUsage: Math.floor(Math.random() * 200) + 50,
+      windowRequired,
     };
 
     set({

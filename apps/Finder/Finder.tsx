@@ -12,7 +12,24 @@ import { MacFileEntry } from "../../lib/types";
 import { MacOSInput } from "../../components/ui/MacOSDesignSystem"; // Import new UI
 
 import { useSystemStore } from "../../store/systemStore";
+import { useProcessStore } from "../../store/processStore";
 import { FileIcon } from "../../components/FileIcon";
+
+// App Imports
+import { TextEdit } from "../TextEdit";
+import { MediaPlayer } from "../MediaPlayer";
+import { Terminal } from "../Terminal";
+import { Calculator } from "../Calculator";
+import { Trash } from "../Trash";
+import { Messages } from "../Messages";
+import { FaceTime } from "../FaceTime";
+import { Notes } from "../Notes";
+import dynamic from "next/dynamic";
+
+const PDFViewer = dynamic(
+  () => import("../PDFViewer").then((mod) => mod.PDFViewer),
+  { ssr: false }
+);
 
 interface FinderProps {
   initialPath?: string;
@@ -20,6 +37,7 @@ interface FinderProps {
 
 export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
   const { user } = useSystemStore();
+  const { launchProcess } = useProcessStore();
   const defaultPath = `/Users/${user.name || "Guest"}`;
 
   // Navigation State
@@ -72,11 +90,112 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
     }
   };
 
+  const openFile = (file: MacFileEntry) => {
+    const ext = file.name.split(".").pop()?.toLowerCase();
+
+    // App Registry
+    const apps: Record<string, any> = {
+      note: {
+        id: "notes",
+        name: "Notes",
+        icon: "notes",
+        component: Notes,
+      },
+      txt: {
+        id: "textedit",
+        name: "TextEdit",
+        icon: "📝",
+        component: TextEdit,
+      },
+      md: {
+        id: "textedit",
+        name: "TextEdit",
+        icon: "📝",
+        component: TextEdit,
+      },
+      mp4: {
+        id: "player",
+        name: "Media Player",
+        icon: "▶️",
+        component: MediaPlayer,
+      },
+      mp3: {
+        id: "player",
+        name: "Media Player",
+        icon: "🎵",
+        component: MediaPlayer,
+      },
+      mov: {
+        id: "player",
+        name: "Media Player",
+        icon: "▶️",
+        component: MediaPlayer,
+      },
+      pdf: {
+        id: "preview",
+        name: "Preview",
+        icon: "📄",
+        component: PDFViewer,
+      },
+      // System Apps
+      terminal: {
+        id: "terminal",
+        name: "Terminal",
+        icon: "terminal",
+        component: Terminal,
+      },
+      calculator: {
+        id: "calculator",
+        name: "Calculator",
+        icon: "calculator",
+        component: Calculator,
+      },
+      trash: {
+        id: "trash",
+        name: "Trash",
+        icon: "trash",
+        component: Trash,
+      },
+      messages: {
+        id: "messages",
+        name: "Messages",
+        icon: "messages",
+        component: Messages,
+      },
+      facetime: {
+        id: "facetime",
+        name: "FaceTime",
+        icon: "facetime",
+        component: FaceTime,
+      },
+    };
+
+    const app = ext ? apps[ext] : null;
+
+    if (app) {
+      // Special window sizing for Preview (PDF Viewer)
+      const windowConfig =
+        app.id === "preview"
+          ? { width: 1000, height: 700, x: 100, y: 50 }
+          : undefined;
+
+      launchProcess(
+        app.id,
+        file.name,
+        app.icon,
+        <app.component initialPath={currentPath} initialFilename={file.name} />,
+        windowConfig
+      );
+    } else {
+      alert(`No application available to open .${ext} files.`);
+    }
+  };
+
   const handleDoubleClick = (entry: MacFileEntry) => {
     if (entry.kind === "directory") {
       handleNavigate(entry.path);
     } else {
-      console.log(`Open file: ${entry.name}`);
+      openFile(entry);
     }
   };
 
@@ -164,7 +283,16 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
                       onDoubleClick={() => handleDoubleClick(file)}
                     >
                       <div className="scale-75 origin-top">
-                        <FileIcon name={file.name} kind={file.kind} />
+                        <FileIcon
+                          name={file.name}
+                          kind={file.kind}
+                          onClick={(e) => {
+                            setSelectedItem(file.name);
+                          }}
+                          onDoubleClick={(e) => {
+                            handleDoubleClick(file);
+                          }}
+                        />
                       </div>
                     </div>
                   )

@@ -11,9 +11,15 @@ export const WindowManager: React.FC = () => {
          We re-enable pointer-events inside the WindowFrame.
       */}
       <div className="relative w-full h-full">
-        {processes.map((process) => (
-          <WindowFrame key={process.pid} process={process} />
-        ))}
+        {processes.map((process) =>
+          process.windowRequired === false ? (
+            <React.Fragment key={process.pid}>
+              {process.component}
+            </React.Fragment>
+          ) : (
+            <WindowFrame key={process.pid} process={process} />
+          )
+        )}
       </div>
     </div>
   );

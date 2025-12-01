@@ -45,6 +45,18 @@ export class MacFileSystem {
     }
   }
 
+  async readFileBlob(path: string, filename: string): Promise<Blob | null> {
+    try {
+      const dirHandle = await this.resolvePath(path);
+      const fileHandle = await dirHandle.getFileHandle(filename);
+      const file = await fileHandle.getFile();
+      return file;
+    } catch (e) {
+      console.error(`[FS] Read Blob Error: ${path}/${filename}`, e);
+      return null;
+    }
+  }
+
   /**
    * Create a directory recursively (mkdir -p)
    */
@@ -65,7 +77,7 @@ export class MacFileSystem {
   async writeFile(
     path: string,
     filename: string,
-    content: string
+    content: string | Blob | ArrayBuffer | Uint8Array
   ): Promise<void> {
     try {
       const dirHandle = await this.resolvePath(path, true);
@@ -132,11 +144,32 @@ export class MacFileSystem {
    */
   async exists(fullPath: string): Promise<boolean> {
     try {
-      // Split path into dir and filename to check existence
-      // This is a simplified check; for robustness we would traverse the whole tree
       if (fullPath === "/") return true;
-      await this.resolvePath(fullPath, false);
-      return true;
+
+      // Handle the case where the path ends with a slash
+      const cleanPath = fullPath.endsWith("/")
+        ? fullPath.slice(0, -1)
+        : fullPath;
+      const parts = cleanPath.split("/").filter((p) => p.length > 0);
+
+      if (parts.length === 0) return true; // Root
+
+      const filename = parts.pop()!;
+      const dirPath = parts.length > 0 ? "/" + parts.join("/") : "/";
+
+      const dirHandle = await this.resolvePath(dirPath, false);
+
+      try {
+        await dirHandle.getFileHandle(filename);
+        return true;
+      } catch {
+        try {
+          await dirHandle.getDirectoryHandle(filename);
+          return true;
+        } catch {
+          return false;
+        }
+      }
     } catch {
       return false;
     }

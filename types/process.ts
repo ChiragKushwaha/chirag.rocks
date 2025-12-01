@@ -24,4 +24,7 @@ export interface Process {
 
   // Simulated System Resources (for Activity Monitor later)
   memoryUsage: number; // in MB
+
+  // Window Configuration
+  windowRequired?: boolean; // If false, renders without WindowFrame (e.g. Launchpad)
 }

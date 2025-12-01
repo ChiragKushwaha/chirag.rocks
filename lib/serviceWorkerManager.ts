@@ -13,6 +13,13 @@ export class ServiceWorkerManager {
       return false;
     }
 
+    if (process.env.NODE_ENV === "development") {
+      console.log(
+        "Development mode detected: Skipping Service Worker registration"
+      );
+      return false;
+    }
+
     try {
       const registration = await navigator.serviceWorker.register("/sw.js", {
         scope: "/",
@@ -188,7 +195,12 @@ export class ServiceWorkerManager {
 // Auto-register on import (only in browser)
 if (typeof window !== "undefined") {
   window.addEventListener("load", () => {
-    ServiceWorkerManager.register();
+    if (process.env.NODE_ENV === "development") {
+      console.log("Development mode detected: Service Worker disabled");
+      ServiceWorkerManager.unregister();
+    } else {
+      ServiceWorkerManager.register();
+    }
   });
 
   // Clear cache on page reload (Cmd+R or F5)

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useSystemStore } from "../store/systemStore";
 import { fs } from "../lib/FileSystem";
 import { useIcon } from "./hooks/useIconManager";
+import { generatePDFThumbnail } from "../lib/pdfThumbnail";
 
 interface FileIconProps {
   name: string;
@@ -12,6 +13,8 @@ interface FileIconProps {
   onRename?: (newName: string) => void;
   onRenameCancel?: () => void;
   onContextMenu?: (e: React.MouseEvent) => void;
+  onDoubleClick?: (e: React.MouseEvent) => void;
+  onClick?: (e: React.MouseEvent) => void;
 }
 
 export const FileIcon: React.FC<FileIconProps> = ({
@@ -21,13 +24,18 @@ export const FileIcon: React.FC<FileIconProps> = ({
   onRename,
   onRenameCancel,
   onContextMenu,
+  onDoubleClick,
+  onClick,
 }) => {
   const { selectedFile, user } = useSystemStore();
   const isSelected = selectedFile === name;
   const [noteContent, setNoteContent] = React.useState<string>("");
+  const [pdfUrl, setPdfUrl] = React.useState<string | null>(null);
 
   const isNote = name.endsWith(".note");
+  const isPdf = name.endsWith(".pdf");
 
+  // Load note content
   React.useEffect(() => {
     if (isNote) {
       const loadContent = async () => {
@@ -46,6 +54,39 @@ export const FileIcon: React.FC<FileIconProps> = ({
     }
   }, [name, isNote, user]);
 
+  // Load PDF for thumbnail
+  React.useEffect(() => {
+    if (isPdf) {
+      const loadPdf = async () => {
+        const userName = user?.name || "Guest";
+        const desktopPath = `/Users/${userName}/Desktop`;
+        try {
+          if (await fs.exists(`${desktopPath}/${name}`)) {
+            console.log(`[FileIcon] Loading PDF: ${name}`);
+            const blob = await fs.readFileBlob(desktopPath, name);
+            if (blob) {
+              console.log(
+                `[FileIcon] Blob loaded for ${name}, size: ${blob.size}`
+              );
+              const thumbnailUrl = await generatePDFThumbnail(blob);
+              console.log(
+                `[FileIcon] Thumbnail generated for ${name}: ${
+                  thumbnailUrl ? "Success" : "Failed"
+                }`
+              );
+              setPdfUrl(thumbnailUrl);
+            } else {
+              console.error(`[FileIcon] Failed to read blob for ${name}`);
+            }
+          }
+        } catch (e) {
+          console.error("Failed to load PDF preview", e);
+        }
+      };
+
+      loadPdf();
+    }
+  }, [name, isPdf, user]);
   // Simple icon logic (expand later with real SVGs)
   const getIconName = (name: string, type: string) => {
     const lowerName = name.toLowerCase();
@@ -163,18 +204,29 @@ export const FileIcon: React.FC<FileIconProps> = ({
       `}
       onClick={(e) => {
         e.stopPropagation();
-        if (!isRenaming) {
+        if (onClick) {
+          onClick(e);
+        } else if (!isRenaming) {
           // Simple selection logic
           const event = new CustomEvent("file-selected", { detail: name });
           window.dispatchEvent(event);
         }
       }}
       onContextMenu={onContextMenu}
-      onDoubleClick={() => !isRenaming && console.log(`Opening ${name}...`)}
+      onDoubleClick={(e) => {
+        e.stopPropagation();
+        if (!isRenaming && onDoubleClick) {
+          onDoubleClick(e);
+        }
+      }}
     >
       <div
         className={`mb-1 filter drop-shadow-lg relative transition-transform group-hover:scale-105 ${
-          isNote ? "w-[128px] h-[128px]" : "w-[64px] h-[64px]"
+          isNote
+            ? "w-[128px] h-[128px]"
+            : isPdf
+            ? "w-[52px] h-[52px]"
+            : "w-[64px] h-[64px]"
         }`}
       >
         {isNote ? (
@@ -189,6 +241,19 @@ export const FileIcon: React.FC<FileIconProps> = ({
                 border-l-[24px] border-l-transparent
                 border-b-[24px] border-b-black/10"
             />
+          </div>
+        ) : isPdf && pdfUrl ? (
+          <div className="w-full h-full relative drop-shadow-md group-hover:scale-105 transition-transform">
+            <div className="w-full h-full bg-white rounded-xl overflow-hidden border border-gray-200">
+              <Image
+                src={pdfUrl}
+                alt={`${name} preview`}
+                width={44}
+                height={44}
+                className="w-full h-full object-cover"
+                unoptimized
+              />
+            </div>
           </div>
         ) : (
           <Image
@@ -232,7 +297,7 @@ export const FileIcon: React.FC<FileIconProps> = ({
                 ? "bg-[#0058D0]"
                 : "drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
             }
-            line-clamp-2 break-words w-full
+            line-clamp-2 wrap-break-word w-full
           `}
           style={{
             textShadow: isSelected ? "none" : "0 1px 2px rgba(0,0,0,0.5)",

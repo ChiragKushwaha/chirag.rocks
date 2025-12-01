@@ -53,7 +53,7 @@ type SearchResult =
       kind: "app";
       path: string;
       appId: string;
-      component: React.FC<any>;
+      component: React.ComponentType<any>;
       icon: string;
     }
   | {

@@ -20,6 +20,12 @@ import { Trash } from "../apps/Trash";
 import { Messages } from "../apps/Messages";
 import { FaceTime } from "../apps/FaceTime";
 import { Notes } from "../apps/Notes";
+import dynamic from "next/dynamic";
+
+const PDFViewer = dynamic(
+  () => import("../apps/PDFViewer").then((mod) => mod.PDFViewer),
+  { ssr: false }
+);
 
 import { useIconManager, useAsset } from "./hooks/useIconManager";
 import { BootScreen } from "./BootScreen";
@@ -141,12 +147,24 @@ export const Desktop: React.FC = () => {
       }
       setBootProgress(20);
 
-      // 2. Load Desktop Files (40%)
+      // 2. Load Resume.pdf to Desktop (30%)
+      try {
+        // Always overwrite Resume.pdf to ensure it's not corrupted
+        const resumeRes = await fetch("/Resume.pdf");
+        const resumeBlob = await resumeRes.blob();
+        await fs.writeFile(desktopPath, "Resume.pdf", resumeBlob);
+        console.log("Resume.pdf loaded to Desktop ✅");
+      } catch (error) {
+        console.error("Failed to load Resume.pdf:", error);
+      }
+      setBootProgress(30);
+
+      // 3. Load Desktop Files (50%)
       const f = await fs.ls(desktopPath);
       setFiles(f);
-      setBootProgress(40);
+      setBootProgress(50);
 
-      // 3. Preload Wallpaper (100%)
+      // 4. Preload Wallpaper (100%)
       if (!wallpaperUrl) return; // Wait for useAsset to resolve
 
       const img = new Image();
@@ -269,6 +287,12 @@ export const Desktop: React.FC = () => {
         icon: "▶️",
         component: MediaPlayer,
       },
+      pdf: {
+        id: "preview",
+        name: "Preview",
+        icon: "📄",
+        component: PDFViewer,
+      },
       // System Apps (no extension mapping needed usually, but good to have)
       terminal: {
         id: "terminal",
@@ -305,11 +329,18 @@ export const Desktop: React.FC = () => {
     const app = ext ? apps[ext] : null;
 
     if (app) {
+      // Special window sizing for Preview (PDF Viewer)
+      const windowConfig =
+        app.id === "preview"
+          ? { width: 1000, height: 700, x: 100, y: 50 }
+          : undefined;
+
       launchProcess(
         app.id,
         file.name,
         app.icon,
-        <app.component initialPath={desktopPath} initialFilename={file.name} />
+        <app.component initialPath={desktopPath} initialFilename={file.name} />,
+        windowConfig
       );
     } else {
       alert(`No application available to open .${ext} files.`);
@@ -440,6 +471,10 @@ export const Desktop: React.FC = () => {
                   isRenaming={renamingFile === file.name}
                   onRename={(newName) => handleRename(file, newName)}
                   onRenameCancel={() => setRenamingFile(null)}
+                  onDoubleClick={(e) => {
+                    e.stopPropagation();
+                    openFile(file);
+                  }}
                   onContextMenu={(e) => {
                     e.stopPropagation();
                     e.preventDefault();
