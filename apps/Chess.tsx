@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Chess as ChessGame } from "chess.js";
+import { Chess as ChessGame, Square } from "chess.js";
 import { Chessboard } from "react-chessboard";
+const SafeChessboard = Chessboard as any;
 import { RotateCcw, History, Trophy, AlertTriangle } from "lucide-react";
 
 export const Chess: React.FC = () => {
@@ -45,7 +46,7 @@ export const Chess: React.FC = () => {
 
   function onPieceDragBegin(piece: string, sourceSquare: string) {
     const moves = game.moves({
-      square: sourceSquare,
+      square: sourceSquare as Square,
       verbose: true,
     });
 
@@ -59,7 +60,7 @@ export const Chess: React.FC = () => {
       newSquares[move.to] = {
         background:
           game.get(move.to) &&
-          game.get(move.to).color !== game.get(sourceSquare).color
+          game.get(move.to)?.color !== game.get(sourceSquare as Square)?.color
             ? "radial-gradient(circle, rgba(0,0,0,.1) 85%, transparent 85%)"
             : "radial-gradient(circle, rgba(0,0,0,.1) 25%, transparent 25%)",
         borderRadius: "50%",
@@ -207,7 +208,7 @@ export const Chess: React.FC = () => {
           className="shadow-2xl rounded-sm overflow-hidden"
           style={{ width: boardWidth, height: boardWidth }}
         >
-          <Chessboard
+          <SafeChessboard
             position={fen}
             onPieceDrop={onDrop}
             boardWidth={boardWidth}

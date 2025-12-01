@@ -53,6 +53,7 @@ export interface AppDef {
   icon: React.ComponentType<{
     className?: string;
     imageClassName?: string;
+    size?: number;
   }>;
   component: React.ComponentType;
 }
