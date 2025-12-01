@@ -33,7 +33,8 @@ interface SocketState {
   sendMessage: (to: string, text: string) => void;
 }
 
-const SOCKET_URL = "https://mac-os-socket-server.onrender.com";
+const SOCKET_URL = "https://chiragrocks-production.up.railway.app";
+const ENABLE_SOCKET = true; // Set to true when server is deployed
 
 export const useSocketStore = create<SocketState>((set, get) => ({
   socket: null,
@@ -45,6 +46,13 @@ export const useSocketStore = create<SocketState>((set, get) => ({
   messages: {},
 
   connect: (userName: string) => {
+    if (!ENABLE_SOCKET) {
+      console.warn(
+        "Socket connections are disabled. Deploy the server and set ENABLE_SOCKET=true"
+      );
+      return;
+    }
+
     const currentSocket = get().socket;
     if (currentSocket) return;
 
