@@ -4,10 +4,17 @@ import { Server, Socket } from "socket.io";
 
 const app = express();
 const httpServer = createServer(app);
+
+// Updated CORS configuration to allow specific origins
 const io = new Server(httpServer, {
   cors: {
-    origin: "*",
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001",
+      "https://chirag-rocks.vercel.app",
+    ],
     methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
@@ -23,9 +30,23 @@ app.get("/health", (req, res) => {
 
 // CORS middleware for Express routes
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
+  const origin = req.headers.origin;
+  const allowedOrigins = [
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "https://chirag-rocks.vercel.app",
+  ];
+
+  if (
+    origin &&
+    (allowedOrigins.includes(origin) || origin.endsWith(".vercel.app"))
+  ) {
+    res.header("Access-Control-Allow-Origin", origin);
+  }
+
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Credentials", "true");
   next();
 });
 
@@ -40,19 +61,42 @@ const users: Record<string, User> = {};
 io.on("connection", (socket: Socket) => {
   console.log("User connected:", socket.id);
 
+  // Send the socket ID to the client
+  socket.emit("me", socket.id);
+
+  // Handle join-user event (used by FaceTime and Messages)
+  socket.on("join-user", (name: string) => {
+    users[socket.id] = { id: socket.id, name };
+    // Send updated user list to all clients
+    io.emit("update-user-list", Object.values(users));
+    console.log(`${name} joined as ${socket.id}`);
+  });
+
+  // Legacy join event (for backward compatibility)
   socket.on("join", (name: string) => {
     users[socket.id] = { id: socket.id, name };
     io.emit("users-list", Object.values(users));
+    io.emit("update-user-list", Object.values(users));
     console.log(`${name} joined.`);
   });
 
   socket.on("disconnect", () => {
+    const userName = users[socket.id]?.name;
     delete users[socket.id];
     io.emit("users-list", Object.values(users));
-    console.log("User disconnected:", socket.id);
+    io.emit("update-user-list", Object.values(users));
+    console.log(`User disconnected: ${userName || socket.id}`);
   });
 
-  // Chat
+  // Messages app - send message
+  socket.on("send-message", (data: { to: string; text: string }) => {
+    io.to(data.to).emit("receive-message", {
+      from: socket.id,
+      text: data.text,
+    });
+  });
+
+  // Legacy chat message handler
   socket.on("message", (data: any) => {
     // data: { to, from, text }
     if (data.to) {
@@ -63,18 +107,20 @@ io.on("connection", (socket: Socket) => {
     }
   });
 
-  // Call Signaling
+  // FaceTime - Call Signaling
   socket.on("call-user", (data: any) => {
     // data: { userToCall, signalData, from }
+    console.log(`Call from ${socket.id} to ${data.userToCall}`);
     io.to(data.userToCall).emit("call-made", {
-      signal: data.signalData,
-      from: data.from,
-      name: users[socket.id]?.name,
+      offer: data.signalData,
+      socket: socket.id,
+      name: users[socket.id]?.name || "Unknown",
     });
   });
 
   socket.on("make-answer", (data: any) => {
     // data: { signal, to }
+    console.log(`Answer from ${socket.id} to ${data.to}`);
     io.to(data.to).emit("answer-made", {
       signal: data.signal,
       answerId: socket.id,
