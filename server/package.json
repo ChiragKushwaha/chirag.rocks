@@ -1,0 +1,24 @@
+{
+  "name": "mac-socket-server",
+  "version": "1.0.0",
+  "description": "Socket.IO server for macOS clone",
+  "main": "server.ts",
+  "scripts": {
+    "start": "tsx server.ts",
+    "build": "tsc",
+    "dev": "tsx watch server.ts"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
