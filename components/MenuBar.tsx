@@ -16,6 +16,8 @@ import {
   PlayCircle,
 } from "lucide-react";
 import { useBattery } from "../hooks/useBattery";
+import { useWeather } from "../hooks/useWeather";
+import { WeatherDropdown } from "./WeatherDropdown";
 
 const WifiDisplay = () => {
   const { wifiEnabled, toggleWifi } = useSystemStore();
@@ -233,6 +235,42 @@ const BatteryDisplay = () => {
   return <MenuButton id="battery" label={batteryIcon} items={batteryItems} />;
 };
 
+const WeatherDisplay = () => {
+  const { weather, loading } = useWeather();
+  const [isOpen, setIsOpen] = React.useState(false);
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  if (loading || !weather) {
+    return (
+      <div className="flex items-center gap-1.5 opacity-90 hover:bg-white/10 px-1.5 py-0.5 rounded cursor-default">
+        <Cloud size={16} strokeWidth={2} className="text-white/90" />
+        <span>--°</span>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <div
+        ref={ref}
+        className={`flex items-center gap-1.5 opacity-90 hover:bg-white/10 px-1.5 py-0.5 rounded cursor-default ${
+          isOpen ? "bg-white/20" : ""
+        }`}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <weather.current.icon size={16} className="text-white/90" />
+        <span>{weather.current.temp}°</span>
+      </div>
+      <WeatherDropdown
+        weather={weather}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        toggleRef={ref}
+      />
+    </>
+  );
+};
+
 import { ControlCenter } from "./ControlCenter";
 
 export const MenuBar: React.FC = () => {
@@ -355,15 +393,7 @@ export const MenuBar: React.FC = () => {
         </div>
 
         {/* Weather */}
-        <div className="flex items-center gap-1.5 opacity-90 hover:bg-white/10 px-1.5 py-0.5 rounded cursor-default">
-          <Cloud
-            size={16}
-            strokeWidth={2}
-            fill="currentColor"
-            className="text-white/90"
-          />
-          <span>11°C</span>
-        </div>
+        <WeatherDisplay />
 
         {/* Media */}
         <div className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default">

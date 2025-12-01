@@ -12,7 +12,7 @@ export interface Process {
   pid: number; // Unique Process ID (e.g., 1024)
   id: string; // App ID (e.g., 'finder', 'safari')
   title: string; // Window Title
-  icon: string; // Icon for the Dock/Window
+  icon: string | React.ComponentType<any>; // Icon for the Dock/Window
   component: ReactNode; // The actual React content to render
 
   // Window State

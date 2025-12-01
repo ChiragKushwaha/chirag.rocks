@@ -1,10 +1,10 @@
 import React from "react";
 
 interface CalendarIconProps {
-  size: number;
+  size?: number;
 }
 
-export const CalendarIcon: React.FC<CalendarIconProps> = ({ size }) => {
+export const CalendarIcon: React.FC<CalendarIconProps> = ({ size = 112 }) => {
   const date = new Date();
   const dayName = date
     .toLocaleDateString("en-US", { weekday: "short" })

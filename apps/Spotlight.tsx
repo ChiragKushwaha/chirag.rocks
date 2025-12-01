@@ -12,19 +12,23 @@ import { Safari } from "./Safari";
 import { useIcon } from "../components/hooks/useIconManager";
 import { CalendarIcon } from "../components/icons/CalendarIcon";
 
-const SpotlightIcon: React.FC<{ icon: string; name: string }> = ({
-  icon,
-  name,
-}) => {
-  const iconUrl = useIcon(icon);
-
-  if (name === "Calendar") {
+const SpotlightIcon: React.FC<{
+  icon: string | React.ComponentType<any>;
+  name: string;
+}> = ({ icon, name }) => {
+  if (typeof icon === "function" || typeof icon === "object") {
+    const Icon = icon as React.ComponentType<any>;
     return (
       <div className="w-8 h-8">
-        <CalendarIcon size={32} />
+        <Icon
+          size={32}
+          className="w-full h-full object-contain drop-shadow-sm"
+        />
       </div>
     );
   }
+
+  const iconUrl = useIcon(icon as string);
 
   if (iconUrl) {
     return (
@@ -54,7 +58,7 @@ type SearchResult =
       path: string;
       appId: string;
       component: React.ComponentType<any>;
-      icon: string;
+      icon: string | React.ComponentType<any>;
     }
   | {
       name: string;

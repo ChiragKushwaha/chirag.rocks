@@ -1,8 +1,13 @@
-import React, { useState, useMemo, useEffect, useRef } from "react";
-import Image from "next/image";
+import React, {
+  useState,
+  useMemo,
+  useEffect,
+  useRef,
+  useCallback,
+} from "react";
 import { Search } from "lucide-react";
+import Image from "next/image";
 import { useProcessStore } from "../store/processStore";
-import { useIcon } from "../components/hooks/useIconManager";
 import { Finder } from "./Finder/Finder";
 import { Safari } from "./Safari";
 import { Messages } from "./Messages";
@@ -23,65 +28,390 @@ import { Terminal } from "./Terminal";
 import { Calculator } from "./Calculator";
 import { Trash } from "./Trash";
 import { Photos } from "./Photos";
+import { Weather } from "./Weather";
+import { Clock } from "./Clock";
 import { CalendarIcon } from "../components/icons/CalendarIcon";
+import { WeatherIcon } from "../components/icons/WeatherIcon";
+import { ClockIcon } from "../components/icons/ClockIcon";
 import dynamic from "next/dynamic";
 
 const PDFViewer = dynamic(
   () => import("./PDFViewer").then((mod) => mod.PDFViewer),
   { ssr: false }
 );
+import { Chess } from "./Chess";
+import { ChessIcon } from "../components/icons/ChessIcon";
+import { Stocks } from "./Stocks";
+import { StocksIcon } from "../components/icons/StocksIcon";
+import { BooksIcon } from "../components/icons/BooksIcon";
+import { PlaceholderApp } from "./PlaceholderApp";
 
 export interface AppDef {
   id: string;
   name: string;
-  icon: string;
-  component: React.ComponentType<any>;
+  icon: React.ComponentType<{ className?: string; size?: number }>;
+  component: React.ComponentType;
 }
 
 export const APPS: AppDef[] = [
-  { id: "finder", name: "Finder", icon: "finder", component: Finder },
-  { id: "safari", name: "Safari", icon: "safari", component: Safari },
-  { id: "messages", name: "Messages", icon: "messages", component: Messages },
-  { id: "mail", name: "Mail", icon: "mail", component: Mail },
-  { id: "maps", name: "Maps", icon: "maps", component: Maps },
-  { id: "photos", name: "Photos", icon: "photos", component: Photos },
-  { id: "facetime", name: "FaceTime", icon: "facetime", component: FaceTime },
-  { id: "calendar", name: "Calendar", icon: "calendar", component: Calendar },
-  { id: "contacts", name: "Contacts", icon: "contacts", component: Contacts },
+  {
+    id: "finder",
+    name: "Finder",
+    icon: ({ className }) => (
+      <div className={className}>
+        <Image
+          src="/icons/finder.png"
+          alt="Finder"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
+    component: Finder,
+  },
+  {
+    id: "safari",
+    name: "Safari",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/safari.png"
+          alt="Safari"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
+    component: Safari,
+  },
+  {
+    id: "messages",
+    name: "Messages",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/messages.png"
+          alt="Messages"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
+    component: Messages,
+  },
+  {
+    id: "mail",
+    name: "Mail",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/mail.png"
+          alt="Mail"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
+    component: Mail,
+  },
+  {
+    id: "maps",
+    name: "Maps",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/maps.png"
+          alt="Maps"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
+    component: Maps,
+  },
+  {
+    id: "photos",
+    name: "Photos",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/photos.png"
+          alt="Photos"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
+    component: Photos,
+  },
+  {
+    id: "facetime",
+    name: "FaceTime",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/facetime.png"
+          alt="FaceTime"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
+    component: FaceTime,
+  },
+  {
+    id: "calendar",
+    name: "Calendar",
+    icon: () => <CalendarIcon size={90} />,
+    component: Calendar,
+  },
+  {
+    id: "contacts",
+    name: "Contacts",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/contacts.png"
+          alt="Contacts"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
+    component: Contacts,
+  },
   {
     id: "reminders",
     name: "Reminders",
-    icon: "reminders",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/reminders.png"
+          alt="Reminders"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
     component: Reminders,
   },
-  { id: "notes", name: "Notes", icon: "notes", component: Notes },
-  { id: "music", name: "Music", icon: "music", component: Music },
-  { id: "tv", name: "TV", icon: "tv", component: TV },
-  { id: "news", name: "News", icon: "news", component: News },
-  { id: "appstore", name: "App Store", icon: "app_store", component: AppStore },
+  {
+    id: "notes",
+    name: "Notes",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/notes.png"
+          alt="Notes"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
+    component: Notes,
+  },
+  {
+    id: "music",
+    name: "Music",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/music.png"
+          alt="Music"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
+    component: Music,
+  },
+  {
+    id: "podcasts",
+    name: "Podcasts",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/podcasts.png"
+          alt="Podcasts"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
+    component: () => <PlaceholderApp title="Podcasts" />,
+  },
+  {
+    id: "tv",
+    name: "TV",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/tv.png"
+          alt="TV"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
+    component: TV,
+  },
+  {
+    id: "books",
+    name: "Books",
+    icon: () => <BooksIcon size={90} />,
+    component: () => <PlaceholderApp title="Books" />,
+  },
+  {
+    id: "news",
+    name: "News",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/news.png"
+          alt="News"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
+    component: News,
+  },
+  {
+    id: "appstore",
+    name: "App Store",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/appstore.png"
+          alt="App Store"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
+    component: AppStore,
+  },
   {
     id: "settings",
     name: "System Settings",
-    icon: "settings",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/settings.png"
+          alt="System Settings"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
     component: SystemSettings,
   },
-  { id: "freeform", name: "Freeform", icon: "freeform", component: Freeform },
-  { id: "terminal", name: "Terminal", icon: "terminal", component: Terminal },
+  {
+    id: "freeform",
+    name: "Freeform",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/freeform.png"
+          alt="Freeform"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
+    component: Freeform,
+  },
+  {
+    id: "terminal",
+    name: "Terminal",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/terminal.png"
+          alt="Terminal"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
+    component: Terminal,
+  },
   {
     id: "calculator",
     name: "Calculator",
-    icon: "calculator",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/calculator.png"
+          alt="Calculator"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
     component: Calculator,
   },
-  { id: "trash", name: "Trash", icon: "trash", component: Trash },
-  { id: "preview", name: "Preview", icon: "preview", component: PDFViewer },
+  {
+    id: "trash",
+    name: "Trash",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/trash.png"
+          alt="Trash"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
+    component: Trash,
+  },
+  {
+    id: "preview",
+    name: "Preview",
+    icon: ({ className }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/preview.png"
+          alt="Preview"
+          fill
+          className="object-contain drop-shadow-lg"
+        />
+      </div>
+    ),
+    component: PDFViewer,
+  },
+  {
+    id: "weather",
+    name: "Weather",
+    icon: () => <WeatherIcon size={90} />,
+    component: Weather,
+  },
+  {
+    id: "clock",
+    name: "Clock",
+    icon: () => <ClockIcon size={90} />,
+    component: Clock,
+  },
+  {
+    id: "chess",
+    name: "Chess",
+    icon: () => <ChessIcon size={96} />,
+    component: Chess,
+  },
+  {
+    id: "stocks",
+    name: "Stocks",
+    icon: () => <StocksIcon size={96} />,
+    component: Stocks,
+  },
 ];
 
 const LaunchpadItem: React.FC<{
   app: AppDef;
   onClick: () => void;
 }> = ({ app, onClick }) => {
-  const iconUrl = useIcon(app.icon);
+  const Icon = app.icon;
 
   return (
     <div
@@ -92,21 +422,10 @@ const LaunchpadItem: React.FC<{
       }}
     >
       <div className="w-[112px] h-[112px] min-w-[112px] min-h-[112px] transition-transform duration-300 ease-out group-hover:scale-105 group-active:scale-95 flex items-center justify-center">
-        {app.name === "Calendar" ? (
-          <CalendarIcon size={90} />
-        ) : iconUrl ? (
-          <Image
-            src={iconUrl}
-            alt={app.name}
-            width={112}
-            height={112}
-            className="w-[112px] h-[112px] drop-shadow-2xl object-contain"
-            unoptimized
-            draggable={false}
-          />
-        ) : (
-          <div className="w-full h-full bg-gray-500/50 rounded-[26px] animate-pulse" />
-        )}
+        <Icon
+          size={112}
+          className="w-full h-full drop-shadow-2xl object-contain"
+        />
       </div>
       <span className="text-white text-[15px] font-semibold drop-shadow-lg tracking-tight opacity-90 group-hover:opacity-100">
         {app.name}
@@ -118,8 +437,10 @@ const LaunchpadItem: React.FC<{
 export const Launchpad: React.FC = () => {
   const { launchProcess, closeProcess, processes } = useProcessStore();
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState<number>(-1);
   const ITEMS_PER_PAGE = 35;
 
   const filteredApps = useMemo(() => {
@@ -131,6 +452,7 @@ export const Launchpad: React.FC = () => {
   // Reset to first page when search changes
   React.useEffect(() => {
     setCurrentPage(0);
+    setSelectedIndex(-1);
   }, [searchTerm]);
 
   const totalPages = Math.max(
@@ -164,58 +486,75 @@ export const Launchpad: React.FC = () => {
     [processes, closeProcess, launchProcess]
   );
 
-  const [selectedIndex, setSelectedIndex] = useState<number>(-1);
-
   useEffect(() => {
-    setSearchTerm("");
-    setCurrentPage(0);
-    setSelectedIndex(-1);
+    // Initial state is already set by useState
   }, []);
 
+  const onClose = useCallback(() => {
+    const launchpadPid = processes.find((p) => p.id === "launchpad")?.pid;
+    if (launchpadPid) closeProcess(launchpadPid);
+    dialogRef.current?.close();
+  }, [processes, closeProcess]);
+
+  const scrollToPage = useCallback((pageIndex: number) => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({
+        left: pageIndex * window.innerWidth,
+        behavior: "smooth",
+      });
+      setCurrentPage(pageIndex);
+      setSelectedIndex(-1);
+    }
+  }, []);
+
+  // Handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        const launchpadPid = processes.find((p) => p.id === "launchpad")?.pid;
-        if (launchpadPid) closeProcess(launchpadPid);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [processes, closeProcess]);
-
-  // Keyboard Navigation
-  useEffect(() => {
-    const handleNav = (e: KeyboardEvent) => {
-      if (searchTerm) return; // Disable grid nav when searching
-
-      const cols = 7;
-      const rows = 5;
-      const itemsPerPage = cols * rows;
-      const maxIndex = currentApps.length - 1;
-
-      if (e.key === "ArrowRight") {
-        setSelectedIndex((prev) => Math.min(prev + 1, maxIndex));
+        // Close Launchpad
+        onClose();
       } else if (e.key === "ArrowLeft") {
-        setSelectedIndex((prev) => Math.max(prev - 1, 0));
-      } else if (e.key === "ArrowDown") {
-        setSelectedIndex((prev) => Math.min(prev + cols, maxIndex));
+        if (selectedIndex === -1) {
+          if (currentPage > 0) scrollToPage(currentPage - 1);
+        } else {
+          setSelectedIndex((prev) => Math.max(0, prev - 1));
+        }
+      } else if (e.key === "ArrowRight") {
+        if (selectedIndex === -1) {
+          if (currentPage < totalPages - 1) scrollToPage(currentPage + 1);
+        } else {
+          setSelectedIndex((prev) =>
+            Math.min(filteredApps.length - 1, prev + 1)
+          );
+        }
       } else if (e.key === "ArrowUp") {
-        setSelectedIndex((prev) => Math.max(prev - cols, 0));
+        setSelectedIndex((prev) => Math.max(0, prev - 5)); // Assuming 5 columns
+      } else if (e.key === "ArrowDown") {
+        setSelectedIndex((prev) => Math.min(filteredApps.length - 1, prev + 5));
       } else if (e.key === "Enter") {
-        if (selectedIndex >= 0 && selectedIndex <= maxIndex) {
-          handleAppClick(currentApps[selectedIndex]);
+        if (selectedIndex !== -1) {
+          const app = filteredApps[selectedIndex];
+          if (app) handleAppClick(app);
         }
       }
     };
 
-    window.addEventListener("keydown", handleNav);
-    return () => window.removeEventListener("keydown", handleNav);
-  }, [currentApps, selectedIndex, searchTerm, handleAppClick]);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [
+    currentPage,
+    selectedIndex,
+    filteredApps,
+    onClose,
+    totalPages,
+    scrollToPage,
+    handleAppClick,
+  ]); // Added scrollToPage and handleAppClick to dependencies
 
-  // Reset selection when page changes
-  useEffect(() => {
-    setSelectedIndex(-1);
-  }, [currentPage]);
+  // Reset selection when page changes - handled in scrollToPage and searchTerm effect
+  // useEffect(() => {
+  //   setSelectedIndex(-1);
+  // }, [currentPage]);
 
   useEffect(() => {
     if (dialogRef.current && !dialogRef.current.open) {
@@ -288,7 +627,10 @@ export const Launchpad: React.FC = () => {
                   ? "bg-white scale-110"
                   : "bg-white/30 hover:bg-white/50"
               }`}
-              onClick={() => setCurrentPage(i)}
+              onClick={() => {
+                setCurrentPage(i);
+                setSelectedIndex(-1);
+              }}
             />
           ))}
         </div>
