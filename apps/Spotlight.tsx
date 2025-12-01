@@ -21,6 +21,7 @@ const SpotlightIcon: React.FC<{
       <div className="w-8 h-8">
         <Icon
           size={32}
+          imageClassName="rounded-md p-1"
           className="w-full h-full object-contain drop-shadow-sm"
         />
       </div>

@@ -1,212 +1,226 @@
-import React, { useState } from "react";
-import { RotateCcw } from "lucide-react";
-
-// Types
-type PieceType = "p" | "r" | "n" | "b" | "q" | "k";
-type PieceColor = "w" | "b";
-type Piece = { type: PieceType; color: PieceColor } | null;
-type BoardState = Piece[][];
-
-const INITIAL_BOARD: BoardState = [
-  [
-    { type: "r", color: "b" },
-    { type: "n", color: "b" },
-    { type: "b", color: "b" },
-    { type: "q", color: "b" },
-    { type: "k", color: "b" },
-    { type: "b", color: "b" },
-    { type: "n", color: "b" },
-    { type: "r", color: "b" },
-  ],
-  Array(8).fill({ type: "p", color: "b" }),
-  Array(8).fill(null),
-  Array(8).fill(null),
-  Array(8).fill(null),
-  Array(8).fill(null),
-  Array(8).fill({ type: "p", color: "w" }),
-  [
-    { type: "r", color: "w" },
-    { type: "n", color: "w" },
-    { type: "b", color: "w" },
-    { type: "q", color: "w" },
-    { type: "k", color: "w" },
-    { type: "b", color: "w" },
-    { type: "n", color: "w" },
-    { type: "r", color: "w" },
-  ],
-];
-
-const PIECE_UNICODE: Record<string, string> = {
-  wk: "♔",
-  wq: "♕",
-  wr: "♖",
-  wb: "♗",
-  wn: "♘",
-  wp: "♙",
-  bk: "♚",
-  bq: "♛",
-  br: "♜",
-  bb: "♝",
-  bn: "♞",
-  bp: "♟",
-};
+import React, { useState, useEffect, useCallback } from "react";
+import { Chess as ChessGame } from "chess.js";
+import { Chessboard } from "react-chessboard";
+import { RotateCcw, History, Trophy, AlertTriangle } from "lucide-react";
 
 export const Chess: React.FC = () => {
-  const [board, setBoard] = useState<BoardState>(INITIAL_BOARD);
-  const [selected, setSelected] = useState<{ r: number; c: number } | null>(
-    null
+  const [game, setGame] = useState(new ChessGame());
+  const [moveHistory, setMoveHistory] = useState<string[]>([]);
+  const [fen, setFen] = useState(game.fen());
+  const [boardWidth, setBoardWidth] = useState(600);
+  const [optionSquares, setOptionSquares] = useState({});
+  const [rightClickedSquares, setRightClickedSquares] = useState({});
+
+  // Responsive board size
+  useEffect(() => {
+    const handleResize = () => {
+      const width = Math.min(600, window.innerWidth - 300); // Account for sidebar
+      setBoardWidth(width > 300 ? width : 300);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Initial call
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const makeAMove = useCallback(
+    (move: { from: string; to: string; promotion?: string }) => {
+      try {
+        const gameCopy = new ChessGame(game.fen());
+        const result = gameCopy.move(move);
+
+        if (result) {
+          setGame(gameCopy);
+          setFen(gameCopy.fen());
+          setMoveHistory((prev) => [...prev, result.san]);
+          return true;
+        }
+      } catch (error) {
+        return false;
+      }
+      return false;
+    },
+    [game]
   );
-  const [turn, setTurn] = useState<PieceColor>("w");
 
-  const handleSquareClick = (r: number, c: number) => {
-    if (selected) {
-      // Move logic (very basic, no validation)
-      if (selected.r === r && selected.c === c) {
-        setSelected(null);
-        return;
-      }
+  function onPieceDragBegin(piece: string, sourceSquare: string) {
+    const moves = game.moves({
+      square: sourceSquare,
+      verbose: true,
+    });
 
-      const newBoard = [...board.map((row) => [...row])];
-      const piece = newBoard[selected.r][selected.c];
-
-      // Capture or move
-      newBoard[r][c] = piece;
-      newBoard[selected.r][selected.c] = null;
-
-      setBoard(newBoard);
-      setSelected(null);
-      setTurn(turn === "w" ? "b" : "w");
-    } else {
-      // Select logic
-      const piece = board[r][c];
-      if (piece && piece.color === turn) {
-        setSelected({ r, c });
-      }
+    if (moves.length === 0) {
+      setOptionSquares({});
+      return;
     }
+
+    const newSquares: Record<string, React.CSSProperties> = {};
+    moves.map((move) => {
+      newSquares[move.to] = {
+        background:
+          game.get(move.to) &&
+          game.get(move.to).color !== game.get(sourceSquare).color
+            ? "radial-gradient(circle, rgba(0,0,0,.1) 85%, transparent 85%)"
+            : "radial-gradient(circle, rgba(0,0,0,.1) 25%, transparent 25%)",
+        borderRadius: "50%",
+      };
+      return move;
+    });
+
+    newSquares[sourceSquare] = {
+      background: "rgba(255, 255, 0, 0.4)",
+    };
+
+    setOptionSquares(newSquares);
+  }
+
+  function onPieceDragEnd() {
+    setOptionSquares({});
+  }
+
+  const onDrop = (sourceSquare: string, targetSquare: string) => {
+    const move = makeAMove({
+      from: sourceSquare,
+      to: targetSquare,
+      promotion: "q",
+    });
+
+    if (!move) return false;
+
+    setOptionSquares({});
+    return true;
   };
 
   const resetGame = () => {
-    setBoard(INITIAL_BOARD);
-    setTurn("w");
-    setSelected(null);
+    const newGame = new ChessGame();
+    setGame(newGame);
+    setFen(newGame.fen());
+    setMoveHistory([]);
+    setOptionSquares({});
+    setRightClickedSquares({});
   };
 
-  return (
-    <div className="flex h-full w-full bg-[#2e2e2e] text-white overflow-hidden font-sans select-none relative">
-      {/* Background with wood texture feel or gradient */}
-      <div className="absolute inset-0 bg-linear-to-br from-[#3E3E42] to-[#1E1E20]" />
+  const getGameStatus = () => {
+    if (game.isCheckmate()) {
+      return {
+        label: `Checkmate! ${game.turn() === "w" ? "Black" : "White"} Wins`,
+        icon: <Trophy className="text-yellow-500" />,
+        color: "text-yellow-500",
+      };
+    }
+    if (game.isDraw()) {
+      return {
+        label: "Draw",
+        icon: <AlertTriangle className="text-gray-400" />,
+        color: "text-gray-400",
+      };
+    }
+    if (game.isCheck()) {
+      return {
+        label: "Check!",
+        icon: <AlertTriangle className="text-red-500" />,
+        color: "text-red-500",
+      };
+    }
+    return {
+      label: `${game.turn() === "w" ? "White" : "Black"}'s Turn`,
+      icon: (
+        <div
+          className={`w-3 h-3 rounded-full ${
+            game.turn() === "w" ? "bg-white" : "bg-black border border-white/20"
+          }`}
+        />
+      ),
+      color: "text-white",
+    };
+  };
 
+  const status = getGameStatus();
+
+  return (
+    <div className="flex h-full w-full bg-[#262522] text-white overflow-hidden font-sans select-none relative">
       {/* Sidebar / Info Panel */}
-      <div className="w-64 bg-black/20 backdrop-blur-xl border-r border-white/10 flex flex-col z-10">
-        <div className="h-12 flex items-center px-4 border-b border-white/10 font-medium text-sm text-white/90">
-          Chess
+      <div className="w-72 bg-[#21201d] border-r border-white/5 flex flex-col z-10 shadow-xl">
+        <div className="h-14 flex items-center px-6 border-b border-white/5 font-bold text-lg text-[#C3C3C1]">
+          Chess.com
         </div>
 
-        <div className="p-6 flex flex-col gap-6">
-          <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-            <div className="text-xs font-medium text-white/50 mb-2 uppercase tracking-wider">
-              Current Turn
-            </div>
-            <div className="flex items-center gap-3">
-              <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center text-xl shadow-inner ${
-                  turn === "w"
-                    ? "bg-white text-black"
-                    : "bg-black text-white border border-white/20"
-                }`}
-              >
-                {turn === "w" ? "♔" : "♚"}
-              </div>
-              <span className="text-lg font-medium">
-                {turn === "w" ? "White" : "Black"}
+        <div className="p-6 flex flex-col gap-6 flex-1 overflow-hidden">
+          {/* Status Card */}
+          <div className="bg-[#262522] rounded-lg p-4 shadow-md border border-white/5">
+            <div className="flex items-center gap-3 mb-1">
+              {status.icon}
+              <span className={`font-bold text-lg ${status.color}`}>
+                {status.label}
               </span>
             </div>
           </div>
 
-          <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-            <div className="text-xs font-medium text-white/50 mb-2 uppercase tracking-wider">
-              History
+          {/* History */}
+          <div className="flex-1 bg-[#262522] rounded-lg border border-white/5 flex flex-col overflow-hidden">
+            <div className="p-3 border-b border-white/5 flex items-center gap-2 text-[#C3C3C1] font-medium text-sm">
+              <History size={14} /> Move History
             </div>
-            <div className="text-sm opacity-60 italic">
-              Moves will appear here...
+            <div className="flex-1 overflow-y-auto p-2">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
+                {moveHistory.map((move, index) => {
+                  if (index % 2 === 0) {
+                    return (
+                      <React.Fragment key={index}>
+                        <div className="flex items-center gap-2 px-2 py-1 rounded hover:bg-white/5">
+                          <span className="text-white/30 w-4">
+                            {Math.floor(index / 2) + 1}.
+                          </span>
+                          <span className="font-medium text-white">{move}</span>
+                        </div>
+                        {moveHistory[index + 1] && (
+                          <div className="flex items-center px-2 py-1 rounded hover:bg-white/5">
+                            <span className="font-medium text-white">
+                              {moveHistory[index + 1]}
+                            </span>
+                          </div>
+                        )}
+                      </React.Fragment>
+                    );
+                  }
+                  return null;
+                })}
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-auto p-4 border-t border-white/10">
+        {/* Controls */}
+        <div className="p-4 border-t border-white/5 bg-[#1e1d1a]">
           <button
             onClick={resetGame}
-            className="w-full py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors flex items-center justify-center gap-2 text-sm font-medium"
+            className="w-full py-3 bg-[#81b64c] hover:bg-[#a3d160] text-white shadow-[0_4px_0_0_#457524] active:shadow-none active:translate-y-[4px] rounded-lg transition-all flex items-center justify-center gap-2 font-bold text-lg"
           >
-            <RotateCcw size={16} /> New Game
+            <RotateCcw size={20} /> New Game
           </button>
         </div>
       </div>
 
       {/* Main Board Area */}
-      <div className="flex-1 flex items-center justify-center relative">
-        <div className="relative shadow-2xl rounded-lg overflow-hidden border-12 border-[#4a4a4e]">
-          <div className="grid grid-cols-8 grid-rows-8 w-[600px] h-[600px]">
-            {board.map((row, r) =>
-              row.map((piece, c) => {
-                const isBlack = (r + c) % 2 === 1;
-                const isSelected = selected?.r === r && selected?.c === c;
-
-                return (
-                  <div
-                    key={`${r}-${c}`}
-                    onClick={() => handleSquareClick(r, c)}
-                    className={`
-                      flex items-center justify-center text-5xl cursor-pointer relative
-                      ${isBlack ? "bg-[#B58863]" : "bg-[#F0D9B5]"}
-                      ${isSelected ? "ring-inset ring-4 ring-blue-500/80" : ""}
-                    `}
-                  >
-                    {/* Coordinate labels */}
-                    {c === 0 && (
-                      <span
-                        className={`absolute left-1 top-1 text-[10px] font-bold ${
-                          isBlack ? "text-[#F0D9B5]" : "text-[#B58863]"
-                        }`}
-                      >
-                        {8 - r}
-                      </span>
-                    )}
-                    {r === 7 && (
-                      <span
-                        className={`absolute right-1 bottom-0.5 text-[10px] font-bold ${
-                          isBlack ? "text-[#F0D9B5]" : "text-[#B58863]"
-                        }`}
-                      >
-                        {String.fromCharCode(97 + c)}
-                      </span>
-                    )}
-
-                    {piece && (
-                      <span
-                        className={`
-                          drop-shadow-md select-none transform transition-transform hover:scale-110
-                          ${
-                            piece.color === "w"
-                              ? "text-white drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)]"
-                              : "text-black drop-shadow-[0_2px_3px_rgba(255,255,255,0.3)]"
-                          }
-                        `}
-                      >
-                        {PIECE_UNICODE[piece.color + piece.type]}
-                      </span>
-                    )}
-
-                    {/* Move hint (simple dot if selected and empty) - optional enhancement */}
-                    {selected &&
-                      !piece &&
-                      // Logic to show valid moves would go here
-                      null}
-                  </div>
-                );
-              })
-            )}
-          </div>
+      <div className="flex-1 flex items-center justify-center bg-[#302e2b] relative">
+        <div
+          className="shadow-2xl rounded-sm overflow-hidden"
+          style={{ width: boardWidth, height: boardWidth }}
+        >
+          <Chessboard
+            position={fen}
+            onPieceDrop={onDrop}
+            boardWidth={boardWidth}
+            customDarkSquareStyle={{ backgroundColor: "#769656" }}
+            customLightSquareStyle={{ backgroundColor: "#eeeed2" }}
+            animationDuration={200}
+            onPieceDragBegin={onPieceDragBegin}
+            onPieceDragEnd={onPieceDragEnd}
+            customSquareStyles={{
+              ...optionSquares,
+              ...rightClickedSquares,
+            }}
+          />
         </div>
       </div>
     </div>

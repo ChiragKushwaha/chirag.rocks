@@ -45,11 +45,15 @@ import { Stocks } from "./Stocks";
 import { StocksIcon } from "../components/icons/StocksIcon";
 import { BooksIcon } from "../components/icons/BooksIcon";
 import { PlaceholderApp } from "./PlaceholderApp";
+import { VSCode } from "./VSCode";
 
 export interface AppDef {
   id: string;
   name: string;
-  icon: React.ComponentType<{ className?: string; size?: number }>;
+  icon: React.ComponentType<{
+    className?: string;
+    imageClassName?: string;
+  }>;
   component: React.ComponentType;
 }
 
@@ -404,6 +408,22 @@ export const APPS: AppDef[] = [
     name: "Stocks",
     icon: StocksIcon,
     component: Stocks,
+  },
+
+  {
+    id: "vscode",
+    name: "VS Code",
+    icon: ({ className, imageClassName = "p-2 rounded-3xl scale-[0.75]" }) => (
+      <div className={`${className} relative`}>
+        <Image
+          src="/icons/vscode.png"
+          alt="VS Code"
+          fill
+          className={`object-contain drop-shadow-lg bg-white ${imageClassName}`}
+        />
+      </div>
+    ),
+    component: VSCode,
   },
 ];
 
