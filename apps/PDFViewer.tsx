@@ -2,6 +2,10 @@
 import React, { useState, useEffect } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { ZoomIn, ZoomOut, Download } from "lucide-react";
+import "react-pdf/dist/Page/AnnotationLayer.css";
+import { useProcessStore } from "../store/processStore";
+import { Safari } from "./Safari";
+import Image from "next/image";
 
 // Configure worker
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -21,6 +25,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
   const [zoom, setZoom] = useState(100);
   const [showThumbnails, setShowThumbnails] = useState(true);
   const [fileName, setFileName] = useState(initialFilename || "Document.pdf");
+  const { launchProcess, processes, focusProcess } = useProcessStore();
 
   useEffect(() => {
     console.log("[PDFViewer] Mounted with:", { initialPath, initialFilename });
@@ -86,6 +91,45 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
       a.href = pdfUrl;
       a.download = fileName;
       a.click();
+    }
+  };
+
+  const handleDocumentClick = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    const link = target.closest("a");
+
+    if (link && link.href) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const url = link.href;
+      console.log("[PDFViewer] Intercepted link click:", url);
+
+      const safariProcess = processes.find((p) => p.id === "safari");
+
+      if (safariProcess) {
+        // Safari is already running, send event to open new tab
+        const event = new CustomEvent("safari:open-url", { detail: { url } });
+        window.dispatchEvent(event);
+        focusProcess(safariProcess.pid);
+      } else {
+        // Launch Safari
+        launchProcess(
+          "safari",
+          "Safari",
+          ({ className }) => (
+            <div className={`${className} relative`}>
+              <Image
+                src="/icons/safari.png"
+                alt="Safari"
+                fill
+                className="object-contain drop-shadow-lg"
+              />
+            </div>
+          ),
+          <Safari initialUrl={url} />
+        );
+      }
     }
   };
 
@@ -220,6 +264,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
             <div
               className="relative transition-transform duration-200 origin-top"
               style={{ transform: `scale(${zoom / 100})` }}
+              onClick={handleDocumentClick}
             >
               <div className="shadow-[0_0_20px_rgba(0,0,0,0.1)] dark:shadow-[0_0_20px_rgba(0,0,0,0.5)]">
                 <Document
@@ -242,7 +287,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
                   <Page
                     pageNumber={currentPage}
                     renderTextLayer={false}
-                    renderAnnotationLayer={false}
+                    renderAnnotationLayer={true}
                     className="bg-white"
                     width={800}
                   />

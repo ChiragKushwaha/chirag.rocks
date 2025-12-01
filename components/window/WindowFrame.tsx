@@ -164,7 +164,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
         ${
           process.isMaximized
             ? "!transform-none !top-8 !left-0 !right-0 !bottom-0 !rounded-none border-0"
-            : "rounded-xl border border-black/10 dark:border-white/10"
+            : "rounded-xl overflow-hidden border border-black/10 dark:border-white/10"
         }
         ${
           process.isFocused

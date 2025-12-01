@@ -20,7 +20,7 @@ const SpotlightIcon: React.FC<{
     return (
       <div className="w-8 h-8">
         <Icon
-          size={24}
+          size={32}
           className="w-full h-full object-contain drop-shadow-sm"
         />
       </div>

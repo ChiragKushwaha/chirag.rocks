@@ -15,6 +15,10 @@ interface SafariProps {
   initialUrl?: string;
 }
 
+interface OpenUrlEventDetail {
+  url: string;
+}
+
 export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
   const [tabs, setTabs] = useState([
     {
@@ -68,7 +72,29 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
     }
   };
 
-  // ... (inside component)
+  // Listen for external URL open events
+  React.useEffect(() => {
+    const handleOpenUrl = (e: CustomEvent<OpenUrlEventDetail>) => {
+      const url = e.detail.url;
+      const newId = Math.max(...tabs.map((t) => t.id)) + 1;
+      const newTab = {
+        id: newId,
+        title: url,
+        url: url,
+      };
+      setTabs((prev) => [...prev, newTab]);
+      setActiveTabId(newId);
+      setUrlInput(url);
+    };
+
+    window.addEventListener("safari:open-url" as any, handleOpenUrl as any);
+    return () => {
+      window.removeEventListener(
+        "safari:open-url" as any,
+        handleOpenUrl as any
+      );
+    };
+  }, [tabs]);
   const { wifiEnabled } = useSystemStore();
 
   if (!wifiEnabled) {

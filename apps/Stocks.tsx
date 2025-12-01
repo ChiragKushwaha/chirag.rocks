@@ -1,57 +1,8 @@
 import React, { useState } from "react";
 import { Search } from "lucide-react";
 
-// Mock Data
-const STOCKS = [
-  {
-    symbol: "AAPL",
-    name: "Apple Inc.",
-    price: 178.35,
-    change: 1.25,
-    changePercent: 0.71,
-    data: [170, 172, 171, 174, 176, 175, 178],
-  },
-  {
-    symbol: "GOOGL",
-    name: "Alphabet Inc.",
-    price: 135.6,
-    change: -0.45,
-    changePercent: -0.33,
-    data: [138, 137, 136, 135, 136, 135, 135],
-  },
-  {
-    symbol: "TSLA",
-    name: "Tesla, Inc.",
-    price: 245.5,
-    change: 5.2,
-    changePercent: 2.16,
-    data: [230, 235, 232, 240, 242, 241, 245],
-  },
-  {
-    symbol: "AMZN",
-    name: "Amazon.com",
-    price: 142.1,
-    change: 0.8,
-    changePercent: 0.57,
-    data: [140, 141, 140, 142, 141, 142, 142],
-  },
-  {
-    symbol: "MSFT",
-    name: "Microsoft",
-    price: 328.75,
-    change: -1.1,
-    changePercent: -0.33,
-    data: [332, 330, 331, 329, 330, 329, 328],
-  },
-  {
-    symbol: "NFLX",
-    name: "Netflix",
-    price: 410.2,
-    change: 8.5,
-    changePercent: 2.12,
-    data: [390, 395, 398, 400, 405, 408, 410],
-  },
-];
+import { StockData } from "../lib/stockApi";
+import { useStockStore } from "../store/stockStore";
 
 const NEWS = [
   {
@@ -157,7 +108,53 @@ const MainChart = ({ data, color }: { data: number[]; color: string }) => {
 };
 
 export const Stocks: React.FC = () => {
-  const [selectedStock, setSelectedStock] = useState(STOCKS[0]);
+  const { stocks, loading, fetchStocks, addStock } = useStockStore();
+  const [selectedStock, setSelectedStock] = useState<StockData | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+
+  const handleSearch = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && searchQuery.trim()) {
+      setIsSearching(true);
+      const symbol = await addStock(searchQuery);
+      setIsSearching(false);
+
+      if (symbol) {
+        const stock = stocks.find((s) => s.symbol === symbol);
+        if (stock) setSelectedStock(stock);
+        setSearchQuery("");
+      }
+    }
+  };
+
+  React.useEffect(() => {
+    fetchStocks();
+  }, [fetchStocks]);
+
+  React.useEffect(() => {
+    if (stocks.length > 0 && !selectedStock) {
+      setSelectedStock(stocks[0]);
+    }
+  }, [stocks, selectedStock]);
+
+  if (loading && stocks.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-full bg-[#1e1e1e] text-white">
+        Loading Market Data...
+      </div>
+    );
+  }
+
+  if (stocks.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-full bg-[#1e1e1e] text-white">
+        Failed to load stocks.
+      </div>
+    );
+  }
+
+  // Ensure selectedStock is valid (fallback to first if null)
+  const currentStock = selectedStock || stocks[0];
 
   return (
     <div className="flex h-full w-full bg-[#1e1e1e] text-white overflow-hidden font-sans select-none">
@@ -173,8 +170,12 @@ export const Stocks: React.FC = () => {
             />
             <input
               type="text"
-              placeholder="Search"
-              className="w-full bg-white/10 rounded-lg pl-8 pr-3 py-1 text-sm text-white placeholder-white/30 focus:outline-none focus:bg-white/20 transition-colors"
+              placeholder={isSearching ? "Searching..." : "Search"}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleSearch}
+              disabled={isSearching}
+              className="w-full bg-white/10 rounded-lg pl-8 pr-3 py-1 text-sm text-white placeholder-white/30 focus:outline-none focus:bg-white/20 transition-colors disabled:opacity-50"
             />
           </div>
         </div>
@@ -183,7 +184,10 @@ export const Stocks: React.FC = () => {
           <div className="px-4 py-2 text-xs font-semibold opacity-50 uppercase tracking-wider">
             Watchlist
           </div>
-          {STOCKS.map((stock) => {
+          <div className="px-4 py-2 text-xs font-semibold opacity-50 uppercase tracking-wider">
+            Watchlist
+          </div>
+          {stocks.map((stock) => {
             const isPositive = stock.change >= 0;
             const color = isPositive ? "#34C759" : "#FF3B30";
 
@@ -192,7 +196,7 @@ export const Stocks: React.FC = () => {
                 key={stock.symbol}
                 onClick={() => setSelectedStock(stock)}
                 className={`px-4 py-3 cursor-pointer hover:bg-white/5 transition-colors border-b border-white/5 ${
-                  selectedStock.symbol === stock.symbol ? "bg-white/10" : ""
+                  currentStock.symbol === stock.symbol ? "bg-white/10" : ""
                 }`}
               >
                 <div className="flex justify-between items-center mb-1">
@@ -223,21 +227,21 @@ export const Stocks: React.FC = () => {
         {/* Header */}
         <div className="h-16 flex items-center justify-between px-8 border-b border-white/10 z-10 bg-[#1C1C1E]/80 backdrop-blur-md">
           <div>
-            <div className="text-2xl font-bold">{selectedStock.symbol}</div>
-            <div className="text-sm opacity-60">{selectedStock.name}</div>
+            <div className="text-2xl font-bold">{currentStock.symbol}</div>
+            <div className="text-sm opacity-60">{currentStock.name}</div>
           </div>
           <div className="text-right">
             <div className="text-2xl font-medium">
-              {selectedStock.price.toFixed(2)}
+              {currentStock.price.toFixed(2)}
             </div>
             <div
               className={`text-sm font-medium ${
-                selectedStock.change >= 0 ? "text-[#34C759]" : "text-[#FF3B30]"
+                currentStock.change >= 0 ? "text-[#34C759]" : "text-[#FF3B30]"
               }`}
             >
-              {selectedStock.change >= 0 ? "+" : ""}
-              {selectedStock.change.toFixed(2)} (
-              {selectedStock.changePercent.toFixed(2)}%)
+              {currentStock.change >= 0 ? "+" : ""}
+              {currentStock.change.toFixed(2)} (
+              {currentStock.changePercent.toFixed(2)}%)
             </div>
           </div>
         </div>
@@ -263,8 +267,8 @@ export const Stocks: React.FC = () => {
 
             <div className="w-full h-full pt-12">
               <MainChart
-                data={selectedStock.data}
-                color={selectedStock.change >= 0 ? "#34C759" : "#FF3B30"}
+                data={currentStock.data}
+                color={currentStock.change >= 0 ? "#34C759" : "#FF3B30"}
               />
             </div>
 
@@ -280,28 +284,26 @@ export const Stocks: React.FC = () => {
               {[
                 {
                   label: "Open",
-                  value: (selectedStock.price - selectedStock.change).toFixed(
-                    2
-                  ),
+                  value: (currentStock.price - currentStock.change).toFixed(2),
                 },
                 {
                   label: "High",
-                  value: (selectedStock.price * 1.02).toFixed(2),
+                  value: (currentStock.price * 1.02).toFixed(2),
                 },
                 {
                   label: "Low",
-                  value: (selectedStock.price * 0.98).toFixed(2),
+                  value: (currentStock.price * 0.98).toFixed(2),
                 },
                 { label: "Vol", value: "45.2M" },
                 { label: "P/E", value: "28.5" },
                 { label: "Mkt Cap", value: "2.4T" },
                 {
                   label: "52W H",
-                  value: (selectedStock.price * 1.1).toFixed(2),
+                  value: (currentStock.price * 1.1).toFixed(2),
                 },
                 {
                   label: "52W L",
-                  value: (selectedStock.price * 0.8).toFixed(2),
+                  value: (currentStock.price * 0.8).toFixed(2),
                 },
               ].map((stat) => (
                 <div

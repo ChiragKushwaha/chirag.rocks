@@ -162,7 +162,7 @@ export const APPS: AppDef[] = [
   {
     id: "calendar",
     name: "Calendar",
-    icon: () => <CalendarIcon size={90} />,
+    icon: CalendarIcon,
     component: Calendar,
   },
   {
@@ -258,7 +258,7 @@ export const APPS: AppDef[] = [
   {
     id: "books",
     name: "Books",
-    icon: () => <BooksIcon size={90} />,
+    icon: BooksIcon,
     component: () => <PlaceholderApp title="Books" />,
   },
   {
@@ -384,25 +384,25 @@ export const APPS: AppDef[] = [
   {
     id: "weather",
     name: "Weather",
-    icon: () => <WeatherIcon size={90} />,
+    icon: WeatherIcon,
     component: Weather,
   },
   {
     id: "clock",
     name: "Clock",
-    icon: () => <ClockIcon size={90} />,
+    icon: ClockIcon,
     component: Clock,
   },
   {
     id: "chess",
     name: "Chess",
-    icon: () => <ChessIcon size={96} />,
+    icon: ChessIcon,
     component: Chess,
   },
   {
     id: "stocks",
     name: "Stocks",
-    icon: () => <StocksIcon size={96} />,
+    icon: StocksIcon,
     component: Stocks,
   },
 ];
@@ -423,7 +423,7 @@ const LaunchpadItem: React.FC<{
     >
       <div className="w-[112px] h-[112px] min-w-[112px] min-h-[112px] transition-transform duration-300 ease-out group-hover:scale-105 group-active:scale-95 flex items-center justify-center">
         <Icon
-          size={112}
+          size={90}
           className="w-full h-full drop-shadow-2xl object-contain"
         />
       </div>

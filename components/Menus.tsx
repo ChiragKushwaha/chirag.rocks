@@ -90,7 +90,7 @@ export const ContextMenu: React.FC = () => {
     <div
       ref={ref}
       style={{ top: contextMenu.y, left: contextMenu.x }}
-      className="fixed z-50 min-w-[220px] bg-white/90 dark:bg-[#1c1c1c]/90 backdrop-blur-3xl border border-black/10 dark:border-white/20 rounded-xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-100 origin-top-left py-1.5"
+      className="fixed z-[9999] min-w-[220px] bg-white/90 dark:bg-[#1c1c1c]/90 backdrop-blur-3xl border border-black/10 dark:border-white/20 rounded-xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-100 origin-top-left py-1.5"
     >
       <MenuList items={contextMenu.items} onClose={closeContextMenu} />
     </div>,
@@ -147,8 +147,8 @@ export const TopDropdown: React.FC<{
   return createPortal(
     <div
       ref={ref}
-      className="fixed top-[30px] z-50 min-w-[220px] bg-white/90 dark:bg-[#1c1c1c]/90 backdrop-blur-3xl border border-black/10 dark:border-white/20 rounded-b-xl shadow-2xl overflow-hidden py-1.5"
-      style={{ left: xOffset }}
+      className="fixed top-[30px] min-w-[220px] bg-white/90 dark:bg-[#1c1c1c]/90 backdrop-blur-3xl border border-black/10 dark:border-white/20 rounded-xl shadow-2xl overflow-hidden py-1.5"
+      style={{ left: xOffset, zIndex: 9999 }}
     >
       <MenuList items={items} onClose={onClose} />
     </div>,

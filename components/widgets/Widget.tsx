@@ -7,7 +7,9 @@ import { useReminderStore } from "../../store/reminderStore";
 import { TrendingUp } from "lucide-react";
 import { useWeather } from "../../hooks/useWeather";
 import { Weather } from "../../apps/Weather";
-
+import { StockData } from "../../lib/stockApi";
+import { Stocks } from "../../apps/Stocks";
+import { useStockStore } from "../../store/stockStore";
 interface WidgetProps {
   size: "small" | "medium" | "large";
   type: "calendar" | "weather" | "stocks" | "reminders" | "notes";
@@ -18,6 +20,14 @@ export const Widget: React.FC<WidgetProps> = ({ size, type, title }) => {
   const { launchProcess } = useProcessStore();
   const { reminders } = useReminderStore();
   const { weather } = useWeather();
+  const { stocks, fetchStocks } = useStockStore();
+  const stockData = stocks.find((s) => s.symbol === "AAPL") || null;
+
+  React.useEffect(() => {
+    if (type === "stocks") {
+      fetchStocks();
+    }
+  }, [type, fetchStocks]);
 
   const handleClick = () => {
     // Map widget type to app name
@@ -43,7 +53,8 @@ export const Widget: React.FC<WidgetProps> = ({ size, type, title }) => {
         component = <Weather />;
         break;
       case "stocks":
-        appName = "Stocks"; // Placeholder
+        appName = "Stocks";
+        component = <Stocks />;
         break;
     }
 
@@ -99,25 +110,28 @@ export const Widget: React.FC<WidgetProps> = ({ size, type, title }) => {
           </div>
         );
       case "stocks":
+        if (!stockData) return <div className="p-4 text-white">Loading...</div>;
+        const isPositive = stockData.change >= 0;
         return (
           <div className="flex flex-col p-3 h-full bg-[#1c1c1e] text-white">
             <div className="flex justify-between items-center mb-2">
               <span className="font-bold text-sm">Stocks</span>
-              <TrendingUp size={14} className="text-green-500" />
+              <TrendingUp
+                size={14}
+                className={isPositive ? "text-green-500" : "text-red-500"}
+              />
             </div>
             <div className="space-y-2">
               <div className="flex justify-between items-center text-xs border-b border-white/10 pb-1">
-                <span className="font-bold">AAPL</span>
+                <span className="font-bold">{stockData.symbol}</span>
                 <div className="text-right">
-                  <div>150.00</div>
-                  <div className="text-green-500">+1.2%</div>
-                </div>
-              </div>
-              <div className="flex justify-between items-center text-xs border-b border-white/10 pb-1">
-                <span className="font-bold">GOOGL</span>
-                <div className="text-right">
-                  <div>2800.00</div>
-                  <div className="text-red-500">-0.5%</div>
+                  <div>{stockData.price.toFixed(2)}</div>
+                  <div
+                    className={isPositive ? "text-green-500" : "text-red-500"}
+                  >
+                    {isPositive ? "+" : ""}
+                    {stockData.changePercent.toFixed(2)}%
+                  </div>
                 </div>
               </div>
             </div>

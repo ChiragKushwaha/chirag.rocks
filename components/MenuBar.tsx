@@ -1,22 +1,22 @@
-import React from "react";
-import { useSystemStore } from "../store/systemStore";
-import { useMenuStore, MenuItem } from "../store/menuStore";
-import { useProcessStore } from "../store/processStore";
-import { TopDropdown } from "./Menus";
-import { AboutMac } from "../apps/AboutMac";
-import { Clock } from "./Clock";
 import {
   Battery,
-  Wifi,
-  WifiOff,
-  Lock,
-  Search,
   Clipboard,
   Cloud,
+  Lock,
   PlayCircle,
+  Search,
+  Wifi,
+  WifiOff,
 } from "lucide-react";
+import React from "react";
+import { AboutMac } from "../apps/AboutMac";
 import { useBattery } from "../hooks/useBattery";
 import { useWeather } from "../hooks/useWeather";
+import { MenuItem, useMenuStore } from "../store/menuStore";
+import { useProcessStore } from "../store/processStore";
+import { useSystemStore } from "../store/systemStore";
+import { Clock } from "./Clock";
+import { TopDropdown } from "./Menus";
 import { WeatherDropdown } from "./WeatherDropdown";
 
 const WifiDisplay = () => {
@@ -35,8 +35,11 @@ const WifiDisplay = () => {
   const wifiItems: MenuItem[] = [
     {
       label: (
-        <div className="flex items-center justify-between w-full">
-          <span className="font-semibold">Wi-Fi</span>
+        <div
+          className="flex items-center justify-between"
+          style={{ width: 200 }}
+        >
+          <div className="font-semibold">Wi-Fi</div>
           <div
             className={`w-9 h-5 rounded-full p-0.5 transition-colors duration-200 ease-in-out ${
               wifiEnabled ? "bg-blue-500" : "bg-gray-300 dark:bg-gray-600"
