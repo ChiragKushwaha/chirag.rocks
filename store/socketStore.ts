@@ -51,7 +51,7 @@ export const useSocketStore = create<SocketState>((set, get) => ({
   connect: (name: string) => {
     if (get().socket) return;
 
-    const socket = io("https://honest-art.up.railway.app");
+    const socket = io("https://chiragrocks-production.up.railway.app");
 
     socket.on("connect", () => {
       set({ isConnected: true, me: { id: socket.id!, name } });
