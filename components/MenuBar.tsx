@@ -236,7 +236,7 @@ const BatteryDisplay = () => {
 import { ControlCenter } from "./ControlCenter";
 
 export const MenuBar: React.FC = () => {
-  const { activeApp } = useSystemStore();
+  const { activeApp, toggleNotificationCenter } = useSystemStore();
   const { launchProcess } = useProcessStore();
   const [isControlCenterOpen, setIsControlCenterOpen] = React.useState(false);
   const controlCenterRef = React.useRef<HTMLDivElement>(null);
@@ -401,7 +401,13 @@ export const MenuBar: React.FC = () => {
         </div>
 
         {/* Clock */}
-        <Clock />
+        <div
+          id="menu-bar-clock"
+          className="opacity-90 hover:bg-white/10 px-2 py-0.5 rounded cursor-default active:bg-white/20"
+          onClick={toggleNotificationCenter}
+        >
+          <Clock />
+        </div>
       </div>
 
       <ControlCenter

@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { useSystemStore } from "../store/systemStore";
-
+import { fs } from "../lib/FileSystem";
 import { useIcon } from "./hooks/useIconManager";
 
 interface FileIconProps {
@@ -12,7 +12,6 @@ interface FileIconProps {
   onRename?: (newName: string) => void;
   onRenameCancel?: () => void;
   onContextMenu?: (e: React.MouseEvent) => void;
-  isEmpty?: boolean;
 }
 
 export const FileIcon: React.FC<FileIconProps> = ({
@@ -22,10 +21,30 @@ export const FileIcon: React.FC<FileIconProps> = ({
   onRename,
   onRenameCancel,
   onContextMenu,
-  isEmpty,
 }) => {
-  const { selectedFile, setSelectedFile } = useSystemStore();
+  const { selectedFile, user } = useSystemStore();
   const isSelected = selectedFile === name;
+  const [noteContent, setNoteContent] = React.useState<string>("");
+
+  const isNote = name.endsWith(".note");
+
+  React.useEffect(() => {
+    if (isNote) {
+      const loadContent = async () => {
+        const userName = user?.name || "Guest";
+        const desktopPath = `/Users/${userName}/Desktop`;
+        try {
+          if (await fs.exists(`${desktopPath}/${name}`)) {
+            const content = await fs.readFile(desktopPath, name);
+            setNoteContent(content.substring(0, 500));
+          }
+        } catch (e) {
+          console.error("Failed to load note preview", e);
+        }
+      };
+      loadContent();
+    }
+  }, [name, isNote, user]);
 
   // Simple icon logic (expand later with real SVGs)
   const getIconName = (name: string, type: string) => {
@@ -131,15 +150,16 @@ export const FileIcon: React.FC<FileIconProps> = ({
   return (
     <div
       className={`
-        flex flex-col items-center w-[84px] p-1 rounded-[4px]
+        flex flex-col items-center p-1 rounded-[4px]
+        ${isNote ? "w-[140px]" : "w-[84px]"}
         ${
           isSelected && !isRenaming
-            ? "bg-white/20 border border-white/30"
+            ? "bg-white/20 ring-1 ring-white/30"
             : isRenaming
             ? ""
-            : "hover:bg-white/10 hover:border hover:border-white/20"
+            : "hover:bg-white/10 hover:ring-1 hover:ring-white/20"
         }
-        transition-colors cursor-pointer
+        transition-colors cursor-pointer group
       `}
       onClick={(e) => {
         e.stopPropagation();
@@ -152,15 +172,34 @@ export const FileIcon: React.FC<FileIconProps> = ({
       onContextMenu={onContextMenu}
       onDoubleClick={() => !isRenaming && console.log(`Opening ${name}...`)}
     >
-      <div className="w-[64px] h-[64px] mb-1 filter drop-shadow-lg">
-        <Image
-          src={iconUrl}
-          alt={name}
-          width={64}
-          height={64}
-          className="w-full h-full object-contain drop-shadow-md"
-          unoptimized
-        />
+      <div
+        className={`mb-1 filter drop-shadow-lg relative transition-transform group-hover:scale-105 ${
+          isNote ? "w-[128px] h-[128px]" : "w-[64px] h-[64px]"
+        }`}
+      >
+        {isNote ? (
+          <div className="w-full h-full bg-[#fef9c3] border border-[#fde047] shadow-sm flex flex-col p-3 relative overflow-hidden rounded-[2px]">
+            <div className="text-[10px] leading-snug text-gray-800 font-medium overflow-hidden whitespace-pre-wrap break-words h-full w-full font-serif">
+              {noteContent}
+            </div>
+
+            {/* Folded Corner Effect */}
+            <div
+              className="absolute bottom-0 right-0 w-0 h-0 
+                border-l-[24px] border-l-transparent
+                border-b-[24px] border-b-black/10"
+            />
+          </div>
+        ) : (
+          <Image
+            src={iconUrl}
+            alt={name}
+            width={64}
+            height={64}
+            className="w-full h-full object-contain drop-shadow-md"
+            unoptimized
+          />
+        )}
       </div>
 
       {isRenaming ? (
@@ -199,7 +238,7 @@ export const FileIcon: React.FC<FileIconProps> = ({
             textShadow: isSelected ? "none" : "0 1px 2px rgba(0,0,0,0.5)",
           }}
         >
-          {name}
+          {name.replace(".note", "")}
         </span>
       )}
     </div>

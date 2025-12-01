@@ -6,116 +6,79 @@ interface User {
   name: string;
 }
 
-interface Message {
+interface IncomingCall {
   from: string;
-  text: string;
-  timestamp: number;
-  isMe: boolean;
+  name: string;
+  signal: any;
 }
 
 interface SocketState {
   socket: Socket | null;
-  isConnected: boolean;
   users: User[];
-  messages: Record<string, Message[]>; // userId -> messages
   me: User | null;
-
-  // Call State
-  incomingCall: { from: string; signal: any; name: string } | null;
+  isConnected: boolean;
+  incomingCall: IncomingCall | null;
   isCallActive: boolean;
-  remoteStream: MediaStream | null;
-  localStream: MediaStream | null;
 
-  // Actions
-  connect: (name: string) => void;
-  sendMessage: (to: string, text: string) => void;
-  setIncomingCall: (
-    call: { from: string; signal: any; name: string } | null
-  ) => void;
+  connect: (userName: string) => void;
+  disconnect: () => void;
+  setIncomingCall: (call: IncomingCall | null) => void;
   setCallActive: (active: boolean) => void;
-  setRemoteStream: (stream: MediaStream | null) => void;
-  setLocalStream: (stream: MediaStream | null) => void;
 }
+
+const SOCKET_URL = "https://mac-os-socket-server.onrender.com";
 
 export const useSocketStore = create<SocketState>((set, get) => ({
   socket: null,
-  isConnected: false,
   users: [],
-  messages: {},
   me: null,
+  isConnected: false,
   incomingCall: null,
   isCallActive: false,
-  remoteStream: null,
-  localStream: null,
 
-  connect: (name: string) => {
-    if (get().socket) return;
+  connect: (userName: string) => {
+    const currentSocket = get().socket;
+    if (currentSocket) return;
 
-    const socket = io("https://chiragrocks-production.up.railway.app");
+    const socket = io(SOCKET_URL);
 
     socket.on("connect", () => {
-      set({ isConnected: true, me: { id: socket.id!, name } });
-      socket.emit("join", name);
+      console.log("Connected to socket server");
+      socket.emit("join-user", userName);
     });
 
-    socket.on("users-list", (users: User[]) => {
-      // Filter out self
-      set((state) => ({
-        users: users.filter((u) => u.id !== state.me?.id),
-      }));
+    socket.on("update-user-list", (users: User[]) => {
+      set({ users: users.filter((u) => u.id !== socket.id) });
     });
 
-    socket.on("message", (data: { from: string; text: string }) => {
-      set((state) => {
-        const otherId = data.from;
-        const newMsg = {
-          from: otherId,
-          text: data.text,
-          timestamp: Date.now(),
-          isMe: false,
-        };
-        return {
-          messages: {
-            ...state.messages,
-            [otherId]: [...(state.messages[otherId] || []), newMsg],
+    socket.on("me", (id: string) => {
+      set({ me: { id, name: userName }, isConnected: true });
+    });
+
+    socket.on(
+      "call-made",
+      (data: { offer: any; socket: string; name: string }) => {
+        set({
+          incomingCall: {
+            from: data.socket,
+            name: data.name,
+            signal: data.offer,
           },
-        };
-      });
-    });
-
-    socket.on("call-made", (data) => {
-      set({
-        incomingCall: { from: data.from, signal: data.signal, name: data.name },
-      });
-    });
+        });
+      }
+    );
 
     set({ socket });
   },
 
-  sendMessage: (to: string, text: string) => {
-    const { socket, me } = get();
-    if (!socket || !me) return;
-
-    socket.emit("message", { to, from: me.id, text });
-
-    set((state) => {
-      const newMsg = {
-        from: me.id,
-        text,
-        timestamp: Date.now(),
-        isMe: true,
-      };
-      return {
-        messages: {
-          ...state.messages,
-          [to]: [...(state.messages[to] || []), newMsg],
-        },
-      };
-    });
+  disconnect: () => {
+    const { socket } = get();
+    if (socket) {
+      socket.disconnect();
+      set({ socket: null, isConnected: false, users: [], me: null });
+    }
   },
 
   setIncomingCall: (call) => set({ incomingCall: call }),
   setCallActive: (active) => set({ isCallActive: active }),
-  setRemoteStream: (stream) => set({ remoteStream: stream }),
-  setLocalStream: (stream) => set({ localStream: stream }),
 }));

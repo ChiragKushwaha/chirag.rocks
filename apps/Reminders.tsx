@@ -1,50 +1,91 @@
 import React, { useState } from "react";
-import { Search, Plus, Calendar, Flag, List } from "lucide-react";
-
-interface Reminder {
-  id: string;
-  text: string;
-  completed: boolean;
-  list: string;
-  date?: string;
-}
+import { Search, Plus, Calendar, Flag, List, Clock, X } from "lucide-react";
+import { useReminderStore } from "../store/reminderStore";
 
 export const Reminders: React.FC = () => {
-  const [reminders, setReminders] = useState<Reminder[]>([
-    { id: "1", text: "Buy groceries", completed: false, list: "Reminders" },
-    {
-      id: "2",
-      text: "Call Mom",
-      completed: false,
-      list: "Reminders",
-      date: "Today",
-    },
-    { id: "3", text: "Finish project", completed: true, list: "Work" },
-    {
-      id: "4",
-      text: "Pay bills",
-      completed: false,
-      list: "Reminders",
-      date: "Tomorrow",
-    },
-  ]);
-
+  const { reminders, addReminder, toggleReminder, deleteReminder, toggleFlag } =
+    useReminderStore();
   const [activeList, setActiveList] = useState("Reminders");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const toggleReminder = (id: string) => {
-    setReminders(
-      reminders.map((r) =>
-        r.id === id ? { ...r, completed: !r.completed } : r
-      )
-    );
+  // Add Reminder State
+  const [isAdding, setIsAdding] = useState(false);
+  const [newText, setNewText] = useState("");
+  const [newDate, setNewDate] = useState("");
+  const [newTime, setNewTime] = useState("");
+
+  const handleAddReminder = () => {
+    if (!newText.trim()) {
+      setIsAdding(false);
+      return;
+    }
+
+    let dueTime: number | undefined = undefined;
+    let dateDisplay: string | undefined = undefined;
+
+    if (newDate) {
+      const dateObj = new Date(`${newDate}T${newTime || "00:00"}`);
+      if (!isNaN(dateObj.getTime())) {
+        dueTime = dateObj.getTime();
+
+        // Format for display
+        const today = new Date();
+        const isToday = dateObj.toDateString() === today.toDateString();
+        const isTomorrow =
+          new Date(today.setDate(today.getDate() + 1)).toDateString() ===
+          dateObj.toDateString();
+
+        if (isToday) dateDisplay = "Today";
+        else if (isTomorrow) dateDisplay = "Tomorrow";
+        else dateDisplay = dateObj.toLocaleDateString();
+
+        if (newTime) {
+          dateDisplay += ` at ${dateObj.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}`;
+        }
+      }
+    }
+
+    addReminder({
+      id: Date.now().toString(),
+      text: newText,
+      completed: false,
+      list:
+        activeList === "All" ||
+        activeList === "Scheduled" ||
+        activeList === "Flagged"
+          ? "Reminders"
+          : activeList,
+      date: dateDisplay,
+      dueTime,
+      notified: false,
+    });
+
+    setNewText("");
+    setNewDate("");
+    setNewTime("");
+    setIsAdding(false);
   };
 
-  const filteredReminders = reminders.filter(
-    (r) => r.list === activeList || activeList === "All"
-  );
+  const filteredReminders = reminders.filter((r) => {
+    let matchesList = false;
+    if (activeList === "All") matchesList = true;
+    else if (activeList === "Scheduled") matchesList = !!(r.date || r.dueTime);
+    else if (activeList === "Flagged") matchesList = !!r.flagged;
+    else matchesList = r.list === activeList;
+
+    if (searchQuery) {
+      return (
+        matchesList && r.text.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    return matchesList;
+  });
 
   return (
-    <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans">
+    <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans relative">
       {/* Sidebar */}
       <div className="w-64 bg-[#f5f5f7] dark:bg-[#2b2b2b] border-r border-gray-200 dark:border-black/20 flex flex-col p-4">
         {/* Search */}
@@ -56,6 +97,8 @@ export const Reminders: React.FC = () => {
           <input
             type="text"
             placeholder="Search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-gray-200 dark:bg-black/20 border-none rounded-md pl-8 pr-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50"
           />
         </div>
@@ -68,27 +111,37 @@ export const Reminders: React.FC = () => {
                 <Calendar size={16} />
               </div>
               <span className="text-xl font-bold">
-                {reminders.filter((r) => r.date === "Today").length}
+                {reminders.filter((r) => r.date?.includes("Today")).length}
               </span>
             </div>
             <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
               Today
             </span>
           </div>
-          <div className="bg-white dark:bg-[#3a3a3a] p-2 rounded-lg shadow-sm flex flex-col justify-between h-20 cursor-pointer hover:bg-gray-50 dark:hover:bg-[#444]">
+          <div
+            onClick={() => setActiveList("Scheduled")}
+            className={`bg-white dark:bg-[#3a3a3a] p-2 rounded-lg shadow-sm flex flex-col justify-between h-20 cursor-pointer hover:bg-gray-50 dark:hover:bg-[#444] ${
+              activeList === "Scheduled" ? "ring-2 ring-gray-400" : ""
+            }`}
+          >
             <div className="flex justify-between items-start">
               <div className="w-7 h-7 rounded-full bg-red-500 flex items-center justify-center text-white">
                 <Calendar size={16} />
               </div>
               <span className="text-xl font-bold">
-                {reminders.filter((r) => r.date).length}
+                {reminders.filter((r) => r.dueTime || r.date).length}
               </span>
             </div>
             <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
               Scheduled
             </span>
           </div>
-          <div className="bg-white dark:bg-[#3a3a3a] p-2 rounded-lg shadow-sm flex flex-col justify-between h-20 cursor-pointer hover:bg-gray-50 dark:hover:bg-[#444]">
+          <div
+            onClick={() => setActiveList("All")}
+            className={`bg-white dark:bg-[#3a3a3a] p-2 rounded-lg shadow-sm flex flex-col justify-between h-20 cursor-pointer hover:bg-gray-50 dark:hover:bg-[#444] ${
+              activeList === "All" ? "ring-2 ring-gray-400" : ""
+            }`}
+          >
             <div className="flex justify-between items-start">
               <div className="w-7 h-7 rounded-full bg-gray-500 dark:bg-gray-600 flex items-center justify-center text-white">
                 <List size={16} />
@@ -99,12 +152,19 @@ export const Reminders: React.FC = () => {
               All
             </span>
           </div>
-          <div className="bg-white dark:bg-[#3a3a3a] p-2 rounded-lg shadow-sm flex flex-col justify-between h-20 cursor-pointer hover:bg-gray-50 dark:hover:bg-[#444]">
+          <div
+            onClick={() => setActiveList("Flagged")}
+            className={`bg-white dark:bg-[#3a3a3a] p-2 rounded-lg shadow-sm flex flex-col justify-between h-20 cursor-pointer hover:bg-gray-50 dark:hover:bg-[#444] ${
+              activeList === "Flagged" ? "ring-2 ring-gray-400" : ""
+            }`}
+          >
             <div className="flex justify-between items-start">
               <div className="w-7 h-7 rounded-full bg-orange-500 flex items-center justify-center text-white">
                 <Flag size={16} />
               </div>
-              <span className="text-xl font-bold">0</span>
+              <span className="text-xl font-bold">
+                {reminders.filter((r) => r.flagged).length}
+              </span>
             </div>
             <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
               Flagged
@@ -157,7 +217,7 @@ export const Reminders: React.FC = () => {
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col bg-white dark:bg-[#1e1e1e]">
-        <div className="p-8">
+        <div className="p-8 flex-1 overflow-y-auto">
           <h1 className="text-3xl font-bold mb-6 text-blue-500">
             {activeList}
           </h1>
@@ -191,7 +251,7 @@ export const Reminders: React.FC = () => {
                   {reminder.date && (
                     <p
                       className={`text-xs ${
-                        reminder.date === "Today"
+                        reminder.date.includes("Today")
                           ? "text-blue-500"
                           : "text-gray-500"
                       }`}
@@ -200,13 +260,90 @@ export const Reminders: React.FC = () => {
                     </p>
                   )}
                 </div>
+
+                {/* Flag Button */}
+                <button
+                  onClick={() => toggleFlag(reminder.id)}
+                  className={`opacity-0 group-hover:opacity-100 transition-opacity ${
+                    reminder.flagged
+                      ? "opacity-100 text-orange-500"
+                      : "text-gray-300 hover:text-orange-500"
+                  }`}
+                >
+                  <Flag
+                    size={16}
+                    fill={reminder.flagged ? "currentColor" : "none"}
+                  />
+                </button>
+
+                <button
+                  onClick={() => deleteReminder(reminder.id)}
+                  className="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500"
+                >
+                  <X size={16} />
+                </button>
               </div>
             ))}
 
-            <div className="flex items-center gap-3 py-2 text-gray-400 cursor-text">
-              <Plus size={20} />
-              <span>New Reminder</span>
-            </div>
+            {/* Add Reminder Input */}
+            {isAdding ? (
+              <div className="mt-2 p-3 bg-gray-50 dark:bg-[#2c2c2e] rounded-lg border border-gray-200 dark:border-gray-700">
+                <input
+                  type="text"
+                  placeholder="Title"
+                  autoFocus
+                  className="w-full bg-transparent border-none text-base focus:outline-none mb-2"
+                  value={newText}
+                  onChange={(e) => setNewText(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") handleAddReminder();
+                    if (e.key === "Escape") setIsAdding(false);
+                  }}
+                />
+                <div className="flex gap-2">
+                  <div className="flex items-center gap-1 bg-white dark:bg-black/20 px-2 py-1 rounded border border-gray-200 dark:border-gray-600">
+                    <Calendar size={14} className="text-gray-500" />
+                    <input
+                      type="date"
+                      className="bg-transparent border-none text-xs focus:outline-none"
+                      value={newDate}
+                      onChange={(e) => setNewDate(e.target.value)}
+                    />
+                  </div>
+                  <div className="flex items-center gap-1 bg-white dark:bg-black/20 px-2 py-1 rounded border border-gray-200 dark:border-gray-600">
+                    <Clock size={14} className="text-gray-500" />
+                    <input
+                      type="time"
+                      className="bg-transparent border-none text-xs focus:outline-none"
+                      value={newTime}
+                      onChange={(e) => setNewTime(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-end gap-2 mt-2">
+                  <button
+                    onClick={() => setIsAdding(false)}
+                    className="px-3 py-1 text-sm text-gray-500 hover:bg-gray-200 dark:hover:bg-white/10 rounded"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleAddReminder}
+                    className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div
+                onClick={() => setIsAdding(true)}
+                className="flex items-center gap-2 mt-2 text-gray-400 hover:text-gray-600 cursor-pointer"
+              >
+                <Plus size={20} />
+                <span>New Reminder</span>
+              </div>
+            )}
           </div>
         </div>
       </div>

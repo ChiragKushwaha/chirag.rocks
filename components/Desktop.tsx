@@ -19,9 +19,14 @@ import { Calculator } from "../apps/Calculator";
 import { Trash } from "../apps/Trash";
 import { Messages } from "../apps/Messages";
 import { FaceTime } from "../apps/FaceTime";
+import { Notes } from "../apps/Notes";
 
 import { useIconManager, useAsset } from "./hooks/useIconManager";
 import { BootScreen } from "./BootScreen";
+import { useReminderStore } from "../store/reminderStore";
+import { NotificationCenter } from "./NotificationCenter";
+import { useStickyNoteStore } from "../store/stickyNoteStore";
+import { StickyNote } from "./StickyNote";
 
 export const Desktop: React.FC = () => {
   const {
@@ -34,9 +39,54 @@ export const Desktop: React.FC = () => {
     brightness,
     setWallpaper,
   } = useSystemStore();
+  const { notes } = useStickyNoteStore();
   const { openContextMenu } = useMenuStore();
   const { launchProcess } = useProcessStore();
   const [files, setFiles] = useState<MacFileEntry[]>([]);
+
+  // Reminder Worker
+  const { reminders, markNotified } = useReminderStore();
+
+  useEffect(() => {
+    const checkReminders = () => {
+      const now = Date.now();
+      reminders.forEach((r) => {
+        if (r.dueTime && r.dueTime <= now && !r.notified && !r.completed) {
+          // Try Web Notification API first
+          if (
+            "Notification" in window &&
+            Notification.permission === "granted"
+          ) {
+            new Notification("Reminder", {
+              body: r.text,
+              icon: "/icons/reminders.png",
+            });
+          } else if (
+            "Notification" in window &&
+            Notification.permission !== "denied"
+          ) {
+            Notification.requestPermission().then((permission) => {
+              if (permission === "granted") {
+                new Notification("Reminder", {
+                  body: r.text,
+                  icon: "/icons/reminders.png",
+                });
+              } else {
+                alert(`Reminder: ${r.text}`);
+              }
+            });
+          } else {
+            // Fallback to alert
+            alert(`Reminder: ${r.text}`);
+          }
+          markNotified(r.id);
+        }
+      });
+    };
+
+    const interval = setInterval(checkReminders, 10000); // Check every 10 seconds
+    return () => clearInterval(interval);
+  }, [reminders, markNotified]);
 
   // Force update wallpaper if it's the old default
   useEffect(() => {
@@ -183,6 +233,12 @@ export const Desktop: React.FC = () => {
 
     // App Registry
     const apps: Record<string, any> = {
+      note: {
+        id: "notes",
+        name: "Notes",
+        icon: "notes",
+        component: Notes,
+      },
       txt: {
         id: "textedit",
         name: "TextEdit",
@@ -357,6 +413,7 @@ export const Desktop: React.FC = () => {
       {/* GLOBAL CONTEXT MENU LAYER (z-50) */}
       <ContextMenu />
       <Spotlight />
+      <NotificationCenter />
 
       {/* Desktop Icons (z-10) */}
       <div
@@ -368,7 +425,9 @@ export const Desktop: React.FC = () => {
             !file.isHidden && (
               <div
                 key={file.name}
-                className="pointer-events-auto flex justify-center w-[100px]"
+                className={`pointer-events-auto flex justify-center ${
+                  file.name.endsWith(".note") ? "w-[160px]" : "w-[100px]"
+                }`}
                 style={{ direction: "ltr" }} // Reset direction for content
                 onDoubleClick={(e) => {
                   e.stopPropagation();
@@ -459,6 +518,15 @@ export const Desktop: React.FC = () => {
               </div>
             )
         )}
+      </div>
+
+      {/* Sticky Notes (z-0) */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        {notes.map((note) => (
+          <div key={note.id} className="pointer-events-auto">
+            <StickyNote note={note} />
+          </div>
+        ))}
       </div>
 
       {/* Window Manager (z-20) */}

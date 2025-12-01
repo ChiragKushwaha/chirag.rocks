@@ -7,6 +7,7 @@ export const FaceTime: React.FC = () => {
     users,
     isConnected,
     connect,
+    disconnect,
     socket,
     incomingCall,
     setIncomingCall,
@@ -18,13 +19,68 @@ export const FaceTime: React.FC = () => {
 
   const [loginName, setLoginName] = useState("");
   const localVideoRef = useRef<HTMLVideoElement>(null);
+  const previewVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
   const peerRef = useRef<RTCPeerConnection | null>(null);
+  const localStreamRef = useRef<MediaStream | null>(null);
 
   // WebRTC Config
   const rtcConfig = {
     iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
   };
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      console.log("FaceTime unmounting, cleaning up...");
+      if (localStreamRef.current) {
+        localStreamRef.current.getTracks().forEach((track) => track.stop());
+      }
+      if (peerRef.current) {
+        peerRef.current.close();
+      }
+      disconnect();
+      setCallActive(false);
+    };
+  }, []);
+
+  // Initialize Preview Stream
+  useEffect(() => {
+    const initStream = async () => {
+      if (!localStreamRef.current) {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: true,
+          });
+          localStreamRef.current = stream;
+
+          // Attach to preview if available
+          if (previewVideoRef.current) {
+            previewVideoRef.current.srcObject = stream;
+          }
+        } catch (e) {
+          console.error("Failed to get local stream", e);
+        }
+      } else {
+        // Re-attach if ref changed
+        if (previewVideoRef.current) {
+          previewVideoRef.current.srcObject = localStreamRef.current;
+        }
+      }
+    };
+
+    if (!isCallActive) {
+      initStream();
+    }
+  }, [isCallActive]);
+
+  // Attach stream to active call video when it becomes active
+  useEffect(() => {
+    if (isCallActive && localVideoRef.current && localStreamRef.current) {
+      localVideoRef.current.srcObject = localStreamRef.current;
+    }
+  }, [isCallActive]);
 
   useEffect(() => {
     // Handle incoming answer
@@ -59,11 +115,14 @@ export const FaceTime: React.FC = () => {
   }, [socket]);
 
   const startLocalStream = async () => {
+    if (localStreamRef.current) return localStreamRef.current;
+
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
         video: true,
         audio: true,
       });
+      localStreamRef.current = stream;
       if (localVideoRef.current) {
         localVideoRef.current.srcObject = stream;
       }
@@ -222,8 +281,8 @@ export const FaceTime: React.FC = () => {
                   peerRef.current = null;
                 }
                 // Stop local stream
-                if (localVideoRef.current && localVideoRef.current.srcObject) {
-                  (localVideoRef.current.srcObject as MediaStream)
+                if (localStreamRef.current) {
+                  localStreamRef.current
                     .getTracks()
                     .forEach((track) => track.stop());
                 }
@@ -266,16 +325,7 @@ export const FaceTime: React.FC = () => {
               <div className="mt-4 w-64 h-48 bg-black rounded-lg overflow-hidden mx-auto border border-gray-700">
                 {/* Preview Local Video */}
                 <video
-                  ref={(ref) => {
-                    if (ref && !localVideoRef.current) {
-                      navigator.mediaDevices
-                        .getUserMedia({ video: true })
-                        .then((stream) => {
-                          ref.srcObject = stream;
-                        })
-                        .catch((e) => console.log("Preview error", e));
-                    }
-                  }}
+                  ref={previewVideoRef}
                   autoPlay
                   playsInline
                   muted

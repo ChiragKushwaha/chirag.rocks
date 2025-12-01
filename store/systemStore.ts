@@ -50,6 +50,9 @@ interface SystemState {
 
   airdropEnabled: boolean;
   toggleAirdrop: () => void;
+
+  isNotificationCenterOpen: boolean;
+  toggleNotificationCenter: () => void;
 }
 
 export const useSystemStore = create<SystemState>()(
@@ -134,6 +137,12 @@ export const useSystemStore = create<SystemState>()(
       airdropEnabled: false,
       toggleAirdrop: () =>
         set((state) => ({ airdropEnabled: !state.airdropEnabled })),
+
+      isNotificationCenterOpen: false,
+      toggleNotificationCenter: () =>
+        set((state) => ({
+          isNotificationCenterOpen: !state.isNotificationCenterOpen,
+        })),
     }),
     {
       name: "macOS-system-storage", // unique name for localStorage
