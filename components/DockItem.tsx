@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import Image from "next/image";
 import { useSystemStore } from "../store/systemStore";
 import { useProcessStore } from "../store/processStore";
 import { Finder } from "../apps/Finder/Finder";
@@ -178,40 +179,13 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
           {name === "Calendar" ? (
             <CalendarIcon size={width} />
           ) : iconUrl ? (
-            <img
+            <Image
               src={iconUrl}
               alt={name}
-              className="w-full h-full scale-[1.28]"
-              onError={(e) => {
-                e.currentTarget.style.display = "none";
-                const fallbacks: Record<string, string> = {
-                  launchpad: "🚀",
-                  apps: "🚀",
-                  calendar: "📅",
-                  safari: "🧭",
-                  finder: "😊",
-                  mail: "✉️",
-                  messages: "💬",
-                  maps: "🗺️",
-                  photos: "📸",
-                  facetime: "📹",
-                  contacts: "📒",
-                  reminders: "✅",
-                  notes: "📝",
-                  music: "🎵",
-                  news: "📰",
-                  tv: "📺",
-                  app_store: "🅰️",
-                  settings: "⚙️",
-                  terminal: "💻",
-                  calculator: "🧮",
-                  freeform: "✏️",
-                  trash: "🗑️",
-                  trash_full: "🗑️",
-                };
-                e.currentTarget.parentElement!.innerHTML =
-                  fallbacks[icon] || icon;
-              }}
+              width={width}
+              height={width}
+              className="w-full h-full scale-[1.28] object-contain"
+              unoptimized
             />
           ) : (
             <span className="text-2xl">{icon}</span> // Temporary fallback while loading

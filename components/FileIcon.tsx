@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { useSystemStore } from "../store/systemStore";
 
 import { useIcon } from "./hooks/useIconManager";
@@ -152,13 +153,13 @@ export const FileIcon: React.FC<FileIconProps> = ({
       onDoubleClick={() => !isRenaming && console.log(`Opening ${name}...`)}
     >
       <div className="w-[64px] h-[64px] mb-1 filter drop-shadow-lg">
-        <img
+        <Image
           src={iconUrl}
           alt={name}
+          width={64}
+          height={64}
           className="w-full h-full object-contain drop-shadow-md"
-          onError={(e) => {
-            e.currentTarget.style.display = "none";
-          }}
+          unoptimized
         />
       </div>
 

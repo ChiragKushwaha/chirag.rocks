@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { Search, File, Folder } from "lucide-react";
 import { useSystemStore } from "../store/systemStore";
 import { useProcessStore } from "../store/processStore";
@@ -27,13 +28,13 @@ const SpotlightIcon: React.FC<{ icon: string; name: string }> = ({
 
   if (iconUrl) {
     return (
-      <img
+      <Image
         src={iconUrl}
         alt={name}
-        className="w-8 h-8 drop-shadow-sm"
-        onError={(e) => {
-          e.currentTarget.style.display = "none";
-        }}
+        width={32}
+        height={32}
+        className="w-8 h-8 drop-shadow-sm object-contain"
+        unoptimized
       />
     );
   }

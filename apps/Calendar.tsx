@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { ChevronLeft, ChevronRight, Plus, Search, MapPin } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Plus,
+  Search,
+  MapPin,
+  X,
+} from "lucide-react";
 
 type ViewMode = "day" | "week" | "month" | "year";
 
@@ -20,28 +27,83 @@ const CALENDARS = [
   { id: "holidays", name: "Holidays", color: "bg-red-500" },
 ];
 
+const RECURRING_EVENTS = [
+  {
+    id: "chirag-bday",
+    title: "Chirag Kushwaha's Birthday",
+    month: 2, // March
+    day: 30,
+    calendarId: "birthdays",
+    location: "Home",
+  },
+  {
+    id: "pratibha-bday",
+    title: "Pratibha Kushwaha's Birthday",
+    month: 5, // June
+    day: 6,
+    calendarId: "birthdays",
+    location: "Home",
+  },
+  {
+    id: "republic-day",
+    title: "Republic Day",
+    month: 0, // Jan
+    day: 26,
+    calendarId: "holidays",
+  },
+  {
+    id: "independence-day",
+    title: "Independence Day",
+    month: 7, // Aug
+    day: 15,
+    calendarId: "holidays",
+  },
+  {
+    id: "gandhi-jayanti",
+    title: "Gandhi Jayanti",
+    month: 9, // Oct
+    day: 2,
+    calendarId: "holidays",
+  },
+  {
+    id: "christmas",
+    title: "Christmas",
+    month: 11, // Dec
+    day: 25,
+    calendarId: "holidays",
+  },
+];
+
 export const Calendar: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [view, setView] = useState<ViewMode>("month");
-  const [events, setEvents] = useState<CalendarEvent[]>([
-    {
-      id: "1",
-      title: "Team Meeting",
-      start: new Date(new Date().setHours(10, 0, 0, 0)),
-      end: new Date(new Date().setHours(11, 0, 0, 0)),
-      calendarId: "work",
-      location: "Conference Room A",
-    },
-    {
-      id: "2",
-      title: "Lunch with Sarah",
-      start: new Date(new Date().setHours(12, 30, 0, 0)),
-      end: new Date(new Date().setHours(13, 30, 0, 0)),
-      calendarId: "home",
-      location: "Italian Bistro",
-    },
-  ]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+  const [selectedCalendar, setSelectedCalendar] = useState("home");
+
+  // Initialize with default events and holidays
+  const [events, setEvents] = useState<CalendarEvent[]>(() => {
+    const currentYear = new Date().getFullYear();
+    const defaults: CalendarEvent[] = [
+      // Indian Holidays (Variable dates - kept for current year approx)
+      {
+        id: "diwali",
+        title: "Diwali",
+        start: new Date(currentYear, 9, 20), // Approx
+        end: new Date(currentYear, 9, 20),
+        calendarId: "holidays",
+      },
+      {
+        id: "holi",
+        title: "Holi",
+        start: new Date(currentYear, 2, 14), // Approx
+        end: new Date(currentYear, 2, 14),
+        calendarId: "holidays",
+      },
+    ];
+    return defaults;
+  });
   const [showEventModal, setShowEventModal] = useState(false);
   const [newEventTitle, setNewEventTitle] = useState("");
 
@@ -80,7 +142,21 @@ export const Calendar: React.FC = () => {
   };
 
   const getEventsForDay = (date: Date) => {
-    return events.filter((e) => isSameDay(e.start, date));
+    const dayEvents = events.filter((e) => isSameDay(e.start, date));
+
+    // Add recurring events
+    const recurring = RECURRING_EVENTS.filter(
+      (re) => re.month === date.getMonth() && re.day === date.getDate()
+    ).map((re) => ({
+      id: `${re.id}-${date.getFullYear()}`,
+      title: re.title,
+      start: new Date(date.getFullYear(), re.month, re.day),
+      end: new Date(date.getFullYear(), re.month, re.day, 23, 59),
+      calendarId: re.calendarId,
+      location: re.location,
+    }));
+
+    return [...dayEvents, ...recurring];
   };
 
   const handleCreateEvent = () => {
@@ -90,7 +166,7 @@ export const Calendar: React.FC = () => {
       title: newEventTitle,
       start: selectedDate,
       end: new Date(selectedDate.getTime() + 60 * 60 * 1000), // 1 hour default
-      calendarId: "home",
+      calendarId: selectedCalendar,
     };
     setEvents([...events, newEvent]);
     setNewEventTitle("");
@@ -268,6 +344,110 @@ export const Calendar: React.FC = () => {
     );
   };
 
+  const renderYearView = () => {
+    const months = Array.from({ length: 12 }, (_, i) => i);
+    return (
+      <div className="grid grid-cols-4 gap-4 p-4 overflow-y-auto h-full">
+        {months.map((month) => {
+          const date = new Date(currentDate.getFullYear(), month, 1);
+          const days = daysInMonth(date);
+          const start = startDayOfMonth(date);
+
+          return (
+            <div
+              key={month}
+              className="bg-gray-50 dark:bg-white/5 rounded-lg p-2 border border-gray-200 dark:border-white/10 hover:bg-white dark:hover:bg-white/10 transition-colors cursor-pointer"
+              onClick={() => {
+                setCurrentDate(new Date(currentDate.getFullYear(), month, 1));
+                setView("month");
+              }}
+            >
+              <div className="text-red-500 font-semibold mb-2 text-sm">
+                {date.toLocaleString("default", { month: "long" })}
+              </div>
+              <div className="grid grid-cols-7 text-[10px] gap-y-1">
+                {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
+                  <div key={`${d}-${i}`} className="text-gray-400 text-center">
+                    {d}
+                  </div>
+                ))}
+                {Array.from({ length: start }).map((_, i) => (
+                  <div key={`empty-${i}`} />
+                ))}
+                {Array.from({ length: days }).map((_, i) => {
+                  const dayDate = new Date(
+                    currentDate.getFullYear(),
+                    month,
+                    i + 1
+                  );
+                  const isToday = isSameDay(dayDate, new Date());
+                  const hasEvents = getEventsForDay(dayDate).length > 0;
+                  return (
+                    <div
+                      key={i}
+                      className={`text-center relative ${
+                        isToday
+                          ? "text-red-500 font-bold"
+                          : "text-gray-700 dark:text-gray-300"
+                      }`}
+                    >
+                      {i + 1}
+                      {hasEvents && (
+                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0.5 h-0.5 bg-gray-400 rounded-full" />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+
+  const renderSearchResults = () => {
+    const filteredEvents = events.filter(
+      (e) =>
+        e.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        e.location?.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    return (
+      <div className="flex flex-col h-full overflow-y-auto p-4 space-y-2">
+        <h2 className="text-lg font-semibold mb-2 dark:text-white">
+          Search Results
+        </h2>
+        {filteredEvents.length === 0 ? (
+          <div className="text-gray-500 text-center mt-10">No events found</div>
+        ) : (
+          filteredEvents.map((event) => (
+            <div
+              key={event.id}
+              className="bg-white dark:bg-white/5 p-3 rounded-lg border border-gray-200 dark:border-white/10 flex items-center gap-3"
+            >
+              <div
+                className={`w-3 h-3 rounded-full ${
+                  CALENDARS.find((c) => c.id === event.calendarId)?.color
+                }`}
+              />
+              <div>
+                <div className="font-medium dark:text-white">{event.title}</div>
+                <div className="text-xs text-gray-500">
+                  {event.start.toLocaleDateString()} •{" "}
+                  {event.start.toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </div>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans">
       {/* Sidebar */}
@@ -412,9 +592,37 @@ export const Calendar: React.FC = () => {
               </button>
             </div>
             <div className="h-6 w-px bg-gray-300 dark:bg-gray-700 mx-1" />
-            <button className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors">
-              <Search size={18} />
-            </button>
+
+            {isSearching ? (
+              <div className="flex items-center bg-gray-100 dark:bg-gray-700 rounded-md px-2 py-1">
+                <Search size={14} className="text-gray-500 mr-2" />
+                <input
+                  type="text"
+                  autoFocus
+                  placeholder="Search events..."
+                  className="bg-transparent border-none outline-none text-sm w-32 dark:text-white"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <button
+                  onClick={() => {
+                    setIsSearching(false);
+                    setSearchQuery("");
+                  }}
+                  className="ml-1 text-gray-500 hover:text-gray-700"
+                >
+                  <X size={14} />
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => setIsSearching(true)}
+                className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
+              >
+                <Search size={18} />
+              </button>
+            )}
+
             <button
               onClick={() => setShowEventModal(true)}
               className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
@@ -426,94 +634,100 @@ export const Calendar: React.FC = () => {
 
         {/* View Content */}
         <div className="flex-1 overflow-hidden relative">
-          {view === "month" && (
-            <div className="flex flex-col h-full">
-              <div className="grid grid-cols-7 border-b border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-[#1e1e1e]">
-                {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
-                  (day) => (
-                    <div
-                      key={day}
-                      className="py-2 text-center text-xs font-semibold text-gray-500 dark:text-gray-400 border-r border-gray-200 dark:border-white/10 last:border-r-0"
-                    >
-                      {day}
-                    </div>
-                  )
-                )}
-              </div>
-              <div className="grid grid-cols-7 auto-rows-fr flex-1 overflow-y-auto">
-                {renderMonthView()}
-              </div>
-            </div>
-          )}
-
-          {view === "week" && renderWeekView()}
-
-          {view === "day" && (
-            <div className="flex flex-col h-full overflow-y-auto">
-              <div className="p-4 border-b border-gray-200 dark:border-white/10 sticky top-0 bg-white dark:bg-[#1e1e1e] z-10">
-                <div className="text-red-500 font-medium text-sm">
-                  {currentDate.toLocaleDateString("en-US", { weekday: "long" })}
-                </div>
-                <div className="text-3xl font-light">
-                  {currentDate.getDate()}
-                </div>
-              </div>
-              {/* Reuse week view logic but for single day */}
-              <div className="flex-1 relative" style={{ height: "1440px" }}>
-                <div className="absolute left-0 w-16 border-r border-gray-200 dark:border-white/10 h-full bg-gray-50/50 dark:bg-white/5">
-                  {Array.from({ length: 24 }).map((_, i) => (
-                    <div
-                      key={i}
-                      className="h-[60px] border-b border-transparent text-xs text-gray-400 text-right pr-2 pt-2"
-                    >
-                      {i === 0
-                        ? ""
-                        : `${i > 12 ? i - 12 : i} ${i >= 12 ? "PM" : "AM"}`}
-                    </div>
-                  ))}
-                </div>
-                <div className="ml-16 relative h-full">
-                  {Array.from({ length: 24 }).map((_, i) => (
-                    <div
-                      key={i}
-                      className="h-[60px] border-b border-gray-100 dark:border-white/5 w-full absolute top-0"
-                      style={{ top: `${i * 60}px` }}
-                    />
-                  ))}
-                  {getEventsForDay(currentDate).map((event) => {
-                    const startHour =
-                      event.start.getHours() + event.start.getMinutes() / 60;
-                    const duration =
-                      (event.end.getTime() - event.start.getTime()) /
-                      (1000 * 60 * 60);
-                    return (
-                      <div
-                        key={event.id}
-                        className={`absolute left-2 right-2 rounded px-3 py-2 text-sm text-white overflow-hidden ${
-                          CALENDARS.find((c) => c.id === event.calendarId)
-                            ?.color
-                        }`}
-                        style={{
-                          top: `${startHour * 60}px`,
-                          height: `${Math.max(30, duration * 60)}px`,
-                        }}
-                      >
-                        <div className="font-semibold">{event.title}</div>
-                        <div className="opacity-90 text-xs flex items-center gap-1 mt-0.5">
-                          <MapPin size={10} /> {event.location || "No location"}
+          {isSearching ? (
+            renderSearchResults()
+          ) : (
+            <>
+              {view === "month" && (
+                <div className="flex flex-col h-full">
+                  <div className="grid grid-cols-7 border-b border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-[#1e1e1e]">
+                    {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
+                      (day) => (
+                        <div
+                          key={day}
+                          className="py-2 text-center text-xs font-semibold text-gray-500 dark:text-gray-400 border-r border-gray-200 dark:border-white/10 last:border-r-0"
+                        >
+                          {day}
                         </div>
-                      </div>
-                    );
-                  })}
+                      )
+                    )}
+                  </div>
+                  <div className="grid grid-cols-7 auto-rows-fr flex-1 overflow-y-auto">
+                    {renderMonthView()}
+                  </div>
                 </div>
-              </div>
-            </div>
-          )}
+              )}
 
-          {view === "year" && (
-            <div className="flex items-center justify-center h-full text-gray-400">
-              Year view not implemented yet
-            </div>
+              {view === "week" && renderWeekView()}
+
+              {view === "day" && (
+                <div className="flex flex-col h-full overflow-y-auto">
+                  <div className="p-4 border-b border-gray-200 dark:border-white/10 sticky top-0 bg-white dark:bg-[#1e1e1e] z-10">
+                    <div className="text-red-500 font-medium text-sm">
+                      {currentDate.toLocaleDateString("en-US", {
+                        weekday: "long",
+                      })}
+                    </div>
+                    <div className="text-3xl font-light">
+                      {currentDate.getDate()}
+                    </div>
+                  </div>
+                  {/* Reuse week view logic but for single day */}
+                  <div className="flex-1 relative" style={{ height: "1440px" }}>
+                    <div className="absolute left-0 w-16 border-r border-gray-200 dark:border-white/10 h-full bg-gray-50/50 dark:bg-white/5">
+                      {Array.from({ length: 24 }).map((_, i) => (
+                        <div
+                          key={i}
+                          className="h-[60px] border-b border-transparent text-xs text-gray-400 text-right pr-2 pt-2"
+                        >
+                          {i === 0
+                            ? ""
+                            : `${i > 12 ? i - 12 : i} ${i >= 12 ? "PM" : "AM"}`}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="ml-16 relative h-full">
+                      {Array.from({ length: 24 }).map((_, i) => (
+                        <div
+                          key={i}
+                          className="h-[60px] border-b border-gray-100 dark:border-white/5 w-full absolute top-0"
+                          style={{ top: `${i * 60}px` }}
+                        />
+                      ))}
+                      {getEventsForDay(currentDate).map((event) => {
+                        const startHour =
+                          event.start.getHours() +
+                          event.start.getMinutes() / 60;
+                        const duration =
+                          (event.end.getTime() - event.start.getTime()) /
+                          (1000 * 60 * 60);
+                        return (
+                          <div
+                            key={event.id}
+                            className={`absolute left-2 right-2 rounded px-3 py-2 text-sm text-white overflow-hidden ${
+                              CALENDARS.find((c) => c.id === event.calendarId)
+                                ?.color
+                            }`}
+                            style={{
+                              top: `${startHour * 60}px`,
+                              height: `${Math.max(30, duration * 60)}px`,
+                            }}
+                          >
+                            <div className="font-semibold">{event.title}</div>
+                            <div className="opacity-90 text-xs flex items-center gap-1 mt-0.5">
+                              <MapPin size={10} />{" "}
+                              {event.location || "No location"}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {view === "year" && renderYearView()}
+            </>
           )}
         </div>
       </div>
@@ -532,6 +746,31 @@ export const Calendar: React.FC = () => {
               onChange={(e) => setNewEventTitle(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleCreateEvent()}
             />
+
+            <div className="mb-4">
+              <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">
+                Calendar
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {CALENDARS.map((cal) => (
+                  <button
+                    key={cal.id}
+                    onClick={() => setSelectedCalendar(cal.id)}
+                    className={`px-2 py-1 rounded text-xs border ${
+                      selectedCalendar === cal.id
+                        ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
+                        : "border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/5"
+                    }`}
+                  >
+                    <div
+                      className={`w-2 h-2 rounded-full ${cal.color} inline-block mr-1`}
+                    />
+                    {cal.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <div className="flex justify-end gap-2">
               <button
                 onClick={() => setShowEventModal(false)}

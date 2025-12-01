@@ -61,45 +61,9 @@ export const Calculator: React.FC = () => {
     setDisplay(String(parseFloat(display) / 100));
   };
 
-  const Button = ({
-    label,
-    onClick,
-    className = "",
-    orange = false,
-    wide = false,
-  }: {
-    label: string;
-    onClick: () => void;
-    className?: string;
-    orange?: boolean;
-    wide?: boolean;
-  }) => (
-    <button
-      onClick={onClick}
-      className={`
-        h-12 text-xl font-medium rounded-full m-1 transition-all active:brightness-125
-        ${wide ? "w-[6.5rem] text-left pl-6" : "w-12"}
-        ${orange ? "bg-orange-500 text-white" : "bg-gray-700 text-white"}
-        ${
-          !orange && !wide && label !== "AC" && label !== "+/-" && label !== "%"
-            ? "bg-gray-800"
-            : ""
-        }
-        ${
-          label === "AC" || label === "+/-" || label === "%"
-            ? "bg-gray-400 text-black"
-            : ""
-        }
-        ${className}
-      `}
-    >
-      {label}
-    </button>
-  );
-
   return (
     <div className="h-full w-full bg-black flex flex-col p-4 select-none">
-      <div className="flex-1 flex items-end justify-end text-white text-5xl font-light px-2 mb-2 break-all">
+      <div className="flex-1 flex items-end justify-end text-white text-6xl font-light mb-4 px-2 break-all">
         {display}
       </div>
       <div className="grid grid-cols-4 gap-1">
@@ -128,5 +92,34 @@ export const Calculator: React.FC = () => {
         <Button label="=" onClick={() => performOperation("=")} orange />
       </div>
     </div>
+  );
+};
+
+interface ButtonProps {
+  label: string;
+  onClick: () => void;
+  orange?: boolean;
+  wide?: boolean;
+}
+
+const Button: React.FC<ButtonProps> = ({
+  label,
+  onClick,
+  orange = false,
+  wide = false,
+}) => {
+  return (
+    <button
+      onClick={onClick}
+      className={`${
+        wide ? "col-span-2" : "col-span-1"
+      } h-16 rounded-full text-2xl font-medium transition-all active:scale-95 flex items-center justify-center ${
+        orange
+          ? "bg-orange-500 text-white hover:bg-orange-400"
+          : "bg-gray-700 text-white hover:bg-gray-600"
+      }`}
+    >
+      {label}
+    </button>
   );
 };

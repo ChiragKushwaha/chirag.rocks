@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Image from "next/image";
 import {
   Wifi,
   Bluetooth,
@@ -168,10 +169,12 @@ export const SystemSettings: React.FC = () => {
                         : "border-transparent hover:border-gray-300 dark:hover:border-gray-600"
                     }`}
                   >
-                    <img
+                    <Image
                       src={wp.url}
                       alt={wp.name}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
+                      unoptimized
                     />
                     <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-[10px] px-2 py-1 backdrop-blur-sm">
                       {wp.name}

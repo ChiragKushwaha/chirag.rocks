@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import Image from "next/image";
 import { Search } from "lucide-react";
 import { useProcessStore } from "../store/processStore";
 import { useIcon } from "../components/hooks/useIconManager";
@@ -87,14 +88,13 @@ const LaunchpadItem: React.FC<{
         {app.name === "Calendar" ? (
           <CalendarIcon size={96} />
         ) : iconUrl ? (
-          <img
+          <Image
             src={iconUrl}
             alt={app.name}
-            className="w-full h-full drop-shadow-xl"
-            onError={(e) => {
-              e.currentTarget.style.display = "none";
-              // Fallback handled by parent or just hide
-            }}
+            width={96}
+            height={96}
+            className="w-full h-full drop-shadow-xl object-contain"
+            unoptimized // Since we might be using blob URLs or local assets not optimized by Next.js image server
           />
         ) : (
           <div className="w-full h-full bg-gray-500/50 rounded-2xl animate-pulse" />

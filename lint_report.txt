@@ -1,0 +1,880 @@
+
+> mac@0.1.0 lint
+> eslint
+
+
+/Users/chirag/Desktop/mac/app/design-demo/page.tsx
+   10:3   warning  'MacOSContextMenu' is defined but never used                     @typescript-eslint/no-unused-vars
+   12:3   warning  'MacOSColors' is defined but never used                          @typescript-eslint/no-unused-vars
+   84:9   warning  'contextMenuItems' is assigned a value but never used            @typescript-eslint/no-unused-vars
+  312:40  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/chirag/Desktop/mac/apps/AboutMac.tsx
+  2:10  warning  'Monitor' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx
+  106:10  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:106:10
+  104 |       </div>
+  105 |       <div className="grid grid-cols-4 gap-1">
+> 106 |         <Button label="AC" onClick={clear} />
+      |          ^^^^^^ This component is created during render
+  107 |         <Button label="+/-" onClick={toggleSign} />
+  108 |         <Button label="%" onClick={inputPercent} />
+  109 |         <Button label="÷" onClick={() => performOperation("/")} orange />
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:64:18
+   62 |   };
+   63 |
+>  64 |   const Button = ({
+      |                  ^^
+>  65 |     label,
+      | ^^^^^^^^^^
+>  66 |     onClick,
+      …
+      | ^^^^^^^^^^
+>  97 |     </button>
+      | ^^^^^^^^^^
+>  98 |   );
+      | ^^^^ The component is created during render here
+   99 |
+  100 |   return (
+  101 |     <div className="h-full w-full bg-black flex flex-col p-4 select-none">                                                 react-hooks/static-components
+  107:10  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:107:10
+  105 |       <div className="grid grid-cols-4 gap-1">
+  106 |         <Button label="AC" onClick={clear} />
+> 107 |         <Button label="+/-" onClick={toggleSign} />
+      |          ^^^^^^ This component is created during render
+  108 |         <Button label="%" onClick={inputPercent} />
+  109 |         <Button label="÷" onClick={() => performOperation("/")} orange />
+  110 |
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:64:18
+   62 |   };
+   63 |
+>  64 |   const Button = ({
+      |                  ^^
+>  65 |     label,
+      | ^^^^^^^^^^
+>  66 |     onClick,
+      …
+      | ^^^^^^^^^^
+>  97 |     </button>
+      | ^^^^^^^^^^
+>  98 |   );
+      | ^^^^ The component is created during render here
+   99 |
+  100 |   return (
+  101 |     <div className="h-full w-full bg-black flex flex-col p-4 select-none">                                                              react-hooks/static-components
+  108:10  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:108:10
+  106 |         <Button label="AC" onClick={clear} />
+  107 |         <Button label="+/-" onClick={toggleSign} />
+> 108 |         <Button label="%" onClick={inputPercent} />
+      |          ^^^^^^ This component is created during render
+  109 |         <Button label="÷" onClick={() => performOperation("/")} orange />
+  110 |
+  111 |         <Button label="7" onClick={() => inputDigit("7")} />
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:64:18
+   62 |   };
+   63 |
+>  64 |   const Button = ({
+      |                  ^^
+>  65 |     label,
+      | ^^^^^^^^^^
+>  66 |     onClick,
+      …
+      | ^^^^^^^^^^
+>  97 |     </button>
+      | ^^^^^^^^^^
+>  98 |   );
+      | ^^^^ The component is created during render here
+   99 |
+  100 |   return (
+  101 |     <div className="h-full w-full bg-black flex flex-col p-4 select-none">                                                react-hooks/static-components
+  109:10  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:109:10
+  107 |         <Button label="+/-" onClick={toggleSign} />
+  108 |         <Button label="%" onClick={inputPercent} />
+> 109 |         <Button label="÷" onClick={() => performOperation("/")} orange />
+      |          ^^^^^^ This component is created during render
+  110 |
+  111 |         <Button label="7" onClick={() => inputDigit("7")} />
+  112 |         <Button label="8" onClick={() => inputDigit("8")} />
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:64:18
+   62 |   };
+   63 |
+>  64 |   const Button = ({
+      |                  ^^
+>  65 |     label,
+      | ^^^^^^^^^^
+>  66 |     onClick,
+      …
+      | ^^^^^^^^^^
+>  97 |     </button>
+      | ^^^^^^^^^^
+>  98 |   );
+      | ^^^^ The component is created during render here
+   99 |
+  100 |   return (
+  101 |     <div className="h-full w-full bg-black flex flex-col p-4 select-none">                                 react-hooks/static-components
+  111:10  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:111:10
+  109 |         <Button label="÷" onClick={() => performOperation("/")} orange />
+  110 |
+> 111 |         <Button label="7" onClick={() => inputDigit("7")} />
+      |          ^^^^^^ This component is created during render
+  112 |         <Button label="8" onClick={() => inputDigit("8")} />
+  113 |         <Button label="9" onClick={() => inputDigit("9")} />
+  114 |         <Button label="×" onClick={() => performOperation("*")} orange />
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:64:18
+   62 |   };
+   63 |
+>  64 |   const Button = ({
+      |                  ^^
+>  65 |     label,
+      | ^^^^^^^^^^
+>  66 |     onClick,
+      …
+      | ^^^^^^^^^^
+>  97 |     </button>
+      | ^^^^^^^^^^
+>  98 |   );
+      | ^^^^ The component is created during render here
+   99 |
+  100 |   return (
+  101 |     <div className="h-full w-full bg-black flex flex-col p-4 select-none">  react-hooks/static-components
+  112:10  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:112:10
+  110 |
+  111 |         <Button label="7" onClick={() => inputDigit("7")} />
+> 112 |         <Button label="8" onClick={() => inputDigit("8")} />
+      |          ^^^^^^ This component is created during render
+  113 |         <Button label="9" onClick={() => inputDigit("9")} />
+  114 |         <Button label="×" onClick={() => performOperation("*")} orange />
+  115 |
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:64:18
+   62 |   };
+   63 |
+>  64 |   const Button = ({
+      |                  ^^
+>  65 |     label,
+      | ^^^^^^^^^^
+>  66 |     onClick,
+      …
+      | ^^^^^^^^^^
+>  97 |     </button>
+      | ^^^^^^^^^^
+>  98 |   );
+      | ^^^^ The component is created during render here
+   99 |
+  100 |   return (
+  101 |     <div className="h-full w-full bg-black flex flex-col p-4 select-none">                                                                            react-hooks/static-components
+  113:10  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:113:10
+  111 |         <Button label="7" onClick={() => inputDigit("7")} />
+  112 |         <Button label="8" onClick={() => inputDigit("8")} />
+> 113 |         <Button label="9" onClick={() => inputDigit("9")} />
+      |          ^^^^^^ This component is created during render
+  114 |         <Button label="×" onClick={() => performOperation("*")} orange />
+  115 |
+  116 |         <Button label="4" onClick={() => inputDigit("4")} />
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:64:18
+   62 |   };
+   63 |
+>  64 |   const Button = ({
+      |                  ^^
+>  65 |     label,
+      | ^^^^^^^^^^
+>  66 |     onClick,
+      …
+      | ^^^^^^^^^^
+>  97 |     </button>
+      | ^^^^^^^^^^
+>  98 |   );
+      | ^^^^ The component is created during render here
+   99 |
+  100 |   return (
+  101 |     <div className="h-full w-full bg-black flex flex-col p-4 select-none">               react-hooks/static-components
+  114:10  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:114:10
+  112 |         <Button label="8" onClick={() => inputDigit("8")} />
+  113 |         <Button label="9" onClick={() => inputDigit("9")} />
+> 114 |         <Button label="×" onClick={() => performOperation("*")} orange />
+      |          ^^^^^^ This component is created during render
+  115 |
+  116 |         <Button label="4" onClick={() => inputDigit("4")} />
+  117 |         <Button label="5" onClick={() => inputDigit("5")} />
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:64:18
+   62 |   };
+   63 |
+>  64 |   const Button = ({
+      |                  ^^
+>  65 |     label,
+      | ^^^^^^^^^^
+>  66 |     onClick,
+      …
+      | ^^^^^^^^^^
+>  97 |     </button>
+      | ^^^^^^^^^^
+>  98 |   );
+      | ^^^^ The component is created during render here
+   99 |
+  100 |   return (
+  101 |     <div className="h-full w-full bg-black flex flex-col p-4 select-none">               react-hooks/static-components
+  116:10  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:116:10
+  114 |         <Button label="×" onClick={() => performOperation("*")} orange />
+  115 |
+> 116 |         <Button label="4" onClick={() => inputDigit("4")} />
+      |          ^^^^^^ This component is created during render
+  117 |         <Button label="5" onClick={() => inputDigit("5")} />
+  118 |         <Button label="6" onClick={() => inputDigit("6")} />
+  119 |         <Button label="-" onClick={() => performOperation("-")} orange />
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:64:18
+   62 |   };
+   63 |
+>  64 |   const Button = ({
+      |                  ^^
+>  65 |     label,
+      | ^^^^^^^^^^
+>  66 |     onClick,
+      …
+      | ^^^^^^^^^^
+>  97 |     </button>
+      | ^^^^^^^^^^
+>  98 |   );
+      | ^^^^ The component is created during render here
+   99 |
+  100 |   return (
+  101 |     <div className="h-full w-full bg-black flex flex-col p-4 select-none">  react-hooks/static-components
+  117:10  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:117:10
+  115 |
+  116 |         <Button label="4" onClick={() => inputDigit("4")} />
+> 117 |         <Button label="5" onClick={() => inputDigit("5")} />
+      |          ^^^^^^ This component is created during render
+  118 |         <Button label="6" onClick={() => inputDigit("6")} />
+  119 |         <Button label="-" onClick={() => performOperation("-")} orange />
+  120 |
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:64:18
+   62 |   };
+   63 |
+>  64 |   const Button = ({
+      |                  ^^
+>  65 |     label,
+      | ^^^^^^^^^^
+>  66 |     onClick,
+      …
+      | ^^^^^^^^^^
+>  97 |     </button>
+      | ^^^^^^^^^^
+>  98 |   );
+      | ^^^^ The component is created during render here
+   99 |
+  100 |   return (
+  101 |     <div className="h-full w-full bg-black flex flex-col p-4 select-none">                                                                            react-hooks/static-components
+  118:10  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:118:10
+  116 |         <Button label="4" onClick={() => inputDigit("4")} />
+  117 |         <Button label="5" onClick={() => inputDigit("5")} />
+> 118 |         <Button label="6" onClick={() => inputDigit("6")} />
+      |          ^^^^^^ This component is created during render
+  119 |         <Button label="-" onClick={() => performOperation("-")} orange />
+  120 |
+  121 |         <Button label="1" onClick={() => inputDigit("1")} />
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:64:18
+   62 |   };
+   63 |
+>  64 |   const Button = ({
+      |                  ^^
+>  65 |     label,
+      | ^^^^^^^^^^
+>  66 |     onClick,
+      …
+      | ^^^^^^^^^^
+>  97 |     </button>
+      | ^^^^^^^^^^
+>  98 |   );
+      | ^^^^ The component is created during render here
+   99 |
+  100 |   return (
+  101 |     <div className="h-full w-full bg-black flex flex-col p-4 select-none">               react-hooks/static-components
+  119:10  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:119:10
+  117 |         <Button label="5" onClick={() => inputDigit("5")} />
+  118 |         <Button label="6" onClick={() => inputDigit("6")} />
+> 119 |         <Button label="-" onClick={() => performOperation("-")} orange />
+      |          ^^^^^^ This component is created during render
+  120 |
+  121 |         <Button label="1" onClick={() => inputDigit("1")} />
+  122 |         <Button label="2" onClick={() => inputDigit("2")} />
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:64:18
+   62 |   };
+   63 |
+>  64 |   const Button = ({
+      |                  ^^
+>  65 |     label,
+      | ^^^^^^^^^^
+>  66 |     onClick,
+      …
+      | ^^^^^^^^^^
+>  97 |     </button>
+      | ^^^^^^^^^^
+>  98 |   );
+      | ^^^^ The component is created during render here
+   99 |
+  100 |   return (
+  101 |     <div className="h-full w-full bg-black flex flex-col p-4 select-none">               react-hooks/static-components
+  121:10  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:121:10
+  119 |         <Button label="-" onClick={() => performOperation("-")} orange />
+  120 |
+> 121 |         <Button label="1" onClick={() => inputDigit("1")} />
+      |          ^^^^^^ This component is created during render
+  122 |         <Button label="2" onClick={() => inputDigit("2")} />
+  123 |         <Button label="3" onClick={() => inputDigit("3")} />
+  124 |         <Button label="+" onClick={() => performOperation("+")} orange />
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:64:18
+   62 |   };
+   63 |
+>  64 |   const Button = ({
+      |                  ^^
+>  65 |     label,
+      | ^^^^^^^^^^
+>  66 |     onClick,
+      …
+      | ^^^^^^^^^^
+>  97 |     </button>
+      | ^^^^^^^^^^
+>  98 |   );
+      | ^^^^ The component is created during render here
+   99 |
+  100 |   return (
+  101 |     <div className="h-full w-full bg-black flex flex-col p-4 select-none">  react-hooks/static-components
+  122:10  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:122:10
+  120 |
+  121 |         <Button label="1" onClick={() => inputDigit("1")} />
+> 122 |         <Button label="2" onClick={() => inputDigit("2")} />
+      |          ^^^^^^ This component is created during render
+  123 |         <Button label="3" onClick={() => inputDigit("3")} />
+  124 |         <Button label="+" onClick={() => performOperation("+")} orange />
+  125 |
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:64:18
+   62 |   };
+   63 |
+>  64 |   const Button = ({
+      |                  ^^
+>  65 |     label,
+      | ^^^^^^^^^^
+>  66 |     onClick,
+      …
+      | ^^^^^^^^^^
+>  97 |     </button>
+      | ^^^^^^^^^^
+>  98 |   );
+      | ^^^^ The component is created during render here
+   99 |
+  100 |   return (
+  101 |     <div className="h-full w-full bg-black flex flex-col p-4 select-none">                                                                            react-hooks/static-components
+  123:10  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:123:10
+  121 |         <Button label="1" onClick={() => inputDigit("1")} />
+  122 |         <Button label="2" onClick={() => inputDigit("2")} />
+> 123 |         <Button label="3" onClick={() => inputDigit("3")} />
+      |          ^^^^^^ This component is created during render
+  124 |         <Button label="+" onClick={() => performOperation("+")} orange />
+  125 |
+  126 |         <Button label="0" onClick={() => inputDigit("0")} wide />
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:64:18
+   62 |   };
+   63 |
+>  64 |   const Button = ({
+      |                  ^^
+>  65 |     label,
+      | ^^^^^^^^^^
+>  66 |     onClick,
+      …
+      | ^^^^^^^^^^
+>  97 |     </button>
+      | ^^^^^^^^^^
+>  98 |   );
+      | ^^^^ The component is created during render here
+   99 |
+  100 |   return (
+  101 |     <div className="h-full w-full bg-black flex flex-col p-4 select-none">          react-hooks/static-components
+  124:10  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:124:10
+  122 |         <Button label="2" onClick={() => inputDigit("2")} />
+  123 |         <Button label="3" onClick={() => inputDigit("3")} />
+> 124 |         <Button label="+" onClick={() => performOperation("+")} orange />
+      |          ^^^^^^ This component is created during render
+  125 |
+  126 |         <Button label="0" onClick={() => inputDigit("0")} wide />
+  127 |         <Button label="." onClick={() => inputDigit(".")} />
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:64:18
+   62 |   };
+   63 |
+>  64 |   const Button = ({
+      |                  ^^
+>  65 |     label,
+      | ^^^^^^^^^^
+>  66 |     onClick,
+      …
+      | ^^^^^^^^^^
+>  97 |     </button>
+      | ^^^^^^^^^^
+>  98 |   );
+      | ^^^^ The component is created during render here
+   99 |
+  100 |   return (
+  101 |     <div className="h-full w-full bg-black flex flex-col p-4 select-none">          react-hooks/static-components
+  126:10  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:126:10
+  124 |         <Button label="+" onClick={() => performOperation("+")} orange />
+  125 |
+> 126 |         <Button label="0" onClick={() => inputDigit("0")} wide />
+      |          ^^^^^^ This component is created during render
+  127 |         <Button label="." onClick={() => inputDigit(".")} />
+  128 |         <Button label="=" onClick={() => performOperation("=")} orange />
+  129 |       </div>
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:64:18
+   62 |   };
+   63 |
+>  64 |   const Button = ({
+      |                  ^^
+>  65 |     label,
+      | ^^^^^^^^^^
+>  66 |     onClick,
+      …
+      | ^^^^^^^^^^
+>  97 |     </button>
+      | ^^^^^^^^^^
+>  98 |   );
+      | ^^^^ The component is created during render here
+   99 |
+  100 |   return (
+  101 |     <div className="h-full w-full bg-black flex flex-col p-4 select-none">                                             react-hooks/static-components
+  127:10  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:127:10
+  125 |
+  126 |         <Button label="0" onClick={() => inputDigit("0")} wide />
+> 127 |         <Button label="." onClick={() => inputDigit(".")} />
+      |          ^^^^^^ This component is created during render
+  128 |         <Button label="=" onClick={() => performOperation("=")} orange />
+  129 |       </div>
+  130 |     </div>
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:64:18
+   62 |   };
+   63 |
+>  64 |   const Button = ({
+      |                  ^^
+>  65 |     label,
+      | ^^^^^^^^^^
+>  66 |     onClick,
+      …
+      | ^^^^^^^^^^
+>  97 |     </button>
+      | ^^^^^^^^^^
+>  98 |   );
+      | ^^^^ The component is created during render here
+   99 |
+  100 |   return (
+  101 |     <div className="h-full w-full bg-black flex flex-col p-4 select-none">                                                                                                            react-hooks/static-components
+  128:10  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:128:10
+  126 |         <Button label="0" onClick={() => inputDigit("0")} wide />
+  127 |         <Button label="." onClick={() => inputDigit(".")} />
+> 128 |         <Button label="=" onClick={() => performOperation("=")} orange />
+      |          ^^^^^^ This component is created during render
+  129 |       </div>
+  130 |     </div>
+  131 |   );
+
+/Users/chirag/Desktop/mac/apps/Calculator.tsx:64:18
+   62 |   };
+   63 |
+>  64 |   const Button = ({
+      |                  ^^
+>  65 |     label,
+      | ^^^^^^^^^^
+>  66 |     onClick,
+      …
+      | ^^^^^^^^^^
+>  97 |     </button>
+      | ^^^^^^^^^^
+>  98 |   );
+      | ^^^^ The component is created during render here
+   99 |
+  100 |   return (
+  101 |     <div className="h-full w-full bg-black flex flex-col p-4 select-none">                                                                                                       react-hooks/static-components
+
+/Users/chirag/Desktop/mac/apps/FaceTime.tsx
+  19:10  warning  'loginName' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  19:21  warning  'setLoginName' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  34:15  error    Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
+  44:58  error    Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
+
+/Users/chirag/Desktop/mac/apps/Finder/Finder.tsx
+  35:10  warning  'selectedItem' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/chirag/Desktop/mac/apps/Freeform.tsx
+  1:27  warning  'useRef' is defined but never used  @typescript-eslint/no-unused-vars
+  6:3   warning  'Circle' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/chirag/Desktop/mac/apps/Launchpad.tsx
+  31:23  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                 @typescript-eslint/no-explicit-any
+  90:11  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/chirag/Desktop/mac/apps/MediaPlayer.tsx
+  18:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/chirag/Desktop/mac/apps/MediaPlayer.tsx:18:7
+  16 |   useEffect(() => {
+  17 |     if (assetUrl) {
+> 18 |       setUrl(assetUrl);
+     |       ^^^^^^ Avoid calling setState() directly within an effect
+  19 |     }
+  20 |   }, [assetUrl]);
+  21 |  react-hooks/set-state-in-effect
+
+/Users/chirag/Desktop/mac/apps/Messages.tsx
+  11:10  warning  'loginName' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  11:21  warning  'setLoginName' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/chirag/Desktop/mac/apps/Music.tsx
+  17:23  warning  'setCurrentSong' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/chirag/Desktop/mac/apps/News.tsx
+  104:50  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/chirag/Desktop/mac/apps/Notes.tsx
+  13:17  warning  'setNotes' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/chirag/Desktop/mac/apps/SetupAssistant.tsx
+   22:4  error    Unexpected any. Specify a different type                                                                             @typescript-eslint/no-explicit-any
+  253:6  warning  React Hook useEffect has a missing dependency: 'greetings.length'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/Users/chirag/Desktop/mac/apps/Spotlight.tsx
+   30:7   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        @next/next/no-img-element
+   55:27  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-explicit-any
+   76:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/chirag/Desktop/mac/apps/Spotlight.tsx:76:7
+  74 |   useEffect(() => {
+  75 |     if (isSpotlightOpen) {
+> 76 |       setQuery("");
+     |       ^^^^^^^^ Avoid calling setState() directly within an effect
+  77 |       setResults([]);
+  78 |       setTimeout(() => inputRef.current?.focus(), 50);
+  79 |     }  react-hooks/set-state-in-effect
+   85:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/chirag/Desktop/mac/apps/Spotlight.tsx:85:7
+  83 |   useEffect(() => {
+  84 |     if (!query.trim()) {
+> 85 |       setResults([]);
+     |       ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  86 |       return;
+  87 |     }
+  88 |                                                               react-hooks/set-state-in-effect
+   90:13  warning  'hits' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+  135:18  warning  'e' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+  202:36  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-explicit-any
+  205:22  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-explicit-any
+  207:22  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-explicit-any
+
+/Users/chirag/Desktop/mac/apps/SystemSettings.tsx
+   10:3   warning  'Volume2' is defined but never used                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+   13:3   warning  'ChevronRight' is defined but never used                                                                                                                                                                                                                                                 @typescript-eslint/no-unused-vars
+  171:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/chirag/Desktop/mac/apps/Trash.tsx
+  29:5  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/chirag/Desktop/mac/apps/Trash.tsx:29:5
+  27 |
+  28 |   useEffect(() => {
+> 29 |     loadFiles();
+     |     ^^^^^^^^^ Avoid calling setState() directly within an effect
+  30 |
+  31 |     const handleRefresh = () => loadFiles();
+  32 |     window.addEventListener("trash-updated", handleRefresh);  react-hooks/set-state-in-effect
+  34:6  warning  React Hook useEffect has a missing dependency: 'loadFiles'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       react-hooks/exhaustive-deps
+
+/Users/chirag/Desktop/mac/components/Desktop.tsx
+  125:6   warning  React Hook useEffect has a missing dependency: 'desktopPath'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  185:32  error    Unexpected any. Specify a different type                                                                        @typescript-eslint/no-explicit-any
+  271:6   warning  React Hook useEffect has a missing dependency: 'desktopPath'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/Users/chirag/Desktop/mac/components/DockItem.tsx
+   48:9   warning  'isActive' is assigned a value but never used                                                                                                                                                                                                                                            @typescript-eslint/no-unused-vars
+  110:11  warning  'activeApp' is assigned a value but never used                                                                                                                                                                                                                                           @typescript-eslint/no-unused-vars
+  110:22  warning  'setActiveApp' is assigned a value but never used                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+  114:9   warning  'distanceLimit' is assigned a value but never used                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+  115:9   warning  'maxScale' is assigned a value but never used                                                                                                                                                                                                                                            @typescript-eslint/no-unused-vars
+  181:13  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/chirag/Desktop/mac/components/FileIcon.tsx
+   24:3   warning  'isEmpty' is defined but never used                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+   26:25  warning  'setSelectedFile' is assigned a value but never used                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+  155:9   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/chirag/Desktop/mac/components/hooks/useIconManager.ts
+    5:7   warning  'ASSETS_ROOT' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  235:29  error    Unexpected any. Specify a different type          @typescript-eslint/no-explicit-any
+  245:41  error    Unexpected any. Specify a different type          @typescript-eslint/no-explicit-any
+
+/Users/chirag/Desktop/mac/components/ui/MacOSDatePicker.tsx
+   2:10  warning  'MacOSTypography' is defined but never used  @typescript-eslint/no-unused-vars
+  12:3   warning  'onChange' is defined but never used         @typescript-eslint/no-unused-vars
+
+/Users/chirag/Desktop/mac/components/ui/MacOSMenuBar.tsx
+  3:10  warning  'MacOSTypography' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/chirag/Desktop/mac/components/ui/MacOSSidebar.tsx
+  31:21  warning  'isTablet' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/chirag/Desktop/mac/components/window/WindowFrame.tsx
+  144:6  warning  React Hook useEffect has missing dependencies: 'resizeProcess' and 'updateWindowPosition'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+/Users/chirag/Desktop/mac/hooks/useBattery.ts
+   8:59  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-explicit-any
+   9:63  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-explicit-any
+  10:66  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-explicit-any
+  11:56  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-explicit-any
+  41:7   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/chirag/Desktop/mac/hooks/useBattery.ts:41:7
+  39 |
+  40 |     if (!nav.getBattery) {
+> 41 |       setState((s) => ({ ...s, supported: false, loading: false }));
+     |       ^^^^^^^^ Avoid calling setState() directly within an effect
+  42 |       return;
+  43 |     }
+  44 |  react-hooks/set-state-in-effect
+
+/Users/chirag/Desktop/mac/lib/FileSystem.ts
+   77:45  error    Unexpected any. Specify a different type                                                                             @typescript-eslint/no-explicit-any
+  101:45  error    Unexpected any. Specify a different type                                                                             @typescript-eslint/no-explicit-any
+  120:17  error    Unexpected any. Specify a different type                                                                             @typescript-eslint/no-explicit-any
+  161:7   error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+  166:11  error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+  186:14  warning  'e' is defined but never used                                                                                        @typescript-eslint/no-unused-vars
+  214:25  error    Unexpected any. Specify a different type                                                                             @typescript-eslint/no-explicit-any
+  215:29  error    Unexpected any. Specify a different type                                                                             @typescript-eslint/no-explicit-any
+  261:16  warning  'e' is defined but never used                                                                                        @typescript-eslint/no-unused-vars
+  265:18  warning  'e2' is defined but never used                                                                                       @typescript-eslint/no-unused-vars
+  271:28  error    Unexpected any. Specify a different type                                                                             @typescript-eslint/no-explicit-any
+  272:32  error    Unexpected any. Specify a different type                                                                             @typescript-eslint/no-explicit-any
+  314:5   error    Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+  320:44  error    Unexpected any. Specify a different type                                                                             @typescript-eslint/no-explicit-any
+
+/Users/chirag/Desktop/mac/public/lib/heic2any.min.js
+  1:1        warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:215      warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:284      warning  'r' is defined but never used                                          @typescript-eslint/no-unused-vars
+  1:310      warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:379      warning  'r' is defined but never used                                          @typescript-eslint/no-unused-vars
+  1:464      warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:882      warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:1061     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:1929     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:2064     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:2249     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:2400     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:2523     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:2569     warning  'r' is defined but never used                                          @typescript-eslint/no-unused-vars
+  1:2636     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:3429     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:3647     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:3853     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:4921     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:5012     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:5078     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:5267     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:5319     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:5554     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:5577     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:5949     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:6311     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:6476     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:6787     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:7041     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:7265     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:7713     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:7954     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:8191     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:8349     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:9084     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:9395     warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:10390    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:10770    warning  'r' is defined but never used                                          @typescript-eslint/no-unused-vars
+  1:11222    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:11362    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:14273    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:14702    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:14865    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:15360    error    Unexpected aliasing of 'this' to local variable                        @typescript-eslint/no-this-alias
+  1:15468    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:15807    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:15986    error    Unexpected aliasing of 'this' to local variable                        @typescript-eslint/no-this-alias
+  1:16588    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:16835    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:17707    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:18300    error    Unexpected aliasing of 'this' to local variable                        @typescript-eslint/no-this-alias
+  1:18336    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:18514    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:19597    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:19750    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:20159    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:20218    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:20960    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:21372    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:21764    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:21912    warning  'r' is defined but never used                                          @typescript-eslint/no-unused-vars
+  1:22030    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:22081    warning  'r' is defined but never used                                          @typescript-eslint/no-unused-vars
+  1:22098    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:22137    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:22654    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:22765    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:23254    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:24032    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:24692    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:24946    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:25240    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:1348543  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:1348633  warning  'r' is defined but never used                                          @typescript-eslint/no-unused-vars
+  1:1348972  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:1349180  warning  'r' is defined but never used                                          @typescript-eslint/no-unused-vars
+  1:1349284  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:1349440  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:1350158  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:1350343  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:1350438  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:1350482  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:1350522  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:1350614  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:1350954  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:1351081  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:1351183  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:1351749  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+/Users/chirag/Desktop/mac/server/server.ts
+  56:31  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  67:33  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  76:35  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  84:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/chirag/Desktop/mac/store/socketStore.ts
+  24:41  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  33:35  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 189 problems (61 errors, 128 warnings)
+
