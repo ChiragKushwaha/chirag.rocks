@@ -4,7 +4,9 @@ import { Calendar } from "../../apps/Calendar";
 import { Reminders } from "../../apps/Reminders";
 import { Notes } from "../../apps/Notes";
 import { useReminderStore } from "../../store/reminderStore";
-import { CloudSun, TrendingUp } from "lucide-react";
+import { TrendingUp } from "lucide-react";
+import { useWeather } from "../../hooks/useWeather";
+import { Weather } from "../../apps/Weather";
 
 interface WidgetProps {
   size: "small" | "medium" | "large";
@@ -15,6 +17,7 @@ interface WidgetProps {
 export const Widget: React.FC<WidgetProps> = ({ size, type, title }) => {
   const { launchProcess } = useProcessStore();
   const { reminders } = useReminderStore();
+  const { weather } = useWeather();
 
   const handleClick = () => {
     // Map widget type to app name
@@ -36,7 +39,8 @@ export const Widget: React.FC<WidgetProps> = ({ size, type, title }) => {
         break;
       // Weather and Stocks don't have full apps yet, maybe just open Safari or a placeholder
       case "weather":
-        appName = "Weather"; // Placeholder
+        appName = "Weather";
+        component = <Weather />;
         break;
       case "stocks":
         appName = "Stocks"; // Placeholder
@@ -77,15 +81,21 @@ export const Widget: React.FC<WidgetProps> = ({ size, type, title }) => {
           </div>
         );
       case "weather":
+        if (!weather) return <div className="p-4 text-white">Loading...</div>;
         return (
-          <div className="flex flex-col p-4 h-full bg-gradient-to-b from-[#1e3a8a] to-[#3b82f6] text-white">
-            <div className="text-sm font-medium">Cupertino</div>
-            <div className="text-4xl font-light mt-1">72°</div>
-            <div className="mt-auto flex items-center gap-2 text-xs">
-              <CloudSun size={16} />
-              <span>Partly Cloudy</span>
+          <div className="flex flex-col p-4 h-full bg-linear-to-b from-[#1e3a8a] to-[#3b82f6] text-white">
+            <div className="text-sm font-medium">{weather.location}</div>
+            <div className="text-4xl font-light mt-1">
+              {weather.current.temp}°
             </div>
-            <div className="text-xs mt-1">H:76° L:62°</div>
+            <div className="mt-auto flex items-center gap-2 text-xs">
+              <weather.current.icon size={16} />
+              <span>{weather.current.description}</span>
+            </div>
+            <div className="text-xs mt-1">
+              H:{Math.round(weather.daily.tempMax[0])}° L:
+              {Math.round(weather.daily.tempMin[0])}°
+            </div>
           </div>
         );
       case "stocks":

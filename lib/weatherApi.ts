@@ -199,3 +199,28 @@ export const fetchWeather = async (
     throw error;
   }
 };
+
+export const searchLocation = async (
+  query: string
+): Promise<{ name: string; lat: number; lon: number; country: string }[]> => {
+  try {
+    const res = await fetch(
+      `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(
+        query
+      )}&count=5&language=en&format=json`
+    );
+    const data = await res.json();
+
+    if (!data.results) return [];
+
+    return data.results.map((item: any) => ({
+      name: item.name,
+      lat: item.latitude,
+      lon: item.longitude,
+      country: item.country,
+    }));
+  } catch (error) {
+    console.error("Failed to search location:", error);
+    return [];
+  }
+};

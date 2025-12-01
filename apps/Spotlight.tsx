@@ -1,16 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
+import { File, Folder, Search } from "lucide-react";
 import Image from "next/image";
-import { Search, File, Folder } from "lucide-react";
-import { useSystemStore } from "../store/systemStore";
-import { useProcessStore } from "../store/processStore";
+import React, { useEffect, useRef, useState } from "react";
+import { useIcon } from "../components/hooks/useIconManager";
 import { fs } from "../lib/FileSystem";
 import { MacFileEntry } from "../lib/types";
+import { useProcessStore } from "../store/processStore";
+import { useSystemStore } from "../store/systemStore";
 import { Finder } from "./Finder/Finder";
-import { TextEdit } from "./TextEdit";
 import { APPS } from "./Launchpad";
 import { Safari } from "./Safari";
-import { useIcon } from "../components/hooks/useIconManager";
-import { CalendarIcon } from "../components/icons/CalendarIcon";
+import { TextEdit } from "./TextEdit";
 
 const SpotlightIcon: React.FC<{
   icon: string | React.ComponentType<any>;
@@ -21,7 +20,7 @@ const SpotlightIcon: React.FC<{
     return (
       <div className="w-8 h-8">
         <Icon
-          size={32}
+          size={24}
           className="w-full h-full object-contain drop-shadow-sm"
         />
       </div>

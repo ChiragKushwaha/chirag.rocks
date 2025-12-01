@@ -11,11 +11,87 @@ import {
   Sun,
 } from "lucide-react";
 import { useWeather } from "../hooks/useWeather";
-import { getWeatherInfo } from "../lib/weatherApi";
+import {
+  getWeatherInfo,
+  searchLocation,
+  fetchWeather,
+  WeatherData,
+} from "../lib/weatherApi";
+
+const POPULAR_LOCATIONS = [
+  { name: "New York", lat: 40.7128, lon: -74.006, country: "USA" },
+  { name: "London", lat: 51.5074, lon: -0.1278, country: "UK" },
+  { name: "Tokyo", lat: 35.6762, lon: 139.6503, country: "Japan" },
+  { name: "Paris", lat: 48.8566, lon: 2.3522, country: "France" },
+  { name: "Sydney", lat: -33.8688, lon: 151.2093, country: "Australia" },
+];
 
 export const Weather: React.FC = () => {
-  const { weather: data, loading } = useWeather();
+  const { weather: initialData, loading } = useWeather();
+  const [data, setData] = useState<WeatherData | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const [recentLocations, setRecentLocations] = useState<any[]>([]);
+
+  // Load recent locations from localStorage
+  React.useEffect(() => {
+    const saved = localStorage.getItem("weather_recent_locations");
+    if (saved) {
+      try {
+        setRecentLocations(JSON.parse(saved));
+      } catch (e) {
+        console.error("Failed to parse recent locations", e);
+      }
+    }
+  }, []);
+
+  const saveRecentLocation = (loc: any) => {
+    const newRecent = [
+      loc,
+      ...recentLocations.filter(
+        (r) => r.name !== loc.name || r.country !== loc.country
+      ),
+    ].slice(0, 5); // Keep last 5
+    setRecentLocations(newRecent);
+    localStorage.setItem("weather_recent_locations", JSON.stringify(newRecent));
+  };
+
+  React.useEffect(() => {
+    if (initialData) {
+      setData(initialData);
+    }
+  }, [initialData]);
+
+  const handleSearch = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    if (query.length > 2) {
+      setIsSearching(true);
+      const results = await searchLocation(query);
+      setSearchResults(results);
+      setIsSearching(false);
+    } else {
+      setSearchResults([]);
+    }
+  };
+
+  const selectLocation = async (loc: any) => {
+    setIsSearching(true);
+    try {
+      const newWeather = await fetchWeather(loc.lat, loc.lon, loc.name);
+      setData(newWeather);
+      setSearchQuery("");
+      setSearchResults([]);
+      setSidebarOpen(false);
+      saveRecentLocation(loc);
+    } catch (error) {
+      console.error("Failed to fetch weather for selected location", error);
+    } finally {
+      setIsSearching(false);
+    }
+  };
 
   if (loading || !data) {
     return (
@@ -36,32 +112,68 @@ export const Weather: React.FC = () => {
         <div className="p-4">
           <input
             type="text"
-            placeholder="Search city"
+            placeholder={isSearching ? "Searching..." : "Search city"}
+            value={searchQuery}
+            onChange={handleSearch}
             className="w-full bg-white/10 rounded-lg px-3 py-1.5 text-sm text-white placeholder-white/40 focus:outline-none focus:ring-1 focus:ring-white/20"
           />
         </div>
         <div className="flex-1 overflow-y-auto">
           {/* Mock Saved Locations */}
-          {[
-            { name: "New Delhi", time: "10:41", temp: "28°", active: true },
-            { name: "Mumbai", time: "10:41", temp: "30°", active: false },
-            { name: "Bengaluru", time: "10:41", temp: "24°", active: false },
-            { name: "New York", time: "00:11", temp: "12°", active: false },
-            { name: "London", time: "05:11", temp: "8°", active: false },
-          ].map((loc) => (
-            <div
-              key={loc.name}
-              className={`px-4 py-3 hover:bg-white/10 cursor-pointer flex justify-between items-center ${
-                loc.active ? "bg-white/10" : ""
-              }`}
-            >
-              <div>
-                <div className="font-medium text-sm">{loc.name}</div>
-                <div className="text-xs opacity-60">{loc.time}</div>
+          {searchQuery.length > 0 ? (
+            searchResults.length > 0 ? (
+              searchResults.map((result, i) => (
+                <div
+                  key={i}
+                  className="px-4 py-3 hover:bg-white/10 cursor-pointer flex flex-col border-b border-white/5"
+                  onClick={() => selectLocation(result)}
+                >
+                  <span className="font-medium text-sm">{result.name}</span>
+                  <span className="text-xs opacity-60">{result.country}</span>
+                </div>
+              ))
+            ) : (
+              <div className="p-4 text-xs opacity-50 text-center">
+                No results found
               </div>
-              <div className="text-lg font-medium">{loc.temp}</div>
-            </div>
-          ))}
+            )
+          ) : (
+            <>
+              {recentLocations.length > 0 && (
+                <div className="mb-4">
+                  <div className="px-4 py-2 text-xs font-semibold opacity-50 uppercase tracking-wider">
+                    Recent
+                  </div>
+                  {recentLocations.map((loc, i) => (
+                    <div
+                      key={i}
+                      className="px-4 py-2 hover:bg-white/10 cursor-pointer flex justify-between items-center"
+                      onClick={() => selectLocation(loc)}
+                    >
+                      <span className="font-medium text-sm">{loc.name}</span>
+                      <span className="text-xs opacity-60">{loc.country}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div>
+                <div className="px-4 py-2 text-xs font-semibold opacity-50 uppercase tracking-wider">
+                  Popular
+                </div>
+                {POPULAR_LOCATIONS.map((loc, i) => (
+                  <div
+                    key={i}
+                    className="px-4 py-2 hover:bg-white/10 cursor-pointer flex justify-between items-center"
+                    onClick={() => selectLocation(loc)}
+                  >
+                    <span className="font-medium text-sm">{loc.name}</span>
+                    <span className="text-xs opacity-60">{loc.country}</span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
 
