@@ -6,20 +6,16 @@ export const Dock: React.FC = () => {
   const [mouseX, setMouseX] = useState<number | null>(null);
 
   return (
-    <div className="fixed bottom-2 left-0 right-0 flex justify-center z-[9000]">
-      {/* The Dock Container 
-        - Height matches standard macOS Dock (~5rem)
-        - Backdrop Blur 20px (heavy frost)
-        - Border is extremely subtle white (10-20% opacity)
-        - Background is white/black with ~20-30% opacity
-      */}
+    <div className="fixed bottom-2 left-0 right-0 flex justify-center z-[9000] pointer-events-none">
       <div
         className="
-          flex items-end gap-3 px-3 pb-3 pt-2.5
-          bg-[rgba(245,245,245,0.3)] dark:bg-[rgba(30,30,30,0.3)]
-          backdrop-blur-[25px] saturate-150
-          border border-[rgba(255,255,255,0.15)] dark:border-[rgba(255,255,255,0.1)]
-          rounded-[22px] shadow-[0_15px_30px_rgba(0,0,0,0.2)]
+          dock pointer-events-auto
+          flex items-end gap-2 px-3 pb-3 pt-2.5
+          bg-white/30 dark:bg-[rgba(30,30,30,0.35)]
+          backdrop-blur-[50px] backdrop-saturate-[180%]
+          border border-white/20 dark:border-white/10
+          rounded-2xl shadow-[0_10px_40px_-5px_rgba(0,0,0,0.3)]
+          dark:shadow-[0_10px_40px_-5px_rgba(0,0,0,0.6)]
           transition-all ease-out duration-300
         "
         style={{ height: "auto", minHeight: "5rem" }}

@@ -154,22 +154,24 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
         width: process.isMaximized ? "100vw" : process.dimension.width,
         height: process.isMaximized
           ? "calc(100vh - 2rem)"
-          : process.dimension.height, // Account for Menubar height (2rem/8)
+          : process.dimension.height,
         zIndex: process.zIndex,
+        willChange: isDragging || isResizing ? "transform" : "auto",
       }}
       className={`
-        absolute top-0 left-0 rounded-xl shadow-2xl border border-white/20 overflow-hidden
-        flex flex-col bg-[#1e1e1e]/90 backdrop-blur-xl transition-shadow duration-200 pointer-events-auto
+        window absolute top-0 left-0 flex flex-col pointer-events-auto
+        transition-shadow duration-200
         ${
           process.isMaximized
-            ? "!transform-none !top-8 !left-0 !right-0 !bottom-0 !rounded-none !border-0"
-            : ""
+            ? "!transform-none !top-8 !left-0 !right-0 !bottom-0 !rounded-none border-0"
+            : "rounded-xl border border-black/10 dark:border-white/10"
         }
         ${
           process.isFocused
-            ? "shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
-            : "shadow-xl opacity-95 grayscale-[0.2]"
+            ? "shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.7)]"
+            : "shadow-[0_10px_30px_-5px_rgba(0,0,0,0.2)] dark:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.5)] opacity-95"
         }
+        bg-white/85 dark:bg-[#1e1e1e]/85 backdrop-blur-[50px] backdrop-saturate-150
       `}
     >
       {/* --- RESIZE HANDLES (Invisible but clickable) --- */}

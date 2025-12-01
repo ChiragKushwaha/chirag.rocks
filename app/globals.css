@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  /* System Colors - Light Mode */
+  /* Big Sur System Colors - Light Mode */
   --system-blue: #007aff;
   --system-red: #ff3b30;
   --system-green: #34c759;
@@ -11,62 +11,72 @@
   --system-pink: #ff2d55;
   --system-gray: #8e8e93;
 
-  /* Background Colors - Light Mode */
+  /* Background Colors - Light Mode (Big Sur) */
   --background: #ffffff;
-  --secondary-background: #f2f2f7;
-  --tertiary-background: #ffffff;
+  --secondary-background: #f5f5f7;
+  --tertiary-background: #fafafa;
+  --sidebar-background: rgba(246, 246, 246, 0.8);
 
   /* Label Colors - Light Mode */
   --label: #000000;
-  --secondary-label: #3c3c4399; /* 60% opacity */
-  --tertiary-label: #3c3c434d; /* 30% opacity */
-  --quaternary-label: #3c3c432e; /* 18% opacity */
+  --secondary-label: rgba(60, 60, 67, 0.6);
+  --tertiary-label: rgba(60, 60, 67, 0.3);
+  --quaternary-label: rgba(60, 60, 67, 0.18);
 
   /* Separator Colors - Light Mode */
-  --separator: #3c3c434a; /* 29% opacity */
+  --separator: rgba(60, 60, 67, 0.29);
   --opaque-separator: #c6c6c8;
 
   /* Fill Colors - Light Mode */
-  --fill: #78788033; /* 20% opacity */
-  --secondary-fill: #78788029; /* 16% opacity */
-  --tertiary-fill: #7878801f; /* 12% opacity */
-  --quaternary-fill: #78788014; /* 8% opacity */
+  --fill: rgba(120, 120, 128, 0.2);
+  --secondary-fill: rgba(120, 120, 128, 0.16);
+  --tertiary-fill: rgba(120, 120, 128, 0.12);
+  --quaternary-fill: rgba(120, 120, 128, 0.08);
+
+  /* Big Sur Window Colors */
+  --window-background: rgba(255, 255, 255, 0.85);
+  --window-border: rgba(0, 0, 0, 0.1);
 
   --foreground: #000000;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* System Colors - Dark Mode */
+    /* Big Sur System Colors - Dark Mode */
     --system-blue: #0a84ff;
     --system-red: #ff453a;
-    --system-green: #30d158;
+    --system-green: #32d74b;
     --system-orange: #ff9f0a;
     --system-yellow: #ffd60a;
     --system-purple: #bf5af2;
     --system-pink: #ff375f;
-    --system-gray: #8e8e93;
+    --system-gray: #98989d;
 
-    /* Background Colors - Dark Mode */
-    --background: #000000; /* Or #1C1C1E for grouped content */
-    --secondary-background: #1c1c1e;
-    --tertiary-background: #2c2c2e;
+    /* Background Colors - Dark Mode (Big Sur) */
+    --background: #1e1e1e;
+    --secondary-background: #2c2c2e;
+    --tertiary-background: #3a3a3c;
+    --sidebar-background: rgba(44, 44, 46, 0.8);
 
     /* Label Colors - Dark Mode */
     --label: #ffffff;
-    --secondary-label: #ebebf599; /* 60% opacity */
-    --tertiary-label: #ebebf54d; /* 30% opacity */
-    --quaternary-label: #ebebf52e; /* 18% opacity */
+    --secondary-label: rgba(235, 235, 245, 0.6);
+    --tertiary-label: rgba(235, 235, 245, 0.3);
+    --quaternary-label: rgba(235, 235, 245, 0.18);
 
     /* Separator Colors - Dark Mode */
-    --separator: #54545899; /* 60% opacity */
+    --separator: rgba(84, 84, 88, 0.6);
     --opaque-separator: #38383a;
 
     /* Fill Colors - Dark Mode */
-    --fill: #7878805c; /* 36% opacity */
-    --secondary-fill: #78788052; /* 32% opacity */
-    --tertiary-fill: #7878803d; /* 24% opacity */
-    --quaternary-fill: #7878802e; /* 18% opacity */
+    --fill: rgba(120, 120, 128, 0.36);
+    --secondary-fill: rgba(120, 120, 128, 0.32);
+    --tertiary-fill: rgba(120, 120, 128, 0.24);
+    --quaternary-fill: rgba(120, 120, 128, 0.18);
+
+    /* Big Sur Window Colors - Dark */
+    --window-background: rgba(30, 30, 30, 0.85);
+    --window-border: rgba(255, 255, 255, 0.1);
 
     --foreground: #ffffff;
   }
@@ -107,16 +117,29 @@
     "Courier New", monospace;
 }
 
+/* Performance Optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 
   /* Firefox Scrollbar */
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+/* Optimization: GPU acceleration for frequently animated elements */
+.window,
+.dock,
+.menu-bar,
+.sticky-note {
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* Custom Scrollbar */

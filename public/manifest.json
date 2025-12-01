@@ -1,0 +1,35 @@
+{
+  "name": "macOS Big Sur Clone",
+  "short_name": "macOS",
+  "description": "A pixel-perfect macOS Big Sur clone running in the browser",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1e1e1e",
+  "theme_color": "#007aff",
+  "orientation": "any",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/apple-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "categories": ["productivity", "utilities"],
+  "prefer_related_applications": false
+}
