@@ -70,6 +70,32 @@ export const useIconManager = () => {
           }
         }
 
+        // 2.5 Initialize Wallpaper
+        const WALLPAPER_DIR = "/System/Library/Desktop Pictures";
+        const WALLPAPER_NAME = "macos-big-sur.jpg";
+        const hasWallpaper = await fs.exists(
+          `${WALLPAPER_DIR}/${WALLPAPER_NAME}`
+        );
+
+        if (!hasWallpaper) {
+          console.log("[AssetManager] Initializing wallpaper in OPFS...");
+          try {
+            const res = await fetch(`/${WALLPAPER_NAME}`);
+            if (res.ok) {
+              const blob = await res.blob();
+              await fs.mkdir(WALLPAPER_DIR); // Ensure dir exists
+              await fs.writeBlob(WALLPAPER_DIR, WALLPAPER_NAME, blob);
+              console.log("[AssetManager] Wallpaper cached to OPFS");
+            } else {
+              console.error(
+                "[AssetManager] Failed to fetch wallpaper from public"
+              );
+            }
+          } catch (e) {
+            console.error("[AssetManager] Failed to cache wallpaper", e);
+          }
+        }
+
         // 2. Initialize System Assets (Recursive structure)
         // Check for a known asset
         const hasAssets = await fs.exists("/System/Library/Fonts/SFNS.ttf");
@@ -198,6 +224,11 @@ export const useAsset = (path: string) => {
       if (!active) return;
 
       if (blob) {
+        // Create a memory-backed blob to avoid ERR_UPLOAD_FILE_CHANGED
+        // This ensures the blob URL remains valid even if the underlying OPFS file is modified
+        const arrayBuffer = await blob.arrayBuffer();
+        const memoryBlob = new Blob([arrayBuffer], { type: blob.type });
+
         if (filename?.toLowerCase().endsWith(".heic")) {
           try {
             // Load heic2any from public/lib if not already loaded
@@ -213,7 +244,7 @@ export const useAsset = (path: string) => {
 
             const heic2any = (window as any).heic2any;
             const convertedBlob = await heic2any({
-              blob,
+              blob: memoryBlob,
               toType: "image/jpeg",
               quality: 0.9,
             });
@@ -227,11 +258,11 @@ export const useAsset = (path: string) => {
           } catch (e) {
             console.error("[AssetManager] Failed to convert HEIC", e);
             // Fallback to original blob
-            objectUrl = URL.createObjectURL(blob);
+            objectUrl = URL.createObjectURL(memoryBlob);
             setUrl(objectUrl);
           }
         } else {
-          objectUrl = URL.createObjectURL(blob);
+          objectUrl = URL.createObjectURL(memoryBlob);
           setUrl(objectUrl);
         }
       } else {

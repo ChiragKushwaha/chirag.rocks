@@ -56,7 +56,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   ];
 
   return (
-    <div className="w-48 flex-shrink-0 bg-[#F2F2F7]/50 dark:bg-[#282828]/50 backdrop-blur-xl border-r border-[#D1D1D6] dark:border-black/50 text-[13px] pt-3 pb-4 overflow-y-auto select-none">
+    <div className="w-full h-full flex flex-col bg-transparent text-[13px] overflow-y-auto select-none">
       {menuItems.map((section, idx) => (
         <div key={idx} className="mb-4 px-2">
           <h3 className="text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-1 px-3 opacity-80">

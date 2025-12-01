@@ -31,10 +31,20 @@ export const Desktop: React.FC = () => {
     setSelectedFile,
     user,
     setTrashCount,
+    brightness,
+    setWallpaper,
   } = useSystemStore();
   const { openContextMenu } = useMenuStore();
   const { launchProcess } = useProcessStore();
   const [files, setFiles] = useState<MacFileEntry[]>([]);
+
+  // Force update wallpaper if it's the old default
+  useEffect(() => {
+    const NEW_WALLPAPER = "/System/Library/Desktop Pictures/macos-big-sur.jpg";
+    if (wallpaper !== NEW_WALLPAPER && wallpaper.startsWith("http")) {
+      setWallpaper(NEW_WALLPAPER);
+    }
+  }, [wallpaper, setWallpaper]);
 
   const userName = user?.name || "Guest";
   const userHome = `/Users/${userName}`;
@@ -290,11 +300,33 @@ export const Desktop: React.FC = () => {
     e.preventDefault();
     openContextMenu(e.clientX, e.clientY, [
       { label: "New Folder", action: createFolder },
+      { separator: true },
       { label: "Get Info", disabled: true },
       { label: "Change Wallpaper...", action: () => alert("Wallpaper Picker") },
       { separator: true },
-      { label: "Sort By", submenu: [] },
-      { label: "Clean Up" },
+      { label: "Use Stacks", disabled: true },
+      {
+        label: "Sort By",
+        submenu: [
+          { label: "Name" },
+          { label: "Kind" },
+          { label: "Date Added" },
+          { label: "Date Modified" },
+          { label: "Date Created" },
+          { label: "Tags" },
+        ],
+      },
+      { label: "Clean Up", disabled: true },
+      {
+        label: "Clean Up By",
+        disabled: true,
+        submenu: [
+          { label: "Name" },
+          { label: "Kind" },
+          { label: "Date Modified" },
+        ],
+      },
+      { label: "Show View Options", disabled: true },
     ]);
   };
 
@@ -313,6 +345,7 @@ export const Desktop: React.FC = () => {
         className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out z-0"
         style={{
           backgroundImage: `url(${wallpaperUrl || wallpaper})`,
+          filter: `brightness(${brightness}%)`,
         }}
       />
 

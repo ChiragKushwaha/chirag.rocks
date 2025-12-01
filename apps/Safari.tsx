@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSystemStore } from "../store/systemStore";
 import {
   ArrowLeft,
   ArrowRight,
@@ -7,6 +8,7 @@ import {
   Share,
   Plus,
   X,
+  WifiOff,
 } from "lucide-react";
 
 interface SafariProps {
@@ -65,6 +67,26 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
       setUrlInput(newTabs[newTabs.length - 1].url);
     }
   };
+
+  // ... (inside component)
+  const { wifiEnabled } = useSystemStore();
+
+  if (!wifiEnabled) {
+    return (
+      <div className="flex flex-col h-full bg-[#f5f5f7] dark:bg-[#1e1e1e] text-gray-500 dark:text-gray-400 items-center justify-center font-sans">
+        <div className="flex flex-col items-center gap-4">
+          <WifiOff size={48} className="text-gray-400" />
+          <h2 className="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            You are not connected to the Internet
+          </h2>
+          <p className="max-w-md text-center">
+            This page can&apos;t be displayed because your computer is currently
+            offline.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans">

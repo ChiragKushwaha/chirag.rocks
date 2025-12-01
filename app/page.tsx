@@ -46,6 +46,25 @@ function App() {
             await fs.mkdir(`${userHome}/Downloads`);
           }
         }
+
+        // Ensure Welcome.txt exists (Only once)
+        const currentUserName = user.name || "Guest";
+        const { hasCreatedWelcomeFile, setHasCreatedWelcomeFile } =
+          useSystemStore.getState();
+
+        if (!hasCreatedWelcomeFile) {
+          const welcomePath = `/Users/${currentUserName}/Desktop/Welcome.txt`;
+          const hasWelcome = await fs.exists(welcomePath);
+
+          if (!hasWelcome) {
+            await fs.writeFile(
+              `/Users/${currentUserName}/Desktop`,
+              "Welcome.txt",
+              `Hello ${currentUserName}! Welcome to your new Mac.`
+            );
+          }
+          setHasCreatedWelcomeFile(true);
+        }
       }
     };
     initOS();
@@ -56,7 +75,7 @@ function App() {
     } else {
       document.documentElement.classList.remove("dark");
     }
-  }, [theme]);
+  }, [theme, user.name]);
 
   // 2. Render Strategy
   return (

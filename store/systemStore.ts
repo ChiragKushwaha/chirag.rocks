@@ -32,6 +32,24 @@ interface SystemState {
 
   trashCount: number;
   setTrashCount: (count: number) => void;
+
+  hasCreatedWelcomeFile: boolean;
+  setHasCreatedWelcomeFile: (status: boolean) => void;
+
+  wifiEnabled: boolean;
+  toggleWifi: () => void;
+
+  brightness: number;
+  setBrightness: (value: number) => void;
+
+  volume: number;
+  setVolume: (value: number) => void;
+
+  bluetoothEnabled: boolean;
+  toggleBluetooth: () => void;
+
+  airdropEnabled: boolean;
+  toggleAirdrop: () => void;
 }
 
 export const useSystemStore = create<SystemState>()(
@@ -40,8 +58,8 @@ export const useSystemStore = create<SystemState>()(
       isBooting: true,
       isSetupComplete: false,
       theme: "light",
-      wallpaper:
-        "https://images.unsplash.com/photo-1605142859619-db2aeff7bc86?q=80&w=3840&auto=format&fit=crop", // macOS Big Sur Abstract
+      // wallpaper: "https://4kwallpapers.com/images/wallpapers/macos-big-sur-apple-layers-fluidic-colorful-wwdc-stock-2560x1440-1455.jpg",
+      wallpaper: "/System/Library/Desktop Pictures/macos-big-sur.jpg", // macOS Big Sur Abstract
       activeApp: "Finder",
       selectedFile: null,
 
@@ -95,6 +113,27 @@ export const useSystemStore = create<SystemState>()(
 
       trashCount: 0,
       setTrashCount: (count) => set({ trashCount: count }),
+
+      hasCreatedWelcomeFile: false,
+      setHasCreatedWelcomeFile: (status) =>
+        set({ hasCreatedWelcomeFile: status }),
+
+      wifiEnabled: true,
+      toggleWifi: () => set((state) => ({ wifiEnabled: !state.wifiEnabled })),
+
+      brightness: 100,
+      setBrightness: (value) => set({ brightness: value }),
+
+      volume: 50,
+      setVolume: (value) => set({ volume: value }),
+
+      bluetoothEnabled: true,
+      toggleBluetooth: () =>
+        set((state) => ({ bluetoothEnabled: !state.bluetoothEnabled })),
+
+      airdropEnabled: false,
+      toggleAirdrop: () =>
+        set((state) => ({ airdropEnabled: !state.airdropEnabled })),
     }),
     {
       name: "macOS-system-storage", // unique name for localStorage
@@ -104,6 +143,11 @@ export const useSystemStore = create<SystemState>()(
         theme: state.theme,
         user: state.user,
         wallpaper: state.wallpaper, // Persist wallpaper
+        hasCreatedWelcomeFile: state.hasCreatedWelcomeFile,
+        brightness: state.brightness,
+        volume: state.volume,
+        wifiEnabled: state.wifiEnabled,
+        bluetoothEnabled: state.bluetoothEnabled,
       }),
     }
   )

@@ -1,13 +1,15 @@
 import { create } from "zustand";
 
 export interface MenuItem {
-  label?: string;
+  label?: string | React.ReactNode;
   action?: () => void;
   shortcut?: string;
   separator?: boolean;
   disabled?: boolean;
   danger?: boolean;
   submenu?: MenuItem[];
+  icon?: string | React.ReactNode;
+  stayOpenOnAction?: boolean;
 }
 
 interface MenuState {
