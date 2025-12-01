@@ -12,6 +12,11 @@ interface IncomingCall {
   signal: any;
 }
 
+interface Message {
+  text: string;
+  isMe: boolean;
+}
+
 interface SocketState {
   socket: Socket | null;
   users: User[];
@@ -19,11 +24,13 @@ interface SocketState {
   isConnected: boolean;
   incomingCall: IncomingCall | null;
   isCallActive: boolean;
+  messages: Record<string, Message[]>;
 
   connect: (userName: string) => void;
   disconnect: () => void;
   setIncomingCall: (call: IncomingCall | null) => void;
   setCallActive: (active: boolean) => void;
+  sendMessage: (to: string, text: string) => void;
 }
 
 const SOCKET_URL = "https://mac-os-socket-server.onrender.com";
@@ -35,6 +42,7 @@ export const useSocketStore = create<SocketState>((set, get) => ({
   isConnected: false,
   incomingCall: null,
   isCallActive: false,
+  messages: {},
 
   connect: (userName: string) => {
     const currentSocket = get().socket;
@@ -68,6 +76,18 @@ export const useSocketStore = create<SocketState>((set, get) => ({
       }
     );
 
+    socket.on("receive-message", (data: { from: string; text: string }) => {
+      set((state) => {
+        const existing = state.messages[data.from] || [];
+        return {
+          messages: {
+            ...state.messages,
+            [data.from]: [...existing, { text: data.text, isMe: false }],
+          },
+        };
+      });
+    });
+
     set({ socket });
   },
 
@@ -75,10 +95,32 @@ export const useSocketStore = create<SocketState>((set, get) => ({
     const { socket } = get();
     if (socket) {
       socket.disconnect();
-      set({ socket: null, isConnected: false, users: [], me: null });
+      set({
+        socket: null,
+        isConnected: false,
+        users: [],
+        me: null,
+        messages: {},
+      });
     }
   },
 
   setIncomingCall: (call) => set({ incomingCall: call }),
   setCallActive: (active) => set({ isCallActive: active }),
+
+  sendMessage: (to: string, text: string) => {
+    const { socket } = get();
+    if (socket) {
+      socket.emit("send-message", { to, text });
+      set((state) => {
+        const existing = state.messages[to] || [];
+        return {
+          messages: {
+            ...state.messages,
+            [to]: [...existing, { text, isMe: true }],
+          },
+        };
+      });
+    }
+  },
 }));

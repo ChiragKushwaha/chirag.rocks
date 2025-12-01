@@ -104,11 +104,7 @@ export const Trash: React.FC = () => {
             }}
           >
             <div className="w-16 h-16 mb-1">
-              <FileIcon
-                name={file.name}
-                kind={file.kind}
-                isEmpty={file.isEmpty}
-              />
+              <FileIcon name={file.name} kind={file.kind} />
             </div>
             <span className="text-xs text-center text-gray-600 group-hover:bg-blue-100 px-1 rounded">
               {file.name}

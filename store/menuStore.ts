@@ -3,7 +3,7 @@ import { create } from "zustand";
 export interface MenuItem {
   label?: string | React.ReactNode;
   action?: () => void;
-  shortcut?: string;
+  shortcut?: string | React.ReactNode;
   separator?: boolean;
   disabled?: boolean;
   danger?: boolean;

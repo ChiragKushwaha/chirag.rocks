@@ -164,11 +164,7 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
                       onDoubleClick={() => handleDoubleClick(file)}
                     >
                       <div className="scale-75 origin-top">
-                        <FileIcon
-                          name={file.name}
-                          kind={file.kind}
-                          isEmpty={false}
-                        />
+                        <FileIcon name={file.name} kind={file.kind} />
                       </div>
                     </div>
                   )

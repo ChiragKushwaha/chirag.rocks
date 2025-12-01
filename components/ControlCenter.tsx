@@ -20,7 +20,7 @@ import {
 interface ControlCenterProps {
   isOpen: boolean;
   onClose: () => void;
-  toggleRef: React.RefObject<HTMLElement>;
+  toggleRef: React.RefObject<HTMLElement | null>;
 }
 
 export const ControlCenter: React.FC<ControlCenterProps> = ({
