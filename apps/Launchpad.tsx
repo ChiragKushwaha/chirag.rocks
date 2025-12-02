@@ -1,8 +1,8 @@
 import React, {
   useState,
-  useMemo,
-  useEffect,
   useRef,
+  useEffect,
+  useMemo,
   useCallback,
 } from "react";
 import { Search } from "lucide-react";
@@ -47,16 +47,20 @@ import { BooksIcon } from "../components/icons/BooksIcon";
 import { PlaceholderApp } from "./PlaceholderApp";
 import { VSCode } from "./VSCode";
 import { LeetCode } from "./LeetCode";
+import { SocialApp } from "./SocialApp";
+import { ExternalLinkDialog } from "../components/ExternalLinkDialog";
 
 export interface AppDef {
   id: string;
   name: string;
   icon: React.ComponentType<{
     className?: string;
+    containerClassName?: string;
     imageClassName?: string;
     size?: number;
   }>;
   component: React.ComponentType;
+  url?: string;
 }
 
 export const APPS: AppDef[] = [
@@ -411,7 +415,6 @@ export const APPS: AppDef[] = [
     icon: StocksIcon,
     component: Stocks,
   },
-
   {
     id: "vscode",
     name: "VS Code",
@@ -430,9 +433,9 @@ export const APPS: AppDef[] = [
   {
     id: "leetcode",
     name: "LeetCode",
-    icon: ({ className }) => (
+    icon: ({ className, containerClassName = "scale-[0.85]" }) => (
       <div
-        className={`${className} relative flex items-center justify-center bg-[#282828] rounded-[22%] overflow-hidden`}
+        className={`${className} ${containerClassName} relative flex items-center justify-center bg-[#282828] rounded-[22%] overflow-hidden`}
       >
         <svg
           viewBox="0 0 32 32"
@@ -444,6 +447,131 @@ export const APPS: AppDef[] = [
       </div>
     ),
     component: LeetCode,
+    url: "https://leetcode.com/u/ChiragKushwaha/",
+  },
+  {
+    id: "x",
+    name: "X",
+    icon: ({ className, containerClassName = "p-6 scale-[0.85]" }) => (
+      <div
+        className={`${className} ${containerClassName} flex items-center justify-center bg-black rounded-[22%] overflow-hidden`}
+      >
+        <div className="relative w-full h-full invert">
+          <Image
+            src="/icons/twitter-x.png"
+            alt="X"
+            fill
+            className="object-cover"
+          />
+        </div>
+      </div>
+    ),
+    component: PlaceholderApp,
+    url: "https://x.com/ChiragKushwaha_",
+  },
+  {
+    id: "github",
+    name: "GitHub",
+    icon: ({ className, containerClassName = "scale-[0.85]" }) => (
+      <div
+        className={`${className} ${containerClassName} relative flex items-center justify-center bg-white rounded-[22%] overflow-hidden`}
+      >
+        <Image
+          src="/icons/github-v2.png"
+          alt="GitHub"
+          fill
+          className="object-cover"
+        />
+      </div>
+    ),
+    component: PlaceholderApp,
+    url: "https://github.com/ChiragKushwaha",
+  },
+  {
+    id: "linkedin",
+    name: "LinkedIn",
+    icon: ({ className, containerClassName = "scale-[0.85]" }) => (
+      <div
+        className={`${className} ${containerClassName} relative flex items-center justify-center bg-[#0077B5] rounded-[22%] overflow-hidden`}
+      >
+        <Image
+          src="/icons/linkedin.png"
+          alt="LinkedIn"
+          fill
+          className="object-cover"
+        />
+      </div>
+    ),
+    component: PlaceholderApp,
+    url: "https://www.linkedin.com/in/chirag-kushwaha/",
+  },
+  {
+    id: "instagram",
+    name: "Instagram",
+    icon: ({ className, containerClassName = "scale-[0.85]" }) => (
+      <div
+        className={`${className} ${containerClassName} relative flex items-center justify-center bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] rounded-[22%] overflow-hidden`}
+      >
+        <Image
+          src="/icons/instagram.png"
+          alt="Instagram"
+          fill
+          className="object-cover"
+        />
+      </div>
+    ),
+    component: () => <SocialApp title="Instagram" />,
+  },
+  {
+    id: "facebook",
+    name: "Facebook",
+    icon: ({ className, containerClassName = "scale-[0.85]" }) => (
+      <div
+        className={`${className} ${containerClassName} relative flex items-center justify-center bg-[#1877F2] rounded-[22%] overflow-hidden`}
+      >
+        <Image
+          src="/icons/facebook.png"
+          alt="Facebook"
+          fill
+          className="object-cover"
+        />
+      </div>
+    ),
+    component: () => <SocialApp title="Facebook" />,
+  },
+  {
+    id: "tiktok",
+    name: "TikTok",
+    icon: ({ className, containerClassName = "scale-[0.85]" }) => (
+      <div
+        className={`${className} ${containerClassName} relative flex items-center justify-center bg-black rounded-[22%] overflow-hidden`}
+      >
+        <Image
+          src="/icons/tiktok-v4.png"
+          alt="TikTok"
+          fill
+          className="object-cover"
+        />
+      </div>
+    ),
+    component: () => <SocialApp title="TikTok" />,
+  },
+  {
+    id: "snapchat",
+    name: "Snapchat",
+    icon: ({ className, containerClassName = "scale-[0.85]" }) => (
+      <div
+        className={`${className} ${containerClassName} relative flex items-center justify-center bg-[#FFFC00] rounded-[22%] overflow-hidden`}
+      >
+        <Image
+          src="/icons/snapchat-v2.png"
+          alt="Snapchat"
+          fill
+          className="object-cover"
+        />
+      </div>
+    ),
+    component: () => <SocialApp title="Snapchat" />,
   },
 ];
 
@@ -477,11 +605,15 @@ const LaunchpadItem: React.FC<{
 export const Launchpad: React.FC = () => {
   const { launchProcess, closeProcess, processes } = useProcessStore();
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [currentPage, setCurrentPage] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
-  const ITEMS_PER_PAGE = 35;
+  const [externalLink, setExternalLink] = useState<{
+    isOpen: boolean;
+    url: string;
+  }>({
+    isOpen: false,
+    url: "",
+  });
 
   const filteredApps = useMemo(() => {
     return APPS.filter((app) =>
@@ -489,24 +621,15 @@ export const Launchpad: React.FC = () => {
     );
   }, [searchTerm]);
 
-  // Reset to first page when search changes
-  React.useEffect(() => {
-    setCurrentPage(0);
-    setSelectedIndex(-1);
-  }, [searchTerm]);
-
-  const totalPages = Math.max(
-    1,
-    Math.ceil(filteredApps.length / ITEMS_PER_PAGE)
-  );
-  const currentApps = filteredApps.slice(
-    currentPage * ITEMS_PER_PAGE,
-    (currentPage + 1) * ITEMS_PER_PAGE
-  );
-
   const handleAppClick = React.useCallback(
     (app: AppDef) => {
-      // Close Launchpad first
+      // Handle external URLs - DON'T close launchpad yet
+      if (app.url) {
+        setExternalLink({ isOpen: true, url: app.url });
+        return;
+      }
+
+      // Close Launchpad for non-external apps
       const launchpadPid = processes.find((p) => p.id === "launchpad")?.pid;
       if (launchpadPid) closeProcess(launchpadPid);
 
@@ -536,17 +659,6 @@ export const Launchpad: React.FC = () => {
     dialogRef.current?.close();
   }, [processes, closeProcess]);
 
-  const scrollToPage = useCallback((pageIndex: number) => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTo({
-        left: pageIndex * window.innerWidth,
-        behavior: "smooth",
-      });
-      setCurrentPage(pageIndex);
-      setSelectedIndex(-1);
-    }
-  }, []);
-
   // Handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -554,23 +666,13 @@ export const Launchpad: React.FC = () => {
         // Close Launchpad
         onClose();
       } else if (e.key === "ArrowLeft") {
-        if (selectedIndex === -1) {
-          if (currentPage > 0) scrollToPage(currentPage - 1);
-        } else {
-          setSelectedIndex((prev) => Math.max(0, prev - 1));
-        }
+        setSelectedIndex((prev) => Math.max(0, prev - 1));
       } else if (e.key === "ArrowRight") {
-        if (selectedIndex === -1) {
-          if (currentPage < totalPages - 1) scrollToPage(currentPage + 1);
-        } else {
-          setSelectedIndex((prev) =>
-            Math.min(filteredApps.length - 1, prev + 1)
-          );
-        }
+        setSelectedIndex((prev) => Math.min(filteredApps.length - 1, prev + 1));
       } else if (e.key === "ArrowUp") {
-        setSelectedIndex((prev) => Math.max(0, prev - 5)); // Assuming 5 columns
+        setSelectedIndex((prev) => Math.max(0, prev - 7)); // 7 columns
       } else if (e.key === "ArrowDown") {
-        setSelectedIndex((prev) => Math.min(filteredApps.length - 1, prev + 5));
+        setSelectedIndex((prev) => Math.min(filteredApps.length - 1, prev + 7));
       } else if (e.key === "Enter") {
         if (selectedIndex !== -1) {
           const app = filteredApps[selectedIndex];
@@ -581,20 +683,7 @@ export const Launchpad: React.FC = () => {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [
-    currentPage,
-    selectedIndex,
-    filteredApps,
-    onClose,
-    totalPages,
-    scrollToPage,
-    handleAppClick,
-  ]); // Added scrollToPage and handleAppClick to dependencies
-
-  // Reset selection when page changes - handled in scrollToPage and searchTerm effect
-  // useEffect(() => {
-  //   setSelectedIndex(-1);
-  // }, [currentPage]);
+  }, [selectedIndex, filteredApps, onClose, handleAppClick]);
 
   useEffect(() => {
     if (dialogRef.current && !dialogRef.current.open) {
@@ -615,10 +704,10 @@ export const Launchpad: React.FC = () => {
       onClick={handleClose}
       onCancel={handleClose}
     >
-      <div className="flex flex-col items-center w-full h-full pt-[4vh] pb-[2vh]">
+      <div className="flex flex-col items-center w-full h-full pt-[4vh] pb-[2vh] relative">
         {/* Search Bar */}
         <div
-          className="flex items-center group w-full max-w-[240px] mb-6"
+          className="flex items-center group w-full max-w-[240px] mb-6 shrink-0 sticky top-0 z-10"
           onClick={(e) => e.stopPropagation()}
         >
           <Search
@@ -638,10 +727,10 @@ export const Launchpad: React.FC = () => {
           />
         </div>
 
-        {/* App Grid - 7x5 Layout */}
-        <div className="flex-1 w-full px-[4vw]">
-          <div className="grid grid-cols-7 grid-rows-5 w-full h-full place-items-center">
-            {currentApps.map((app, index) => (
+        {/* App Grid - Scrollable */}
+        <div className="flex-1 w-full px-[4vw] overflow-y-auto overscroll-none scrollbar-hide absolute top-0 left-0 right-0 bottom-0 pt-[100px]">
+          <div className="grid grid-cols-7 gap-y-8 w-full place-items-center pb-20">
+            {filteredApps.map((app, index) => (
               <div
                 onClick={(e) => e.stopPropagation()}
                 key={app.id}
@@ -656,25 +745,25 @@ export const Launchpad: React.FC = () => {
             ))}
           </div>
         </div>
-
-        {/* Page Indicators */}
-        <div className="flex gap-3 mt-8" onClick={(e) => e.stopPropagation()}>
-          {Array.from({ length: totalPages }).map((_, i) => (
-            <div
-              key={i}
-              className={`w-[8px] h-[8px] rounded-full shadow-sm transition-all duration-200 cursor-pointer border border-white/10 ${
-                i === currentPage
-                  ? "bg-white scale-110"
-                  : "bg-white/30 hover:bg-white/50"
-              }`}
-              onClick={() => {
-                setCurrentPage(i);
-                setSelectedIndex(-1);
-              }}
-            />
-          ))}
-        </div>
       </div>
+
+      <ExternalLinkDialog
+        isOpen={externalLink.isOpen}
+        onClose={() => {
+          setExternalLink({ ...externalLink, isOpen: false });
+          // Close Launchpad when user cancels
+          const launchpadPid = processes.find((p) => p.id === "launchpad")?.pid;
+          if (launchpadPid) closeProcess(launchpadPid);
+        }}
+        onConfirm={() => {
+          window.open(externalLink.url, "_blank");
+          setExternalLink({ ...externalLink, isOpen: false });
+          // Close Launchpad after opening external link
+          const launchpadPid = processes.find((p) => p.id === "launchpad")?.pid;
+          if (launchpadPid) closeProcess(launchpadPid);
+        }}
+        url={externalLink.url}
+      />
     </dialog>
   );
 };

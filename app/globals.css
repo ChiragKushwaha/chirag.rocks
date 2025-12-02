@@ -123,6 +123,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  overscroll-behavior: none;
+  overflow: hidden;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -131,6 +136,10 @@ body {
   /* Firefox Scrollbar */
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) transparent;
+
+  /* Disable overscroll */
+  overscroll-behavior: none;
+  overflow: hidden;
 }
 
 /* Optimization: GPU acceleration for frequently animated elements */

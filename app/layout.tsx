@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { DeviceProvider } from "@/components/ui/design-system/DeviceContext";
+import { GlobalExternalLinkHandler } from "@/components/GlobalExternalLinkHandler";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -245,7 +246,9 @@ export default function RootLayout({
         itemScope
         itemType="https://schema.org/WebPage"
       >
-        <DeviceProvider>{children}</DeviceProvider>
+        <GlobalExternalLinkHandler>
+          <DeviceProvider>{children}</DeviceProvider>
+        </GlobalExternalLinkHandler>
       </body>
     </html>
   );

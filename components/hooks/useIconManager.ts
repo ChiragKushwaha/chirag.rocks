@@ -70,6 +70,33 @@ export const useIconManager = () => {
           }
         }
 
+        // 1.5 Initialize Social Assets (GIFs and PNGs)
+        const SOCIAL_ASSETS = [
+          "github.png",
+          "twitter.png",
+          "linkedin.png",
+          "instagram.png",
+          "facebook.png",
+          "tiktok-v2.png",
+          "snapchat-v2.png",
+        ];
+
+        await Promise.all(
+          SOCIAL_ASSETS.map(async (filename) => {
+            try {
+              if (await fs.exists(`${ICONS_DIR}/${filename}`)) return;
+
+              const res = await fetch(`/icons/${filename}`);
+              if (res.ok) {
+                const blob = await res.blob();
+                await fs.writeBlob(ICONS_DIR, filename, blob);
+              }
+            } catch (e) {
+              console.error(`Failed to cache asset ${filename}`, e);
+            }
+          })
+        );
+
         // 2.5 Initialize Wallpaper
         const WALLPAPER_DIR = "/System/Library/Desktop Pictures";
         const WALLPAPER_NAME = "Monterey-light.webp";
