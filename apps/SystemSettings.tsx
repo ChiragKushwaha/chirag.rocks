@@ -19,6 +19,7 @@ import {
   Image as ImageIcon,
 } from "lucide-react";
 import { useSystemStore } from "../store/systemStore";
+import { WallpaperManager } from "../lib/WallpaperManager";
 
 interface SettingsSidebarItemProps {
   icon: React.ElementType;
@@ -55,15 +56,15 @@ const SettingsSidebarItem: React.FC<SettingsSidebarItemProps> = ({
 
 export const SystemSettings: React.FC = () => {
   const [activeTab, setActiveTab] = useState("Appearance");
-  const { theme, toggleTheme, wallpaper, setWallpaper } = useSystemStore();
+  const { theme, toggleTheme, wallpaperName, setWallpaperName } =
+    useSystemStore();
   const isDark = theme === "dark";
 
-  const wallpapers = [
-    { name: "Sonoma", url: "/System/Library/Desktop Pictures/Sonoma.heic" },
-    { name: "Ventura", url: "/System/Library/Desktop Pictures/Ventura.heic" },
-    { name: "Monterey", url: "/System/Library/Desktop Pictures/Monterey.heic" },
-    { name: "Big Sur", url: "/System/Library/Desktop Pictures/Big Sur.heic" },
-  ];
+  const [wallpapers, setWallpapers] = useState<any[]>([]);
+
+  React.useEffect(() => {
+    WallpaperManager.getWallpapersFromOPFS().then(setWallpapers);
+  }, []);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -158,29 +159,43 @@ export const SystemSettings: React.FC = () => {
             </div>
 
             <div className="bg-white dark:bg-[#1e1e1e] rounded-xl border border-gray-200 dark:border-gray-700/50 p-4">
-              <div className="grid grid-cols-3 gap-4">
-                {wallpapers.map((wp) => (
-                  <button
-                    key={wp.name}
-                    onClick={() => setWallpaper(wp.url)}
-                    className={`relative aspect-video rounded-lg overflow-hidden border-2 transition-all ${
-                      wallpaper === wp.url
-                        ? "border-blue-500 shadow-md"
-                        : "border-transparent hover:border-gray-300 dark:hover:border-gray-600"
-                    }`}
-                  >
-                    <Image
-                      src={wp.url}
-                      alt={wp.name}
-                      fill
-                      className="object-cover"
-                      unoptimized
-                    />
-                    <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-[10px] px-2 py-1 backdrop-blur-sm">
-                      {wp.name}
-                    </div>
-                  </button>
-                ))}
+              <div className="grid grid-cols-4 gap-4">
+                {wallpapers.map((wp) => {
+                  // Show only one variant per wallpaper based on current theme
+                  const variantToShow = isDark
+                    ? wp.variants.dark || wp.variants.standard
+                    : wp.variants.light || wp.variants.standard;
+
+                  const isSelected = wallpaperName === wp.baseName;
+
+                  return (
+                    <button
+                      key={wp.baseName}
+                      onClick={() => setWallpaperName(wp.baseName)}
+                      className={`relative aspect-video rounded-lg overflow-hidden border-2 transition-all ${
+                        isSelected
+                          ? "border-blue-500 shadow-md ring-2 ring-blue-500/20"
+                          : "border-transparent hover:border-gray-300 dark:hover:border-gray-600"
+                      }`}
+                    >
+                      <Image
+                        src={variantToShow as string}
+                        alt={wp.name}
+                        fill
+                        className="object-cover"
+                        unoptimized
+                      />
+                      <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-white text-[10px] px-2 py-1 backdrop-blur-sm">
+                        {wp.name}
+                      </div>
+                      {isSelected && (
+                        <div className="absolute top-2 right-2 w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                          <div className="w-2 h-2 bg-white rounded-full" />
+                        </div>
+                      )}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>

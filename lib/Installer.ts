@@ -1,6 +1,7 @@
 // Installer.ts
 import { fs } from "./FileSystem";
 import { SymlinkConfig } from "./types";
+import { WallpaperManager } from "./WallpaperManager";
 
 export class MacInstaller {
   // 1. The Unix Subsystem (Hidden)
@@ -30,6 +31,7 @@ export class MacInstaller {
     "/System/Library/Frameworks",
     "/System/Library/PreferencePanes",
     "/System/Library/Sounds",
+    "/System/Library/Desktop Pictures",
     "/Library/Application Support",
     "/Library/Audio/Plug-Ins",
     "/Library/Desktop Pictures",
@@ -96,6 +98,10 @@ export class MacInstaller {
       // We drop a hidden file inside to tell the OS it's a link
       await fs.writeFile(link.path, ".symlink", link.target);
     }
+
+    // Initialize Wallpapers
+    console.log("🖼️  Installing Desktop Pictures...");
+    await WallpaperManager.initializeWallpapers();
 
     // Create System Identity
     await fs.writeFile(

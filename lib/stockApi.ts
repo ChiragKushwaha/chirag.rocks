@@ -7,18 +7,13 @@ export interface StockData {
   data: number[];
 }
 
-const CORS_PROXY = "https://api.allorigins.win/raw?url=";
-const BASE_URL = "https://query1.finance.yahoo.com/v8/finance/chart/";
-
 export const fetchStockData = async (
   symbol: string
 ): Promise<StockData | null> => {
   try {
-    const url = `${CORS_PROXY}${encodeURIComponent(
-      `${BASE_URL}${symbol}?interval=1d&range=1mo`
-    )}`;
-
-    const response = await fetch(url);
+    const response = await fetch(
+      `/api/stocks?symbol=${encodeURIComponent(symbol)}`
+    );
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -73,18 +68,15 @@ export const searchStockSymbol = async (
   query: string
 ): Promise<string | null> => {
   try {
-    const url = `${CORS_PROXY}${encodeURIComponent(
-      `https://query1.finance.yahoo.com/v1/finance/search?q=${query}&quotesCount=1&newsCount=0`
-    )}`;
-
-    const response = await fetch(url);
+    const response = await fetch(
+      `/api/stocks?query=${encodeURIComponent(query)}`
+    );
     if (!response.ok) throw new Error("Network response was not ok");
 
     const json = await response.json();
     if (json.quotes && json.quotes.length > 0) {
       return json.quotes[0].symbol;
     }
-    return null;
     return null;
   } catch (error) {
     console.warn(

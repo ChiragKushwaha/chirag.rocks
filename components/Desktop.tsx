@@ -34,17 +34,21 @@ import { NotificationCenter } from "./NotificationCenter";
 import { useStickyNoteStore } from "../store/stickyNoteStore";
 import { StickyNote } from "./StickyNote";
 
+import { WallpaperManager } from "../lib/WallpaperManager";
+
 export const Desktop: React.FC = () => {
   const {
-    wallpaper,
+    wallpaperName,
+    theme,
     isBooting,
     setBooting,
     setSelectedFile,
     user,
     setTrashCount,
     brightness,
-    setWallpaper,
   } = useSystemStore();
+
+  const wallpaper = WallpaperManager.getWallpaperPath(wallpaperName, theme);
   const { notes } = useStickyNoteStore();
   const { openContextMenu } = useMenuStore();
   const { launchProcess } = useProcessStore();
@@ -95,12 +99,6 @@ export const Desktop: React.FC = () => {
   }, [reminders, markNotified]);
 
   // Force update wallpaper if it's the old default
-  useEffect(() => {
-    const NEW_WALLPAPER = "/System/Library/Desktop Pictures/macos-big-sur.jpg";
-    if (wallpaper !== NEW_WALLPAPER && wallpaper.startsWith("http")) {
-      setWallpaper(NEW_WALLPAPER);
-    }
-  }, [wallpaper, setWallpaper]);
 
   const userName = user?.name || "Guest";
   const userHome = `/Users/${userName}`;
@@ -165,18 +163,34 @@ export const Desktop: React.FC = () => {
       setBootProgress(50);
 
       // 4. Preload Wallpaper (100%)
-      if (!wallpaperUrl) return; // Wait for useAsset to resolve
+      if (!wallpaperUrl) {
+        // If no wallpaper URL after 3 seconds, just continue
+        setTimeout(() => {
+          setBootProgress(100);
+          setTimeout(() => setBooting(false), 500);
+        }, 3000);
+        return;
+      }
 
       const img = new Image();
       img.src = wallpaperUrl;
 
+      // Timeout fallback in case image never loads
+      const timeout = setTimeout(() => {
+        console.warn("Wallpaper load timeout, continuing anyway");
+        setBootProgress(100);
+        setTimeout(() => setBooting(false), 500);
+      }, 5000); // 5 second timeout
+
       img.onload = () => {
+        clearTimeout(timeout);
         setBootProgress(100);
         // Small delay to show 100% before transition
         setTimeout(() => setBooting(false), 500);
       };
 
       img.onerror = () => {
+        clearTimeout(timeout);
         console.error("Failed to load wallpaper:", wallpaperUrl);
         // Only proceed if we really fail, but ideally we shouldn't
         setBootProgress(100);
@@ -187,10 +201,7 @@ export const Desktop: React.FC = () => {
     if (isBooting) {
       load();
     }
-    if (isBooting) {
-      load();
-    }
-  }, [isBooting, setBooting, assetsReady, wallpaperUrl, wallpaper]);
+  }, [isBooting, setBooting, assetsReady, wallpaperUrl, desktopPath]);
 
   // Spotlight Hotkey (Cmd+K / Ctrl+K)
   useEffect(() => {
@@ -355,7 +366,7 @@ export const Desktop: React.FC = () => {
     window.addEventListener("file-system-change", handleRefresh);
     return () =>
       window.removeEventListener("file-system-change", handleRefresh);
-  }, []);
+  }, [desktopPath]);
 
   const moveToBin = async (file: MacFileEntry) => {
     // Ensure trash exists
@@ -389,7 +400,20 @@ export const Desktop: React.FC = () => {
       { label: "New Folder", action: createFolder },
       { separator: true },
       { label: "Get Info", disabled: true },
-      { label: "Change Wallpaper...", action: () => alert("Wallpaper Picker") },
+      {
+        label: "Change Wallpaper...",
+        action: () => {
+          // Launch System Settings with wallpaper panel
+          launchProcess(
+            "settings",
+            "System Settings",
+            "settings",
+            <div></div>, // Placeholder, SystemSettings manages its own state
+            { width: 900, height: 600, x: 100, y: 100 }
+          );
+          // Note: We'll need to pass initial tab to SystemSettings
+        },
+      },
       { separator: true },
       { label: "Use Stacks", disabled: true },
       {

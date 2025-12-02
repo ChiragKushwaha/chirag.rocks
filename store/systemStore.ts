@@ -1,11 +1,12 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { WallpaperManager } from "../lib/WallpaperManager";
 
 interface SystemState {
   isBooting: boolean;
-  isSetupComplete: boolean; // New: Tracks if onboarding is done
-  theme: "light" | "dark"; // New: Tracks appearance
-  wallpaper: string;
+  isSetupComplete: boolean;
+  theme: "light" | "dark";
+  wallpaperName: string; // Base name like "Monterey" or "WhiteSur"
   activeApp: string;
   selectedFile: string | null;
 
@@ -14,7 +15,16 @@ interface SystemState {
     email: string;
     phone: string;
     age: string;
+    password: string;
   };
+
+  isLocked: boolean;
+  lastActivityTime: number;
+  credentialId: string | null;
+  setLocked: (status: boolean) => void;
+  setLastActivityTime: (time: number) => void;
+  setCredentialId: (id: string | null) => void;
+  resetIdleTimer: () => void;
 
   setBooting: (status: boolean) => void;
   setSetupComplete: (status: boolean) => void;
@@ -22,7 +32,7 @@ interface SystemState {
   setTheme: (theme: "light" | "dark") => void;
   isDark: boolean;
   toggleTheme: () => void;
-  setWallpaper: (url: string) => void;
+  setWallpaperName: (name: string) => void;
 
   setActiveApp: (appName: string) => void;
   setSelectedFile: (filename: string | null) => void;
@@ -53,6 +63,9 @@ interface SystemState {
 
   isNotificationCenterOpen: boolean;
   toggleNotificationCenter: () => void;
+
+  _hasHydrated: boolean;
+  setHasHydrated: (state: boolean) => void;
 }
 
 export const useSystemStore = create<SystemState>()(
@@ -61,8 +74,7 @@ export const useSystemStore = create<SystemState>()(
       isBooting: true,
       isSetupComplete: false,
       theme: "light",
-      // wallpaper: "https://4kwallpapers.com/images/wallpapers/macos-big-sur-apple-layers-fluidic-colorful-wwdc-stock-2560x1440-1455.jpg",
-      wallpaper: "/System/Library/Desktop Pictures/macos-big-sur.jpg", // macOS Big Sur Abstract
+      wallpaperName: "WhiteSur",
       activeApp: "Finder",
       selectedFile: null,
 
@@ -71,12 +83,21 @@ export const useSystemStore = create<SystemState>()(
         email: "",
         phone: "",
         age: "",
+        password: "",
       },
+
+      isLocked: false,
+      lastActivityTime: Date.now(),
+      credentialId: null,
 
       setBooting: (status) => set({ isBooting: status }),
       setSetupComplete: (status) => set({ isSetupComplete: status }),
       updateUser: (details) =>
         set((state) => ({ user: { ...state.user, ...details } })),
+      setLocked: (status) => set({ isLocked: status }),
+      setLastActivityTime: (time) => set({ lastActivityTime: time }),
+      setCredentialId: (id) => set({ credentialId: id }),
+      resetIdleTimer: () => set({ lastActivityTime: Date.now() }),
       setTheme: (theme) => {
         if (theme === "dark") {
           document.documentElement.classList.add("dark");
@@ -85,12 +106,7 @@ export const useSystemStore = create<SystemState>()(
         }
         set({ theme });
       },
-      // Helper for SystemSettings
-      // Note: isDark is a derived property, but Zustand doesn't support getters directly on the state object in this way easily without middleware or selectors.
-      // Instead, we'll just rely on the theme property in components, or add a specific action to toggle.
-      // For SystemSettings, we can just use `theme === 'dark'`.
-      // However, to satisfy the interface we added:
-      isDark: false, // Placeholder, will be updated by middleware or we just use theme
+      isDark: false,
 
       toggleTheme: () => {
         set((state) => {
@@ -103,7 +119,7 @@ export const useSystemStore = create<SystemState>()(
           return { theme: newTheme };
         });
       },
-      setWallpaper: (url) => set({ wallpaper: url }),
+      setWallpaperName: (name) => set({ wallpaperName: name }),
 
       setActiveApp: (appName) => set({ activeApp: appName }),
       setSelectedFile: (filename) => set({ selectedFile: filename }),
@@ -143,21 +159,33 @@ export const useSystemStore = create<SystemState>()(
         set((state) => ({
           isNotificationCenterOpen: !state.isNotificationCenterOpen,
         })),
+
+      _hasHydrated: false,
+      setHasHydrated: (state) => set({ _hasHydrated: state }),
     }),
     {
-      name: "macOS-system-storage", // unique name for localStorage
+      name: "macOS-system-storage",
+      onRehydrateStorage: () => (state) => {
+        state?.setHasHydrated(true);
+      },
       partialize: (state) => ({
-        // Only persist these fields
         isSetupComplete: state.isSetupComplete,
         theme: state.theme,
         user: state.user,
-        wallpaper: state.wallpaper, // Persist wallpaper
+        wallpaperName: state.wallpaperName,
         hasCreatedWelcomeFile: state.hasCreatedWelcomeFile,
         brightness: state.brightness,
         volume: state.volume,
         wifiEnabled: state.wifiEnabled,
         bluetoothEnabled: state.bluetoothEnabled,
+        credentialId: state.credentialId,
       }),
     }
   )
 );
+
+// Helper function to get active wallpaper based on theme
+export const getActiveWallpaper = () => {
+  const state = useSystemStore.getState();
+  return WallpaperManager.getWallpaperPath(state.wallpaperName, state.theme);
+};

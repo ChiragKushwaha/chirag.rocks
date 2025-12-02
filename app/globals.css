@@ -278,3 +278,18 @@ body {
   --color-ios-grouped-background: var(--ios-grouped-background);
   --color-ios-separator: var(--ios-separator);
 }
+
+/* Custom keyframes & utility class for the stroke-draw animation */
+@layer utilities {
+  @keyframes draw {
+    from {
+      stroke-dashoffset: var(--gap);
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  .animate-draw {
+    animation: draw var(--dur, 5000ms) linear forwards;
+  }
+}

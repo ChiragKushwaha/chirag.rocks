@@ -2,13 +2,22 @@
 import React, { useEffect } from "react";
 import { Desktop } from "../components/Desktop";
 import { SetupAssistant } from "../apps/SetupAssistant";
+import { LockScreen } from "../components/LockScreen";
 import { fs } from "../lib/FileSystem";
 import { MacInstaller } from "../lib/Installer";
 import { useSystemStore } from "../store/systemStore";
 import { Analytics } from "@vercel/analytics/next";
 
 function App() {
-  const { isSetupComplete, theme, user } = useSystemStore();
+  const {
+    isSetupComplete,
+    theme,
+    user,
+    isLocked,
+    setLocked,
+    lastActivityTime,
+    resetIdleTimer,
+  } = useSystemStore();
 
   // 1. Initialize OS Layer
   useEffect(() => {
@@ -77,10 +86,54 @@ function App() {
     }
   }, [theme, user.name]);
 
-  // 2. Render Strategy
+  // 2. Idle Detection - Lock after 1 minute of inactivity (only if setup complete)
+  useEffect(() => {
+    if (!isSetupComplete) return; // Don't track activity during onboarding
+
+    const IDLE_TIMEOUT = 60 * 1000; // 1 minute in milliseconds
+
+    const checkIdleStatus = () => {
+      const now = Date.now();
+      const timeSinceLastActivity = now - lastActivityTime;
+
+      if (timeSinceLastActivity >= IDLE_TIMEOUT && !isLocked) {
+        setLocked(true);
+      }
+    };
+
+    // Check idle status every 5 seconds
+    const interval = setInterval(checkIdleStatus, 5000);
+
+    // Activity listeners
+    const handleActivity = () => {
+      if (!isLocked) {
+        resetIdleTimer();
+      }
+    };
+
+    window.addEventListener("mousemove", handleActivity);
+    window.addEventListener("keydown", handleActivity);
+    window.addEventListener("click", handleActivity);
+    window.addEventListener("scroll", handleActivity);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("mousemove", handleActivity);
+      window.removeEventListener("keydown", handleActivity);
+      window.removeEventListener("click", handleActivity);
+      window.removeEventListener("scroll", handleActivity);
+    };
+  }, [isSetupComplete, isLocked, lastActivityTime, setLocked, resetIdleTimer]);
+
+  const hasHydrated = useSystemStore((state) => state._hasHydrated);
+
+  // 3. Render Strategy
+  if (!hasHydrated) return <div className="bg-black w-full h-full" />;
+
   return (
     <div className="w-full h-full overflow-hidden">
       {isSetupComplete ? <Desktop /> : <SetupAssistant />}
+      <LockScreen />
       <Analytics />
     </div>
   );

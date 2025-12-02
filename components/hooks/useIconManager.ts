@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { fs } from "../../lib/FileSystem";
 
 const ICONS_DIR = "/System/Icons";
-const ASSETS_ROOT = ""; // Root for full paths
 
 export const useIconManager = () => {
   const [isReady, setIsReady] = useState(false);
@@ -14,15 +13,14 @@ export const useIconManager = () => {
         // 1. Initialize Icons (Legacy / Flat structure)
         const REMOTE_ICONS: Record<string, string> = {
           finder:
-            "https://upload.wikimedia.org/wikipedia/commons/c/c9/Finder_Icon_macOS_Big_Sur.png",
+            "https://raw.githubusercontent.com/elrumo/macOS-Big-Sur-icons-replacements/master/icons/Finder.png",
           trash:
-            "https://raw.githubusercontent.com/KevinGutowski/Big-Sur-Icons/master/Trash%20Icon.png", // Fallback/Candidate
+            "https://raw.githubusercontent.com/elrumo/macOS-Big-Sur-icons-replacements/master/icons/Trash.png",
           trash_full:
-            "https://raw.githubusercontent.com/KevinGutowski/Big-Sur-Icons/master/Trash%20Icon.png", // Using same for now, or find full variant
-          launchpad:
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Launchpad_icon_macOS_Big_Sur.png/1024px-Launchpad_icon_macOS_Big_Sur.png", // Candidate
+            "https://raw.githubusercontent.com/elrumo/macOS-Big-Sur-icons-replacements/master/icons/Trash%20Full.png",
+          launchpad: "https://cdn-icons-png.flaticon.com/512/3643/3643771.png",
           folder:
-            "https://raw.githubusercontent.com/devantler/big-sur-folder-icons/main/icons/default_folder.png",
+            "https://raw.githubusercontent.com/elrumo/macOS-Big-Sur-icons-replacements/master/icons/Folder.png",
         };
 
         // Check and fetch remote icons
@@ -72,7 +70,7 @@ export const useIconManager = () => {
 
         // 2.5 Initialize Wallpaper
         const WALLPAPER_DIR = "/System/Library/Desktop Pictures";
-        const WALLPAPER_NAME = "macos-big-sur.jpg";
+        const WALLPAPER_NAME = "Monterey-light.webp";
         const hasWallpaper = await fs.exists(
           `${WALLPAPER_DIR}/${WALLPAPER_NAME}`
         );
@@ -80,7 +78,9 @@ export const useIconManager = () => {
         if (!hasWallpaper) {
           console.log("[AssetManager] Initializing wallpaper in OPFS...");
           try {
-            const res = await fetch(`/${WALLPAPER_NAME}`);
+            const res = await fetch(
+              `/assets/System/Library/Desktop Pictures/${WALLPAPER_NAME}`
+            );
             if (res.ok) {
               const blob = await res.blob();
               await fs.mkdir(WALLPAPER_DIR); // Ensure dir exists
@@ -267,7 +267,11 @@ export const useAsset = (path: string) => {
         }
       } else {
         // Fallback to public/assets
-        setUrl(`/assets${path}`);
+        if (path.startsWith("/assets")) {
+          setUrl(path);
+        } else {
+          setUrl(`/assets${path}`);
+        }
       }
     };
 

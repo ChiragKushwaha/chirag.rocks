@@ -209,6 +209,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
 
+        <meta
+          name="google-site-verification"
+          content="Ret-iSE1zLvQXAF88Yv_TTM8RNJlWAh2-aOuwfavx6o"
+        />
         {/* Additional SEO Meta Tags */}
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
@@ -225,6 +229,15 @@ export default function RootLayout({
           rel="preconnect"
           href="https://fonts.googleapis.com"
           crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Noto+Sans+JP:wght@700&family=Noto+Sans+KR:wght@700&family=Noto+Naskh+Arabic:wght@700&family=Noto+Serif+Devanagari:wght@700&family=Noto+Serif+Bengali:wght@700&family=Pacifico&display=swap"
+          rel="stylesheet"
         />
       </head>
       <body

@@ -22,6 +22,11 @@ HED_API_PATTERNS = [
     /tv\.api/i,
     /tmdb\.org/i,
     /news/i,
+    /api\.allorigins\.win/i,
+    /query1\.finance\.yahoo\.com/i,
+    /api\.bigdatacloud\.net/i,
+    /api\.open-meteo\.com/i,
+    /geocoding-api\.open-meteo\.com/i,
 ];
 
 // OPFS Helper Functions

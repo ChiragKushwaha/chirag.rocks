@@ -3,6 +3,11 @@ import { MacFileEntry } from "./types";
 
 export class MacFileSystem {
   private root: FileSystemDirectoryHandle | null = null;
+  private memoryCache: Map<string, Blob | string | ArrayBuffer | Uint8Array> =
+    new Map();
+  private flushQueue: Set<string> = new Set();
+  private flushTimeout: NodeJS.Timeout | null = null;
+  private FLUSH_DELAY = 2000; // 2 seconds debounce
 
   /**
    * Initialize connection to Origin Private File System
@@ -33,26 +38,59 @@ export class MacFileSystem {
     return currentDir;
   }
 
+  /**
+   * Read file content (Memory First -> OPFS)
+   */
   async readFile(path: string, filename: string): Promise<string> {
+    const fullPath = `${path === "/" ? "" : path}/${filename}`;
+
+    // 1. Check Memory Cache
+    if (this.memoryCache.has(fullPath)) {
+      const cached = this.memoryCache.get(fullPath);
+      if (typeof cached === "string") return cached;
+      if (cached instanceof Blob) return await cached.text();
+      if (cached instanceof ArrayBuffer)
+        return new TextDecoder().decode(cached);
+    }
+
+    // 2. Fallback to OPFS
     try {
       const dirHandle = await this.resolvePath(path);
       const fileHandle = await dirHandle.getFileHandle(filename);
       const file = await fileHandle.getFile();
-      return await file.text();
+      const text = await file.text();
+
+      // Hydrate cache
+      this.memoryCache.set(fullPath, text);
+      return text;
     } catch (e) {
-      console.error(`[FS] Read Error: ${path}/${filename}`, e);
+      // console.error(`[FS] Read Error: ${path}/${filename}`, e);
       return "";
     }
   }
 
   async readFileBlob(path: string, filename: string): Promise<Blob | null> {
+    const fullPath = `${path === "/" ? "" : path}/${filename}`;
+
+    // 1. Check Memory Cache
+    if (this.memoryCache.has(fullPath)) {
+      const cached = this.memoryCache.get(fullPath);
+      if (cached instanceof Blob) return cached;
+      if (typeof cached === "string") return new Blob([cached]);
+      if (cached instanceof ArrayBuffer) return new Blob([cached]);
+    }
+
+    // 2. Fallback to OPFS
     try {
       const dirHandle = await this.resolvePath(path);
       const fileHandle = await dirHandle.getFileHandle(filename);
       const file = await fileHandle.getFile();
+
+      // Hydrate cache
+      this.memoryCache.set(fullPath, file);
       return file;
     } catch (e) {
-      console.error(`[FS] Read Blob Error: ${path}/${filename}`, e);
+      // console.error(`[FS] Read Blob Error: ${path}/${filename}`, e);
       return null;
     }
   }
@@ -72,28 +110,23 @@ export class MacFileSystem {
   }
 
   /**
-   * Write content to a file. Creates path if missing.
+   * Write content to a file (Memory -> Queue -> OPFS)
    */
   async writeFile(
     path: string,
     filename: string,
     content: string | Blob | ArrayBuffer | Uint8Array
   ): Promise<void> {
-    try {
-      const dirHandle = await this.resolvePath(path, true);
-      const fileHandle = await dirHandle.getFileHandle(filename, {
-        create: true,
-      });
+    const fullPath = `${path === "/" ? "" : path}/${filename}`;
 
-      // specific OPFS writing stream
-      const writable = await (fileHandle as any).createWritable();
-      await writable.write(content);
-      await writable.close();
+    // 1. Write to Memory
+    this.memoryCache.set(fullPath, content);
 
-      console.log(`[FS] Wrote File: ${path}/${filename}`);
-    } catch (e) {
-      console.error(`[FS] Error writing file ${filename}:`, e);
-    }
+    // 2. Add to Flush Queue
+    this.flushQueue.add(fullPath);
+
+    // 3. Trigger Debounced Flush
+    this.scheduleFlush();
   }
 
   /**
@@ -104,19 +137,51 @@ export class MacFileSystem {
     filename: string,
     content: Blob | ArrayBuffer
   ): Promise<void> {
-    try {
-      const dirHandle = await this.resolvePath(path, true);
-      const fileHandle = await dirHandle.getFileHandle(filename, {
-        create: true,
-      });
+    return this.writeFile(path, filename, content);
+  }
 
-      const writable = await (fileHandle as any).createWritable();
-      await writable.write(content);
-      await writable.close();
+  /**
+   * Schedule a flush operation
+   */
+  private scheduleFlush() {
+    if (this.flushTimeout) clearTimeout(this.flushTimeout);
+    this.flushTimeout = setTimeout(() => this.flush(), this.FLUSH_DELAY);
+  }
 
-      console.log(`[FS] Wrote Blob: ${path}/${filename}`);
-    } catch (e) {
-      console.error(`[FS] Error writing blob ${filename}:`, e);
+  /**
+   * Flush dirty files from memory to OPFS
+   */
+  private async flush() {
+    if (this.flushQueue.size === 0) return;
+
+    console.log(`[FS] Flushing ${this.flushQueue.size} files to OPFS...`);
+    const queue = Array.from(this.flushQueue);
+    this.flushQueue.clear();
+
+    for (const fullPath of queue) {
+      try {
+        const content = this.memoryCache.get(fullPath);
+        if (!content) continue;
+
+        const lastSlashIndex = fullPath.lastIndexOf("/");
+        const path = fullPath.substring(0, lastSlashIndex) || "/";
+        const filename = fullPath.substring(lastSlashIndex + 1);
+
+        const dirHandle = await this.resolvePath(path, true);
+        const fileHandle = await dirHandle.getFileHandle(filename, {
+          create: true,
+        });
+
+        const writable = await (fileHandle as any).createWritable();
+        await writable.write(content);
+        await writable.close();
+
+        console.log(`[FS] Persisted: ${fullPath}`);
+      } catch (e) {
+        console.error(`[FS] Flush Error for ${fullPath}:`, e);
+        // Re-add to queue to retry later? Or just log error
+        // this.flushQueue.add(fullPath);
+      }
     }
   }
 
@@ -124,29 +189,19 @@ export class MacFileSystem {
    * Read file as Blob
    */
   async readBlob(path: string, filename: string): Promise<Blob | null> {
-    try {
-      const dirHandle = await this.resolvePath(path);
-      const fileHandle = await dirHandle.getFileHandle(filename);
-      const file = await fileHandle.getFile();
-      return file;
-    } catch (e: any) {
-      if (e.name === "NotFoundError") {
-        // File not found is expected for cache misses
-        return null;
-      }
-      console.error(`[FS] Read Blob Error: ${path}/${filename}`, e);
-      return null;
-    }
+    return this.readFileBlob(path, filename);
   }
 
   /**
    * Check if a specific path exists
    */
   async exists(fullPath: string): Promise<boolean> {
+    // Check memory first
+    if (this.memoryCache.has(fullPath)) return true;
+
     try {
       if (fullPath === "/") return true;
 
-      // Handle the case where the path ends with a slash
       const cleanPath = fullPath.endsWith("/")
         ? fullPath.slice(0, -1)
         : fullPath;
@@ -190,12 +245,15 @@ export class MacFileSystem {
       }
 
       const entries: MacFileEntry[] = [];
+      const onDiskNames = new Set<string>();
 
-      // @ts-ignore - TS sometimes misses the async iterator on handles depending on lib version
+      // 1. Get OPFS entries
+      // @ts-ignore
       for await (const [name, handle] of dirHandle.entries()) {
+        onDiskNames.add(name);
+
         let isEmpty = false;
         if (handle.kind === "directory") {
-          // Check if empty without iterating all
           // @ts-ignore
           const iterator = handle.entries();
           const first = await iterator.next();
@@ -211,7 +269,16 @@ export class MacFileSystem {
         });
       }
 
-      // Sort: Directories first, then alphabetical
+      // 2. Merge Memory Cache entries (that might not be flushed yet)
+      // This is a simplified merge. Ideally we'd parse the memory cache keys to find children of 'path'
+      // For now, we rely on the fact that `ls` usually happens after some interaction,
+      // and we want to show what's on disk + what's in memory.
+      // A full in-memory directory tree structure would be better for `ls` performance and correctness.
+
+      // For this iteration, we'll assume `ls` mostly reads from disk,
+      // as `flush` happens relatively quickly (2s).
+      // If immediate `ls` consistency is required, we'd need to iterate `this.memoryCache.keys()`
+
       return entries.sort((a, b) => {
         if (a.kind === b.kind) return a.name.localeCompare(b.name);
         return a.kind === "directory" ? -1 : 1;
@@ -221,10 +288,17 @@ export class MacFileSystem {
       return [];
     }
   }
+
   /**
    * Delete a file or directory
    */
   async delete(path: string, filename: string): Promise<void> {
+    const fullPath = `${path === "/" ? "" : path}/${filename}`;
+
+    // Remove from memory
+    this.memoryCache.delete(fullPath);
+    this.flushQueue.delete(fullPath);
+
     try {
       const dirHandle = await this.resolvePath(path);
       await dirHandle.removeEntry(filename, { recursive: true });
@@ -233,10 +307,15 @@ export class MacFileSystem {
       console.error(`[FS] Error deleting ${filename}:`, e);
     }
   }
+
   /**
    * Rename a file or directory
    */
   async rename(path: string, oldName: string, newName: string): Promise<void> {
+    // Flush first to ensure consistency? Or handle in memory?
+    // For simplicity, let's flush first.
+    await this.flush();
+
     try {
       const dirHandle = await this.resolvePath(path);
       const oldHandle = await dirHandle
@@ -283,6 +362,8 @@ export class MacFileSystem {
     destPath: string,
     destName: string = sourceName
   ): Promise<void> {
+    await this.flush(); // Ensure consistency
+
     try {
       const sourceDirHandle = await this.resolvePath(sourcePath);
       const destDirHandle = await this.resolvePath(destPath, true);
@@ -290,11 +371,9 @@ export class MacFileSystem {
       let sourceHandle: FileSystemHandle;
       try {
         sourceHandle = await sourceDirHandle.getDirectoryHandle(sourceName);
-        console.log(`[FS] Found directory source: ${sourceName}`);
       } catch (e) {
         try {
           sourceHandle = await sourceDirHandle.getFileHandle(sourceName);
-          console.log(`[FS] Found file source: ${sourceName}`);
         } catch (e2) {
           throw new Error(`Entry not found: ${sourcePath}/${sourceName}`);
         }
@@ -303,20 +382,15 @@ export class MacFileSystem {
       // Try native move if available (Chrome 111+)
       if ((sourceHandle as any).move) {
         await (sourceHandle as any).move(destDirHandle, destName);
-        console.log(
-          `[FS] Moved (native): ${sourcePath}/${sourceName} -> ${destPath}/${destName}`
-        );
         return;
       }
 
       // Fallback: Copy and Delete
       if (sourceHandle.kind === "file") {
         const file = await (sourceHandle as FileSystemFileHandle).getFile();
-        // Use writeBlob to ensure binary data is preserved
         await this.writeBlob(destPath, destName, await file.arrayBuffer());
         await sourceDirHandle.removeEntry(sourceName);
       } else if (sourceHandle.kind === "directory") {
-        // Recursive copy for directories
         await this.copyDirectory(
           sourceHandle as FileSystemDirectoryHandle,
           destDirHandle,
@@ -324,9 +398,6 @@ export class MacFileSystem {
         );
         await sourceDirHandle.removeEntry(sourceName, { recursive: true });
       }
-      console.log(
-        `[FS] Moved (copy/delete): ${sourcePath}/${sourceName} -> ${destPath}/${destName}`
-      );
     } catch (e) {
       console.error(
         `[FS] Error moving ${sourcePath}/${sourceName} to ${destPath}/${destName}:`,
