@@ -17,11 +17,13 @@ interface Note {
 interface NotesProps {
   initialPath?: string;
   initialFilename?: string;
+  initialNoteId?: string;
 }
 
 export const Notes: React.FC<NotesProps> = ({
   initialPath,
   initialFilename,
+  initialNoteId,
 }) => {
   const { user } = useSystemStore();
   const { addNote } = useStickyNoteStore();
@@ -60,9 +62,18 @@ export const Notes: React.FC<NotesProps> = ({
   });
 
   const [selectedNoteId, setSelectedNoteId] = useState<string | null>(() => {
+    if (initialNoteId) return initialNoteId;
     if (notes.length > 0) return notes[0].id;
     return null;
   });
+
+  // Effect to handle initialNoteId changes if the app is already open
+  useEffect(() => {
+    if (initialNoteId) {
+      setSelectedNoteId(initialNoteId);
+      setActiveFolder("Notes");
+    }
+  }, [initialNoteId]);
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -214,6 +225,8 @@ export const Notes: React.FC<NotesProps> = ({
       width: 220,
       height: 220,
       zIndex: 10,
+      originNoteId: selectedNote.id, // Link back to this note
+      title: selectedNote.title,
     });
 
     alert("Sticky note added to desktop!");

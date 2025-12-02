@@ -11,6 +11,8 @@ export interface StickyNote {
   width: number;
   height: number;
   zIndex: number;
+  originNoteId?: string; // ID of the note in the Notes app
+  title?: string;
 }
 
 interface StickyNoteState {
