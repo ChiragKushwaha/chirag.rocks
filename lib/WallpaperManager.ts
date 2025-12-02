@@ -35,6 +35,8 @@ const WALLPAPERS: WallpaperInfo[] = [
 ];
 
 export class WallpaperManager {
+  private static cache: WallpaperInfo[] | null = null;
+
   /**
    * Initialize wallpapers by copying them to OPFS
    */
@@ -63,14 +65,8 @@ export class WallpaperManager {
               // Fetch from public folder and write to OPFS
               const response = await fetch(publicPath);
               const blob = await response.blob();
-              const arrayBuffer = await blob.arrayBuffer();
-              const uint8Array = new Uint8Array(arrayBuffer);
 
-              await fs.writeFile(
-                desktopPicturesPath,
-                fileName,
-                new TextDecoder().decode(uint8Array)
-              );
+              await fs.writeFile(desktopPicturesPath, fileName, blob);
 
               console.log(`[Wallpaper] Copied ${fileName} to OPFS`);
             } else {
@@ -87,7 +83,13 @@ export class WallpaperManager {
   /**
    * Get all available wallpapers from OPFS
    */
-  static async getWallpapersFromOPFS(): Promise<WallpaperInfo[]> {
+  static async getWallpapersFromOPFS(
+    forceRefresh = false
+  ): Promise<WallpaperInfo[]> {
+    if (this.cache && !forceRefresh) {
+      return this.cache;
+    }
+
     const desktopPicturesPath = "/System/Library/Desktop Pictures";
     try {
       if (!(await fs.exists(desktopPicturesPath))) {
@@ -213,10 +215,13 @@ export class WallpaperManager {
       const desktopPicturesPath = "/System/Library/Desktop Pictures";
 
       console.log(`[Wallpaper] Reading ${fileName} from OPFS...`);
-      const content = await fs.readFile(desktopPicturesPath, fileName);
+      const blob = await fs.readBlob(desktopPicturesPath, fileName);
 
-      // Convert to data URL (for webp images)
-      const blob = new Blob([content], { type: "image/webp" });
+      if (!blob) {
+        throw new Error("File not found or empty");
+      }
+
+      // Create Object URL from Blob
       const url = URL.createObjectURL(blob);
       console.log(`[Wallpaper] Successfully read ${fileName} from OPFS`);
       return url;

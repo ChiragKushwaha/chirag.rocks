@@ -5,8 +5,7 @@ import { SettingsRow } from "../SettingsRow";
 import { useSystemStore } from "../../../store/systemStore";
 
 export const AppearanceView = () => {
-  const { theme, toggleTheme } = useSystemStore();
-  const isDark = theme === "dark";
+  const { theme, setTheme } = useSystemStore();
 
   return (
     <div className="space-y-6">
@@ -27,12 +26,12 @@ export const AppearanceView = () => {
       <SettingsGroup title="Appearance">
         <div className="flex gap-8 py-2">
           <button
-            onClick={() => !isDark && toggleTheme()}
+            onClick={() => setTheme("light")}
             className="flex flex-col items-center gap-2 group"
           >
             <div
               className={`w-20 h-14 rounded-lg bg-[#f5f5f5] border shadow-sm flex items-center justify-center relative overflow-hidden ${
-                !isDark ? "border-gray-400" : "border-gray-200"
+                theme === "light" ? "border-gray-400" : "border-gray-200"
               }`}
             >
               <div className="absolute inset-0 bg-white" />
@@ -40,34 +39,47 @@ export const AppearanceView = () => {
               <div className="absolute bottom-2 right-2 w-4 h-4 bg-blue-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
             <span className="text-xs dark:text-gray-300">Light</span>
-            {!isDark && <div className="w-1 h-1 bg-gray-400 rounded-full" />}
+            {theme === "light" && (
+              <div className="w-1 h-1 bg-gray-400 rounded-full" />
+            )}
           </button>
 
           <button
-            onClick={() => isDark && toggleTheme()}
+            onClick={() => setTheme("dark")}
             className="flex flex-col items-center gap-2 group"
           >
             <div
               className={`w-20 h-14 rounded-lg bg-[#1e1e1e] border shadow-sm flex items-center justify-center relative overflow-hidden ${
-                isDark ? "border-gray-400" : "border-gray-600"
+                theme === "dark" ? "border-gray-400" : "border-gray-600"
               }`}
             >
               <div className="absolute inset-0 bg-[#2b2b2b]" />
               <div className="absolute top-0 left-0 right-0 h-3 bg-[#3a3a3a]" />
             </div>
             <span className="text-xs dark:text-gray-300">Dark</span>
-            {isDark && <div className="w-1 h-1 bg-gray-400 rounded-full" />}
+            {theme === "dark" && (
+              <div className="w-1 h-1 bg-gray-400 rounded-full" />
+            )}
           </button>
 
           <button
-            onClick={toggleTheme}
+            onClick={() => setTheme("auto")}
             className="flex flex-col items-center gap-2 group"
           >
-            <div className="w-20 h-14 rounded-lg bg-linear-to-r from-[#f5f5f5] to-[#1e1e1e] border border-gray-300 dark:border-gray-600 shadow-sm flex items-center justify-center relative overflow-hidden">
+            <div
+              className={`w-20 h-14 rounded-lg bg-linear-to-r from-[#f5f5f5] to-[#1e1e1e] border shadow-sm flex items-center justify-center relative overflow-hidden ${
+                theme === "auto"
+                  ? "border-gray-400"
+                  : "border-gray-300 dark:border-gray-600"
+              }`}
+            >
               <div className="absolute inset-0 bg-linear-to-r from-white to-[#2b2b2b]" />
               <div className="absolute top-0 left-0 right-0 h-3 bg-linear-to-r from-gray-200 to-[#3a3a3a]" />
             </div>
             <span className="text-xs dark:text-gray-300">Auto</span>
+            {theme === "auto" && (
+              <div className="w-1 h-1 bg-gray-400 rounded-full" />
+            )}
           </button>
         </div>
       </SettingsGroup>

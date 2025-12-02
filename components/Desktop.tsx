@@ -16,6 +16,7 @@ import { Spotlight } from "../apps/Spotlight";
 import { Terminal } from "../apps/Terminal";
 import { TextEdit } from "../apps/TextEdit";
 import { Trash } from "../apps/Trash";
+import { SystemSettings } from "../apps/SystemSettings";
 import { MacFileEntry } from "../lib/types";
 import { Dock } from "./Dock";
 import { FileIcon } from "./FileIcon";
@@ -47,9 +48,13 @@ export const Desktop: React.FC = () => {
     user,
     setTrashCount,
     brightness,
+    isDark,
   } = useSystemStore();
 
-  const wallpaper = WallpaperManager.getWallpaperPath(wallpaperName, theme);
+  const wallpaper = WallpaperManager.getWallpaperPath(
+    wallpaperName,
+    isDark ? "dark" : "light"
+  );
   const { notes } = useStickyNoteStore();
   const { openContextMenu } = useMenuStore();
   const { launchProcess } = useProcessStore();
@@ -425,7 +430,7 @@ export const Desktop: React.FC = () => {
             "settings",
             "System Settings",
             "settings",
-            <div></div>, // Placeholder, SystemSettings manages its own state
+            <SystemSettings />,
             { width: 900, height: 600, x: 100, y: 100 }
           );
           // Note: We'll need to pass initial tab to SystemSettings

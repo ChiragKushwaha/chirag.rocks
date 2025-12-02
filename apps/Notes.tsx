@@ -69,11 +69,12 @@ export const Notes: React.FC<NotesProps> = ({
 
   // Effect to handle initialNoteId changes if the app is already open
   useEffect(() => {
-    if (initialNoteId) {
+    if (initialNoteId && selectedNoteId !== initialNoteId) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedNoteId(initialNoteId);
       setActiveFolder("Notes");
     }
-  }, [initialNoteId]);
+  }, [initialNoteId, selectedNoteId]);
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -212,7 +213,9 @@ export const Notes: React.FC<NotesProps> = ({
     );
   };
 
-  const addToDesktop = () => {
+  const selectedNote = notes.find((n) => n.id === selectedNoteId);
+
+  const addToDesktop = React.useCallback(() => {
     if (!selectedNote) return;
 
     addNote({
@@ -230,7 +233,7 @@ export const Notes: React.FC<NotesProps> = ({
     });
 
     alert("Sticky note added to desktop!");
-  };
+  }, [selectedNote, addNote]);
 
   const filteredNotes = notes
     .filter((n) => {
@@ -243,8 +246,6 @@ export const Notes: React.FC<NotesProps> = ({
       return matchesSearch && matchesFolder;
     })
     .sort((a, b) => b.timestamp - a.timestamp);
-
-  const selectedNote = notes.find((n) => n.id === selectedNoteId);
 
   return (
     <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans">

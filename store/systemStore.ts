@@ -5,7 +5,7 @@ import { WallpaperManager } from "../lib/WallpaperManager";
 interface SystemState {
   isBooting: boolean;
   isSetupComplete: boolean;
-  theme: "light" | "dark";
+  theme: "light" | "dark" | "auto";
   wallpaperName: string; // Base name like "Monterey" or "WhiteSur"
   activeApp: string;
   selectedFile: string | null;
@@ -29,8 +29,9 @@ interface SystemState {
   setBooting: (status: boolean) => void;
   setSetupComplete: (status: boolean) => void;
   updateUser: (details: Partial<SystemState["user"]>) => void;
-  setTheme: (theme: "light" | "dark") => void;
+  setTheme: (theme: "light" | "dark" | "auto") => void;
   isDark: boolean;
+  setIsDark: (isDark: boolean) => void;
   toggleTheme: () => void;
   setWallpaperName: (name: string) => void;
 
@@ -76,7 +77,7 @@ export const useSystemStore = create<SystemState>()(
     (set) => ({
       isBooting: true,
       isSetupComplete: false,
-      theme: "light",
+      theme: "auto",
       wallpaperName: "WhiteSur",
       activeApp: "Finder",
       selectedFile: null,
@@ -101,24 +102,13 @@ export const useSystemStore = create<SystemState>()(
       setLastActivityTime: (time) => set({ lastActivityTime: time }),
       setCredentialId: (id) => set({ credentialId: id }),
       resetIdleTimer: () => set({ lastActivityTime: Date.now() }),
-      setTheme: (theme) => {
-        if (theme === "dark") {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
-        set({ theme });
-      },
+      setTheme: (theme) => set({ theme }),
       isDark: false,
+      setIsDark: (isDark) => set({ isDark }),
 
       toggleTheme: () => {
         set((state) => {
           const newTheme = state.theme === "dark" ? "light" : "dark";
-          if (newTheme === "dark") {
-            document.documentElement.classList.add("dark");
-          } else {
-            document.documentElement.classList.remove("dark");
-          }
           return { theme: newTheme };
         });
       },
@@ -163,7 +153,7 @@ export const useSystemStore = create<SystemState>()(
           isNotificationCenterOpen: !state.isNotificationCenterOpen,
         })),
 
-      idleTimeoutSeconds: 30, // 30 seconds default
+      idleTimeoutSeconds: 5 * 60, // 30 seconds default
       setIdleTimeoutSeconds: (seconds) => set({ idleTimeoutSeconds: seconds }),
 
       _hasHydrated: false,
@@ -195,5 +185,8 @@ export const useSystemStore = create<SystemState>()(
 // Helper function to get active wallpaper based on theme
 export const getActiveWallpaper = () => {
   const state = useSystemStore.getState();
-  return WallpaperManager.getWallpaperPath(state.wallpaperName, state.theme);
+  // If theme is auto, use isDark to determine variant
+  const effectiveTheme =
+    state.theme === "auto" ? (state.isDark ? "dark" : "light") : state.theme;
+  return WallpaperManager.getWallpaperPath(state.wallpaperName, effectiveTheme);
 };

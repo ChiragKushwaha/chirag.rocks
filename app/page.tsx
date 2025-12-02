@@ -17,7 +17,7 @@ declare global {
 }
 
 function App() {
-  const { isSetupComplete, theme, user, lastActivityTime, resetIdleTimer } =
+  const { isSetupComplete, user, lastActivityTime, resetIdleTimer } =
     useSystemStore();
 
   const { isLocked, isInitialized, lock } = useAuth();
@@ -81,13 +81,49 @@ function App() {
     };
     initOS();
 
-    // Apply Theme on Boot
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [theme, user.name]);
+    // Apply Theme on Boot & Change
+    const applyTheme = () => {
+      const { theme, setIsDark } = useSystemStore.getState();
+      let isDark = false;
+
+      if (theme === "auto") {
+        isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      } else {
+        isDark = theme === "dark";
+      }
+
+      setIsDark(isDark);
+      if (isDark) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    };
+
+    applyTheme();
+
+    // Listen for system theme changes if in auto mode
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = () => {
+      if (useSystemStore.getState().theme === "auto") {
+        applyTheme();
+      }
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+
+    // Subscribe to store changes
+    const unsubscribe = useSystemStore.subscribe((state, prevState) => {
+      if (state.theme !== prevState.theme) {
+        applyTheme();
+      }
+    });
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+      unsubscribe();
+    };
+  }, [user.name]);
 
   // Expose lock function globally for MenuBar and other components
   useEffect(() => {

@@ -8,13 +8,16 @@ import { useAsset } from "./hooks/useIconManager";
 
 export const LockScreen: React.FC = () => {
   const { isLocked, isInitialized, unlock } = useAuth();
-  const { wallpaperName, theme, user } = useSystemStore();
+  const { wallpaperName, theme, user, isDark } = useSystemStore();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPasswordField, setShowPasswordField] = useState(true);
 
   // Get wallpaper the same way Desktop does
-  const wallpaper = WallpaperManager.getWallpaperPath(wallpaperName, theme);
+  const wallpaper = WallpaperManager.getWallpaperPath(
+    wallpaperName,
+    isDark ? "dark" : "light"
+  );
   const wallpaperUrl = useAsset(wallpaper);
 
   const handleUnlock = () => {
@@ -155,7 +158,7 @@ export const LockScreen: React.FC = () => {
 
             {/* Hint Text */}
             <p className="text-white/80 dark:text-white/70 text-xs drop-shadow text-center">
-              Touch ID or enter password (hint: {user.password || "1234"})
+              Touch ID or enter password (hint: {user.password || "Dumas"})
             </p>
           </div>
         )}

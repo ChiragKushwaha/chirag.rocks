@@ -17,12 +17,19 @@ interface Wallpaper {
 }
 
 export const WallpaperView = () => {
-  const { theme, wallpaperName, setWallpaperName } = useSystemStore();
-  const isDark = theme === "dark";
+  const { theme, wallpaperName, setWallpaperName, isDark } = useSystemStore();
   const [wallpapers, setWallpapers] = useState<Wallpaper[]>([]);
 
   useEffect(() => {
-    WallpaperManager.getWallpapersFromOPFS().then(setWallpapers);
+    let mounted = true;
+    WallpaperManager.getWallpapersFromOPFS().then((wps) => {
+      if (mounted) {
+        setWallpapers(wps);
+      }
+    });
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   const currentWallpaper = wallpapers.find((w) => w.baseName === wallpaperName);
