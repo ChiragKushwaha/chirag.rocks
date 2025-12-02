@@ -8,6 +8,7 @@ import { useAuth } from "../hooks/useAuth";
 import { fs } from "../lib/FileSystem";
 import { MacInstaller } from "../lib/Installer";
 import { useSystemStore } from "../store/systemStore";
+import { useTheme } from "../hooks/useTheme";
 
 // Extend Window interface to include lockScreen function
 declare global {
@@ -21,6 +22,9 @@ function App() {
     useSystemStore();
 
   const { isLocked, isInitialized, lock } = useAuth();
+
+  // Initialize Theme
+  useTheme();
 
   // 1. Initialize OS Layer
   useEffect(() => {
@@ -80,49 +84,6 @@ function App() {
       }
     };
     initOS();
-
-    // Apply Theme on Boot & Change
-    const applyTheme = () => {
-      const { theme, setIsDark } = useSystemStore.getState();
-      let isDark = false;
-
-      if (theme === "auto") {
-        isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      } else {
-        isDark = theme === "dark";
-      }
-
-      setIsDark(isDark);
-      if (isDark) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    };
-
-    applyTheme();
-
-    // Listen for system theme changes if in auto mode
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = () => {
-      if (useSystemStore.getState().theme === "auto") {
-        applyTheme();
-      }
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-
-    // Subscribe to store changes
-    const unsubscribe = useSystemStore.subscribe((state, prevState) => {
-      if (state.theme !== prevState.theme) {
-        applyTheme();
-      }
-    });
-
-    return () => {
-      mediaQuery.removeEventListener("change", handleChange);
-      unsubscribe();
-    };
   }, [user.name]);
 
   // Expose lock function globally for MenuBar and other components

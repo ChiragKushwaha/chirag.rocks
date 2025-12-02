@@ -216,7 +216,7 @@ export const News: React.FC = () => {
                       <span className="text-4xl">📰</span>
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
                     <span className="text-red-500 font-bold text-sm mb-2 uppercase tracking-wide">
                       Top Story
                     </span>

@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-@variant dark (&:where(.dark, .dark *));
-
 :root {
   /* Big Sur System Colors - Light Mode */
   --system-blue: #007aff;
@@ -42,7 +40,9 @@
   --foreground: #000000;
 }
 
-.dark {
+@variant dark (&:where(.dark, .dark *));
+
+:root:where(.dark) {
   /* Big Sur System Colors - Dark Mode */
   --system-blue: #0a84ff;
   --system-red: #ff453a;
@@ -269,17 +269,15 @@ body {
   --scrollbar-thumb-hover: rgba(0, 0, 0, 0.4);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --ios-system-blue: #0a84ff;
-    --ios-background: #000000;
-    --ios-grouped-background: #1c1c1e;
-    --ios-separator: #38383a;
+:root:where(.dark) {
+  --ios-system-blue: #0a84ff;
+  --ios-background: #000000;
+  --ios-grouped-background: #1c1c1e;
+  --ios-separator: #38383a;
 
-    /* Scrollbar */
-    --scrollbar-thumb: rgba(255, 255, 255, 0.2);
-    --scrollbar-thumb-hover: rgba(255, 255, 255, 0.4);
-  }
+  /* Scrollbar */
+  --scrollbar-thumb: rgba(255, 255, 255, 0.2);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.4);
 }
 
 @theme inline {

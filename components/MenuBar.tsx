@@ -135,7 +135,7 @@ const MenuButton: React.FC<{
 };
 
 const SiriIcon = () => (
-  <div className="w-4 h-4 rounded-full bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 opacity-90 shadow-sm" />
+  <div className="w-4 h-4 rounded-full bg-linear-to-br from-cyan-400 via-purple-500 to-pink-500 opacity-90 shadow-sm" />
 );
 
 const ControlCenterIcon = () => (
@@ -408,6 +408,7 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
 
       {/* Right Side Status */}
       <div className="flex items-center gap-4 px-2 text-[13px] font-medium">
+        Heyy Pratibha 😘😘❤️🎂🐙
         {!lockScreenMode && (
           <>
             {/* Clipboard */}

@@ -48,7 +48,7 @@ export const NotificationCenter: React.FC = () => {
         backdrop-blur-[50px] saturate-150
         border border-white/20 dark:border-white/10
         rounded-2xl shadow-2xl
-        z-[9999]
+        z-9999
         transition-transform duration-300 ease-out
         flex flex-col overflow-hidden
         ${isNotificationCenterOpen ? "translate-x-0" : "translate-x-[110%]"}

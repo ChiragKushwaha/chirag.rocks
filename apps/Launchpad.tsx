@@ -510,7 +510,7 @@ export const APPS: AppDef[] = [
     name: "Instagram",
     icon: ({ className, containerClassName = "scale-[0.85]" }) => (
       <div
-        className={`${className} ${containerClassName} relative flex items-center justify-center bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] rounded-[22%] overflow-hidden`}
+        className={`${className} ${containerClassName} relative flex items-center justify-center bg-linear-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] rounded-[22%] overflow-hidden`}
       >
         <Image
           src="/icons/instagram.png"

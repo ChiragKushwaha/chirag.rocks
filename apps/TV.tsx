@@ -304,7 +304,7 @@ export const TV: React.FC = () => {
 
         <div className="mt-auto px-3 py-4 border-t border-white/5">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-xs font-bold">
+            <div className="w-8 h-8 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center text-xs font-bold">
               CK
             </div>
             <div className="flex flex-col">

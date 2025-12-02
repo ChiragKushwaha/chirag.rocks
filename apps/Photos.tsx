@@ -416,7 +416,7 @@ export const Photos = () => {
 
       {/* Lightbox */}
       {selectedPhoto && (
-        <div className="fixed inset-0 z-[60] bg-black/95 flex flex-col animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-60 bg-black/95 flex flex-col animate-in fade-in duration-200">
           {/* Lightbox Toolbar */}
           <div className="h-14 flex items-center justify-between px-6 text-white/80 shrink-0">
             <button
@@ -584,7 +584,7 @@ const CollectionsView = () => (
               key={item}
               className="w-40 h-40 shrink-0 bg-gray-200 dark:bg-white/10 rounded-xl relative overflow-hidden group cursor-pointer"
             >
-              <div className="absolute inset-0 flex items-end p-3 bg-gradient-to-t from-black/60 to-transparent">
+              <div className="absolute inset-0 flex items-end p-3 bg-linear-to-t from-black/60 to-transparent">
                 <span className="text-white font-medium text-sm">{item}</span>
               </div>
             </div>

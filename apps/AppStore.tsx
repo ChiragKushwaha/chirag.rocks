@@ -71,7 +71,7 @@ export const AppStore: React.FC = () => {
               className="snap-center flex-shrink-0 w-[400px] aspect-[16/9] rounded-xl bg-gray-200 dark:bg-gray-800 relative overflow-hidden group cursor-pointer"
             >
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${
+                className={`absolute inset-0 bg-linear-to-br ${
                   i === 1
                     ? "from-blue-500 to-purple-600"
                     : i === 2

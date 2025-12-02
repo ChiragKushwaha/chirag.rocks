@@ -37,13 +37,13 @@ export const DisplaysView = () => {
             <span className="text-[13px] text-gray-500">Default</span>
           </div>
           <div className="flex gap-2 overflow-x-auto pb-2">
-            <div className="flex-shrink-0 w-24 h-16 border rounded bg-gray-50 dark:bg-white/5 flex items-center justify-center text-xs dark:text-gray-300">
+            <div className="shrink-0 w-24 h-16 border rounded bg-gray-50 dark:bg-white/5 flex items-center justify-center text-xs dark:text-gray-300">
               More Space
             </div>
-            <div className="flex-shrink-0 w-24 h-16 border-2 border-blue-500 rounded bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-xs font-medium text-blue-600 dark:text-blue-400">
+            <div className="shrink-0 w-24 h-16 border-2 border-blue-500 rounded bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-xs font-medium text-blue-600 dark:text-blue-400">
               Default
             </div>
-            <div className="flex-shrink-0 w-24 h-16 border rounded bg-gray-50 dark:bg-white/5 flex items-center justify-center text-xs dark:text-gray-300">
+            <div className="shrink-0 w-24 h-16 border rounded bg-gray-50 dark:bg-white/5 flex items-center justify-center text-xs dark:text-gray-300">
               Larger Text
             </div>
           </div>

@@ -215,7 +215,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
 
       {/* --- TITLE BAR --- */}
       <div
-        className="window-titlebar h-10 bg-gradient-to-b from-white/10 to-transparent border-b border-black/10 flex items-center px-4 cursor-default select-none flex-shrink-0"
+        className="window-titlebar h-10 bg-linear-to-b from-white/10 to-transparent border-b border-black/10 flex items-center px-4 cursor-default select-none flex-shrink-0"
         onDoubleClick={() => maximizeProcess(process.pid)} // Double click titlebar to maximize
       >
         {/* Traffic Lights */}
@@ -282,7 +282,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
                     setShowSnapMenu(false);
                   }}
                 >
-                  <div className="w-3 h-2 border border-current rounded-[1px] bg-gradient-to-r from-current to-transparent to-50%" />
+                  <div className="w-3 h-2 border border-current rounded-[1px] bg-linear-to-r from-current to-transparent to-50%" />
                   Left Side of Screen
                 </button>
                 <button
@@ -292,7 +292,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
                     setShowSnapMenu(false);
                   }}
                 >
-                  <div className="w-3 h-2 border border-current rounded-[1px] bg-gradient-to-l from-current to-transparent to-50%" />
+                  <div className="w-3 h-2 border border-current rounded-[1px] bg-linear-to-l from-current to-transparent to-50%" />
                   Right Side of Screen
                 </button>
                 <button

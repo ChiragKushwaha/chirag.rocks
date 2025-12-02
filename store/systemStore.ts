@@ -102,14 +102,28 @@ export const useSystemStore = create<SystemState>()(
       setLastActivityTime: (time) => set({ lastActivityTime: time }),
       setCredentialId: (id) => set({ credentialId: id }),
       resetIdleTimer: () => set({ lastActivityTime: Date.now() }),
-      setTheme: (theme) => set({ theme }),
+      setTheme: (theme) => {
+        set(() => {
+          let isDark = false;
+          if (theme === "auto") {
+            if (typeof window !== "undefined") {
+              isDark = window.matchMedia(
+                "(prefers-color-scheme: dark)"
+              ).matches;
+            }
+          } else {
+            isDark = theme === "dark";
+          }
+          return { theme, isDark };
+        });
+      },
       isDark: false,
       setIsDark: (isDark) => set({ isDark }),
 
       toggleTheme: () => {
         set((state) => {
           const newTheme = state.theme === "dark" ? "light" : "dark";
-          return { theme: newTheme };
+          return { theme: newTheme, isDark: newTheme === "dark" };
         });
       },
       setWallpaperName: (name) => set({ wallpaperName: name }),
@@ -177,6 +191,7 @@ export const useSystemStore = create<SystemState>()(
         credentialId: state.credentialId,
         idleTimeoutSeconds: state.idleTimeoutSeconds,
         isLocked: state.isLocked, // Persist lock state
+        isDark: state.isDark, // Persist effective theme state
       }),
     }
   )

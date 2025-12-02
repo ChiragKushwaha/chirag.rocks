@@ -50,7 +50,7 @@ const SetupWindow = ({
       <div className="flex-1 flex flex-col items-center pt-8 px-12 overflow-y-auto">
         {/* Feature Icon Style - Matching 'Template - Icon - Feature' */}
         <div className="mb-6 relative">
-          <div className="w-[72px] h-[72px] bg-gradient-to-b from-[#007AFF] to-[#0055B3] rounded-full flex items-center justify-center shadow-lg border border-white/10">
+          <div className="w-[72px] h-[72px] bg-linear-to-b from-[#007AFF] to-[#0055B3] rounded-full flex items-center justify-center shadow-lg border border-white/10">
             <Icon
               size={36}
               className="text-white drop-shadow-md"
@@ -397,7 +397,7 @@ export const SetupAssistant: React.FC = () => {
         <div className="flex flex-col items-center space-y-6">
           {/* Keyboard Graphic */}
           <div className="relative">
-            <div className="w-[400px] h-[180px] bg-gradient-to-b from-[#35353A] to-[#1C1C1E] rounded-t-lg shadow-2xl border-t border-l border-r border-[#4A4A4E]">
+            <div className="w-[400px] h-[180px] bg-linear-to-b from-[#35353A] to-[#1C1C1E] rounded-t-lg shadow-2xl border-t border-l border-r border-[#4A4A4E]">
               {/* Keyboard Keys Row 1 */}
               <div className="flex gap-1 px-2 pt-3">
                 {["% 5", "^ 6", "& 7", "* 8", "( 9", ") 0", "_ -", "+ ="].map(
@@ -478,12 +478,12 @@ export const SetupAssistant: React.FC = () => {
               </div>
 
               {/* Touch ID Indicator */}
-              <div className="absolute -bottom-8 right-8 w-20 h-6 bg-gradient-to-b from-[#2C2C2E] to-[#1C1C1E] rounded-sm flex items-center justify-center border border-[#4A4A4E] shadow-lg">
+              <div className="absolute -bottom-8 right-8 w-20 h-6 bg-linear-to-b from-[#2C2C2E] to-[#1C1C1E] rounded-sm flex items-center justify-center border border-[#4A4A4E] shadow-lg">
                 <Fingerprint size={18} className="text-white opacity-80" />
               </div>
             </div>
             {/* Keyboard Base */}
-            <div className="h-12 bg-gradient-to-b from-[#D5D5D8] to-[#B8B8BC] rounded-b-lg shadow-xl border-b border-l border-r border-[#A0A0A4]" />
+            <div className="h-12 bg-linear-to-b from-[#D5D5D8] to-[#B8B8BC] rounded-b-lg shadow-xl border-b border-l border-r border-[#A0A0A4]" />
           </div>
 
           <div className="max-w-md text-center">
@@ -632,7 +632,7 @@ export const SetupAssistant: React.FC = () => {
 
           {/* Preferred Languages */}
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-gradient-to-b from-[#007AFF] to-[#0055B3] rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
+            <div className="w-12 h-12 bg-linear-to-b from-[#007AFF] to-[#0055B3] rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
               <Globe size={24} className="text-white" />
             </div>
             <div className="flex-1">
@@ -647,7 +647,7 @@ export const SetupAssistant: React.FC = () => {
 
           {/* Input Sources */}
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-gradient-to-b from-[#007AFF] to-[#0055B3] rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
+            <div className="w-12 h-12 bg-linear-to-b from-[#007AFF] to-[#0055B3] rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
               <Keyboard size={24} className="text-white" />
             </div>
             <div className="flex-1">
@@ -665,7 +665,7 @@ export const SetupAssistant: React.FC = () => {
 
           {/* Dictation */}
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-gradient-to-b from-[#007AFF] to-[#0055B3] rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
+            <div className="w-12 h-12 bg-linear-to-b from-[#007AFF] to-[#0055B3] rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
               <svg
                 className="w-6 h-6 text-white"
                 fill="none"
@@ -874,7 +874,7 @@ export const SetupAssistant: React.FC = () => {
             {[Cloud, Globe, Globe, Cloud, Globe].map((Icon, idx) => (
               <div
                 key={idx}
-                className="w-12 h-12 bg-gradient-to-b from-[#007AFF] to-[#0055B3] rounded-xl flex items-center justify-center shadow-md"
+                className="w-12 h-12 bg-linear-to-b from-[#007AFF] to-[#0055B3] rounded-xl flex items-center justify-center shadow-md"
               >
                 <Icon size={20} className="text-white" />
               </div>

@@ -38,7 +38,7 @@ export const AboutMac: React.FC = () => {
       <div className="flex w-full max-w-2xl gap-8 items-start">
         {/* Icon */}
         <div className="flex-shrink-0">
-          <div className="w-32 h-32 rounded-full bg-gradient-to-b from-gray-100 to-gray-300 dark:from-gray-700 dark:to-gray-900 shadow-lg flex items-center justify-center border border-white/20">
+          <div className="w-32 h-32 rounded-full bg-linear-to-b from-gray-100 to-gray-300 dark:from-gray-700 dark:to-gray-900 shadow-lg flex items-center justify-center border border-white/20">
             <span className="text-7xl text-gray-500 dark:text-gray-400"></span>
           </div>
         </div>

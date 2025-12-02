@@ -31,7 +31,7 @@ export const MacOSButton: React.FC<MacOSButtonProps> = ({
       bg-[#007AFF] text-white border-[#0062CC] 
       hover:bg-[#0071E3] active:bg-[#005BB5]
       shadow-[0_1px_1px_rgba(0,0,0,0.1)]
-      bg-gradient-to-b from-white/10 to-transparent
+      bg-linear-to-b from-white/10 to-transparent
     `,
     secondary: `
       bg-white dark:bg-[#606060] text-black dark:text-white 
