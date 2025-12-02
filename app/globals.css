@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 :root {
   /* Big Sur System Colors - Light Mode */
   --system-blue: #007aff;
@@ -40,46 +42,44 @@
   --foreground: #000000;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Big Sur System Colors - Dark Mode */
-    --system-blue: #0a84ff;
-    --system-red: #ff453a;
-    --system-green: #32d74b;
-    --system-orange: #ff9f0a;
-    --system-yellow: #ffd60a;
-    --system-purple: #bf5af2;
-    --system-pink: #ff375f;
-    --system-gray: #98989d;
+.dark {
+  /* Big Sur System Colors - Dark Mode */
+  --system-blue: #0a84ff;
+  --system-red: #ff453a;
+  --system-green: #32d74b;
+  --system-orange: #ff9f0a;
+  --system-yellow: #ffd60a;
+  --system-purple: #bf5af2;
+  --system-pink: #ff375f;
+  --system-gray: #98989d;
 
-    /* Background Colors - Dark Mode (Big Sur) */
-    --background: #1e1e1e;
-    --secondary-background: #2c2c2e;
-    --tertiary-background: #3a3a3c;
-    --sidebar-background: rgba(44, 44, 46, 0.8);
+  /* Background Colors - Dark Mode (Big Sur) */
+  --background: #1e1e1e;
+  --secondary-background: #2c2c2e;
+  --tertiary-background: #3a3a3c;
+  --sidebar-background: rgba(44, 44, 46, 0.8);
 
-    /* Label Colors - Dark Mode */
-    --label: #ffffff;
-    --secondary-label: rgba(235, 235, 245, 0.6);
-    --tertiary-label: rgba(235, 235, 245, 0.3);
-    --quaternary-label: rgba(235, 235, 245, 0.18);
+  /* Label Colors - Dark Mode */
+  --label: #ffffff;
+  --secondary-label: rgba(235, 235, 245, 0.6);
+  --tertiary-label: rgba(235, 235, 245, 0.3);
+  --quaternary-label: rgba(235, 235, 245, 0.18);
 
-    /* Separator Colors - Dark Mode */
-    --separator: rgba(84, 84, 88, 0.6);
-    --opaque-separator: #38383a;
+  /* Separator Colors - Dark Mode */
+  --separator: rgba(84, 84, 88, 0.6);
+  --opaque-separator: #38383a;
 
-    /* Fill Colors - Dark Mode */
-    --fill: rgba(120, 120, 128, 0.36);
-    --secondary-fill: rgba(120, 120, 128, 0.32);
-    --tertiary-fill: rgba(120, 120, 128, 0.24);
-    --quaternary-fill: rgba(120, 120, 128, 0.18);
+  /* Fill Colors - Dark Mode */
+  --fill: rgba(120, 120, 128, 0.36);
+  --secondary-fill: rgba(120, 120, 128, 0.32);
+  --tertiary-fill: rgba(120, 120, 128, 0.24);
+  --quaternary-fill: rgba(120, 120, 128, 0.18);
 
-    /* Big Sur Window Colors - Dark */
-    --window-background: rgba(30, 30, 30, 0.85);
-    --window-border: rgba(255, 255, 255, 0.1);
+  /* Big Sur Window Colors - Dark */
+  --window-background: rgba(30, 30, 30, 0.85);
+  --window-border: rgba(255, 255, 255, 0.1);
 
-    --foreground: #ffffff;
-  }
+  --foreground: #ffffff;
 }
 
 @theme inline {
