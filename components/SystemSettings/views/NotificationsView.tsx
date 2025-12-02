@@ -1,5 +1,5 @@
 import React from "react";
-import { Bell, AppWindow } from "lucide-react";
+import { Bell } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
 
@@ -45,7 +45,6 @@ export const NotificationsView = () => {
           <SettingsRow
             key={app}
             label={app}
-            value="Banners, Sounds, Badges"
             type="toggle"
             value={true}
             isLast={i === arr.length - 1}

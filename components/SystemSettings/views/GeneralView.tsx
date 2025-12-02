@@ -70,7 +70,7 @@ export const GeneralView: React.FC<GeneralViewProps> = ({
       <SettingsGroup title="Devices">
         <SettingsRow
           icon={Laptop}
-          label="Anusheel's MacBook Pro"
+          label="MacBook Pro"
           value="This MacBook Pro 14″"
           color="#8E8E93"
         />

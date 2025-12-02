@@ -31,14 +31,14 @@ export const BluetoothView = () => {
       </div>
 
       <div className="text-xs text-gray-500 px-2">
-        This Mac is discoverable as &quot;Anusheel&apos;s MacBook Pro&quot;
-        while Bluetooth Settings is open.
+        This Mac is discoverable as MacBook Pro while Bluetooth Settings is
+        open.
       </div>
 
       <SettingsGroup title="My Devices">
         <SettingsRow
           icon={Keyboard}
-          label="Anusheel Singh's Magic Keyboard"
+          label="Magic Keyboard"
           value="Not Connected"
           color="#8E8E93"
         >
@@ -46,7 +46,7 @@ export const BluetoothView = () => {
         </SettingsRow>
         <SettingsRow
           icon={Mouse}
-          label="Anusheel Singh's Magic Mouse"
+          label="Magic Mouse"
           value="Not Connected"
           color="#8E8E93"
         >

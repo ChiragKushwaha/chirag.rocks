@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-  RotateCw,
-  ArrowLeft,
   ArrowRight,
   ExternalLink,
   MapPin,
@@ -10,7 +8,6 @@ import {
   Github,
   Linkedin,
   Twitter,
-  Link as LinkIcon,
   Eye,
   CheckCircle2,
   MessageSquare,
@@ -105,7 +102,7 @@ export const LeetCode = () => {
       const json = await res.json();
       if (json.error) throw new Error(json.error);
       setData(json);
-    } catch (err) {
+    } catch {
       setError("Failed to load LeetCode profile");
     } finally {
       setLoading(false);
@@ -115,19 +112,6 @@ export const LeetCode = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
-  const getDifficultyColor = (diff: string) => {
-    switch (diff) {
-      case "Easy":
-        return "text-[#00B8A3] bg-[#00B8A3]";
-      case "Medium":
-        return "text-[#FFC01E] bg-[#FFC01E]";
-      case "Hard":
-        return "text-[#FF375F] bg-[#FF375F]";
-      default:
-        return "text-gray-500 bg-gray-500";
-    }
-  };
 
   const renderHeatmap = (calendarJson: string) => {
     const calendar = JSON.parse(calendarJson);
@@ -144,7 +128,6 @@ export const LeetCode = () => {
     while (current <= today) {
       const week = [];
       for (let i = 0; i < 7; i++) {
-        const timestamp = Math.floor(current.getTime() / 1000);
         let count = 0;
         // Check if any timestamp in calendar matches this day
         const dateStr = current.toDateString();
@@ -625,8 +608,11 @@ export const LeetCode = () => {
                   <span className="font-bold text-white text-lg">
                     {JSON.parse(matchedUser.submissionCalendar)
                       ? Object.values(
-                          JSON.parse(matchedUser.submissionCalendar)
-                        ).reduce((a: any, b: any) => a + b, 0)
+                          JSON.parse(matchedUser.submissionCalendar) as Record<
+                            string,
+                            number
+                          >
+                        ).reduce((a: number, b: number) => a + b, 0)
                       : 0}
                   </span>
                   <span className="text-gray-400 text-sm">

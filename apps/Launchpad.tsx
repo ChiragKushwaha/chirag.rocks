@@ -466,7 +466,7 @@ export const APPS: AppDef[] = [
         </div>
       </div>
     ),
-    component: PlaceholderApp,
+    component: () => <PlaceholderApp title="X" />,
     url: "https://x.com/ChiragKushwaha_",
   },
   {
@@ -484,7 +484,7 @@ export const APPS: AppDef[] = [
         />
       </div>
     ),
-    component: PlaceholderApp,
+    component: () => <PlaceholderApp title="GitHub" />,
     url: "https://github.com/ChiragKushwaha",
   },
   {
@@ -502,7 +502,7 @@ export const APPS: AppDef[] = [
         />
       </div>
     ),
-    component: PlaceholderApp,
+    component: () => <PlaceholderApp title="LinkedIn" />,
     url: "https://www.linkedin.com/in/chirag-kushwaha/",
   },
   {
