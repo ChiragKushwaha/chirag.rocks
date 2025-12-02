@@ -408,7 +408,6 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
 
       {/* Right Side Status */}
       <div className="flex items-center gap-4 px-2 text-[13px] font-medium">
-        Heyy Pratibha 😘😘❤️🎂🐙
         {!lockScreenMode && (
           <>
             {/* Clipboard */}
