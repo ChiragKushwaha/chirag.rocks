@@ -2,8 +2,21 @@ import React from "react";
 import { Fingerprint, Plus } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
+import { useSystemStore } from "../../../store/systemStore";
 
 export const TouchIDPasswordView = () => {
+  const { idleTimeoutSeconds, setIdleTimeoutSeconds } = useSystemStore();
+
+  const timeoutOptions = [
+    { label: "Never", value: 0 },
+    { label: "15 seconds", value: 15 },
+    { label: "30 seconds", value: 30 },
+    { label: "1 minute", value: 60 },
+    { label: "2 minutes", value: 120 },
+    { label: "5 minutes", value: 300 },
+    { label: "10 minutes", value: 600 },
+  ];
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
@@ -74,8 +87,23 @@ export const TouchIDPasswordView = () => {
         <SettingsRow
           label="Require password after screen saver begins or display is turned off"
           value="Immediately"
-          isLast
         />
+        <div className="px-4 py-3 flex items-center justify-between">
+          <div className="text-[13px] font-medium dark:text-gray-200">
+            Require password after idle
+          </div>
+          <select
+            value={idleTimeoutSeconds}
+            onChange={(e) => setIdleTimeoutSeconds(Number(e.target.value))}
+            className="text-[13px] font-medium text-gray-800 dark:text-gray-200 bg-white dark:bg-white/10 border border-gray-300 dark:border-gray-600 rounded px-3 py-1 shadow-sm outline-none focus:ring-2 focus:ring-blue-500/50"
+          >
+            {timeoutOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
       </SettingsGroup>
 
       <SettingsGroup title="Apple Watch">

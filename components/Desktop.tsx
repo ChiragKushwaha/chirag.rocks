@@ -1,39 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { fs } from "../lib/FileSystem";
-import { useSystemStore } from "../store/systemStore";
 import { useMenuStore } from "../store/menuStore";
 import { useProcessStore } from "../store/processStore";
+import { useSystemStore } from "../store/systemStore";
 
-import { ContextMenu } from "./Menus";
-import { MenuBar } from "./MenuBar";
-import { Dock } from "./Dock";
-import { WindowManager } from "./WindowManager";
-import { FileIcon } from "./FileIcon";
-import { MacFileEntry } from "../lib/types";
-import { TextEdit } from "../apps/TextEdit";
-import { Finder } from "../apps/Finder/Finder";
-import { Spotlight } from "../apps/Spotlight";
-import { MediaPlayer } from "../apps/MediaPlayer";
-import { Terminal } from "../apps/Terminal";
-import { Calculator } from "../apps/Calculator";
-import { Trash } from "../apps/Trash";
-import { Messages } from "../apps/Messages";
-import { FaceTime } from "../apps/FaceTime";
-import { Notes } from "../apps/Notes";
 import dynamic from "next/dynamic";
 import NextImage from "next/image";
-import { Photos } from "../apps/Photos";
+import { Calculator } from "../apps/Calculator";
+import { FaceTime } from "../apps/FaceTime";
+import { Finder } from "../apps/Finder/Finder";
+import { MediaPlayer } from "../apps/MediaPlayer";
+import { Messages } from "../apps/Messages";
+import { Notes } from "../apps/Notes";
+import { Spotlight } from "../apps/Spotlight";
+import { Terminal } from "../apps/Terminal";
+import { TextEdit } from "../apps/TextEdit";
+import { Trash } from "../apps/Trash";
+import { MacFileEntry } from "../lib/types";
+import { Dock } from "./Dock";
+import { FileIcon } from "./FileIcon";
+import { MenuBar } from "./MenuBar";
+import { ContextMenu } from "./Menus";
+import { WindowManager } from "./WindowManager";
 
 const PDFViewer = dynamic(
   () => import("../apps/PDFViewer").then((mod) => mod.PDFViewer),
   { ssr: false }
 );
 
-import { useIconManager, useAsset } from "./hooks/useIconManager";
-import { BootScreen } from "./BootScreen";
 import { useReminderStore } from "../store/reminderStore";
-import { NotificationCenter } from "./NotificationCenter";
 import { useStickyNoteStore } from "../store/stickyNoteStore";
+import { BootScreen } from "./BootScreen";
+import { useAsset, useIconManager } from "./hooks/useIconManager";
+import { NotificationCenter } from "./NotificationCenter";
 import { StickyNote } from "./StickyNote";
 
 import { WallpaperManager } from "../lib/WallpaperManager";
@@ -59,6 +58,27 @@ export const Desktop: React.FC = () => {
   // Reminder Worker
   const { reminders, markNotified } = useReminderStore();
 
+  const userName = user?.name || "Guest";
+  const userHome = `/Users/${userName}`;
+  const desktopPath = `${userHome}/Desktop`;
+  const trashPath = `${userHome}/.Trash`;
+
+  // --- DESKTOP FILES RELOAD ---
+  // Reload desktop files when component mounts (fixes files disappearing after unlock)
+  useEffect(() => {
+    const reloadFiles = async () => {
+      try {
+        const entries = await fs.ls(desktopPath);
+        setFiles(entries);
+      } catch (error) {
+        console.error("[Desktop] Failed to reload files:", error);
+      }
+    };
+
+    reloadFiles();
+  }, [desktopPath, setFiles]); // Run once on mount, re-run if desktopPath or setFiles changes
+
+  // File watcher for desktop changes
   useEffect(() => {
     const checkReminders = () => {
       const now = Date.now();
@@ -101,11 +121,6 @@ export const Desktop: React.FC = () => {
   }, [reminders, markNotified]);
 
   // Force update wallpaper if it's the old default
-
-  const userName = user?.name || "Guest";
-  const userHome = `/Users/${userName}`;
-  const desktopPath = `${userHome}/Desktop`;
-  const trashPath = `${userHome}/.Trash`;
 
   // Initialize Icon System (Cache icons to OPFS)
   const { isReady: assetsReady } = useIconManager();

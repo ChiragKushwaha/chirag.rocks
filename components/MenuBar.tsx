@@ -276,7 +276,9 @@ const WeatherDisplay = () => {
 
 import { ControlCenter } from "./ControlCenter";
 
-export const MenuBar: React.FC = () => {
+export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
+  lockScreenMode = false,
+}) => {
   const { activeApp, toggleNotificationCenter } = useSystemStore();
   const { launchProcess } = useProcessStore();
   const [isControlCenterOpen, setIsControlCenterOpen] = React.useState(false);
@@ -307,7 +309,11 @@ export const MenuBar: React.FC = () => {
     { label: "Restart..." },
     { label: "Shut Down..." },
     { separator: true },
-    { label: "Lock Screen", shortcut: "⌃⌘Q" },
+    {
+      label: "Lock Screen",
+      shortcut: "⌃⌘Q",
+      action: () => window.lockScreen?.(),
+    },
   ];
 
   const getFileItems = (): MenuItem[] => {
@@ -334,110 +340,130 @@ export const MenuBar: React.FC = () => {
 
   return (
     <header
-      className="h-[30px] bg-white/30 dark:bg-black/30 backdrop-blur-[50px] saturate-150 flex items-center justify-between px-4 text-black dark:text-white shadow-sm fixed top-0 w-full z-[8000] select-none transition-colors duration-300"
+      className={`h-[30px] ${
+        lockScreenMode
+          ? "bg-transparent"
+          : "bg-white/30 dark:bg-black/30 backdrop-blur-[50px] saturate-150"
+      } flex items-center justify-between px-4 text-black dark:text-white shadow-sm fixed top-0 w-full z-[8000] select-none transition-colors duration-300 border-none`}
       onClick={(e) => e.stopPropagation()} // Prevent clicking bar from closing menus
     >
       <div className="flex items-center h-full gap-1">
-        {/* Apple Menu */}
-        <MenuButton
-          id="apple"
-          label={<span className="text-[15px] pb-0.5"></span>}
-          items={appleItems}
-        />
+        {!lockScreenMode && (
+          <>
+            {/* Apple Menu */}
+            <MenuButton
+              id="apple"
+              label={<span className="text-[15px] pb-0.5"></span>}
+              items={appleItems}
+            />
 
-        {/* App Name */}
-        <MenuButton
-          id="app"
-          label={activeApp}
-          items={[
-            { label: `About ${activeApp}` },
-            { separator: true },
-            { label: `Quit ${activeApp}`, shortcut: "⌘Q" },
-          ]}
-          bold
-        />
+            {/* App Name */}
+            <MenuButton
+              id="app"
+              label={activeApp}
+              items={[
+                { label: `About ${activeApp}` },
+                { separator: true },
+                { label: `Quit ${activeApp}`, shortcut: "⌘Q" },
+              ]}
+              bold
+            />
 
-        {/* Standard Menus */}
-        <MenuButton id="file" label="File" items={getFileItems()} />
-        <MenuButton
-          id="edit"
-          label="Edit"
-          items={[
-            { label: "Undo", shortcut: "⌘Z" },
-            { label: "Redo", shortcut: "⇧⌘Z" },
-            { separator: true },
-            { label: "Cut", shortcut: "⌘X" },
-            { label: "Copy", shortcut: "⌘C" },
-            { label: "Paste", shortcut: "⌘V" },
-          ]}
-        />
-        <MenuButton
-          id="view"
-          label="View"
-          items={[
-            { label: "As Icons" },
-            { label: "As List" },
-            { label: "As Columns" },
-          ]}
-        />
-        <MenuButton
-          id="window"
-          label="Window"
-          items={[{ label: "Minimize", shortcut: "⌘M" }, { label: "Zoom" }]}
-        />
-        <MenuButton id="help" label="Help" items={[{ label: "macOS Help" }]} />
+            {/* Standard Menus */}
+            <MenuButton id="file" label="File" items={getFileItems()} />
+            <MenuButton
+              id="edit"
+              label="Edit"
+              items={[
+                { label: "Undo", shortcut: "⌘Z" },
+                { label: "Redo", shortcut: "⇧⌘Z" },
+                { separator: true },
+                { label: "Cut", shortcut: "⌘X" },
+                { label: "Copy", shortcut: "⌘C" },
+                { label: "Paste", shortcut: "⌘V" },
+              ]}
+            />
+            <MenuButton
+              id="view"
+              label="View"
+              items={[
+                { label: "As Icons" },
+                { label: "As List" },
+                { label: "As Columns" },
+              ]}
+            />
+            <MenuButton
+              id="window"
+              label="Window"
+              items={[{ label: "Minimize", shortcut: "⌘M" }, { label: "Zoom" }]}
+            />
+            <MenuButton
+              id="help"
+              label="Help"
+              items={[{ label: "macOS Help" }]}
+            />
+          </>
+        )}
       </div>
 
       {/* Right Side Status */}
       <div className="flex items-center gap-4 px-2 text-[13px] font-medium">
-        {/* Clipboard */}
-        <div className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default">
-          <Clipboard size={16} strokeWidth={2} />
-        </div>
+        {!lockScreenMode && (
+          <>
+            {/* Clipboard */}
+            <div className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default">
+              <Clipboard size={16} strokeWidth={2} />
+            </div>
 
-        {/* Weather */}
-        <WeatherDisplay />
+            {/* Weather */}
+            <WeatherDisplay />
 
-        {/* Media */}
-        <div className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default">
-          <PlayCircle size={16} strokeWidth={2} />
-        </div>
+            {/* Media */}
+            <div className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default">
+              <PlayCircle size={16} strokeWidth={2} />
+            </div>
 
-        {/* Battery */}
-        <BatteryDisplay />
+            {/* Battery */}
+            <BatteryDisplay />
+          </>
+        )}
 
         {/* Wifi */}
         <WifiDisplay />
 
-        {/* Search */}
-        <div
-          className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default active:bg-white/20"
-          onClick={() => useSystemStore.getState().toggleSpotlight()}
-        >
-          <Search size={15} strokeWidth={2.5} />
-        </div>
+        {!lockScreenMode && (
+          <>
+            {/* Search */}
+            <div
+              className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default active:bg-white/20"
+              onClick={() => useSystemStore.getState().toggleSpotlight()}
+            >
+              <Search size={15} strokeWidth={2.5} />
+            </div>
 
-        {/* Control Center */}
-        <div
-          ref={controlCenterRef}
-          className={`opacity-90 hover:bg-white/10 p-1 rounded cursor-default ${
-            isControlCenterOpen ? "bg-white/20" : ""
-          }`}
-          onClick={() => setIsControlCenterOpen(!isControlCenterOpen)}
-        >
-          <ControlCenterIcon />
-        </div>
+            {/* Control Center */}
+            <div
+              ref={controlCenterRef}
+              className={`opacity-90 hover:bg-white/10 p-1 rounded cursor-default ${
+                isControlCenterOpen ? "bg-white/20" : ""
+              }`}
+              onClick={() => setIsControlCenterOpen(!isControlCenterOpen)}
+            >
+              <ControlCenterIcon />
+            </div>
 
-        {/* Siri */}
-        <div className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default">
-          <SiriIcon />
-        </div>
+            {/* Siri */}
+            <div className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default">
+              <SiriIcon />
+            </div>
+          </>
+        )}
 
         {/* Clock */}
         <div
           id="menu-bar-clock"
           className="opacity-90 hover:bg-white/10 px-2 py-0.5 rounded cursor-default active:bg-white/20"
-          onClick={toggleNotificationCenter}
+          onClick={!lockScreenMode ? toggleNotificationCenter : undefined}
         >
           <Clock />
         </div>

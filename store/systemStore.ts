@@ -64,6 +64,9 @@ interface SystemState {
   isNotificationCenterOpen: boolean;
   toggleNotificationCenter: () => void;
 
+  idleTimeoutSeconds: number;
+  setIdleTimeoutSeconds: (seconds: number) => void;
+
   _hasHydrated: boolean;
   setHasHydrated: (state: boolean) => void;
 }
@@ -160,6 +163,9 @@ export const useSystemStore = create<SystemState>()(
           isNotificationCenterOpen: !state.isNotificationCenterOpen,
         })),
 
+      idleTimeoutSeconds: 30, // 30 seconds default
+      setIdleTimeoutSeconds: (seconds) => set({ idleTimeoutSeconds: seconds }),
+
       _hasHydrated: false,
       setHasHydrated: (state) => set({ _hasHydrated: state }),
     }),
@@ -179,6 +185,8 @@ export const useSystemStore = create<SystemState>()(
         wifiEnabled: state.wifiEnabled,
         bluetoothEnabled: state.bluetoothEnabled,
         credentialId: state.credentialId,
+        idleTimeoutSeconds: state.idleTimeoutSeconds,
+        isLocked: state.isLocked, // Persist lock state
       }),
     }
   )

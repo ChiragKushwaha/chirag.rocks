@@ -1,23 +1,26 @@
 "use client";
-import React, { useEffect } from "react";
-import { Desktop } from "../components/Desktop";
+import { Analytics } from "@vercel/analytics/next";
+import { useEffect } from "react";
 import { SetupAssistant } from "../apps/SetupAssistant";
+import { Desktop } from "../components/Desktop";
 import { LockScreen } from "../components/LockScreen";
+import { useAuth } from "../hooks/useAuth";
 import { fs } from "../lib/FileSystem";
 import { MacInstaller } from "../lib/Installer";
 import { useSystemStore } from "../store/systemStore";
-import { Analytics } from "@vercel/analytics/next";
+
+// Extend Window interface to include lockScreen function
+declare global {
+  interface Window {
+    lockScreen?: () => void;
+  }
+}
 
 function App() {
-  const {
-    isSetupComplete,
-    theme,
-    user,
-    isLocked,
-    setLocked,
-    lastActivityTime,
-    resetIdleTimer,
-  } = useSystemStore();
+  const { isSetupComplete, theme, user, lastActivityTime, resetIdleTimer } =
+    useSystemStore();
+
+  const { isLocked, isInitialized, lock } = useAuth();
 
   // 1. Initialize OS Layer
   useEffect(() => {
@@ -86,18 +89,31 @@ function App() {
     }
   }, [theme, user.name]);
 
-  // 2. Idle Detection - Lock after 1 minute of inactivity (only if setup complete)
+  // Expose lock function globally for MenuBar and other components
+  useEffect(() => {
+    window.lockScreen = lock;
+    return () => {
+      delete window.lockScreen;
+    };
+  }, [lock]);
+
+  // 2. Idle Detection - Lock after configured timeout (only if setup complete)
   useEffect(() => {
     if (!isSetupComplete) return; // Don't track activity during onboarding
 
-    const IDLE_TIMEOUT = 60 * 1000; // 1 minute in milliseconds
+    const { idleTimeoutSeconds } = useSystemStore.getState();
+    const IDLE_TIMEOUT = idleTimeoutSeconds * 1000; // Convert to milliseconds
 
     const checkIdleStatus = () => {
       const now = Date.now();
       const timeSinceLastActivity = now - lastActivityTime;
 
-      if (timeSinceLastActivity >= IDLE_TIMEOUT && !isLocked) {
-        setLocked(true);
+      if (
+        timeSinceLastActivity >= IDLE_TIMEOUT &&
+        !isLocked &&
+        idleTimeoutSeconds > 0
+      ) {
+        lock(); // Use auth lock instead of setLocked
       }
     };
 
@@ -123,17 +139,27 @@ function App() {
       window.removeEventListener("click", handleActivity);
       window.removeEventListener("scroll", handleActivity);
     };
-  }, [isSetupComplete, isLocked, lastActivityTime, setLocked, resetIdleTimer]);
+  }, [isSetupComplete, isLocked, lastActivityTime, resetIdleTimer, lock]);
 
   const hasHydrated = useSystemStore((state) => state._hasHydrated);
 
   // 3. Render Strategy
-  if (!hasHydrated) return <div className="bg-black w-full h-full" />;
+  if (!hasHydrated || !isInitialized) {
+    return <div className="bg-black w-full h-full" />;
+  }
+
+  // Show lock screen if locked, otherwise show desktop or setup
+  const shouldShowLockScreen = isLocked && isSetupComplete;
 
   return (
     <div className="w-full h-full overflow-hidden">
-      {isSetupComplete ? <Desktop /> : <SetupAssistant />}
-      <LockScreen />
+      {shouldShowLockScreen ? (
+        <LockScreen />
+      ) : isSetupComplete ? (
+        <Desktop />
+      ) : (
+        <SetupAssistant />
+      )}
       <Analytics />
     </div>
   );

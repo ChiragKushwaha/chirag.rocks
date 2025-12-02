@@ -1,151 +1,226 @@
-import React, { useState, useEffect } from "react";
+import { X } from "lucide-react";
+import React, { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 import { useSystemStore } from "../store/systemStore";
-import { Fingerprint } from "lucide-react";
+import { MenuBar } from "./MenuBar";
+import { WallpaperManager } from "../lib/WallpaperManager";
+import { useAsset } from "./hooks/useIconManager";
 
 export const LockScreen: React.FC = () => {
-  const { user, isLocked, setLocked, resetIdleTimer, credentialId } =
-    useSystemStore();
+  const { isLocked, isInitialized, unlock } = useAuth();
+  const { wallpaperName, theme, user } = useSystemStore();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [time, setTime] = useState(new Date());
+  const [showPasswordField, setShowPasswordField] = useState(true);
 
-  // Update time every second
-  useEffect(() => {
-    const interval = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(interval);
-  }, []);
+  // Get wallpaper the same way Desktop does
+  const wallpaper = WallpaperManager.getWallpaperPath(wallpaperName, theme);
+  const wallpaperUrl = useAsset(wallpaper);
 
-  const handlePasswordUnlock = () => {
-    if (password === user.password) {
-      setLocked(false);
-      resetIdleTimer();
+  const handleUnlock = () => {
+    const success = unlock(password, user.password);
+    if (success) {
       setPassword("");
       setError("");
+      setShowPasswordField(true);
     } else {
       setError("Incorrect password");
       setPassword("");
     }
   };
 
-  const handleBiometricUnlock = async () => {
-    if (!credentialId) {
-      setError("No biometric credential registered");
-      return;
-    }
-
-    try {
-      // Use WebAuthn to authenticate
-      const publicKeyCredentialRequestOptions = {
-        challenge: new Uint8Array(32),
-        allowCredentials: [
-          {
-            id: Uint8Array.from(atob(credentialId), (c) => c.charCodeAt(0)),
-            type: "public-key" as const,
-            transports: ["internal" as const],
-          },
-        ],
-        timeout: 60000,
-      };
-
-      const assertion = await navigator.credentials.get({
-        publicKey: publicKeyCredentialRequestOptions,
-      });
-
-      if (assertion) {
-        setLocked(false);
-        resetIdleTimer();
-        setError("");
-      }
-    } catch (err) {
-      console.error("Biometric authentication failed:", err);
-      setError("Biometric authentication failed");
-    }
+  const handleCancel = () => {
+    setPassword("");
+    setError("");
+    setShowPasswordField(false); // Hide the password field
   };
 
-  if (!isLocked) return null;
+  const handleLogin = () => {
+    setPassword("");
+    setError("");
+    setShowPasswordField(true); // Hide the password field
+  };
 
-  const formattedTime = time.toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: false,
-  });
+  const handleUserClick = () => {
+    setShowPasswordField(true); // Show the password field when user clicks on icon/name
+  };
 
-  const formattedDate = time.toLocaleDateString("en-US", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
+  // Don't render until initialized
+  if (!isInitialized || !isLocked) return null;
+
+  // Use wallpaperUrl from useAsset, or fallback to direct path
+  const backgroundImage = wallpaperUrl || wallpaper;
+
+  // URL encode the path for CSS background-image (handles spaces)
+  const encodedBackground = backgroundImage
+    ? encodeURI(backgroundImage)
+    : undefined;
+
+  console.log("[LockScreen] Wallpaper debug:", {
+    wallpaperName,
+    theme,
+    wallpaper,
+    wallpaperUrl,
+    backgroundImage,
   });
 
   return (
     <div
-      className="fixed inset-0 z-[10000] flex flex-col items-center justify-center bg-cover bg-center"
+      className="fixed top-0 left-0 right-0 bottom-0 flex flex-col bg-cover bg-center bg-black"
       style={{
-        backgroundImage:
-          "linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)",
+        zIndex: 999999,
+        backgroundImage: encodedBackground
+          ? `url("${encodedBackground}")`
+          : undefined,
       }}
     >
-      {/* Top Bar - Exactly as in image */}
-      <div className="absolute top-4 right-6 flex items-center gap-3 text-white/90 text-[11px]">
-        <span>Your screen is being observed 👁️</span>
-        <span>ABC – India 🇮🇳</span>
-        <span>🔋</span>
-        <span>📶</span>
+      {/* Reuse MenuBar Component */}
+      <div className="relative z-50">
+        <MenuBar lockScreenMode={true} />
       </div>
 
       {/* Main Content - Centered */}
-      <div className="flex flex-col items-center">
-        {/* Date */}
-        <div className="text-white/90 text-[15px] font-normal mb-3">
-          {formattedDate}
-        </div>
-
-        {/* Time - Large Display */}
-        <div className="text-white text-[140px] font-thin leading-none tracking-tighter mb-24">
-          {formattedTime}
-        </div>
-
-        {/* User Avatar - Smaller, cleaner */}
-        <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md border-2 border-white/40 flex items-center justify-center text-white text-3xl font-light shadow-2xl mb-4">
-          {user.name.charAt(0).toUpperCase() || "U"}
-        </div>
-
-        {/* Password Field - Clean and centered */}
-        <div className="relative mb-2">
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              setError("");
-            }}
-            onKeyDown={(e) => e.key === "Enter" && handlePasswordUnlock()}
-            placeholder="Enter Password"
-            className="w-[280px] bg-white/15 backdrop-blur-md border border-white/30 rounded-full px-5 py-2.5 text-center text-white text-[13px] placeholder-white/50 outline-none focus:bg-white/20 focus:border-white/50 transition-all shadow-lg"
-            autoFocus
-          />
-        </div>
-
-        {/* Hint Text */}
-        <p className="text-white/70 text-[11px] font-light">
-          Touch ID or Enter Password
-        </p>
-
-        {/* Error Message */}
-        {error && (
-          <p className="mt-2 text-red-200 text-[11px] font-medium">{error}</p>
-        )}
-
-        {/* Biometric Button - Only if credential exists */}
-        {credentialId && (
-          <button
-            onClick={handleBiometricUnlock}
-            className="mt-6 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/15 transition-all"
-            title="Use Touch ID"
+      <div className="flex-1 flex flex-col items-center justify-center">
+        {/* User Avatar - Fingerprint Circle */}
+        <div
+          onClick={handleUserClick}
+          className="w-28 h-28 rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-md border-4 border-white/50 dark:border-white/30 flex items-center justify-center mb-6 shadow-2xl cursor-pointer hover:bg-white/30 dark:hover:bg-black/30 transition-colors"
+        >
+          {/* Fingerprint icon */}
+          <svg
+            className="w-14 h-14 text-white/90"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
           >
-            <Fingerprint size={24} className="text-white" />
-          </button>
+            <path d="M12 11c0 .338-.012.673-.037 1M12 11V8m0 3c-1.763 0-3.4.537-4.762 1.456M12 11c1.763 0 3.4.537 4.762 1.456M12 8c-1.657 0-3 1.343-3 3m3-3c1.657 0 3 1.343 3 3m-3-3V5m-3 6L6.97 8.97M15 11l2.03-2.03M9 11c0 1.306-.839 2.414-2.009 2.829M15 11c0 1.306.839 2.414 2.009 2.829M18.25 12.5a7.255 7.255 0 0 1-2.27 5.271M5.75 12.5a7.255 7.255 0 0 0 2.27 5.271M16 17c-1.074.935-2.48 1.5-4 1.5s-2.926-.565-4-1.5" />
+          </svg>
+        </div>
+
+        {/* User Name */}
+        <div
+          onClick={handleUserClick}
+          className="text-white text-2xl font-medium mb-8 drop-shadow-lg cursor-pointer hover:opacity-80 transition-opacity"
+        >
+          {user.name || "Guest"}
+        </div>
+
+        {/* Password Input - Big Sur Style - Show only if showPasswordField is true */}
+        {showPasswordField && (
+          <div className="animate-fade-in">
+            <div className="relative mb-3">
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setError("");
+                }}
+                onKeyDown={(e) => e.key === "Enter" && handleUnlock()}
+                placeholder="Enter Password"
+                className={`w-[320px] bg-white/90 dark:bg-[#1e1e1e]/90 backdrop-blur-xl border ${
+                  error
+                    ? "border-red-500"
+                    : "border-white/20 dark:border-white/10"
+                } rounded-lg px-5 py-3 text-center text-black dark:text-white text-sm placeholder-gray-500 dark:placeholder-gray-400 outline-none focus:ring-2 focus:ring-blue-500/50 transition-all shadow-2xl ${
+                  error ? "animate-shake" : ""
+                }`}
+                autoFocus
+              />
+              {password && (
+                <button
+                  onClick={handleUnlock}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center transition-colors shadow-lg"
+                >
+                  <svg
+                    className="w-4 h-4 text-white"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </button>
+              )}
+            </div>
+
+            {/* Error Message */}
+            {error && (
+              <p className="text-red-400 text-sm font-medium mb-3 drop-shadow text-center">
+                {error}
+              </p>
+            )}
+
+            {/* Hint Text */}
+            <p className="text-white/80 dark:text-white/70 text-xs drop-shadow text-center">
+              Touch ID or enter password (hint: {user.password || "1234"})
+            </p>
+          </div>
         )}
       </div>
+
+      {/* Cancel Button at Bottom */}
+      {!showPasswordField ? (
+        <div className="pb-12 flex justify-center">
+          <button
+            onClick={handleUserClick}
+            className="flex flex-col items-center gap-2 text-white/90 hover:text-white transition-colors group"
+          >
+            <div className="w-11 h-11 rounded-full bg-white/15 dark:bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 dark:hover:bg-white/15 flex items-center justify-center transition-all shadow-lg">
+              <svg
+                className="w-6 h-6 text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </div>
+            <span className="text-xs font-medium drop-shadow">Login</span>
+          </button>
+        </div>
+      ) : (
+        <div className="pb-12 flex justify-center">
+          <button
+            onClick={handleCancel}
+            className="flex flex-col items-center gap-2 text-white/90 hover:text-white transition-colors group"
+          >
+            <div className="w-11 h-11 rounded-full bg-white/15 dark:bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 dark:hover:bg-white/15 flex items-center justify-center transition-all shadow-lg">
+              <X size={22} strokeWidth={2.5} />
+            </div>
+            <span className="text-xs font-medium drop-shadow">Cancel</span>
+          </button>
+        </div>
+      )}
+
+      {/* Shake animation CSS */}
+      <style jsx>{`
+        @keyframes shake {
+          0%,
+          100% {
+            transform: translateX(0);
+          }
+          10%,
+          30%,
+          50%,
+          70%,
+          90% {
+            transform: translateX(-8px);
+          }
+          20%,
+          40%,
+          60%,
+          80% {
+            transform: translateX(8px);
+          }
+        }
+        .animate-shake {
+          animation: shake 0.5s;
+        }
+      `}</style>
     </div>
   );
 };
