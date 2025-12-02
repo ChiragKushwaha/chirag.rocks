@@ -209,10 +209,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
-
         <meta
           name="google-site-verification"
-          content="Ret-iSE1zLvQXAF88Yv_TTM8RNJlWAh2-aOuwfavx6o"
+          content="OIk6sJu3nmgUIb9c-yV6DvU_P4KyXctrKxF8ZukWjQE"
         />
         {/* Additional SEO Meta Tags */}
         <meta name="format-detection" content="telephone=no" />
