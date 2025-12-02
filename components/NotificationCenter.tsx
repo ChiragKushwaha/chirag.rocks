@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { useSystemStore } from "../store/systemStore";
 import { Widget } from "./widgets/Widget";
 import { X, MinusCircle } from "lucide-react";
@@ -110,10 +111,12 @@ export const NotificationCenter: React.FC = () => {
                         {/* Icon */}
                         <div className="w-8 h-8 rounded-lg bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-xs font-bold overflow-hidden shrink-0">
                           {note.icon ? (
-                            <img
+                            <Image
                               src={note.icon}
                               alt={app}
-                              className="w-full h-full object-cover"
+                              fill
+                              className="object-cover"
+                              sizes="32px"
                             />
                           ) : (
                             app[0]

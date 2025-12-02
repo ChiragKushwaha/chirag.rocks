@@ -1,4 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { useSystemStore } from "../store/systemStore";
 
 // Default “Hello” list (add/remove freely)
@@ -307,19 +308,17 @@ export default function HelloStrokeMultiLang({
     }
   }, [index, current, paddingX, viewBox.w]);
 
-  // Background using the uploaded gradient image
-  const bg = {
-    backgroundImage: "url(/hello-gradient-bg.png)",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-  };
-
   return (
     <div
-      className={`min-h-screen flex items-center justify-center ${className}`}
-      style={bg}
+      className={`min-h-screen flex items-center justify-center relative ${className}`}
     >
+      <Image
+        src="/hello-gradient-bg.webp"
+        alt="Background"
+        fill
+        priority
+        className="object-cover -z-10"
+      />
       <div className="w-[min(92vw,1200px)] mx-auto text-center flex flex-col gap-2">
         <svg
           ref={svgRef}

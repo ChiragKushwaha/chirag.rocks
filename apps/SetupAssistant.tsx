@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Image from "next/image";
 import { useSystemStore } from "../store/systemStore";
 import HelloStrokeMultiLang from "../components/HelloStrokeMultiLang";
 import {
@@ -29,14 +30,14 @@ const SetupWindow = ({
   continueDisabled = false,
   description,
 }: any) => (
-  <div
-    className="fixed inset-0 bg-[#2b2b2b] flex items-center justify-center z-[9999] font-sans selection:bg-[#007AFF] selection:text-white"
-    style={{
-      backgroundImage: "url(/hello-gradient-bg.png)",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    }}
-  >
+  <div className="fixed inset-0 bg-[#2b2b2b] flex items-center justify-center z-[9999] font-sans selection:bg-[#007AFF] selection:text-white">
+    <Image
+      src="/hello-gradient-bg.webp"
+      alt="Background"
+      fill
+      priority
+      className="object-cover -z-10"
+    />
     {/* Background Overlay for readability */}
     <div className="absolute inset-0 bg-black/20 pointer-events-none" />
 

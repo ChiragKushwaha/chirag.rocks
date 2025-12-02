@@ -21,6 +21,7 @@ import { Messages } from "../apps/Messages";
 import { FaceTime } from "../apps/FaceTime";
 import { Notes } from "../apps/Notes";
 import dynamic from "next/dynamic";
+import NextImage from "next/image";
 
 const PDFViewer = dynamic(
   () => import("../apps/PDFViewer").then((mod) => mod.PDFViewer),
@@ -452,13 +453,20 @@ export const Desktop: React.FC = () => {
       onContextMenu={handleContextMenu} // Capture Right Click on Desktop
     >
       {/* Wallpaper Layer (z-0) */}
-      <div
-        className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out z-0"
-        style={{
-          backgroundImage: `url(${wallpaperUrl || wallpaper})`,
-          filter: `brightness(${brightness}%)`,
-        }}
-      />
+      <div className="absolute inset-0 z-0">
+        <NextImage
+          src={wallpaperUrl || wallpaper}
+          alt="Wallpaper"
+          fill
+          priority
+          className="object-cover transition-all duration-1000 ease-in-out"
+          style={{
+            filter: `brightness(${brightness}%)`,
+          }}
+          unoptimized={!!wallpaperUrl?.startsWith("blob:")}
+          quality={90}
+        />
+      </div>
 
       {/* Menu Bar (z-40) */}
       <div className="relative z-40">
