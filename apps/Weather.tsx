@@ -27,7 +27,7 @@ const POPULAR_LOCATIONS = [
 ];
 
 export const Weather: React.FC = () => {
-  const { weather: initialData, loading } = useWeather();
+  const { weather: initialData, loading, error } = useWeather();
   const [data, setData] = useState<WeatherData | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -93,13 +93,37 @@ export const Weather: React.FC = () => {
     }
   };
 
-  if (loading || !data) {
+  if (loading) {
     return (
       <div className="flex items-center justify-center h-full bg-slate-900 text-white">
-        Loading...
+        <div className="flex flex-col items-center gap-4">
+          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white"></div>
+          <div>Loading Weather...</div>
+        </div>
       </div>
     );
   }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center h-full bg-slate-900 text-white">
+        <div className="flex flex-col items-center gap-4 text-center px-4">
+          <div className="text-red-400 font-medium text-lg">
+            Unable to load weather
+          </div>
+          <div className="text-white/60 max-w-md">{error}</div>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors text-sm mt-2"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!data) return null;
 
   return (
     <div className="flex h-full w-full bg-slate-900 text-white overflow-hidden font-sans select-none">

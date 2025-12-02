@@ -17,14 +17,22 @@ export const useWeather = () => {
           location.name
         );
         setWeather(data);
-      } catch (err) {
+      } catch (err: any) {
         console.error(err);
+
+        // If it's a rate limit error, don't try fallback
+        if (err.message?.includes("Rate limit")) {
+          setError(err.message);
+          setLoading(false);
+          return;
+        }
+
         // Fallback to default location (New Delhi)
         try {
           const data = await fetchWeather(28.6139, 77.209, "New Delhi");
           setWeather(data);
-        } catch (fallbackErr) {
-          setError("Failed to load weather data");
+        } catch (fallbackErr: any) {
+          setError(fallbackErr.message || "Failed to load weather data");
         }
       } finally {
         setLoading(false);

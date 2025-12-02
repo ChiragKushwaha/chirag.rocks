@@ -159,7 +159,19 @@ export const fetchWeather = async (
     const res = await fetch(
       `https://api.open-meteo.com/v1/forecast?${params.toString()}`
     );
+
+    if (!res.ok) {
+      if (res.status === 429) {
+        throw new Error("Rate limit exceeded. Please try again later.");
+      }
+      throw new Error(`Weather API error: ${res.statusText}`);
+    }
+
     const data = await res.json();
+
+    if (!data.current) {
+      throw new Error("Invalid weather data received");
+    }
 
     const currentInfo = getWeatherInfo(
       data.current.weather_code,
