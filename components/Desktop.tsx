@@ -22,6 +22,7 @@ import { FaceTime } from "../apps/FaceTime";
 import { Notes } from "../apps/Notes";
 import dynamic from "next/dynamic";
 import NextImage from "next/image";
+import { Photos } from "../apps/Photos";
 
 const PDFViewer = dynamic(
   () => import("../apps/PDFViewer").then((mod) => mod.PDFViewer),

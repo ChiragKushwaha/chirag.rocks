@@ -21,6 +21,8 @@ export const useIconManager = () => {
           launchpad: "https://cdn-icons-png.flaticon.com/512/3643/3643771.png",
           folder:
             "https://raw.githubusercontent.com/elrumo/macOS-Big-Sur-icons-replacements/master/icons/Folder.png",
+          photos:
+            "https://raw.githubusercontent.com/elrumo/macOS-Big-Sur-icons-replacements/master/icons/Photos.png",
         };
 
         // Check and fetch remote icons
