@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { DeviceProvider } from "@/components/ui/design-system/DeviceContext";
@@ -13,6 +13,17 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f5f5f7" },
+    { media: "(prefers-color-scheme: dark)", color: "#1e1e1e" },
+  ],
+};
 
 export const metadata: Metadata = {
   title: "macOS Big Sur Clone - Browser-Based Operating System",
@@ -90,16 +101,6 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-icon-192.png", sizes: "192x192" }],
   },
   manifest: "/manifest.json",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-  },
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f5f5f7" },
-    { media: "(prefers-color-scheme: dark)", color: "#1e1e1e" },
-  ],
   category: "technology",
 };
 

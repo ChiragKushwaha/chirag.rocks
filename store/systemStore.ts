@@ -10,6 +10,9 @@ interface SystemState {
   activeApp: string;
   selectedFile: string | null;
 
+  language: string;
+  setLanguage: (lang: string) => void;
+
   user: {
     name: string;
     email: string;
@@ -78,6 +81,7 @@ export const useSystemStore = create<SystemState>()(
       isBooting: true,
       isSetupComplete: false,
       theme: "auto",
+      language: "English",
       wallpaperName: "WhiteSur",
       activeApp: "Finder",
       selectedFile: null,
@@ -96,6 +100,7 @@ export const useSystemStore = create<SystemState>()(
 
       setBooting: (status) => set({ isBooting: status }),
       setSetupComplete: (status) => set({ isSetupComplete: status }),
+      setLanguage: (lang) => set({ language: lang }),
       updateUser: (details) =>
         set((state) => ({ user: { ...state.user, ...details } })),
       setLocked: (status) => set({ isLocked: status }),
@@ -181,6 +186,7 @@ export const useSystemStore = create<SystemState>()(
       partialize: (state) => ({
         isSetupComplete: state.isSetupComplete,
         theme: state.theme,
+        language: state.language,
         user: state.user,
         wallpaperName: state.wallpaperName,
         hasCreatedWelcomeFile: state.hasCreatedWelcomeFile,

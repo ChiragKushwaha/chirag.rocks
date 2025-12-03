@@ -204,7 +204,7 @@ if (typeof window !== "undefined") {
   });
 
   // Clear cache on page reload (Cmd+R or F5)
-  window.addEventListener("beforeunload", (e) => {
+  window.addEventListener("beforeunload", () => {
     // Check if user is doing a hard reload
     if (performance.navigation.type === 1) {
       // This is a reload

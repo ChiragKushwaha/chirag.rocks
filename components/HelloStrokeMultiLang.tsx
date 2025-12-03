@@ -310,7 +310,7 @@ export default function HelloStrokeMultiLang({
 
   return (
     <div
-      className={`min-h-screen flex items-center justify-center relative ${className}`}
+      className={`min-h-screen w-screen flex items-center justify-center relative ${className}`}
     >
       <Image
         src="/hello-gradient-bg.webp"
