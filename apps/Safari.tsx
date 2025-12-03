@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSystemStore } from "../store/systemStore";
 import {
   ArrowLeft,
@@ -9,92 +9,203 @@ import {
   Plus,
   X,
   WifiOff,
+  Search,
+  Star,
+  Book,
+  Lock,
 } from "lucide-react";
 
 interface SafariProps {
   initialUrl?: string;
 }
 
-interface OpenUrlEventDetail {
-  url: string;
+interface Tab {
+  id: number;
+  history: string[];
+  currentIndex: number;
+  title: string;
+  loading: boolean;
+  icon?: string;
 }
 
+const FAVORITES = [
+  { name: "Apple", url: "https://www.apple.com", icon: "apple" },
+  { name: "Google", url: "https://www.google.com", icon: "google" },
+  { name: "Wikipedia", url: "https://www.wikipedia.org", icon: "book" },
+  { name: "GitHub", url: "https://github.com", icon: "github" },
+];
+
 export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
-  const [tabs, setTabs] = useState([
+  const [tabs, setTabs] = useState<Tab[]>([
     {
       id: 1,
-      title: initialUrl ? "Search" : "Apple",
-      url: initialUrl || "https://www.apple.com",
+      history: [initialUrl || ""],
+      currentIndex: 0,
+      title: initialUrl ? "Loading..." : "Start Page",
+      loading: !!initialUrl,
     },
-    ...(initialUrl
-      ? []
-      : [
-          { id: 2, title: "Google", url: "https://www.google.com/webhp?igu=1" },
-        ]),
   ]);
   const [activeTabId, setActiveTabId] = useState(1);
-  const [urlInput, setUrlInput] = useState(tabs[0].url);
+  const [urlInput, setUrlInput] = useState("");
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const activeTab = tabs.find((t) => t.id === activeTabId) || tabs[0];
+  const currentUrl = activeTab.history[activeTab.currentIndex];
+
+  useEffect(() => {
+    setUrlInput(currentUrl);
+  }, [currentUrl, activeTabId]);
+
+  // Listen for metadata messages from proxy
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data && event.data.type === "safari-metadata") {
+        const { title, icon } = event.data;
+        setTabs((prev) =>
+          prev.map((t) =>
+            t.id === activeTabId
+              ? { ...t, title: title || t.title, icon: icon || t.icon } // Assuming Tab interface has icon
+              : t
+          )
+        );
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
+  }, [activeTabId]);
+
+  // Service Worker disabled - causes issues intercepting app APIs
+  /*
+  // Register Service Worker for proxy interception
+  useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/safari-sw.js")
+        .then((registration) => {
+          console.log(
+            "[Safari] Service Worker registered:",
+            registration.scope
+          );
+        })
+        .catch((error) => {
+          console.error("[Safari] Service Worker registration failed:", error);
+        });
+    }
+
+    return () => {
+      // Cleanup: unregister service worker when component unmounts
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.getRegistrations().then((registrations) => {
+          registrations.forEach((registration) => {
+            if (registration.active?.scriptURL.includes("safari-sw.js")) {
+              registration.unregister();
+            }
+          });
+        });
+      }
+    };
+  }, []);
+  */
+
+  const updateTab = (id: number, updates: Partial<Tab>) => {
+    setTabs((prev) =>
+      prev.map((t) => (t.id === id ? { ...t, ...updates } : t))
+    );
+  };
+
+  const navigateTo = (input: string) => {
+    let targetUrl = input.trim();
+
+    // Intelligent Omnibar Logic
+    const hasProtocol = /^https?:\/\//i.test(targetUrl);
+    const hasDomain =
+      /\.[a-z]{2,}$/i.test(targetUrl) || targetUrl.includes("localhost");
+    const hasSpaces = targetUrl.includes(" ");
+
+    if (!hasProtocol) {
+      if (hasSpaces || !hasDomain) {
+        // Treat as search query
+        targetUrl = `https://www.google.com/search?q=${encodeURIComponent(
+          targetUrl
+        )}`;
+      } else {
+        // Treat as URL, add https://
+        targetUrl = `https://${targetUrl}`;
+      }
+    }
+
+    const newHistory = activeTab.history.slice(0, activeTab.currentIndex + 1);
+    newHistory.push(targetUrl);
+
+    updateTab(activeTabId, {
+      history: newHistory,
+      currentIndex: newHistory.length - 1,
+      title: "Loading...",
+      loading: !!targetUrl,
+    });
+  };
+
+  const goBack = () => {
+    if (activeTab.currentIndex > 0) {
+      updateTab(activeTabId, {
+        currentIndex: activeTab.currentIndex - 1,
+        loading: true,
+      });
+    }
+  };
+
+  const goForward = () => {
+    if (activeTab.currentIndex < activeTab.history.length - 1) {
+      updateTab(activeTabId, {
+        currentIndex: activeTab.currentIndex + 1,
+        loading: true,
+      });
+    }
+  };
+
+  const reload = () => {
+    if (iframeRef.current) {
+      // Force reload by resetting src (or just let the loading state handle it if we toggle)
+      // Simple way: just set loading true, the effect/render will handle it?
+      // Actually, for iframe, re-setting src works.
+      const currentSrc = iframeRef.current.src;
+      iframeRef.current.src = currentSrc;
+    }
+  };
 
   const handleUrlSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    let url = urlInput;
-    if (!url.startsWith("http")) {
-      url = `https://${url}`;
-    }
-    const updatedTabs = tabs.map((t) =>
-      t.id === activeTabId ? { ...t, url, title: url } : t
-    );
-    setTabs(updatedTabs);
+    navigateTo(urlInput);
   };
 
   const addTab = () => {
     const newId = Math.max(...tabs.map((t) => t.id)) + 1;
-    const newTab = {
+    const newTab: Tab = {
       id: newId,
-      title: "New Tab",
-      url: "https://www.google.com/webhp?igu=1",
+      history: [""],
+      currentIndex: 0,
+      title: "Start Page",
+      loading: false,
     };
     setTabs([...tabs, newTab]);
     setActiveTabId(newId);
-    setUrlInput(newTab.url);
   };
 
   const closeTab = (id: number, e: React.MouseEvent) => {
     e.stopPropagation();
-    if (tabs.length === 1) return;
+    if (tabs.length === 1) {
+      // If closing last tab, just reset it to start page
+      updateTab(id, { history: [""], currentIndex: 0, title: "Start Page" });
+      return;
+    }
     const newTabs = tabs.filter((t) => t.id !== id);
     setTabs(newTabs);
     if (activeTabId === id) {
       setActiveTabId(newTabs[newTabs.length - 1].id);
-      setUrlInput(newTabs[newTabs.length - 1].url);
     }
   };
 
-  // Listen for external URL open events
-  React.useEffect(() => {
-    const handleOpenUrl = (e: CustomEvent<OpenUrlEventDetail>) => {
-      const url = e.detail.url;
-      const newId = Math.max(...tabs.map((t) => t.id)) + 1;
-      const newTab = {
-        id: newId,
-        title: url,
-        url: url,
-      };
-      setTabs((prev) => [...prev, newTab]);
-      setActiveTabId(newId);
-      setUrlInput(url);
-    };
-
-    window.addEventListener("safari:open-url" as any, handleOpenUrl as any);
-    return () => {
-      window.removeEventListener(
-        "safari:open-url" as any,
-        handleOpenUrl as any
-      );
-    };
-  }, [tabs]);
   const { wifiEnabled } = useSystemStore();
 
   if (!wifiEnabled) {
@@ -115,18 +226,27 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
   }
 
   return (
-    <div className="flex flex-col h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans">
+    <div className="flex flex-col h-full bg-white dark:bg-[#2b2b2b] text-gray-900 dark:text-gray-100 font-sans">
       {/* Toolbar */}
-      <div className="h-12 bg-[#f5f5f7] dark:bg-[#2b2b2b] border-b border-gray-200 dark:border-black/20 flex items-center px-4 gap-4">
+      <div className="h-12 bg-[#f5f5f7] dark:bg-[#323232] border-b border-gray-200 dark:border-black/20 flex items-center px-4 gap-4 relative z-20">
+        {/* Window Controls Placeholder (handled by OS, but we need spacing if not in full OS mode, 
+            but here we assume OS handles it or we just have standard toolbar) */}
+
         <div className="flex gap-4 text-gray-500 dark:text-gray-400">
-          <ArrowLeft
-            size={18}
-            className="cursor-pointer hover:text-gray-800 dark:hover:text-white"
-          />
-          <ArrowRight
-            size={18}
-            className="cursor-pointer hover:text-gray-800 dark:hover:text-white"
-          />
+          <button
+            onClick={goBack}
+            disabled={activeTab.currentIndex === 0}
+            className="hover:text-gray-800 dark:hover:text-white disabled:opacity-30 transition-colors"
+          >
+            <ArrowLeft size={18} />
+          </button>
+          <button
+            onClick={goForward}
+            disabled={activeTab.currentIndex === activeTab.history.length - 1}
+            className="hover:text-gray-800 dark:hover:text-white disabled:opacity-30 transition-colors"
+          >
+            <ArrowRight size={18} />
+          </button>
         </div>
 
         <div className="flex items-center gap-3 text-gray-500 dark:text-gray-400">
@@ -134,20 +254,25 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
         </div>
 
         <form onSubmit={handleUrlSubmit} className="flex-1 flex justify-center">
-          <div className="w-full max-w-2xl relative">
-            <input
-              type="text"
-              value={urlInput}
-              onChange={(e) => setUrlInput(e.target.value)}
-              className="w-full bg-gray-200 dark:bg-black/20 rounded-lg py-1.5 px-8 text-sm text-center focus:text-left focus:bg-white dark:focus:bg-[#3a3a3a] focus:ring-2 focus:ring-blue-500/50 focus:outline-none transition-all"
-            />
-            <div className="absolute left-2 top-2 text-gray-500">
-              {/* Lock icon placeholder */}
+          <div className="w-full max-w-xl relative group">
+            <div className="absolute inset-0 bg-gray-200 dark:bg-[#1e1e1e] rounded-lg transition-all group-focus-within:ring-2 ring-blue-500/50" />
+            <div className="relative flex items-center px-3 h-8">
+              {currentUrl && <Lock size={12} className="text-gray-500 mr-2" />}
+              <input
+                type="text"
+                value={urlInput}
+                onChange={(e) => setUrlInput(e.target.value)}
+                placeholder="Search or enter website name"
+                className="w-full bg-transparent border-none outline-none text-sm text-center group-focus-within:text-left text-gray-800 dark:text-gray-200 placeholder-gray-400"
+              />
+              <button
+                type="button"
+                onClick={reload}
+                className="text-gray-500 hover:text-gray-800 dark:hover:text-white ml-2"
+              >
+                <RotateCw size={14} />
+              </button>
             </div>
-            <RotateCw
-              size={14}
-              className="absolute right-2.5 top-2 text-gray-500 cursor-pointer hover:text-gray-800 dark:hover:text-white"
-            />
           </div>
         </form>
 
@@ -167,24 +292,35 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
         </div>
       </div>
 
-      {/* Tabs Bar (Below Toolbar style) */}
-      <div className="h-9 bg-[#f5f5f7] dark:bg-[#2b2b2b] flex items-end px-2 gap-1 overflow-x-auto">
+      {/* Tabs Bar */}
+      <div className="h-8 bg-[#f5f5f7] dark:bg-[#323232] flex items-end px-2 gap-1 overflow-x-auto border-b border-gray-200 dark:border-black/20">
         {tabs.map((tab) => (
           <div
             key={tab.id}
-            onClick={() => {
-              setActiveTabId(tab.id);
-              setUrlInput(tab.url);
-            }}
-            className={`group relative flex items-center gap-2 px-3 py-1.5 rounded-t-lg text-xs font-medium min-w-[120px] max-w-[200px] cursor-default transition-colors ${
-              activeTabId === tab.id
-                ? "bg-white dark:bg-[#1e1e1e] shadow-sm z-10"
-                : "bg-transparent hover:bg-gray-200 dark:hover:bg-white/5 text-gray-600 dark:text-gray-400"
-            }`}
+            onClick={() => setActiveTabId(tab.id)}
+            className={`
+              group relative flex items-center gap-2 px-3 py-1.5 rounded-t-md text-xs font-medium 
+              min-w-[100px] max-w-[200px] flex-1 cursor-default transition-all
+              ${
+                activeTabId === tab.id
+                  ? "bg-white dark:bg-[#2b2b2b] text-gray-800 dark:text-gray-100 shadow-sm"
+                  : "bg-transparent hover:bg-gray-200 dark:hover:bg-white/5 text-gray-500 dark:text-gray-400"
+              }
+            `}
           >
-            {/* Favicon placeholder */}
-            <div className="w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600" />
-            <span className="truncate flex-1">{tab.title}</span>
+            {/* Favicon */}
+            {tab.icon ? (
+              <img
+                src={tab.icon}
+                alt=""
+                className="w-3 h-3 rounded-full object-cover"
+              />
+            ) : (
+              <div className="w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 flex-shrink-0" />
+            )}
+            <span className="truncate flex-1 text-center">
+              {tab.title || "Start Page"}
+            </span>
             <button
               onClick={(e) => closeTab(tab.id, e)}
               className={`p-0.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 ${
@@ -199,29 +335,47 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
         ))}
       </div>
 
-      {/* Content */}
-      <div className="flex-1 bg-white dark:bg-[#1e1e1e] relative">
-        <iframe
-          src={activeTab.url}
-          className="w-full h-full border-none"
-          title="Browser Content"
-          sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-        />
-        {/* Overlay for blocked sites (simple check) */}
-        {!activeTab.url.includes("google.com") &&
-          !activeTab.url.includes("apple.com") &&
-          !activeTab.url.includes("wikipedia.org") && (
-            <div className="absolute inset-0 flex items-center justify-center bg-gray-50 dark:bg-[#1e1e1e] pointer-events-none">
-              <div className="text-center">
-                <h2 className="text-xl font-semibold mb-2">
-                  Content Loading...
-                </h2>
-                <p className="text-gray-500 text-sm">
-                  Most sites block iframes. Try Google or Wikipedia.
-                </p>
+      {/* Content Area */}
+      <div className="flex-1 bg-white dark:bg-[#2b2b2b] relative overflow-hidden">
+        {currentUrl ? (
+          <iframe
+            ref={iframeRef}
+            src={`http://localhost:3002/proxy?url=${encodeURIComponent(
+              currentUrl
+            )}`}
+            className="w-full h-full border-none"
+            title="Browser Content"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+            onLoad={() =>
+              updateTab(activeTabId, { loading: false, title: currentUrl })
+            }
+          />
+        ) : (
+          /* Start Page */
+          <div className="w-full h-full flex flex-col items-center justify-center bg-[#f5f5f7] dark:bg-[#2b2b2b] text-gray-800 dark:text-gray-100">
+            <div className="mb-12 flex flex-col items-center">
+              <h1 className="text-4xl font-bold mb-8 text-gray-300 dark:text-gray-600 select-none">
+                Safari
+              </h1>
+              <div className="grid grid-cols-4 gap-8">
+                {FAVORITES.map((fav) => (
+                  <button
+                    key={fav.name}
+                    onClick={() => navigateTo(fav.url)}
+                    className="flex flex-col items-center gap-3 group"
+                  >
+                    <div className="w-16 h-16 bg-white dark:bg-[#3a3a3a] rounded-xl shadow-sm group-hover:shadow-md transition-all flex items-center justify-center text-2xl">
+                      {fav.name[0]}
+                    </div>
+                    <span className="text-sm font-medium text-gray-600 dark:text-gray-400 group-hover:text-blue-500 transition-colors">
+                      {fav.name}
+                    </span>
+                  </button>
+                ))}
               </div>
             </div>
-          )}
+          </div>
+        )}
       </div>
     </div>
   );

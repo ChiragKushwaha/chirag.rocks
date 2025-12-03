@@ -28,6 +28,43 @@ app.get("/health", (req, res) => {
   });
 });
 
+// Proxy endpoint for Safari app
+app.get("/proxy", async (req, res) => {
+  const { url } = req.query;
+  if (!url || typeof url !== "string") {
+    res.status(400).send("Missing URL parameter");
+    return;
+  }
+
+  try {
+    const response = await fetch(url);
+    const contentType = response.headers.get("content-type");
+    const text = await response.text();
+
+    // Inject <base> tag to fix relative links
+    // We try to insert it right after <head> or <html> if <head> is missing
+    let modifiedHtml = text;
+    if (text.includes("<head>")) {
+      modifiedHtml = text.replace("<head>", `<head><base href="${url}" />`);
+    } else if (text.includes("<html>")) {
+      modifiedHtml = text.replace(
+        "<html>",
+        `<html><head><base href="${url}" /></head>`
+      );
+    }
+
+    // Forward content type
+    if (contentType) {
+      res.setHeader("Content-Type", contentType);
+    }
+
+    res.send(modifiedHtml);
+  } catch (error) {
+    console.error("Proxy error:", error);
+    res.status(500).send("Error fetching URL");
+  }
+});
+
 // CORS middleware for Express routes
 app.use((req, res, next) => {
   const origin = req.headers.origin;
