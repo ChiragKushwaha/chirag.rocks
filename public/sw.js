@@ -1,7 +1,7 @@
 // macOS Clone Service Worker with Full Offline Support
 // Version: 2.0.0
 
-const CACHE_VERSION = 'macos-v2';
+const CACHE_VERSION = 'macos-v3';
 const API_CACHE = 'macos-api-cache-v2';
 const STATIC_CACHE = 'macos-static-v2';
 const IMAGE_CACHE = 'macos-images-v2';
@@ -14,9 +14,7 @@ const API_CACHE_DURATION = 30 * 60 * 1000;
 const IMAGE_CACHE_DURATION = 7 * 24 * 60 * 60 * 1000;
 
 // API endpoints to cache
-const CAC
-
-HED_API_PATTERNS = [
+const CACHED_API_PATTERNS = [
     /news\.api/i,
     /music\.api/i,
     /tv\.api/i,

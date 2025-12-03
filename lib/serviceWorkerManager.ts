@@ -15,9 +15,9 @@ export class ServiceWorkerManager {
 
     if (process.env.NODE_ENV === "development") {
       console.log(
-        "Development mode detected: Skipping Service Worker registration"
+        "Development mode detected: Service Worker enabled for testing"
       );
-      return false;
+      // return false; // Commented out to enable in dev
     }
 
     try {
