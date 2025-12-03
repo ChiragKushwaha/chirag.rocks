@@ -8,6 +8,8 @@ export const Dock: React.FC = () => {
   return (
     <div className="fixed bottom-2 left-0 right-0 flex justify-center z-[9000] pointer-events-none">
       <div
+        role="navigation"
+        aria-label="Application dock"
         className="
           dock pointer-events-auto
           flex items-end gap-2 px-3 pb-3 pt-2.5

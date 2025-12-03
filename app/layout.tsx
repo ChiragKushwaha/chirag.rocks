@@ -26,7 +26,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "macOS Big Sur Clone - Browser-Based Operating System",
+  metadataBase: new URL("https://chirag-rocks.vercel.app"),
+  title: "Chirag Kushwaha - Interactive Portfolio | macOS Big Sur Experience",
   description:
     "Experience a pixel-perfect macOS Big Sur clone running entirely in your browser. Full offline support, OPFS file system, real-time features, and native-like performance. A Progressive Web App built with Next.js and React.",
   keywords: [
@@ -94,11 +95,12 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/apple-icon.png", sizes: "any" },
+      { url: "/apple-icon.png", sizes: "192x192", type: "image/png" },
       { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
-    apple: [{ url: "/apple-icon-192.png", sizes: "192x192" }],
+    apple: [{ url: "/apple-icon.png", sizes: "192x192" }],
+    shortcut: "/apple-icon.png",
   },
   manifest: "/manifest.json",
   category: "technology",
@@ -111,10 +113,10 @@ const structuredData = {
     {
       "@type": "WebApplication",
       "@id": "https://chirag-rocks.vercel.app/#webapplication",
-      name: "macOS Big Sur Clone",
-      alternateName: "Browser-Based macOS",
+      name: "Chirag Kushwaha - Interactive Portfolio",
+      alternateName: "macOS Big Sur Portfolio Experience",
       description:
-        "A fully-functional macOS Big Sur clone running entirely in the web browser with offline support, file system management, and native applications.",
+        "An interactive portfolio showcasing Chirag Kushwaha's skills through a fully-functional macOS Big Sur clone running entirely in the web browser. Features offline support, file system management, and native applications demonstrating full-stack development expertise.",
       url: "https://chirag-rocks.vercel.app",
       applicationCategory: "DesktopEnhancementApplication",
       operatingSystem: "Web Browser (Chrome, Edge, Safari, Firefox)",
@@ -168,11 +170,15 @@ const structuredData = {
       "@type": "WebSite",
       "@id": "https://chirag-rocks.vercel.app/#website",
       url: "https://chirag-rocks.vercel.app",
-      name: "macOS Big Sur Clone",
-      description: "Browser-based operating system inspired by macOS Big Sur",
+      name: "Chirag Kushwaha - Portfolio",
+      description:
+        "Interactive portfolio of Chirag Kushwaha - Full-stack developer showcasing skills through an immersive macOS Big Sur browser experience",
       publisher: {
         "@type": "Person",
+        "@id": "https://chirag.rocks/#person",
         name: "Chirag Kushwaha",
+        jobTitle: "Full-Stack Developer",
+        url: "https://chirag.rocks",
       },
       potentialAction: {
         "@type": "SearchAction",

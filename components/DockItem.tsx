@@ -165,6 +165,7 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
       <button
         ref={imgRef}
         onClick={handleClick}
+        aria-label={`${name}${isOpen ? " (running)" : ""}`}
         style={{
           width: `${width}px`,
           height: `${width}px`,
@@ -173,8 +174,7 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
         className={`
           flex items-center justify-center rounded-2xl 
             /* Removed background/border to fix "black space" issue */
-            name === "Calendar" ? "" : ""
-          }
+            ${name === "Calendar" ? "" : ""}
           select-none
           /* KEY FIX: Only animate when mouse leaves (mouseX is null) */
           ${

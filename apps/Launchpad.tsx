@@ -582,12 +582,13 @@ const LaunchpadItem: React.FC<{
   const Icon = app.icon;
 
   return (
-    <div
-      className="flex flex-col items-center gap-4 group cursor-pointer"
+    <button
+      className="flex flex-col items-center gap-4 group cursor-pointer bg-transparent border-none"
       onClick={(e) => {
         e.stopPropagation();
         onClick();
       }}
+      aria-label={`Launch ${app.name}`}
     >
       <div className="w-[112px] h-[112px] min-w-[112px] min-h-[112px] transition-transform duration-300 ease-out group-hover:scale-105 group-active:scale-95 flex items-center justify-center">
         <Icon
@@ -598,7 +599,7 @@ const LaunchpadItem: React.FC<{
       <span className="text-white text-[15px] font-semibold drop-shadow-lg tracking-tight opacity-90 group-hover:opacity-100">
         {app.name}
       </span>
-    </div>
+    </button>
   );
 };
 
@@ -700,6 +701,8 @@ export const Launchpad: React.FC = () => {
   return (
     <dialog
       ref={dialogRef}
+      role="dialog"
+      aria-label="Application launcher"
       className="w-screen h-screen max-w-none max-h-none bg-transparent m-0 p-0 backdrop:bg-black/40 backdrop:backdrop-blur-[100px] animate-in fade-in zoom-in-95 duration-200 ease-out overflow-hidden outline-none pointer-events-auto"
       onClick={handleClose}
       onCancel={handleClose}
@@ -713,6 +716,7 @@ export const Launchpad: React.FC = () => {
           <Search
             className="relative z-1 left-8 text-white/50 group-focus-within:text-white transition-colors"
             size={14}
+            aria-hidden="true"
           />
           <input
             type="text"
@@ -722,6 +726,7 @@ export const Launchpad: React.FC = () => {
               setSearchTerm(e.target.value);
               setSelectedIndex(0); // Select first result on search
             }}
+            aria-label="Search applications"
             className="w-full bg-white/10 border border-white/20 rounded-[8px] pl-9 pr-3 py-1.5 text-white placeholder-white/50 text-[14px] font-light focus:outline-none focus:bg-white/20 focus:border-white/30 transition-all text-center focus:text-left focus:placeholder-transparent shadow-lg backdrop-blur-md"
             autoFocus
           />
