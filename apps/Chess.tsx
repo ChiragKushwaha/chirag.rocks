@@ -1,16 +1,33 @@
+"use client";
+
 import React, { useState, useEffect, useCallback } from "react";
-import { Chess as ChessGame, Square } from "chess.js";
-import { Chessboard } from "react-chessboard";
-const SafeChessboard = Chessboard as any;
+import { Chess as ChessGame, Square, Move } from "chess.js";
 import { RotateCcw, History, Trophy, AlertTriangle } from "lucide-react";
+
+// Piece images from Wikimedia Commons
+const PIECE_IMAGES: Record<string, string> = {
+  w: "https://upload.wikimedia.org/wikipedia/commons/1/15/Chess_qlt45.svg", // Fallback/Error
+  b: "https://upload.wikimedia.org/wikipedia/commons/4/47/Chess_qdt45.svg", // Fallback/Error
+  wp: "https://upload.wikimedia.org/wikipedia/commons/4/45/Chess_plt45.svg",
+  wn: "https://upload.wikimedia.org/wikipedia/commons/7/70/Chess_nlt45.svg",
+  wb: "https://upload.wikimedia.org/wikipedia/commons/b/b1/Chess_blt45.svg",
+  wr: "https://upload.wikimedia.org/wikipedia/commons/7/72/Chess_rlt45.svg",
+  wq: "https://upload.wikimedia.org/wikipedia/commons/1/15/Chess_qlt45.svg",
+  wk: "https://upload.wikimedia.org/wikipedia/commons/4/42/Chess_klt45.svg",
+  bp: "https://upload.wikimedia.org/wikipedia/commons/c/c7/Chess_pdt45.svg",
+  bn: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Chess_ndt45.svg",
+  bb: "https://upload.wikimedia.org/wikipedia/commons/9/98/Chess_bdt45.svg",
+  br: "https://upload.wikimedia.org/wikipedia/commons/f/ff/Chess_rdt45.svg",
+  bq: "https://upload.wikimedia.org/wikipedia/commons/4/47/Chess_qdt45.svg",
+  bk: "https://upload.wikimedia.org/wikipedia/commons/f/f0/Chess_kdt45.svg",
+};
 
 export const Chess: React.FC = () => {
   const [game, setGame] = useState(new ChessGame());
   const [moveHistory, setMoveHistory] = useState<string[]>([]);
-  const [fen, setFen] = useState(game.fen());
   const [boardWidth, setBoardWidth] = useState(600);
-  const [optionSquares, setOptionSquares] = useState({});
-  const [rightClickedSquares, setRightClickedSquares] = useState({});
+  const [selectedSquare, setSelectedSquare] = useState<Square | null>(null);
+  const [possibleMoves, setPossibleMoves] = useState<Move[]>([]);
 
   // Responsive board size
   useEffect(() => {
@@ -24,7 +41,7 @@ export const Chess: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const makeAMove = useCallback(
+  const makeMove = useCallback(
     (move: { from: string; to: string; promotion?: string }) => {
       try {
         const gameCopy = new ChessGame(game.fen());
@@ -32,8 +49,9 @@ export const Chess: React.FC = () => {
 
         if (result) {
           setGame(gameCopy);
-          setFen(gameCopy.fen());
           setMoveHistory((prev) => [...prev, result.san]);
+          setSelectedSquare(null);
+          setPossibleMoves([]);
           return true;
         }
       } catch (error) {
@@ -44,61 +62,54 @@ export const Chess: React.FC = () => {
     [game]
   );
 
-  function onPieceDragBegin(piece: string, sourceSquare: string) {
-    const moves = game.moves({
-      square: sourceSquare as Square,
-      verbose: true,
-    });
+  const onSquareClick = (square: Square) => {
+    // If a square is already selected
+    if (selectedSquare) {
+      // If clicking the same square, deselect
+      if (selectedSquare === square) {
+        setSelectedSquare(null);
+        setPossibleMoves([]);
+        return;
+      }
 
-    if (moves.length === 0) {
-      setOptionSquares({});
-      return;
+      // Check if it's a valid move
+      const move = possibleMoves.find((m) => m.to === square);
+      if (move) {
+        makeMove({
+          from: selectedSquare,
+          to: square,
+          promotion: "q", // Always promote to queen for simplicity
+        });
+        return;
+      }
+
+      // If clicking another piece of same color, select that instead
+      const piece = game.get(square);
+      if (piece && piece.color === game.turn()) {
+        setSelectedSquare(square);
+        setPossibleMoves(game.moves({ square, verbose: true }) as Move[]);
+        return;
+      }
+
+      // Otherwise deselect
+      setSelectedSquare(null);
+      setPossibleMoves([]);
+    } else {
+      // Select piece if it belongs to current turn
+      const piece = game.get(square);
+      if (piece && piece.color === game.turn()) {
+        setSelectedSquare(square);
+        setPossibleMoves(game.moves({ square, verbose: true }) as Move[]);
+      }
     }
-
-    const newSquares: Record<string, React.CSSProperties> = {};
-    moves.map((move) => {
-      newSquares[move.to] = {
-        background:
-          game.get(move.to) &&
-          game.get(move.to)?.color !== game.get(sourceSquare as Square)?.color
-            ? "radial-gradient(circle, rgba(0,0,0,.1) 85%, transparent 85%)"
-            : "radial-gradient(circle, rgba(0,0,0,.1) 25%, transparent 25%)",
-        borderRadius: "50%",
-      };
-      return move;
-    });
-
-    newSquares[sourceSquare] = {
-      background: "rgba(255, 255, 0, 0.4)",
-    };
-
-    setOptionSquares(newSquares);
-  }
-
-  function onPieceDragEnd() {
-    setOptionSquares({});
-  }
-
-  const onDrop = (sourceSquare: string, targetSquare: string) => {
-    const move = makeAMove({
-      from: sourceSquare,
-      to: targetSquare,
-      promotion: "q",
-    });
-
-    if (!move) return false;
-
-    setOptionSquares({});
-    return true;
   };
 
   const resetGame = () => {
     const newGame = new ChessGame();
     setGame(newGame);
-    setFen(newGame.fen());
     setMoveHistory([]);
-    setOptionSquares({});
-    setRightClickedSquares({});
+    setSelectedSquare(null);
+    setPossibleMoves([]);
   };
 
   const getGameStatus = () => {
@@ -137,9 +148,17 @@ export const Chess: React.FC = () => {
   };
 
   const status = getGameStatus();
+  const board = game.board(); // 8x8 array of ({ type, color } | null)
+
+  // Helper to get square notation (e.g. "a8") from indices
+  const getSquareNotation = (rowIndex: number, colIndex: number): Square => {
+    const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
+    const ranks = ["8", "7", "6", "5", "4", "3", "2", "1"];
+    return (files[colIndex] + ranks[rowIndex]) as Square;
+  };
 
   return (
-    <div className="flex h-full w-full bg-[#262522] text-white overflow-hidden font-sans select-none relative">
+    <div className="flex h-full w-full bg-[#262522] text-white overflow-hidden font-sans relative">
       {/* Sidebar / Info Panel */}
       <div className="w-72 bg-[#21201d] border-r border-white/5 flex flex-col z-10 shadow-xl">
         <div className="h-14 flex items-center px-6 border-b border-white/5 font-bold text-lg text-[#C3C3C1]">
@@ -203,25 +222,92 @@ export const Chess: React.FC = () => {
       </div>
 
       {/* Main Board Area */}
-      <div className="flex-1 flex items-center justify-center bg-[#302e2b] relative">
+      <div className="flex-1 flex items-center justify-center bg-[#302e2b] relative z-10">
         <div
-          className="shadow-2xl rounded-sm overflow-hidden"
-          style={{ width: boardWidth, height: boardWidth }}
+          className="shadow-2xl rounded-sm overflow-hidden bg-[#eeeed2]"
+          style={{
+            width: boardWidth,
+            height: boardWidth,
+            display: "grid",
+            gridTemplateColumns: "repeat(8, 1fr)",
+            gridTemplateRows: "repeat(8, 1fr)",
+          }}
+          id="chessboard-wrapper"
         >
-          <SafeChessboard
-            position={fen}
-            onPieceDrop={onDrop}
-            boardWidth={boardWidth}
-            customDarkSquareStyle={{ backgroundColor: "#769656" }}
-            customLightSquareStyle={{ backgroundColor: "#eeeed2" }}
-            animationDuration={200}
-            onPieceDragBegin={onPieceDragBegin}
-            onPieceDragEnd={onPieceDragEnd}
-            customSquareStyles={{
-              ...optionSquares,
-              ...rightClickedSquares,
-            }}
-          />
+          {board.map((row, rowIndex) =>
+            row.map((piece, colIndex) => {
+              const square = getSquareNotation(rowIndex, colIndex);
+              const isDark = (rowIndex + colIndex) % 2 === 1;
+              const isSelected = selectedSquare === square;
+              const isPossibleMove = possibleMoves.some((m) => m.to === square);
+              const isLastMove =
+                moveHistory.length > 0 &&
+                (game.history({ verbose: true }).slice(-1)[0]?.from ===
+                  square ||
+                  game.history({ verbose: true }).slice(-1)[0]?.to === square);
+
+              return (
+                <div
+                  key={square}
+                  onClick={() => onSquareClick(square)}
+                  className={`
+                    relative flex items-center justify-center cursor-pointer
+                    ${isDark ? "bg-[#769656]" : "bg-[#eeeed2]"}
+                    ${
+                      isSelected
+                        ? "ring-inset ring-4 ring-[rgba(255,255,0,0.5)]"
+                        : ""
+                    }
+                    ${isLastMove ? "bg-[rgba(255,255,0,0.4)]" : ""}
+                  `}
+                  data-square={square}
+                >
+                  {/* Possible Move Indicator */}
+                  {isPossibleMove && (
+                    <div
+                      className={`
+                      absolute rounded-full z-10 pointer-events-none
+                      ${
+                        piece
+                          ? "w-full h-full border-[6px] border-[rgba(0,0,0,0.1)]"
+                          : "w-1/3 h-1/3 bg-[rgba(0,0,0,0.1)]"
+                      }
+                    `}
+                    />
+                  )}
+
+                  {/* Piece */}
+                  {piece && (
+                    <img
+                      src={PIECE_IMAGES[`${piece.color}${piece.type}`]}
+                      alt={`${piece.color} ${piece.type}`}
+                      className="w-[90%] h-[90%] select-none z-20"
+                    />
+                  )}
+
+                  {/* Coordinates (optional, for debugging/learning) */}
+                  {colIndex === 0 && (
+                    <span
+                      className={`absolute top-0.5 left-0.5 text-[10px] font-bold ${
+                        isDark ? "text-[#eeeed2]" : "text-[#769656]"
+                      }`}
+                    >
+                      {8 - rowIndex}
+                    </span>
+                  )}
+                  {rowIndex === 7 && (
+                    <span
+                      className={`absolute bottom-0.5 right-0.5 text-[10px] font-bold ${
+                        isDark ? "text-[#eeeed2]" : "text-[#769656]"
+                      }`}
+                    >
+                      {String.fromCharCode(97 + colIndex)}
+                    </span>
+                  )}
+                </div>
+              );
+            })
+          )}
         </div>
       </div>
     </div>
