@@ -72,12 +72,12 @@ export const useIconManager = () => {
 
         // 1.5 Initialize Social Assets (GIFs and PNGs)
         const SOCIAL_ASSETS = [
-          "github.png",
-          "twitter.png",
+          "github-v2.png",
+          "twitter-x.png",
           "linkedin.png",
           "instagram.png",
           "facebook.png",
-          "tiktok-v2.png",
+          "tiktok-v4.png",
           "snapchat-v2.png",
         ];
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSocketStore } from "../store/socketStore";
 import { useSystemStore } from "../store/systemStore";
+import { usePermission } from "../context/PermissionContext";
 
 export const FaceTime: React.FC = () => {
   const {
@@ -16,6 +17,7 @@ export const FaceTime: React.FC = () => {
     me,
   } = useSocketStore();
   const { user } = useSystemStore();
+  const { requestPermission } = usePermission();
 
   const [loginName, setLoginName] = useState("");
   const localVideoRef = useRef<HTMLVideoElement>(null);
@@ -49,6 +51,16 @@ export const FaceTime: React.FC = () => {
     const initStream = async () => {
       if (!localStreamRef.current) {
         try {
+          const allowed = await requestPermission(
+            "FaceTime",
+            "📷",
+            "Camera and Microphone",
+            "FaceTime needs access to your camera and microphone to make calls.",
+            "camera"
+          );
+
+          if (!allowed) return;
+
           const stream = await navigator.mediaDevices.getUserMedia({
             video: true,
             audio: true,
@@ -73,7 +85,7 @@ export const FaceTime: React.FC = () => {
     if (!isCallActive) {
       initStream();
     }
-  }, [isCallActive]);
+  }, [isCallActive, requestPermission]);
 
   // Attach stream to active call video when it becomes active
   useEffect(() => {
@@ -118,6 +130,16 @@ export const FaceTime: React.FC = () => {
     if (localStreamRef.current) return localStreamRef.current;
 
     try {
+      const allowed = await requestPermission(
+        "FaceTime",
+        "📷",
+        "Camera and Microphone",
+        "FaceTime needs access to your camera and microphone to make calls.",
+        "camera"
+      );
+
+      if (!allowed) return null;
+
       const stream = await navigator.mediaDevices.getUserMedia({
         video: true,
         audio: true,

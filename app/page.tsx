@@ -9,6 +9,7 @@ import { fs } from "../lib/FileSystem";
 import { MacInstaller } from "../lib/Installer";
 import { useSystemStore } from "../store/systemStore";
 import { useTheme } from "../hooks/useTheme";
+import { PermissionProvider } from "../context/PermissionContext";
 
 // Extend Window interface to include lockScreen function
 declare global {
@@ -149,16 +150,18 @@ function App() {
   const shouldShowLockScreen = isLocked && isSetupComplete;
 
   return (
-    <div className="w-full h-full overflow-hidden">
-      {shouldShowLockScreen ? (
-        <LockScreen />
-      ) : isSetupComplete ? (
-        <Desktop />
-      ) : (
-        <SetupAssistant />
-      )}
-      <Analytics />
-    </div>
+    <PermissionProvider>
+      <div className="w-full h-full overflow-hidden">
+        {shouldShowLockScreen ? (
+          <LockScreen />
+        ) : isSetupComplete ? (
+          <Desktop />
+        ) : (
+          <SetupAssistant />
+        )}
+        <Analytics />
+      </div>
+    </PermissionProvider>
   );
 }
 

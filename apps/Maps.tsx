@@ -7,8 +7,10 @@ import {
   Locate,
   Clock,
 } from "lucide-react";
+import { usePermission } from "../context/PermissionContext";
 
 export const Maps: React.FC = () => {
+  const { requestPermission } = usePermission();
   const [searchQuery, setSearchQuery] = React.useState("");
   const [currentLocation, setCurrentLocation] = React.useState(
     "Lucknow, Uttar Pradesh"
@@ -31,8 +33,18 @@ export const Maps: React.FC = () => {
     }
   };
 
-  const handleCurrentLocation = () => {
+  const handleCurrentLocation = async () => {
     if ("geolocation" in navigator) {
+      const allowed = await requestPermission(
+        "Maps",
+        <Navigation size={24} className="text-blue-500" />,
+        "Location",
+        "Maps needs access to your location to show where you are.",
+        "geolocation"
+      );
+
+      if (!allowed) return;
+
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
