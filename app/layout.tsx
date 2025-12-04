@@ -1,5 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Noto_Sans,
+  Noto_Sans_JP,
+  Noto_Sans_KR,
+  Noto_Naskh_Arabic,
+  Noto_Serif_Devanagari,
+  Noto_Serif_Bengali,
+  Pacifico,
+} from "next/font/google";
 import "./globals.css";
 import { DeviceProvider } from "@/components/ui/design-system/DeviceContext";
 import { GlobalExternalLinkHandler } from "@/components/GlobalExternalLinkHandler";
@@ -12,6 +22,48 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const notoSans = Noto_Sans({
+  variable: "--font-noto-sans",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+const notoSansJP = Noto_Sans_JP({
+  variable: "--font-noto-sans-jp",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+const notoSansKR = Noto_Sans_KR({
+  variable: "--font-noto-sans-kr",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+const notoNaskhArabic = Noto_Naskh_Arabic({
+  variable: "--font-noto-naskh-arabic",
+  subsets: ["arabic"],
+  weight: ["400", "700"],
+});
+
+const notoSerifDevanagari = Noto_Serif_Devanagari({
+  variable: "--font-noto-serif-devanagari",
+  subsets: ["devanagari"],
+  weight: ["400", "700"],
+});
+
+const notoSerifBengali = Noto_Serif_Bengali({
+  variable: "--font-noto-serif-bengali",
+  subsets: ["bengali"],
+  weight: ["400", "700"],
+});
+
+const pacifico = Pacifico({
+  variable: "--font-pacifico",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 export const viewport: Viewport = {
@@ -229,26 +281,9 @@ export default function RootLayout({
           content="black-translucent"
         />
         <meta name="apple-mobile-web-app-title" content="macOS Clone" />
-
-        {/* Performance & Security */}
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Noto+Sans+JP:wght@700&family=Noto+Sans+KR:wght@700&family=Noto+Naskh+Arabic:wght@700&family=Noto+Serif+Devanagari:wght@700&family=Noto+Serif+Bengali:wght@700&family=Pacifico&display=swap"
-          rel="stylesheet"
-        />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${notoSans.variable} ${notoSansJP.variable} ${notoSansKR.variable} ${notoNaskhArabic.variable} ${notoSerifDevanagari.variable} ${notoSerifBengali.variable} ${pacifico.variable} antialiased`}
         itemScope
         itemType="https://schema.org/WebPage"
       >
