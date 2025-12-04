@@ -151,7 +151,7 @@ export class MacFileSystem {
   /**
    * Flush dirty files from memory to OPFS
    */
-  private async flush() {
+  public async flush() {
     if (this.flushQueue.size === 0) return;
 
     console.log(`[FS] Flushing ${this.flushQueue.size} files to OPFS...`);
@@ -260,12 +260,19 @@ export class MacFileSystem {
           isEmpty = first.done;
         }
 
+        let size = 0;
+        if (handle.kind === "file") {
+          const file = await (handle as FileSystemFileHandle).getFile();
+          size = file.size;
+        }
+
         entries.push({
           name,
           kind: handle.kind,
           isHidden: name.startsWith("."),
           path: `${path === "/" ? "" : path}/${name}`,
           isEmpty,
+          size,
         });
       }
 
@@ -429,6 +436,46 @@ export class MacFileSystem {
         await this.copyDirectory(handle, newDir, name);
       }
     }
+  }
+  /**
+   * Get total size of a file or directory recursively
+   */
+  async getSize(path: string): Promise<number> {
+    try {
+      const parts = path.split("/").filter((p) => p.length > 0);
+      if (parts.length === 0) return 0; // Root size? Too expensive/undefined
+
+      const filename = parts.pop()!;
+      const dirPath = parts.length > 0 ? "/" + parts.join("/") : "/";
+      const dirHandle = await this.resolvePath(dirPath);
+
+      let handle: FileSystemHandle;
+      try {
+        handle = await dirHandle.getFileHandle(filename);
+      } catch {
+        handle = await dirHandle.getDirectoryHandle(filename);
+      }
+
+      return this.getHandleSize(handle);
+    } catch (e) {
+      console.warn(`[FS] Could not get size for ${path}`, e);
+      return 0;
+    }
+  }
+
+  private async getHandleSize(handle: FileSystemHandle): Promise<number> {
+    if (handle.kind === "file") {
+      const file = await (handle as FileSystemFileHandle).getFile();
+      return file.size;
+    } else if (handle.kind === "directory") {
+      let size = 0;
+      // @ts-ignore
+      for await (const [name, subHandle] of (handle as any).entries()) {
+        size += await this.getHandleSize(subHandle);
+      }
+      return size;
+    }
+    return 0;
   }
 }
 

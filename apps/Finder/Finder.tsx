@@ -33,6 +33,10 @@ const PDFViewer = dynamic(
   { ssr: false }
 );
 
+const Photos = dynamic(() =>
+  import("../../apps/Photos").then((mod) => mod.Photos)
+);
+
 interface FinderProps {
   initialPath?: string;
 }
@@ -184,6 +188,19 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
         icon: "facetime",
         component: FaceTime,
       },
+      // Photos App Mappings
+      jpg: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      jpeg: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      png: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      gif: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      webp: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      svg: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      ico: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      heic: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      psd: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      ai: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      tiff: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      tif: { id: "photos", name: "Photos", icon: "photos", component: Photos },
     };
 
     const app = ext ? apps[ext] : null;

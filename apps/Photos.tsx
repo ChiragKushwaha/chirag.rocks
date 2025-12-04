@@ -26,6 +26,8 @@ import {
   Plus,
   MoreHorizontal,
 } from "lucide-react";
+import { fs } from "../lib/FileSystem";
+import { ImageLoader } from "../lib/ImageLoader";
 
 interface Photo {
   id: string;
@@ -52,7 +54,15 @@ type SidebarItemType =
   | "duplicates"
   | "projects";
 
-export const Photos = () => {
+interface PhotosProps {
+  initialPath?: string;
+  initialFilename?: string;
+}
+
+export const Photos: React.FC<PhotosProps> = ({
+  initialPath,
+  initialFilename,
+}) => {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
@@ -63,6 +73,39 @@ export const Photos = () => {
     lat: number;
     lng: number;
   } | null>(null);
+
+  // Load initial file if provided
+  useEffect(() => {
+    if (initialPath && initialFilename) {
+      const loadInitial = async () => {
+        try {
+          const fileBlob = await fs.readFileBlob(initialPath, initialFilename);
+          if (fileBlob) {
+            const file = new File([fileBlob], initialFilename);
+            const url = await ImageLoader.loadImage(file);
+            const photo: Photo = {
+              id: `local-${initialPath}/${initialFilename}`,
+              url: url,
+              thumbnail: url,
+              originalUrl: url,
+              description: initialFilename,
+              creationTime: Date.now(),
+            };
+            // Add to photos list if not already present
+            setPhotos((prev) => {
+              const exists = prev.some((p) => p.id === photo.id);
+              if (exists) return prev;
+              return [photo, ...prev];
+            });
+            setSelectedPhoto(photo);
+          }
+        } catch (e) {
+          console.error("Failed to load initial photo", e);
+        }
+      };
+      loadInitial();
+    }
+  }, [initialPath, initialFilename]);
 
   useEffect(() => {
     fetchPhotos();
@@ -113,9 +156,87 @@ export const Photos = () => {
 
   const fetchPhotos = async () => {
     try {
+      // 1. Fetch API Photos
       const res = await fetch("/api/photos");
       const data = await res.json();
-      setPhotos(data.photos || []);
+      const apiPhotos = data.photos || [];
+
+      // 2. Scan OPFS for local photos
+      const localPhotos: Photo[] = [];
+
+      // Helper to recursively scan
+      const scanDir = async (path: string) => {
+        // Blocklist for system folders
+        if (
+          path.startsWith("/System") ||
+          path.startsWith("/Library") ||
+          path.startsWith("/Applications") ||
+          path.startsWith("/bin") ||
+          path.startsWith("/etc") ||
+          path.startsWith("/usr") ||
+          path.startsWith("/var") ||
+          path.startsWith("/tmp") ||
+          path.includes("/.trash") // Exclude trash
+        ) {
+          return;
+        }
+
+        const entries = await fs.ls(path);
+        for (const entry of entries) {
+          if (entry.kind === "directory") {
+            if (!entry.name.startsWith(".")) {
+              // Skip hidden folders and specific system folders at root
+              if (
+                ![
+                  "System",
+                  "Library",
+                  "Applications",
+                  "bin",
+                  "etc",
+                  "usr",
+                  "var",
+                  "tmp",
+                ].includes(entry.name)
+              ) {
+                await scanDir(entry.path);
+              }
+            }
+          } else {
+            if (ImageLoader.isSupported(entry.name)) {
+              // ... (existing image loading logic)
+              try {
+                const fileBlob = await fs.readFileBlob(path, entry.name);
+                if (fileBlob) {
+                  // Create a File object
+                  const file = new File([fileBlob], entry.name);
+                  const url = await ImageLoader.loadImage(file);
+
+                  localPhotos.push({
+                    id: `local-${entry.path}`,
+                    url: url,
+                    thumbnail: url, // Use same URL for thumb for now
+                    originalUrl: url,
+                    description: entry.name,
+                    creationTime: Date.now(), // TODO: Get from fs stats if available
+                  });
+                }
+              } catch (e) {
+                console.error("Failed to load local photo", entry.name, e);
+              }
+            }
+          }
+        }
+      };
+
+      // Scan User Home Directory (recursively)
+      // This covers Desktop, Documents, Downloads, Pictures, etc.
+      await scanDir("/Users/Guest");
+      // Also scan root for any other user folders if needed, but Guest is primary.
+      // If we want to be safe, we can just scan /Users/Guest.
+      // If we scan /, we rely on the blocklist.
+      // Let's scan /Users/Guest to be safe and efficient.
+
+      setPhotos([...localPhotos, ...apiPhotos]);
     } catch (error) {
       console.error("Failed to fetch photos:", error);
     } finally {

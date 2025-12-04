@@ -6,6 +6,7 @@ import { FileIcon } from "../components/FileIcon";
 import { useMenuStore } from "../store/menuStore";
 
 import { useSystemStore } from "../store/systemStore";
+import { useFileCopyStore } from "../store/fileCopyStore";
 
 export const Trash: React.FC = () => {
   const [files, setFiles] = useState<MacFileEntry[]>([]);
@@ -50,9 +51,33 @@ export const Trash: React.FC = () => {
   }, []);
 
   const emptyTrash = async () => {
+    const store = useFileCopyStore.getState();
+
+    // Calculate total size recursively for all items
+    let totalBytes = 0;
     for (const file of files) {
-      await fs.delete(trashPath, file.name);
+      totalBytes += await fs.getSize(file.path);
     }
+
+    store.startCopy(files.length, totalBytes, "Trash", "Void", "delete");
+
+    let completed = 0;
+    let completedBytes = 0;
+
+    for (const file of files) {
+      if (useFileCopyStore.getState().isCancelled) break;
+      const fileSize = await fs.getSize(file.path); // Get size again or cache it? Getting it again is safer/easier
+      await fs.delete(trashPath, file.name);
+      completed++;
+      completedBytes += fileSize;
+      store.updateProgress(completed, completedBytes, file.name);
+    }
+
+    // Small delay to show completion
+    setTimeout(() => {
+      store.endCopy();
+    }, 500);
+
     loadFiles();
     setSelectedItems([]);
   };
@@ -86,9 +111,36 @@ export const Trash: React.FC = () => {
   };
 
   const deleteImmediately = async (items: string[]) => {
-    for (const item of items) {
-      await fs.delete(trashPath, item);
+    const store = useFileCopyStore.getState();
+    const itemsToDelete = files.filter((f) => items.includes(f.name));
+
+    // Calculate total size recursively
+    let totalBytes = 0;
+    for (const file of itemsToDelete) {
+      totalBytes += await fs.getSize(file.path);
     }
+
+    store.startCopy(items.length, totalBytes, "Trash", "Void", "delete");
+
+    let completed = 0;
+    let completedBytes = 0;
+
+    for (const item of items) {
+      if (useFileCopyStore.getState().isCancelled) break;
+      const file = itemsToDelete.find((f) => f.name === item);
+      const fileSize = file ? await fs.getSize(file.path) : 0;
+
+      await fs.delete(trashPath, item);
+      completed++;
+      completedBytes += fileSize;
+      store.updateProgress(completed, completedBytes, item);
+    }
+
+    // Small delay to show completion
+    setTimeout(() => {
+      store.endCopy();
+    }, 500);
+
     loadFiles();
     setSelectedItems([]);
   };
@@ -278,15 +330,17 @@ export const Trash: React.FC = () => {
             onClick={(e) => handleFileClick(e, file)}
             onContextMenu={(e) => handleFileContextMenu(e, file)}
           >
-            <div className="w-16 h-16 mb-1 pointer-events-none">
+            <div className="w-16 h-16 mb-1 pointer-events-none flex items-center justify-center">
               <FileIcon
                 name={file.name}
                 kind={file.kind}
+                path={trashPath}
+                showLabel={false}
                 selected={selectedItems.includes(file.name)}
               />
             </div>
             <span
-              className={`text-xs text-center px-1 rounded ${
+              className={`text-xs text-center w-full px-1 rounded break-words line-clamp-2 ${
                 selectedItems.includes(file.name)
                   ? "bg-blue-600 text-white"
                   : "text-gray-600 group-hover:bg-blue-100"

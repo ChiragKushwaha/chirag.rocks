@@ -5,12 +5,15 @@ import { useSystemStore } from "../store/systemStore";
 import { fs } from "../lib/FileSystem";
 import { useIcon } from "./hooks/useIconManager";
 import { generatePDFThumbnail } from "../lib/pdfThumbnail";
+import { ImageLoader } from "../lib/ImageLoader";
 
 interface FileIconProps {
   name: string;
   kind: "file" | "directory";
+  path?: string; // New prop for custom path
+  showLabel?: boolean; // New prop to toggle label
   isRenaming?: boolean;
-  selected?: boolean; // New prop
+  selected?: boolean;
   onRename?: (newName: string) => void;
   onRenameCancel?: () => void;
   onContextMenu?: (e: React.MouseEvent) => void;
@@ -21,6 +24,8 @@ interface FileIconProps {
 export const FileIcon: React.FC<FileIconProps> = ({
   name,
   kind,
+  path,
+  showLabel = true,
   isRenaming,
   selected,
   onRename,
@@ -39,15 +44,17 @@ export const FileIcon: React.FC<FileIconProps> = ({
   const isNote = name.endsWith(".note");
   const isPdf = name.endsWith(".pdf");
 
+  // Default to Desktop path if not provided
+  const userName = user?.name || "Guest";
+  const basePath = path || `/Users/${userName}/Desktop`;
+
   // Load note content
   React.useEffect(() => {
     if (isNote) {
       const loadContent = async () => {
-        const userName = user?.name || "Guest";
-        const desktopPath = `/Users/${userName}/Desktop`;
         try {
-          if (await fs.exists(`${desktopPath}/${name}`)) {
-            const content = await fs.readFile(desktopPath, name);
+          if (await fs.exists(`${basePath}/${name}`)) {
+            const content = await fs.readFile(basePath, name);
             setNoteContent(content.substring(0, 500));
           }
         } catch (e) {
@@ -56,41 +63,51 @@ export const FileIcon: React.FC<FileIconProps> = ({
       };
       loadContent();
     }
-  }, [name, isNote, user]);
+  }, [name, isNote, basePath]);
 
   // Load PDF for thumbnail
   React.useEffect(() => {
     if (isPdf) {
       const loadPdf = async () => {
-        const userName = user?.name || "Guest";
-        const desktopPath = `/Users/${userName}/Desktop`;
         try {
-          if (await fs.exists(`${desktopPath}/${name}`)) {
-            console.log(`[FileIcon] Loading PDF: ${name}`);
-            const blob = await fs.readFileBlob(desktopPath, name);
+          if (await fs.exists(`${basePath}/${name}`)) {
+            const blob = await fs.readFileBlob(basePath, name);
             if (blob) {
-              console.log(
-                `[FileIcon] Blob loaded for ${name}, size: ${blob.size}`
-              );
               const thumbnailUrl = await generatePDFThumbnail(blob);
-              console.log(
-                `[FileIcon] Thumbnail generated for ${name}: ${
-                  thumbnailUrl ? "Success" : "Failed"
-                }`
-              );
               setPdfUrl(thumbnailUrl);
-            } else {
-              console.error(`[FileIcon] Failed to read blob for ${name}`);
             }
           }
         } catch (e) {
           console.error("Failed to load PDF preview", e);
         }
       };
-
       loadPdf();
     }
-  }, [name, isPdf, user]);
+  }, [name, isPdf, basePath]);
+
+  // Load Image Thumbnail
+  const [imageUrl, setImageUrl] = React.useState<string | null>(null);
+  const isImage = ImageLoader.isSupported(name);
+
+  React.useEffect(() => {
+    if (isImage) {
+      const loadImage = async () => {
+        try {
+          if (await fs.exists(`${basePath}/${name}`)) {
+            const blob = await fs.readFileBlob(basePath, name);
+            if (blob) {
+              const file = new File([blob], name);
+              const url = await ImageLoader.loadImage(file);
+              setImageUrl(url);
+            }
+          }
+        } catch (e) {
+          console.error("Failed to load image preview", e);
+        }
+      };
+      loadImage();
+    }
+  }, [name, isImage, basePath]);
   // Simple icon logic (expand later with real SVGs)
   const getIconName = (name: string, type: string) => {
     const lowerName = name.toLowerCase();
@@ -138,7 +155,8 @@ export const FileIcon: React.FC<FileIconProps> = ({
     if (
       lowerName.endsWith(".png") ||
       lowerName.endsWith(".jpg") ||
-      lowerName.endsWith(".jpeg")
+      lowerName.endsWith(".jpeg") ||
+      lowerName.endsWith(".ico")
     )
       return "preview";
     if (lowerName.endsWith(".mp3") || lowerName.endsWith(".m4a"))
@@ -247,7 +265,7 @@ export const FileIcon: React.FC<FileIconProps> = ({
         className={`mb-1 filter drop-shadow-lg relative transition-transform group-hover:scale-105 ${
           isNote
             ? "w-[128px] h-[128px]"
-            : isPdf
+            : isPdf || isImage
             ? "w-[52px] h-[52px]"
             : "w-[64px] h-[64px]"
         }`}
@@ -266,17 +284,26 @@ export const FileIcon: React.FC<FileIconProps> = ({
             />
           </div>
         ) : isPdf && pdfUrl ? (
-          <div className="w-full h-full relative drop-shadow-md group-hover:scale-105 transition-transform">
-            <div className="w-full h-full bg-white rounded-xl overflow-hidden border border-gray-200">
-              <Image
-                src={pdfUrl}
-                alt={`${name} preview`}
-                width={44}
-                height={44}
-                className="w-full h-full object-cover"
-                unoptimized
-              />
-            </div>
+          <div className="w-full h-full bg-white rounded-xl overflow-hidden border border-gray-200">
+            <Image
+              src={pdfUrl}
+              alt={`${name} preview`}
+              width={44}
+              height={44}
+              className="w-full h-full object-cover"
+              unoptimized
+            />
+          </div>
+        ) : imageUrl ? (
+          <div className="w-full h-full bg-white rounded-xl overflow-hidden border border-gray-200">
+            <Image
+              src={imageUrl}
+              alt={`${name} preview`}
+              width={40}
+              height={40}
+              className="w-full h-full object-cover"
+              unoptimized
+            />
           </div>
         ) : (
           <Image
@@ -290,45 +317,46 @@ export const FileIcon: React.FC<FileIconProps> = ({
         )}
       </div>
 
-      {isRenaming ? (
-        <input
-          autoFocus
-          defaultValue={name}
-          className="text-[12px] text-center text-black bg-white/90 border border-blue-500 rounded-sm px-1 py-0.5 w-full outline-none shadow-sm"
-          onBlur={(e) => {
-            console.log("Input blurred, value:", e.target.value);
-            onRename?.(e.target.value);
-          }}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              console.log("Enter pressed");
-              e.currentTarget.blur(); // Trigger blur to save
-            }
-            if (e.key === "Escape") {
-              console.log("Escape pressed");
-              onRenameCancel?.();
-            }
-          }}
-          onClick={(e) => e.stopPropagation()}
-        />
-      ) : (
-        <span
-          className={`
-            text-[12px] font-medium text-white text-center leading-tight px-1.5 py-0.5 rounded-[3px]
-            ${
-              isSelected
-                ? "bg-[#0058D0]"
-                : "drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
-            }
-            line-clamp-2 wrap-break-word w-full
-          `}
-          style={{
-            textShadow: isSelected ? "none" : "0 1px 2px rgba(0,0,0,0.5)",
-          }}
-        >
-          {name.replace(".note", "")}
-        </span>
-      )}
+      {showLabel &&
+        (isRenaming ? (
+          <input
+            autoFocus
+            defaultValue={name}
+            className="text-[12px] text-center text-black bg-white/90 border border-blue-500 rounded-sm px-1 py-0.5 w-full outline-none shadow-sm"
+            onBlur={(e) => {
+              console.log("Input blurred, value:", e.target.value);
+              onRename?.(e.target.value);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                console.log("Enter pressed");
+                e.currentTarget.blur(); // Trigger blur to save
+              }
+              if (e.key === "Escape") {
+                console.log("Escape pressed");
+                onRenameCancel?.();
+              }
+            }}
+            onClick={(e) => e.stopPropagation()}
+          />
+        ) : (
+          <span
+            className={`
+              text-[12px] font-medium text-white text-center leading-tight px-1.5 py-0.5 rounded-[3px]
+              ${
+                isSelected
+                  ? "bg-[#0058D0]"
+                  : "drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
+              }
+              line-clamp-2 wrap-break-word w-full
+            `}
+            style={{
+              textShadow: isSelected ? "none" : "0 1px 2px rgba(0,0,0,0.5)",
+            }}
+          >
+            {name.replace(".note", "")}
+          </span>
+        ))}
     </div>
   );
 };

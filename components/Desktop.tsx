@@ -4,6 +4,7 @@ import { useMenuStore } from "../store/menuStore";
 import { useProcessStore } from "../store/processStore";
 import { ImportUtils } from "../lib/ImportUtils";
 import { useSystemStore } from "../store/systemStore";
+import { useFileCopyStore } from "../store/fileCopyStore";
 
 import dynamic from "next/dynamic";
 import NextImage from "next/image";
@@ -45,6 +46,9 @@ const Trash = dynamic(() => import("../apps/Trash").then((mod) => mod.Trash));
 const SystemSettings = dynamic(() =>
   import("../apps/SystemSettings").then((mod) => mod.SystemSettings)
 );
+const Photos = dynamic(() =>
+  import("../apps/Photos").then((mod) => mod.Photos)
+);
 
 const PDFViewer = dynamic(
   () => import("../apps/PDFViewer").then((mod) => mod.PDFViewer),
@@ -59,6 +63,7 @@ import { NotificationCenter } from "./NotificationCenter";
 import { StickyNote } from "./StickyNote";
 
 import { WallpaperManager } from "../lib/WallpaperManager";
+import { FileCopyWindow } from "./FileCopyWindow";
 
 export const Desktop: React.FC = () => {
   const {
@@ -504,6 +509,19 @@ export const Desktop: React.FC = () => {
         icon: "facetime",
         component: FaceTime,
       },
+      // Photos App Mappings
+      jpg: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      jpeg: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      png: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      gif: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      webp: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      svg: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      ico: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      heic: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      psd: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      ai: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      tiff: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      tif: { id: "photos", name: "Photos", icon: "photos", component: Photos },
     };
 
     const app = ext ? apps[ext] : null;
@@ -543,10 +561,41 @@ export const Desktop: React.FC = () => {
       await fs.mkdir(trashPath);
     }
 
+    const store = useFileCopyStore.getState();
+
+    // 1. Start Progress (Moving)
+    // Calculate full recursive size for accurate progress
+    let totalBytes = await fs.getSize(file.path);
+    if (totalBytes === 0 && file.size) {
+      totalBytes = file.size;
+    }
+    store.startCopy(1, totalBytes, "Desktop", "Trash", "move");
+
     // Read and write to move (simplification)
     // TODO: Add fs.move to FileSystem
     try {
+      // Simulate progress for better UX (since fs.move is instant)
+      // This prevents the "0 to 100% in 1ms" jump that looks like a glitch
+      const steps = 10;
+      const duration = 800; // 0.8s duration
+      const stepTime = duration / steps;
+
+      for (let i = 1; i <= steps; i++) {
+        if (useFileCopyStore.getState().isCancelled) break;
+        await new Promise((r) => setTimeout(r, stepTime));
+        const simulatedBytes = Math.floor(totalBytes * 0.9 * (i / steps));
+        store.updateProgress(0, simulatedBytes, file.name);
+      }
+
+      if (useFileCopyStore.getState().isCancelled) {
+        store.endCopy();
+        return;
+      }
+
       await fs.move(desktopPath, file.name, trashPath, file.name);
+
+      // 2. Update Progress to 100%
+      store.updateProgress(1, totalBytes, file.name);
 
       // Refresh Desktop Files
       const f = await fs.ls(desktopPath);
@@ -556,9 +605,15 @@ export const Desktop: React.FC = () => {
       const trashFiles = await fs.ls(trashPath);
       setTrashCount(trashFiles.length);
       window.dispatchEvent(new Event("trash-updated"));
+
+      // 3. End Progress after short delay
+      setTimeout(() => {
+        store.endCopy();
+      }, 500);
     } catch (e) {
       console.error("Failed to move to bin", e);
       alert("Failed to move to bin. Folder moves not fully supported yet.");
+      store.endCopy();
     }
   };
 
@@ -705,6 +760,7 @@ export const Desktop: React.FC = () => {
       <ContextMenu />
       <Spotlight />
       <NotificationCenter />
+      <FileCopyWindow />
 
       {/* Desktop Icons (z-10) */}
       <div
