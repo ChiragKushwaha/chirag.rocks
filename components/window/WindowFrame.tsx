@@ -173,6 +173,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
           : process.dimension.height,
         zIndex: process.zIndex,
         willChange: isDragging || isResizing ? "transform" : "auto",
+        display: process.isMinimized ? "none" : "flex",
       }}
       className={`
         window absolute top-0 left-0 flex flex-col pointer-events-auto

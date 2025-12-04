@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { initialDockItems } from "../config/dock";
 import { DockItem } from "./DockItem";
+import { useProcessStore } from "../store/processStore";
+import { DockMinimizedItem } from "./DockMinimizedItem";
 
 export const Dock: React.FC = () => {
   const [mouseX, setMouseX] = useState<number | null>(null);
+  const { processes } = useProcessStore();
+  const minimizedProcesses = processes.filter((p) => p.isMinimized);
 
   return (
     <div className="fixed bottom-2 left-0 right-0 flex justify-center z-[9000] pointer-events-none">
@@ -35,6 +39,11 @@ export const Dock: React.FC = () => {
 
         {/* Vertical Separator */}
         <div className="w-[1px] h-10 bg-black/10 dark:bg-white/10 mx-1 self-center rounded-full" />
+
+        {/* Minimized Windows */}
+        {minimizedProcesses.map((process) => (
+          <DockMinimizedItem key={process.pid} process={process} />
+        ))}
 
         {/* Trash Can */}
         <DockItem name="Trash" icon="trash" mouseX={mouseX} />

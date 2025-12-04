@@ -104,7 +104,7 @@ export const useProcessStore = create<ProcessState>((set, get) => ({
         maxZIndex: newMaxZ,
         processes: state.processes.map((p) =>
           p.pid === pid
-            ? { ...p, isFocused: true, zIndex: newMaxZ }
+            ? { ...p, isFocused: true, zIndex: newMaxZ, isMinimized: false }
             : { ...p, isFocused: false }
         ),
       };
