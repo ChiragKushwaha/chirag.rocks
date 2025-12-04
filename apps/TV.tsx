@@ -30,6 +30,12 @@ interface Show {
 
 export const TV: React.FC = () => {
   const [activeTab, setActiveTab] = useState("watch-now");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [playingShow, setPlayingShow] = useState<Show | null>(null);
+  const [heroShow, setHeroShow] = useState<Show | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [shows, setShows] = useState<Show[]>([]);
+
   const [library, setLibrary] = useState<Show[]>(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("mac-tv-library");
@@ -41,6 +47,23 @@ export const TV: React.FC = () => {
   useEffect(() => {
     localStorage.setItem("mac-tv-library", JSON.stringify(library));
   }, [library]);
+
+  useEffect(() => {
+    const fetchShows = async () => {
+      try {
+        const response = await fetch("https://api.tvmaze.com/shows");
+        const data = await response.json();
+        setShows(data);
+        setHeroShow(data[Math.floor(Math.random() * data.length)] || null);
+        setLoading(false);
+      } catch (error) {
+        console.error("Failed to fetch shows:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchShows();
+  }, []);
 
   const categories = [
     "Drama",

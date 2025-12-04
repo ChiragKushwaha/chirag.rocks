@@ -18,7 +18,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
     snapWindow,
   } = useProcessStore();
 
-  const { openContextMenu } = useMenuStore();
+  const { openContextMenu, closeContextMenu } = useMenuStore();
   const windowRef = useRef<HTMLDivElement>(null);
 
   // State
@@ -40,6 +40,8 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
 
   // Focus & Drag Start
   const handleMouseDown = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    closeContextMenu();
     focusProcess(process.pid);
 
     const target = e.target as HTMLElement;

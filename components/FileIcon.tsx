@@ -27,8 +27,8 @@ export const FileIcon: React.FC<FileIconProps> = ({
   onDoubleClick,
   onClick,
 }) => {
-  const { selectedFile, user } = useSystemStore();
-  const isSelected = selectedFile === name;
+  const { selectedFiles = [], user } = useSystemStore();
+  const isSelected = selectedFiles.includes(name);
   const [noteContent, setNoteContent] = React.useState<string>("");
   const [pdfUrl, setPdfUrl] = React.useState<string | null>(null);
 
@@ -234,6 +234,9 @@ export const FileIcon: React.FC<FileIconProps> = ({
         if (!isRenaming && onDoubleClick) {
           onDoubleClick(e);
         }
+      }}
+      onMouseDown={(e) => {
+        e.stopPropagation();
       }}
     >
       <div

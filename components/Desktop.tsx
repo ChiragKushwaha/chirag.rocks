@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { fs } from "../lib/FileSystem";
 import { useMenuStore } from "../store/menuStore";
 import { useProcessStore } from "../store/processStore";
@@ -72,6 +72,8 @@ export const Desktop: React.FC = () => {
     isDark,
     iconPositions,
     setIconPosition,
+    selectedFiles = [],
+    setSelectedFiles,
   } = useSystemStore();
 
   const wallpaper = WallpaperManager.getWallpaperPath(
@@ -85,6 +87,92 @@ export const Desktop: React.FC = () => {
   const constraintsRef = React.useRef(null);
   const [lastClickTime, setLastClickTime] = useState(0);
   const [lastClickId, setLastClickId] = useState<string | null>(null);
+
+  // Selection Box State
+  const [selectionBox, setSelectionBox] = useState<{
+    startX: number;
+    startY: number;
+    currentX: number;
+    currentY: number;
+    isVisible: boolean;
+  } | null>(null);
+
+  const fileRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+  const containerRef = useRef<HTMLDivElement>(null);
+  const dragStartPositions = useRef<Map<string, { x: number; y: number }>>(
+    new Map()
+  );
+
+  const handleSelectionStart = (e: React.MouseEvent) => {
+    // Only start if clicking directly on the desktop container or wallpaper
+    // (The main container has the handler, so e.target check might be needed if bubbling)
+    // But we put the handler on main, so if we click an icon, e.target will be the icon (or child).
+    // We should only start if e.target is the main container or wallpaper div.
+
+    // Actually, simpler: if we are here, and it wasn't stopped by an icon, it's a desktop click.
+    // Icons have stopPropagation on click/mousedown usually?
+    // FileIcon has onClick stopPropagation.
+    // We need to ensure FileIcon also stops propagation on MouseDown if we use MouseDown here.
+
+    if (e.button !== 0) return; // Only left click
+
+    setSelectionBox({
+      startX: e.clientX,
+      startY: e.clientY,
+      currentX: e.clientX,
+      currentY: e.clientY,
+      isVisible: true,
+    });
+
+    // Clear selection if not holding Shift/Meta
+    if (!e.shiftKey && !e.metaKey) {
+      setSelectedFiles([]);
+    }
+  };
+
+  const handleSelectionMove = (e: React.MouseEvent) => {
+    if (!selectionBox?.isVisible) return;
+
+    const newBox = {
+      ...selectionBox,
+      currentX: e.clientX,
+      currentY: e.clientY,
+    };
+    setSelectionBox(newBox);
+
+    // Calculate intersection
+    const left = Math.min(newBox.startX, newBox.currentX);
+    const top = Math.min(newBox.startY, newBox.currentY);
+    const width = Math.abs(newBox.currentX - newBox.startX);
+    const height = Math.abs(newBox.currentY - newBox.startY);
+
+    const newSelected: string[] = [];
+
+    fileRefs.current.forEach((el, name) => {
+      const rect = el.getBoundingClientRect();
+      // Check intersection
+      if (
+        rect.left < left + width &&
+        rect.right > left &&
+        rect.top < top + height &&
+        rect.bottom > top
+      ) {
+        newSelected.push(name);
+      }
+    });
+
+    // If holding shift/meta, we might want to add to existing?
+    // For now, let's just set selection to what's in the box.
+    // To support "add to selection", we'd need to know what was selected BEFORE drag started.
+    // Let's keep it simple: Drag selects exactly what's in box.
+    setSelectedFiles(newSelected);
+  };
+
+  const handleSelectionEnd = () => {
+    if (selectionBox?.isVisible) {
+      setSelectionBox(null);
+    }
+  };
 
   // Reminder Worker
   const { reminders, markNotified } = useReminderStore();
@@ -311,19 +399,17 @@ export const Desktop: React.FC = () => {
   // ...
 
   const openFile = (file: MacFileEntry) => {
-    console.log("Opening file:", file.name); // Keep log
-    // alert("Opening " + file.name); // Debug alert
     if (file.kind === "directory") {
       launchProcess(
-        "finder",
-        "Finder",
+        `finder-${file.name}`,
+        file.name,
         "finder",
         <Finder initialPath={file.path} />,
         {
           width: 900,
           height: 600,
-          x: 50,
-          y: 50,
+          x: 50 + Math.random() * 50,
+          y: 50 + Math.random() * 50,
         }
       );
       return;
@@ -429,7 +515,7 @@ export const Desktop: React.FC = () => {
           : undefined;
 
       launchProcess(
-        app.id,
+        `${app.id}-${file.name}`,
         file.name,
         app.icon,
         <app.component initialPath={desktopPath} initialFilename={file.name} />,
@@ -532,11 +618,24 @@ export const Desktop: React.FC = () => {
     <main
       ref={constraintsRef}
       className="h-screen w-screen overflow-hidden relative"
-      onClick={() => {
-        setSelectedFile(null);
-      }}
       onContextMenu={handleContextMenu} // Capture Right Click on Desktop
+      onMouseDown={handleSelectionStart}
+      onMouseMove={handleSelectionMove}
+      onMouseUp={handleSelectionEnd}
+      onMouseLeave={handleSelectionEnd}
     >
+      {/* Selection Box */}
+      {selectionBox?.isVisible && (
+        <div
+          className="absolute border border-blue-500/50 bg-blue-400/20 z-50 pointer-events-none"
+          style={{
+            left: Math.min(selectionBox.startX, selectionBox.currentX),
+            top: Math.min(selectionBox.startY, selectionBox.currentY),
+            width: Math.abs(selectionBox.currentX - selectionBox.startX),
+            height: Math.abs(selectionBox.currentY - selectionBox.startY),
+          }}
+        />
+      )}
       {/* Wallpaper Layer (z-0) */}
       <div className="absolute inset-0 z-0">
         <NextImage
@@ -565,6 +664,7 @@ export const Desktop: React.FC = () => {
 
       {/* Desktop Icons (z-10) */}
       <div
+        ref={containerRef}
         className="pt-[34px] px-1 grid grid-flow-col grid-rows-[repeat(auto-fill,104px)] gap-y-1 gap-x-0 content-start justify-end h-full pb-20 z-10 relative pointer-events-none direction-rtl"
         style={{ direction: "rtl" }}
       >
@@ -577,28 +677,142 @@ export const Desktop: React.FC = () => {
                 dragMomentum={false}
                 dragConstraints={constraintsRef}
                 whileDrag={{ scale: 1.05, zIndex: 100 }}
-                onDragEnd={(_, info) => {
-                  const current = iconPositions[file.name] || { x: 0, y: 0 };
-                  // If it was absolute, it stays absolute, just update coords
-                  // If it was grid (absolute=undefined/false), it stays grid, update offset
-                  const isAbsolute = iconPositions[file.name]?.absolute;
-
-                  if (isAbsolute) {
-                    // For absolute, x and y are coordinates. info.offset is delta.
-                    // We need to update the base x/y.
-                    setIconPosition(
-                      file.name,
-                      current.x + info.offset.x,
-                      current.y + info.offset.y,
-                      true
-                    );
-                  } else {
-                    setIconPosition(
-                      file.name,
-                      current.x + info.offset.x,
-                      current.y + info.offset.y
-                    );
+                ref={(el) => {
+                  if (el) fileRefs.current.set(file.name, el);
+                  else fileRefs.current.delete(file.name);
+                }}
+                onDragStart={(e) => {
+                  // Ensure the dragged file is selected
+                  if (!selectedFiles.includes(file.name)) {
+                    if (e.metaKey || e.shiftKey) {
+                      setSelectedFiles([...selectedFiles, file.name]);
+                    } else {
+                      setSelectedFiles([file.name]);
+                    }
                   }
+
+                  // Capture initial positions for all selected files
+                  // We use offsetLeft/Top because they give the position relative to the offsetParent (the grid container)
+                  // and are NOT affected by transforms (like scale)
+                  dragStartPositions.current.clear();
+                  // We need to capture positions for ALL selected files, including the one being dragged
+                  // But wait, selectedFiles might not be updated yet if we just called setSelectedFiles?
+                  // React state updates are batched.
+                  // However, if we just set it, it won't be in `selectedFiles` variable yet.
+                  // So we should use a temporary list.
+
+                  let currentSelection = selectedFiles;
+                  if (!selectedFiles.includes(file.name)) {
+                    if (e.metaKey || e.shiftKey) {
+                      currentSelection = [...selectedFiles, file.name];
+                    } else {
+                      currentSelection = [file.name];
+                    }
+                  }
+
+                  currentSelection.forEach((name) => {
+                    const el = fileRefs.current.get(name);
+                    if (el) {
+                      // For absolute items, offsetLeft/Top will be 0 if left/top are 0.
+                      // We need their actual visual position, which is stored in iconPositions.
+                      // For relative items, offsetLeft/Top is correct.
+                      const isAbsolute = iconPositions[name]?.absolute;
+                      const initialX = isAbsolute
+                        ? iconPositions[name]?.x || 0
+                        : el.offsetLeft;
+                      const initialY = isAbsolute
+                        ? iconPositions[name]?.y || 0
+                        : el.offsetTop;
+
+                      dragStartPositions.current.set(name, {
+                        x: initialX,
+                        y: initialY,
+                      });
+                    }
+                  });
+                }}
+                onDrag={(_, info) => {
+                  // Move other selected files visually
+                  selectedFiles.forEach((name) => {
+                    if (name === file.name) return; // Skip the one being dragged (handled by framer-motion)
+                    const startPos = dragStartPositions.current.get(name);
+                    if (startPos) {
+                      // We need to calculate the NEW transform based on the drag offset.
+                      // But wait, the element is at `startPos` (layout position).
+                      // We want to move it by `info.offset`.
+                      // But `transform` is relative to the element's current layout position.
+                      // So `translate(info.offset.x, info.offset.y)` should work!
+                      // Wait, `iconPositions` might have `x` and `y` set if it was absolute.
+                      // If it was absolute, `left: 0, top: 0`, and `transform: translate(x, y)` (via style x/y props).
+                      // Framer Motion applies `x` and `y` style props as `transform`.
+                      // If we manually set `transform`, we override Framer Motion's style props?
+                      // Yes.
+                      // So if it was absolute at (100, 100), `x=100, y=100`.
+                      // `offsetLeft` would be 0 (because `left:0`).
+                      // Wait, if `position: absolute`, `offsetLeft` is `left` + `margin`?
+                      // If `left: 0`, `offsetLeft` is 0.
+                      // But visual position is `100, 100` due to `transform`.
+
+                      // Ah, for absolute items with Framer Motion `x/y` props, `offsetLeft` is 0.
+                      // But `startPos` should be the VISUAL start position.
+                      // If `absolute`, `startPos` should be `iconPositions[name].x`.
+                      // If `relative`, `startPos` is `offsetLeft`.
+
+                      // Actually, let's simplify.
+                      // We just want to move them by `info.offset`.
+                      // If we set `transform: translate3d(info.offset.x px, info.offset.y px, 0)`,
+                      // it moves relative to its CURRENT position (which includes `x/y` props).
+                      // NO! `transform` overrides the `transform` generated by `x/y` props.
+                      // So if we set `transform`, we lose the initial `x/y` position!
+
+                      // So we must calculate the FULL transform.
+                      // If absolute: `newX = currentX + info.offset.x`.
+                      // If relative: `newX = info.offset.x`. (Because relative starts at 0 transform).
+
+                      const el = fileRefs.current.get(name);
+                      if (el) {
+                        const isAbsolute = iconPositions[name]?.absolute;
+                        const currentX = startPos.x; // Use the captured start position
+                        const currentY = startPos.y; // Use the captured start position
+
+                        const moveX = currentX + info.offset.x;
+                        const moveY = currentY + info.offset.y;
+
+                        el.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) scale(1.05)`;
+                        el.style.zIndex = "100";
+                      }
+                    }
+                  });
+                }}
+                onDragEnd={(_, info) => {
+                  selectedFiles.forEach((name) => {
+                    // Calculate final position
+                    // If absolute: startX + offset
+                    // If relative: offsetLeft + offset
+
+                    // We need the start position we captured?
+                    // If we captured `offsetLeft`, for absolute items it was 0.
+                    // So we should have captured `x/y` from store for absolute items?
+
+                    // Let's use the logic:
+                    // FinalX = InitialVisualX + OffsetX
+                    // InitialVisualX = Absolute ? Store.x : offsetLeft
+
+                    const startPos = dragStartPositions.current.get(name);
+                    if (!startPos) return; // Should not happen if dragStartPositions was populated correctly
+
+                    const newX = startPos.x + info.offset.x;
+                    const newY = startPos.y + info.offset.y;
+
+                    setIconPosition(name, newX, newY, true);
+
+                    // Reset styles for all selected files that were manually transformed
+                    const el = fileRefs.current.get(name);
+                    if (el) {
+                      el.style.transform = "";
+                      el.style.zIndex = "";
+                    }
+                  });
                 }}
                 className={`pointer-events-auto flex justify-center ${
                   file.name.endsWith(".note") ? "w-[160px]" : "w-[100px]"
@@ -632,13 +846,11 @@ export const Desktop: React.FC = () => {
                       now - lastClickTime < 300
                     ) {
                       // Double click detected
-                      console.log("Double click detected manually:", file.name);
                       openFile(file);
                       setLastClickId(null);
                       setLastClickTime(0);
                     } else {
                       // Single click
-                      console.log("Single click:", file.name);
                       setSelectedFile(file.name);
                       setLastClickId(file.name);
                       setLastClickTime(now);
@@ -647,77 +859,116 @@ export const Desktop: React.FC = () => {
                   onContextMenu={(e) => {
                     e.stopPropagation();
                     e.preventDefault();
-                    openContextMenu(e.clientX, e.clientY, [
-                      {
-                        label: "Open",
-                        action: () => openFile(file),
-                      },
-                      {
-                        label: "Edit",
-                        action: () =>
-                          launchProcess(
-                            "textedit",
-                            "TextEdit",
-                            "📝",
-                            <TextEdit
-                              initialPath={desktopPath}
-                              initialFilename={file.name}
-                            />
+
+                    // If right-clicking an unselected file, select it (and deselect others)
+                    let currentSelection = selectedFiles;
+                    if (!selectedFiles.includes(file.name)) {
+                      setSelectedFiles([file.name]);
+                      currentSelection = [file.name];
+                    }
+
+                    if (currentSelection.length > 1) {
+                      // Multi-select Context Menu
+                      openContextMenu(e.clientX, e.clientY, [
+                        {
+                          label: `Open ${currentSelection.length} items`,
+                          action: () => {
+                            currentSelection.forEach((name) => {
+                              const f = files.find(
+                                (file) => file.name === name
+                              );
+                              if (f) openFile(f);
+                            });
+                          },
+                        },
+                        { separator: true },
+                        {
+                          label: `Move ${currentSelection.length} items to Bin`,
+                          danger: true,
+                          action: async () => {
+                            for (const name of currentSelection) {
+                              const f = files.find(
+                                (file) => file.name === name
+                              );
+                              if (f) await moveToBin(f);
+                            }
+                          },
+                        },
+                      ]);
+                    } else {
+                      // Single-select Context Menu (Existing Logic)
+                      openContextMenu(e.clientX, e.clientY, [
+                        {
+                          label: "Open",
+                          action: () => openFile(file),
+                        },
+                        {
+                          label: "Edit",
+                          action: () =>
+                            launchProcess(
+                              "textedit",
+                              "TextEdit",
+                              "📝",
+                              <TextEdit
+                                initialPath={desktopPath}
+                                initialFilename={file.name}
+                              />
+                            ),
+                          disabled: ![
+                            "txt",
+                            "md",
+                            "js",
+                            "ts",
+                            "tsx",
+                            "json",
+                            "css",
+                            "html",
+                            "html",
+                          ].includes(
+                            file.name.split(".").pop()?.toLowerCase() || ""
                           ),
-                        disabled: ![
-                          "txt",
-                          "md",
-                          "js",
-                          "ts",
-                          "tsx",
-                          "json",
-                          "css",
-                          "html",
-                          "html",
-                        ].includes(
-                          file.name.split(".").pop()?.toLowerCase() || ""
-                        ),
-                      },
-                      {
-                        label: "Open With",
-                        submenu: [
-                          {
-                            label: "TextEdit",
-                            action: () =>
-                              launchProcess(
-                                "textedit",
-                                "TextEdit",
-                                "📝",
-                                <TextEdit
-                                  initialPath={desktopPath}
-                                  initialFilename={file.name}
-                                />
-                              ),
-                          },
-                          {
-                            label: "Terminal",
-                            action: () =>
-                              launchProcess(
-                                "terminal",
-                                "Terminal",
-                                "terminal",
-                                <Terminal initialPath={desktopPath} />
-                              ),
-                          },
-                        ],
-                      },
-                      {
-                        label: "Move to Bin",
-                        danger: true,
-                        action: () => moveToBin(file),
-                      },
-                      { separator: true },
-                      { label: "Get Info" },
-                      {
-                        label: "Rename",
-                        action: () => setRenamingFile(file.name),
-                      },
-                    ]);
+                        },
+                        {
+                          label: "Open With",
+                          submenu: [
+                            {
+                              label: "TextEdit",
+                              action: () =>
+                                launchProcess(
+                                  "textedit",
+                                  "TextEdit",
+                                  "📝",
+                                  <TextEdit
+                                    initialPath={desktopPath}
+                                    initialFilename={file.name}
+                                  />
+                                ),
+                            },
+                            {
+                              label: "Terminal",
+                              action: () =>
+                                launchProcess(
+                                  "terminal",
+                                  "Terminal",
+                                  "terminal",
+                                  <Terminal initialPath={desktopPath} />
+                                ),
+                            },
+                          ],
+                        },
+                        {
+                          label: "Move to Bin",
+                          danger: true,
+                          action: () => moveToBin(file),
+                        },
+                        { separator: true },
+                        { label: "Get Info" },
+                        {
+                          label: "Rename",
+                          action: () => setRenamingFile(file.name),
+                        },
+                      ]);
+                    }
                   }}
                 />
               </motion.div>

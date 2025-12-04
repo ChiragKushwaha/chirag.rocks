@@ -9,6 +9,11 @@ interface SystemState {
   wallpaperName: string; // Base name like "Monterey" or "WhiteSur"
   activeApp: string;
   selectedFile: string | null;
+  selectedFiles: string[];
+  setSelectedFiles: (files: string[]) => void;
+  addSelectedFile: (file: string) => void;
+  toggleSelectedFile: (file: string) => void;
+  clearSelection: () => void;
 
   language: string;
   setLanguage: (lang: string) => void;
@@ -86,11 +91,12 @@ interface SystemState {
   setHasHydrated: (state: boolean) => void;
 }
 
-export const useSystemStore = create<SystemState>()(
-  persist(
+export const useSystemStore = create(
+  persist<SystemState, [], [], Partial<SystemState>>(
     (set) => ({
       isBooting: true,
       isSetupComplete: false,
+      selectedFiles: [],
       theme: "auto",
       language: "English",
       wallpaperName: "WhiteSur",
@@ -145,7 +151,35 @@ export const useSystemStore = create<SystemState>()(
       setWallpaperName: (name) => set({ wallpaperName: name }),
 
       setActiveApp: (appName) => set({ activeApp: appName }),
-      setSelectedFile: (filename) => set({ selectedFile: filename }),
+      setSelectedFile: (filename) =>
+        set({
+          selectedFile: filename,
+          selectedFiles: filename ? [filename] : [],
+        }),
+      setSelectedFiles: (files) =>
+        set({
+          selectedFiles: files,
+          selectedFile: files.length === 1 ? files[0] : null,
+        }),
+      addSelectedFile: (file) =>
+        set((state) => ({
+          selectedFiles: state.selectedFiles.includes(file)
+            ? state.selectedFiles
+            : [...state.selectedFiles, file],
+          selectedFile: null, // Multiple selection implies no single primary file for now, or we could keep the last one
+        })),
+      toggleSelectedFile: (file) =>
+        set((state) => {
+          const exists = state.selectedFiles.includes(file);
+          const newFiles = exists
+            ? state.selectedFiles.filter((f) => f !== file)
+            : [...state.selectedFiles, file];
+          return {
+            selectedFiles: newFiles,
+            selectedFile: newFiles.length === 1 ? newFiles[0] : null,
+          };
+        }),
+      clearSelection: () => set({ selectedFiles: [], selectedFile: null }),
 
       isSpotlightOpen: false,
       toggleSpotlight: (force) =>
