@@ -12,6 +12,7 @@ import { FileIcon } from "./FileIcon";
 import { MenuBar } from "./MenuBar";
 import { ContextMenu } from "./Menus";
 import { WindowManager } from "./WindowManager";
+import { motion } from "framer-motion";
 
 // Dynamic Imports for Apps (Code Splitting)
 const Calculator = dynamic(() =>
@@ -69,6 +70,8 @@ export const Desktop: React.FC = () => {
     setTrashCount,
     brightness,
     isDark,
+    iconPositions,
+    setIconPosition,
   } = useSystemStore();
 
   const wallpaper = WallpaperManager.getWallpaperPath(
@@ -79,6 +82,7 @@ export const Desktop: React.FC = () => {
   const { openContextMenu } = useMenuStore();
   const { launchProcess } = useProcessStore();
   const [files, setFiles] = useState<MacFileEntry[]>([]);
+  const constraintsRef = React.useRef(null);
 
   // Reminder Worker
   const { reminders, markNotified } = useReminderStore();
@@ -188,14 +192,21 @@ export const Desktop: React.FC = () => {
       setBootProgress(20);
 
       // 2. Load Resume.pdf to Desktop (30%)
-      try {
-        // Always overwrite Resume.pdf to ensure it's not corrupted
-        const resumeRes = await fetch("/Resume.pdf");
-        const resumeBlob = await resumeRes.blob();
-        await fs.writeFile(desktopPath, "Resume.pdf", resumeBlob);
-        console.log("Resume.pdf loaded to Desktop ✅");
-      } catch (error) {
-        console.error("Failed to load Resume.pdf:", error);
+      const { hasSeededResume, setHasSeededResume } = useSystemStore.getState();
+
+      if (!hasSeededResume) {
+        try {
+          // Only create if not already seeded
+          const resumeRes = await fetch("/Resume.pdf");
+          const resumeBlob = await resumeRes.blob();
+          await fs.writeFile(desktopPath, "Resume.pdf", resumeBlob);
+          console.log("Resume.pdf loaded to Desktop ✅");
+          setHasSeededResume(true);
+        } catch (error) {
+          console.error("Failed to load Resume.pdf:", error);
+        }
+      } else {
+        console.log("Resume.pdf already seeded, skipping.");
       }
       setBootProgress(30);
 
@@ -494,6 +505,7 @@ export const Desktop: React.FC = () => {
 
   return (
     <main
+      ref={constraintsRef}
       className="h-screen w-screen overflow-hidden relative"
       onClick={() => {
         setSelectedFile(null);
@@ -534,12 +546,28 @@ export const Desktop: React.FC = () => {
         {files.map(
           (file) =>
             !file.isHidden && (
-              <div
+              <motion.div
                 key={file.name}
+                drag
+                dragMomentum={false}
+                dragConstraints={constraintsRef}
+                whileDrag={{ scale: 1.05, zIndex: 100 }}
+                onDragEnd={(_, info) => {
+                  const current = iconPositions[file.name] || { x: 0, y: 0 };
+                  setIconPosition(
+                    file.name,
+                    current.x + info.offset.x,
+                    current.y + info.offset.y
+                  );
+                }}
                 className={`pointer-events-auto flex justify-center ${
                   file.name.endsWith(".note") ? "w-[160px]" : "w-[100px]"
                 }`}
-                style={{ direction: "ltr" }} // Reset direction for content
+                style={{
+                  direction: "ltr",
+                  x: iconPositions[file.name]?.x || 0,
+                  y: iconPositions[file.name]?.y || 0,
+                }} // Reset direction for content
                 onDoubleClick={(e) => {
                   e.stopPropagation();
                   openFile(file);
@@ -583,6 +611,7 @@ export const Desktop: React.FC = () => {
                           "tsx",
                           "json",
                           "css",
+                          "html",
                           "html",
                         ].includes(
                           file.name.split(".").pop()?.toLowerCase() || ""
@@ -630,7 +659,7 @@ export const Desktop: React.FC = () => {
                     ]);
                   }}
                 />
-              </div>
+              </motion.div>
             )
         )}
       </div>

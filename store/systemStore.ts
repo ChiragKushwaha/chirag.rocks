@@ -50,6 +50,12 @@ interface SystemState {
   hasCreatedWelcomeFile: boolean;
   setHasCreatedWelcomeFile: (status: boolean) => void;
 
+  hasSeededResume: boolean;
+  setHasSeededResume: (status: boolean) => void;
+
+  iconPositions: Record<string, { x: number; y: number }>;
+  setIconPosition: (name: string, x: number, y: number) => void;
+
   wifiEnabled: boolean;
   toggleWifi: () => void;
 
@@ -149,6 +155,18 @@ export const useSystemStore = create<SystemState>()(
       setHasCreatedWelcomeFile: (status) =>
         set({ hasCreatedWelcomeFile: status }),
 
+      hasSeededResume: false,
+      setHasSeededResume: (status) => set({ hasSeededResume: status }),
+
+      iconPositions: {},
+      setIconPosition: (name, x, y) =>
+        set((state) => ({
+          iconPositions: {
+            ...state.iconPositions,
+            [name]: { x, y },
+          },
+        })),
+
       wifiEnabled: true,
       toggleWifi: () => set((state) => ({ wifiEnabled: !state.wifiEnabled })),
 
@@ -190,6 +208,8 @@ export const useSystemStore = create<SystemState>()(
         user: state.user,
         wallpaperName: state.wallpaperName,
         hasCreatedWelcomeFile: state.hasCreatedWelcomeFile,
+        hasSeededResume: state.hasSeededResume,
+        iconPositions: state.iconPositions,
         brightness: state.brightness,
         volume: state.volume,
         wifiEnabled: state.wifiEnabled,

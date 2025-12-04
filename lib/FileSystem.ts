@@ -334,6 +334,7 @@ export class MacFileSystem {
         const file = await (oldHandle as FileSystemFileHandle).getFile();
         const content = await file.arrayBuffer();
         await this.writeBlob(path, newName, content);
+        await this.flush(); // Force flush to ensure other instances see it
         await dirHandle.removeEntry(oldName);
       } else if (oldHandle.kind === "directory") {
         // Recursive copy for directories
