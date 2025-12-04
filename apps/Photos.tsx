@@ -237,6 +237,7 @@ export const Photos = () => {
             style={{ border: 0 }}
             loading="lazy"
             allowFullScreen
+            title="Photo Location Map"
             src={`https://www.google.com/maps/embed/v1/view?key=${
               process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY || ""
             }&center=${center}&zoom=12&maptype=satellite`}
@@ -406,6 +407,7 @@ export const Photos = () => {
               placeholder="Search"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              aria-label="Search Photos"
               className="w-40 bg-[#E3E3E5] dark:bg-[#3A3A3C] rounded-md pl-7 pr-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 text-black dark:text-white placeholder-gray-500"
             />
           </div>

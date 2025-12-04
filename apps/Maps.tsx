@@ -97,6 +97,7 @@ export const Maps: React.FC = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search Maps"
+              aria-label="Search Maps"
               className="w-full bg-gray-100 dark:bg-black/20 border-none rounded-lg pl-10 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50"
             />
           </form>

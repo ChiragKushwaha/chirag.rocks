@@ -263,6 +263,7 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
                 value={urlInput}
                 onChange={(e) => setUrlInput(e.target.value)}
                 placeholder="Search or enter website name"
+                aria-label="Address bar"
                 className="w-full bg-transparent border-none outline-none text-sm text-center group-focus-within:text-left text-gray-800 dark:text-gray-200 placeholder-gray-400"
               />
               <button

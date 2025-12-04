@@ -122,6 +122,7 @@ export const LockScreen: React.FC = () => {
                 }}
                 onKeyDown={(e) => e.key === "Enter" && handleUnlock()}
                 placeholder="Enter Password"
+                aria-label="Password"
                 className={`w-[320px] bg-white/90 dark:bg-[#1e1e1e]/90 backdrop-blur-xl border ${
                   error
                     ? "border-red-500"

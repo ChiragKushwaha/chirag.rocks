@@ -374,6 +374,7 @@ export const Terminal: React.FC<TerminalProps> = ({ initialPath }) => {
             }
           }}
           className="flex-1 bg-transparent outline-none border-none text-green-400"
+          aria-label="Terminal Input"
           autoFocus
         />
       </div>

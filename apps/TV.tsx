@@ -273,6 +273,7 @@ export const TV: React.FC = () => {
             placeholder="Search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            aria-label="Search TV Shows"
             className="w-full bg-black/20 border-none rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-white/20 text-white placeholder-gray-500 transition-all"
           />
         </div>

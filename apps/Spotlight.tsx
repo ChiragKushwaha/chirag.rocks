@@ -264,6 +264,7 @@ export const Spotlight: React.FC = () => {
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Spotlight Search"
+            aria-label="Spotlight Search"
             className="
               flex-1 bg-transparent text-[22px] font-light tracking-tight
               text-black dark:text-white placeholder:text-gray-400 
