@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://chirag-rocks.vercel.app/sitemap.xml
