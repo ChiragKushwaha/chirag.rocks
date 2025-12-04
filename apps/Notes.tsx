@@ -261,6 +261,14 @@ export const Notes: React.FC<NotesProps> = ({
               ? "bg-black/10 dark:bg-white/10"
               : "hover:bg-black/5 dark:hover:bg-white/5"
           }`}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              setActiveFolder("Notes");
+            }
+          }}
+          aria-label="Notes folder"
         >
           <Folder size={16} className="text-[#facc15] fill-[#facc15]" />
           <span className="text-sm font-medium">Notes</span>
@@ -272,6 +280,14 @@ export const Notes: React.FC<NotesProps> = ({
               ? "bg-black/10 dark:bg-white/10"
               : "hover:bg-black/5 dark:hover:bg-white/5"
           }`}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              setActiveFolder("Trash");
+            }
+          }}
+          aria-label="Trash folder"
         >
           <Trash2 size={16} />
           <span className="text-sm">Recently Deleted</span>
@@ -289,6 +305,7 @@ export const Notes: React.FC<NotesProps> = ({
               <button
                 onClick={createNote}
                 className="hover:bg-gray-100 dark:hover:bg-white/10 p-1 rounded"
+                aria-label="Create new note"
               >
                 <Plus size={20} className="text-[#facc15]" />
               </button>
@@ -305,6 +322,7 @@ export const Notes: React.FC<NotesProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-gray-100 dark:bg-gray-800 border-none rounded-lg pl-8 pr-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#facc15]/50 transition-all"
+              aria-label="Search notes"
             />
           </div>
         </div>
@@ -318,6 +336,14 @@ export const Notes: React.FC<NotesProps> = ({
                   ? "bg-[#facc15] text-white"
                   : "hover:bg-gray-50 dark:hover:bg-white/5"
               }`}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  setSelectedNoteId(note.id);
+                }
+              }}
+              aria-label={`Note: ${note.title}`}
             >
               <h4
                 className={`text-sm font-bold mb-1 truncate ${
@@ -357,6 +383,7 @@ export const Notes: React.FC<NotesProps> = ({
                     onClick={addToDesktop}
                     className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md text-gray-500 hover:text-[#facc15] transition-colors"
                     title="Add to Desktop"
+                    aria-label="Add to Desktop"
                   >
                     <MonitorUp size={18} />
                   </button>
@@ -380,12 +407,20 @@ export const Notes: React.FC<NotesProps> = ({
                       ? "Delete Permanently"
                       : "Delete Note"
                   }
+                  aria-label={
+                    activeFolder === "Trash"
+                      ? "Delete Permanently"
+                      : "Delete Note"
+                  }
                 >
                   <Trash2 size={18} />
                 </button>
 
                 {activeFolder === "Notes" && (
-                  <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md text-[#facc15]">
+                  <button
+                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md text-[#facc15]"
+                    aria-label="Edit note"
+                  >
                     <Edit3 size={18} />
                   </button>
                 )}
@@ -401,6 +436,7 @@ export const Notes: React.FC<NotesProps> = ({
                 disabled={activeFolder === "Trash"}
                 className="w-full text-3xl font-bold mb-4 bg-transparent border-none focus:outline-none placeholder-gray-400 text-gray-900 dark:text-white disabled:opacity-50"
                 placeholder="Title"
+                aria-label="Note title"
               />
               <textarea
                 value={selectedNote.content}
@@ -410,6 +446,7 @@ export const Notes: React.FC<NotesProps> = ({
                 disabled={activeFolder === "Trash"}
                 className="w-full h-[calc(100%-4rem)] text-lg leading-relaxed text-gray-800 dark:text-gray-300 bg-transparent border-none focus:outline-none resize-none placeholder-gray-400 disabled:opacity-50"
                 placeholder="Type your note here..."
+                aria-label="Note content"
               />
             </div>
           </>

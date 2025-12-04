@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import { PhoneOff } from "lucide-react";
+import React, { useEffect, useRef } from "react";
+import { usePermission } from "../context/PermissionContext";
 import { useSocketStore } from "../store/socketStore";
 import { useSystemStore } from "../store/systemStore";
-import { usePermission } from "../context/PermissionContext";
 
 export const FaceTime: React.FC = () => {
   const {
@@ -19,7 +20,6 @@ export const FaceTime: React.FC = () => {
   const { user } = useSystemStore();
   const { requestPermission } = usePermission();
 
-  const [loginName, setLoginName] = useState("");
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const previewVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
@@ -280,6 +280,7 @@ export const FaceTime: React.FC = () => {
             autoPlay
             playsInline
             className="w-full h-full object-cover"
+            aria-label="Remote video feed"
           />
           {/* Local Video (PIP) */}
           <div className="absolute top-4 right-4 w-32 h-48 bg-black rounded-lg overflow-hidden border-2 border-white/20 shadow-lg">
@@ -289,6 +290,7 @@ export const FaceTime: React.FC = () => {
               playsInline
               muted
               className="w-full h-full object-cover"
+              aria-label="Local video preview"
             />
           </div>
           {/* Controls */}
@@ -309,8 +311,10 @@ export const FaceTime: React.FC = () => {
                     .forEach((track) => track.stop());
                 }
               }}
+              aria-label="End Call"
             >
-              End
+              <PhoneOff size={24} />
+              <span>End</span>
             </button>
           </div>
         </div>
@@ -326,11 +330,23 @@ export const FaceTime: React.FC = () => {
               <div
                 key={user.id}
                 className="flex items-center justify-between p-3 hover:bg-gray-700 rounded cursor-pointer"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    callUser(user.id);
+                  }
+                }}
+                aria-label={`Call ${user.name}`}
               >
                 <span>{user.name}</span>
                 <button
                   className="bg-green-600 px-3 py-1 rounded text-sm"
-                  onClick={() => callUser(user.id)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    callUser(user.id);
+                  }}
+                  aria-label={`Video call ${user.name}`}
                 >
                   Video
                 </button>
@@ -352,6 +368,7 @@ export const FaceTime: React.FC = () => {
                   playsInline
                   muted
                   className="w-full h-full object-cover"
+                  aria-label="Local camera preview"
                 />
               </div>
             </div>

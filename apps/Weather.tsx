@@ -140,6 +140,7 @@ export const Weather: React.FC = () => {
             value={searchQuery}
             onChange={handleSearch}
             className="w-full bg-white/10 rounded-lg px-3 py-1.5 text-sm text-white placeholder-white/40 focus:outline-none focus:ring-1 focus:ring-white/20"
+            aria-label="Search city"
           />
         </div>
         <div className="flex-1 overflow-y-auto">
@@ -151,6 +152,14 @@ export const Weather: React.FC = () => {
                   key={i}
                   className="px-4 py-3 hover:bg-white/10 cursor-pointer flex flex-col border-b border-white/5"
                   onClick={() => selectLocation(result)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      selectLocation(result);
+                    }
+                  }}
+                  aria-label={`Select ${result.name}, ${result.country}`}
                 >
                   <span className="font-medium text-sm">{result.name}</span>
                   <span className="text-xs opacity-60">{result.country}</span>
@@ -173,6 +182,14 @@ export const Weather: React.FC = () => {
                       key={i}
                       className="px-4 py-2 hover:bg-white/10 cursor-pointer flex justify-between items-center"
                       onClick={() => selectLocation(loc)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          selectLocation(loc);
+                        }
+                      }}
+                      aria-label={`Select ${loc.name}, ${loc.country}`}
                     >
                       <span className="font-medium text-sm">{loc.name}</span>
                       <span className="text-xs opacity-60">{loc.country}</span>
@@ -190,6 +207,14 @@ export const Weather: React.FC = () => {
                     key={i}
                     className="px-4 py-2 hover:bg-white/10 cursor-pointer flex justify-between items-center"
                     onClick={() => selectLocation(loc)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        selectLocation(loc);
+                      }
+                    }}
+                    aria-label={`Select ${loc.name}, ${loc.country}`}
                   >
                     <span className="font-medium text-sm">{loc.name}</span>
                     <span className="text-xs opacity-60">{loc.country}</span>
@@ -212,6 +237,7 @@ export const Weather: React.FC = () => {
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+            aria-label={sidebarOpen ? "Close sidebar" : "Open sidebar"}
           >
             {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -532,7 +558,7 @@ export const Weather: React.FC = () => {
                   Pressure
                 </div>
                 <div className="flex-1 flex flex-col justify-center items-center relative">
-                  <div className="w-24 h-24 rounded-full border-[6px] border-white/10 border-t-white/90 rotate-[135deg]" />
+                  <div className="w-24 h-24 rounded-full border-[6px] border-white/10 border-t-white/90 rotate-135" />
                   <div className="absolute flex flex-col items-center">
                     <span className="text-2xl font-bold">1012</span>
                     <span className="text-xs opacity-70">hPa</span>

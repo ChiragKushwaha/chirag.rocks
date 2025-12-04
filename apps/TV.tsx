@@ -30,37 +30,13 @@ interface Show {
 
 export const TV: React.FC = () => {
   const [activeTab, setActiveTab] = useState("watch-now");
-  const [library, setLibrary] = useState<Show[]>([]);
-  const [playingShow, setPlayingShow] = useState<Show | null>(null);
-
-  const [shows, setShows] = useState<Show[]>([]);
-  const [heroShow, setHeroShow] = useState<Show | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchShows = async () => {
-      try {
-        const response = await fetch("https://api.tvmaze.com/shows");
-        const data = await response.json();
-        setShows(data);
-        setHeroShow(data[Math.floor(Math.random() * data.length)]);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching shows:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchShows();
-  }, []);
-
-  useEffect(() => {
-    const savedLibrary = localStorage.getItem("mac-tv-library");
-    if (savedLibrary) {
-      setLibrary(JSON.parse(savedLibrary));
+  const [library, setLibrary] = useState<Show[]>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("mac-tv-library");
+      return saved ? JSON.parse(saved) : [];
     }
-  }, []);
+    return [];
+  });
 
   useEffect(() => {
     localStorage.setItem("mac-tv-library", JSON.stringify(library));
@@ -165,6 +141,14 @@ export const TV: React.FC = () => {
               key={show.id}
               className="aspect-2/3 relative rounded-xl overflow-hidden cursor-pointer group bg-gray-800 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:z-10"
               onClick={() => setPlayingShow(show)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  setPlayingShow(show);
+                }
+              }}
+              aria-label={`Play ${show.name}`}
             >
               <Image
                 src={show.image?.medium || ""}
@@ -194,6 +178,11 @@ export const TV: React.FC = () => {
                       toggleLibrary(show);
                     }}
                     className="p-1 hover:bg-white/20 rounded-full"
+                    aria-label={
+                      isInLibrary(show)
+                        ? "Remove from Library"
+                        : "Add to Library"
+                    }
                   >
                     {isInLibrary(show) ? (
                       <Check size={14} className="text-green-400" />
@@ -226,6 +215,7 @@ export const TV: React.FC = () => {
           <button
             onClick={() => setPlayingShow(null)}
             className="absolute top-8 right-8 p-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors z-50 backdrop-blur-md"
+            aria-label="Close video"
           >
             <X size={24} />
           </button>

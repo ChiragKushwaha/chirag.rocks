@@ -22,6 +22,7 @@ export const SettingsSidebarItem: React.FC<SettingsSidebarItemProps> = ({
         ? "bg-blue-500 text-white font-medium"
         : "text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10"
     }`}
+    aria-current={isActive ? "page" : undefined}
   >
     <div
       className={`w-6 h-6 rounded-md flex items-center justify-center text-white shadow-sm ${

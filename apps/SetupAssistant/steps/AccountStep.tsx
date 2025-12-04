@@ -98,6 +98,7 @@ export const AccountStep: React.FC<AccountStepProps> = ({
             placeholder="Full Name"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            aria-label="Full Name"
             className={`
                 w-full bg-white dark:bg-[#1C1C1E] border rounded-[6px] px-3 py-2 text-[13px] text-black dark:text-white outline-none focus:ring-2 focus:ring-[#007AFF]/50 transition-all
                 ${
@@ -121,6 +122,7 @@ export const AccountStep: React.FC<AccountStepProps> = ({
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
             }
+            aria-label="Email Address"
             className={`
                 w-full bg-white dark:bg-[#1C1C1E] border rounded-[6px] px-3 py-2 text-[13px] text-black dark:text-white outline-none focus:ring-2 focus:ring-[#007AFF]/50 transition-all
                 ${
@@ -145,6 +147,7 @@ export const AccountStep: React.FC<AccountStepProps> = ({
               onChange={(e) =>
                 setFormData({ ...formData, age: e.target.value })
               }
+              aria-label="Age"
               className={`
                   w-full bg-white dark:bg-[#1C1C1E] border rounded-[6px] px-3 py-2 text-[13px] text-black dark:text-white outline-none focus:ring-2 focus:ring-[#007AFF]/50 transition-all
                   ${
@@ -163,6 +166,7 @@ export const AccountStep: React.FC<AccountStepProps> = ({
               onChange={(e) =>
                 setFormData({ ...formData, phone: e.target.value })
               }
+              aria-label="Mobile Number"
               className={`
                   w-full bg-white dark:bg-[#1C1C1E] border rounded-[6px] px-3 py-2 text-[13px] text-black dark:text-white outline-none focus:ring-2 focus:ring-[#007AFF]/50 transition-all
                   ${
@@ -196,6 +200,7 @@ export const AccountStep: React.FC<AccountStepProps> = ({
             onChange={(e) =>
               setFormData({ ...formData, password: e.target.value })
             }
+            aria-label="Password"
             className={`
                 w-full bg-white dark:bg-[#1C1C1E] border rounded-[6px] px-3 py-2 text-[13px] text-black dark:text-white outline-none focus:ring-2 focus:ring-[#007AFF]/50 transition-all
                 ${

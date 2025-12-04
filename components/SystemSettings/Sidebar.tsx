@@ -47,6 +47,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             type="text"
             placeholder="Search"
             className="w-full bg-white/50 dark:bg-white/10 border border-gray-300/50 dark:border-black/20 rounded-md pl-8 pr-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+            aria-label="Search settings"
           />
         </div>
       </div>
@@ -59,6 +60,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
             : "hover:bg-black/5 dark:hover:bg-white/5"
         }`}
         onClick={() => setActiveTab("General")}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            setActiveTab("General");
+          }
+        }}
+        aria-label="User profile settings"
       >
         <div className="w-12 h-12 rounded-full bg-gray-300 dark:bg-gray-600 overflow-hidden flex items-center justify-center text-2xl">
           {currentAvatar}

@@ -40,18 +40,21 @@ export const Toolbar: React.FC<ToolbarProps> = ({
           <button
             onClick={() => navigate("prev")}
             className="p-1 hover:bg-white dark:hover:bg-gray-600 rounded shadow-sm transition-all"
+            aria-label="Previous period"
           >
             <ChevronLeft size={16} />
           </button>
           <button
             onClick={() => setCurrentDate(new Date())}
             className="px-3 text-sm font-medium hover:bg-white dark:hover:bg-gray-600 rounded mx-0.5 transition-all"
+            aria-label="Go to today"
           >
             Today
           </button>
           <button
             onClick={() => navigate("next")}
             className="p-1 hover:bg-white dark:hover:bg-gray-600 rounded shadow-sm transition-all"
+            aria-label="Next period"
           >
             <ChevronRight size={16} />
           </button>
@@ -86,6 +89,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
               className="bg-transparent border-none outline-none text-sm w-32 dark:text-white"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              aria-label="Search events"
             />
             <button
               onClick={() => {
@@ -93,6 +97,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 setSearchQuery("");
               }}
               className="ml-1 text-gray-500 hover:text-gray-700"
+              aria-label="Clear search"
             >
               <X size={14} />
             </button>
@@ -101,6 +106,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
           <button
             onClick={() => setIsSearching(true)}
             className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
+            aria-label="Search"
           >
             <Search size={18} />
           </button>
@@ -109,6 +115,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
         <button
           onClick={() => setShowEventModal(true)}
           className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
+          aria-label="New event"
         >
           <Plus size={18} />
         </button>

@@ -82,6 +82,7 @@ export const AvatarEditor: React.FC<AvatarEditorProps> = ({
                 type="text"
                 placeholder="Search"
                 className="w-full bg-white/10 border border-transparent rounded-md pl-8 pr-3 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+                aria-label="Search avatars"
               />
             </div>
           </div>
@@ -126,7 +127,10 @@ export const AvatarEditor: React.FC<AvatarEditorProps> = ({
           <div className="flex-1 p-6 overflow-y-auto">
             <div className="grid grid-cols-5 gap-4">
               {/* Add Button */}
-              <button className="aspect-square rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors">
+              <button
+                className="aspect-square rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"
+                aria-label="Add custom avatar"
+              >
                 <Plus size={32} className="text-gray-400" />
               </button>
 
@@ -140,6 +144,7 @@ export const AvatarEditor: React.FC<AvatarEditorProps> = ({
                       ? "bg-white/10 ring-2 ring-blue-500"
                       : ""
                   }`}
+                  aria-label={`Select avatar ${emoji}`}
                 >
                   {emoji}
                 </button>
@@ -171,6 +176,7 @@ export const AvatarEditor: React.FC<AvatarEditorProps> = ({
                   value={zoom}
                   onChange={(e) => setZoom(Number(e.target.value))}
                   className="flex-1 h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:rounded-full"
+                  aria-label="Zoom avatar"
                 />
                 <span className="text-[10px] text-gray-500">+</span>
               </div>

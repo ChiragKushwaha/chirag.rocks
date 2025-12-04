@@ -236,6 +236,14 @@ export const Music: React.FC = () => {
               key={song.trackId}
               className="group cursor-pointer"
               onClick={() => handlePlaySong(song)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  handlePlaySong(song);
+                }
+              }}
+              aria-label={`Play ${song.trackName} by ${song.artistName}`}
             >
               <div className="aspect-square rounded-lg shadow-md bg-gray-200 dark:bg-gray-800 relative overflow-hidden mb-3 group-hover:shadow-xl transition-all duration-300">
                 <Image
@@ -251,6 +259,12 @@ export const Music: React.FC = () => {
                       ? "opacity-100"
                       : "opacity-0 group-hover:opacity-100"
                   }`}
+                  role="button"
+                  aria-label={
+                    currentSong?.trackId === song.trackId && isPlaying
+                      ? `Pause ${song.trackName}`
+                      : `Play ${song.trackName}`
+                  }
                 >
                   <div className="w-12 h-12 rounded-full bg-red-500 text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
                     {currentSong?.trackId === song.trackId && isPlaying ? (
@@ -296,6 +310,7 @@ export const Music: React.FC = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-white dark:bg-black/20 border-none rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/50 shadow-sm text-gray-900 dark:text-white placeholder-gray-500"
+            aria-label="Search music"
           />
         </form>
 
@@ -412,6 +427,7 @@ export const Music: React.FC = () => {
                 onClick={handleBack}
                 disabled={historyIndex <= 0}
                 className="p-1 hover:bg-gray-200 dark:hover:bg-white/10 rounded-md disabled:opacity-30 transition-opacity"
+                aria-label="Go back"
               >
                 <ChevronLeft size={20} />
               </button>
@@ -419,6 +435,7 @@ export const Music: React.FC = () => {
                 onClick={handleForward}
                 disabled={historyIndex >= history.length - 1}
                 className="p-1 hover:bg-gray-200 dark:hover:bg-white/10 rounded-md disabled:opacity-30 transition-opacity"
+                aria-label="Go forward"
               >
                 <ChevronRight size={20} />
               </button>
@@ -433,6 +450,7 @@ export const Music: React.FC = () => {
                 onClick={playPrev}
                 disabled={!currentSong}
                 className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors disabled:opacity-30"
+                aria-label="Previous song"
               >
                 <SkipBack size={20} fill="currentColor" />
               </button>
@@ -444,6 +462,7 @@ export const Music: React.FC = () => {
                     : "bg-gray-100 dark:bg-white/5 text-gray-400 cursor-not-allowed"
                 }`}
                 disabled={!currentSong}
+                aria-label={isPlaying ? "Pause" : "Play"}
               >
                 {isPlaying ? (
                   <Pause size={16} fill="currentColor" />
@@ -455,6 +474,7 @@ export const Music: React.FC = () => {
                 onClick={playNext}
                 disabled={!currentSong}
                 className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors disabled:opacity-30"
+                aria-label="Next song"
               >
                 <SkipForward size={20} fill="currentColor" />
               </button>
@@ -505,6 +525,7 @@ export const Music: React.FC = () => {
                     onChange={handleSeek}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20"
                     disabled={!currentSong}
+                    aria-label="Seek slider"
                   />
                 </>
               ) : (
@@ -528,6 +549,7 @@ export const Music: React.FC = () => {
                   ? "bg-gray-200 dark:bg-white/10 text-red-500 shadow-sm"
                   : "text-gray-400 hover:text-gray-600 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5"
               }`}
+              aria-label="Toggle lyrics"
             >
               <Quote size={18} fill={showLyrics ? "currentColor" : "none"} />
             </button>
@@ -541,11 +563,15 @@ export const Music: React.FC = () => {
                   ? "bg-gray-200 dark:bg-white/10 text-red-500 shadow-sm"
                   : "text-gray-400 hover:text-gray-600 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5"
               }`}
+              aria-label="Toggle queue"
             >
               <Menu size={18} />
             </button>
             <div className="flex items-center gap-2 w-24">
-              <button onClick={() => setVolume(volume === 0 ? 0.5 : 0)}>
+              <button
+                onClick={() => setVolume(volume === 0 ? 0.5 : 0)}
+                aria-label="Toggle mute"
+              >
                 {volume === 0 ? (
                   <VolumeX size={16} className="text-gray-500" />
                 ) : volume < 0.5 ? (
@@ -562,6 +588,7 @@ export const Music: React.FC = () => {
                 value={volume}
                 onChange={(e) => setVolume(parseFloat(e.target.value))}
                 className="w-full h-1 bg-gray-300 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer accent-gray-500 dark:accent-gray-400"
+                aria-label="Volume slider"
               />
             </div>
           </div>
@@ -627,6 +654,15 @@ export const Music: React.FC = () => {
                           ? "bg-gray-200 dark:bg-white/10"
                           : "hover:bg-gray-100 dark:hover:bg-white/5"
                       }`}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          setCurrentSong(song);
+                          setIsPlaying(true);
+                        }
+                      }}
+                      aria-label={`Play ${song.trackName} by ${song.artistName}`}
                     >
                       <div className="w-10 h-10 rounded bg-gray-300 dark:bg-gray-700 relative overflow-hidden shrink-0">
                         <Image

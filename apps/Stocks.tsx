@@ -176,6 +176,7 @@ export const Stocks: React.FC = () => {
               onKeyDown={handleSearch}
               disabled={isSearching}
               className="w-full bg-white/10 rounded-lg pl-8 pr-3 py-1 text-sm text-white placeholder-white/30 focus:outline-none focus:bg-white/20 transition-colors disabled:opacity-50"
+              aria-label="Search stocks"
             />
           </div>
         </div>
@@ -198,6 +199,14 @@ export const Stocks: React.FC = () => {
                 className={`px-4 py-3 cursor-pointer hover:bg-white/5 transition-colors border-b border-white/5 ${
                   currentStock.symbol === stock.symbol ? "bg-white/10" : ""
                 }`}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    setSelectedStock(stock);
+                  }
+                }}
+                aria-label={`Select stock ${stock.symbol}`}
               >
                 <div className="flex justify-between items-center mb-1">
                   <span className="font-bold">{stock.symbol}</span>
@@ -330,6 +339,14 @@ export const Stocks: React.FC = () => {
                 <div
                   key={i}
                   className="bg-white/5 p-4 rounded-xl hover:bg-white/10 transition-colors cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      // Handle news click (e.g., open link)
+                    }
+                  }}
+                  aria-label={`Read news: ${item.title}`}
                 >
                   <div className="flex justify-between items-start mb-2">
                     <span className="text-xs font-bold text-blue-400 uppercase">

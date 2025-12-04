@@ -93,6 +93,9 @@ export const WeekView: React.FC<WeekViewProps> = ({
                       top: `${startHour * 60}px`,
                       height: `${Math.max(20, duration * 60)}px`,
                     }}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Event: ${event.title} at ${event.location}`}
                   >
                     <div className="font-semibold">{event.title}</div>
                     <div>{event.location}</div>

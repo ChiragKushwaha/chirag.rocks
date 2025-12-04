@@ -57,6 +57,11 @@ export const DayView: React.FC<DayViewProps> = ({
                   top: `${startHour * 60}px`,
                   height: `${Math.max(30, duration * 60)}px`,
                 }}
+                role="button"
+                tabIndex={0}
+                aria-label={`Event: ${event.title} at ${
+                  event.location || "No location"
+                }`}
               >
                 <div className="font-semibold">{event.title}</div>
                 <div className="opacity-90 text-xs flex items-center gap-1 mt-0.5">

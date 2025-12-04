@@ -22,33 +22,64 @@ export const AppStore: React.FC = () => {
             type="text"
             placeholder="Search"
             className="w-full bg-gray-200 dark:bg-black/20 border-none rounded-md pl-8 pr-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+            aria-label="Search apps"
           />
         </div>
 
         <div className="space-y-1">
-          <div className="flex items-center gap-3 px-2 py-1.5 rounded-md bg-gray-200 dark:bg-white/10 text-blue-500">
+          <div
+            className="flex items-center gap-3 px-2 py-1.5 rounded-md bg-gray-200 dark:bg-white/10 text-blue-500 cursor-pointer"
+            role="button"
+            tabIndex={0}
+            aria-label="Discover"
+          >
             <LayoutGrid size={18} />
             <span className="text-sm font-medium">Discover</span>
           </div>
-          <div className="flex items-center gap-3 px-2 py-1.5 rounded-md hover:bg-gray-200 dark:hover:bg-white/5">
+          <div
+            className="flex items-center gap-3 px-2 py-1.5 rounded-md hover:bg-gray-200 dark:hover:bg-white/5 cursor-pointer"
+            role="button"
+            tabIndex={0}
+            aria-label="Arcade"
+          >
             <Gamepad2 size={18} />
             <span className="text-sm">Arcade</span>
           </div>
-          <div className="flex items-center gap-3 px-2 py-1.5 rounded-md hover:bg-gray-200 dark:hover:bg-white/5">
+          <div
+            className="flex items-center gap-3 px-2 py-1.5 rounded-md hover:bg-gray-200 dark:hover:bg-white/5 cursor-pointer"
+            role="button"
+            tabIndex={0}
+            aria-label="Create"
+          >
             <PenTool size={18} />
             <span className="text-sm">Create</span>
           </div>
-          <div className="flex items-center gap-3 px-2 py-1.5 rounded-md hover:bg-gray-200 dark:hover:bg-white/5">
+          <div
+            className="flex items-center gap-3 px-2 py-1.5 rounded-md hover:bg-gray-200 dark:hover:bg-white/5 cursor-pointer"
+            role="button"
+            tabIndex={0}
+            aria-label="Work"
+          >
             <Layers size={18} />
             <span className="text-sm">Work</span>
           </div>
-          <div className="flex items-center gap-3 px-2 py-1.5 rounded-md hover:bg-gray-200 dark:hover:bg-white/5">
+          <div
+            className="flex items-center gap-3 px-2 py-1.5 rounded-md hover:bg-gray-200 dark:hover:bg-white/5 cursor-pointer"
+            role="button"
+            tabIndex={0}
+            aria-label="Play"
+          >
             <Gamepad2 size={18} />
             <span className="text-sm">Play</span>
           </div>
         </div>
 
-        <div className="mt-auto flex items-center gap-3 px-2 py-3 border-t border-gray-200 dark:border-black/10 cursor-pointer hover:bg-gray-200 dark:hover:bg-white/5 rounded-md">
+        <div
+          className="mt-auto flex items-center gap-3 px-2 py-3 border-t border-gray-200 dark:border-black/10 cursor-pointer hover:bg-gray-200 dark:hover:bg-white/5 rounded-md"
+          role="button"
+          tabIndex={0}
+          aria-label="Account: Chirag"
+        >
           <div className="w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center">
             <User size={16} className="text-gray-500 dark:text-gray-300" />
           </div>
@@ -69,6 +100,9 @@ export const AppStore: React.FC = () => {
             <div
               key={i}
               className="snap-center flex-shrink-0 w-[400px] aspect-[16/9] rounded-xl bg-gray-200 dark:bg-gray-800 relative overflow-hidden group cursor-pointer"
+              role="button"
+              tabIndex={0}
+              aria-label={`Featured App: App Title ${i}`}
             >
               <div
                 className={`absolute inset-0 bg-linear-to-br ${
@@ -102,6 +136,9 @@ export const AppStore: React.FC = () => {
             <div
               key={i}
               className="flex items-center justify-between group cursor-pointer hover:bg-gray-50 dark:hover:bg-white/5 p-2 rounded-lg -mx-2"
+              role="button"
+              tabIndex={0}
+              aria-label={`View details for Awesome App ${i}`}
             >
               <div className="flex items-center gap-4">
                 <div
@@ -119,7 +156,10 @@ export const AppStore: React.FC = () => {
                 </div>
               </div>
               <div className="flex flex-col items-end gap-1">
-                <button className="px-5 py-1 rounded-full bg-gray-100 dark:bg-white/10 text-blue-500 font-bold text-sm hover:bg-gray-200 dark:hover:bg-white/20">
+                <button
+                  className="px-5 py-1 rounded-full bg-gray-100 dark:bg-white/10 text-blue-500 font-bold text-sm hover:bg-gray-200 dark:hover:bg-white/20"
+                  aria-label={`Get Awesome App ${i}`}
+                >
                   GET
                 </button>
                 <span className="text-[10px] text-gray-400">

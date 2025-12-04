@@ -30,6 +30,7 @@ export const EventModal: React.FC<EventModalProps> = ({
           value={newEventTitle}
           onChange={(e) => setNewEventTitle(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleCreateEvent()}
+          aria-label="Event Title"
         />
 
         <div className="mb-4">
@@ -46,6 +47,7 @@ export const EventModal: React.FC<EventModalProps> = ({
                     ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
                     : "border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/5"
                 }`}
+                aria-label={`Select calendar: ${cal.name}`}
               >
                 <div
                   className={`w-2 h-2 rounded-full ${cal.color} inline-block mr-1`}

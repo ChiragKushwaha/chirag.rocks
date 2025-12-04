@@ -29,6 +29,10 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
           <div
             key={event.id}
             className="bg-white dark:bg-white/5 p-3 rounded-lg border border-gray-200 dark:border-white/10 flex items-center gap-3"
+            role="article"
+            aria-label={`Event: ${
+              event.title
+            } on ${event.start.toLocaleDateString()}`}
           >
             <div
               className={`w-3 h-3 rounded-full ${

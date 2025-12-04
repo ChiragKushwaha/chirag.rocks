@@ -97,7 +97,10 @@ export const Mail: React.FC = () => {
             <span className="text-sm font-bold">Inbox</span>
             <span className="text-xs text-gray-500">3 messages</span>
           </div>
-          <button className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+          <button
+            className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+            aria-label="Compose new message"
+          >
             <PenSquare size={18} />
           </button>
         </div>
@@ -112,6 +115,14 @@ export const Mail: React.FC = () => {
                   ? "bg-blue-500 text-white"
                   : "hover:bg-gray-50 dark:hover:bg-white/5"
               }`}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  setSelectedEmailId(email.id);
+                }
+              }}
+              aria-label={`Email from ${email.sender}: ${email.subject}`}
             >
               <div className="flex justify-between items-baseline mb-0.5">
                 <span
@@ -163,27 +174,37 @@ export const Mail: React.FC = () => {
             {/* Header */}
             <div className="h-16 border-b border-gray-200 dark:border-gray-700/50 flex items-center justify-between px-6">
               <div className="flex gap-4 text-gray-500">
-                <Trash2
-                  size={18}
-                  className="cursor-pointer hover:text-gray-800 dark:hover:text-gray-200"
-                />
-                <Archive
-                  size={18}
-                  className="cursor-pointer hover:text-gray-800 dark:hover:text-gray-200"
-                />
+                <button aria-label="Delete">
+                  <Trash2
+                    size={18}
+                    className="cursor-pointer hover:text-gray-800 dark:hover:text-gray-200"
+                  />
+                </button>
+                <button aria-label="Archive">
+                  <Archive
+                    size={18}
+                    className="cursor-pointer hover:text-gray-800 dark:hover:text-gray-200"
+                  />
+                </button>
                 <div className="w-px h-5 bg-gray-300 dark:bg-gray-700" />
-                <Reply
-                  size={18}
-                  className="cursor-pointer hover:text-gray-800 dark:hover:text-gray-200"
-                />
-                <ReplyAll
-                  size={18}
-                  className="cursor-pointer hover:text-gray-800 dark:hover:text-gray-200"
-                />
-                <Forward
-                  size={18}
-                  className="cursor-pointer hover:text-gray-800 dark:hover:text-gray-200"
-                />
+                <button aria-label="Reply">
+                  <Reply
+                    size={18}
+                    className="cursor-pointer hover:text-gray-800 dark:hover:text-gray-200"
+                  />
+                </button>
+                <button aria-label="Reply All">
+                  <ReplyAll
+                    size={18}
+                    className="cursor-pointer hover:text-gray-800 dark:hover:text-gray-200"
+                  />
+                </button>
+                <button aria-label="Forward">
+                  <Forward
+                    size={18}
+                    className="cursor-pointer hover:text-gray-800 dark:hover:text-gray-200"
+                  />
+                </button>
               </div>
               <div className="flex items-center gap-2 text-gray-400 text-xs">
                 <Search size={14} />

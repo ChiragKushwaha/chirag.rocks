@@ -111,6 +111,14 @@ export const Maps: React.FC = () => {
             <div
               onClick={() => loadLocation("Lucknow, Uttar Pradesh")}
               className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 cursor-pointer"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  loadLocation("Lucknow, Uttar Pradesh");
+                }
+              }}
+              aria-label="Go to Home location"
             >
               <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
                 <Navigation size={16} fill="currentColor" />
@@ -123,6 +131,14 @@ export const Maps: React.FC = () => {
             <div
               onClick={() => loadLocation("Florida, USA")}
               className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 cursor-pointer"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  loadLocation("Florida, USA");
+                }
+              }}
+              aria-label="Go to Work location"
             >
               <div className="w-8 h-8 rounded-full bg-gray-400 flex items-center justify-center text-white">
                 <MapIcon size={16} />
@@ -148,6 +164,14 @@ export const Maps: React.FC = () => {
                 key={loc}
                 onClick={() => loadLocation(loc)}
                 className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 cursor-pointer"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    loadLocation(loc);
+                  }
+                }}
+                aria-label={`Go to recent location: ${loc}`}
               >
                 <div className="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-500">
                   <Clock size={16} />
@@ -179,6 +203,11 @@ export const Maps: React.FC = () => {
             onClick={() => setMapType(mapType === "m" ? "k" : "m")}
             className="w-10 h-10 bg-white dark:bg-[#2b2b2b] rounded-lg shadow-md flex items-center justify-center text-blue-500 hover:bg-gray-50"
             title={mapType === "m" ? "Switch to Satellite" : "Switch to Map"}
+            aria-label={
+              mapType === "m"
+                ? "Switch to Satellite view"
+                : "Switch to Map view"
+            }
           >
             {mapType === "m" ? <MapIcon size={20} /> : <Navigation size={20} />}
           </button>
@@ -186,10 +215,14 @@ export const Maps: React.FC = () => {
             onClick={handleCurrentLocation}
             className="w-10 h-10 bg-white dark:bg-[#2b2b2b] rounded-lg shadow-md flex items-center justify-center text-gray-500 hover:bg-gray-50"
             title="Current Location"
+            aria-label="Show current location"
           >
             <Locate size={20} />
           </button>
-          <button className="w-10 h-10 bg-white dark:bg-[#2b2b2b] rounded-lg shadow-md flex items-center justify-center text-gray-500 hover:bg-gray-50">
+          <button
+            className="w-10 h-10 bg-white dark:bg-[#2b2b2b] rounded-lg shadow-md flex items-center justify-center text-gray-500 hover:bg-gray-50"
+            aria-label="Map information"
+          >
             <Info size={20} />
           </button>
         </div>

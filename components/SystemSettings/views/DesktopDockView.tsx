@@ -27,7 +27,11 @@ export const DesktopDockView = () => {
           </span>
           <div className="flex items-center gap-2">
             <span className="text-[10px] text-gray-400">Small</span>
-            <input type="range" className="w-32 accent-blue-500" />
+            <input
+              type="range"
+              className="w-32 accent-blue-500"
+              aria-label="Icon size"
+            />
             <span className="text-[10px] text-gray-400">Large</span>
           </div>
         </div>
@@ -37,7 +41,11 @@ export const DesktopDockView = () => {
           </span>
           <div className="flex items-center gap-2">
             <span className="text-[10px] text-gray-400">Small</span>
-            <input type="range" className="w-32 accent-blue-500" />
+            <input
+              type="range"
+              className="w-32 accent-blue-500"
+              aria-label="Dock size"
+            />
             <span className="text-[10px] text-gray-400">Large</span>
           </div>
         </div>

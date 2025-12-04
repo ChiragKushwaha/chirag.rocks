@@ -30,7 +30,12 @@ export const PermissionDialog: React.FC<PermissionDialogProps> = ({
       <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
 
       {/* Dialog Window */}
-      <div className="relative w-[260px] bg-[#F6F6F6]/90 dark:bg-[#2C2C2E]/90 backdrop-blur-xl rounded-[14px] shadow-2xl border border-white/20 dark:border-white/10 flex flex-col items-center text-center p-4 animate-in zoom-in-95 duration-200">
+      <div
+        className="relative w-[260px] bg-[#F6F6F6]/90 dark:bg-[#2C2C2E]/90 backdrop-blur-xl rounded-[14px] shadow-2xl border border-white/20 dark:border-white/10 flex flex-col items-center text-center p-4 animate-in zoom-in-95 duration-200"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="permission-dialog-title"
+      >
         {/* App Icon */}
         <div className="mb-3">
           {typeof icon === "string" &&
@@ -46,7 +51,10 @@ export const PermissionDialog: React.FC<PermissionDialogProps> = ({
         </div>
 
         {/* Title */}
-        <h3 className="text-[13px] font-bold text-black dark:text-white mb-1 leading-tight">
+        <h3
+          id="permission-dialog-title"
+          className="text-[13px] font-bold text-black dark:text-white mb-1 leading-tight"
+        >
           {isBlocked
             ? `Permission Blocked for "${appName}"`
             : `"${appName}" would like to access your ${title}`}

@@ -15,7 +15,12 @@ const SpotlightIcon: React.FC<{
   icon: string | React.ComponentType<any>;
   name: string;
 }> = ({ icon, name }) => {
-  if (typeof icon === "function" || typeof icon === "object") {
+  const isComponent = typeof icon === "function" || typeof icon === "object";
+  // Always call the hook, pass undefined or empty string if it's a component to avoid invalid hook call
+  // Assuming useIcon handles null/undefined gracefully or we pass a dummy string
+  const iconUrl = useIcon(isComponent ? "" : (icon as string));
+
+  if (isComponent) {
     const Icon = icon as React.ComponentType<any>;
     return (
       <div className="w-8 h-8">
@@ -28,8 +33,6 @@ const SpotlightIcon: React.FC<{
       </div>
     );
   }
-
-  const iconUrl = useIcon(icon as string);
 
   if (iconUrl) {
     return (
@@ -271,17 +274,31 @@ export const Spotlight: React.FC = () => {
               focus:outline-none caret-[#007AFF]
             "
             autoFocus
+            role="combobox"
+            aria-expanded={results.length > 0}
+            aria-controls="spotlight-results"
+            aria-activedescendant={
+              results.length > 0 ? `result-${selectedIndex}` : undefined
+            }
           />
         </div>
 
         {/* Results List */}
         {results.length > 0 && (
-          <div className="py-2 bg-white/30 dark:bg-black/10 max-h-[400px] overflow-y-auto">
+          <div
+            id="spotlight-results"
+            role="listbox"
+            className="py-2 bg-white/30 dark:bg-black/10 max-h-[400px] overflow-y-auto"
+          >
             {results.map((item, idx) => (
               <div
-                key={item.path + idx} // Add idx to key because web search path changes with query
+                key={item.path + idx}
+                id={`result-${idx}`}
                 onClick={() => handleOpen(item)}
                 onMouseEnter={() => setSelectedIndex(idx)}
+                role="option"
+                aria-selected={idx === selectedIndex}
+                aria-label={`Open ${item.name}`}
                 className={`
                   mx-2 px-4 py-2 rounded-[6px] flex items-center gap-3 cursor-default transition-colors duration-75
                   ${

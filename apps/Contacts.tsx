@@ -193,6 +193,7 @@ export const Contacts: React.FC = () => {
               type="text"
               placeholder="Search"
               className="w-full bg-[#dcdce0] dark:bg-[#1e1e1e] border-none rounded-[6px] pl-8 pr-3 py-1 text-[13px] placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+              aria-label="Search contacts"
             />
           </div>
         </div>
@@ -217,6 +218,16 @@ export const Contacts: React.FC = () => {
                       ? "bg-[#007AFF] text-white"
                       : "hover:bg-black/5 dark:hover:bg-white/5 text-gray-900 dark:text-gray-100"
                   }`}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      setSelectedId(contact.id);
+                      setIsAdding(false);
+                      setIsEditing(false);
+                    }
+                  }}
+                  aria-label={`Contact: ${contact.firstName} ${contact.lastName}`}
                 >
                   <span
                     className={`font-semibold ${
@@ -251,6 +262,7 @@ export const Contacts: React.FC = () => {
               setImageFile(null);
               setImagePreview(null);
             }}
+            aria-label="Add new contact"
           >
             <Plus size={16} />
           </button>
@@ -451,6 +463,14 @@ export const Contacts: React.FC = () => {
                   key={item.label}
                   className="flex flex-col items-center gap-2 cursor-pointer group"
                   onClick={() => (window.location.href = item.action)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      window.location.href = item.action;
+                    }
+                  }}
+                  aria-label={`${item.label} ${selectedContact.firstName}`}
                 >
                   <div className="w-[42px] h-[42px] rounded-full bg-[#007AFF] text-white flex items-center justify-center shadow-md shadow-blue-500/20 group-hover:bg-[#0069d9] group-active:scale-95 transition-all">
                     <item.icon size={18} fill="currentColor" strokeWidth={0} />

@@ -98,6 +98,16 @@ export const News: React.FC = () => {
                   ? "bg-gray-200 dark:bg-white/10 font-medium"
                   : "hover:bg-gray-200 dark:hover:bg-white/5"
               }`}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  setActiveCategory(cat.id);
+                  setSearchQuery("");
+                  setIsSearchActive(false);
+                }
+              }}
+              aria-label={`Category: ${cat.label}`}
             >
               {cat.id === "general" ? (
                 <Layout size={16} className="text-red-500" />
@@ -133,6 +143,7 @@ export const News: React.FC = () => {
                 onBlur={() => {
                   if (!searchQuery) setIsSearchActive(false);
                 }}
+                aria-label="Search stories"
               />
             ) : (
               <span className="text-sm text-gray-500">Search</span>
@@ -162,6 +173,7 @@ export const News: React.FC = () => {
             onClick={() => fetchNews(activeCategory)}
             className="p-2 hover:bg-gray-100 dark:hover:bg-white/10 rounded-full transition-colors"
             title="Refresh"
+            aria-label="Refresh news"
           >
             <RefreshCw size={20} className={loading ? "animate-spin" : ""} />
           </button>
@@ -201,11 +213,19 @@ export const News: React.FC = () => {
               <div
                 className="group cursor-pointer"
                 onClick={() => window.open(featuredArticle.url, "_blank")}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    window.open(featuredArticle.url, "_blank");
+                  }
+                }}
+                aria-label={`Read top story: ${featuredArticle.title}`}
               >
                 <div className="aspect-[2/1] bg-gray-200 dark:bg-gray-800 rounded-xl mb-4 overflow-hidden relative">
                   {featuredArticle.urlToImage ? (
                     <Image
-                      src={featuredArticle.urlToImage}
+                      src={featuredArticle.urlToImage || ""}
                       alt={featuredArticle.title}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -238,11 +258,19 @@ export const News: React.FC = () => {
                   key={article.url + idx}
                   className="flex gap-4 group cursor-pointer border-b border-gray-100 dark:border-gray-800 pb-6 last:border-0"
                   onClick={() => window.open(article.url, "_blank")}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      window.open(article.url, "_blank");
+                    }
+                  }}
+                  aria-label={`Read article: ${article.title}`}
                 >
                   <div className="w-32 h-24 rounded-lg flex-shrink-0 bg-gray-200 dark:bg-gray-800 overflow-hidden relative">
                     {article.urlToImage ? (
                       <Image
-                        src={article.urlToImage}
+                        src={article.urlToImage || ""}
                         alt={article.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -281,6 +309,7 @@ export const News: React.FC = () => {
                           e.stopPropagation();
                           // Share logic placeholder
                         }}
+                        aria-label="Share article"
                       >
                         <Share size={14} />
                       </button>
@@ -290,6 +319,7 @@ export const News: React.FC = () => {
                           e.stopPropagation();
                           // Like logic placeholder
                         }}
+                        aria-label="Like article"
                       >
                         <Heart size={14} />
                       </button>

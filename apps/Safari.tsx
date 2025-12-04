@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { useSystemStore } from "../store/systemStore";
 import {
   ArrowLeft,
@@ -9,9 +10,6 @@ import {
   Plus,
   X,
   WifiOff,
-  Search,
-  Star,
-  Book,
   Lock,
 } from "lucide-react";
 
@@ -237,6 +235,7 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
             onClick={goBack}
             disabled={activeTab.currentIndex === 0}
             className="hover:text-gray-800 dark:hover:text-white disabled:opacity-30 transition-colors"
+            aria-label="Go back"
           >
             <ArrowLeft size={18} />
           </button>
@@ -244,6 +243,7 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
             onClick={goForward}
             disabled={activeTab.currentIndex === activeTab.history.length - 1}
             className="hover:text-gray-800 dark:hover:text-white disabled:opacity-30 transition-colors"
+            aria-label="Go forward"
           >
             <ArrowRight size={18} />
           </button>
@@ -270,6 +270,7 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
                 type="button"
                 onClick={reload}
                 className="text-gray-500 hover:text-gray-800 dark:hover:text-white ml-2"
+                aria-label="Reload page"
               >
                 <RotateCw size={14} />
               </button>
@@ -278,15 +279,19 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
         </form>
 
         <div className="flex gap-4 text-gray-500 dark:text-gray-400">
-          <Share
-            size={18}
-            className="cursor-pointer hover:text-gray-800 dark:hover:text-white"
-          />
-          <Plus
-            size={18}
+          <button
+            className="text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white"
+            aria-label="Share"
+          >
+            <Share size={18} />
+          </button>
+          <button
             onClick={addTab}
-            className="cursor-pointer hover:text-gray-800 dark:hover:text-white"
-          />
+            className="text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white"
+            aria-label="New tab"
+          >
+            <Plus size={18} />
+          </button>
           <div className="flex flex-col gap-0.5 cursor-pointer">
             <div className="w-4 h-4 border-2 border-current rounded-sm" />
           </div>
@@ -294,7 +299,10 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
       </div>
 
       {/* Tabs Bar */}
-      <div className="h-8 bg-[#f5f5f7] dark:bg-[#323232] flex items-end px-2 gap-1 overflow-x-auto border-b border-gray-200 dark:border-black/20">
+      <div
+        className="h-8 bg-[#f5f5f7] dark:bg-[#323232] flex items-end px-2 gap-1 overflow-x-auto border-b border-gray-200 dark:border-black/20"
+        role="tablist"
+      >
         {tabs.map((tab) => (
           <div
             key={tab.id}
@@ -307,14 +315,28 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
                   ? "bg-white dark:bg-[#2b2b2b] text-gray-800 dark:text-gray-100 shadow-sm"
                   : "bg-transparent hover:bg-gray-200 dark:hover:bg-white/5 text-gray-500 dark:text-gray-400"
               }
+              }
+              }
             `}
+            role="tab"
+            tabIndex={activeTabId === tab.id ? 0 : -1}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                setActiveTabId(tab.id);
+              }
+            }}
+            aria-label={`Tab: ${tab.title || "Start Page"}`}
+            aria-selected={activeTabId === tab.id}
           >
             {/* Favicon */}
             {tab.icon ? (
-              <img
+              <Image
                 src={tab.icon}
                 alt=""
+                width={12}
+                height={12}
                 className="w-3 h-3 rounded-full object-cover"
+                unoptimized
               />
             ) : (
               <div className="w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 flex-shrink-0" />
@@ -364,6 +386,7 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
                     key={fav.name}
                     onClick={() => navigateTo(fav.url)}
                     className="flex flex-col items-center gap-3 group"
+                    aria-label={`Go to ${fav.name}`}
                   >
                     <div className="w-16 h-16 bg-white dark:bg-[#3a3a3a] rounded-xl shadow-sm group-hover:shadow-md transition-all flex items-center justify-center text-2xl">
                       {fav.name[0]}

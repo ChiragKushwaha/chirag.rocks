@@ -100,12 +100,20 @@ export const Reminders: React.FC = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-gray-200 dark:bg-black/20 border-none rounded-md pl-8 pr-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+            aria-label="Search reminders"
           />
         </div>
 
         {/* Smart Lists Grid */}
         <div className="grid grid-cols-2 gap-2 mb-6">
-          <div className="bg-white dark:bg-[#3a3a3a] p-2 rounded-lg shadow-sm flex flex-col justify-between h-20 cursor-pointer hover:bg-gray-50 dark:hover:bg-[#444]">
+          <div
+            className="bg-white dark:bg-[#3a3a3a] p-2 rounded-lg shadow-sm flex flex-col justify-between h-20 cursor-pointer hover:bg-gray-50 dark:hover:bg-[#444]"
+            role="button"
+            tabIndex={0}
+            aria-label={`Today's reminders: ${
+              reminders.filter((r) => r.date?.includes("Today")).length
+            }`}
+          >
             <div className="flex justify-between items-start">
               <div className="w-7 h-7 rounded-full bg-blue-500 flex items-center justify-center text-white">
                 <Calendar size={16} />
@@ -122,6 +130,16 @@ export const Reminders: React.FC = () => {
             onClick={() => setActiveList("Scheduled")}
             className={`bg-white dark:bg-[#3a3a3a] p-2 rounded-lg shadow-sm flex flex-col justify-between h-20 cursor-pointer hover:bg-gray-50 dark:hover:bg-[#444] ${
               activeList === "Scheduled" ? "ring-2 ring-gray-400" : ""
+            }`}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                setActiveList("Scheduled");
+              }
+            }}
+            aria-label={`Scheduled reminders: ${
+              reminders.filter((r) => r.dueTime || r.date).length
             }`}
           >
             <div className="flex justify-between items-start">
@@ -141,6 +159,14 @@ export const Reminders: React.FC = () => {
             className={`bg-white dark:bg-[#3a3a3a] p-2 rounded-lg shadow-sm flex flex-col justify-between h-20 cursor-pointer hover:bg-gray-50 dark:hover:bg-[#444] ${
               activeList === "All" ? "ring-2 ring-gray-400" : ""
             }`}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                setActiveList("All");
+              }
+            }}
+            aria-label={`All reminders: ${reminders.length}`}
           >
             <div className="flex justify-between items-start">
               <div className="w-7 h-7 rounded-full bg-gray-500 dark:bg-gray-600 flex items-center justify-center text-white">
@@ -156,6 +182,16 @@ export const Reminders: React.FC = () => {
             onClick={() => setActiveList("Flagged")}
             className={`bg-white dark:bg-[#3a3a3a] p-2 rounded-lg shadow-sm flex flex-col justify-between h-20 cursor-pointer hover:bg-gray-50 dark:hover:bg-[#444] ${
               activeList === "Flagged" ? "ring-2 ring-gray-400" : ""
+            }`}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                setActiveList("Flagged");
+              }
+            }}
+            aria-label={`Flagged reminders: ${
+              reminders.filter((r) => r.flagged).length
             }`}
           >
             <div className="flex justify-between items-start">
@@ -183,6 +219,14 @@ export const Reminders: React.FC = () => {
                 ? "bg-gray-200 dark:bg-white/10"
                 : "hover:bg-gray-100 dark:hover:bg-white/5"
             }`}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                setActiveList("Reminders");
+              }
+            }}
+            aria-label="Reminders list"
           >
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-white">
@@ -201,6 +245,14 @@ export const Reminders: React.FC = () => {
                 ? "bg-gray-200 dark:bg-white/10"
                 : "hover:bg-gray-100 dark:hover:bg-white/5"
             }`}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                setActiveList("Work");
+              }
+            }}
+            aria-label="Work list"
           >
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center text-white">
@@ -235,6 +287,11 @@ export const Reminders: React.FC = () => {
                       ? "bg-blue-500 border-blue-500"
                       : "border-gray-300 dark:border-gray-600 hover:border-blue-500"
                   }`}
+                  aria-label={
+                    reminder.completed
+                      ? "Mark as incomplete"
+                      : "Mark as complete"
+                  }
                 >
                   {reminder.completed && (
                     <div className="w-2.5 h-2.5 bg-white rounded-full" />
@@ -269,6 +326,9 @@ export const Reminders: React.FC = () => {
                       ? "opacity-100 text-orange-500"
                       : "text-gray-300 hover:text-orange-500"
                   }`}
+                  aria-label={
+                    reminder.flagged ? "Unflag reminder" : "Flag reminder"
+                  }
                 >
                   <Flag
                     size={16}
@@ -279,6 +339,7 @@ export const Reminders: React.FC = () => {
                 <button
                   onClick={() => deleteReminder(reminder.id)}
                   className="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500"
+                  aria-label="Delete reminder"
                 >
                   <X size={16} />
                 </button>
@@ -299,6 +360,7 @@ export const Reminders: React.FC = () => {
                     if (e.key === "Enter") handleAddReminder();
                     if (e.key === "Escape") setIsAdding(false);
                   }}
+                  aria-label="Reminder title"
                 />
                 <div className="flex gap-2">
                   <div className="flex items-center gap-1 bg-white dark:bg-black/20 px-2 py-1 rounded border border-gray-200 dark:border-gray-600">
@@ -308,6 +370,7 @@ export const Reminders: React.FC = () => {
                       className="bg-transparent border-none text-xs focus:outline-none"
                       value={newDate}
                       onChange={(e) => setNewDate(e.target.value)}
+                      aria-label="Reminder date"
                     />
                   </div>
                   <div className="flex items-center gap-1 bg-white dark:bg-black/20 px-2 py-1 rounded border border-gray-200 dark:border-gray-600">
@@ -317,6 +380,7 @@ export const Reminders: React.FC = () => {
                       className="bg-transparent border-none text-xs focus:outline-none"
                       value={newTime}
                       onChange={(e) => setNewTime(e.target.value)}
+                      aria-label="Reminder time"
                     />
                   </div>
                 </div>
@@ -339,6 +403,14 @@ export const Reminders: React.FC = () => {
               <div
                 onClick={() => setIsAdding(true)}
                 className="flex items-center gap-2 mt-2 text-gray-400 hover:text-gray-600 cursor-pointer"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    setIsAdding(true);
+                  }
+                }}
+                aria-label="Create new reminder"
               >
                 <Plus size={20} />
                 <span>New Reminder</span>

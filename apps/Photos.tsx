@@ -177,6 +177,14 @@ export const Photos = () => {
               key={photo.id}
               className="aspect-square relative group cursor-pointer overflow-hidden rounded-md bg-gray-100 dark:bg-gray-800"
               onClick={() => setSelectedPhoto(photo)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  setSelectedPhoto(photo);
+                }
+              }}
+              aria-label={photo.description || "Photo"}
             >
               <Image
                 src={photo.thumbnail}
@@ -208,6 +216,14 @@ export const Photos = () => {
               key={photo.id}
               className="aspect-square relative group cursor-pointer overflow-hidden rounded-md"
               onClick={() => setSelectedPhoto(photo)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  setSelectedPhoto(photo);
+                }
+              }}
+              aria-label="Favorite photo"
             >
               <Image
                 src={photo.thumbnail}
@@ -379,6 +395,7 @@ export const Photos = () => {
                   ? "bg-white dark:bg-[#636366] shadow-sm"
                   : "text-gray-500 hover:text-black dark:hover:text-white"
               }`}
+              aria-label="Group by Years"
             >
               Years
             </button>
@@ -392,6 +409,7 @@ export const Photos = () => {
                   ? "bg-white dark:bg-[#636366] shadow-sm"
                   : "text-gray-500 hover:text-black dark:hover:text-white"
               }`}
+              aria-label="Show All Photos"
             >
               All Photos
             </button>
@@ -424,6 +442,7 @@ export const Photos = () => {
             <button
               onClick={() => setSelectedPhoto(null)}
               className="p-2 hover:bg-white/10 rounded-full transition-colors"
+              aria-label="Close photo"
             >
               <ChevronLeft size={24} />
             </button>
@@ -435,6 +454,11 @@ export const Photos = () => {
                     ? "text-red-500"
                     : "hover:bg-white/10"
                 }`}
+                aria-label={
+                  likedPhotos.has(selectedPhoto.id)
+                    ? "Unlike photo"
+                    : "Like photo"
+                }
               >
                 <Heart
                   size={20}
@@ -447,6 +471,7 @@ export const Photos = () => {
                 onClick={handleShare}
                 className="p-2 hover:bg-white/10 rounded-full transition-colors"
                 title="Copy Link"
+                aria-label="Share photo"
               >
                 <Share size={20} />
               </button>
@@ -481,6 +506,14 @@ export const Photos = () => {
                     : "border-transparent opacity-50 hover:opacity-80"
                 }`}
                 onClick={() => setSelectedPhoto(photo)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    setSelectedPhoto(photo);
+                  }
+                }}
+                aria-label="View photo thumbnail"
               >
                 <Image
                   src={photo.thumbnail}
@@ -538,6 +571,8 @@ const SidebarItem = ({
         ? "bg-[#007AFF] text-white"
         : "text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/10"
     }`}
+    aria-label={label}
+    aria-current={active ? "page" : undefined}
   >
     <Icon size={16} className={active ? "text-white" : "text-[#007AFF]"} />
     <span className="font-medium flex-1 text-left truncate">{label}</span>

@@ -38,12 +38,6 @@ export const LockScreen: React.FC = () => {
     setShowPasswordField(false); // Hide the password field
   };
 
-  const handleLogin = () => {
-    setPassword("");
-    setError("");
-    setShowPasswordField(true); // Hide the password field
-  };
-
   const handleUserClick = () => {
     setShowPasswordField(true); // Show the password field when user clicks on icon/name
   };
@@ -88,6 +82,14 @@ export const LockScreen: React.FC = () => {
         <div
           onClick={handleUserClick}
           className="w-28 h-28 rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-md border-4 border-white/50 dark:border-white/30 flex items-center justify-center mb-6 shadow-2xl cursor-pointer hover:bg-white/30 dark:hover:bg-black/30 transition-colors"
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              handleUserClick();
+            }
+          }}
+          aria-label="User avatar, click to login"
         >
           {/* Fingerprint icon */}
           <svg
@@ -105,6 +107,14 @@ export const LockScreen: React.FC = () => {
         <div
           onClick={handleUserClick}
           className="text-white text-2xl font-medium mb-8 drop-shadow-lg cursor-pointer hover:opacity-80 transition-opacity"
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              handleUserClick();
+            }
+          }}
+          aria-label={`User ${user.name || "Guest"}, click to login`}
         >
           {user.name || "Guest"}
         </div>
@@ -136,6 +146,7 @@ export const LockScreen: React.FC = () => {
                 <button
                   onClick={handleUnlock}
                   className="absolute right-3 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center transition-colors shadow-lg"
+                  aria-label="Submit password"
                 >
                   <svg
                     className="w-4 h-4 text-white"

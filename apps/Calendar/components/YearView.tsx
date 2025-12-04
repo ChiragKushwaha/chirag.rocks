@@ -31,11 +31,22 @@ export const YearView: React.FC<YearViewProps> = ({
         return (
           <div
             key={month}
-            className="bg-gray-50 dark:bg-white/5 rounded-lg p-2 border border-gray-200 dark:border-white/10 hover:bg-white dark:hover:bg-white/10 transition-colors cursor-pointer"
+            className="bg-gray-50 dark:bg-white/5 rounded-lg p-2 border border-gray-200 dark:border-white/10 hover:bg-white dark:hover:bg-white/10 transition-colors"
             onClick={() => {
               setCurrentDate(new Date(currentDate.getFullYear(), month, 1));
               setView("month");
             }}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                setCurrentDate(new Date(currentDate.getFullYear(), month, 1));
+                setView("month");
+              }
+            }}
+            aria-label={`View month: ${date.toLocaleString("default", {
+              month: "long",
+            })}`}
           >
             <div className="text-red-500 font-semibold mb-2 text-sm">
               {date.toLocaleString("default", { month: "long" })}

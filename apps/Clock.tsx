@@ -54,7 +54,10 @@ export const Clock: React.FC = () => {
           ))}
         </div>
 
-        <button className="w-8 h-8 rounded-full bg-[#3A3A3C] flex items-center justify-center hover:bg-[#48484A] transition-colors">
+        <button
+          className="w-8 h-8 rounded-full bg-[#3A3A3C] flex items-center justify-center hover:bg-[#48484A] transition-colors"
+          aria-label="Add clock"
+        >
           <Plus size={16} />
         </button>
       </div>

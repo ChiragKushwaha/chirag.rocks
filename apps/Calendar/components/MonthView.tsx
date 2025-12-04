@@ -55,6 +55,17 @@ export const MonthView: React.FC<MonthViewProps> = ({
         className={`min-h-[100px] border-b border-r border-gray-200 dark:border-white/10 p-1 relative group transition-colors hover:bg-gray-50 dark:hover:bg-white/5 ${
           isSelected ? "bg-blue-50/50 dark:bg-blue-500/10" : ""
         }`}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            setSelectedDate(date);
+            // Optional: Trigger modal on Enter if already selected?
+            // For now just select.
+          }
+        }}
+        aria-label={date.toDateString()}
+        aria-pressed={isSelected}
       >
         <div className="flex justify-center">
           <span

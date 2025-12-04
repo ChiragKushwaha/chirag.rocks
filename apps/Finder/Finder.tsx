@@ -94,7 +94,15 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
     const ext = file.name.split(".").pop()?.toLowerCase();
 
     // App Registry
-    const apps: Record<string, any> = {
+    const apps: Record<
+      string,
+      {
+        id: string;
+        name: string;
+        icon: string;
+        component: React.ComponentType<any>;
+      }
+    > = {
       note: {
         id: "notes",
         name: "Notes",
@@ -202,14 +210,14 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
   return (
     <div className="flex h-full w-full text-gray-800 font-sans bg-white dark:bg-[#1E1E1E] rounded-xl overflow-hidden shadow-2xl border border-black/10 dark:border-white/10">
       {/* SIDEBAR - Full Height */}
-      <div className="w-[220px] bg-[#F5F5F5]/80 dark:bg-[#282828]/80 backdrop-blur-2xl border-r border-[#D1D1D6] dark:border-black/50 flex-shrink-0 flex flex-col pt-10">
+      <div className="w-[220px] bg-[#F5F5F5]/80 dark:bg-[#282828]/80 backdrop-blur-2xl border-r border-[#D1D1D6] dark:border-black/50 shrink-0 flex flex-col pt-10">
         <Sidebar currentPath={currentPath} onNavigate={handleNavigate} />
       </div>
 
       {/* MAIN CONTENT AREA */}
       <div className="flex flex-col flex-1 min-w-0 bg-white dark:bg-[#1E1E1E]">
         {/* TOOLBAR */}
-        <div className="h-[52px] flex items-center px-4 justify-between flex-shrink-0 window-drag-handle border-b border-[#D1D1D6]/50 dark:border-black/20">
+        <div className="h-[52px] flex items-center px-4 justify-between shrink-0 window-drag-handle border-b border-[#D1D1D6]/50 dark:border-black/20">
           <div className="flex items-center gap-4">
             {/* Navigation Arrows */}
             <div className="flex items-center gap-1">
@@ -217,6 +225,7 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
                 onClick={handleBack}
                 disabled={historyIndex === 0}
                 className="p-1.5 rounded-md hover:bg-black/5 dark:hover:bg-white/10 disabled:opacity-30 transition-colors text-gray-600 dark:text-gray-300"
+                aria-label="Go back"
               >
                 <ChevronLeft size={18} strokeWidth={2} />
               </button>
@@ -224,6 +233,7 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
                 onClick={handleForward}
                 disabled={historyIndex === history.length - 1}
                 className="p-1.5 rounded-md hover:bg-black/5 dark:hover:bg-white/10 disabled:opacity-30 transition-colors text-gray-600 dark:text-gray-300"
+                aria-label="Go forward"
               >
                 <ChevronRight size={18} strokeWidth={2} />
               </button>
@@ -238,10 +248,16 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
           {/* Right Actions */}
           <div className="flex items-center gap-3">
             <div className="flex bg-black/5 dark:bg-white/10 p-0.5 rounded-[6px]">
-              <button className="p-1 rounded-[4px] hover:bg-white dark:hover:bg-gray-600 shadow-sm transition-all text-gray-700 dark:text-gray-200">
+              <button
+                className="p-1 rounded-[4px] hover:bg-white dark:hover:bg-gray-600 shadow-sm transition-all text-gray-700 dark:text-gray-200"
+                aria-label="Grid view"
+              >
                 <LayoutGrid size={15} />
               </button>
-              <button className="p-1 rounded-[4px] hover:bg-white dark:hover:bg-gray-600 transition-all text-gray-500 dark:text-gray-400">
+              <button
+                className="p-1 rounded-[4px] hover:bg-white dark:hover:bg-gray-600 transition-all text-gray-500 dark:text-gray-400"
+                aria-label="List view"
+              >
                 <ListIcon size={15} />
               </button>
             </div>
@@ -281,15 +297,29 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
                         setSelectedItem(file.name);
                       }}
                       onDoubleClick={() => handleDoubleClick(file)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          if (e.metaKey || e.ctrlKey) {
+                            handleDoubleClick(file);
+                          } else {
+                            setSelectedItem(file.name);
+                          }
+                        }
+                      }}
+                      aria-label={`${file.name}${
+                        selectedItem === file.name ? ", selected" : ""
+                      }`}
                     >
                       <div className="scale-75 origin-top">
                         <FileIcon
                           name={file.name}
                           kind={file.kind}
-                          onClick={(e) => {
+                          onClick={() => {
                             setSelectedItem(file.name);
                           }}
-                          onDoubleClick={(e) => {
+                          onDoubleClick={() => {
                             handleDoubleClick(file);
                           }}
                         />

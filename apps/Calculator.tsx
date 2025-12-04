@@ -67,29 +67,54 @@ export const Calculator: React.FC = () => {
         {display}
       </div>
       <div className="grid grid-cols-4 gap-1">
-        <Button label="AC" onClick={clear} />
-        <Button label="+/-" onClick={toggleSign} />
-        <Button label="%" onClick={inputPercent} />
-        <Button label="÷" onClick={() => performOperation("/")} orange />
+        <Button label="AC" onClick={clear} ariaLabel="All Clear" />
+        <Button label="+/-" onClick={toggleSign} ariaLabel="Toggle sign" />
+        <Button label="%" onClick={inputPercent} ariaLabel="Percentage" />
+        <Button
+          label="÷"
+          onClick={() => performOperation("/")}
+          orange
+          ariaLabel="Divide"
+        />
 
         <Button label="7" onClick={() => inputDigit("7")} />
         <Button label="8" onClick={() => inputDigit("8")} />
         <Button label="9" onClick={() => inputDigit("9")} />
-        <Button label="×" onClick={() => performOperation("*")} orange />
+        <Button
+          label="×"
+          onClick={() => performOperation("*")}
+          orange
+          ariaLabel="Multiply"
+        />
 
         <Button label="4" onClick={() => inputDigit("4")} />
         <Button label="5" onClick={() => inputDigit("5")} />
         <Button label="6" onClick={() => inputDigit("6")} />
-        <Button label="-" onClick={() => performOperation("-")} orange />
+        <Button
+          label="-"
+          onClick={() => performOperation("-")}
+          orange
+          ariaLabel="Subtract"
+        />
 
         <Button label="1" onClick={() => inputDigit("1")} />
         <Button label="2" onClick={() => inputDigit("2")} />
         <Button label="3" onClick={() => inputDigit("3")} />
-        <Button label="+" onClick={() => performOperation("+")} orange />
+        <Button
+          label="+"
+          onClick={() => performOperation("+")}
+          orange
+          ariaLabel="Add"
+        />
 
         <Button label="0" onClick={() => inputDigit("0")} wide />
         <Button label="." onClick={() => inputDigit(".")} />
-        <Button label="=" onClick={() => performOperation("=")} orange />
+        <Button
+          label="="
+          onClick={() => performOperation("=")}
+          orange
+          ariaLabel="Calculate result"
+        />
       </div>
     </div>
   );
@@ -100,6 +125,7 @@ interface ButtonProps {
   onClick: () => void;
   orange?: boolean;
   wide?: boolean;
+  ariaLabel?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -107,6 +133,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   orange = false,
   wide = false,
+  ariaLabel,
 }) => {
   return (
     <button
@@ -118,6 +145,7 @@ const Button: React.FC<ButtonProps> = ({
           ? "bg-orange-500 text-white hover:bg-orange-400"
           : "bg-gray-700 text-white hover:bg-gray-600"
       }`}
+      aria-label={ariaLabel || label}
     >
       {label}
     </button>

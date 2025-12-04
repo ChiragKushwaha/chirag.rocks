@@ -8,7 +8,6 @@ export const Messages: React.FC = () => {
   const { user } = useSystemStore();
   const [selectedUser, setSelectedUser] = useState<string | null>(null);
   const [inputText, setInputText] = useState("");
-  const [loginName, setLoginName] = useState("");
 
   // Auto-login
   useEffect(() => {
@@ -48,6 +47,14 @@ export const Messages: React.FC = () => {
               className={`p-3 cursor-pointer hover:bg-gray-200 flex items-center gap-2 ${
                 selectedUser === user.id ? "bg-blue-100" : ""
               }`}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  setSelectedUser(user.id);
+                }
+              }}
+              aria-label={`Chat with ${user.name}`}
             >
               <div className="w-8 h-8 rounded-full bg-gray-400 flex items-center justify-center text-white font-bold">
                 {user.name[0].toUpperCase()}
@@ -89,6 +96,7 @@ export const Messages: React.FC = () => {
                 type="text"
                 className="flex-1 border rounded-full px-4 py-2 outline-none focus:border-blue-500"
                 placeholder="iMessage"
+                aria-label="Message input"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 onKeyDown={(e) => {
