@@ -6,23 +6,43 @@ import { useSystemStore } from "../store/systemStore";
 
 import dynamic from "next/dynamic";
 import NextImage from "next/image";
-import { Calculator } from "../apps/Calculator";
-import { FaceTime } from "../apps/FaceTime";
-import { Finder } from "../apps/Finder/Finder";
-import { MediaPlayer } from "../apps/MediaPlayer";
-import { Messages } from "../apps/Messages";
-import { Notes } from "../apps/Notes";
-import { Spotlight } from "../apps/Spotlight";
-import { Terminal } from "../apps/Terminal";
-import { TextEdit } from "../apps/TextEdit";
-import { Trash } from "../apps/Trash";
-import { SystemSettings } from "../apps/SystemSettings";
 import { MacFileEntry } from "../lib/types";
 import { Dock } from "./Dock";
 import { FileIcon } from "./FileIcon";
 import { MenuBar } from "./MenuBar";
 import { ContextMenu } from "./Menus";
 import { WindowManager } from "./WindowManager";
+
+// Dynamic Imports for Apps (Code Splitting)
+const Calculator = dynamic(() =>
+  import("../apps/Calculator").then((mod) => mod.Calculator)
+);
+const FaceTime = dynamic(() =>
+  import("../apps/FaceTime").then((mod) => mod.FaceTime)
+);
+const Finder = dynamic(() =>
+  import("../apps/Finder/Finder").then((mod) => mod.Finder)
+);
+const MediaPlayer = dynamic(() =>
+  import("../apps/MediaPlayer").then((mod) => mod.MediaPlayer)
+);
+const Messages = dynamic(() =>
+  import("../apps/Messages").then((mod) => mod.Messages)
+);
+const Notes = dynamic(() => import("../apps/Notes").then((mod) => mod.Notes));
+const Spotlight = dynamic(() =>
+  import("../apps/Spotlight").then((mod) => mod.Spotlight)
+);
+const Terminal = dynamic(() =>
+  import("../apps/Terminal").then((mod) => mod.Terminal)
+);
+const TextEdit = dynamic(() =>
+  import("../apps/TextEdit").then((mod) => mod.TextEdit)
+);
+const Trash = dynamic(() => import("../apps/Trash").then((mod) => mod.Trash));
+const SystemSettings = dynamic(() =>
+  import("../apps/SystemSettings").then((mod) => mod.SystemSettings)
+);
 
 const PDFViewer = dynamic(
   () => import("../apps/PDFViewer").then((mod) => mod.PDFViewer),
@@ -282,8 +302,15 @@ export const Desktop: React.FC = () => {
 
     // ...
 
+    interface AppDefinition {
+      id: string;
+      name: string;
+      icon: string;
+      component: React.ComponentType<any>;
+    }
+
     // App Registry
-    const apps: Record<string, any> = {
+    const apps: Record<string, AppDefinition> = {
       note: {
         id: "notes",
         name: "Notes",
