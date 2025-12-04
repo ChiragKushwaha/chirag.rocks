@@ -10,6 +10,7 @@ interface FileIconProps {
   name: string;
   kind: "file" | "directory";
   isRenaming?: boolean;
+  selected?: boolean; // New prop
   onRename?: (newName: string) => void;
   onRenameCancel?: () => void;
   onContextMenu?: (e: React.MouseEvent) => void;
@@ -21,6 +22,7 @@ export const FileIcon: React.FC<FileIconProps> = ({
   name,
   kind,
   isRenaming,
+  selected,
   onRename,
   onRenameCancel,
   onContextMenu,
@@ -28,7 +30,9 @@ export const FileIcon: React.FC<FileIconProps> = ({
   onClick,
 }) => {
   const { selectedFiles = [], user } = useSystemStore();
-  const isSelected = selectedFiles.includes(name);
+  // Use prop if provided, otherwise fallback to store (Desktop behavior)
+  const isSelected =
+    selected !== undefined ? selected : selectedFiles.includes(name);
   const [noteContent, setNoteContent] = React.useState<string>("");
   const [pdfUrl, setPdfUrl] = React.useState<string | null>(null);
 

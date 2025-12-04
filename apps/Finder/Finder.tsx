@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { fs } from "../../lib/FileSystem";
 import { Sidebar } from "./Sidebar";
 import {
@@ -12,8 +12,10 @@ import { MacFileEntry } from "../../lib/types";
 import { MacOSInput } from "../../components/ui/MacOSDesignSystem"; // Import new UI
 
 import { useSystemStore } from "../../store/systemStore";
+import { useMenuStore } from "../../store/menuStore";
 import { useProcessStore } from "../../store/processStore";
 import { FileIcon } from "../../components/FileIcon";
+import { TrashUtils } from "../../lib/TrashUtils";
 
 // App Imports
 import { TextEdit } from "../TextEdit";
@@ -50,7 +52,8 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
   // Data State
   const [files, setFiles] = useState<MacFileEntry[]>([]);
   const [loading, setLoading] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const [lastSelectedId, setLastSelectedId] = useState<string | null>(null);
 
   // 1. Fetch Files from OPFS
   useEffect(() => {
@@ -71,7 +74,8 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
     setHistory(newHistory);
     setHistoryIndex(newHistory.length - 1);
     setCurrentPath(path);
-    setSelectedItem(null);
+    setSelectedItems([]);
+    setLastSelectedId(null);
   };
 
   const handleBack = () => {
@@ -79,6 +83,8 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
       const newIndex = historyIndex - 1;
       setHistoryIndex(newIndex);
       setCurrentPath(history[newIndex]);
+      setSelectedItems([]);
+      setLastSelectedId(null);
     }
   };
 
@@ -87,6 +93,8 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
       const newIndex = historyIndex + 1;
       setHistoryIndex(newIndex);
       setCurrentPath(history[newIndex]);
+      setSelectedItems([]);
+      setLastSelectedId(null);
     }
   };
 
@@ -207,6 +215,233 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
     }
   };
 
+  // 3. Context Menu & Actions
+  const { openContextMenu } = useMenuStore();
+  const trashPath = `/Users/${user.name || "Guest"}/.Trash`;
+
+  const createFolder = async () => {
+    const baseName = "untitled folder";
+    let name = baseName;
+    let counter = 2;
+
+    // Find unique name
+    while (await fs.exists(`${currentPath}/${name}`)) {
+      name = `${baseName} ${counter}`;
+      counter++;
+    }
+
+    try {
+      await fs.mkdir(`${currentPath}/${name}`);
+      // Refresh files
+      const entries = await fs.ls(currentPath);
+      setFiles(entries);
+    } catch (err) {
+      console.error("Failed to create folder:", err);
+      alert("Failed to create folder");
+    }
+  };
+
+  // ... (existing imports)
+
+  const handleMoveToBin = async (items: string[]) => {
+    try {
+      for (const item of items) {
+        // Save metadata before moving
+        await TrashUtils.addToMetadata(trashPath, item, currentPath);
+        await fs.move(currentPath, item, trashPath, item);
+      }
+      // Refresh files
+      const entries = await fs.ls(currentPath);
+      setFiles(entries);
+      setSelectedItems([]);
+      setLastSelectedId(null);
+    } catch (err) {
+      console.error("Failed to move to bin:", err);
+      alert("Failed to move items to Bin");
+    }
+  };
+
+  const handleContextMenu = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    openContextMenu(e.clientX, e.clientY, [
+      {
+        label: "New Folder",
+        action: createFolder,
+      },
+      { separator: true },
+      { label: "Get Info", disabled: true },
+      { label: "Change Background...", disabled: true },
+    ]);
+  };
+
+  const handleFileClick = (e: React.MouseEvent, file: MacFileEntry) => {
+    e.stopPropagation();
+
+    if (e.metaKey || e.ctrlKey) {
+      // Toggle selection
+      if (selectedItems.includes(file.name)) {
+        setSelectedItems(selectedItems.filter((id) => id !== file.name));
+      } else {
+        setSelectedItems([...selectedItems, file.name]);
+        setLastSelectedId(file.name);
+      }
+    } else if (e.shiftKey && lastSelectedId) {
+      // Range selection
+      const lastIndex = files.findIndex((f) => f.name === lastSelectedId);
+      const currentIndex = files.findIndex((f) => f.name === file.name);
+
+      if (lastIndex !== -1 && currentIndex !== -1) {
+        const start = Math.min(lastIndex, currentIndex);
+        const end = Math.max(lastIndex, currentIndex);
+        const range = files.slice(start, end + 1).map((f) => f.name);
+
+        // Merge with existing selection or replace? macOS replaces usually but keeps modifier logic.
+        // Simple shift behavior: replace selection with range.
+        setSelectedItems(range);
+      }
+    } else {
+      // Single selection
+      setSelectedItems([file.name]);
+      setLastSelectedId(file.name);
+    }
+  };
+
+  const handleFileContextMenu = (e: React.MouseEvent, file: MacFileEntry) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    let currentSelection = selectedItems;
+    if (!selectedItems.includes(file.name)) {
+      setSelectedItems([file.name]);
+      setLastSelectedId(file.name);
+      currentSelection = [file.name];
+    }
+
+    if (currentSelection.length > 1) {
+      openContextMenu(e.clientX, e.clientY, [
+        {
+          label: `Open ${currentSelection.length} items`,
+          action: () => {
+            currentSelection.forEach((name) => {
+              const f = files.find((file) => file.name === name);
+              if (f) openFile(f);
+            });
+          },
+        },
+        { separator: true },
+        {
+          label: `Move ${currentSelection.length} items to Bin`,
+          danger: true,
+          action: () => handleMoveToBin(currentSelection),
+        },
+      ]);
+    } else {
+      openContextMenu(e.clientX, e.clientY, [
+        {
+          label: "Open",
+          action: () => openFile(file),
+        },
+        {
+          label: "Move to Bin",
+          danger: true,
+          action: () => handleMoveToBin([file.name]),
+        },
+        { separator: true },
+        { label: "Get Info", disabled: true },
+        { label: "Rename", disabled: true },
+      ]);
+    }
+  };
+
+  // Selection Box State
+  const [selectionBox, setSelectionBox] = useState<{
+    startX: number;
+    startY: number;
+    currentX: number;
+    currentY: number;
+    isVisible: boolean;
+  } | null>(null);
+
+  const fileRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleSelectionStart = (e: React.MouseEvent) => {
+    if (e.button !== 0) return; // Only left click
+    if (!containerRef.current) return;
+
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const relativeX =
+      e.clientX - containerRect.left + containerRef.current.scrollLeft;
+    const relativeY =
+      e.clientY - containerRect.top + containerRef.current.scrollTop;
+
+    setSelectionBox({
+      startX: relativeX,
+      startY: relativeY,
+      currentX: relativeX,
+      currentY: relativeY,
+      isVisible: true,
+    });
+
+    // Clear selection if not holding Shift/Meta
+    if (!e.shiftKey && !e.metaKey) {
+      setSelectedItems([]);
+      setLastSelectedId(null);
+    }
+  };
+
+  const handleSelectionMove = (e: React.MouseEvent) => {
+    if (!selectionBox?.isVisible || !containerRef.current) return;
+
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const relativeX =
+      e.clientX - containerRect.left + containerRef.current.scrollLeft;
+    const relativeY =
+      e.clientY - containerRect.top + containerRef.current.scrollTop;
+
+    const newBox = {
+      ...selectionBox,
+      currentX: relativeX,
+      currentY: relativeY,
+    };
+    setSelectionBox(newBox);
+
+    // Calculate intersection (in Viewport coordinates)
+    const boxLeft = Math.min(newBox.startX, newBox.currentX);
+    const boxTop = Math.min(newBox.startY, newBox.currentY);
+    const boxWidth = Math.abs(newBox.currentX - newBox.startX);
+    const boxHeight = Math.abs(newBox.currentY - newBox.startY);
+
+    const viewportLeft =
+      boxLeft + containerRect.left - containerRef.current.scrollLeft;
+    const viewportTop =
+      boxTop + containerRect.top - containerRef.current.scrollTop;
+
+    const newSelected: string[] = [];
+
+    fileRefs.current.forEach((el, name) => {
+      const rect = el.getBoundingClientRect();
+      // Check intersection
+      if (
+        rect.left < viewportLeft + boxWidth &&
+        rect.right > viewportLeft &&
+        rect.top < viewportTop + boxHeight &&
+        rect.bottom > viewportTop
+      ) {
+        newSelected.push(name);
+      }
+    });
+
+    setSelectedItems(newSelected);
+  };
+
+  const handleSelectionEnd = () => {
+    if (selectionBox?.isVisible) {
+      setSelectionBox(null);
+    }
+  };
+
   return (
     <div className="flex h-full w-full text-gray-800 font-sans bg-white dark:bg-[#1E1E1E] rounded-xl overflow-hidden shadow-2xl border border-black/10 dark:border-white/10">
       {/* SIDEBAR - Full Height */}
@@ -270,9 +505,27 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
 
         {/* FILE GRID */}
         <div
-          className="flex-1 overflow-y-auto p-4"
-          onClick={() => setSelectedItem(null)}
+          ref={containerRef}
+          className="flex-1 overflow-y-auto p-4 relative"
+          onMouseDown={handleSelectionStart}
+          onMouseMove={handleSelectionMove}
+          onMouseUp={handleSelectionEnd}
+          onMouseLeave={handleSelectionEnd}
+          onContextMenu={handleContextMenu}
         >
+          {/* Selection Box */}
+          {selectionBox?.isVisible && (
+            <div
+              className="absolute border border-blue-500 bg-blue-500/20 z-50 pointer-events-none"
+              style={{
+                left: Math.min(selectionBox.startX, selectionBox.currentX),
+                top: Math.min(selectionBox.startY, selectionBox.currentY),
+                width: Math.abs(selectionBox.currentX - selectionBox.startX),
+                height: Math.abs(selectionBox.currentY - selectionBox.startY),
+              }}
+            />
+          )}
+
           {loading ? (
             <div className="h-full w-full flex items-center justify-center text-gray-400 text-sm">
               Loading...
@@ -291,11 +544,13 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
                   !file.isHidden && (
                     <div
                       key={file.name}
-                      className="flex justify-center"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedItem(file.name);
+                      ref={(el) => {
+                        if (el) fileRefs.current.set(file.name, el);
+                        else fileRefs.current.delete(file.name);
                       }}
+                      className="flex justify-center"
+                      onClick={(e) => handleFileClick(e, file)}
+                      onContextMenu={(e) => handleFileContextMenu(e, file)}
                       onDoubleClick={() => handleDoubleClick(file)}
                       role="button"
                       tabIndex={0}
@@ -304,21 +559,21 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
                           if (e.metaKey || e.ctrlKey) {
                             handleDoubleClick(file);
                           } else {
-                            setSelectedItem(file.name);
+                            setSelectedItems([file.name]);
+                            setLastSelectedId(file.name);
                           }
                         }
                       }}
                       aria-label={`${file.name}${
-                        selectedItem === file.name ? ", selected" : ""
+                        selectedItems.includes(file.name) ? ", selected" : ""
                       }`}
                     >
                       <div className="scale-75 origin-top">
                         <FileIcon
                           name={file.name}
                           kind={file.kind}
-                          onClick={() => {
-                            setSelectedItem(file.name);
-                          }}
+                          selected={selectedItems.includes(file.name)}
+                          onClick={(e) => handleFileClick(e, file)}
                           onDoubleClick={() => {
                             handleDoubleClick(file);
                           }}
