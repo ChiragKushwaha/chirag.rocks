@@ -236,15 +236,6 @@ const structuredData = {
         jobTitle: "Full-Stack Developer",
         url: "https://chirag.rocks",
       },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: {
-          "@type": "EntryPoint",
-          urlTemplate:
-            "https://chirag-rocks.vercel.app/search?q={search_term_string}",
-        },
-        "query-input": "required name=search_term_string",
-      },
     },
     {
       "@type": "Organization",
