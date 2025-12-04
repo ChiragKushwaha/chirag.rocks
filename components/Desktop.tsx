@@ -270,7 +270,7 @@ export const Desktop: React.FC = () => {
   }, []);
 
   // --- ACTIONS ---
-  const createFolder = async () => {
+  const createFolder = async (x?: number, y?: number) => {
     const baseName = "untitled folder";
     let name = baseName;
     let counter = 2;
@@ -282,6 +282,24 @@ export const Desktop: React.FC = () => {
     }
 
     await fs.mkdir(`${desktopPath}/${name}`);
+
+    // If coordinates provided, set absolute position
+    if (x !== undefined && y !== undefined) {
+      // Adjust for grid container padding (pt-[34px] = 34px)
+      // The grid container is relative, so (0,0) is top-left of container.
+      // e.clientY includes menu bar height?
+      // If clientY is from the top of the viewport, and the icon container starts at 0,0 of the screen,
+      // then clientY is already the correct Y coordinate relative to the screen.
+      // The `pt-[34px]` on the grid container means the grid items start 34px down *within that container*.
+      // If we set `position: absolute` on an icon, its `top` and `left` are relative to the *nearest positioned ancestor*.
+      // In this case, the `main` element, which is `h-screen w-screen relative`.
+      // So, `x` and `y` from `e.clientX`, `e.clientY` are already correct relative to the `main` element.
+      // We just need to center the icon on the cursor. Icon is roughly 100x104.
+      const adjustedX = x - 50; // Center horizontally
+      const adjustedY = y - 52; // Center vertically (104/2)
+
+      setIconPosition(name, adjustedX, adjustedY, true);
+    }
 
     // Refresh files
     const f = await fs.ls(desktopPath);
@@ -456,8 +474,11 @@ export const Desktop: React.FC = () => {
   // --- RIGHT CLICK HANDLER ---
   const handleContextMenu = (e: React.MouseEvent) => {
     e.preventDefault();
+    const x = e.clientX;
+    const y = e.clientY;
+
     openContextMenu(e.clientX, e.clientY, [
-      { label: "New Folder", action: createFolder },
+      { label: "New Folder", action: () => createFolder(x, y) },
       { separator: true },
       { label: "Get Info", disabled: true },
       {
@@ -554,17 +575,37 @@ export const Desktop: React.FC = () => {
                 whileDrag={{ scale: 1.05, zIndex: 100 }}
                 onDragEnd={(_, info) => {
                   const current = iconPositions[file.name] || { x: 0, y: 0 };
-                  setIconPosition(
-                    file.name,
-                    current.x + info.offset.x,
-                    current.y + info.offset.y
-                  );
+                  // If it was absolute, it stays absolute, just update coords
+                  // If it was grid (absolute=undefined/false), it stays grid, update offset
+                  const isAbsolute = iconPositions[file.name]?.absolute;
+
+                  if (isAbsolute) {
+                    // For absolute, x and y are coordinates. info.offset is delta.
+                    // We need to update the base x/y.
+                    setIconPosition(
+                      file.name,
+                      current.x + info.offset.x,
+                      current.y + info.offset.y,
+                      true
+                    );
+                  } else {
+                    setIconPosition(
+                      file.name,
+                      current.x + info.offset.x,
+                      current.y + info.offset.y
+                    );
+                  }
                 }}
                 className={`pointer-events-auto flex justify-center ${
                   file.name.endsWith(".note") ? "w-[160px]" : "w-[100px]"
                 }`}
                 style={{
                   direction: "ltr",
+                  position: iconPositions[file.name]?.absolute
+                    ? "absolute"
+                    : "relative",
+                  left: iconPositions[file.name]?.absolute ? 0 : "auto",
+                  top: iconPositions[file.name]?.absolute ? 0 : "auto",
                   x: iconPositions[file.name]?.x || 0,
                   y: iconPositions[file.name]?.y || 0,
                 }} // Reset direction for content

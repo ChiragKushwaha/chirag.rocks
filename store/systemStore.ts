@@ -53,8 +53,13 @@ interface SystemState {
   hasSeededResume: boolean;
   setHasSeededResume: (status: boolean) => void;
 
-  iconPositions: Record<string, { x: number; y: number }>;
-  setIconPosition: (name: string, x: number, y: number) => void;
+  iconPositions: Record<string, { x: number; y: number; absolute?: boolean }>;
+  setIconPosition: (
+    name: string,
+    x: number,
+    y: number,
+    absolute?: boolean
+  ) => void;
 
   wifiEnabled: boolean;
   toggleWifi: () => void;
@@ -159,11 +164,11 @@ export const useSystemStore = create<SystemState>()(
       setHasSeededResume: (status) => set({ hasSeededResume: status }),
 
       iconPositions: {},
-      setIconPosition: (name, x, y) =>
+      setIconPosition: (name, x, y, absolute) =>
         set((state) => ({
           iconPositions: {
             ...state.iconPositions,
-            [name]: { x, y },
+            [name]: { x, y, absolute },
           },
         })),
 
