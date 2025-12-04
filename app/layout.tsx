@@ -1,19 +1,20 @@
+import { GlobalExternalLinkHandler } from "@/components/GlobalExternalLinkHandler";
+import { DeviceProvider } from "@/components/ui/design-system/DeviceContext";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import {
   Geist,
   Geist_Mono,
+  Noto_Naskh_Arabic,
   Noto_Sans,
   Noto_Sans_JP,
   Noto_Sans_KR,
-  Noto_Naskh_Arabic,
-  Noto_Serif_Devanagari,
   Noto_Serif_Bengali,
+  Noto_Serif_Devanagari,
   Pacifico,
 } from "next/font/google";
 import "./globals.css";
-import { DeviceProvider } from "@/components/ui/design-system/DeviceContext";
-import { GlobalExternalLinkHandler } from "@/components/GlobalExternalLinkHandler";
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -79,6 +80,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://chirag-rocks.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
   title: "Chirag Kushwaha - Interactive Portfolio | macOS Big Sur Experience",
   description:
     "Experience a pixel-perfect macOS Big Sur clone running entirely in your browser. Full offline support, OPFS file system, real-time features, and native-like performance. A Progressive Web App built with Next.js and React.",
@@ -290,6 +294,8 @@ export default function RootLayout({
         <GlobalExternalLinkHandler>
           <DeviceProvider>{children}</DeviceProvider>
         </GlobalExternalLinkHandler>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

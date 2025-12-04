@@ -1,6 +1,4 @@
 "use client";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { useEffect } from "react";
 import { SetupAssistant } from "../apps/SetupAssistant";
 import { Desktop } from "../components/Desktop";
@@ -159,8 +157,6 @@ function App() {
         ) : (
           <SetupAssistant />
         )}
-        <Analytics />
-        <SpeedInsights />
       </div>
     </PermissionProvider>
   );

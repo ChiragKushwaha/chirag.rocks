@@ -176,6 +176,7 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
             /* Removed background/border to fix "black space" issue */
             ${name === "Calendar" ? "" : ""}
           select-none
+          focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
           /* KEY FIX: Only animate when mouse leaves (mouseX is null) */
           ${
             mouseX === null

@@ -411,7 +411,12 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
         {!lockScreenMode && (
           <>
             {/* Clipboard */}
-            <div className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default">
+            <div
+              role="button"
+              tabIndex={0}
+              aria-label="Clipboard"
+              className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+            >
               <Clipboard size={16} strokeWidth={2} />
             </div>
 
@@ -419,7 +424,12 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
             <WeatherDisplay />
 
             {/* Media */}
-            <div className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default">
+            <div
+              role="button"
+              tabIndex={0}
+              aria-label="Media Player"
+              className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+            >
               <PlayCircle size={16} strokeWidth={2} />
             </div>
 
@@ -435,8 +445,17 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
           <>
             {/* Search */}
             <div
-              className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default active:bg-white/20"
+              role="button"
+              tabIndex={0}
+              aria-label="Spotlight Search"
+              className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default active:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
               onClick={() => useSystemStore.getState().toggleSpotlight()}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  useSystemStore.getState().toggleSpotlight();
+                }
+              }}
             >
               <Search size={15} strokeWidth={2.5} />
             </div>
@@ -444,16 +463,30 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
             {/* Control Center */}
             <div
               ref={controlCenterRef}
-              className={`opacity-90 hover:bg-white/10 p-1 rounded cursor-default ${
+              role="button"
+              tabIndex={0}
+              aria-label="Control Center"
+              className={`opacity-90 hover:bg-white/10 p-1 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${
                 isControlCenterOpen ? "bg-white/20" : ""
               }`}
               onClick={() => setIsControlCenterOpen(!isControlCenterOpen)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setIsControlCenterOpen(!isControlCenterOpen);
+                }
+              }}
             >
               <ControlCenterIcon />
             </div>
 
             {/* Siri */}
-            <div className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default">
+            <div
+              role="button"
+              tabIndex={0}
+              aria-label="Siri"
+              className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+            >
               <SiriIcon />
             </div>
           </>
@@ -462,8 +495,17 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
         {/* Clock */}
         <div
           id="menu-bar-clock"
-          className="opacity-90 hover:bg-white/10 px-2 py-0.5 rounded cursor-default active:bg-white/20"
+          role="button"
+          tabIndex={!lockScreenMode ? 0 : -1}
+          aria-label="Clock and Notification Center"
+          className="opacity-90 hover:bg-white/10 px-2 py-0.5 rounded cursor-default active:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
           onClick={!lockScreenMode ? toggleNotificationCenter : undefined}
+          onKeyDown={(e) => {
+            if (!lockScreenMode && (e.key === "Enter" || e.key === " ")) {
+              e.preventDefault();
+              toggleNotificationCenter();
+            }
+          }}
         >
           <Clock />
         </div>

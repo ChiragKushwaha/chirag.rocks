@@ -190,6 +190,9 @@ export const FileIcon: React.FC<FileIconProps> = ({
 
   return (
     <div
+      role="button"
+      tabIndex={isRenaming ? -1 : 0}
+      aria-label={name}
       className={`
         flex flex-col items-center p-1 rounded-[4px]
         ${isNote ? "w-[140px]" : "w-[84px]"}
@@ -200,7 +203,7 @@ export const FileIcon: React.FC<FileIconProps> = ({
             ? ""
             : "hover:bg-white/10 hover:ring-1 hover:ring-white/20"
         }
-        transition-colors cursor-pointer group
+        transition-colors cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400
       `}
       onClick={(e) => {
         e.stopPropagation();
@@ -208,6 +211,19 @@ export const FileIcon: React.FC<FileIconProps> = ({
           onClick(e);
         } else if (!isRenaming) {
           // Simple selection logic
+          const event = new CustomEvent("file-selected", { detail: name });
+          window.dispatchEvent(event);
+        }
+      }}
+      onKeyDown={(e) => {
+        if (isRenaming) return;
+        if (e.key === "Enter") {
+          e.preventDefault();
+          e.stopPropagation();
+          if (onDoubleClick) onDoubleClick(e as any);
+        } else if (e.key === " " || e.key === "Spacebar") {
+          e.preventDefault();
+          e.stopPropagation();
           const event = new CustomEvent("file-selected", { detail: name });
           window.dispatchEvent(event);
         }
