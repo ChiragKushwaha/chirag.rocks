@@ -1,10 +1,12 @@
 import { create } from "zustand";
 
 export interface MenuItem {
+  type?: "default" | "separator" | "tags";
+  tags?: string[]; // For color tags
   label?: string | React.ReactNode;
   action?: () => void;
   shortcut?: string | React.ReactNode;
-  separator?: boolean;
+  separator?: boolean; // Deprecated, use type: 'separator'
   disabled?: boolean;
   danger?: boolean;
   submenu?: MenuItem[];

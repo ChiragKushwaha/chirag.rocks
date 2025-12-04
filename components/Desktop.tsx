@@ -624,9 +624,13 @@ export const Desktop: React.FC = () => {
     const y = e.clientY;
 
     openContextMenu(e.clientX, e.clientY, [
-      { label: "New Folder", action: () => createFolder(x, y) },
+      {
+        label: "New Folder",
+        icon: "📁", // TODO: Use better icon
+        action: () => createFolder(x, y),
+      },
       { separator: true },
-      { label: "Get Info", disabled: true },
+      { label: "Get Info", icon: "ℹ️", disabled: false },
       {
         label: "Change Wallpaper...",
         action: () => {
@@ -638,33 +642,43 @@ export const Desktop: React.FC = () => {
             <SystemSettings />,
             { width: 900, height: 600, x: 100, y: 100 }
           );
-          // Note: We'll need to pass initial tab to SystemSettings
         },
       },
+      { label: "Edit Widgets...", disabled: true },
       { separator: true },
-      { label: "Use Stacks", disabled: true },
+      { label: "Use Stacks", icon: "📚", disabled: true },
       {
         label: "Sort By",
+        icon: "⇅",
         submenu: [
+          { label: "None", icon: "✓" },
+          { separator: true },
+          { label: "Snap to Grid" },
+          { separator: true },
           { label: "Name" },
           { label: "Kind" },
+          { label: "Date Last Opened" },
           { label: "Date Added" },
           { label: "Date Modified" },
           { label: "Date Created" },
+          { label: "Size" },
           { label: "Tags" },
         ],
       },
-      { label: "Clean Up", disabled: true },
+      { label: "Clean Up", disabled: false },
       {
         label: "Clean Up By",
-        disabled: true,
+        disabled: false,
         submenu: [
           { label: "Name" },
           { label: "Kind" },
           { label: "Date Modified" },
+          { label: "Date Created" },
+          { label: "Size" },
+          { label: "Tags" },
         ],
       },
-      { label: "Show View Options", disabled: true },
+      { label: "Show View Options", icon: "⚙️", disabled: true },
     ]);
   };
 
@@ -996,69 +1010,15 @@ export const Desktop: React.FC = () => {
                         },
                       ]);
                     } else {
-                      // Single-select Context Menu (Existing Logic)
+                      // Single-select Context Menu (Updated to match screenshot)
                       openContextMenu(e.clientX, e.clientY, [
                         {
                           label: "Open",
                           action: () => openFile(file),
                         },
                         {
-                          label: "Edit",
-                          action: () =>
-                            launchProcess(
-                              "textedit",
-                              "TextEdit",
-                              "📝",
-                              <TextEdit
-                                initialPath={desktopPath}
-                                initialFilename={file.name}
-                              />
-                            ),
-                          disabled: ![
-                            "txt",
-                            "md",
-                            "js",
-                            "ts",
-                            "tsx",
-                            "json",
-                            "css",
-                            "html",
-                            "html",
-                          ].includes(
-                            file.name.split(".").pop()?.toLowerCase() || ""
-                          ),
-                        },
-                        {
-                          label: "Open With",
-                          submenu: [
-                            {
-                              label: "TextEdit",
-                              action: () =>
-                                launchProcess(
-                                  "textedit",
-                                  "TextEdit",
-                                  "📝",
-                                  <TextEdit
-                                    initialPath={desktopPath}
-                                    initialFilename={file.name}
-                                  />
-                                ),
-                            },
-                            {
-                              label: "Terminal",
-                              action: () =>
-                                launchProcess(
-                                  "terminal",
-                                  "Terminal",
-                                  "terminal",
-                                  <Terminal initialPath={desktopPath} />
-                                ),
-                            },
-                          ],
-                        },
-                        {
                           label: "Move to Bin",
-                          danger: true,
+                          icon: "🗑️",
                           action: () => moveToBin(file),
                         },
                         { separator: true },
@@ -1066,6 +1026,27 @@ export const Desktop: React.FC = () => {
                         {
                           label: "Rename",
                           action: () => setRenamingFile(file.name),
+                        },
+                        { separator: true },
+                        { label: `Compress "${file.name}"` },
+                        { label: "Duplicate" },
+                        { label: "Make Alias" },
+                        { label: "Quick Look" },
+                        { separator: true },
+                        { label: "Copy" },
+                        { label: "Share..." },
+                        { separator: true },
+                        { type: "tags" },
+                        { separator: true },
+                        { label: "Customise Folder..." },
+                        { separator: true },
+                        {
+                          label: "Quick Actions",
+                          submenu: [{ label: "Customize..." }],
+                        },
+                        {
+                          label: "Services",
+                          submenu: [{ label: "No Services Apply" }],
                         },
                       ]);
                     }

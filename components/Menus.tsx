@@ -7,57 +7,145 @@ const MenuList: React.FC<{ items: MenuItem[]; onClose: () => void }> = ({
   items,
   onClose,
 }) => {
+  const [activeSubmenuIndex, setActiveSubmenuIndex] = React.useState<
+    number | null
+  >(null);
+  const hoverTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
   return (
-    <div className="flex flex-col px-1">
-      {items.map((item, idx) =>
-        item.separator ? (
+    <div className="flex flex-col px-1 py-1 relative">
+      {items.map((item, idx) => {
+        if (item.separator || item.type === "separator") {
+          return <div key={idx} className="h-[1px] bg-white/10 my-1 mx-2" />;
+        }
+
+        if (item.type === "tags") {
+          return (
+            <div
+              key={idx}
+              className="px-3 py-1 flex justify-between items-center group"
+              onMouseEnter={() => {
+                if (hoverTimeoutRef.current)
+                  clearTimeout(hoverTimeoutRef.current);
+                setActiveSubmenuIndex(null);
+              }}
+            >
+              <div className="flex gap-2 justify-center w-full">
+                {[
+                  "#ff453a",
+                  "#ff9f0a",
+                  "#ffd60a",
+                  "#32d74b",
+                  "#64d2ff",
+                  "#bf5af2",
+                  "#8e8e93",
+                ].map((color, i) => (
+                  <div
+                    key={i}
+                    className="w-3 h-3 rounded-full border border-white/10 hover:scale-125 transition-transform cursor-pointer"
+                    style={{ backgroundColor: color }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onClose();
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          );
+        }
+
+        const isActive = activeSubmenuIndex === idx;
+
+        return (
           <div
             key={idx}
-            className="h-px bg-black/10 dark:bg-white/20 my-1 mx-2"
-          />
-        ) : (
-          <button
-            key={idx}
-            onClick={(e) => {
-              e.stopPropagation();
-              if (!item.disabled && item.action) {
-                item.action();
-                if (!item.stayOpenOnAction) {
-                  onClose();
-                }
-              }
+            className="relative"
+            onMouseEnter={() => {
+              if (hoverTimeoutRef.current)
+                clearTimeout(hoverTimeoutRef.current);
+              hoverTimeoutRef.current = setTimeout(() => {
+                setActiveSubmenuIndex(idx);
+              }, 150); // Small delay to prevent flickering
             }}
-            disabled={item.disabled}
-            className={`
-              w-full text-left px-3 py-1 text-[13px] flex justify-between items-center rounded-md transition-colors
-              ${
-                item.disabled
-                  ? "text-gray-400 dark:text-gray-500 cursor-default"
-                  : "hover:bg-blue-500 hover:text-white text-gray-900 dark:text-white active:bg-blue-600"
-              }
-              ${item.danger && !item.disabled ? "text-red-500" : ""}
-            `}
+            onMouseLeave={() => {
+              if (hoverTimeoutRef.current)
+                clearTimeout(hoverTimeoutRef.current);
+              // Don't immediately close on leave, let the submenu handle its own enter
+            }}
           >
-            <span className="flex items-center gap-2">
-              {item.icon && (
-                <span className="w-4 h-4 flex items-center justify-center">
-                  {item.icon}
-                </span>
-              )}
-              {item.label}
-            </span>
-            {item.shortcut && (
-              <span
-                className={`text-[11px] ml-4 font-sans ${
-                  item.disabled ? "opacity-50" : "opacity-60"
-                }`}
-              >
-                {item.shortcut}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                if (!item.disabled && item.action) {
+                  item.action();
+                  if (!item.stayOpenOnAction) {
+                    onClose();
+                  }
+                }
+              }}
+              disabled={item.disabled}
+              className={`
+                w-full text-left px-3 py-0.5 text-[13px] flex justify-between items-center rounded-[4px] transition-colors font-medium
+                ${
+                  item.disabled
+                    ? "text-white/30 cursor-default"
+                    : isActive
+                    ? "bg-[#007AFF] text-white"
+                    : "hover:bg-[#007AFF] text-white active:bg-[#0062cc]"
+                }
+                ${item.danger && !item.disabled ? "text-red-400" : ""}
+              `}
+            >
+              <span className="flex items-center gap-2">
+                {item.icon && (
+                  <span className="w-4 h-4 flex items-center justify-center opacity-80">
+                    {item.icon}
+                  </span>
+                )}
+                {item.label}
               </span>
+              <span className="flex items-center">
+                {item.shortcut && (
+                  <span
+                    className={`text-[11px] ml-4 font-sans tracking-wide ${
+                      item.disabled ? "opacity-30" : "opacity-50"
+                    }`}
+                  >
+                    {item.shortcut}
+                  </span>
+                )}
+                {item.submenu && (
+                  <span className="ml-2 opacity-50">
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M9 18l6-6-6-6" />
+                    </svg>
+                  </span>
+                )}
+              </span>
+            </button>
+
+            {/* Submenu */}
+            {item.submenu && isActive && (
+              <div
+                className="absolute left-full top-0 ml-[-4px] z-50 min-w-[200px] bg-[#1e1e1e]/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-[0_10px_40px_rgba(0,0,0,0.5)] overflow-hidden animate-in fade-in zoom-in-95 duration-75 origin-top-left"
+                style={{ marginTop: -4 }}
+              >
+                <MenuList items={item.submenu} onClose={onClose} />
+              </div>
             )}
-          </button>
-        )
-      )}
+          </div>
+        );
+      })}
     </div>
   );
 };
@@ -90,7 +178,7 @@ export const ContextMenu: React.FC = () => {
     <div
       ref={ref}
       style={{ top: contextMenu.y, left: contextMenu.x }}
-      className="fixed z-[9999] min-w-[220px] bg-white/90 dark:bg-[#1c1c1c]/90 backdrop-blur-3xl border border-black/10 dark:border-white/20 rounded-xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-100 origin-top-left py-1.5"
+      className="fixed z-[9999] min-w-[240px] bg-[#1e1e1e]/80 backdrop-blur-xl border border-white/10 rounded-lg shadow-[0_10px_40px_rgba(0,0,0,0.5)] animate-in fade-in zoom-in-95 duration-75 origin-top-left"
     >
       <MenuList items={contextMenu.items} onClose={closeContextMenu} />
     </div>,
@@ -147,7 +235,7 @@ export const TopDropdown: React.FC<{
   return createPortal(
     <div
       ref={ref}
-      className="fixed top-[30px] min-w-[220px] bg-white/90 dark:bg-[#1c1c1c]/90 backdrop-blur-3xl border border-black/10 dark:border-white/20 rounded-xl shadow-2xl overflow-hidden py-1.5"
+      className="fixed top-[30px] min-w-[220px] bg-white/90 dark:bg-[#1c1c1c]/90 backdrop-blur-3xl border border-black/10 dark:border-white/20 rounded-xl shadow-2xl py-1.5"
       style={{ left: xOffset, zIndex: 9999 }}
     >
       <MenuList items={items} onClose={onClose} />
