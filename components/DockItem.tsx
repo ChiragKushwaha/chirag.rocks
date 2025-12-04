@@ -44,11 +44,20 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
 
   const iconUrl = useIcon(displayIcon); // Get Blob URL from OPFS
 
-  const runningProcess = processes.find((p) => p.id === name);
+  const runningProcess = processes.find(
+    (p) => p.id === name.toLowerCase() || p.title === name
+  );
   const isOpen = !!runningProcess;
   const isActive = runningProcess?.pid === activePid;
 
+  const [isBouncing, setIsBouncing] = React.useState(false);
+
   const handleClick = () => {
+    if (!isOpen) {
+      setIsBouncing(true);
+      // No timeout needed, onAnimationEnd handles reset
+    }
+
     let component = (
       <div className="p-10 text-white">Placeholder for {name}</div>
     );
@@ -177,13 +186,14 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
             ${name === "Calendar" ? "" : ""}
           select-none
           focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
-          /* KEY FIX: Only animate when mouse leaves (mouseX is null) */
           ${
             mouseX === null
               ? "transition-all duration-300 ease-out"
               : "transition-none"
           }
+          ${isBouncing ? "animate-dock-bounce" : ""}
         `}
+        onAnimationEnd={() => setIsBouncing(false)}
       >
         <span
           className="filter drop-shadow-md transform translate-y-[1px]"

@@ -90,33 +90,76 @@ export const useProcessStore = create<ProcessState>((set, get) => ({
     });
   },
 
-  closeProcess: (pid) =>
+  closeProcess: (pid) => {
+    // 1. Mark as closing to trigger animation
     set((state) => ({
-      processes: state.processes.filter((p) => p.pid !== pid),
-      activePid: state.activePid === pid ? null : state.activePid,
-    })),
+      processes: state.processes.map((p) =>
+        p.pid === pid ? { ...p, isClosing: true } : p
+      ),
+    }));
+
+    // 2. Remove after animation (300ms matches duration-300)
+    setTimeout(() => {
+      set((state) => ({
+        processes: state.processes.filter((p) => p.pid !== pid),
+        activePid: state.activePid === pid ? null : state.activePid,
+      }));
+    }, 300);
+  },
 
   focusProcess: (pid) =>
     set((state) => {
       const newMaxZ = state.maxZIndex + 1;
+      // Check if the process is currently minimized
+      const process = state.processes.find((p) => p.pid === pid);
+      const isMinimized = process?.isMinimized;
+
+      // If minimized, trigger restore animation
+      if (isMinimized) {
+        setTimeout(() => {
+          set((state) => ({
+            processes: state.processes.map((p) =>
+              p.pid === pid ? { ...p, isRestoring: false } : p
+            ),
+          }));
+        }, 500); // Match animation duration
+      }
+
       return {
         activePid: pid,
         maxZIndex: newMaxZ,
         processes: state.processes.map((p) =>
           p.pid === pid
-            ? { ...p, isFocused: true, zIndex: newMaxZ, isMinimized: false }
+            ? {
+                ...p,
+                isFocused: true,
+                zIndex: newMaxZ,
+                isMinimized: false,
+                isRestoring: isMinimized ? true : false, // Trigger restore if was minimized
+              }
             : { ...p, isFocused: false }
         ),
       };
     }),
 
-  minimizeProcess: (pid) =>
+  minimizeProcess: (pid) => {
     set((state) => ({
-      activePid: null,
       processes: state.processes.map((p) =>
-        p.pid === pid ? { ...p, isMinimized: true, isFocused: false } : p
+        p.pid === pid ? { ...p, isMinimizing: true } : p
       ),
-    })),
+    }));
+
+    setTimeout(() => {
+      set((state) => ({
+        processes: state.processes.map((p) =>
+          p.pid === pid
+            ? { ...p, isMinimized: true, isMinimizing: false, isFocused: false }
+            : p
+        ),
+        activePid: state.activePid === pid ? null : state.activePid,
+      }));
+    }, 500); // Match animation duration
+  },
 
   maximizeProcess: (pid) =>
     set((state) => ({

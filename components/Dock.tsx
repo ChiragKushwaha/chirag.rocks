@@ -41,9 +41,11 @@ export const Dock: React.FC = () => {
         <div className="w-[1px] h-10 bg-black/10 dark:bg-white/10 mx-1 self-center rounded-full" />
 
         {/* Minimized Windows */}
-        {minimizedProcesses.map((process) => (
-          <DockMinimizedItem key={process.pid} process={process} />
-        ))}
+        {processes
+          .filter((p) => p.isMinimized || p.isMinimizing)
+          .map((p) => (
+            <DockMinimizedItem key={p.pid} process={p} />
+          ))}
 
         {/* Trash Can */}
         <DockItem name="Trash" icon="trash" mouseX={mouseX} />

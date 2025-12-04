@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useLayoutEffect } from "react";
 import { useProcessStore } from "../../store/processStore";
 import { useMenuStore } from "../../store/menuStore";
 import { Process } from "../../types/process";
@@ -160,13 +160,41 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
     ]);
   };
 
+  const [minimizedCoords, setMinimizedCoords] = useState<{
+    x: number;
+    y: number;
+  } | null>(null);
+
+  useLayoutEffect(() => {
+    if (process.isMinimizing || process.isRestoring) {
+      const dockItem = document.getElementById(`dock-minimized-${process.pid}`);
+      if (dockItem) {
+        const rect = dockItem.getBoundingClientRect();
+        const targetX = rect.x + rect.width / 2 - process.dimension.width / 2;
+        const targetY = rect.y + rect.height / 2 - process.dimension.height / 2;
+        setMinimizedCoords({ x: targetX, y: targetY });
+      }
+    }
+  }, [
+    process.isMinimizing,
+    process.isRestoring,
+    process.pid,
+    process.dimension,
+  ]);
+
+  // Fallback if coords not yet found (shouldn't happen often due to layout effect)
+  const targetX = minimizedCoords?.x ?? window.innerWidth / 2;
+  const targetY = minimizedCoords?.y ?? window.innerHeight;
+
   return (
     <div
       ref={windowRef}
       onMouseDown={handleMouseDown}
       onContextMenu={handleContextMenu}
       style={{
-        transform: `translate(${process.dimension.x}px, ${process.dimension.y}px)`,
+        transform: process.isMinimizing
+          ? `translate(${targetX}px, ${targetY}px) scale(0.1)`
+          : `translate(${process.dimension.x}px, ${process.dimension.y}px)`,
         width: process.isMaximized ? "100vw" : process.dimension.width,
         height: process.isMaximized
           ? "calc(100vh - 2rem)"
@@ -174,10 +202,40 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
         zIndex: process.zIndex,
         willChange: isDragging || isResizing ? "transform" : "auto",
         display: process.isMinimized ? "none" : "flex",
+        opacity: process.isMinimizing ? 0.5 : 1,
+        clipPath: process.isMinimizing
+          ? "polygon(0 0, 100% 0, 55% 100%, 45% 100%)"
+          : "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+        borderRadius: process.isMinimizing ? "0 0 50% 50%" : "12px",
+        transition: process.isMinimizing
+          ? "all 0.5s cubic-bezier(0.25, 1, 0.5, 1)"
+          : "none",
+        // @ts-ignore
+        "--restore-from-x": `${targetX}px`,
+        "--restore-from-y": `${targetY}px`,
+        "--restore-to-x": `${process.dimension.x}px`,
+        "--restore-to-y": `${process.dimension.y}px`,
       }}
       className={`
         window absolute top-0 left-0 flex flex-col pointer-events-auto
         transition-shadow duration-200
+        ${
+          process.isRestoring
+            ? "animate-restore-window"
+            : !process.isMinimizing && !process.isClosing
+            ? "animate-in fade-in zoom-in-95 slide-in-from-bottom-4 duration-300 ease-out"
+            : ""
+        }
+        ${
+          process.isClosing
+            ? "animate-out fade-out zoom-out-95 duration-200 ease-in fill-mode-forwards"
+            : ""
+        }
+        ${
+          process.isClosing
+            ? "animate-out fade-out zoom-out-95 duration-200 ease-in fill-mode-forwards"
+            : ""
+        }
         ${
           process.isMaximized
             ? "!transform-none !top-8 !left-0 !right-0 !bottom-0 !rounded-none border-0"

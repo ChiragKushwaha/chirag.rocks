@@ -19,6 +19,9 @@ export interface Process {
   isMinimized: boolean;
   isMaximized: boolean;
   isFocused: boolean;
+  isClosing?: boolean; // New state for exit animation
+  isMinimizing?: boolean; // New state for minimize animation
+  isRestoring?: boolean; // New state for restore animation
   zIndex: number; // Determines visual stacking order
   dimension: WindowSize;
 

@@ -16,6 +16,7 @@ export const DockMinimizedItem: React.FC<DockMinimizedItemProps> = ({
 
   return (
     <button
+      id={`dock-minimized-${process.pid}`}
       onClick={() => focusProcess(process.pid)}
       className="group relative -top-1 flex items-center justify-center transition-all duration-300 ease-out hover:brightness-110 active:brightness-90"
       style={{ width: 50, height: 50 }}
