@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { fs } from "../lib/FileSystem";
 import { useMenuStore } from "../store/menuStore";
 import { useProcessStore } from "../store/processStore";
+import { ImportUtils } from "../lib/ImportUtils";
 import { useSystemStore } from "../store/systemStore";
 
 import dynamic from "next/dynamic";
@@ -612,19 +613,62 @@ export const Desktop: React.FC = () => {
     ]);
   };
 
+  const [loading, setLoading] = useState(false);
+
+  // File Drop Handler
+  const handleDragOver = (e: React.DragEvent) => {
+    // Allow drop if it contains files
+    if (e.dataTransfer.types.includes("Files")) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = "copy";
+    }
+  };
+
+  const handleDrop = async (e: React.DragEvent) => {
+    // Check if it's an internal drag (we might want to ignore or handle differently)
+    // For now, if it has "Files" and no internal ID, treat as external import
+    if (e.dataTransfer.types.includes("Files")) {
+      e.preventDefault();
+
+      // Check if it's internal drag (usually we set some text/plain data)
+      // But browsers might add "Files" even for internal image drags?
+      // Let's assume if we have DataTransferItems of kind 'file', it's an import.
+
+      setLoading(true);
+      try {
+        await ImportUtils.importItems(e.dataTransfer.items, desktopPath);
+        // Refresh
+        const f = await fs.ls(desktopPath);
+        setFiles(f);
+      } catch (err) {
+        console.error("Import failed:", err);
+        alert("Failed to import files");
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
   if (isBooting) return <BootScreen progress={bootProgress} />;
 
   return (
-    <main
+    <div
       ref={constraintsRef}
       className="h-screen w-screen overflow-hidden relative"
-      onContextMenu={handleContextMenu} // Capture Right Click on Desktop
+      style={{
+        backgroundImage: `url(${wallpaperUrl})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+      onContextMenu={handleContextMenu}
       onMouseDown={handleSelectionStart}
       onMouseMove={handleSelectionMove}
       onMouseUp={handleSelectionEnd}
       onMouseLeave={handleSelectionEnd}
+      onDragOver={handleDragOver}
+      onDrop={handleDrop}
     >
-      {/* Selection Box */}
+      {/* Boot Screen Overlay */}
       {selectionBox?.isVisible && (
         <div
           className="absolute border border-blue-500/50 bg-blue-400/20 z-50 pointer-events-none"
@@ -994,6 +1038,6 @@ export const Desktop: React.FC = () => {
       <div className="relative z-30">
         <Dock />
       </div>
-    </main>
+    </div>
   );
 };
