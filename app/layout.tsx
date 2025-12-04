@@ -13,6 +13,7 @@ import {
 import "./globals.css";
 import { DeviceProvider } from "@/components/ui/design-system/DeviceContext";
 import { GlobalExternalLinkHandler } from "@/components/GlobalExternalLinkHandler";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -290,6 +291,7 @@ export default function RootLayout({
         <GlobalExternalLinkHandler>
           <DeviceProvider>{children}</DeviceProvider>
         </GlobalExternalLinkHandler>
+        <SpeedInsights />
       </body>
     </html>
   );
