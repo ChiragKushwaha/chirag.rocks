@@ -1,16 +1,16 @@
 "use client";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { useEffect } from "react";
 import { SetupAssistant } from "../apps/SetupAssistant";
 import { Desktop } from "../components/Desktop";
 import { LockScreen } from "../components/LockScreen";
+import { PermissionProvider } from "../context/PermissionContext";
 import { useAuth } from "../hooks/useAuth";
+import { useTheme } from "../hooks/useTheme";
 import { fs } from "../lib/FileSystem";
 import { MacInstaller } from "../lib/Installer";
 import { useSystemStore } from "../store/systemStore";
-import { useTheme } from "../hooks/useTheme";
-import { PermissionProvider } from "../context/PermissionContext";
-
 // Extend Window interface to include lockScreen function
 declare global {
   interface Window {
@@ -160,6 +160,7 @@ function App() {
           <SetupAssistant />
         )}
         <Analytics />
+        <SpeedInsights />
       </div>
     </PermissionProvider>
   );
