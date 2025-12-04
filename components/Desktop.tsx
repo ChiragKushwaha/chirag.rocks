@@ -83,6 +83,8 @@ export const Desktop: React.FC = () => {
   const { launchProcess } = useProcessStore();
   const [files, setFiles] = useState<MacFileEntry[]>([]);
   const constraintsRef = React.useRef(null);
+  const [lastClickTime, setLastClickTime] = useState(0);
+  const [lastClickId, setLastClickId] = useState<string | null>(null);
 
   // Reminder Worker
   const { reminders, markNotified } = useReminderStore();
@@ -309,6 +311,8 @@ export const Desktop: React.FC = () => {
   // ...
 
   const openFile = (file: MacFileEntry) => {
+    console.log("Opening file:", file.name); // Keep log
+    // alert("Opening " + file.name); // Debug alert
     if (file.kind === "directory") {
       launchProcess(
         "finder",
@@ -620,9 +624,25 @@ export const Desktop: React.FC = () => {
                   isRenaming={renamingFile === file.name}
                   onRename={(newName) => handleRename(file, newName)}
                   onRenameCancel={() => setRenamingFile(null)}
-                  onDoubleClick={(e) => {
+                  onClick={(e) => {
                     e.stopPropagation();
-                    openFile(file);
+                    const now = Date.now();
+                    if (
+                      lastClickId === file.name &&
+                      now - lastClickTime < 300
+                    ) {
+                      // Double click detected
+                      console.log("Double click detected manually:", file.name);
+                      openFile(file);
+                      setLastClickId(null);
+                      setLastClickTime(0);
+                    } else {
+                      // Single click
+                      console.log("Single click:", file.name);
+                      setSelectedFile(file.name);
+                      setLastClickId(file.name);
+                      setLastClickTime(now);
+                    }
                   }}
                   onContextMenu={(e) => {
                     e.stopPropagation();

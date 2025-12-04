@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Process } from "../../types/process";
 import { useProcessStore } from "../../store/processStore";
+import { useMenuStore } from "../../store/menuStore";
+import { Process } from "../../types/process";
 
 interface WindowFrameProps {
   process: Process;
@@ -17,40 +18,33 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
     snapWindow,
   } = useProcessStore();
 
+  const { openContextMenu } = useMenuStore();
   const windowRef = useRef<HTMLDivElement>(null);
 
-  // --- DRAGGING STATE ---
+  // State
   const [isDragging, setIsDragging] = useState(false);
-  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-
-  // --- RESIZING STATE ---
   const [isResizing, setIsResizing] = useState(false);
-  const [resizeDir, setResizeDir] = useState<string | null>(null); // 'n', 's', 'e', 'w', 'ne', 'nw', 'se', 'sw'
-  const [initialDim, setInitialDim] = useState({
-    w: 0,
-    h: 0,
-    x: 0,
-    y: 0,
-    mx: 0,
-    my: 0,
-  });
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [resizeState, setResizeState] = useState<{
+    dir: string;
+    startX: number;
+    startY: number;
+    startWidth: number;
+    startHeight: number;
+    startLeft: number;
+    startTop: number;
+  } | null>(null);
 
-  // --- SPLIT SCREEN MENU STATE ---
   const [showSnapMenu, setShowSnapMenu] = useState(false);
   const snapTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // --- MOUSE HANDLERS ---
-
-  // 1. Drag Start
+  // Focus & Drag Start
   const handleMouseDown = (e: React.MouseEvent) => {
-    // If clicking a control/button/resize-handle, ignore drag
-    if ((e.target as HTMLElement).closest(".no-drag")) return;
-
     focusProcess(process.pid);
 
-    // Only drag if clicking the top bar
-    if ((e.target as HTMLElement).closest(".window-titlebar")) {
-      if (process.isMaximized) return; // Can't drag maximized windows
+    const target = e.target as HTMLElement;
+    // Only drag if clicking titlebar and not a no-drag element (like buttons)
+    if (target.closest(".window-titlebar") && !target.closest(".no-drag")) {
       setIsDragging(true);
       setDragOffset({
         x: e.clientX - process.dimension.x,
@@ -59,27 +53,25 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
     }
   };
 
-  // 2. Resize Start
+  // Resize Start
   const handleResizeStart = (e: React.MouseEvent, dir: string) => {
-    e.stopPropagation();
     e.preventDefault();
-    focusProcess(process.pid);
+    e.stopPropagation();
     setIsResizing(true);
-    setResizeDir(dir);
-    setInitialDim({
-      w: process.dimension.width,
-      h: process.dimension.height,
-      x: process.dimension.x,
-      y: process.dimension.y,
-      mx: e.clientX,
-      my: e.clientY,
+    setResizeState({
+      dir,
+      startX: e.clientX,
+      startY: e.clientY,
+      startWidth: process.dimension.width,
+      startHeight: process.dimension.height,
+      startLeft: process.dimension.x,
+      startTop: process.dimension.y,
     });
   };
 
-  // 3. Global Mouse Move & Up
+  // Global Mouse Move/Up Handlers
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      // HANDLE DRAG
       if (isDragging) {
         updateWindowPosition(
           process.pid,
@@ -87,68 +79,90 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
           e.clientY - dragOffset.y
         );
       }
+      if (isResizing && resizeState) {
+        let newWidth = resizeState.startWidth;
+        let newHeight = resizeState.startHeight;
+        let newX = resizeState.startLeft;
+        let newY = resizeState.startTop;
+        const deltaX = e.clientX - resizeState.startX;
+        const deltaY = e.clientY - resizeState.startY;
 
-      // HANDLE RESIZE
-      if (isResizing && resizeDir) {
-        const deltaX = e.clientX - initialDim.mx;
-        const deltaY = e.clientY - initialDim.my;
-
-        let newW = initialDim.w;
-        let newH = initialDim.h;
-        let newX = initialDim.x;
-        let newY = initialDim.y;
-
-        // Minimum Constraints
-        const minW = 300;
-        const minH = 200;
-
-        if (resizeDir.includes("e"))
-          newW = Math.max(minW, initialDim.w + deltaX);
-        if (resizeDir.includes("s"))
-          newH = Math.max(minH, initialDim.h + deltaY);
-
-        if (resizeDir.includes("w")) {
-          const proposedW = initialDim.w - deltaX;
-          if (proposedW >= minW) {
-            newW = proposedW;
-            newX = initialDim.x + deltaX;
-          }
+        if (resizeState.dir.includes("e")) newWidth += deltaX;
+        if (resizeState.dir.includes("w")) {
+          newWidth -= deltaX;
+          newX += deltaX;
+        }
+        if (resizeState.dir.includes("s")) newHeight += deltaY;
+        if (resizeState.dir.includes("n")) {
+          newHeight -= deltaY;
+          newY += deltaY;
         }
 
-        if (resizeDir.includes("n")) {
-          const proposedH = initialDim.h - deltaY;
-          if (proposedH >= minH) {
-            newH = proposedH;
-            newY = initialDim.y + deltaY;
-          }
-        }
+        // Constraints
+        if (newWidth < 300) newWidth = 300;
+        if (newHeight < 200) newHeight = 200;
 
-        resizeProcess(process.pid, newW, newH, newX, newY);
+        resizeProcess(process.pid, newWidth, newHeight, newX, newY);
       }
     };
 
     const handleMouseUp = () => {
       setIsDragging(false);
       setIsResizing(false);
-      setResizeDir(null);
     };
 
     if (isDragging || isResizing) {
       window.addEventListener("mousemove", handleMouseMove);
       window.addEventListener("mouseup", handleMouseUp);
     }
+
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [isDragging, isResizing, resizeDir, dragOffset, initialDim, process.pid]);
+  }, [
+    isDragging,
+    isResizing,
+    dragOffset,
+    resizeState,
+    process.pid,
+    updateWindowPosition,
+    resizeProcess,
+  ]);
 
-  if (process.isMinimized) return null;
+  // Context Menu
+  const handleContextMenu = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    openContextMenu(e.clientX, e.clientY, [
+      {
+        label: process.title,
+        disabled: true,
+      },
+      { separator: true },
+      {
+        label: "Minimize",
+        action: () => minimizeProcess(process.pid),
+      },
+      {
+        label: process.isMaximized ? "Restore" : "Maximize",
+        action: () => maximizeProcess(process.pid),
+      },
+      { separator: true },
+      {
+        label: "Close",
+        action: () => closeProcess(process.pid),
+        danger: true,
+      },
+    ]);
+  };
 
   return (
     <div
       ref={windowRef}
       onMouseDown={handleMouseDown}
+      onContextMenu={handleContextMenu}
       style={{
         transform: `translate(${process.dimension.x}px, ${process.dimension.y}px)`,
         width: process.isMaximized ? "100vw" : process.dimension.width,
