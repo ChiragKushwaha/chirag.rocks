@@ -49,6 +49,9 @@ const SystemSettings = dynamic(() =>
 const Photos = dynamic(() =>
   import("../apps/Photos").then((mod) => mod.Photos)
 );
+const V86 = dynamic(() => import("../apps/V86").then((mod) => mod.V86), {
+  ssr: false,
+});
 
 const PDFViewer = dynamic(
   () => import("../apps/PDFViewer").then((mod) => mod.PDFViewer),
@@ -522,6 +525,19 @@ export const Desktop: React.FC = () => {
       ai: { id: "photos", name: "Photos", icon: "photos", component: Photos },
       tiff: { id: "photos", name: "Photos", icon: "photos", component: Photos },
       tif: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      // V86 Emulator
+      iso: {
+        id: "v86",
+        name: "Virtual Machine",
+        icon: "disk_image",
+        component: V86,
+      },
+      img: {
+        id: "v86",
+        name: "Virtual Machine",
+        icon: "disk_image",
+        component: V86,
+      },
     };
 
     const app = ext ? apps[ext] : null;
