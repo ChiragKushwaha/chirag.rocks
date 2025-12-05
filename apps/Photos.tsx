@@ -375,9 +375,9 @@ export const Photos: React.FC<PhotosProps> = ({
             loading="lazy"
             allowFullScreen
             title="Photo Location Map"
-            src={`https://www.google.com/maps/embed/v1/view?key=${
-              process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY || ""
-            }&center=${center}&zoom=12&maptype=satellite`}
+            src={`https://maps.google.com/maps?q=${encodeURIComponent(
+              center
+            )}&t=k&z=13&ie=UTF8&iwloc=&output=embed`}
           ></iframe>
           {/* Overlay to simulate map controls if needed, or just let the iframe handle it */}
         </div>
@@ -423,12 +423,7 @@ export const Photos: React.FC<PhotosProps> = ({
             active={activeTab === "recents"}
             onClick={() => setActiveTab("recents")}
           />
-          <SidebarItem
-            icon={MapIcon}
-            label="Map"
-            active={activeTab === "map"}
-            onClick={() => setActiveTab("map")}
-          />
+
           <SidebarItem
             icon={Video}
             label="Videos"
@@ -446,13 +441,6 @@ export const Photos: React.FC<PhotosProps> = ({
             label="People & Pets"
             active={activeTab === "people"}
             onClick={() => setActiveTab("people")}
-          />
-          <SidebarItem
-            icon={Trash2}
-            label="Recently Deleted"
-            active={activeTab === "deleted"}
-            onClick={() => setActiveTab("deleted")}
-            rightIcon={<Lock size={12} />}
           />
         </SidebarSection>
 
