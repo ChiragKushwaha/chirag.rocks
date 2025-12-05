@@ -26,32 +26,32 @@ function App() {
   useTheme();
 
   // Auto Fullscreen on first interaction (Production only)
-  useEffect(() => {
-    if (process.env.NODE_ENV !== "production") return;
+  // useEffect(() => {
+  //   if (process.env.NODE_ENV !== "production") return;
 
-    const handleInteraction = () => {
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch((e) => {
-          // Ignore error (e.g. user denied)
-          console.log("Fullscreen request failed:", e);
-        });
-      }
-      // Remove listeners after first attempt
-      window.removeEventListener("click", handleInteraction);
-      window.removeEventListener("keydown", handleInteraction);
-      window.removeEventListener("touchstart", handleInteraction);
-    };
+  //   const handleInteraction = () => {
+  //     if (!document.fullscreenElement) {
+  //       document.documentElement.requestFullscreen().catch((e) => {
+  //         // Ignore error (e.g. user denied)
+  //         console.log("Fullscreen request failed:", e);
+  //       });
+  //     }
+  //     // Remove listeners after first attempt
+  //     window.removeEventListener("click", handleInteraction);
+  //     window.removeEventListener("keydown", handleInteraction);
+  //     window.removeEventListener("touchstart", handleInteraction);
+  //   };
 
-    window.addEventListener("click", handleInteraction);
-    window.addEventListener("keydown", handleInteraction);
-    window.addEventListener("touchstart", handleInteraction);
+  //   window.addEventListener("click", handleInteraction);
+  //   window.addEventListener("keydown", handleInteraction);
+  //   window.addEventListener("touchstart", handleInteraction);
 
-    return () => {
-      window.removeEventListener("click", handleInteraction);
-      window.removeEventListener("keydown", handleInteraction);
-      window.removeEventListener("touchstart", handleInteraction);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("click", handleInteraction);
+  //     window.removeEventListener("keydown", handleInteraction);
+  //     window.removeEventListener("touchstart", handleInteraction);
+  //   };
+  // }, []);
 
   // 1. Initialize OS Layer
   useEffect(() => {
