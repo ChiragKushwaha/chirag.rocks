@@ -93,7 +93,7 @@ export const V86: React.FC<V86Props> = ({ initialFilename, initialPath }) => {
         }
 
         // 4. Start Emulator
-        // @ts-ignore
+        // 4. Start Emulator
         emulatorRef.current = new window.V86(config);
 
         // Setup listeners if needed
@@ -143,7 +143,14 @@ export const V86: React.FC<V86Props> = ({ initialFilename, initialPath }) => {
       {/* Screen Container */}
       <div
         ref={containerRef}
-        className="w-full h-full flex items-center justify-center relative bg-black"
+        onClick={() => {
+          // Lock mouse on click
+          if (emulatorRef.current) {
+            emulatorRef.current.lock_mouse();
+          }
+        }}
+        className="w-full h-full flex items-center justify-center relative bg-black cursor-pointer"
+        title="Click to capture mouse (Esc to release)"
         style={{
           // Force white text for text mode
           color: "white",
