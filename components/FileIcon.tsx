@@ -166,6 +166,8 @@ export const FileIcon: React.FC<FileIconProps> = ({
     if (lowerName.endsWith(".pdf")) return "preview";
     if (lowerName.endsWith(".txt") || lowerName.endsWith(".md"))
       return "textedit";
+    if (lowerName.endsWith(".iso") || lowerName.endsWith(".img"))
+      return "disk_image";
     if (
       lowerName.endsWith(".json") ||
       lowerName.endsWith(".js") ||
