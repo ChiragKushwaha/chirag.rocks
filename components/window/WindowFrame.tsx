@@ -165,7 +165,9 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
     y: number;
   } | null>(null);
 
-  useLayoutEffect(() => {
+  // Use useEffect instead of useLayoutEffect to avoid synchronous state updates during render
+  // This might delay the animation start frame slightly but is safer for React
+  useEffect(() => {
     if (process.isMinimizing || process.isRestoring) {
       const dockItem = document.getElementById(`dock-minimized-${process.pid}`);
       if (dockItem) {

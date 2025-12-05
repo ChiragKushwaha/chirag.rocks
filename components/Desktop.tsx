@@ -11,6 +11,7 @@ import NextImage from "next/image";
 import { MacFileEntry } from "../lib/types";
 import { Dock } from "./Dock";
 import { FileIcon } from "./FileIcon";
+import { useFileSeeder } from "./hooks/useFileSeeder"; // Import Seeder
 import { MenuBar } from "./MenuBar";
 import { ContextMenu } from "./Menus";
 import { WindowManager } from "./WindowManager";
@@ -69,6 +70,9 @@ import { WallpaperManager } from "../lib/WallpaperManager";
 import { FileCopyWindow } from "./FileCopyWindow";
 
 export const Desktop: React.FC = () => {
+  // Initialize File Seeding (Lazy Loading Assets to OPFS)
+  useFileSeeder();
+
   const {
     wallpaperName,
     theme,
@@ -551,8 +555,8 @@ export const Desktop: React.FC = () => {
       } else if (app.id === "v86") {
         // Fixed size for V86 (standard VGA + chrome)
         windowConfig = {
-          width: "100%",
-          height: "100%",
+          width: 1280,
+          height: 720,
           x: 100,
           y: 100,
           resizable: false,

@@ -12,17 +12,12 @@ export const useIconManager = () => {
       try {
         // 1. Initialize Icons (Legacy / Flat structure)
         const REMOTE_ICONS: Record<string, string> = {
-          finder:
-            "https://raw.githubusercontent.com/elrumo/macOS-Big-Sur-icons-replacements/master/icons/Finder.png",
-          trash:
-            "https://raw.githubusercontent.com/elrumo/macOS-Big-Sur-icons-replacements/master/icons/Trash.png",
-          trash_full:
-            "https://raw.githubusercontent.com/elrumo/macOS-Big-Sur-icons-replacements/master/icons/Trash%20Full.png",
-          launchpad: "https://cdn-icons-png.flaticon.com/512/3643/3643771.png",
-          folder:
-            "https://raw.githubusercontent.com/elrumo/macOS-Big-Sur-icons-replacements/master/icons/Folder.png",
-          photos:
-            "https://raw.githubusercontent.com/elrumo/macOS-Big-Sur-icons-replacements/master/icons/Photos.png",
+          finder: "/icons/finder.png",
+          trash: "/icons/trash.png",
+          trash_full: "/icons/trash_full.png",
+          launchpad: "/icons/mission_control.png",
+          folder: "/icons/folder.png",
+          photos: "/icons/photos.png",
         };
 
         // Check and fetch remote icons

@@ -65,12 +65,13 @@ export const V86: React.FC<V86Props> = ({ initialFilename, initialPath }) => {
 
         const config: any = {
           wasm_path: "/lib/v86/v86.wasm",
-          memory_size: 512 * 1024 * 1024,
+          memory_size: 256 * 1024 * 1024,
           vga_memory_size: 8 * 1024 * 1024,
           screen_container: containerRef.current,
           bios: { url: "/lib/v86/seabios.bin" },
           vga_bios: { url: "/lib/v86/vgabios.bin" },
           autostart: true,
+          acpi: ext === "iso", // Enable ACPI for ISOs (Linux), disable for potential floppy images (Kolibri) to avoid hangs
         };
 
         if (ext === "iso") {

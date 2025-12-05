@@ -285,8 +285,13 @@ export default function RootLayout({
         <GlobalExternalLinkHandler>
           <DeviceProvider>{children}</DeviceProvider>
         </GlobalExternalLinkHandler>
-        <Analytics />
-        <SpeedInsights />
+        {process.env.NODE_ENV === "production" &&
+          process.env.VERCEL === "1" && (
+            <>
+              <Analytics />
+              <SpeedInsights />
+            </>
+          )}
       </body>
     </html>
   );
