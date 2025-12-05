@@ -250,7 +250,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
       `}
     >
       {/* --- RESIZE HANDLES (Invisible but clickable) --- */}
-      {!process.isMaximized && (
+      {!process.isMaximized && process.dimension.resizable !== false && (
         <>
           <div
             onMouseDown={(e) => handleResizeStart(e, "n")}

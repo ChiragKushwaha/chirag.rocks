@@ -6,6 +6,7 @@ export interface WindowSize {
   height: number;
   x: number;
   y: number;
+  resizable?: boolean;
 }
 
 export interface Process {

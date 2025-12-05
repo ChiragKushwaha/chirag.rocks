@@ -543,11 +543,21 @@ export const Desktop: React.FC = () => {
     const app = ext ? apps[ext] : null;
 
     if (app) {
-      // Special window sizing for Preview (PDF Viewer)
-      const windowConfig =
-        app.id === "preview"
-          ? { width: 1000, height: 700, x: 100, y: 50 }
-          : undefined;
+      // Special window sizing
+      let windowConfig = undefined;
+
+      if (app.id === "preview") {
+        windowConfig = { width: 1000, height: 700, x: 100, y: 50 };
+      } else if (app.id === "v86") {
+        // Fixed size for V86 (standard VGA + chrome)
+        windowConfig = {
+          width: "100%",
+          height: "100%",
+          x: 100,
+          y: 100,
+          resizable: false,
+        };
+      }
 
       launchProcess(
         `${app.id}-${file.name}`,
