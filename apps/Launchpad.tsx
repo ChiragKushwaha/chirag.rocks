@@ -506,6 +506,24 @@ export const APPS: AppDef[] = [
     url: "https://www.linkedin.com/in/chirag-kushwaha/",
   },
   {
+    id: "topmate",
+    name: "Topmate",
+    icon: ({ className, containerClassName = "scale-[0.85]" }) => (
+      <div
+        className={`${className} ${containerClassName} relative flex items-center justify-center bg-white rounded-[22%] overflow-hidden`}
+      >
+        <Image
+          src="/icons/topmate.png"
+          alt="Topmate"
+          fill
+          className="object-cover"
+        />
+      </div>
+    ),
+    component: () => <PlaceholderApp title="Topmate" />,
+    url: "https://topmate.io/chirag_kushwaha?utm_campaign=Page_Ready&utm_medium=popup&utm_source=topmate",
+  },
+  {
     id: "instagram",
     name: "Instagram",
     icon: ({ className, containerClassName = "scale-[0.85]" }) => (
