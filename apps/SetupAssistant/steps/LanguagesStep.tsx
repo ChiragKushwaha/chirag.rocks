@@ -1,6 +1,7 @@
 import React from "react";
 import { Globe, Keyboard } from "lucide-react";
 import { SetupWindow } from "../SetupWindow";
+import { useTranslations } from "next-intl";
 
 interface LanguagesStepProps {
   onNext: () => void;
@@ -13,17 +14,18 @@ export const LanguagesStep: React.FC<LanguagesStepProps> = ({
   onBack,
   selectedLanguages,
 }) => {
+  const t = useTranslations("Setup.Languages");
+
   return (
     <SetupWindow
-      title="Written and Spoken Languages"
+      title={t("Title")}
       icon={Globe}
       onContinue={onNext}
       onBack={onBack}
     >
       <div className="max-w-lg space-y-6">
         <p className="text-[#6e6e73] dark:text-[#98989d] text-[13px] text-center leading-relaxed mb-8">
-          The following languages are commonly used in your region. You can set
-          up your Mac to use these settings or customise them individually.
+          {t("Description")}
         </p>
 
         {/* Preferred Languages */}
@@ -33,7 +35,7 @@ export const LanguagesStep: React.FC<LanguagesStepProps> = ({
           </div>
           <div className="flex-1">
             <h3 className="text-[13px] font-semibold text-black dark:text-white mb-1">
-              Preferred Languages
+              {t("Preferred")}
             </h3>
             <p className="text-[#6e6e73] dark:text-[#98989d] text-[12px]">
               {selectedLanguages.join(", ")}
@@ -48,7 +50,7 @@ export const LanguagesStep: React.FC<LanguagesStepProps> = ({
           </div>
           <div className="flex-1">
             <h3 className="text-[13px] font-semibold text-black dark:text-white mb-1">
-              Input Sources
+              {t("InputSources")}
             </h3>
             <p className="text-[#6e6e73] dark:text-[#98989d] text-[12px]">
               ABC – QWERTZ
@@ -78,7 +80,7 @@ export const LanguagesStep: React.FC<LanguagesStepProps> = ({
           </div>
           <div className="flex-1">
             <h3 className="text-[13px] font-semibold text-black dark:text-white mb-1">
-              Dictation
+              {t("Dictation")}
             </h3>
             <p className="text-[#6e6e73] dark:text-[#98989d] text-[12px]">
               English (United Kingdom)
@@ -88,7 +90,7 @@ export const LanguagesStep: React.FC<LanguagesStepProps> = ({
 
         <div className="pt-4 flex justify-center">
           <button className="text-[#007AFF] text-[13px] font-medium hover:text-[#0055B3] dark:hover:text-[#409CFF] transition-colors">
-            Customise Settings
+            {t("Customize")}
           </button>
         </div>
       </div>

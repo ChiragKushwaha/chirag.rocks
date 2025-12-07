@@ -3,18 +3,20 @@ import { Fingerprint, Plus } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
 import { useSystemStore } from "../../../store/systemStore";
+import { useTranslations } from "next-intl";
 
 export const TouchIDPasswordView = () => {
   const { idleTimeoutSeconds, setIdleTimeoutSeconds } = useSystemStore();
+  const t = useTranslations("SystemSettings.TouchIDPassword");
 
   const timeoutOptions = [
-    { label: "Never", value: 0 },
-    { label: "15 seconds", value: 15 },
-    { label: "30 seconds", value: 30 },
-    { label: "1 minute", value: 60 },
-    { label: "2 minutes", value: 120 },
-    { label: "5 minutes", value: 300 },
-    { label: "10 minutes", value: 600 },
+    { label: t("Never"), value: 0 },
+    { label: t("Seconds", { count: 15 }), value: 15 },
+    { label: t("Seconds", { count: 30 }), value: 30 },
+    { label: t("Minute", { count: 1 }), value: 60 },
+    { label: t("Minutes", { count: 2 }), value: 120 },
+    { label: t("Minutes", { count: 5 }), value: 300 },
+    { label: t("Minutes", { count: 10 }), value: 600 },
   ];
 
   return (
@@ -25,22 +27,22 @@ export const TouchIDPasswordView = () => {
         </div>
         <div>
           <h2 className="text-xl font-semibold dark:text-white">
-            Touch ID & Password
+            {t("Title")}
           </h2>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            Add a fingerprint to unlock your Mac.
+            {t("Description")}
           </p>
         </div>
       </div>
 
-      <SettingsGroup title="Touch ID">
+      <SettingsGroup title={t("TouchID")}>
         <div className="p-4 flex gap-4">
           <div className="flex flex-col items-center gap-2">
             <div className="w-16 h-16 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center border border-gray-200 dark:border-gray-600">
               <Fingerprint size={24} className="text-gray-400" />
             </div>
             <span className="text-xs font-medium dark:text-gray-300">
-              Finger 1
+              {t("Finger1")}
             </span>
           </div>
           <button className="flex flex-col items-center gap-2 group">
@@ -48,49 +50,43 @@ export const TouchIDPasswordView = () => {
               <Plus size={24} className="text-gray-400" />
             </div>
             <span className="text-xs font-medium text-blue-500">
-              Add Fingerprint
+              {t("AddFingerprint")}
             </span>
           </button>
         </div>
       </SettingsGroup>
 
-      <SettingsGroup title="Use Touch ID for">
-        <SettingsRow label="Unlocking your Mac" type="toggle" value={true} />
-        <SettingsRow label="Apple Pay" type="toggle" value={true} />
+      <SettingsGroup title={t("UseTouchIDFor")}>
+        <SettingsRow label={t("UnlockingMac")} type="toggle" value={true} />
+        <SettingsRow label={t("ApplePay")} type="toggle" value={true} />
+        <SettingsRow label={t("iTunesAppStore")} type="toggle" value={true} />
         <SettingsRow
-          label="iTunes Store, App Store & Apple Books"
-          type="toggle"
-          value={true}
-        />
-        <SettingsRow
-          label="AutoFill Passwords"
+          label={t("AutoFillPasswords")}
           type="toggle"
           value={true}
           isLast
         />
       </SettingsGroup>
 
-      <SettingsGroup title="Password">
+      <SettingsGroup title={t("Password")}>
         <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700/50 flex items-center justify-between">
           <div>
             <div className="text-[13px] font-medium dark:text-gray-200">
-              Password
+              {t("Password")}
             </div>
-            <div className="text-[11px] text-gray-500">
-              Last changed: 24/11/2024
-            </div>
+            <div className="text-[11px] text-gray-500">{t("LastChanged")}</div>
           </div>
           <button className="text-[13px] font-medium text-gray-800 dark:text-gray-200 bg-white dark:bg-white/10 border border-gray-300 dark:border-gray-600 rounded px-3 py-1 shadow-sm">
-            Change...
+            {t("Change")}
           </button>
         </div>
         <SettingsRow
-          label="Require password after screen saver begins or display is turned off"
-          value="Immediately"
+          label={t("RequirePasswordScreenSaver")}
+          value={t("Immediately")}
         />
         <div className="px-4 py-3 flex items-center justify-between">
           <div className="text-[13px] font-medium dark:text-gray-200">
-            Require password after idle
+            {t("RequirePasswordIdle")}
           </div>
           <select
             value={idleTimeoutSeconds}
@@ -106,9 +102,9 @@ export const TouchIDPasswordView = () => {
         </div>
       </SettingsGroup>
 
-      <SettingsGroup title="Apple Watch">
+      <SettingsGroup title={t("AppleWatch")}>
         <SettingsRow
-          label="Use your Apple Watch to unlock your applications and your Mac"
+          label={t("AppleWatchUnlock")}
           type="toggle"
           value={true}
           isLast

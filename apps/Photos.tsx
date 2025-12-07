@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import {
   Heart,
   Search,
   ChevronLeft,
-  LayoutGrid,
-  Maximize2,
-  ZoomIn,
-  ZoomOut,
   Image as ImageIcon,
   Clock,
-  MapPin,
   Share,
   Info,
   Library,
@@ -63,6 +59,12 @@ export const Photos: React.FC<PhotosProps> = ({
   initialPath,
   initialFilename,
 }) => {
+  const t = useTranslations("Photos");
+  const tSidebar = useTranslations("Photos.Sidebar");
+  const tTabs = useTranslations("Photos.Tabs");
+  const tCollections = useTranslations("Photos.Collections");
+  const tLocked = useTranslations("Photos.Locked");
+
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
@@ -276,6 +278,117 @@ export const Photos: React.FC<PhotosProps> = ({
     );
   });
 
+  const EmptyStateView = ({
+    title,
+    icon: Icon,
+  }: {
+    title: string;
+    icon?: any;
+  }) => {
+    const tEmpty = useTranslations("Photos.EmptyState");
+    return (
+      <div className="h-full flex flex-col items-center justify-center text-gray-400">
+        <div className="w-20 h-20 bg-gray-100 dark:bg-white/5 rounded-full flex items-center justify-center mb-4">
+          {Icon ? (
+            <Icon size={40} className="opacity-50" />
+          ) : (
+            <ImageIcon size={40} className="opacity-50" />
+          )}
+        </div>
+        <h3 className="text-lg font-medium text-black dark:text-white capitalize">
+          {title}
+        </h3>
+        <p className="text-sm opacity-70 mt-1">
+          {tEmpty("NoItems", { title })}
+        </p>
+      </div>
+    );
+  };
+
+  const LockedView = ({ title = "Locked" }: { title?: string }) => (
+    <div className="h-full flex flex-col items-center justify-center text-gray-400">
+      <div className="w-20 h-20 bg-gray-100 dark:bg-white/5 rounded-full flex items-center justify-center mb-4">
+        <Lock size={40} className="opacity-50" />
+      </div>
+      <h3 className="text-lg font-medium text-black dark:text-white">
+        {tLocked("Title", { title })}
+      </h3>
+      <p className="text-sm opacity-70 mt-1">{tLocked("Desc")}</p>
+    </div>
+  );
+
+  const CollectionsView = () => (
+    <div className="h-full overflow-y-auto p-6">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-bold text-black dark:text-white">
+          {tCollections("Title")}
+        </h2>
+        <div className="flex gap-2">
+          <button className="p-1 hover:bg-gray-200 dark:hover:bg-white/10 rounded-md">
+            <Plus size={18} />
+          </button>
+          <button className="p-1 hover:bg-gray-200 dark:hover:bg-white/10 rounded-md">
+            <MoreHorizontal size={18} />
+          </button>
+        </div>
+      </div>
+
+      {/* Memories */}
+      <div className="mb-8">
+        <h3 className="text-sm font-semibold text-gray-500 mb-3">
+          {tCollections("Memories")}
+        </h3>
+        <div className="h-40 bg-gray-100 dark:bg-white/5 rounded-xl flex items-center justify-center text-gray-400">
+          <div className="text-center">
+            <Clock size={32} className="mx-auto mb-2 opacity-50" />
+            <p className="text-sm">{tCollections("NoMemories")}</p>
+            <p className="text-xs opacity-70">
+              {tCollections("NoMemoriesDesc")}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Pinned */}
+      <div className="mb-8">
+        <h3 className="text-sm font-semibold text-gray-500 mb-3">
+          {tSidebar("Pinned")}
+        </h3>
+        <div className="flex gap-4 overflow-x-auto pb-4">
+          {[
+            tSidebar("Favourites"),
+            tSidebar("RecentlySaved"),
+            tSidebar("Map"),
+            tSidebar("Videos"),
+            tSidebar("Screenshots"),
+          ].map((item) => (
+            <div
+              key={item}
+              className="w-40 h-40 shrink-0 bg-gray-200 dark:bg-white/10 rounded-xl relative overflow-hidden group cursor-pointer"
+            >
+              <div className="absolute inset-0 flex items-end p-3 bg-linear-to-t from-black/60 to-transparent">
+                <span className="text-white font-medium text-sm">{item}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Albums */}
+      <div>
+        <h3 className="text-sm font-semibold text-gray-500 mb-3">
+          {tCollections("Albums")}
+        </h3>
+        <div className="h-32 bg-gray-100 dark:bg-white/5 rounded-xl flex items-center justify-center text-gray-400">
+          <div className="text-center">
+            <Folder size={32} className="mx-auto mb-2 opacity-50" />
+            <p className="text-sm">{tCollections("NoAlbums")}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   const renderContent = () => {
     if (activeTab === "library" || activeTab === "recents") {
       if (loading) {
@@ -329,7 +442,7 @@ export const Photos: React.FC<PhotosProps> = ({
     if (activeTab === "favorites") {
       const favs = photos.filter((p) => likedPhotos.has(p.id));
       if (favs.length === 0)
-        return <EmptyStateView title="No Favourites" icon={Heart} />;
+        return <EmptyStateView title={tSidebar("Favourites")} icon={Heart} />;
       return (
         <div className="p-4 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {favs.map((photo) => (
@@ -379,7 +492,6 @@ export const Photos: React.FC<PhotosProps> = ({
               center
             )}&t=k&z=13&ie=UTF8&iwloc=&output=embed`}
           ></iframe>
-          {/* Overlay to simulate map controls if needed, or just let the iframe handle it */}
         </div>
       );
     }
@@ -398,94 +510,94 @@ export const Photos: React.FC<PhotosProps> = ({
         <SidebarSection title="">
           <SidebarItem
             icon={Library}
-            label="Library"
+            label={tSidebar("Library")}
             active={activeTab === "library"}
             onClick={() => setActiveTab("library")}
           />
           <SidebarItem
             icon={Layers}
-            label="Collections"
+            label={tSidebar("Collections")}
             active={activeTab === "collections"}
             onClick={() => setActiveTab("collections")}
           />
         </SidebarSection>
 
-        <SidebarSection title="Pinned">
+        <SidebarSection title={tSidebar("Pinned")}>
           <SidebarItem
             icon={Heart}
-            label="Favourites"
+            label={tSidebar("Favourites")}
             active={activeTab === "favorites"}
             onClick={() => setActiveTab("favorites")}
           />
           <SidebarItem
             icon={Clock}
-            label="Recently Saved"
+            label={tSidebar("RecentlySaved")}
             active={activeTab === "recents"}
             onClick={() => setActiveTab("recents")}
           />
 
           <SidebarItem
             icon={Video}
-            label="Videos"
+            label={tSidebar("Videos")}
             active={activeTab === "videos"}
             onClick={() => setActiveTab("videos")}
           />
           <SidebarItem
             icon={ImageIcon}
-            label="Screenshots"
+            label={tSidebar("Screenshots")}
             active={activeTab === "screenshots"}
             onClick={() => setActiveTab("screenshots")}
           />
           <SidebarItem
             icon={User}
-            label="People & Pets"
+            label={tSidebar("PeoplePets")}
             active={activeTab === "people"}
             onClick={() => setActiveTab("people")}
           />
         </SidebarSection>
 
-        <SidebarSection title="Albums">
+        <SidebarSection title={tSidebar("Albums")}>
           <SidebarItem
             icon={Folder}
-            label="Shared Albums"
+            label={tSidebar("SharedAlbums")}
             active={activeTab === "shared"}
             onClick={() => setActiveTab("shared")}
             arrow
           />
           <SidebarItem
             icon={Info}
-            label="Activity"
+            label={tSidebar("Activity")}
             active={activeTab === "activity"}
             onClick={() => setActiveTab("activity")}
           />
         </SidebarSection>
 
-        <SidebarSection title="Utilities">
+        <SidebarSection title={tSidebar("Utilities")}>
           <SidebarItem
             icon={Trash2}
-            label="Recently Deleted"
+            label={tSidebar("RecentlyDeleted")}
             active={activeTab === "deleted"}
             onClick={() => setActiveTab("deleted")}
             rightIcon={<Lock size={12} />}
           />
           <SidebarItem
             icon={Copy}
-            label="Duplicates"
+            label={tSidebar("Duplicates")}
             active={activeTab === "duplicates"}
             onClick={() => setActiveTab("duplicates")}
           />
           <SidebarItem
             icon={MapIcon}
-            label="Map"
+            label={tSidebar("Map")}
             active={activeTab === "map"}
             onClick={() => setActiveTab("map")}
           />
         </SidebarSection>
 
-        <SidebarSection title="Projects">
+        <SidebarSection title={tSidebar("Projects")}>
           <SidebarItem
             icon={Folder}
-            label="All Projects"
+            label={tSidebar("AllProjects")}
             active={activeTab === "projects"}
             onClick={() => setActiveTab("projects")}
           />
@@ -506,10 +618,10 @@ export const Photos: React.FC<PhotosProps> = ({
               }`}
               aria-label="Group by Years"
             >
-              Years
+              {tTabs("Years")}
             </button>
             <button className="px-3 py-0.5 text-xs font-medium text-gray-500 hover:text-black dark:hover:text-white rounded-sm transition-all">
-              Months
+              {tTabs("Months")}
             </button>
             <button
               onClick={() => setActiveTab("library")}
@@ -520,7 +632,7 @@ export const Photos: React.FC<PhotosProps> = ({
               }`}
               aria-label="Show All Photos"
             >
-              All Photos
+              {tTabs("AllPhotos")}
             </button>
           </div>
 
@@ -531,7 +643,7 @@ export const Photos: React.FC<PhotosProps> = ({
             />
             <input
               type="text"
-              placeholder="Search"
+              placeholder={t("Search")}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               aria-label="Search Photos"

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { fs } from "../../lib/FileSystem";
+import { useTranslations } from "next-intl";
 import { Sidebar } from "./Sidebar";
 import {
   ChevronLeft,
@@ -45,6 +46,11 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
   const { user } = useSystemStore();
   const { launchProcess } = useProcessStore();
   const defaultPath = `/Users/${user.name || "Guest"}`;
+
+  const t = useTranslations("Finder");
+  const tMenu = useTranslations("Finder.Menu");
+  const tStatus = useTranslations("Finder.Status");
+  const tErrors = useTranslations("Finder.Errors");
 
   // Navigation State
   const [currentPath, setCurrentPath] = useState(initialPath || defaultPath);
@@ -220,7 +226,7 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
         windowConfig
       );
     } else {
-      alert(`No application available to open .${ext} files.`);
+      alert(tErrors("NoApp", { ext: ext || "unknown" }));
     }
   };
 
@@ -254,7 +260,7 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
       setFiles(entries);
     } catch (err) {
       console.error("Failed to create folder:", err);
-      alert("Failed to create folder");
+      alert(tErrors("CreateFolderFailed"));
     }
   };
 
@@ -274,7 +280,7 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
       setLastSelectedId(null);
     } catch (err) {
       console.error("Failed to move to bin:", err);
-      alert("Failed to move items to Bin");
+      alert(tErrors("MoveToBinFailed"));
     }
   };
 
@@ -283,12 +289,12 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
     e.stopPropagation();
     openContextMenu(e.clientX, e.clientY, [
       {
-        label: "New Folder",
+        label: tMenu("NewFolder"),
         action: createFolder,
       },
       { separator: true },
-      { label: "Get Info", disabled: true },
-      { label: "Change Background...", disabled: true },
+      { label: tMenu("GetInfo"), disabled: true },
+      { label: tMenu("ChangeBackground"), disabled: true },
     ]);
   };
 
@@ -338,7 +344,7 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
     if (currentSelection.length > 1) {
       openContextMenu(e.clientX, e.clientY, [
         {
-          label: `Open ${currentSelection.length} items`,
+          label: tMenu("OpenItems", { count: currentSelection.length }),
           action: () => {
             currentSelection.forEach((name) => {
               const f = files.find((file) => file.name === name);
@@ -348,7 +354,7 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
         },
         { separator: true },
         {
-          label: `Move ${currentSelection.length} items to Bin`,
+          label: tMenu("MoveItemsToBin", { count: currentSelection.length }),
           danger: true,
           action: () => handleMoveToBin(currentSelection),
         },
@@ -356,17 +362,17 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
     } else {
       openContextMenu(e.clientX, e.clientY, [
         {
-          label: "Open",
+          label: tMenu("Open"),
           action: () => openFile(file),
         },
         {
-          label: "Move to Bin",
+          label: tMenu("MoveToBin"),
           danger: true,
           action: () => handleMoveToBin([file.name]),
         },
         { separator: true },
-        { label: "Get Info", disabled: true },
-        { label: "Rename", disabled: true },
+        { label: tMenu("GetInfo"), disabled: true },
+        { label: tMenu("Rename"), disabled: true },
       ]);
     }
   };
@@ -515,7 +521,10 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
             </div>
 
             <div className="w-48">
-              <MacOSInput placeholder="Search" icon={<Search size={13} />} />
+              <MacOSInput
+                placeholder={t("Search")}
+                icon={<Search size={13} />}
+              />
             </div>
           </div>
         </div>
@@ -545,14 +554,14 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
 
           {loading ? (
             <div className="h-full w-full flex items-center justify-center text-gray-400 text-sm">
-              Loading...
+              {tStatus("Loading")}
             </div>
           ) : files.length === 0 ? (
             <div className="h-full w-full flex flex-col items-center justify-center text-gray-400 text-sm">
               <span className="text-5xl mb-4 opacity-20">
                 <MacFolderIcon className="w-20 h-20" />
               </span>
-              <span>Folder is empty</span>
+              <span>{tStatus("EmptyFolder")}</span>
             </div>
           ) : (
             <div className="grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-2 auto-rows-min">
@@ -605,8 +614,8 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
 
         {/* STATUS BAR */}
         <div className="h-6 bg-[#F6F6F6] dark:bg-[#282828] border-t border-[#D1D1D6] dark:border-black/50 flex items-center px-4 text-[11px] text-gray-500 dark:text-gray-400 select-none justify-between">
-          <span>{files.length} items</span>
-          <span>499 GB available</span>
+          <span>{tStatus("ItemCount", { count: files.length })}</span>
+          <span>{tStatus("SpaceAvailable", { amount: 499 })}</span>
         </div>
       </div>
     </div>

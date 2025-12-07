@@ -1,11 +1,14 @@
 import React from "react";
 import HelloStrokeMultiLang from "../../../components/HelloStrokeMultiLang";
+import { useTranslations } from "next-intl";
 
 interface HelloStepProps {
   onNext: () => void;
 }
 
 export const HelloStep: React.FC<HelloStepProps> = ({ onNext }) => {
+  const t = useTranslations("Hello");
+
   return (
     <div className="fixed inset-0 z-9999">
       <HelloStrokeMultiLang />
@@ -30,7 +33,7 @@ export const HelloStep: React.FC<HelloStepProps> = ({ onNext }) => {
           </svg>
         </div>
         <span className="text-white/80 text-xs font-medium tracking-wide">
-          Get Started
+          {t("GetStarted")}
         </span>
       </button>
     </div>

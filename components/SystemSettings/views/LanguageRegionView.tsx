@@ -10,13 +10,9 @@ import {
 import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
 
-interface LanguageRegionViewProps {
-  onBack: () => void;
-}
-
 import { LanguageSelectorModal } from "../modals/LanguageSelectorModal";
 import { usePathname, useRouter } from "@/i18n/routing";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 interface LanguageRegionViewProps {
   onBack: () => void;
@@ -35,6 +31,7 @@ export const LanguageRegionView: React.FC<LanguageRegionViewProps> = ({
   const router = useRouter();
   const pathname = usePathname();
   const currentLocale = useLocale();
+  const t = useTranslations("SystemSettings.LanguageRegion");
 
   const handleLanguageChange = (newLocale: string) => {
     // Explicitly set the cookie for immediate client-side persistence
@@ -94,15 +91,13 @@ export const LanguageRegionView: React.FC<LanguageRegionViewProps> = ({
             className="text-gray-400 dark:text-gray-600"
           />
         </button>
-        <h1 className="text-xl font-bold dark:text-white ml-2">
-          Language & Region
-        </h1>
+        <h1 className="text-xl font-bold dark:text-white ml-2">{t("Title")}</h1>
       </div>
 
       {/* Preferred Languages */}
       <div className="mb-6">
         <h3 className="text-xs font-semibold text-gray-500 mb-2 px-2">
-          Preferred Languages
+          {t("PreferredLanguages")}
         </h3>
         <div className="bg-white dark:bg-[#1e1e1e] rounded-xl border border-gray-200 dark:border-gray-700/50 overflow-hidden flex flex-col h-32">
           {/* List Header/Content */}
@@ -142,13 +137,13 @@ export const LanguageRegionView: React.FC<LanguageRegionViewProps> = ({
 
       {/* Region & Formats */}
       <SettingsGroup>
-        <SettingsRow label="Region" isLast={false}>
+        <SettingsRow label={t("Region")} isLast={false}>
           <div className="flex items-center gap-2 text-blue-500 text-sm">
             <span>India</span>
             <ChevronsUpDown size={14} />
           </div>
         </SettingsRow>
-        <SettingsRow label="Calendar" isLast={false}>
+        <SettingsRow label={t("Calendar")} isLast={false}>
           <div className="flex items-center gap-2 text-gray-500 text-sm">
             <span>Gregorian</span>
             <ChevronsUpDown size={14} />
@@ -158,7 +153,7 @@ export const LanguageRegionView: React.FC<LanguageRegionViewProps> = ({
         {/* Custom Mock Rows for Radio Buttons */}
         <div className="flex items-center justify-between p-3 border-b border-gray-100 dark:border-gray-700/50 min-h-[48px]">
           <span className="text-[13px] font-medium dark:text-gray-200">
-            Temperature
+            {t("Temperature")}
           </span>
           <div className="flex items-center gap-4 text-[13px]">
             <label className="flex items-center gap-2 cursor-pointer">
@@ -168,7 +163,7 @@ export const LanguageRegionView: React.FC<LanguageRegionViewProps> = ({
                 onChange={() => setTemperature("c")}
                 className="accent-blue-500"
               />
-              <span className="dark:text-gray-200">Celsius (°C)</span>
+              <span className="dark:text-gray-200">{t("Celsius")}</span>
             </label>
             <label className="flex items-center gap-2 cursor-pointer">
               <input
@@ -177,14 +172,14 @@ export const LanguageRegionView: React.FC<LanguageRegionViewProps> = ({
                 onChange={() => setTemperature("f")}
                 className="accent-blue-500"
               />
-              <span className="dark:text-gray-200">Fahrenheit (°F)</span>
+              <span className="dark:text-gray-200">{t("Fahrenheit")}</span>
             </label>
           </div>
         </div>
 
         <div className="flex items-center justify-between p-3 border-b border-gray-100 dark:border-gray-700/50 min-h-[48px]">
           <span className="text-[13px] font-medium dark:text-gray-200">
-            Measurement system
+            {t("MeasurementSystem")}
           </span>
           <div className="flex items-center gap-4 text-[13px]">
             <label className="flex items-center gap-2 cursor-pointer">
@@ -194,7 +189,7 @@ export const LanguageRegionView: React.FC<LanguageRegionViewProps> = ({
                 onChange={() => setMeasurement("metric")}
                 className="accent-blue-500"
               />
-              <span className="dark:text-gray-200">Metric</span>
+              <span className="dark:text-gray-200">{t("Metric")}</span>
             </label>
             <label className="flex items-center gap-2 cursor-pointer">
               <input
@@ -203,7 +198,7 @@ export const LanguageRegionView: React.FC<LanguageRegionViewProps> = ({
                 onChange={() => setMeasurement("us")}
                 className="accent-blue-500"
               />
-              <span className="dark:text-gray-200">US</span>
+              <span className="dark:text-gray-200">{t("US")}</span>
             </label>
             <label className="flex items-center gap-2 cursor-pointer">
               <input
@@ -212,24 +207,24 @@ export const LanguageRegionView: React.FC<LanguageRegionViewProps> = ({
                 onChange={() => setMeasurement("uk")}
                 className="accent-blue-500"
               />
-              <span className="dark:text-gray-200">UK</span>
+              <span className="dark:text-gray-200">{t("UK")}</span>
             </label>
           </div>
         </div>
 
-        <SettingsRow label="First day of week" isLast={false}>
+        <SettingsRow label={t("FirstDayOfWeek")} isLast={false}>
           <div className="flex items-center gap-2 text-gray-500 text-sm">
             <span>Sunday</span>
             <ChevronsUpDown size={14} />
           </div>
         </SettingsRow>
-        <SettingsRow label="Date format" isLast={false}>
+        <SettingsRow label={t("DateFormat")} isLast={false}>
           <div className="flex items-center gap-2 text-gray-500 text-sm">
             <span>19/08/25</span>
             <ChevronsUpDown size={14} />
           </div>
         </SettingsRow>
-        <SettingsRow label="Number format" isLast={true}>
+        <SettingsRow label={t("NumberFormat")} isLast={true}>
           <div className="flex items-center gap-2 text-gray-500 text-sm">
             <span>12,34,567.89</span>
             <ChevronsUpDown size={14} />
@@ -240,14 +235,14 @@ export const LanguageRegionView: React.FC<LanguageRegionViewProps> = ({
       {/* Live Text */}
       <SettingsGroup>
         <SettingsRow
-          label="Live Text"
+          label={t("LiveText")}
           type="toggle"
           value={liveText}
           onClick={() => setLiveText(!liveText)}
           isLast
         >
           <div className="block text-xs text-gray-400 mt-0.5 font-normal">
-            Select text in images to copy or take action.
+            {t("LiveTextDesc")}
           </div>
         </SettingsRow>
       </SettingsGroup>
@@ -255,10 +250,10 @@ export const LanguageRegionView: React.FC<LanguageRegionViewProps> = ({
       {/* Applications */}
       <div className="mb-6">
         <h3 className="text-xs font-semibold text-gray-500 mb-2 px-2">
-          Applications
+          {t("Applications")}
         </h3>
         <p className="text-xs text-gray-400 mb-2 px-2">
-          Customise language settings for the following applications:
+          {t("ApplicationsDesc")}
         </p>
         <div className="bg-white dark:bg-[#1e1e1e] rounded-xl border border-gray-200 dark:border-gray-700/50 overflow-hidden flex flex-col h-24">
           <div className="flex-1">{/* Empty state or list */}</div>
@@ -275,7 +270,7 @@ export const LanguageRegionView: React.FC<LanguageRegionViewProps> = ({
 
       <div className="flex items-center justify-end gap-2 mt-4">
         <button className="px-3 py-1 bg-white dark:bg-[#1e1e1e] border border-gray-200 dark:border-gray-700/50 rounded-md text-sm shadow-sm hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-          Translation Languages...
+          {t("TranslationLanguages")}
         </button>
         <div className="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-500 cursor-help">
           <HelpCircle size={14} />

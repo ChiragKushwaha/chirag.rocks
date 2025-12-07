@@ -22,6 +22,7 @@ import {
   Fingerprint,
 } from "lucide-react";
 import { SettingsSidebarItem } from "./SettingsSidebarItem";
+import { useTranslations } from "next-intl";
 
 interface SidebarProps {
   activeTab: string;
@@ -34,6 +35,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
   setActiveTab,
   currentAvatar,
 }) => {
+  const t = useTranslations("SystemSettings.Sidebar");
+
   return (
     <div className="w-[240px] shrink-0 bg-[#e8e8ed]/50 dark:bg-[#2b2b2b]/50 backdrop-blur-xl border-r border-gray-200 dark:border-black/20 flex flex-col pt-8 pb-4 px-3 overflow-y-auto">
       {/* Search */}
@@ -45,7 +48,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           />
           <input
             type="text"
-            placeholder="Search"
+            placeholder={t("Search")}
             className="w-full bg-white/50 dark:bg-white/10 border border-gray-300/50 dark:border-black/20 rounded-md pl-8 pr-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50"
             aria-label="Search settings"
           />
@@ -76,28 +79,28 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <span className="text-sm font-semibold leading-tight dark:text-gray-200">
             Chirag
           </span>
-          <span className="text-xs text-gray-500">Apple Account</span>
+          <span className="text-xs text-gray-500">{t("AppleAccount")}</span>
         </div>
       </div>
 
       <div className="space-y-1">
         <SettingsSidebarItem
           icon={Wifi}
-          label="Wi-Fi"
+          label={t("WiFi")}
           color="#007AFF"
           isActive={activeTab === "Wi-Fi"}
           onClick={() => setActiveTab("Wi-Fi")}
         />
         <SettingsSidebarItem
           icon={Bluetooth}
-          label="Bluetooth"
+          label={t("Bluetooth")}
           color="#007AFF"
           isActive={activeTab === "Bluetooth"}
           onClick={() => setActiveTab("Bluetooth")}
         />
         <SettingsSidebarItem
           icon={Globe}
-          label="Network"
+          label={t("Network")}
           color="#007AFF"
           isActive={activeTab === "Network"}
           onClick={() => setActiveTab("Network")}
@@ -109,98 +112,98 @@ export const Sidebar: React.FC<SidebarProps> = ({
       <div className="space-y-1">
         <SettingsSidebarItem
           icon={Info}
-          label="General"
+          label={t("General")}
           color="#8E8E93"
           isActive={activeTab === "General"}
           onClick={() => setActiveTab("General")}
         />
         <SettingsSidebarItem
           icon={Moon}
-          label="Appearance"
+          label={t("Appearance")}
           color="#A2845E"
           isActive={activeTab === "Appearance"}
           onClick={() => setActiveTab("Appearance")}
         />
         <SettingsSidebarItem
           icon={Info}
-          label="Accessibility"
+          label={t("Accessibility")}
           color="#007AFF"
           isActive={activeTab === "Accessibility"}
           onClick={() => setActiveTab("Accessibility")}
         />
         <SettingsSidebarItem
           icon={Layout}
-          label="Menu Bar"
+          label={t("MenuBar")}
           color="#8E8E93"
           isActive={activeTab === "Menu Bar"}
           onClick={() => setActiveTab("Menu Bar")}
         />
         <SettingsSidebarItem
           icon={Monitor}
-          label="Desktop & Dock"
+          label={t("DesktopDock")}
           color="#8E8E93"
           isActive={activeTab === "Desktop & Dock"}
           onClick={() => setActiveTab("Desktop & Dock")}
         />
         <SettingsSidebarItem
           icon={Monitor}
-          label="Displays"
+          label={t("Displays")}
           color="#007AFF"
           isActive={activeTab === "Displays"}
           onClick={() => setActiveTab("Displays")}
         />
         <SettingsSidebarItem
           icon={Search}
-          label="Spotlight"
+          label={t("Spotlight")}
           color="#5856D6"
           isActive={activeTab === "Spotlight"}
           onClick={() => setActiveTab("Spotlight")}
         />
         <SettingsSidebarItem
           icon={ImageIcon}
-          label="Wallpaper"
+          label={t("Wallpaper")}
           color="#32ADE6"
           isActive={activeTab === "Wallpaper"}
           onClick={() => setActiveTab("Wallpaper")}
         />
         <SettingsSidebarItem
           icon={Monitor}
-          label="Screen Saver"
+          label={t("ScreenSaver")}
           color="#32ADE6"
           isActive={activeTab === "Screen Saver"}
           onClick={() => setActiveTab("Screen Saver")}
         />
         <SettingsSidebarItem
           icon={Battery}
-          label="Battery"
+          label={t("Battery")}
           color="#34C759"
           isActive={activeTab === "Battery"}
           onClick={() => setActiveTab("Battery")}
         />
         <SettingsSidebarItem
           icon={Volume2}
-          label="Sound"
+          label={t("Sound")}
           color="#FF2D55"
           isActive={activeTab === "Sound"}
           onClick={() => setActiveTab("Sound")}
         />
         <SettingsSidebarItem
           icon={Bell}
-          label="Notifications"
+          label={t("Notifications")}
           color="#FF3B30"
           isActive={activeTab === "Notifications"}
           onClick={() => setActiveTab("Notifications")}
         />
         <SettingsSidebarItem
           icon={Moon}
-          label="Focus"
+          label={t("Focus")}
           color="#5856D6"
           isActive={activeTab === "Focus"}
           onClick={() => setActiveTab("Focus")}
         />
         <SettingsSidebarItem
           icon={Hourglass}
-          label="Screen Time"
+          label={t("ScreenTime")}
           color="#5856D6"
           isActive={activeTab === "Screen Time"}
           onClick={() => setActiveTab("Screen Time")}
@@ -212,28 +215,28 @@ export const Sidebar: React.FC<SidebarProps> = ({
       <div className="space-y-1">
         <SettingsSidebarItem
           icon={Lock}
-          label="Privacy & Security"
+          label={t("PrivacySecurity")}
           color="#007AFF"
           isActive={activeTab === "Privacy & Security"}
           onClick={() => setActiveTab("Privacy & Security")}
         />
         <SettingsSidebarItem
           icon={Lock}
-          label="Lock Screen"
+          label={t("LockScreen")}
           color="#8E8E93"
           isActive={activeTab === "Lock Screen"}
           onClick={() => setActiveTab("Lock Screen")}
         />
         <SettingsSidebarItem
           icon={Fingerprint}
-          label="Touch ID & Password"
+          label={t("TouchIDPassword")}
           color="#8E8E93"
           isActive={activeTab === "Touch ID & Password"}
           onClick={() => setActiveTab("Touch ID & Password")}
         />
         <SettingsSidebarItem
           icon={User}
-          label="Users & Groups"
+          label={t("UsersGroups")}
           color="#8E8E93"
           isActive={activeTab === "Users & Groups"}
           onClick={() => setActiveTab("Users & Groups")}
@@ -245,28 +248,28 @@ export const Sidebar: React.FC<SidebarProps> = ({
       <div className="space-y-1">
         <SettingsSidebarItem
           icon={Keyboard}
-          label="Keyboard"
+          label={t("Keyboard")}
           color="#8E8E93"
           isActive={activeTab === "Keyboard"}
           onClick={() => setActiveTab("Keyboard")}
         />
         <SettingsSidebarItem
           icon={Mouse}
-          label="Trackpad"
+          label={t("Trackpad")}
           color="#8E8E93"
           isActive={activeTab === "Trackpad"}
           onClick={() => setActiveTab("Trackpad")}
         />
         <SettingsSidebarItem
           icon={Printer}
-          label="Printers & Scanners"
+          label={t("PrintersScanners")}
           color="#8E8E93"
           isActive={activeTab === "Printers & Scanners"}
           onClick={() => setActiveTab("Printers & Scanners")}
         />
         <SettingsSidebarItem
           icon={HardDrive}
-          label="Storage"
+          label={t("Storage")}
           color="#8E8E93"
           isActive={activeTab === "Storage"}
           onClick={() => setActiveTab("Storage")}

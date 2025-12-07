@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
+import { useTranslations } from "next-intl";
 
 interface AppleAccountViewProps {
   currentAvatar: string;
@@ -20,6 +21,8 @@ export const AppleAccountView: React.FC<AppleAccountViewProps> = ({
   currentAvatar,
   onEditAvatar,
 }) => {
+  const t = useTranslations("SystemSettings.AppleAccount");
+
   return (
     <div className="max-w-xl mx-auto pt-8">
       {/* Header Profile */}
@@ -29,7 +32,7 @@ export const AppleAccountView: React.FC<AppleAccountViewProps> = ({
             {currentAvatar}
           </div>
           <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 rounded-full transition-opacity text-white text-xs font-medium">
-            Edit
+            {t("Edit")}
           </div>
         </div>
         <h2 className="mt-4 text-xl font-semibold dark:text-white">
@@ -40,38 +43,42 @@ export const AppleAccountView: React.FC<AppleAccountViewProps> = ({
 
       {/* Settings Groups */}
       <SettingsGroup>
-        <SettingsRow icon={User} label="Personal Information" color="#8E8E93" />
-        <SettingsRow icon={Lock} label="Sign-In & Security" color="#8E8E93" />
+        <SettingsRow
+          icon={User}
+          label={t("PersonalInformation")}
+          color="#8E8E93"
+        />
+        <SettingsRow icon={Lock} label={t("SignInSecurity")} color="#8E8E93" />
         <SettingsRow
           icon={CreditCard}
-          label="Payment & Shipping"
+          label={t("PaymentShipping")}
           color="#8E8E93"
           isLast
         />
       </SettingsGroup>
 
       <SettingsGroup>
-        <SettingsRow icon={Cloud} label="iCloud" color="#007AFF" />
+        <SettingsRow icon={Cloud} label={t("iCloud")} color="#007AFF" />
         <SettingsRow
           icon={ShoppingBag}
-          label="Media & Purchases"
+          label={t("MediaPurchases")}
           color="#007AFF"
         />
         <SettingsRow
           icon={Users}
-          label="Family"
-          value="Set Up"
+          label={t("Family")}
+          value={t("SetUp")}
           color="#007AFF"
           isLast
         />
       </SettingsGroup>
 
       {/* Devices */}
-      <SettingsGroup title="Devices">
+      <SettingsGroup title={t("Devices")}>
         <SettingsRow
           icon={Laptop}
           label="MacBook Pro"
-          value="This MacBook Pro 14″"
+          value={t("ThisMac")}
           color="#8E8E93"
         />
         <SettingsRow
@@ -85,7 +92,7 @@ export const AppleAccountView: React.FC<AppleAccountViewProps> = ({
 
       <div className="flex justify-center mt-8">
         <button className="px-4 py-1 text-sm text-red-500 bg-white dark:bg-[#1e1e1e] border border-gray-200 dark:border-gray-700/50 rounded-md shadow-sm hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-          Sign Out...
+          {t("SignOut")}
         </button>
       </div>
     </div>

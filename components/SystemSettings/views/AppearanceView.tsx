@@ -3,9 +3,11 @@ import { Eye } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
 import { useSystemStore } from "../../../store/systemStore";
+import { useTranslations } from "next-intl";
 
 export const AppearanceView = () => {
   const { theme, setTheme } = useSystemStore();
+  const t = useTranslations("SystemSettings.Appearance");
 
   return (
     <div className="space-y-6">
@@ -16,14 +18,16 @@ export const AppearanceView = () => {
           </div>
         </div>
         <div>
-          <h2 className="text-xl font-semibold dark:text-white">Appearance</h2>
+          <h2 className="text-xl font-semibold dark:text-white">
+            {t("Title")}
+          </h2>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            Select your preferred appearance.
+            {t("Description")}
           </p>
         </div>
       </div>
 
-      <SettingsGroup title="Appearance">
+      <SettingsGroup title={t("Title")}>
         <div className="flex gap-8 py-2">
           <button
             onClick={() => setTheme("light")}
@@ -38,7 +42,7 @@ export const AppearanceView = () => {
               <div className="absolute top-0 left-0 right-0 h-3 bg-gray-200" />
               <div className="absolute bottom-2 right-2 w-4 h-4 bg-blue-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
-            <span className="text-xs dark:text-gray-300">Light</span>
+            <span className="text-xs dark:text-gray-300">{t("Light")}</span>
             {theme === "light" && (
               <div className="w-1 h-1 bg-gray-400 rounded-full" />
             )}
@@ -56,7 +60,7 @@ export const AppearanceView = () => {
               <div className="absolute inset-0 bg-[#2b2b2b]" />
               <div className="absolute top-0 left-0 right-0 h-3 bg-[#3a3a3a]" />
             </div>
-            <span className="text-xs dark:text-gray-300">Dark</span>
+            <span className="text-xs dark:text-gray-300">{t("Dark")}</span>
             {theme === "dark" && (
               <div className="w-1 h-1 bg-gray-400 rounded-full" />
             )}
@@ -76,7 +80,7 @@ export const AppearanceView = () => {
               <div className="absolute inset-0 bg-linear-to-r from-white to-[#2b2b2b]" />
               <div className="absolute top-0 left-0 right-0 h-3 bg-linear-to-r from-gray-200 to-[#3a3a3a]" />
             </div>
-            <span className="text-xs dark:text-gray-300">Auto</span>
+            <span className="text-xs dark:text-gray-300">{t("Auto")}</span>
             {theme === "auto" && (
               <div className="w-1 h-1 bg-gray-400 rounded-full" />
             )}
@@ -86,7 +90,7 @@ export const AppearanceView = () => {
 
       <SettingsGroup>
         <div className="flex items-center justify-between py-3 border-b border-gray-100 dark:border-gray-700/50">
-          <span className="text-sm dark:text-white">Accent colour</span>
+          <span className="text-sm dark:text-white">{t("AccentColor")}</span>
           <div className="flex gap-2">
             {[
               "#FF3B30",
@@ -106,17 +110,17 @@ export const AppearanceView = () => {
             ))}
           </div>
         </div>
-        <SettingsRow label="Highlight colour" value="Automatic" />
-        <SettingsRow label="Sidebar icon size" value="Medium" />
+        <SettingsRow label={t("HighlightColor")} value={t("Automatic")} />
+        <SettingsRow label={t("SidebarIconSize")} value={t("Medium")} />
         <SettingsRow
-          label="Allow wallpaper tinting in windows"
+          label={t("WallpaperTinting")}
           type="toggle"
           value={true}
           isLast
         />
       </SettingsGroup>
 
-      <SettingsGroup title="Show scroll bars">
+      <SettingsGroup title={t("ShowScrollBars")}>
         <div className="space-y-2 py-2">
           <div className="flex items-center gap-2">
             <input
@@ -127,7 +131,7 @@ export const AppearanceView = () => {
               className="text-blue-500"
             />
             <label htmlFor="scroll-auto" className="text-sm dark:text-gray-300">
-              Automatically based on mouse or trackpad
+              {t("ScrollAuto")}
             </label>
           </div>
           <div className="flex items-center gap-2">
@@ -141,7 +145,7 @@ export const AppearanceView = () => {
               htmlFor="scroll-scrolling"
               className="text-sm dark:text-gray-300"
             >
-              When scrolling
+              {t("ScrollWhenScrolling")}
             </label>
           </div>
           <div className="flex items-center gap-2">
@@ -155,13 +159,13 @@ export const AppearanceView = () => {
               htmlFor="scroll-always"
               className="text-sm dark:text-gray-300"
             >
-              Always
+              {t("ScrollAlways")}
             </label>
           </div>
         </div>
       </SettingsGroup>
 
-      <SettingsGroup title="Click in the scroll bar to">
+      <SettingsGroup title={t("ClickScrollBar")}>
         <div className="space-y-2 py-2">
           <div className="flex items-center gap-2">
             <input
@@ -172,7 +176,7 @@ export const AppearanceView = () => {
               className="text-blue-500"
             />
             <label htmlFor="click-next" className="text-sm dark:text-gray-300">
-              Jump to the next page
+              {t("JumpNextPage")}
             </label>
           </div>
           <div className="flex items-center gap-2">
@@ -183,7 +187,7 @@ export const AppearanceView = () => {
               className="text-blue-500"
             />
             <label htmlFor="click-spot" className="text-sm dark:text-gray-300">
-              Jump to the spot that's clicked
+              {t("JumpSpotClicked")}
             </label>
           </div>
         </div>

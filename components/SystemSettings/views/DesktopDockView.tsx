@@ -2,8 +2,11 @@ import React from "react";
 import { Layout } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
+import { useTranslations } from "next-intl";
 
 export const DesktopDockView = () => {
+  const t = useTranslations("SystemSettings.DesktopDock");
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
@@ -12,88 +15,74 @@ export const DesktopDockView = () => {
         </div>
         <div>
           <h2 className="text-xl font-semibold dark:text-white">
-            Desktop & Dock
+            {t("Title")}
           </h2>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            Change the appearance of the Dock and Desktop.
+            {t("Description")}
           </p>
         </div>
       </div>
 
-      <SettingsGroup title="Dock">
+      <SettingsGroup title={t("Dock")}>
         <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700/50 flex items-center justify-between">
           <span className="text-[13px] font-medium dark:text-gray-200">
-            Size
+            {t("Size")}
           </span>
           <div className="flex items-center gap-2">
-            <span className="text-[10px] text-gray-400">Small</span>
+            <span className="text-[10px] text-gray-400">{t("Small")}</span>
             <input
               type="range"
               className="w-32 accent-blue-500"
               aria-label="Icon size"
             />
-            <span className="text-[10px] text-gray-400">Large</span>
+            <span className="text-[10px] text-gray-400">{t("Large")}</span>
           </div>
         </div>
         <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700/50 flex items-center justify-between">
           <span className="text-[13px] font-medium dark:text-gray-200">
-            Magnification
+            {t("Magnification")}
           </span>
           <div className="flex items-center gap-2">
-            <span className="text-[10px] text-gray-400">Small</span>
+            <span className="text-[10px] text-gray-400">{t("Small")}</span>
             <input
               type="range"
               className="w-32 accent-blue-500"
               aria-label="Dock size"
             />
-            <span className="text-[10px] text-gray-400">Large</span>
+            <span className="text-[10px] text-gray-400">{t("Large")}</span>
           </div>
         </div>
-        <SettingsRow label="Position on screen" value="Bottom" />
-        <SettingsRow label="Minimise windows using" value="Genie effect" />
+        <SettingsRow label={t("Position")} value={t("Bottom")} />
+        <SettingsRow label={t("MinimiseUsing")} value={t("GenieEffect")} />
+        <SettingsRow label={t("DoubleClickTitle")} value={t("Zoom")} />
+        <SettingsRow label={t("MinimiseToIcon")} type="toggle" value={false} />
+        <SettingsRow label={t("AutoHideDock")} type="toggle" value={false} />
+        <SettingsRow label={t("AnimateOpening")} type="toggle" value={true} />
+        <SettingsRow label={t("ShowIndicators")} type="toggle" value={true} />
         <SettingsRow
-          label="Double-click a window's title bar to"
-          value="Zoom"
-        />
-        <SettingsRow
-          label="Minimise windows into application icon"
-          type="toggle"
-          value={false}
-        />
-        <SettingsRow
-          label="Automatically hide and show the Dock"
-          type="toggle"
-          value={false}
-        />
-        <SettingsRow
-          label="Animate opening applications"
-          type="toggle"
-          value={true}
-        />
-        <SettingsRow
-          label="Show indicators for open applications"
-          type="toggle"
-          value={true}
-        />
-        <SettingsRow
-          label="Show recent applications in Dock"
+          label={t("ShowRecent")}
           type="toggle"
           value={true}
           isLast
         />
       </SettingsGroup>
 
-      <SettingsGroup title="Desktop & Stage Manager">
-        <SettingsRow label="Show Items" value="On Desktop" />
-        <SettingsRow label="Click wallpaper to reveal desktop" value="Always" />
-        <SettingsRow label="Stage Manager" type="toggle" value={false} isLast />
+      <SettingsGroup title={t("DesktopStageManager")}>
+        <SettingsRow label={t("ShowItems")} value={t("OnDesktop")} />
+        <SettingsRow label={t("ClickWallpaper")} value={t("Always")} />
+        <SettingsRow
+          label={t("StageManager")}
+          type="toggle"
+          value={false}
+          isLast
+        />
       </SettingsGroup>
 
-      <SettingsGroup title="Widgets">
-        <SettingsRow label="Show Widgets" value="On Desktop" />
-        <SettingsRow label="Widget style" value="Automatic" />
+      <SettingsGroup title={t("Widgets")}>
+        <SettingsRow label={t("ShowWidgets")} value={t("OnDesktop")} />
+        <SettingsRow label={t("WidgetStyle")} value={t("Automatic")} />
         <SettingsRow
-          label="Use iPhone widgets"
+          label={t("UseIPhoneWidgets")}
           type="toggle"
           value={true}
           isLast

@@ -33,6 +33,7 @@ import { StorageView } from "../components/SystemSettings/views/StorageView";
 import { Info } from "lucide-react";
 
 import { useSystemStore } from "../store/systemStore";
+import { useTranslations } from "next-intl";
 
 // ... existing imports
 
@@ -46,6 +47,7 @@ export const SystemSettings: React.FC = () => {
 
   const [isAvatarEditorOpen, setIsAvatarEditorOpen] = useState(false);
   const [currentAvatar, setCurrentAvatar] = useState("🦅");
+  const t = useTranslations("SystemSettings.Sidebar");
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
@@ -130,7 +132,7 @@ export const SystemSettings: React.FC = () => {
             <div className="w-16 h-16 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-4">
               <Info size={32} />
             </div>
-            <p>This section is not implemented yet.</p>
+            <p>{t("NotImplemented")}</p>
           </div>
         );
     }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Wifi, Lock, MoreHorizontal, HelpCircle } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { Toggle } from "../../Toggle";
+import { useTranslations } from "next-intl";
 
 const CheckIcon = () => (
   <svg
@@ -23,6 +24,7 @@ const CheckIcon = () => (
 
 export const WifiView = () => {
   const [wifiEnabled, setWifiEnabled] = useState(true);
+  const t = useTranslations("SystemSettings.Wifi");
 
   return (
     <div className="space-y-6">
@@ -32,9 +34,11 @@ export const WifiView = () => {
             <Wifi size={32} className="text-white" />
           </div>
           <div>
-            <h2 className="text-xl font-semibold dark:text-white">Wi-Fi</h2>
+            <h2 className="text-xl font-semibold dark:text-white">
+              {t("Title")}
+            </h2>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Set up Wi-Fi to wirelessly connect your Mac to the internet.
+              {t("Description")}
             </p>
           </div>
         </div>
@@ -50,19 +54,19 @@ export const WifiView = () => {
               </span>
               <span className="text-xs text-green-500 flex items-center gap-1">
                 <div className="w-2 h-2 rounded-full bg-green-500" />
-                Connected
+                {t("Connected")}
               </span>
             </div>
             <div className="flex items-center gap-2">
               <Lock size={14} className="text-gray-400" />
               <Wifi size={16} className="text-gray-400" />
               <button className="px-2 py-1 text-xs font-medium bg-white dark:bg-white/10 border border-gray-200 dark:border-gray-600 rounded shadow-sm">
-                Details...
+                {t("Details")}
               </button>
             </div>
           </div>
 
-          <SettingsGroup title="Known Networks">
+          <SettingsGroup title={t("KnownNetworks")}>
             <div className="flex items-center justify-between p-3 border-b border-gray-100 dark:border-gray-700/50">
               <span className="text-[13px] font-medium dark:text-gray-200">
                 Pcnncc4G
@@ -90,7 +94,7 @@ export const WifiView = () => {
             </div>
           </SettingsGroup>
 
-          <SettingsGroup title="Other Networks">
+          <SettingsGroup title={t("OtherNetworks")}>
             {[
               "Aarohi",
               "Anand Sadan",
@@ -113,7 +117,7 @@ export const WifiView = () => {
                 <div className="flex items-center gap-3 text-gray-400">
                   {i === 0 && (
                     <button className="px-2 py-0.5 text-xs font-medium bg-white dark:bg-white/10 border border-gray-200 dark:border-gray-600 rounded shadow-sm text-gray-900 dark:text-gray-100">
-                      Connect
+                      {t("Connect")}
                     </button>
                   )}
                   <Lock size={14} />
@@ -126,7 +130,7 @@ export const WifiView = () => {
 
           <div className="flex justify-end mb-6">
             <button className="px-2 py-1 text-xs font-medium bg-white dark:bg-white/10 border border-gray-200 dark:border-gray-600 rounded shadow-sm dark:text-gray-200">
-              Other...
+              {t("Other")}
             </button>
           </div>
 
@@ -134,14 +138,14 @@ export const WifiView = () => {
             <div className="flex items-center justify-between p-3 border-b border-gray-100 dark:border-gray-700/50">
               <div className="flex flex-col">
                 <span className="text-[13px] font-medium dark:text-gray-200">
-                  Ask to join networks
+                  {t("AskToJoin")}
                 </span>
                 <span className="text-[11px] text-gray-500">
-                  Known networks will be joined automatically.
+                  {t("AskToJoinDesc")}
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[13px] text-gray-500">Notify</span>
+                <span className="text-[13px] text-gray-500">{t("Notify")}</span>
                 <div className="bg-gray-200 dark:bg-gray-600 rounded px-1.5 py-0.5 text-xs text-gray-600 dark:text-gray-300">
                   ↕
                 </div>
@@ -150,15 +154,16 @@ export const WifiView = () => {
             <div className="flex items-center justify-between p-3">
               <div className="flex flex-col">
                 <span className="text-[13px] font-medium dark:text-gray-200">
-                  Ask to join hotspots
+                  {t("AskToJoinHotspots")}
                 </span>
                 <span className="text-[11px] text-gray-500">
-                  Allow this Mac to automatically discover nearby personal
-                  hotspots.
+                  {t("AskToJoinHotspotsDesc")}
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[13px] text-gray-500">Ask to Join</span>
+                <span className="text-[13px] text-gray-500">
+                  {t("AskToJoinAction")}
+                </span>
                 <div className="bg-gray-200 dark:bg-gray-600 rounded px-1.5 py-0.5 text-xs text-gray-600 dark:text-gray-300">
                   ↕
                 </div>
@@ -168,7 +173,7 @@ export const WifiView = () => {
 
           <div className="flex justify-end gap-2">
             <button className="px-2 py-1 text-xs font-medium bg-white dark:bg-white/10 border border-gray-200 dark:border-gray-600 rounded shadow-sm dark:text-gray-200">
-              Advanced...
+              {t("Advanced")}
             </button>
             <div className="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-500">
               <HelpCircle size={14} />

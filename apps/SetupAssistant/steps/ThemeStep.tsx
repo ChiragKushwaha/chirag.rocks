@@ -2,6 +2,7 @@ import React from "react";
 import { Moon, Sun, Check } from "lucide-react";
 import { SetupWindow } from "../SetupWindow";
 import { useSystemStore } from "../../../store/systemStore";
+import { useTranslations } from "next-intl";
 
 interface ThemeStepProps {
   onNext: () => void;
@@ -10,11 +11,12 @@ interface ThemeStepProps {
 
 export const ThemeStep: React.FC<ThemeStepProps> = ({ onNext, onBack }) => {
   const { theme, setTheme } = useSystemStore();
+  const t = useTranslations("Setup.Theme");
 
   return (
     <SetupWindow
-      title="Select Your Appearance"
-      description="Select Light or Dark appearance. The system interface and apps will adapt automatically."
+      title={t("Title")}
+      description={t("Description")}
       icon={Moon}
       onContinue={onNext}
       onBack={onBack}
@@ -61,7 +63,7 @@ export const ThemeStep: React.FC<ThemeStepProps> = ({ onNext, onBack }) => {
                 : "text-[#6e6e73] dark:text-[#98989d]"
             }`}
           >
-            Light
+            {t("Light")}
           </span>
         </div>
 
@@ -105,7 +107,7 @@ export const ThemeStep: React.FC<ThemeStepProps> = ({ onNext, onBack }) => {
                 : "text-[#6e6e73] dark:text-[#98989d]"
             }`}
           >
-            Dark
+            {t("Dark")}
           </span>
         </div>
       </div>

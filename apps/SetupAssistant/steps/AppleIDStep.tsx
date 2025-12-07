@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Cloud, Globe, Users } from "lucide-react";
 import { SetupWindow } from "../SetupWindow";
+import { useTranslations } from "next-intl";
 
 interface AppleIDStepProps {
   onNext: () => void;
@@ -17,11 +18,12 @@ export const AppleIDStep: React.FC<AppleIDStepProps> = ({
   appleID,
   setAppleID,
 }) => {
+  const t = useTranslations("Setup.AppleID");
   const [error, setError] = useState("");
 
   const handleContinue = () => {
     if (!appleID.trim()) {
-      setError("Please enter your Apple ID.");
+      setError(t("ErrorRequired"));
       return;
     }
     // In a real app, we would validate the Apple ID format and authenticate
@@ -34,7 +36,7 @@ export const AppleIDStep: React.FC<AppleIDStepProps> = ({
 
   return (
     <SetupWindow
-      title="Sign In with Your Apple ID"
+      title={t("Title")}
       icon={Cloud}
       onContinue={handleContinue}
       onBack={onBack}
@@ -43,7 +45,7 @@ export const AppleIDStep: React.FC<AppleIDStepProps> = ({
           onClick={onNext}
           className="text-[#007AFF] text-[13px] font-medium hover:text-[#0055B3] dark:hover:text-[#409CFF] transition-colors"
         >
-          Set Up Later
+          {t("SetupLater")}
         </button>
       }
     >
@@ -61,13 +63,13 @@ export const AppleIDStep: React.FC<AppleIDStepProps> = ({
         </div>
 
         <p className="text-[#6e6e73] dark:text-[#98989d] text-[13px] text-center leading-relaxed">
-          Sign in to use iCloud, the App Store and other Apple services.
+          {t("Description")}
         </p>
 
         {/* Apple ID Input */}
         <div className="space-y-2">
           <label className="text-[13px] text-black dark:text-white">
-            Apple ID
+            {t("Label")}
           </label>
           <input
             type="email"
@@ -92,7 +94,7 @@ export const AppleIDStep: React.FC<AppleIDStepProps> = ({
             onClick={onCreateAppleID}
             className="text-[#007AFF] text-[13px] hover:text-[#0055B3] dark:hover:text-[#409CFF] transition-colors"
           >
-            Create new Apple ID
+            {t("CreateNew")}
           </button>
           <br />
           <button
@@ -103,7 +105,7 @@ export const AppleIDStep: React.FC<AppleIDStepProps> = ({
             }
             className="text-[#007AFF] text-[13px] hover:text-[#0055B3] dark:hover:text-[#409CFF] transition-colors"
           >
-            Forgot Apple ID or password?
+            {t("Forgot")}
           </button>
           <br />
           <button
@@ -114,7 +116,7 @@ export const AppleIDStep: React.FC<AppleIDStepProps> = ({
             }
             className="text-[#007AFF] text-[13px] hover:text-[#0055B3] dark:hover:text-[#409CFF] transition-colors"
           >
-            Use different Apple IDs for iCloud and Apple media purchases?
+            {t("UseDifferent")}
           </button>
         </div>
 
@@ -124,9 +126,7 @@ export const AppleIDStep: React.FC<AppleIDStepProps> = ({
             <Users size={32} className="text-[#007AFF]" />
           </div>
           <p className="text-[#6e6e73] dark:text-[#98989d] text-[11px] leading-relaxed">
-            This Mac will be associated with your Apple ID, and data such as
-            photos, contacts and documents will be stored in iCloud so you can
-            access them on other devices.
+            {t("Info")}
           </p>
           <button
             onClick={() =>
@@ -134,7 +134,7 @@ export const AppleIDStep: React.FC<AppleIDStepProps> = ({
             }
             className="text-[#007AFF] text-[11px] hover:text-[#0055B3] dark:hover:text-[#409CFF] transition-colors"
           >
-            See how your data is managed
+            {t("SeeData")}
           </button>
         </div>
       </div>

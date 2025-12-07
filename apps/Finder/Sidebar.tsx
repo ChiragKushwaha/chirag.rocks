@@ -12,6 +12,7 @@ import {
   Monitor,
 } from "lucide-react";
 import { MacOSTableRow } from "../../components/ui/MacOSDesignSystem"; // New import
+import { useTranslations } from "next-intl";
 
 interface SidebarProps {
   currentPath: string;
@@ -27,27 +28,28 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const { user } = useSystemStore();
   const userName = user?.name || "Guest";
   const userHome = `/Users/${userName}`;
+  const t = useTranslations("Finder.Sidebar");
 
   const menuItems = [
     {
-      title: "Favorites",
+      title: t("Favorites"),
       items: [
-        { name: "AirDrop", icon: Airplay, path: "/AirDrop" },
-        { name: "Recents", icon: Clock, path: "/Recents" },
-        { name: "Applications", icon: LayoutGrid, path: "/Applications" },
-        { name: "Desktop", icon: Monitor, path: `${userHome}/Desktop` },
-        { name: "Documents", icon: FileText, path: `${userHome}/Documents` },
-        { name: "Downloads", icon: Download, path: `${userHome}/Downloads` },
-        { name: "Pictures", icon: Image, path: `${userHome}/Pictures` },
-        { name: "Home", icon: Home, path: userHome },
+        { name: t("AirDrop"), icon: Airplay, path: "/AirDrop" },
+        { name: t("Recents"), icon: Clock, path: "/Recents" },
+        { name: t("Applications"), icon: LayoutGrid, path: "/Applications" },
+        { name: t("Desktop"), icon: Monitor, path: `${userHome}/Desktop` },
+        { name: t("Documents"), icon: FileText, path: `${userHome}/Documents` },
+        { name: t("Downloads"), icon: Download, path: `${userHome}/Downloads` },
+        { name: t("Pictures"), icon: Image, path: `${userHome}/Pictures` },
+        { name: t("Home"), icon: Home, path: userHome },
       ],
     },
     {
-      title: "Locations",
+      title: t("Locations"),
       items: [
-        { name: "Macintosh HD", icon: HardDrive, path: "/" },
+        { name: t("MacintoshHD"), icon: HardDrive, path: "/" },
         {
-          name: "iCloud Drive",
+          name: t("iCloudDrive"),
           icon: Folder,
           path: `${userHome}/Library/Mobile Documents`,
         },

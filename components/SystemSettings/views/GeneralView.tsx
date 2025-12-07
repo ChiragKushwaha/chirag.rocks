@@ -3,25 +3,28 @@ import {
   Info,
   RefreshCw,
   HardDrive,
-  Heart, // For AppleCare (closest match)
-  Share2, // For AirDrop
-  Key, // AutoFill/Passwords
-  Clock, // Date & Time
-  Globe, // Language & Region
-  ListChecks, // Login Items
-  Share, // Sharing
-  Briefcase, // Device Management
-  ArrowRightCircle, // Transfer or Reset
-  Settings, // For General Header?
+  Heart,
+  Share2,
+  Key,
+  Clock,
+  Globe,
+  ListChecks,
+  Share,
+  Briefcase,
+  ArrowRightCircle,
+  Settings,
 } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
+import { useTranslations } from "next-intl";
 
 interface GeneralViewProps {
   onNavigate: (view: string) => void;
 }
 
 export const GeneralView: React.FC<GeneralViewProps> = ({ onNavigate }) => {
+  const t = useTranslations("SystemSettings.General");
+
   return (
     <div className="pt-8 px-4 max-w-2xl mx-auto pb-12">
       {/* Header */}
@@ -29,29 +32,35 @@ export const GeneralView: React.FC<GeneralViewProps> = ({ onNavigate }) => {
         <div className="w-16 h-16 rounded-full bg-gray-400/20 flex items-center justify-center mb-4">
           <Settings className="w-10 h-10 text-gray-500" />
         </div>
-        <h1 className="text-2xl font-bold dark:text-white mb-2">General</h1>
+        <h1 className="text-2xl font-bold dark:text-white mb-2">
+          {t("Title")}
+        </h1>
         <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md">
-          Manage your overall setup and preferences for Mac, such as software
-          updates, device language, AirDrop and more.
+          {t("Description")}
         </p>
       </div>
 
       {/* Group 1 */}
       <SettingsGroup>
-        <SettingsRow icon={Info} label="About" color="#8E8E93" />
+        <SettingsRow icon={Info} label={t("About")} color="#8E8E93" />
         <SettingsRow
           icon={RefreshCw}
-          label="Software Update"
-          color="#8E8E93" // Usually a cog/gear icon, but refresh works
+          label={t("SoftwareUpdate")}
+          color="#8E8E93"
         />
-        <SettingsRow icon={HardDrive} label="Storage" color="#8E8E93" isLast />
+        <SettingsRow
+          icon={HardDrive}
+          label={t("Storage")}
+          color="#8E8E93"
+          isLast
+        />
       </SettingsGroup>
 
-      {/* Group 2: AppleCare (Using custom icon color or red) */}
+      {/* Group 2: AppleCare */}
       <SettingsGroup>
         <SettingsRow
-          icon={Heart} // AppleCare usually Apple logo or heart
-          label="AppleCare & Warranty"
+          icon={Heart}
+          label={t("AppleCare")}
           color="#FF2D55"
           isLast
         />
@@ -59,27 +68,22 @@ export const GeneralView: React.FC<GeneralViewProps> = ({ onNavigate }) => {
 
       {/* Group 3 */}
       <SettingsGroup>
-        <SettingsRow icon={Share2} label="AirDrop & Handoff" color="#007AFF" />
-        <SettingsRow
-          icon={Key}
-          label="AutoFill & Passwords"
-          color="#8E8E93"
-          isLast
-        />
+        <SettingsRow icon={Share2} label={t("AirDrop")} color="#007AFF" />
+        <SettingsRow icon={Key} label={t("AutoFill")} color="#8E8E93" isLast />
       </SettingsGroup>
 
       {/* Group 4 */}
       <SettingsGroup>
-        <SettingsRow icon={Clock} label="Date & Time" color="#8E8E93" />
+        <SettingsRow icon={Clock} label={t("DateTime")} color="#8E8E93" />
         <SettingsRow
           icon={Globe}
-          label="Language & Region"
+          label={t("LanguageRegion")}
           color="#007AFF"
           onClick={() => onNavigate("language")}
         />
         <SettingsRow
           icon={ListChecks}
-          label="Login Items & Extensions"
+          label={t("LoginItems")}
           color="#8E8E93"
           isLast
         />
@@ -87,20 +91,20 @@ export const GeneralView: React.FC<GeneralViewProps> = ({ onNavigate }) => {
 
       {/* Group 5 */}
       <SettingsGroup>
-        <SettingsRow icon={Share} label="Sharing" color="#007AFF" isLast />
+        <SettingsRow icon={Share} label={t("Sharing")} color="#007AFF" isLast />
       </SettingsGroup>
 
       {/* Group 6 */}
       <SettingsGroup>
-        <SettingsRow icon={HardDrive} label="Startup Disk" color="#8E8E93" />
         <SettingsRow
-          icon={Clock} // Time Machine
-          label="Time Machine"
-          color="#34C759" // Green
+          icon={HardDrive}
+          label={t("StartupDisk")}
+          color="#8E8E93"
         />
+        <SettingsRow icon={Clock} label={t("TimeMachine")} color="#34C759" />
         <SettingsRow
           icon={Briefcase}
-          label="Device Management"
+          label={t("DeviceManagement")}
           color="#8E8E93"
           isLast
         />
@@ -110,7 +114,7 @@ export const GeneralView: React.FC<GeneralViewProps> = ({ onNavigate }) => {
       <SettingsGroup>
         <SettingsRow
           icon={ArrowRightCircle}
-          label="Transfer or Reset"
+          label={t("TransferReset")}
           color="#8E8E93"
           isLast
         />

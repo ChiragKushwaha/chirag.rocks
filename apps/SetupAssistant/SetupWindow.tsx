@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useSetupContext } from "./SetupContext";
+import { useTranslations } from "next-intl";
 
 interface SetupWindowProps {
   title: string;
@@ -25,6 +26,7 @@ export const SetupWindow: React.FC<SetupWindowProps> = ({
   customLeftContent,
 }) => {
   const { currentStep } = useSetupContext();
+  const t = useTranslations("Setup.Common");
 
   // Map steps to dots
   const getActiveDot = (step: string) => {
@@ -106,7 +108,7 @@ export const SetupWindow: React.FC<SetupWindowProps> = ({
                 onClick={onBack}
                 className="text-[#007AFF] text-[13px] font-medium hover:text-[#0055B3] dark:hover:text-[#409CFF] transition-colors"
               >
-                Back
+                {t("Back")}
               </button>
             )}
           </div>
@@ -135,7 +137,7 @@ export const SetupWindow: React.FC<SetupWindowProps> = ({
               disabled:opacity-30 disabled:cursor-default
             `}
             >
-              Continue
+              {t("Continue")}
               <ArrowRight size={14} strokeWidth={2.5} />
             </button>
           </div>

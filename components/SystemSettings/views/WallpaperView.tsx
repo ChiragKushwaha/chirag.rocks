@@ -5,6 +5,7 @@ import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
 import { useSystemStore } from "../../../store/systemStore";
 import { WallpaperManager } from "../../../lib/WallpaperManager";
+import { useTranslations } from "next-intl";
 
 interface Wallpaper {
   name: string;
@@ -17,8 +18,9 @@ interface Wallpaper {
 }
 
 export const WallpaperView = () => {
-  const { theme, wallpaperName, setWallpaperName, isDark } = useSystemStore();
+  const { wallpaperName, setWallpaperName, isDark } = useSystemStore();
   const [wallpapers, setWallpapers] = useState<Wallpaper[]>([]);
+  const t = useTranslations("SystemSettings.Wallpaper");
 
   useEffect(() => {
     let mounted = true;
@@ -44,9 +46,11 @@ export const WallpaperView = () => {
           <ImageIcon size={32} className="text-cyan-500" />
         </div>
         <div>
-          <h2 className="text-xl font-semibold dark:text-white">Wallpaper</h2>
+          <h2 className="text-xl font-semibold dark:text-white">
+            {t("Title")}
+          </h2>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            Choose a desktop picture.
+            {t("Description")}
           </p>
         </div>
       </div>
@@ -67,11 +71,15 @@ export const WallpaperView = () => {
           <h3 className="font-medium dark:text-white">
             {currentWallpaper?.name || "Wallpaper"}
           </h3>
-          <SettingsRow label="Show on all Spaces" type="toggle" value={true} />
+          <SettingsRow
+            label={t("ShowOnAllSpaces")}
+            type="toggle"
+            value={true}
+          />
         </div>
       </div>
 
-      <SettingsGroup title="Dynamic Wallpapers">
+      <SettingsGroup title={t("DynamicWallpapers")}>
         <div className="grid grid-cols-4 gap-4 p-4">
           {wallpapers.map((wp) => {
             const variantToShow = isDark
@@ -111,11 +119,11 @@ export const WallpaperView = () => {
         </div>
       </SettingsGroup>
 
-      <SettingsGroup title="Pictures">
+      <SettingsGroup title={t("Pictures")}>
         <div className="p-4 grid grid-cols-4 gap-4">
           <button className="aspect-square bg-gray-100 dark:bg-white/5 rounded-lg flex flex-col items-center justify-center gap-2 text-gray-500 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors border border-dashed border-gray-300 dark:border-gray-600">
             <Plus size={24} />
-            <span className="text-xs">Add Photo</span>
+            <span className="text-xs">{t("AddPhoto")}</span>
           </button>
         </div>
       </SettingsGroup>

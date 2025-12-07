@@ -2,8 +2,11 @@ import React from "react";
 import { HardDrive, Info } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
+import { useTranslations } from "next-intl";
 
 export const StorageView = () => {
+  const t = useTranslations("SystemSettings.Storage");
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
@@ -11,9 +14,11 @@ export const StorageView = () => {
           <HardDrive size={32} className="text-gray-500" />
         </div>
         <div>
-          <h2 className="text-xl font-semibold dark:text-white">Storage</h2>
+          <h2 className="text-xl font-semibold dark:text-white">
+            {t("Title")}
+          </h2>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            Manage disk space.
+            {t("Description")}
           </p>
         </div>
       </div>
@@ -25,9 +30,11 @@ export const StorageView = () => {
               <HardDrive size={24} className="text-gray-500" />
             </div>
             <div>
-              <div className="font-semibold dark:text-white">Macintosh HD</div>
+              <div className="font-semibold dark:text-white">
+                {t("MacintoshHD")}
+              </div>
               <div className="text-sm text-gray-500">
-                245 GB available of 494 GB
+                {t("AvailableSpace", { available: 245, total: 494 })}
               </div>
             </div>
           </div>
@@ -44,52 +51,51 @@ export const StorageView = () => {
         <div className="grid grid-cols-3 gap-2 text-xs text-gray-500">
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-red-500" />
-            <span>Apps</span>
+            <span>{t("Apps")}</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-yellow-500" />
-            <span>Documents</span>
+            <span>{t("Documents")}</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-green-500" />
-            <span>System Data</span>
+            <span>{t("SystemData")}</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-blue-500" />
-            <span>macOS</span>
+            <span>{t("macOS")}</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-purple-500" />
-            <span>Other Users</span>
+            <span>{t("OtherUsers")}</span>
           </div>
         </div>
       </div>
 
-      <SettingsGroup title="Recommendations">
+      <SettingsGroup title={t("Recommendations")}>
         <div className="p-4 flex items-start gap-4">
           <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center text-blue-500">
             <Info size={20} />
           </div>
           <div className="flex-1">
             <div className="font-medium dark:text-white mb-1">
-              Store in iCloud
+              {t("StoreInICloud")}
             </div>
             <div className="text-sm text-gray-500 mb-3">
-              Store all your files, photos and messages in iCloud and save space
-              on this Mac.
+              {t("StoreInICloudDesc")}
             </div>
             <button className="px-3 py-1 text-xs font-medium bg-white dark:bg-white/10 border border-gray-200 dark:border-gray-600 rounded shadow-sm dark:text-gray-200">
-              Store in iCloud...
+              {t("StoreInICloudButton")}
             </button>
           </div>
         </div>
       </SettingsGroup>
 
-      <SettingsGroup title="Categories">
-        <SettingsRow label="Applications" value="120 GB" />
-        <SettingsRow label="Documents" value="45 GB" />
-        <SettingsRow label="System Data" value="30 GB" />
-        <SettingsRow label="macOS" value="15 GB" isLast />
+      <SettingsGroup title={t("Categories")}>
+        <SettingsRow label={t("Applications")} value="120 GB" />
+        <SettingsRow label={t("Documents")} value="45 GB" />
+        <SettingsRow label={t("SystemData")} value="30 GB" />
+        <SettingsRow label={t("macOS")} value="15 GB" isLast />
       </SettingsGroup>
     </div>
   );

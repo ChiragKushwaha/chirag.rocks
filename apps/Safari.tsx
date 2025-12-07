@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useSystemStore } from "../store/systemStore";
+import { useTranslations } from "next-intl";
 import {
   ArrowLeft,
   ArrowRight,
@@ -26,20 +27,23 @@ interface Tab {
   icon?: string;
 }
 
-const FAVORITES = [
-  { name: "Apple", url: "https://www.apple.com", icon: "apple" },
-  { name: "Google", url: "https://www.google.com", icon: "google" },
-  { name: "Wikipedia", url: "https://www.wikipedia.org", icon: "book" },
-  { name: "GitHub", url: "https://github.com", icon: "github" },
-];
-
 export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
+  const t = useTranslations("Safari");
+  const tFav = useTranslations("Safari.Favorites");
+
+  const FAVORITES = [
+    { name: tFav("Apple"), url: "https://www.apple.com", icon: "apple" },
+    { name: tFav("Google"), url: "https://www.google.com", icon: "google" },
+    { name: tFav("Wikipedia"), url: "https://www.wikipedia.org", icon: "book" },
+    { name: tFav("GitHub"), url: "https://github.com", icon: "github" },
+  ];
+
   const [tabs, setTabs] = useState<Tab[]>([
     {
       id: 1,
       history: [initialUrl || ""],
       currentIndex: 0,
-      title: initialUrl ? "Loading..." : "Start Page",
+      title: initialUrl ? t("Loading") : t("StartPage"),
       loading: !!initialUrl,
     },
   ]);

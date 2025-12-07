@@ -2,8 +2,11 @@ import React from "react";
 import { Lock } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
+import { useTranslations } from "next-intl";
 
 export const LockScreenView = () => {
+  const t = useTranslations("SystemSettings.LockScreen");
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
@@ -11,33 +14,32 @@ export const LockScreenView = () => {
           <Lock size={32} className="text-gray-500" />
         </div>
         <div>
-          <h2 className="text-xl font-semibold dark:text-white">Lock Screen</h2>
+          <h2 className="text-xl font-semibold dark:text-white">
+            {t("Title")}
+          </h2>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            Change Lock Screen settings.
+            {t("Description")}
           </p>
         </div>
       </div>
 
       <SettingsGroup>
         <SettingsRow
-          label="Turn display off on battery when inactive"
-          value="2 minutes"
+          label={t("TurnOffDisplayBattery")}
+          value={t("TwoMinutes")}
         />
         <SettingsRow
-          label="Turn display off on power adapter when inactive"
-          value="10 minutes"
+          label={t("TurnOffDisplayAdapter")}
+          value={t("TenMinutes")}
           isLast
         />
       </SettingsGroup>
 
       <SettingsGroup>
-        <SettingsRow
-          label="Require password after screen saver begins or display is turned off"
-          value="Immediately"
-        />
+        <SettingsRow label={t("RequirePassword")} value={t("Immediately")} />
         <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700/50 flex items-center justify-between">
           <span className="text-[13px] font-medium dark:text-gray-200">
-            Show message when locked
+            {t("ShowMessage")}
           </span>
           <div className="flex items-center gap-2">
             <div
@@ -46,12 +48,16 @@ export const LockScreenView = () => {
               <div className={`w-4 h-4 rounded-full bg-white shadow-sm`} />
             </div>
             <button className="text-[13px] font-medium text-gray-800 dark:text-gray-200 bg-white dark:bg-white/10 border border-gray-300 dark:border-gray-600 rounded px-3 py-1 shadow-sm">
-              Set...
+              {t("Set")}
             </button>
           </div>
         </div>
-        <SettingsRow label="Login window shows" value="List of users" />
-        <SettingsRow label="Show large clock" value="On Lock Screen" isLast />
+        <SettingsRow label={t("LoginWindowShows")} value={t("ListOfUsers")} />
+        <SettingsRow
+          label={t("ShowLargeClock")}
+          value={t("OnLockScreen")}
+          isLast
+        />
       </SettingsGroup>
     </div>
   );

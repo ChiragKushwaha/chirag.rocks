@@ -2,6 +2,7 @@ import React from "react";
 import { Globe } from "lucide-react";
 import { SetupWindow } from "../SetupWindow";
 import { useSystemStore } from "../../../store/systemStore";
+import { useTranslations } from "next-intl";
 
 import { useRouter, usePathname } from "@/i18n/routing";
 
@@ -10,43 +11,7 @@ interface LanguageStepProps {
   onBack: () => void;
 }
 
-const LANGUAGE_MAP: Record<string, string> = {
-  English: "en",
-  Español: "es",
-  Français: "fr",
-  Deutsch: "de",
-  Italiano: "it",
-  日本語: "ja",
-  中文: "zh",
-  Português: "pt",
-  Русский: "ru",
-  한국어: "ko",
-  Nederlands: "nl",
-  Svenska: "sv",
-  Dansk: "da",
-  Norsk: "no",
-  Suomi: "fi",
-  Polski: "pl",
-  Türkçe: "tr",
-  العربية: "ar",
-  हिन्दी: "hi",
-  বাংলা: "bn",
-  "Tiếng Việt": "vi",
-  ภาษาไทย: "th",
-  Ελληνικά: "el",
-  Čeština: "cs",
-  Magyar: "hu",
-  Română: "ro",
-  Українська: "uk",
-  "Bahasa Indonesia": "id",
-  "Bahasa Melayu": "ms",
-  Hrvatski: "hr",
-  Slovenčina: "sk",
-  Slovenščina: "sl",
-  Български: "bg",
-  Srpski: "sr",
-  עברית: "he",
-};
+import { LANGUAGE_MAP } from "@/constants/languages";
 
 export const LanguageStep: React.FC<LanguageStepProps> = ({
   onNext,
@@ -55,6 +20,7 @@ export const LanguageStep: React.FC<LanguageStepProps> = ({
   const { language, setLanguage } = useSystemStore();
   const router = useRouter();
   const pathname = usePathname();
+  const t = useTranslations("Setup.Language");
 
   const handleLanguageSelect = (lang: string) => {
     setLanguage(lang);
@@ -62,6 +28,7 @@ export const LanguageStep: React.FC<LanguageStepProps> = ({
     const localeCode = LANGUAGE_MAP[lang];
     if (localeCode) {
       // Explicitly set the cookie for immediate persistence
+      // eslint-disable-next-line
       document.cookie = `NEXT_LOCALE=${localeCode}; path=/; max-age=31536000; SameSite=Lax`;
       // Switch locale using next-intl router
       router.replace(pathname, { locale: localeCode });
@@ -70,8 +37,8 @@ export const LanguageStep: React.FC<LanguageStepProps> = ({
 
   return (
     <SetupWindow
-      title="Select Your Language"
-      description="Select the language you would like to use for your Mac."
+      title={t("Title")}
+      description={t("Description")}
       icon={Globe}
       onContinue={onNext}
       onBack={onBack}
@@ -80,7 +47,7 @@ export const LanguageStep: React.FC<LanguageStepProps> = ({
         {/* NSTableView Header */}
         <div className="h-6 bg-[#F5F5F5] dark:bg-[#2C2C2E] border-b border-[#D1D1D6] dark:border-[#38383A] flex items-center px-3">
           <span className="text-[11px] font-semibold text-[#6e6e73] dark:text-[#98989d]">
-            Language
+            {t("LanguageColumn")}
           </span>
         </div>
 
@@ -102,7 +69,7 @@ export const LanguageStep: React.FC<LanguageStepProps> = ({
               <span>{lang}</span>
               {language === lang && (
                 <span className="text-[11px] opacity-90 font-normal">
-                  Primary
+                  {t("Primary")}
                 </span>
               )}
             </div>

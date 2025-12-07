@@ -2,8 +2,11 @@ import React from "react";
 import { Keyboard } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
+import { useTranslations } from "next-intl";
 
 export const KeyboardView = () => {
+  const t = useTranslations("SystemSettings.Keyboard");
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
@@ -11,9 +14,11 @@ export const KeyboardView = () => {
           <Keyboard size={32} className="text-gray-500" />
         </div>
         <div>
-          <h2 className="text-xl font-semibold dark:text-white">Keyboard</h2>
+          <h2 className="text-xl font-semibold dark:text-white">
+            {t("Title")}
+          </h2>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            Change keyboard settings.
+            {t("Description")}
           </p>
         </div>
       </div>
@@ -21,50 +26,50 @@ export const KeyboardView = () => {
       <SettingsGroup>
         <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700/50 flex items-center justify-between">
           <span className="text-[13px] font-medium dark:text-gray-200">
-            Key Repeat
+            {t("KeyRepeat")}
           </span>
           <div className="flex items-center gap-2">
-            <span className="text-[10px] text-gray-400">Slow</span>
+            <span className="text-[10px] text-gray-400">{t("Slow")}</span>
             <input type="range" className="w-32 accent-blue-500" />
-            <span className="text-[10px] text-gray-400">Fast</span>
+            <span className="text-[10px] text-gray-400">{t("Fast")}</span>
           </div>
         </div>
         <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700/50 flex items-center justify-between">
           <span className="text-[13px] font-medium dark:text-gray-200">
-            Delay Until Repeat
+            {t("DelayUntilRepeat")}
           </span>
           <div className="flex items-center gap-2">
-            <span className="text-[10px] text-gray-400">Long</span>
+            <span className="text-[10px] text-gray-400">{t("Long")}</span>
             <input type="range" className="w-32 accent-blue-500" />
-            <span className="text-[10px] text-gray-400">Short</span>
+            <span className="text-[10px] text-gray-400">{t("Short")}</span>
           </div>
         </div>
+        <SettingsRow label={t("AdjustBrightness")} type="toggle" value={true} />
         <SettingsRow
-          label="Adjust keyboard brightness in low light"
+          label={t("KeyboardNavigation")}
           type="toggle"
-          value={true}
+          value={false}
         />
-        <SettingsRow label="Keyboard navigation" type="toggle" value={false} />
         <div className="px-4 py-3 flex justify-end">
           <button className="text-[13px] font-medium text-gray-800 dark:text-gray-200 bg-white dark:bg-white/10 border border-gray-300 dark:border-gray-600 rounded px-3 py-1 shadow-sm">
-            Keyboard Shortcuts...
+            {t("Shortcuts")}
           </button>
         </div>
       </SettingsGroup>
 
-      <SettingsGroup title="Text Input">
+      <SettingsGroup title={t("TextInput")}>
         <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700/50 flex items-center justify-between">
           <div>
             <div className="text-[13px] font-medium dark:text-gray-200">
-              Input Sources
+              {t("InputSources")}
             </div>
             <div className="text-[11px] text-gray-500">ABC</div>
           </div>
           <button className="text-[13px] font-medium text-gray-800 dark:text-gray-200 bg-white dark:bg-white/10 border border-gray-300 dark:border-gray-600 rounded px-3 py-1 shadow-sm">
-            Edit...
+            {t("Edit")}
           </button>
         </div>
-        <SettingsRow label="Dictation" type="toggle" value={true} isLast />
+        <SettingsRow label={t("Dictation")} type="toggle" value={true} isLast />
       </SettingsGroup>
     </div>
   );

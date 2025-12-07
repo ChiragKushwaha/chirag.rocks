@@ -10,8 +10,11 @@ import {
   HelpCircle,
 } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
+import { useTranslations } from "next-intl";
 
 export const NetworkView = () => {
+  const t = useTranslations("SystemSettings.Network");
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
@@ -19,7 +22,9 @@ export const NetworkView = () => {
           <Globe size={32} className="text-white" />
         </div>
         <div>
-          <h2 className="text-xl font-semibold dark:text-white">Network</h2>
+          <h2 className="text-xl font-semibold dark:text-white">
+            {t("Title")}
+          </h2>
         </div>
       </div>
 
@@ -31,11 +36,13 @@ export const NetworkView = () => {
             </div>
             <div className="flex flex-col">
               <span className="text-[13px] font-medium dark:text-gray-200">
-                Wi-Fi
+                {t("WiFi")}
               </span>
               <div className="flex items-center gap-1.5">
                 <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                <span className="text-[11px] text-gray-500">Connected</span>
+                <span className="text-[11px] text-gray-500">
+                  {t("Connected")}
+                </span>
               </div>
             </div>
           </div>
@@ -49,11 +56,13 @@ export const NetworkView = () => {
             </div>
             <div className="flex flex-col">
               <span className="text-[13px] font-medium dark:text-gray-200">
-                Firewall
+                {t("Firewall")}
               </span>
               <div className="flex items-center gap-1.5">
                 <div className="w-2 h-2 rounded-full bg-gray-400"></div>
-                <span className="text-[11px] text-gray-500">Inactive</span>
+                <span className="text-[11px] text-gray-500">
+                  {t("Inactive")}
+                </span>
               </div>
             </div>
           </div>
@@ -61,7 +70,7 @@ export const NetworkView = () => {
         </div>
       </SettingsGroup>
 
-      <SettingsGroup title="Other Services">
+      <SettingsGroup title={t("OtherServices")}>
         {[
           { name: "USB 10/100/1000 LAN", icon: Cable, color: "red" },
           { name: "USB 10/100/1G/2.5G LAN", icon: Cable, color: "red" },
@@ -88,7 +97,7 @@ export const NetworkView = () => {
                     }`}
                   ></div>
                   <span className="text-[11px] text-gray-500">
-                    Not connected
+                    {t("NotConnected")}
                   </span>
                 </div>
               </div>

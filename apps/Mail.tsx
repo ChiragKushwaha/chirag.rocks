@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 import {
   Search,
   PenSquare,
@@ -23,6 +24,8 @@ interface Email {
 }
 
 export const Mail: React.FC = () => {
+  const t = useTranslations("Mail");
+
   const [emails] = useState<Email[]>([
     {
       id: "1",
@@ -63,28 +66,28 @@ export const Mail: React.FC = () => {
       <div className="w-48 bg-[#f5f5f7] dark:bg-[#2b2b2b]/90 border-r border-gray-200 dark:border-black/20 flex flex-col pt-4">
         <div className="px-3 mb-2">
           <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 px-2">
-            FAVORITES
+            {t("Favorites")}
           </span>
         </div>
         <div className="space-y-0.5 px-2">
           <div className="flex items-center justify-between px-2 py-1.5 rounded-md bg-gray-200 dark:bg-white/10">
             <div className="flex items-center gap-2">
               <MailIcon size={14} className="text-blue-500" />
-              <span className="text-sm font-medium">All Inboxes</span>
+              <span className="text-sm font-medium">{t("AllInboxes")}</span>
             </div>
             <span className="text-xs text-gray-500">3</span>
           </div>
           <div className="flex items-center justify-between px-2 py-1.5 rounded-md hover:bg-gray-200 dark:hover:bg-white/5">
             <div className="flex items-center gap-2">
               <Star size={14} className="text-blue-500" />
-              <span className="text-sm">VIP</span>
+              <span className="text-sm">{t("VIP")}</span>
             </div>
             <span className="text-xs text-gray-500">0</span>
           </div>
           <div className="flex items-center justify-between px-2 py-1.5 rounded-md hover:bg-gray-200 dark:hover:bg-white/5">
             <div className="flex items-center gap-2">
               <Send size={14} className="text-blue-500" />
-              <span className="text-sm">Sent</span>
+              <span className="text-sm">{t("Sent")}</span>
             </div>
           </div>
         </div>
@@ -94,8 +97,10 @@ export const Mail: React.FC = () => {
       <div className="w-72 bg-white dark:bg-[#1e1e1e] border-r border-gray-200 dark:border-black/20 flex flex-col">
         <div className="h-12 border-b border-gray-200 dark:border-gray-700/50 flex items-center justify-between px-3">
           <div className="flex flex-col">
-            <span className="text-sm font-bold">Inbox</span>
-            <span className="text-xs text-gray-500">3 messages</span>
+            <span className="text-sm font-bold">{t("Inbox")}</span>
+            <span className="text-xs text-gray-500">
+              {t("MessagesCount", { count: emails.length })}
+            </span>
           </div>
           <button
             className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
@@ -208,7 +213,7 @@ export const Mail: React.FC = () => {
               </div>
               <div className="flex items-center gap-2 text-gray-400 text-xs">
                 <Search size={14} />
-                <span>Search</span>
+                <span>{t("Search")}</span>
               </div>
             </div>
 
@@ -223,7 +228,9 @@ export const Mail: React.FC = () => {
                     <h2 className="text-lg font-bold leading-tight">
                       {selectedEmail.sender}
                     </h2>
-                    <p className="text-xs text-gray-500">To: Chirag</p>
+                    <p className="text-xs text-gray-500">
+                      {t("To", { name: "Chirag" })}
+                    </p>
                   </div>
                 </div>
                 <span className="text-xs text-gray-400">
@@ -242,7 +249,7 @@ export const Mail: React.FC = () => {
           </>
         ) : (
           <div className="flex-1 flex items-center justify-center text-gray-400">
-            Select an email
+            {t("NoMessageSelected")}
           </div>
         )}
       </div>

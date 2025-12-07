@@ -1,6 +1,7 @@
 import React from "react";
 import { Globe } from "lucide-react";
 import { SetupWindow } from "../SetupWindow";
+import { useTranslations } from "next-intl";
 
 interface RegionStepProps {
   onNext: () => void;
@@ -15,6 +16,7 @@ export const RegionStep: React.FC<RegionStepProps> = ({
   selectedCountry,
   setSelectedCountry,
 }) => {
+  const t = useTranslations("Setup.Region");
   const countries = [
     "Afghanistan",
     "Åland Islands",
@@ -265,11 +267,12 @@ export const RegionStep: React.FC<RegionStepProps> = ({
     "Yemen",
     "Zambia",
     "Zimbabwe",
+    "Zn",
   ];
 
   return (
     <SetupWindow
-      title="Select Your Country or Region"
+      title={t("Title")}
       icon={Globe}
       onContinue={onNext}
       onBack={onBack}

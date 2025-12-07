@@ -2,8 +2,11 @@ import React from "react";
 import { Bell } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
+import { useTranslations } from "next-intl";
 
 export const NotificationsView = () => {
+  const t = useTranslations("SystemSettings.Notifications");
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
@@ -12,10 +15,10 @@ export const NotificationsView = () => {
         </div>
         <div>
           <h2 className="text-xl font-semibold dark:text-white">
-            Notifications
+            {t("Title")}
           </h2>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            Control how notifications are displayed.
+            {t("Description")}
           </p>
         </div>
       </div>
@@ -23,17 +26,17 @@ export const NotificationsView = () => {
       <SettingsGroup>
         <div className="p-4 flex gap-4 items-start">
           <div className="w-1/3 bg-gray-100 dark:bg-gray-800 rounded-lg aspect-video flex items-center justify-center text-gray-400 text-xs">
-            Preview
+            {t("Preview")}
           </div>
           <div className="flex-1 space-y-4">
-            <SettingsRow label="Show previews" value="Always" isLast />
+            <SettingsRow label={t("ShowPreviews")} value={t("Always")} isLast />
           </div>
         </div>
       </SettingsGroup>
 
-      <SettingsGroup title="Application Notifications">
+      <SettingsGroup title={t("ApplicationNotifications")}>
         {[
-          "App Store",
+          "AppStore",
           "Calendar",
           "FaceTime",
           "Mail",
@@ -44,7 +47,7 @@ export const NotificationsView = () => {
         ].map((app, i, arr) => (
           <SettingsRow
             key={app}
-            label={app}
+            label={t(`Apps.${app}`)}
             type="toggle"
             value={true}
             isLast={i === arr.length - 1}

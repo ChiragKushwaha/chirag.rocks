@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { UserCircle } from "lucide-react";
 import { SetupWindow } from "../SetupWindow";
 import { useSystemStore } from "../../../store/systemStore";
+import { useTranslations } from "next-intl";
 
 interface AccountStepProps {
   onNext: () => void;
@@ -13,10 +14,16 @@ interface AccountStepProps {
 export const AccountStep: React.FC<AccountStepProps> = ({
   onNext,
   onBack,
-  title = "Create Your Computer Account",
+  title,
   initialEmail = "",
 }) => {
   const { updateUser } = useSystemStore();
+  const t = useTranslations("Setup.Account");
+  const tErrors = useTranslations("Setup.Account.Errors");
+
+  // Use prop title if provided, otherwise translation
+  const displayTitle = title || t("Title");
+
   const [formData, setFormData] = useState({
     name: "",
     email: initialEmail,
@@ -38,36 +45,36 @@ export const AccountStep: React.FC<AccountStepProps> = ({
     const newErrors = { name: "", email: "", age: "", phone: "", password: "" };
 
     if (!formData.name.trim()) {
-      newErrors.name = "Full name is required.";
+      newErrors.name = tErrors("NameRequired");
       isValid = false;
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = "Email is required.";
+      newErrors.email = tErrors("EmailRequired");
       isValid = false;
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Enter a valid email address.";
+      newErrors.email = tErrors("EmailInvalid");
       isValid = false;
     }
 
     if (!formData.age.trim()) {
-      newErrors.age = "Age is required.";
+      newErrors.age = tErrors("AgeRequired");
       isValid = false;
     } else if (isNaN(Number(formData.age)) || Number(formData.age) < 1) {
-      newErrors.age = "Enter a valid age.";
+      newErrors.age = tErrors("AgeInvalid");
       isValid = false;
     }
 
     if (!formData.phone.trim()) {
-      newErrors.phone = "Phone number is required.";
+      newErrors.phone = tErrors("PhoneRequired");
       isValid = false;
     }
 
     if (!formData.password.trim()) {
-      newErrors.password = "Password is required.";
+      newErrors.password = tErrors("PasswordRequired");
       isValid = false;
     } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters.";
+      newErrors.password = tErrors("PasswordLength");
       isValid = false;
     }
 
@@ -84,8 +91,8 @@ export const AccountStep: React.FC<AccountStepProps> = ({
 
   return (
     <SetupWindow
-      title={title}
-      description="Enter your name and account details to set up your computer."
+      title={displayTitle}
+      description={t("Description")}
       icon={UserCircle}
       onContinue={handleAccountSubmit}
       onBack={onBack}
@@ -95,10 +102,10 @@ export const AccountStep: React.FC<AccountStepProps> = ({
         <div>
           <input
             type="text"
-            placeholder="Full Name"
+            placeholder={t("Name")}
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            aria-label="Full Name"
+            aria-label={t("Name")}
             className={`
                 w-full bg-white dark:bg-[#1C1C1E] border rounded-[6px] px-3 py-2 text-[13px] text-black dark:text-white outline-none focus:ring-2 focus:ring-[#007AFF]/50 transition-all
                 ${
@@ -117,12 +124,12 @@ export const AccountStep: React.FC<AccountStepProps> = ({
         <div>
           <input
             type="email"
-            placeholder="Email Address"
+            placeholder={t("Email")}
             value={formData.email}
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
             }
-            aria-label="Email Address"
+            aria-label={t("Email")}
             className={`
                 w-full bg-white dark:bg-[#1C1C1E] border rounded-[6px] px-3 py-2 text-[13px] text-black dark:text-white outline-none focus:ring-2 focus:ring-[#007AFF]/50 transition-all
                 ${
@@ -142,12 +149,12 @@ export const AccountStep: React.FC<AccountStepProps> = ({
           <div className="w-24">
             <input
               type="text"
-              placeholder="Age"
+              placeholder={t("Age")}
               value={formData.age}
               onChange={(e) =>
                 setFormData({ ...formData, age: e.target.value })
               }
-              aria-label="Age"
+              aria-label={t("Age")}
               className={`
                   w-full bg-white dark:bg-[#1C1C1E] border rounded-[6px] px-3 py-2 text-[13px] text-black dark:text-white outline-none focus:ring-2 focus:ring-[#007AFF]/50 transition-all
                   ${
@@ -161,12 +168,12 @@ export const AccountStep: React.FC<AccountStepProps> = ({
           <div className="flex-1">
             <input
               type="tel"
-              placeholder="Mobile Number"
+              placeholder={t("Phone")}
               value={formData.phone}
               onChange={(e) =>
                 setFormData({ ...formData, phone: e.target.value })
               }
-              aria-label="Mobile Number"
+              aria-label={t("Phone")}
               className={`
                   w-full bg-white dark:bg-[#1C1C1E] border rounded-[6px] px-3 py-2 text-[13px] text-black dark:text-white outline-none focus:ring-2 focus:ring-[#007AFF]/50 transition-all
                   ${
@@ -195,12 +202,12 @@ export const AccountStep: React.FC<AccountStepProps> = ({
         <div>
           <input
             type="password"
-            placeholder="Password"
+            placeholder={t("Password")}
             value={formData.password}
             onChange={(e) =>
               setFormData({ ...formData, password: e.target.value })
             }
-            aria-label="Password"
+            aria-label={t("Password")}
             className={`
                 w-full bg-white dark:bg-[#1C1C1E] border rounded-[6px] px-3 py-2 text-[13px] text-black dark:text-white outline-none focus:ring-2 focus:ring-[#007AFF]/50 transition-all
                 ${

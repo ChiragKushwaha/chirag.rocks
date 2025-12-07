@@ -18,8 +18,11 @@ import {
 } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
+import { useTranslations } from "next-intl";
 
 export const AccessibilityView = () => {
+  const t = useTranslations("SystemSettings.Accessibility");
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
@@ -33,71 +36,77 @@ export const AccessibilityView = () => {
         </div>
         <div>
           <h2 className="text-xl font-semibold dark:text-white">
-            Accessibility
+            {t("Title")}
           </h2>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            Personalise Mac in ways that work best for you with accessibility
-            features for vision, hearing, motor, speech and cognition.{" "}
-            <span className="text-blue-500 cursor-pointer">Learn more...</span>
+            {t("Description")}{" "}
+            <span className="text-blue-500 cursor-pointer">
+              {t("LearnMore")}
+            </span>
           </p>
         </div>
       </div>
 
-      <SettingsGroup title="Vision">
-        <SettingsRow icon={ScanFace} label="VoiceOver" color="#8E8E93" />
-        <SettingsRow icon={ZoomIn} label="Zoom" color="#007AFF" />
-        <SettingsRow icon={Type} label="Hover Text" color="#007AFF" />
-        <SettingsRow icon={Monitor} label="Display" color="#007AFF" />
-        <SettingsRow icon={Activity} label="Motion" color="#34C759" />
+      <SettingsGroup title={t("Vision")}>
+        <SettingsRow icon={ScanFace} label={t("VoiceOver")} color="#8E8E93" />
+        <SettingsRow icon={ZoomIn} label={t("Zoom")} color="#007AFF" />
+        <SettingsRow icon={Type} label={t("HoverText")} color="#007AFF" />
+        <SettingsRow icon={Monitor} label={t("Display")} color="#007AFF" />
+        <SettingsRow icon={Activity} label={t("Motion")} color="#34C759" />
         <SettingsRow
           icon={MessageSquare}
-          label="Read & Speak"
+          label={t("ReadSpeak")}
           color="#8E8E93"
         />
         <SettingsRow
           icon={MessageSquare}
-          label="Audio Descriptions"
+          label={t("AudioDescriptions")}
           color="#8E8E93"
           isLast
         />
       </SettingsGroup>
 
-      <SettingsGroup title="Hearing">
-        <SettingsRow icon={Ear} label="Hearing Devices" color="#007AFF" />
-        <SettingsRow icon={Volume2} label="Audio" color="#FF2D55" />
-        <SettingsRow icon={Subtitles} label="Captions" color="#8E8E93" />
+      <SettingsGroup title={t("Hearing")}>
+        <SettingsRow icon={Ear} label={t("HearingDevices")} color="#007AFF" />
+        <SettingsRow icon={Volume2} label={t("Audio")} color="#FF2D55" />
+        <SettingsRow icon={Subtitles} label={t("Captions")} color="#8E8E93" />
         <SettingsRow
           icon={MessageSquare}
-          label="Live Captions"
+          label={t("LiveCaptions")}
           color="#007AFF"
         />
         <SettingsRow
           icon={User}
-          label="Name Recognition"
+          label={t("NameRecognition")}
           color="#007AFF"
           isLast
         />
       </SettingsGroup>
 
-      <SettingsGroup title="Motor">
-        <SettingsRow icon={Mic} label="Voice Control" color="#007AFF" />
-        <SettingsRow icon={Keyboard} label="Keyboard" color="#8E8E93" />
+      <SettingsGroup title={t("Motor")}>
+        <SettingsRow icon={Mic} label={t("VoiceControl")} color="#007AFF" />
+        <SettingsRow icon={Keyboard} label={t("Keyboard")} color="#8E8E93" />
         <SettingsRow
           icon={MousePointer2}
-          label="Pointer Control"
+          label={t("PointerControl")}
           color="#007AFF"
         />
         <SettingsRow
           icon={ToggleLeft}
-          label="Switch Control"
+          label={t("SwitchControl")}
           color="#8E8E93"
           isLast
         />
       </SettingsGroup>
 
-      <SettingsGroup title="General">
-        <SettingsRow icon={Mic} label="Siri" color="#5856D6" />
-        <SettingsRow icon={Command} label="Shortcut" color="#007AFF" isLast />
+      <SettingsGroup title={t("General")}>
+        <SettingsRow icon={Mic} label={t("Siri")} color="#5856D6" />
+        <SettingsRow
+          icon={Command}
+          label={t("Shortcut")}
+          color="#007AFF"
+          isLast
+        />
       </SettingsGroup>
     </div>
   );

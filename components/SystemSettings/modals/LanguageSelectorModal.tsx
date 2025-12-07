@@ -1,49 +1,7 @@
 import React, { useState } from "react";
-import { Search, X, HelpCircle } from "lucide-react";
-
-interface Language {
-  code: string;
-  name: string;
-  nativeName?: string;
-}
-
-const LANGUAGES: Language[] = [
-  { code: "en", name: "English", nativeName: "English" },
-  { code: "es", name: "Spanish", nativeName: "Español" },
-  { code: "fr", name: "French", nativeName: "Français" },
-  { code: "de", name: "German", nativeName: "Deutsch" },
-  { code: "it", name: "Italian", nativeName: "Italiano" },
-  { code: "ja", name: "Japanese", nativeName: "日本語" },
-  { code: "zh", name: "Chinese", nativeName: "中文" },
-  { code: "pt", name: "Portuguese", nativeName: "Português" },
-  { code: "ru", name: "Russian", nativeName: "Русский" },
-  { code: "ko", name: "Korean", nativeName: "한국어" },
-  { code: "nl", name: "Dutch", nativeName: "Nederlands" },
-  { code: "sv", name: "Swedish", nativeName: "Svenska" },
-  { code: "da", name: "Danish", nativeName: "Dansk" },
-  { code: "no", name: "Norwegian", nativeName: "Norsk" },
-  { code: "fi", name: "Finnish", nativeName: "Suomi" },
-  { code: "pl", name: "Polish", nativeName: "Polski" },
-  { code: "tr", name: "Turkish", nativeName: "Türkçe" },
-  { code: "ar", name: "Arabic", nativeName: "العربية" },
-  { code: "hi", name: "Hindi", nativeName: "हिन्दी" },
-  { code: "bn", name: "Bengali", nativeName: "বাংলা" },
-  { code: "vi", name: "Vietnamese", nativeName: "Tiếng Việt" },
-  { code: "th", name: "Thai", nativeName: "ภาษาไทย" },
-  { code: "el", name: "Greek", nativeName: "Ελληνικά" },
-  { code: "cs", name: "Czech", nativeName: "Čeština" },
-  { code: "hu", name: "Hungarian", nativeName: "Magyar" },
-  { code: "ro", name: "Romanian", nativeName: "Română" },
-  { code: "uk", name: "Ukrainian", nativeName: "Українська" },
-  { code: "id", name: "Indonesian", nativeName: "Bahasa Indonesia" },
-  { code: "ms", name: "Malay", nativeName: "Bahasa Melayu" },
-  { code: "hr", name: "Croatian", nativeName: "Hrvatski" },
-  { code: "sk", name: "Slovak", nativeName: "Slovenčina" },
-  { code: "sl", name: "Slovenian", nativeName: "Slovenščina" },
-  { code: "bg", name: "Bulgarian", nativeName: "Български" },
-  { code: "sr", name: "Serbian", nativeName: "Srpski" },
-  { code: "he", name: "Hebrew", nativeName: "עברית" },
-];
+import { Search, HelpCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { LANGUAGES } from "@/constants/languages";
 
 interface LanguageSelectorModalProps {
   isOpen: boolean;
@@ -58,12 +16,14 @@ export const LanguageSelectorModal: React.FC<LanguageSelectorModalProps> = ({
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLang, setSelectedLang] = useState<string | null>(null);
+  const t = useTranslations("SystemSettings.LanguageSelector");
+  const tLang = useTranslations("Languages");
 
   if (!isOpen) return null;
 
   const filteredLanguages = LANGUAGES.filter(
     (lang) =>
-      lang.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      tLang(lang.name).toLowerCase().includes(searchQuery.toLowerCase()) ||
       lang.nativeName?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -79,9 +39,7 @@ export const LanguageSelectorModal: React.FC<LanguageSelectorModalProps> = ({
       <div className="relative w-[600px] bg-[#1e1e1e] rounded-xl shadow-2xl border border-gray-700/50 flex flex-col overflow-hidden text-white">
         {/* Header */}
         <div className="p-4 pb-2">
-          <h2 className="text-lg font-semibold mb-3 ml-1">
-            Select a preferred language to add
-          </h2>
+          <h2 className="text-lg font-semibold mb-3 ml-1">{t("Title")}</h2>
           <div className="relative">
             <Search
               className="absolute left-2.5 top-1.5 text-gray-400"
@@ -91,7 +49,7 @@ export const LanguageSelectorModal: React.FC<LanguageSelectorModalProps> = ({
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search"
+              placeholder={t("Search")}
               className="w-full bg-[#2c2c2c] border border-gray-600 rounded-lg pl-9 pr-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50"
             />
           </div>
@@ -119,7 +77,7 @@ export const LanguageSelectorModal: React.FC<LanguageSelectorModalProps> = ({
                     selectedLang === lang.code ? "text-white" : "text-gray-300"
                   }
                 >
-                  {lang.name}
+                  {tLang(lang.name)}
                 </span>
               </div>
             ))}
@@ -136,14 +94,14 @@ export const LanguageSelectorModal: React.FC<LanguageSelectorModalProps> = ({
               onClick={onClose}
               className="px-4 py-1 rounded-md bg-white/10 hover:bg-white/20 border border-white/10 text-sm font-medium transition-colors"
             >
-              Cancel
+              {t("Cancel")}
             </button>
             <button
               disabled={!selectedLang}
               onClick={() => selectedLang && onSelect(selectedLang)}
               className="px-4 py-1 rounded-md bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              Add
+              {t("Add")}
             </button>
           </div>
         </div>

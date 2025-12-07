@@ -2,8 +2,11 @@ import React from "react";
 import { Lock, MapPin, Camera, Mic, Folder, Eye, Shield } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
+import { useTranslations } from "next-intl";
 
 export const PrivacySecurityView = () => {
+  const t = useTranslations("SystemSettings.PrivacySecurity");
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
@@ -14,56 +17,61 @@ export const PrivacySecurityView = () => {
         </div>
         <div>
           <h2 className="text-xl font-semibold dark:text-white">
-            Privacy & Security
+            {t("Title")}
           </h2>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            Control which applications can access your information.
+            {t("Description")}
           </p>
         </div>
       </div>
 
-      <SettingsGroup title="Privacy">
+      <SettingsGroup title={t("Privacy")}>
         <SettingsRow
           icon={MapPin}
-          label="Location Services"
-          value="On"
+          label={t("LocationServices")}
+          value={t("On")}
           color="#007AFF"
         />
         <SettingsRow
           icon={Camera}
-          label="Camera"
-          value="0 apps"
+          label={t("Camera")}
+          value={t("AppsCount", { count: 0 })}
           color="#007AFF"
         />
         <SettingsRow
           icon={Mic}
-          label="Microphone"
-          value="2 apps"
+          label={t("Microphone")}
+          value={t("AppsCount", { count: 2 })}
           color="#007AFF"
         />
         <SettingsRow
           icon={Folder}
-          label="Files and Folders"
-          value="5 apps"
+          label={t("FilesFolders")}
+          value={t("AppsCount", { count: 5 })}
           color="#007AFF"
         />
         <SettingsRow
           icon={Eye}
-          label="Screen Recording"
-          value="1 app"
+          label={t("ScreenRecording")}
+          value={t("AppsCount", { count: 1 })}
           color="#007AFF"
           isLast
         />
       </SettingsGroup>
 
-      <SettingsGroup title="Security">
-        <SettingsRow label="FileVault" value="On" />
-        <SettingsRow label="Lockdown Mode" value="Off" isLast />
+      <SettingsGroup title={t("Security")}>
+        <SettingsRow label={t("FileVault")} value={t("On")} />
+        <SettingsRow label={t("LockdownMode")} value={t("Off")} isLast />
       </SettingsGroup>
 
-      <SettingsGroup title="Others">
-        <SettingsRow icon={Shield} label="Extensions" color="#8E8E93" />
-        <SettingsRow icon={Shield} label="Profiles" color="#8E8E93" isLast />
+      <SettingsGroup title={t("Others")}>
+        <SettingsRow icon={Shield} label={t("Extensions")} color="#8E8E93" />
+        <SettingsRow
+          icon={Shield}
+          label={t("Profiles")}
+          color="#8E8E93"
+          isLast
+        />
       </SettingsGroup>
     </div>
   );

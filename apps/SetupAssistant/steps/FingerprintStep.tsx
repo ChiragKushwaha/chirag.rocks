@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Fingerprint } from "lucide-react";
 import { SetupWindow } from "../SetupWindow";
 import { useSystemStore } from "../../../store/systemStore";
+import { useTranslations } from "next-intl";
 
 interface FingerprintStepProps {
   onNext: () => void;
@@ -13,6 +14,10 @@ export const FingerprintStep: React.FC<FingerprintStepProps> = ({
   onBack,
 }) => {
   const { theme } = useSystemStore();
+  const t = useTranslations("Setup.Fingerprint");
+  const tTouchID = useTranslations("Setup.TouchID");
+  const tCommon = useTranslations("Setup.Common");
+
   const [fingerprintProgress, setFingerprintProgress] = useState(0);
   const [fingerprintComplete, setFingerprintComplete] = useState(false);
 
@@ -23,7 +28,7 @@ export const FingerprintStep: React.FC<FingerprintStepProps> = ({
 
   return (
     <SetupWindow
-      title="Place Your Finger"
+      title={t("Title")}
       icon={Fingerprint}
       onContinue={onNext}
       onBack={() => {
@@ -33,7 +38,7 @@ export const FingerprintStep: React.FC<FingerprintStepProps> = ({
     >
       <div className="flex flex-col items-center space-y-6">
         <p className="text-[#6e6e73] dark:text-[#98989d] text-[13px] text-center max-w-sm">
-          Lift and rest your finger on Touch ID repeatedly
+          {t("Instruction")}
         </p>
 
         {/* Animated Fingerprint Graphic */}
@@ -96,7 +101,7 @@ export const FingerprintStep: React.FC<FingerprintStepProps> = ({
 
         {fingerprintComplete && (
           <div className="text-[#34C759] text-[13px] font-medium animate-in fade-in duration-300">
-            ✓ Touch ID Configured Successfully
+            {t("Success")}
           </div>
         )}
 
@@ -104,17 +109,17 @@ export const FingerprintStep: React.FC<FingerprintStepProps> = ({
           <button
             onClick={() => {
               reset();
-              onBack(); // Actually goes back to TouchID step in original logic, but here we just reset or go back
+              onBack();
             }}
             className="text-[#007AFF] text-[13px] font-medium hover:text-[#0055B3] dark:hover:text-[#409CFF] transition-colors"
           >
-            Set Up Touch ID Later
+            {tTouchID("SetupLater")}
           </button>
           <button
             onClick={reset}
             className="text-[#6e6e73] dark:text-[#98989d] text-[13px] font-medium hover:text-black dark:hover:text-white transition-colors"
           >
-            Cancel
+            {tCommon("Cancel")}
           </button>
         </div>
       </div>

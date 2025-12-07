@@ -1,6 +1,7 @@
 import React from "react";
 import { Keyboard, Fingerprint } from "lucide-react";
 import { SetupWindow } from "../SetupWindow";
+import { useTranslations } from "next-intl";
 
 interface TouchIDStepProps {
   onNext: () => void;
@@ -8,9 +9,11 @@ interface TouchIDStepProps {
 }
 
 export const TouchIDStep: React.FC<TouchIDStepProps> = ({ onNext, onBack }) => {
+  const t = useTranslations("Setup.TouchID");
+
   return (
     <SetupWindow
-      title="Touch ID"
+      title={t("Title")}
       icon={Keyboard}
       onContinue={onNext}
       onBack={onBack}
@@ -19,7 +22,7 @@ export const TouchIDStep: React.FC<TouchIDStepProps> = ({ onNext, onBack }) => {
           onClick={onNext}
           className="text-[#007AFF] text-[13px] font-medium hover:text-[#0055B3] dark:hover:text-[#409CFF] transition-colors"
         >
-          Set Up Touch ID Later
+          {t("SetupLater")}
         </button>
       }
     >
@@ -117,8 +120,7 @@ export const TouchIDStep: React.FC<TouchIDStepProps> = ({ onNext, onBack }) => {
 
         <div className="max-w-md text-center">
           <p className="text-[#6e6e73] dark:text-[#98989d] text-[13px] leading-relaxed">
-            Use your fingerprint to unlock your Mac and make purchases with
-            Apple Pay. Start by placing your finger or thumb on Touch ID.
+            {t("Description")}
           </p>
         </div>
       </div>
