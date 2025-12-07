@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
 
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin();
+
+/** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
+  // ... existing config code ...
   images: {
     remotePatterns: [
       {
@@ -77,7 +83,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Cross-Origin-Embedder-Policy",
-            value: "require-corp",
+            value: "credentialless",
           },
         ],
       },
@@ -85,4 +91,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

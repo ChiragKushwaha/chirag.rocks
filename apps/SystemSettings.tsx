@@ -7,6 +7,8 @@ import { WifiView } from "../components/SystemSettings/views/WifiView";
 import { BluetoothView } from "../components/SystemSettings/views/BluetoothView";
 import { NetworkView } from "../components/SystemSettings/views/NetworkView";
 import { GeneralView } from "../components/SystemSettings/views/GeneralView";
+import { AppleAccountView } from "../components/SystemSettings/views/AppleAccountView";
+import { LanguageRegionView } from "../components/SystemSettings/views/LanguageRegionView";
 import { AppearanceView } from "../components/SystemSettings/views/AppearanceView";
 import { AccessibilityView } from "../components/SystemSettings/views/AccessibilityView";
 import { MenuBarView } from "../components/SystemSettings/views/MenuBarView";
@@ -30,10 +32,27 @@ import { PrintersScannersView } from "../components/SystemSettings/views/Printer
 import { StorageView } from "../components/SystemSettings/views/StorageView";
 import { Info } from "lucide-react";
 
+import { useSystemStore } from "../store/systemStore";
+
+// ... existing imports
+
 export const SystemSettings: React.FC = () => {
-  const [activeTab, setActiveTab] = useState("Appearance");
+  const {
+    settingsTab: activeTab,
+    setSettingsTab: setActiveTab,
+    settingsSubTab: generalSubView,
+    setSettingsSubTab: setGeneralSubView,
+  } = useSystemStore();
+
   const [isAvatarEditorOpen, setIsAvatarEditorOpen] = useState(false);
   const [currentAvatar, setCurrentAvatar] = useState("🦅");
+
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab);
+    if (tab !== "General") {
+      setGeneralSubView("main");
+    }
+  };
 
   const renderContent = () => {
     switch (activeTab) {
@@ -44,9 +63,21 @@ export const SystemSettings: React.FC = () => {
       case "Network":
         return <NetworkView />;
       case "General":
-      case "Apple Account": // Reusing General view for Apple Account for now
+        if (generalSubView === "language") {
+          return (
+            <LanguageRegionView onBack={() => setGeneralSubView("main")} />
+          );
+        }
         return (
           <GeneralView
+            onNavigate={(view: string) =>
+              setGeneralSubView(view as "main" | "language")
+            }
+          />
+        );
+      case "Apple Account":
+        return (
+          <AppleAccountView
             currentAvatar={currentAvatar}
             onEditAvatar={() => setIsAvatarEditorOpen(true)}
           />
@@ -119,7 +150,7 @@ export const SystemSettings: React.FC = () => {
 
       <Sidebar
         activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        setActiveTab={handleTabChange}
         currentAvatar={currentAvatar}
       />
 

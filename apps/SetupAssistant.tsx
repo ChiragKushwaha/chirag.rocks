@@ -15,22 +15,7 @@ import { ThemeStep } from "./SetupAssistant/steps/ThemeStep";
 import { SetupContext } from "./SetupAssistant/SetupContext";
 
 export const SetupAssistant: React.FC = () => {
-  const { setSetupComplete } = useSystemStore();
-  const [step, setStep] = useState<
-    | "hello"
-    | "language"
-    | "region"
-    | "dataprivacy"
-    | "touchid"
-    | "fingerprint"
-    | "languages"
-    | "accessibility"
-    | "migration"
-    | "appleid"
-    | "account"
-    | "theme"
-    | "finish"
-  >("hello");
+  const { setSetupComplete, setupStep: step, setSetupStep } = useSystemStore();
 
   const [selectedCountry, setSelectedCountry] = useState("Germany");
   const [selectedLanguages] = useState(["English (UK)", "German"]);
@@ -39,7 +24,7 @@ export const SetupAssistant: React.FC = () => {
   );
   const [appleID, setAppleID] = useState("");
 
-  const nextStep = (next: typeof step) => setStep(next);
+  const nextStep = (next: string) => setSetupStep(next);
 
   const renderStep = () => {
     switch (step) {
@@ -49,14 +34,14 @@ export const SetupAssistant: React.FC = () => {
         return (
           <LanguageStep
             onNext={() => nextStep("region")}
-            onBack={() => setStep("hello")}
+            onBack={() => setSetupStep("hello")}
           />
         );
       case "region":
         return (
           <RegionStep
             onNext={() => nextStep("dataprivacy")}
-            onBack={() => setStep("language")}
+            onBack={() => setSetupStep("language")}
             selectedCountry={selectedCountry}
             setSelectedCountry={setSelectedCountry}
           />
@@ -65,28 +50,28 @@ export const SetupAssistant: React.FC = () => {
         return (
           <DataPrivacyStep
             onNext={() => nextStep("touchid")}
-            onBack={() => setStep("region")}
+            onBack={() => setSetupStep("region")}
           />
         );
       case "touchid":
         return (
           <TouchIDStep
             onNext={() => nextStep("fingerprint")}
-            onBack={() => setStep("dataprivacy")}
+            onBack={() => setSetupStep("dataprivacy")}
           />
         );
       case "fingerprint":
         return (
           <FingerprintStep
             onNext={() => nextStep("languages")}
-            onBack={() => setStep("touchid")}
+            onBack={() => setSetupStep("touchid")}
           />
         );
       case "languages":
         return (
           <LanguagesStep
             onNext={() => nextStep("accessibility")}
-            onBack={() => setStep("fingerprint")}
+            onBack={() => setSetupStep("fingerprint")}
             selectedLanguages={selectedLanguages}
           />
         );
@@ -94,14 +79,14 @@ export const SetupAssistant: React.FC = () => {
         return (
           <AccessibilityStep
             onNext={() => nextStep("migration")}
-            onBack={() => setStep("languages")}
+            onBack={() => setSetupStep("languages")}
           />
         );
       case "migration":
         return (
           <MigrationStep
             onNext={() => nextStep("appleid")}
-            onBack={() => setStep("accessibility")}
+            onBack={() => setSetupStep("accessibility")}
           />
         );
       case "appleid":
@@ -111,7 +96,7 @@ export const SetupAssistant: React.FC = () => {
               setAccountTitle("Create Your Computer Account");
               nextStep("account");
             }}
-            onBack={() => setStep("migration")}
+            onBack={() => setSetupStep("migration")}
             onCreateAppleID={() => {
               setAccountTitle("Create Apple ID");
               nextStep("account");
@@ -124,7 +109,7 @@ export const SetupAssistant: React.FC = () => {
         return (
           <AccountStep
             onNext={() => nextStep("theme")}
-            onBack={() => setStep("appleid")}
+            onBack={() => setSetupStep("appleid")}
             title={accountTitle}
             initialEmail={appleID}
           />
@@ -133,7 +118,7 @@ export const SetupAssistant: React.FC = () => {
         return (
           <ThemeStep
             onNext={() => setSetupComplete(true)}
-            onBack={() => setStep("account")}
+            onBack={() => setSetupStep("account")}
           />
         );
       default:

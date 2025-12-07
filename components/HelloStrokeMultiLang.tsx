@@ -371,32 +371,6 @@ export default function HelloStrokeMultiLang({
         <div className="font-semibold text-white/85 tracking-wide text-sm select-none drop-shadow-sm">
           {current.label} — {current.text}
         </div>
-
-        {/* Get Started Button */}
-        <div className="fixed bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-          <button
-            onClick={handleGetStarted}
-            className="group flex items-center justify-center w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-sm border border-white/30 transition-all duration-300 hover:scale-110"
-            aria-label="Get Started"
-          >
-            <svg
-              className="w-4 h-4 text-white/90 transition-transform duration-300 group-hover:translate-x-0.5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-          <span className="text-white/80 text-xs font-medium tracking-wide">
-            Get Started
-          </span>
-        </div>
       </div>
     </div>
   );

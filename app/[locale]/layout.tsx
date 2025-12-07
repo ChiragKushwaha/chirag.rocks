@@ -14,7 +14,12 @@ import {
   Noto_Serif_Devanagari,
   Pacifico,
 } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -250,13 +255,23 @@ const structuredData = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
+
+  if (!routing.locales.includes(locale as any)) {
+    notFound();
+  }
+
+  const messages = await getMessages();
+
   return (
-    <html lang="en" dir="ltr">
+    <html lang={locale} dir="ltr">
       <head>
         {/* Schema.org JSON-LD */}
         <script
@@ -282,16 +297,18 @@ export default function RootLayout({
         itemScope
         itemType="https://schema.org/WebPage"
       >
-        <GlobalExternalLinkHandler>
-          <DeviceProvider>{children}</DeviceProvider>
-        </GlobalExternalLinkHandler>
-        {process.env.NODE_ENV === "production" &&
-          process.env.VERCEL === "1" && (
-            <>
-              <Analytics />
-              <SpeedInsights />
-            </>
-          )}
+        <NextIntlClientProvider messages={messages}>
+          <GlobalExternalLinkHandler>
+            <DeviceProvider>{children}</DeviceProvider>
+          </GlobalExternalLinkHandler>
+          {process.env.NODE_ENV === "production" &&
+            process.env.VERCEL === "1" && (
+              <>
+                <Analytics />
+                <SpeedInsights />
+              </>
+            )}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

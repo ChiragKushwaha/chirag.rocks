@@ -1,93 +1,120 @@
 import React from "react";
 import {
-  User,
-  Lock,
-  CreditCard,
-  Cloud,
-  ShoppingBag,
-  Users,
-  Laptop,
+  Info,
+  RefreshCw,
+  HardDrive,
+  Heart, // For AppleCare (closest match)
+  Share2, // For AirDrop
+  Key, // AutoFill/Passwords
+  Clock, // Date & Time
+  Globe, // Language & Region
+  ListChecks, // Login Items
+  Share, // Sharing
+  Briefcase, // Device Management
+  ArrowRightCircle, // Transfer or Reset
+  Settings, // For General Header?
 } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
 
 interface GeneralViewProps {
-  currentAvatar: string;
-  onEditAvatar: () => void;
+  onNavigate: (view: string) => void;
 }
 
-export const GeneralView: React.FC<GeneralViewProps> = ({
-  currentAvatar,
-  onEditAvatar,
-}) => {
+export const GeneralView: React.FC<GeneralViewProps> = ({ onNavigate }) => {
   return (
-    <div className="max-w-xl mx-auto pt-8">
-      {/* Header Profile */}
-      <div className="flex flex-col items-center mb-8">
-        <div className="relative group cursor-pointer" onClick={onEditAvatar}>
-          <div className="w-24 h-24 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-6xl overflow-hidden border-4 border-transparent group-hover:border-gray-300 dark:group-hover:border-gray-600 transition-all">
-            {currentAvatar}
-          </div>
-          <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 rounded-full transition-opacity text-white text-xs font-medium">
-            Edit
-          </div>
+    <div className="pt-8 px-4 max-w-2xl mx-auto pb-12">
+      {/* Header */}
+      <div className="flex flex-col items-center mb-8 text-center">
+        <div className="w-16 h-16 rounded-full bg-gray-400/20 flex items-center justify-center mb-4">
+          <Settings className="w-10 h-10 text-gray-500" />
         </div>
-        <h2 className="mt-4 text-xl font-semibold dark:text-white">
-          Chirag Kushwaha
-        </h2>
-        <p className="text-sm text-gray-500">chiragkushwaha1811@gmail.com</p>
+        <h1 className="text-2xl font-bold dark:text-white mb-2">General</h1>
+        <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md">
+          Manage your overall setup and preferences for Mac, such as software
+          updates, device language, AirDrop and more.
+        </p>
       </div>
 
-      {/* Settings Groups */}
+      {/* Group 1 */}
       <SettingsGroup>
-        <SettingsRow icon={User} label="Personal Information" color="#8E8E93" />
-        <SettingsRow icon={Lock} label="Sign-In & Security" color="#8E8E93" />
+        <SettingsRow icon={Info} label="About" color="#8E8E93" />
         <SettingsRow
-          icon={CreditCard}
-          label="Payment & Shipping"
-          color="#8E8E93"
-          isLast
+          icon={RefreshCw}
+          label="Software Update"
+          color="#8E8E93" // Usually a cog/gear icon, but refresh works
         />
+        <SettingsRow icon={HardDrive} label="Storage" color="#8E8E93" isLast />
       </SettingsGroup>
 
+      {/* Group 2: AppleCare (Using custom icon color or red) */}
       <SettingsGroup>
-        <SettingsRow icon={Cloud} label="iCloud" color="#007AFF" />
         <SettingsRow
-          icon={ShoppingBag}
-          label="Media & Purchases"
-          color="#007AFF"
-        />
-        <SettingsRow
-          icon={Users}
-          label="Family"
-          value="Set Up"
-          color="#007AFF"
+          icon={Heart} // AppleCare usually Apple logo or heart
+          label="AppleCare & Warranty"
+          color="#FF2D55"
           isLast
         />
       </SettingsGroup>
 
-      {/* Devices */}
-      <SettingsGroup title="Devices">
+      {/* Group 3 */}
+      <SettingsGroup>
+        <SettingsRow icon={Share2} label="AirDrop & Handoff" color="#007AFF" />
         <SettingsRow
-          icon={Laptop}
-          label="MacBook Pro"
-          value="This MacBook Pro 14″"
-          color="#8E8E93"
-        />
-        <SettingsRow
-          icon={Laptop}
-          label="MacBookPro"
-          value="MacBook Pro 15″"
+          icon={Key}
+          label="AutoFill & Passwords"
           color="#8E8E93"
           isLast
         />
       </SettingsGroup>
 
-      <div className="flex justify-center mt-8">
-        <button className="px-4 py-1 text-sm text-red-500 bg-white dark:bg-[#1e1e1e] border border-gray-200 dark:border-gray-700/50 rounded-md shadow-sm hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-          Sign Out...
-        </button>
-      </div>
+      {/* Group 4 */}
+      <SettingsGroup>
+        <SettingsRow icon={Clock} label="Date & Time" color="#8E8E93" />
+        <SettingsRow
+          icon={Globe}
+          label="Language & Region"
+          color="#007AFF"
+          onClick={() => onNavigate("language")}
+        />
+        <SettingsRow
+          icon={ListChecks}
+          label="Login Items & Extensions"
+          color="#8E8E93"
+          isLast
+        />
+      </SettingsGroup>
+
+      {/* Group 5 */}
+      <SettingsGroup>
+        <SettingsRow icon={Share} label="Sharing" color="#007AFF" isLast />
+      </SettingsGroup>
+
+      {/* Group 6 */}
+      <SettingsGroup>
+        <SettingsRow icon={HardDrive} label="Startup Disk" color="#8E8E93" />
+        <SettingsRow
+          icon={Clock} // Time Machine
+          label="Time Machine"
+          color="#34C759" // Green
+        />
+        <SettingsRow
+          icon={Briefcase}
+          label="Device Management"
+          color="#8E8E93"
+          isLast
+        />
+      </SettingsGroup>
+
+      {/* Group 7 */}
+      <SettingsGroup>
+        <SettingsRow
+          icon={ArrowRightCircle}
+          label="Transfer or Reset"
+          color="#8E8E93"
+          isLast
+        />
+      </SettingsGroup>
     </div>
   );
 };

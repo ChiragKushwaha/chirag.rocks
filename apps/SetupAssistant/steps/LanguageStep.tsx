@@ -3,16 +3,70 @@ import { Globe } from "lucide-react";
 import { SetupWindow } from "../SetupWindow";
 import { useSystemStore } from "../../../store/systemStore";
 
+import { useRouter, usePathname } from "@/i18n/routing";
+
 interface LanguageStepProps {
   onNext: () => void;
   onBack: () => void;
 }
+
+const LANGUAGE_MAP: Record<string, string> = {
+  English: "en",
+  Español: "es",
+  Français: "fr",
+  Deutsch: "de",
+  Italiano: "it",
+  日本語: "ja",
+  中文: "zh",
+  Português: "pt",
+  Русский: "ru",
+  한국어: "ko",
+  Nederlands: "nl",
+  Svenska: "sv",
+  Dansk: "da",
+  Norsk: "no",
+  Suomi: "fi",
+  Polski: "pl",
+  Türkçe: "tr",
+  العربية: "ar",
+  हिन्दी: "hi",
+  বাংলা: "bn",
+  "Tiếng Việt": "vi",
+  ภาษาไทย: "th",
+  Ελληνικά: "el",
+  Čeština: "cs",
+  Magyar: "hu",
+  Română: "ro",
+  Українська: "uk",
+  "Bahasa Indonesia": "id",
+  "Bahasa Melayu": "ms",
+  Hrvatski: "hr",
+  Slovenčina: "sk",
+  Slovenščina: "sl",
+  Български: "bg",
+  Srpski: "sr",
+  עברית: "he",
+};
 
 export const LanguageStep: React.FC<LanguageStepProps> = ({
   onNext,
   onBack,
 }) => {
   const { language, setLanguage } = useSystemStore();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleLanguageSelect = (lang: string) => {
+    setLanguage(lang);
+
+    const localeCode = LANGUAGE_MAP[lang];
+    if (localeCode) {
+      // Explicitly set the cookie for immediate persistence
+      document.cookie = `NEXT_LOCALE=${localeCode}; path=/; max-age=31536000; SameSite=Lax`;
+      // Switch locale using next-intl router
+      router.replace(pathname, { locale: localeCode });
+    }
+  };
 
   return (
     <SetupWindow
@@ -32,46 +86,10 @@ export const LanguageStep: React.FC<LanguageStepProps> = ({
 
         {/* NSTableView Rows */}
         <div className="overflow-y-auto flex-1 py-1">
-          {[
-            "English",
-            "Español",
-            "Français",
-            "Deutsch",
-            "Italiano",
-            "日本語",
-            "中文",
-            "Português",
-            "Русский",
-            "한국어",
-            "Nederlands",
-            "Svenska",
-            "Dansk",
-            "Norsk",
-            "Suomi",
-            "Polski",
-            "Türkçe",
-            "العربية",
-            "हिन्दी",
-            "বাংলা",
-            "Tiếng Việt",
-            "ภาษาไทย",
-            "Ελληνικά",
-            "Čeština",
-            "Magyar",
-            "Română",
-            "Українська",
-            "Bahasa Indonesia",
-            "Bahasa Melayu",
-            "Hrvatski",
-            "Slovenčina",
-            "Slovenščina",
-            "Български",
-            "Srpski",
-            "עברית",
-          ].map((lang) => (
+          {Object.keys(LANGUAGE_MAP).map((lang) => (
             <div
               key={lang}
-              onClick={() => setLanguage(lang)}
+              onClick={() => handleLanguageSelect(lang)}
               className={`
                   px-3 py-1 mx-1 rounded-[4px] text-[13px] cursor-default flex items-center justify-between
                   ${

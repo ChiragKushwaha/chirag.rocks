@@ -15,6 +15,15 @@ interface SystemState {
   toggleSelectedFile: (file: string) => void;
   clearSelection: () => void;
 
+  setupStep: string;
+  setSetupStep: (step: string) => void;
+
+  settingsTab: string;
+  setSettingsTab: (tab: string) => void;
+
+  settingsSubTab: string;
+  setSettingsSubTab: (tab: string) => void;
+
   language: string;
   setLanguage: (lang: string) => void;
 
@@ -102,6 +111,16 @@ export const useSystemStore = create(
       wallpaperName: "WhiteSur",
       activeApp: "Finder",
       selectedFile: null,
+
+      // Persistent App States
+      setupStep: "hello",
+      setSetupStep: (step) => set({ setupStep: step }),
+
+      settingsTab: "Appearance",
+      setSettingsTab: (tab) => set({ settingsTab: tab }),
+
+      settingsSubTab: "main",
+      setSettingsSubTab: (tab) => set({ settingsSubTab: tab }),
 
       user: {
         name: "",
@@ -257,6 +276,9 @@ export const useSystemStore = create(
         idleTimeoutSeconds: state.idleTimeoutSeconds,
         isLocked: state.isLocked, // Persist lock state
         isDark: state.isDark, // Persist effective theme state
+        setupStep: state.setupStep,
+        settingsTab: state.settingsTab,
+        settingsSubTab: state.settingsSubTab,
       }),
     }
   )

@@ -1,14 +1,14 @@
 "use client";
 import { useEffect } from "react";
-import { SetupAssistant } from "../apps/SetupAssistant";
-import { Desktop } from "../components/Desktop";
-import { LockScreen } from "../components/LockScreen";
-import { PermissionProvider } from "../context/PermissionContext";
-import { useAuth } from "../hooks/useAuth";
-import { useTheme } from "../hooks/useTheme";
-import { fs } from "../lib/FileSystem";
-import { MacInstaller } from "../lib/Installer";
-import { useSystemStore } from "../store/systemStore";
+import { SetupAssistant } from "@/apps/SetupAssistant";
+import { Desktop } from "@/components/Desktop";
+import { LockScreen } from "@/components/LockScreen";
+import { PermissionProvider } from "@/context/PermissionContext";
+import { useAuth } from "@/hooks/useAuth";
+import { useTheme } from "@/hooks/useTheme";
+import { fs } from "@/lib/FileSystem";
+import { MacInstaller } from "@/lib/Installer";
+import { useSystemStore } from "@/store/systemStore";
 // Extend Window interface to include lockScreen function
 declare global {
   interface Window {
