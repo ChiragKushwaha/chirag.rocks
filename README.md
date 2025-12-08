@@ -12,25 +12,33 @@
 
 Welcome to my **macOS Big Sur Clone**! This project is a pixel-perfect recreation of the macOS Big Sur desktop environment, running entirely in your browser. It serves as a comprehensive portfolio piece, demonstrating advanced frontend engineering skills, complex state management, and the power of modern web technologies.
 
-This isn't just a UI mockup; it's a fully functional operating system simulation with a working file system, installable apps, and real-time features.
+This isn't just a UI mockup; it's a fully functional operating system simulation with a working file system, installable apps, virtualization, and global internalization.
 
 **[Live Demo](https://chirag-rocks.vercel.app)**
 
 ## ✨ Key Features
 
 ### 🖥️ Desktop Environment
-*   **Window Manager**: Draggable, resizable, and minimizable windows with z-index management.
-*   **Dock**: Animated dock with magnification effects and bouncing animations.
-*   **Menu Bar**: Fully functional global menu bar that updates based on the active application.
-*   **Control Center**: Quick access to system toggles like Wi-Fi, Bluetooth, and Display brightness.
-*   **Notification Center**: Real-time notifications and widgets.
-*   **Spotlight Search**: Global search for apps and files (Cmd + Space).
-*   **Dark/Light Mode**: System-wide theme switching with automatic preference detection.
+
+* **Window Manager**: Draggable, resizable, and minimizable windows with z-index management.
+* **Dock**: Animated dock with magnification effects and bouncing animations.
+* **Menu Bar**: Fully functional global menu bar that updates based on the active application.
+* **Control Center**: Quick access to system toggles like Wi-Fi, Bluetooth, and Display brightness.
+* **Notification Center**: Real-time notifications and widgets.
+* **Spotlight Search**: Global search for apps and files (Cmd + Space).
+* **Dark/Light Mode**: System-wide theme switching with automatic preference detection.
+
+### 🌐 Internationalization (i18n)
+
+* **30+ Languages**: Fully translated into over 30 languages including Spanish, French, German, Chinese, Japanese, Arabic, and more.
+* **Dynamic Routing**: Locale-based routing (e.g., `/en`, `/es`, `/ja`).
+* **RTL Support**: Full Right-to-Left layout support for languages like Arabic and Hebrew.
 
 ### 📂 File System (OPFS)
-*   Built on the **Origin Private File System (OPFS)** for high-performance, persistent local storage.
-*   **Finder**: Full-featured file manager with drag-and-drop support, file previews, and directory navigation.
-*   **Offline Support**: All files and apps work offline via Service Workers.
+
+* Built on the **Origin Private File System (OPFS)** for high-performance, persistent local storage.
+* **Finder**: Full-featured file manager with drag-and-drop support, file previews, and directory navigation.
+* **Offline Support**: All files and apps work offline via Service Workers.
 
 ## 📱 Featured Apps
 
@@ -38,52 +46,60 @@ This project includes a suite of functional applications, each showcasing differ
 
 | App | Description | Key Tech |
 | :--- | :--- | :--- |
-| **Chess** | Full chess game with AI opponent and move validation. | `chess.js`, `react-chessboard` |
+| **Finder** | Full file system management with drag-and-drop. | OPFS, Web Workers |
+| **Maps** | Interactive global map with search and geocoding. | `leaflet`, `react-leaflet`, Nominatim API |
+| **Virtual Machine** | Run real operating systems (Linux, KolibriOS) in the browser. | V86 Emulator, WebAssembly |
+| **Safari** | Browser simulation with tabs and history. | IFrame, History API |
 | **Terminal** | Interactive shell with command parsing and file system access. | Custom Parser, OPFS |
 | **VS Code** | Lightweight code editor with syntax highlighting. | Monaco Editor |
-| **Safari** | Browser simulation with tabs and history. | IFrame, History API |
 | **Messages** | Real-time messaging simulation. | Socket.IO |
 | **FaceTime** | Video calling interface with camera access. | WebRTC |
+| **Photos** | Image gallery with grid view, map view, and EXIF preview. | CSS Grid, Leaflet, Next.js Image |
 | **PDF Viewer** | Native-like PDF rendering and navigation. | `react-pdf`, `pdf.js` |
-| **Photos** | Image gallery with grid view and preview. | CSS Grid, Next.js Image |
 | **Music** | Audio player with playlist management. | HTML5 Audio |
-| **Calculator** | Standard calculator with history. | React State |
+| **Chess** | Full chess game with AI opponent and move validation. | `chess.js`, `react-chessboard` |
 
 ## 🛠️ Tech Stack
 
-*   **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
-*   **Language**: [TypeScript](https://www.typescriptlang.org/)
-*   **Styling**: [Tailwind CSS 4](https://tailwindcss.com/) & CSS Modules
-*   **State Management**: [Zustand](https://github.com/pmndrs/zustand)
-*   **Icons**: [Lucide React](https://lucide.dev/)
-*   **Performance**: Server Components, Dynamic Imports, Service Workers
-*   **Deployment**: Vercel
+* **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+* **Language**: [TypeScript](https://www.typescriptlang.org/)
+* **Styling**: [Tailwind CSS 4](https://tailwindcss.com/) & CSS Modules
+* **State Management**: [Zustand](https://github.com/pmndrs/zustand)
+* **Internationalization**: [next-intl](https://next-intl-docs.vercel.app/)
+* **Mapping**: [Leaflet](https://leafletjs.com/) & [React Leaflet](https://react-leaflet.js.org/)
+* **Virtualization**: [V86](https://github.com/copy/v86)
+* **Icons**: [Lucide React](https://lucide.dev/)
+* **Performance**: Server Components, Dynamic Imports, Service Workers
 
 ## 🚦 Getting Started
 
 ### Prerequisites
-*   Node.js 18+
-*   pnpm (recommended) or npm
+
+* Node.js 18+
+* pnpm (recommended) or npm
 
 ### Installation
 
-1.  **Clone the repository**
+1. **Clone the repository**
+
     ```bash
     git clone https://github.com/ChiragKushwaha/mac.git
     cd mac
     ```
 
-2.  **Install dependencies**
+2. **Install dependencies**
+
     ```bash
     pnpm install
     ```
 
-3.  **Run the development server**
+3. **Run the development server**
+
     ```bash
     pnpm dev
     ```
 
-4.  Open [http://localhost:3000](http://localhost:3000) in your browser.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 🤝 Contributing
 
