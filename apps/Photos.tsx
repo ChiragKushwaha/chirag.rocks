@@ -24,6 +24,11 @@ import {
 } from "lucide-react";
 import { fs } from "../lib/FileSystem";
 import { ImageLoader } from "../lib/ImageLoader";
+import dynamic from "next/dynamic";
+
+const LeafletMap = dynamic(() => import("../components/ui/Map"), {
+  ssr: false,
+});
 
 interface Photo {
   id: string;
@@ -476,22 +481,12 @@ export const Photos: React.FC<PhotosProps> = ({
 
     if (activeTab === "map") {
       // Default to user location or a fallback (San Francisco)
-      const center = userLocation
-        ? `${userLocation.lat},${userLocation.lng}`
-        : "37.7749,-122.4194";
+      const center: [number, number] = userLocation
+        ? [userLocation.lat, userLocation.lng]
+        : [37.7749, -122.4194];
       return (
-        <div className="w-full h-full">
-          <iframe
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            loading="lazy"
-            allowFullScreen
-            title="Photo Location Map"
-            src={`https://maps.google.com/maps?q=${encodeURIComponent(
-              center
-            )}&t=k&z=13&ie=UTF8&iwloc=&output=embed`}
-          ></iframe>
+        <div className="w-full h-full relative z-0">
+          <LeafletMap center={center} zoom={13} />
         </div>
       );
     }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Search,
   Navigation,
@@ -9,16 +9,27 @@ import {
 } from "lucide-react";
 import { usePermission } from "../context/PermissionContext";
 import { useTranslations } from "next-intl";
+import dynamic from "next/dynamic";
+
+// Dynamically import Map to avoid SSR issues with Leaflet
+const LeafletMap = dynamic(() => import("../components/ui/Map"), {
+  ssr: false,
+});
 
 export const Maps: React.FC = () => {
   const t = useTranslations("Maps");
   const { requestPermission } = usePermission();
-  const [searchQuery, setSearchQuery] = React.useState("");
-  const [currentLocation, setCurrentLocation] = React.useState(
-    "Lucknow, Uttar Pradesh"
-  );
-  const [mapType, setMapType] = React.useState<"m" | "k">("m"); // m = standard, k = satellite
-  const [recents, setRecents] = React.useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  // Default to Lucknow
+  const [coords, setCoords] = useState<[number, number]>([26.8467, 80.9462]);
+
+  const [recents, setRecents] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  // Initialize with Lucknow
+  useEffect(() => {
+    // Initial load is already set by default state
+  }, []);
 
   const addToRecents = (loc: string) => {
     setRecents((prev) => {
@@ -27,11 +38,37 @@ export const Maps: React.FC = () => {
     });
   };
 
+  const geocode = async (query: string) => {
+    if (!query) return;
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+          query
+        )}`
+      );
+      const data = await response.json();
+      if (data && data.length > 0) {
+        const { lat, lon } = data[0];
+        setCoords([parseFloat(lat), parseFloat(lon)]);
+        // Keep the user's query in the search bar, but update our internal name if needed
+        // setCurrentLocationName(display_name);
+        addToRecents(query);
+      } else {
+        alert("Location not found");
+      }
+    } catch (error) {
+      console.error("Geocoding error:", error);
+      alert("Error searching location");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      setCurrentLocation(searchQuery);
-      addToRecents(searchQuery);
+      geocode(searchQuery);
     }
   };
 
@@ -48,14 +85,24 @@ export const Maps: React.FC = () => {
       if (!allowed) return;
 
       navigator.geolocation.getCurrentPosition(
-        (position) => {
+        async (position) => {
           const { latitude, longitude } = position.coords;
-          const locDisplay = `${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
-          // Use coordinates for the map
-          setCurrentLocation(`${latitude},${longitude}`);
-          // Update search bar text for clarity
-          setSearchQuery(locDisplay);
-          addToRecents(locDisplay);
+          setCoords([latitude, longitude]);
+          // Optional: Reverse geocode to get name
+          try {
+            const res = await fetch(
+              `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+            );
+            const data = await res.json();
+            if (data && data.display_name) {
+              setSearchQuery(data.display_name);
+              addToRecents(data.display_name);
+            } else {
+              setSearchQuery(`${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
+            }
+          } catch (e) {
+            setSearchQuery(`${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
+          }
         },
         (error) => {
           console.error("Error getting location:", error);
@@ -68,24 +115,14 @@ export const Maps: React.FC = () => {
   };
 
   const loadLocation = (loc: string) => {
-    setCurrentLocation(loc);
     setSearchQuery(loc);
-    addToRecents(loc);
+    geocode(loc);
   };
-
-  // Construct Google Maps Embed URL
-  // q = query
-  // t = map type (m=map, k=satellite)
-  // z = zoom
-  // output = embed
-  const mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(
-    currentLocation
-  )}&t=${mapType}&z=13&ie=UTF8&iwloc=&output=embed`;
 
   return (
     <div className="flex h-full bg-[#f5f5f7] dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans relative overflow-hidden">
       {/* Sidebar */}
-      <div className="absolute top-4 left-4 w-80 bg-white/90 dark:bg-[#2b2b2b]/90 backdrop-blur-xl rounded-xl shadow-lg border border-gray-200 dark:border-black/10 z-10 flex flex-col max-h-[calc(100%-32px)]">
+      <div className="absolute top-4 left-4 w-80 bg-white/90 dark:bg-[#2b2b2b]/90 backdrop-blur-xl rounded-xl shadow-lg border border-gray-200 dark:border-black/10 z-50 flex flex-col max-h-[calc(100%-32px)]">
         <div className="p-3 border-b border-gray-200 dark:border-black/10">
           <form onSubmit={handleSearch} className="relative">
             <Search
@@ -100,6 +137,11 @@ export const Maps: React.FC = () => {
               aria-label={t("SearchPlaceholder")}
               className="w-full bg-gray-100 dark:bg-black/20 border-none rounded-lg pl-10 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50"
             />
+            {loading && (
+              <div className="absolute right-3 top-2.5">
+                <div className="animate-spin h-4 w-4 border-2 border-blue-500 border-t-transparent rounded-full"></div>
+              </div>
+            )}
           </form>
         </div>
 
@@ -195,37 +237,21 @@ export const Maps: React.FC = () => {
       </div>
 
       {/* Map Area */}
-      <div className="w-full h-full bg-[#e5e3df] dark:bg-[#242f3e] relative">
-        <iframe
-          src={mapUrl}
-          className="w-full h-full border-none"
-          title="Google Maps"
-          loading="lazy"
-        />
+      <div className="w-full h-full bg-[#e5e3df] dark:bg-[#242f3e] relative z-0">
+        <LeafletMap center={coords} zoom={13} />
 
         {/* Controls */}
-        <div className="absolute top-4 right-4 flex flex-col gap-2">
+        <div className="absolute top-4 right-4 flex flex-col gap-2 z-50">
           <button
-            onClick={() => setMapType(mapType === "m" ? "k" : "m")}
             className="w-10 h-10 bg-white dark:bg-[#2b2b2b] rounded-lg shadow-md flex items-center justify-center text-blue-500 hover:bg-gray-50"
-            title={
-              mapType === "m"
-                ? t("Controls.SwitchToSatellite")
-                : t("Controls.SwitchToMap")
-            }
-            aria-label={
-              mapType === "m"
-                ? t("Controls.SwitchToSatelliteLabel")
-                : t("Controls.SwitchToMapLabel")
-            }
+            title={t("Controls.SwitchToMap")}
           >
-            {mapType === "m" ? <MapIcon size={20} /> : <Navigation size={20} />}
+            <MapIcon size={20} />
           </button>
           <button
             onClick={handleCurrentLocation}
             className="w-10 h-10 bg-white dark:bg-[#2b2b2b] rounded-lg shadow-md flex items-center justify-center text-gray-500 hover:bg-gray-50"
             title={t("Controls.CurrentLocation")}
-            aria-label={t("Controls.ShowCurrentLocation")}
           >
             <Locate size={20} />
           </button>
