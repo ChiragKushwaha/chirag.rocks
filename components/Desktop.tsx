@@ -5,6 +5,7 @@ import { useProcessStore } from "../store/processStore";
 import { ImportUtils } from "../lib/ImportUtils";
 import { useSystemStore } from "../store/systemStore";
 import { useFileCopyStore } from "../store/fileCopyStore";
+import { useTranslations } from "next-intl";
 
 import dynamic from "next/dynamic";
 import NextImage from "next/image";
@@ -70,6 +71,8 @@ import { WallpaperManager } from "../lib/WallpaperManager";
 import { FileCopyWindow } from "./FileCopyWindow";
 
 export const Desktop: React.FC = () => {
+  const t = useTranslations("Desktop");
+  const tApps = useTranslations("Apps");
   // Initialize File Seeding (Lazy Loading Assets to OPFS)
   useFileSeeder();
 
@@ -190,7 +193,7 @@ export const Desktop: React.FC = () => {
   // Reminder Worker
   const { reminders, markNotified } = useReminderStore();
 
-  const userName = user?.name || "Guest";
+  const userName = user?.name || t("Guest");
   const userHome = `/Users/${userName}`;
   const desktopPath = `${userHome}/Desktop`;
   const trashPath = `${userHome}/.Trash`;
@@ -374,7 +377,7 @@ export const Desktop: React.FC = () => {
 
   // --- ACTIONS ---
   const createFolder = async (x?: number, y?: number) => {
-    const baseName = "untitled folder";
+    const baseName = t("UntitledFolder");
     let name = baseName;
     let counter = 2;
 
@@ -445,100 +448,160 @@ export const Desktop: React.FC = () => {
     const apps: Record<string, AppDefinition> = {
       note: {
         id: "notes",
-        name: "Notes",
+        name: tApps("Notes"),
         icon: "notes",
         component: Notes,
       },
       txt: {
         id: "textedit",
-        name: "TextEdit",
+        name: tApps("TextEdit"),
         icon: "📝",
         component: TextEdit,
       },
       md: {
         id: "textedit",
-        name: "TextEdit",
+        name: tApps("TextEdit"),
         icon: "📝",
         component: TextEdit,
       },
       mp4: {
         id: "player",
-        name: "Media Player",
+        name: tApps("MediaPlayer"),
         icon: "▶️",
         component: MediaPlayer,
       },
       mp3: {
         id: "player",
-        name: "Media Player",
+        name: tApps("MediaPlayer"),
         icon: "🎵",
         component: MediaPlayer,
       },
       mov: {
         id: "player",
-        name: "Media Player",
+        name: tApps("MediaPlayer"),
         icon: "▶️",
         component: MediaPlayer,
       },
       pdf: {
         id: "preview",
-        name: "Preview",
+        name: tApps("Preview"),
         icon: "📄",
         component: PDFViewer,
       },
       // System Apps (no extension mapping needed usually, but good to have)
       terminal: {
         id: "terminal",
-        name: "Terminal",
+        name: tApps("Terminal"),
         icon: "terminal",
         component: Terminal,
       },
       calculator: {
         id: "calculator",
-        name: "Calculator",
+        name: tApps("Calculator"),
         icon: "calculator",
         component: Calculator,
       },
       trash: {
         id: "trash",
-        name: "Trash",
+        name: tApps("Trash"),
         icon: "trash",
         component: Trash,
       },
       messages: {
         id: "messages",
-        name: "Messages",
+        name: tApps("Messages"),
         icon: "messages",
         component: Messages,
       },
       facetime: {
         id: "facetime",
-        name: "FaceTime",
+        name: tApps("FaceTime"),
         icon: "facetime",
         component: FaceTime,
       },
       // Photos App Mappings
-      jpg: { id: "photos", name: "Photos", icon: "photos", component: Photos },
-      jpeg: { id: "photos", name: "Photos", icon: "photos", component: Photos },
-      png: { id: "photos", name: "Photos", icon: "photos", component: Photos },
-      gif: { id: "photos", name: "Photos", icon: "photos", component: Photos },
-      webp: { id: "photos", name: "Photos", icon: "photos", component: Photos },
-      svg: { id: "photos", name: "Photos", icon: "photos", component: Photos },
-      ico: { id: "photos", name: "Photos", icon: "photos", component: Photos },
-      heic: { id: "photos", name: "Photos", icon: "photos", component: Photos },
-      psd: { id: "photos", name: "Photos", icon: "photos", component: Photos },
-      ai: { id: "photos", name: "Photos", icon: "photos", component: Photos },
-      tiff: { id: "photos", name: "Photos", icon: "photos", component: Photos },
-      tif: { id: "photos", name: "Photos", icon: "photos", component: Photos },
+      jpg: {
+        id: "photos",
+        name: tApps("Photos"),
+        icon: "photos",
+        component: Photos,
+      },
+      jpeg: {
+        id: "photos",
+        name: tApps("Photos"),
+        icon: "photos",
+        component: Photos,
+      },
+      png: {
+        id: "photos",
+        name: tApps("Photos"),
+        icon: "photos",
+        component: Photos,
+      },
+      gif: {
+        id: "photos",
+        name: tApps("Photos"),
+        icon: "photos",
+        component: Photos,
+      },
+      webp: {
+        id: "photos",
+        name: tApps("Photos"),
+        icon: "photos",
+        component: Photos,
+      },
+      svg: {
+        id: "photos",
+        name: tApps("Photos"),
+        icon: "photos",
+        component: Photos,
+      },
+      ico: {
+        id: "photos",
+        name: tApps("Photos"),
+        icon: "photos",
+        component: Photos,
+      },
+      heic: {
+        id: "photos",
+        name: tApps("Photos"),
+        icon: "photos",
+        component: Photos,
+      },
+      psd: {
+        id: "photos",
+        name: tApps("Photos"),
+        icon: "photos",
+        component: Photos,
+      },
+      ai: {
+        id: "photos",
+        name: tApps("Photos"),
+        icon: "photos",
+        component: Photos,
+      },
+      tiff: {
+        id: "photos",
+        name: tApps("Photos"),
+        icon: "photos",
+        component: Photos,
+      },
+      tif: {
+        id: "photos",
+        name: tApps("Photos"),
+        icon: "photos",
+        component: Photos,
+      },
       // V86 Emulator
       iso: {
         id: "v86",
-        name: "Virtual Machine",
+        name: tApps("VirtualMachine"),
         icon: "disk_image",
         component: V86,
       },
       img: {
         id: "v86",
-        name: "Virtual Machine",
+        name: tApps("VirtualMachine"),
         icon: "disk_image",
         component: V86,
       },
@@ -571,7 +634,7 @@ export const Desktop: React.FC = () => {
         windowConfig
       );
     } else {
-      alert(`No application available to open .${ext} files.`);
+      alert(t("NoAppAvailable", { ext }));
     }
   };
 
@@ -642,7 +705,7 @@ export const Desktop: React.FC = () => {
       }, 500);
     } catch (e) {
       console.error("Failed to move to bin", e);
-      alert("Failed to move to bin. Folder moves not fully supported yet.");
+      alert(t("MoveToBin.NotSupported"));
       store.endCopy();
     }
   };
@@ -655,60 +718,60 @@ export const Desktop: React.FC = () => {
 
     openContextMenu(e.clientX, e.clientY, [
       {
-        label: "New Folder",
+        label: t("ContextMenu.NewFolder"),
         icon: "📁", // TODO: Use better icon
         action: () => createFolder(x, y),
       },
       { separator: true },
-      { label: "Get Info", icon: "ℹ️", disabled: false },
+      { label: t("ContextMenu.GetInfo"), icon: "ℹ️", disabled: false },
       {
-        label: "Change Wallpaper...",
+        label: t("ContextMenu.ChangeWallpaper"),
         action: () => {
           // Launch System Settings with wallpaper panel
           launchProcess(
             "settings",
-            "System Settings",
+            tApps("SystemSettings"),
             "settings",
             <SystemSettings />,
             { width: 900, height: 600, x: 100, y: 100 }
           );
         },
       },
-      { label: "Edit Widgets...", disabled: true },
+      { label: t("ContextMenu.EditWidgets"), disabled: true },
       { separator: true },
-      { label: "Use Stacks", icon: "📚", disabled: true },
+      { label: t("ContextMenu.UseStacks"), icon: "📚", disabled: true },
       {
-        label: "Sort By",
+        label: t("ContextMenu.SortBy"),
         icon: "⇅",
         submenu: [
-          { label: "None", icon: "✓" },
+          { label: t("ContextMenu.None"), icon: "✓" },
           { separator: true },
-          { label: "Snap to Grid" },
+          { label: t("ContextMenu.SnapToGrid") },
           { separator: true },
-          { label: "Name" },
-          { label: "Kind" },
-          { label: "Date Last Opened" },
-          { label: "Date Added" },
-          { label: "Date Modified" },
-          { label: "Date Created" },
-          { label: "Size" },
-          { label: "Tags" },
+          { label: t("ContextMenu.Name") },
+          { label: t("ContextMenu.Kind") },
+          { label: t("ContextMenu.DateLastOpened") },
+          { label: t("ContextMenu.DateAdded") },
+          { label: t("ContextMenu.DateModified") },
+          { label: t("ContextMenu.DateCreated") },
+          { label: t("ContextMenu.Size") },
+          { label: t("ContextMenu.Tags") },
         ],
       },
-      { label: "Clean Up", disabled: false },
+      { label: t("ContextMenu.CleanUp"), disabled: false },
       {
-        label: "Clean Up By",
+        label: t("ContextMenu.CleanUpBy"),
         disabled: false,
         submenu: [
-          { label: "Name" },
-          { label: "Kind" },
-          { label: "Date Modified" },
-          { label: "Date Created" },
-          { label: "Size" },
-          { label: "Tags" },
+          { label: t("ContextMenu.Name") },
+          { label: t("ContextMenu.Kind") },
+          { label: t("ContextMenu.DateModified") },
+          { label: t("ContextMenu.DateCreated") },
+          { label: t("ContextMenu.Size") },
+          { label: t("ContextMenu.Tags") },
         ],
       },
-      { label: "Show View Options", icon: "⚙️", disabled: true },
+      { label: t("ContextMenu.ShowViewOptions"), icon: "⚙️", disabled: true },
     ]);
   };
 

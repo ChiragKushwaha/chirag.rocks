@@ -3,6 +3,21 @@
     "world": "Hello world!",
     "GetStarted": "Get Started"
   },
+  "Common": {
+    "OK": "OK",
+    "Cancel": "Cancel",
+    "Yes": "Yes",
+    "No": "No",
+    "Back": "Back",
+    "Continue": "Continue",
+    "Done": "Done",
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "Save": "Save",
+    "Close": "Close",
+    "Error": "Error",
+    "Success": "Success"
+  },
   "Setup": {
     "Common": {
       "Continue": "Continue",
@@ -753,6 +768,758 @@
     "Locked": {
       "Title": "{title} is Locked",
       "Desc": "Authenticate to view these items."
+    }
+  },
+  "Notes": {
+    "Sidebar": {
+      "iCloud": "ICLOUD",
+      "Notes": "Notes",
+      "RecentlyDeleted": "Recently Deleted"
+    },
+    "Search": "Search",
+    "NewNote": "New Note",
+    "NoAdditionalText": "No additional text",
+    "Editor": {
+      "TitlePlaceholder": "Title",
+      "ContentPlaceholder": "Type your note here...",
+      "AddToDesktop": "Add to Desktop",
+      "Restore": "Restore",
+      "Delete": "Delete Note",
+      "DeletePermanently": "Delete Permanently",
+      "EmptyState": "Select a note or create a new one",
+      "Date": "Today at {time}"
+    }
+  },
+  "Reminders": {
+    "Search": "Search",
+    "Sidebar": {
+      "MyLists": "MY LISTS",
+      "Reminders": "Reminders",
+      "Work": "Work",
+      "Today": "Today",
+      "Scheduled": "Scheduled",
+      "All": "All",
+      "Flagged": "Flagged"
+    },
+    "AddReminder": "New Reminder",
+    "Actions": {
+      "Add": "Add",
+      "Cancel": "Cancel",
+      "Delete": "Delete reminder",
+      "MarkComplete": "Mark as complete",
+      "MarkIncomplete": "Mark as incomplete",
+      "Flag": "Flag reminder",
+      "Unflag": "Unflag reminder"
+    },
+    "Inputs": {
+      "Title": "Title",
+      "Date": "Date",
+      "Time": "Time"
+    }
+  },
+  "Calendar": {
+    "Sidebar": {
+      "iCloud": "ICLOUD",
+      "Other": "OTHER",
+      "NoInvitations": "No invitations"
+    },
+    "Toolbar": {
+      "Today": "Today",
+      "SearchPlaceholder": "Search events...",
+      "View": {
+        "day": "day",
+        "week": "week",
+        "month": "month",
+        "year": "year"
+      }
+    },
+    "EventModal": {
+      "Title": "New Event",
+      "EventTitlePlaceholder": "Event Title",
+      "CalendarLabel": "Calendar",
+      "Cancel": "Cancel",
+      "AddEvent": "Add Event"
+    },
+    "SearchResults": {
+      "Title": "Search Results",
+      "NoEvents": "No events found"
+    },
+    "Event": {
+      "NoLocation": "No location",
+      "EventLabel": "Event: {title} at {location}"
+    },
+    "Weekdays": {
+      "Sun": "Sun",
+      "Mon": "Mon",
+      "Tue": "Tue",
+      "Wed": "Wed",
+      "Thu": "Thu",
+      "Fri": "Fri",
+      "Sat": "Sat"
+    },
+    "WeekdaysShort": {
+      "Sun": "S",
+      "Mon": "M",
+      "Tue": "T",
+      "Wed": "W",
+      "Thu": "T",
+      "Fri": "F",
+      "Sat": "S"
+    }
+  },
+  "Maps": {
+    "SearchPlaceholder": "Search Maps",
+    "Sidebar": {
+      "Favorites": "FAVORITES",
+      "Recent": "RECENT",
+      "NoRecentSearches": "No recent searches",
+      "RecentLabel": "Recent"
+    },
+    "Locations": {
+      "Home": "Home",
+      "Work": "Work"
+    },
+    "Controls": {
+      "SwitchToSatellite": "Switch to Satellite",
+      "SwitchToSatelliteLabel": "Switch to Satellite view",
+      "SwitchToMap": "Switch to Map",
+      "SwitchToMapLabel": "Switch to Map view",
+      "CurrentLocation": "Current Location",
+      "ShowCurrentLocation": "Show current location",
+      "MapInfo": "Map information"
+    },
+    "Permission": {
+      "AppName": "Maps",
+      "Title": "Location",
+      "Reason": "Maps needs access to your location to show where you are.",
+      "Error": "Could not get your location. Please ensure location services are enabled.",
+      "NotSupported": "Geolocation is not supported by your browser."
+    }
+  },
+  "FaceTime": {
+    "Title": "FaceTime",
+    "ConnectingAs": "Connecting as {name}...",
+    "IncomingCall": "{name} is calling...",
+    "Accept": "Accept",
+    "Decline": "Decline",
+    "End": "End",
+    "Contacts": "Contacts",
+    "NoContacts": "No one else is online.",
+    "Video": "Video",
+    "SelectContact": "Select a contact to call",
+    "Aria": {
+      "RemoteVideo": "Remote video feed",
+      "LocalVideo": "Local video preview",
+      "EndCall": "End Call",
+      "CallContact": "Call {name}",
+      "VideoCallContact": "Video call {name}",
+      "LocalPreview": "Local camera preview"
+    },
+    "Permission": {
+      "AppName": "FaceTime",
+      "Title": "Camera and Microphone",
+      "Reason": "FaceTime needs access to your camera and microphone to make calls."
+    }
+  },
+  "Contacts": {
+    "SearchPlaceholder": "Search",
+    "SearchAria": "Search contacts",
+    "Count": "{count} Contacts",
+    "EditContact": "Edit Contact",
+    "NewContact": "New Contact",
+    "Preview": "Preview",
+    "Edit": "Edit",
+    "DeleteContact": "Delete Contact",
+    "Cancel": "Cancel",
+    "Done": "Done",
+    "NoNotes": "No notes",
+    "NoSelection": "No Contact Selected",
+    "Labels": {
+      "FirstName": "First Name",
+      "LastName": "Last Name",
+      "Company": "Company",
+      "Phone": "Phone",
+      "Email": "Email",
+      "Notes": "Notes",
+      "Mobile": "mobile",
+      "Home": "home",
+      "Message": "message",
+      "Video": "video",
+      "Mail": "mail"
+    },
+    "Alerts": {
+      "DeleteConfirm": "Are you sure you want to delete this contact?",
+      "NameRequired": "Please enter a name or company."
+    },
+    "Aria": {
+      "AddContact": "Add new contact",
+      "Contact": "Contact: {name}",
+      "Action": "{action} {name}"
+    }
+  },
+  "Calculator": {
+    "AC": "AC",
+    "AllClear": "All Clear",
+    "ToggleSign": "Toggle sign",
+    "Percentage": "Percentage",
+    "Divide": "Divide",
+    "Multiply": "Multiply",
+    "Subtract": "Subtract",
+    "Add": "Add",
+    "Calculate": "Calculate result"
+  },
+  "Clock": {
+    "Tabs": {
+      "WorldClock": "World Clock",
+      "Alarms": "Alarms",
+      "Stopwatch": "Stopwatch",
+      "Timers": "Timers"
+    },
+    "AddClock": "Add clock",
+    "Locations": {
+      "NewDelhi": "New Delhi"
+    },
+    "Today": "Today",
+    "HRS": "HRS"
+  },
+  "Weather": {
+    "Loading": "Loading Weather...",
+    "Error": "Unable to load weather",
+    "Retry": "Retry",
+    "SearchPlaceholder": "Search city",
+    "Searching": "Searching...",
+    "NoResults": "No results found",
+    "Recent": "Recent",
+    "Popular": "Popular",
+    "Sidebar": {
+      "Open": "Open sidebar",
+      "Close": "Close sidebar"
+    },
+    "Aria": {
+      "SelectLocation": "Select {name}, {country}"
+    },
+    "Forecast": {
+      "Hourly": "Hourly Forecast",
+      "TenDay": "10-Day Forecast",
+      "Now": "Now",
+      "Today": "Today"
+    },
+    "Details": {
+      "AirQuality": "Air Quality",
+      "UVIndex": "UV Index",
+      "Wind": "Wind",
+      "Sunset": "Sunset",
+      "Sunrise": "Sunrise:",
+      "FeelsLike": "Feels Like",
+      "Humidity": "Humidity",
+      "Visibility": "Visibility",
+      "Pressure": "Pressure",
+      "hPa": "hPa"
+    },
+    "Descriptions": {
+      "AirQualityDesc": "Air quality index is 130, similar to yesterday at about this time.",
+      "UVIndexDesc": "Use sun protection until 4PM.",
+      "FeelsLikeDesc": "Similar to the actual temperature.",
+      "DewPointDesc": "The dew point is {temp}° right now.",
+      "VisibilityDesc": "Perfectly clear view.",
+      "Footer": "Weather for {location} • Open-Meteo Data",
+      "PollutionLevel": "Moderately Polluted",
+      "UVLevel": "Moderate"
+    }
+  },
+  "Stocks": {
+    "Loading": "Loading Market Data...",
+    "Error": "Failed to load stocks.",
+    "Title": "Stocks",
+    "Search": "Search",
+    "Searching": "Searching...",
+    "Watchlist": "Watchlist",
+    "KeyStatistics": "Key Statistics",
+    "BusinessNews": "Business News",
+    "ShowMore": "Show More",
+    "Aria": {
+      "Search": "Search stocks",
+      "Select": "Select stock {symbol}",
+      "ReadNews": "Read news: {title}"
+    },
+    "Stats": {
+      "Open": "Open",
+      "High": "High",
+      "Low": "Low",
+      "Vol": "Vol",
+      "PE": "P/E",
+      "MktCap": "Mkt Cap",
+      "52WH": "52W H",
+      "52WL": "52W L"
+    }
+  },
+  "News": {
+    "Title": "News",
+    "Categories": {
+      "TopStories": "Top Stories",
+      "Technology": "Technology",
+      "Business": "Business",
+      "Science": "Science",
+      "Health": "Health",
+      "Entertainment": "Entertainment",
+      "Sports": "Sports"
+    },
+    "SearchPlaceholder": "Search stories...",
+    "SearchLabel": "Search",
+    "SearchTitle": "Search: \"{query}\"",
+    "Loading": "Loading top stories...",
+    "Error": "Failed to load news. Please try again later.",
+    "TryAgain": "Try Again",
+    "NoResults": "No stories found matching \"{query}\"",
+    "ClearSearch": "Clear Search",
+    "TopStory": "Top Story",
+    "Refresh": "Refresh",
+    "Aria": {
+      "Category": "Category: {label}",
+      "Search": "Search stories",
+      "Refresh": "Refresh news",
+      "ReadTopStory": "Read top story: {title}",
+      "ReadArticle": "Read article: {title}",
+      "Share": "Share article",
+      "Like": "Like article"
+    }
+  },
+  "Music": {
+    "AppleMusic": "Apple Music",
+    "Library": "Library",
+    "ListenNow": "Listen Now",
+    "Browse": "Browse",
+    "Radio": "Radio",
+    "RecentlyAdded": "Recently Added",
+    "Artists": "Artists",
+    "Albums": "Albums",
+    "Songs": "Songs",
+    "Search": "Search",
+    "SearchTitle": "Search: {query}",
+    "Aria": {
+      "Search": "Search music",
+      "GoBack": "Go back",
+      "GoForward": "Go forward",
+      "Prev": "Previous song",
+      "Next": "Next song",
+      "Play": "Play",
+      "Pause": "Pause",
+      "PlaySong": "Play {track} by {artist}",
+      "PauseSong": "Pause {track}",
+      "Lyrics": "Toggle lyrics",
+      "Queue": "Toggle queue",
+      "Mute": "Toggle mute",
+      "VolSlider": "Volume slider",
+      "SeekSlider": "Seek slider"
+    },
+    "Queue": {
+      "Title": "Playing Next",
+      "Empty": "Queue is empty"
+    },
+    "Lyrics": {
+      "NotAvailable": "Lyrics are not available for this song in the preview mode.",
+      "Imagine": "But imagine the lyrics appearing here, perfectly synced with the music...",
+      "Lalala": "La la la...",
+      "Placeholder": "Play a song to see lyrics"
+    }
+  },
+  "TV": {
+    "WatchNow": "Watch Now",
+    "Movies": "Movies",
+    "TVShows": "TV Shows",
+    "Kids": "Kids",
+    "Library": "Library",
+    "SearchResults": "Search Results",
+    "NoShows": "No shows found.",
+    "SearchPlaceholder": "Search",
+    "SearchLabel": "Search TV Shows",
+    "Series": "Series",
+    "PlayEpisode": "Play Episode 1",
+    "AddToUpNext": "Add to Up Next",
+    "Added": "Added",
+    "OpenYouTube": "Open in YouTube",
+    "ViewAccount": "View Account",
+    "Aria": {
+      "Play": "Play {name}",
+      "CloseVideo": "Close video",
+      "AddLibrary": "Add to Library",
+      "RemoveLibrary": "Remove from Library"
+    },
+    "Genres": {
+      "Drama": "Drama",
+      "Action": "Action",
+      "Comedy": "Comedy",
+      "ScienceFiction": "Science-Fiction",
+      "Thriller": "Thriller"
+    }
+  },
+  "Terminal": {
+    "Guest": "Guest",
+    "Welcome": "Welcome to Terminal",
+    "HelpPrompt": "Type 'help' for a list of commands.",
+    "AvailableCommands": "Available commands: ls, cd, pwd, mkdir, touch, echo, cat, clear, whoami, ping, man, rm, rmdir, vi",
+    "CommandNotFound": "command not found: {command}",
+    "Error": "Error: {message}",
+    "AriaInput": "Terminal Input",
+    "Usage": {
+      "Ping": "usage: ping host",
+      "Mkdir": "usage: mkdir directory_name",
+      "Rmdir": "usage: rmdir directory_name",
+      "Rm": "usage: rm [-rf] file_name",
+      "Touch": "usage: touch file_name",
+      "Cat": "usage: cat file_name",
+      "Vi": "usage: vi file_name",
+      "Man": "What manual page do you want?"
+    },
+    "Errors": {
+      "PingResolve": "ping: cannot resolve {host}: Unknown host",
+      "NoManual": "No manual entry for {command}",
+      "NoSuchFile": "{cmd}: {path}: No such file or directory",
+      "NotADirectory": "{cmd}: {path}: Not a directory",
+      "DirectoryNotEmpty": "{cmd}: {path}: Directory not empty",
+      "IsADirectory": "{cmd}: {path}: is a directory"
+    },
+    "Messages": {
+      "PingStats": "PING {host} (127.0.0.1): 56 data bytes\n64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.045 ms\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.082 ms\n64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.067 ms\n\n--- {host} ping statistics ---\n3 packets transmitted, 3 packets received, 0.0% packet loss",
+      "OpeningTextEdit": "Opening {file} in TextEdit..."
+    },
+    "ManPages": {
+      "ls": "ls - list directory contents\n\nUsage: ls [options] [file|dir]\n\nOptions:\n  -a, --all      do not ignore entries starting with .\n  -l             use a long listing format",
+      "cd": "cd - change the shell working directory\n\nUsage: cd [dir]\n\nChange the current directory to DIR. The default DIR is the value of the HOME shell variable.",
+      "pwd": "pwd - print name of current/working directory\n\nUsage: pwd\n\nPrint the full filename of the current working directory.",
+      "mkdir": "mkdir - make directories\n\nUsage: mkdir [DIRECTORY]\n\nCreate the DIRECTORY(ies), if they do not already exist.",
+      "touch": "touch - change file timestamps\n\nUsage: touch [FILE]\n\nUpdate the access and modification times of each FILE to the current time. If FILE does not exist it is created empty.",
+      "echo": "echo - display a line of text\n\nUsage: echo [STRING]...\n\nEcho the STRING(s) to standard output.",
+      "cat": "cat - concatenate files and print on the standard output\n\nUsage: cat [FILE]...\n\nConcatenate FILE(s) to standard output.",
+      "clear": "clear - clear the terminal screen\n\nUsage: clear",
+      "whoami": "whoami - print effective userid\n\nUsage: whoami\n\nPrint the user name associated with the current effective user ID.",
+      "ping": "ping - send ICMP ECHO_REQUEST to network hosts\n\nUsage: ping [HOST]\n\nSend ICMP ECHO_REQUEST to network hosts.",
+      "man": "man - an interface to the system reference manuals\n\nUsage: man [COMMAND]\n\nDisplay the manual page for COMMAND.",
+      "rm": "rm - remove files or directories\n\nUsage: rm [OPTION]... [FILE]...\n\nRemove (unlink) the FILE(s).\n\nOptions:\n  -r, -R, --recursive   remove directories and their contents recursively\n  -f, --force           ignore nonexistent files and arguments, never prompt",
+      "rmdir": "rmdir - remove empty directories\n\nUsage: rmdir [DIRECTORY]...\n\nRemove the DIRECTORY(ies), if they are empty.",
+      "vi": "vi - screen-oriented (visual) display editor\n\nUsage: vi [FILE]\n\nEdit FILE."
+    }
+  },
+  "TextEdit": {
+    "Guest": "Guest",
+    "Untitled": "Untitled.txt",
+    "Save": "Save",
+    "Loading": "Loading...",
+    "Placeholder": "Type your notes here...",
+    "SavedAlert": "Saved to {path}/{filename}"
+  },
+  "PDFViewer": {
+    "Document": "Document.pdf",
+    "PageInfo": "Page {current} of {total}",
+    "View": "View",
+    "ZoomIn": "Zoom In",
+    "ZoomOut": "Zoom Out",
+    "LoadingThumbnails": "Loading thumbnails...",
+    "Loading": "Loading...",
+    "NoPDF": "No PDF",
+    "FailedToLoad": "Failed to load PDF",
+    "NoPDFLoaded": "No PDF loaded"
+  },
+  "Spotlight": {
+    "Placeholder": "Spotlight Search",
+    "SearchWebFor": "Search Web for \"{query}\"",
+    "NoResults": "No results found",
+    "Open": "Open",
+    "Kinds": {
+      "Web": "Web Search",
+      "App": "Application",
+      "Directory": "Directory",
+      "File": "File"
+    },
+    "Aria": {
+      "Open": "Open {name}"
+    }
+  },
+  "Desktop": {
+    "Guest": "Guest",
+    "UntitledFolder": "untitled folder",
+    "NoAppAvailable": "No application available to open .{ext} files.",
+    "MoveToBin": {
+      "Failed": "Failed to move to bin",
+      "NotSupported": "Failed to move to bin. Folder moves not fully supported yet."
+    },
+    "ContextMenu": {
+      "NewFolder": "New Folder",
+      "GetInfo": "Get Info",
+      "ChangeWallpaper": "Change Wallpaper...",
+      "EditWidgets": "Edit Widgets...",
+      "UseStacks": "Use Stacks",
+      "SortBy": "Sort By",
+      "CleanUp": "Clean Up",
+      "CleanUpBy": "Clean Up By",
+      "ShowViewOptions": "Show View Options",
+      "Tags": "Tags",
+      "None": "None",
+      "SnapToGrid": "Snap to Grid",
+      "Name": "Name",
+      "Kind": "Kind",
+      "DateLastOpened": "Date Last Opened",
+      "DateAdded": "Date Added",
+      "DateModified": "Date Modified",
+      "DateCreated": "Date Created",
+      "Size": "Size"
+    }
+  },
+  "MenuBar": {
+    "Apple": {
+      "AboutThisMac": "About This Mac",
+      "SystemSettings": "System Settings...",
+      "AppStore": "App Store...",
+      "RecentItems": "Recent Items",
+      "ForceQuit": "Force Quit...",
+      "Sleep": "Sleep",
+      "Restart": "Restart...",
+      "ShutDown": "Shut Down...",
+      "LockScreen": "Lock Screen"
+    },
+    "App": {
+      "About": "About {app}",
+      "Quit": "Quit {app}"
+    },
+    "File": {
+      "Title": "File",
+      "New": "New",
+      "Open": "Open...",
+      "Save": "Save",
+      "Duplicate": "Duplicate",
+      "NewFinderWindow": "New Finder Window",
+      "NewFolder": "New Folder",
+      "GetInfo": "Get Info"
+    },
+    "Edit": {
+      "Title": "Edit",
+      "Undo": "Undo",
+      "Redo": "Redo",
+      "Cut": "Cut",
+      "Copy": "Copy",
+      "Paste": "Paste"
+    },
+    "View": {
+      "Title": "View",
+      "AsIcons": "As Icons",
+      "AsList": "As List",
+      "AsColumns": "As Columns"
+    },
+    "Window": {
+      "Title": "Window",
+      "Minimize": "Minimize",
+      "Zoom": "Zoom"
+    },
+    "Help": {
+      "Title": "Help",
+      "MacOSHelp": "macOS Help"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "KnownNetworks": "Known Networks",
+      "OtherNetworks": "Other Networks",
+      "Settings": "Wi-Fi Settings..."
+    },
+    "Battery": {
+      "Title": "Battery",
+      "PowerSource": "Power Source: {source}",
+      "PowerAdapter": "Power Adapter",
+      "Battery": "Battery",
+      "EnergyMode": "Energy Mode",
+      "Automatic": "Automatic",
+      "LowPower": "Low Power",
+      "HighPower": "High Power",
+      "SignificantEnergy": "Using Significant Energy",
+      "Settings": "Battery Settings..."
+    },
+    "Aria": {
+      "Clipboard": "Clipboard",
+      "MediaPlayer": "Media Player",
+      "Spotlight": "Spotlight Search",
+      "ControlCenter": "Control Center",
+      "Siri": "Siri",
+      "Clock": "Clock and Notification Center"
+    }
+  },
+  "ControlCenter": {
+    "WiFi": "Wi-Fi",
+    "HomeNetwork": "Home Network",
+    "Off": "Off",
+    "On": "On",
+    "Bluetooth": "Bluetooth",
+    "AirDrop": "AirDrop",
+    "ContactsOnly": "Contacts Only",
+    "DoNotDisturb": "Do Not Disturb",
+    "ScreenMirroring": "Screen Mirroring",
+    "Display": "Display",
+    "Sound": "Sound",
+    "NotPlaying": "Not Playing",
+    "Music": "Music"
+  },
+  "WeatherDropdown": {
+    "Searching": "Searching...",
+    "SearchCity": "Search city...",
+    "Now": "Now",
+    "Today": "Today",
+    "OpenWeather": "Open Weather"
+  },
+  "LockScreen": {
+    "IncorrectPassword": "Incorrect password",
+    "Guest": "Guest",
+    "EnterPassword": "Enter Password",
+    "Hint": "Touch ID or enter password (hint: {hint})",
+    "Login": "Login",
+    "Cancel": "Cancel",
+    "Aria": {
+      "UserAvatar": "User avatar, click to login",
+      "User": "User {name}, click to login",
+      "Password": "Password",
+      "Submit": "Submit password"
+    }
+  },
+  "NotificationCenter": {
+    "Title": "Notifications",
+    "Widgets": "Widgets",
+    "Done": "Done",
+    "Edit": "Edit",
+    "AddWidget": "Add Widget"
+  },
+  "Widgets": {
+    "Loading": "Loading...",
+    "Calendar": {
+      "Title": "Calendar"
+    },
+    "Weather": {
+      "Title": "Weather"
+    },
+    "Stocks": {
+      "Title": "Stocks"
+    },
+    "Reminders": {
+      "Title": "Reminders",
+      "NoReminders": "No reminders"
+    },
+    "Notes": {
+      "Title": "Notes",
+      "Content": "Buy milk, eggs, and bread.<br />Call mom at 5pm.<br />Meeting with team tomorrow."
+    }
+  },
+  "Window": {
+    "Minimize": "Minimize",
+    "Maximize": "Maximize",
+    "Restore": "Restore",
+    "Close": "Close",
+    "MoveTo": "Move Window to...",
+    "LeftSide": "Left Side of Screen",
+    "RightSide": "Right Side of Screen",
+    "EnterFullScreen": "Enter Full Screen"
+  },
+  "Dock": {
+    "AriaLabel": "Application dock",
+    "Trash": "Trash"
+  },
+  "Apps": {
+    "Finder": "Finder",
+    "Launchpad": "Launchpad",
+    "Safari": "Safari",
+    "Messages": "Messages",
+    "Mail": "Mail",
+    "Maps": "Maps",
+    "Photos": "Photos",
+    "FaceTime": "FaceTime",
+    "Calendar": "Calendar",
+    "Contacts": "Contacts",
+    "Reminders": "Reminders",
+    "Notes": "Notes",
+    "Freeform": "Freeform",
+    "TV": "TV",
+    "Music": "Music",
+    "News": "News",
+    "AppStore": "App Store",
+    "SystemSettings": "System Settings",
+    "Terminal": "Terminal",
+    "Calculator": "Calculator",
+    "Trash": "Trash",
+    "TextEdit": "TextEdit",
+    "MediaPlayer": "Media Player",
+    "Preview": "Preview",
+    "VirtualMachine": "Virtual Machine",
+    "VSCode": {
+      "Title": "VS Code Editor"
+    },
+    "LeetCode": {
+      "Common": {
+        "Loading": "Loading Profile...",
+        "NoData": "No data",
+        "Retry": "Retry",
+        "ShowMore": "Show more",
+        "GoToLeetCode": "Go to LeetCode"
+      },
+      "Badges": {
+        "Title": "Badges",
+        "MostRecent": "Most Recent Badge"
+      },
+      "Stats": {
+        "Title": "Community Stats",
+        "Views": "Views",
+        "Solution": "Solution",
+        "Discuss": "Discuss",
+        "Reputation": "Reputation"
+      },
+      "Languages": {
+        "Title": "Languages",
+        "ProblemsSolved": "problems solved"
+      },
+      "Profile": {
+        "Rank": "Rank"
+      },
+      "Submissions": {
+        "RecentAC": "Recent AC",
+        "List": "List",
+        "Solutions": "Solutions",
+        "Discuss": "Discuss",
+        "TimeAgo": "2 months ago"
+      },
+      "Skills": {
+        "Title": "Skills",
+        "Advanced": "Advanced",
+        "Intermediate": "Intermediate"
+      },
+      "Solved": {
+        "Solved": "Solved",
+        "Easy": "Easy",
+        "Medium": "Med.",
+        "Hard": "Hard"
+      },
+      "Calendar": {
+        "SubmissionsLastYear": "submissions in the past one year",
+        "TotalActiveDays": "Total active days:",
+        "MaxStreak": "Max streak:",
+        "Current": "Current",
+        "Months": {
+          "Jan": "Jan",
+          "Feb": "Feb",
+          "Mar": "Mar",
+          "Apr": "Apr",
+          "May": "May",
+          "Jun": "Jun",
+          "Jul": "Jul",
+          "Aug": "Aug",
+          "Sep": "Sep",
+          "Oct": "Oct",
+          "Nov": "Nov",
+          "Dec": "Dec"
+        }
+      }
+    },
+    "V86": {
+      "NoFileSelected": "No file selected",
+      "ScriptLoadError": "Failed to load V86 script",
+      "FileReadError": "Failed to read file",
+      "StartError": "Failed to start emulator",
+      "Booting": "Booting {filename}...",
+      "ErrorPrefix": "Error: {error}",
+      "ClickToCapture": "Click to capture mouse (Esc to release)"
     }
   }
 }

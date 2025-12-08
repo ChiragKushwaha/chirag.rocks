@@ -9,14 +9,17 @@ import { Badges } from "./LeetCode/components/Badges";
 import { SubmissionCalendar } from "./LeetCode/components/SubmissionCalendar";
 import { RecentSubmissions } from "./LeetCode/components/RecentSubmissions";
 
+import { useTranslations } from "next-intl";
+
 export const LeetCode = () => {
+  const t = useTranslations("LeetCode.Common");
   const { loading, data, error, fetchData, url } = useLeetCode();
 
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center h-full gap-4 bg-[#1a1a1a] text-white">
         <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-yellow-500"></div>
-        <div className="text-gray-400">Loading Profile...</div>
+        <div className="text-gray-400">{t("Loading")}</div>
       </div>
     );
   }
@@ -24,12 +27,12 @@ export const LeetCode = () => {
   if (error || !data) {
     return (
       <div className="flex flex-col items-center justify-center h-full gap-4 bg-[#1a1a1a] text-white">
-        <div className="text-red-400">{error || "No data"}</div>
+        <div className="text-red-400">{error || t("NoData")}</div>
         <button
           onClick={fetchData}
           className="px-4 py-2 bg-white/10 rounded hover:bg-white/20 transition-colors"
         >
-          Retry
+          {t("Retry")}
         </button>
       </div>
     );

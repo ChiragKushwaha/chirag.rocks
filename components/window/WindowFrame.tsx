@@ -1,13 +1,15 @@
-import React, { useRef, useState, useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useProcessStore } from "../../store/processStore";
 import { useMenuStore } from "../../store/menuStore";
 import { Process } from "../../types/process";
+import { useTranslations } from "next-intl";
 
 interface WindowFrameProps {
   process: Process;
 }
 
 export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
+  const t = useTranslations("Window");
   const {
     closeProcess,
     minimizeProcess,
@@ -144,16 +146,16 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
       },
       { separator: true },
       {
-        label: "Minimize",
+        label: t("Minimize"),
         action: () => minimizeProcess(process.pid),
       },
       {
-        label: process.isMaximized ? "Restore" : "Maximize",
+        label: process.isMaximized ? t("Restore") : t("Maximize"),
         action: () => maximizeProcess(process.pid),
       },
       { separator: true },
       {
-        label: "Close",
+        label: t("Close"),
         action: () => closeProcess(process.pid),
         danger: true,
       },
@@ -212,7 +214,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
         transition: process.isMinimizing
           ? "all 0.5s cubic-bezier(0.25, 1, 0.5, 1)"
           : "none",
-        // @ts-ignore
+        // @ts-expect-error - Interactable is not typed correctly with React ref
         "--restore-from-x": `${targetX}px`,
         "--restore-from-y": `${targetY}px`,
         "--restore-to-x": `${process.dimension.x}px`,
@@ -240,7 +242,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
         }
         ${
           process.isMaximized
-            ? "!transform-none !top-8 !left-0 !right-0 !bottom-0 !rounded-none border-0"
+            ? "transform-none! top-8! left-0! right-0! bottom-0! rounded-none! border-0"
             : "rounded-xl overflow-hidden border border-black/10 dark:border-white/10"
         }
         ${
@@ -292,7 +294,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
 
       {/* --- TITLE BAR --- */}
       <div
-        className="window-titlebar h-10 bg-linear-to-b from-white/10 to-transparent border-b border-black/10 flex items-center px-4 cursor-default select-none flex-shrink-0"
+        className="window-titlebar h-10 bg-linear-to-b from-white/10 to-transparent border-b border-black/10 flex items-center px-4 cursor-default select-none shrink-0"
         onDoubleClick={() => maximizeProcess(process.pid)} // Double click titlebar to maximize
       >
         {/* Traffic Lights */}
@@ -342,7 +344,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
             {/* Split Screen Menu (MacOS Style) */}
             {showSnapMenu && (
               <div
-                className="absolute top-5 left-0 w-40 bg-white/90 backdrop-blur-md rounded-lg shadow-xl border border-gray-200/50 py-1 flex flex-col z-[100] animate-in fade-in zoom-in-95 duration-100"
+                className="absolute top-5 left-0 w-40 bg-white/90 backdrop-blur-md rounded-lg shadow-xl border border-gray-200/50 py-1 flex flex-col z-100 animate-in fade-in zoom-in-95 duration-100"
                 onMouseEnter={() => {
                   if (snapTimeoutRef.current)
                     clearTimeout(snapTimeoutRef.current);
@@ -350,7 +352,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
                 onMouseLeave={() => setShowSnapMenu(false)}
               >
                 <div className="px-2 py-1 text-[10px] text-gray-500 font-semibold border-b border-gray-200/50 mb-1">
-                  Move Window to...
+                  {t("MoveTo")}
                 </div>
                 <button
                   className="px-3 py-1.5 text-xs text-left hover:bg-blue-500 hover:text-white flex items-center gap-2"
@@ -360,7 +362,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
                   }}
                 >
                   <div className="w-3 h-2 border border-current rounded-[1px] bg-linear-to-r from-current to-transparent to-50%" />
-                  Left Side of Screen
+                  {t("LeftSide")}
                 </button>
                 <button
                   className="px-3 py-1.5 text-xs text-left hover:bg-blue-500 hover:text-white flex items-center gap-2"
@@ -370,7 +372,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
                   }}
                 >
                   <div className="w-3 h-2 border border-current rounded-[1px] bg-linear-to-l from-current to-transparent to-50%" />
-                  Right Side of Screen
+                  {t("RightSide")}
                 </button>
                 <button
                   className="px-3 py-1.5 text-xs text-left hover:bg-blue-500 hover:text-white flex items-center gap-2"
@@ -380,7 +382,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
                   }}
                 >
                   <div className="w-3 h-2 border border-current rounded-[1px] bg-current" />
-                  Enter Full Screen
+                  {t("EnterFullScreen")}
                 </button>
               </div>
             )}

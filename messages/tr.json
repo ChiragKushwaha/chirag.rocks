@@ -1,4 +1,1742 @@
 {
-  "Hello": "Hello world!",
-  "Welcome": "Welcome to the multi-language app"
+  "Hello": {
+    "world": "Merhaba Dünya",
+    "GetStarted": "Başla"
+  },
+  "Common": {
+    "OK": "Tamam",
+    "Cancel": "İptal",
+    "Yes": "Evet",
+    "No": "Hayır",
+    "Back": "Geri",
+    "Continue": "Devam Et",
+    "Done": "Bitti",
+    "Edit": "Düzenle",
+    "Delete": "Sil",
+    "Save": "Kaydet",
+    "Close": "Kapat",
+    "Error": "Hata",
+    "Success": "Başarılı"
+  },
+  "Setup": {
+    "Common": {
+      "Continue": "Devam Et",
+      "Back": "Geri",
+      "NotNow": "Şimdi Değil",
+      "Cancel": "İptal",
+      "LearnMore": "Daha Fazla Bilgi"
+    },
+    "Language": {
+      "Title": "Dili Seçin",
+      "Description": "Bu Mac'te kullanmak istediğiniz dili seçin.",
+      "TableLabel": "Dil",
+      "Primary": "Birincil"
+    },
+    "Region": {
+      "Title": "Ülkenizi veya Bölgenizi Seçin"
+    },
+    "DataPrivacy": {
+      "Title": "Veriler ve Gizlilik",
+      "IconText": "Bu simge, bir Apple özelliği kişisel bilgilerinizi kullanmak istediğinde görünür.",
+      "FeatureText": "Bu simgeyi her özellikte görmezsiniz. Apple bu bilgileri yalnızca özellikleri etkinleştirmek, hizmetlerimizi güvenli hale getirmek veya deneyiminizi kişiselleştirmek için gerektiğinde toplar.",
+      "PrivacyText": "Apple, gizliliğin temel bir insan hakkı olduğuna inanır, bu nedenle her Apple ürünü, verilerinizin toplanmasını ve kullanılmasını en aza indirmek, mümkün olduğunda cihazda işlemek ve bilgileriniz üzerinde şeffaflık ve kontrol sağlamak üzere tasarlanmıştır."
+    },
+    "TouchID": {
+      "Title": "Touch ID",
+      "SetupLater": "Touch ID'yi Daha Sonra Ayarla",
+      "Description": "Mac'inizin kilidini açmak ve Apple Pay ile alışveriş yapmak için parmak izinizi kullanın. Başlamak için parmağınızı Touch ID'ye yerleştirin."
+    },
+    "Fingerprint": {
+      "Title": "Parmağınızı Yerleştirin",
+      "Instruction": "Parmağınızı Touch ID'ye tekrar tekrar kaldırıp yerleştirin",
+      "Success": "✓ Touch ID hazır"
+    },
+    "Languages": {
+      "Title": "Yazılı ve Sözlü Diller",
+      "Description": "Aşağıda listelenen diller bölgenizde yaygın olarak kullanılmaktadır. Mac'inizi bu ayarlarla kullanabilir veya her birini ayrı ayrı özelleştirebilirsiniz.",
+      "Preferred": "Tercih Edilen Diller",
+      "InputSources": "Giriş Kaynakları",
+      "Dictation": "Dikte",
+      "Customize": "Ayarları Özelleştir"
+    },
+    "Accessibility": {
+      "Title": "Erişilebilirlik",
+      "Description": "Erişilebilirlik özellikleri, Mac'inizi görme, işitme ve motor ihtiyaçlarınıza göre uyarlar. Bunları şimdi açıp kurulumu tamamlayabilir veya daha sonra Sistem Ayarları'nda özelleştirebilirsiniz. Mevcut özellikleri görmek için aşağıdaki kategorileri inceleyin.",
+      "Vision": "Görme",
+      "Motor": "Motor",
+      "Hearing": "İşitme",
+      "Cognitive": "Bilişsel"
+    },
+    "Migration": {
+      "Title": "Göç Yardımcısı",
+      "Description": "Başka bir Mac veya Windows PC'de bilgileriniz varsa, bunları bu Mac'e aktarabilirsiniz. Ayrıca bir Time Machine yedeklemesinden veya başka bir başlangıç diskinden de veri aktarabilirsiniz.",
+      "Question": "Bilgilerinizi nasıl aktarmak istersiniz?",
+      "FromMac": "Mac, Time Machine yedeklemesi veya başlangıç diskinden",
+      "FromPC": "Windows PC'den"
+    },
+    "AppleID": {
+      "Title": "Apple ID ile Giriş Yapın",
+      "Description": "iCloud, App Store ve diğer Apple hizmetlerini kullanmak için giriş yapın.",
+      "Label": "Apple ID",
+      "CreateNew": "Yeni Apple ID Yarat",
+      "Forgot": "Apple ID'nizi veya parolanızı mı unuttunuz?",
+      "UseDifferent": "iCloud ve alışverişler için farklı Apple ID'ler mi kullanılsın?",
+      "Info": "Bu Mac, Apple ID'nizle ilişkilendirilecek ve fotoğraflar, kişiler ve belgeler gibi verileriniz iCloud'da saklanacak, böylece diğer cihazlardan erişebileceksiniz.",
+      "SeeData": "Verilerin nasıl yönetildiğini görün",
+      "SetupLater": "Daha Sonra Ayarla",
+      "ErrorRequired": "Bir Apple ID girin."
+    },
+    "Account": {
+      "Title": "Bilgisayar Hesabı Oluşturun",
+      "CreateAppleID": "Apple ID Yarat",
+      "Description": "Bilgisayarı kurmak için adınızı ve hesap ayrıntılarını girin.",
+      "Name": "Ad Soyad",
+      "Email": "E-posta Adresi",
+      "Age": "Yaş",
+      "Phone": "Cep Telefonu Numarası",
+      "Password": "Parola",
+      "Errors": {
+        "NameRequired": "Ad Soyad gereklidir.",
+        "EmailRequired": "E-posta gereklidir.",
+        "EmailInvalid": "Geçerli bir e-posta adresi girin.",
+        "AgeRequired": "Yaş gereklidir.",
+        "AgeInvalid": "Geçerli bir yaş girin.",
+        "PhoneRequired": "Telefon numarası gereklidir.",
+        "PasswordRequired": "Parola gereklidir.",
+        "PasswordLength": "Parola en az 6 karakter olmalıdır."
+      }
+    },
+    "Theme": {
+      "Title": "Görünümünüzü Seçin",
+      "Description": "Sistemin ve uygulamaların görünümünü değiştirmek için Açık veya Koyu'yu seçin.",
+      "Light": "Açık",
+      "Dark": "Koyu"
+    }
+  },
+  "SystemSettings": {
+    "General": {
+      "Title": "Genel",
+      "Description": "Yazılım güncelleme, cihaz dili, AirDrop ve daha fazlası dahil olmak üzere Mac'inizin genel ayarlarını ve tercihlerini yönetin.",
+      "About": "Hakkında",
+      "SoftwareUpdate": "Yazılım Güncelleme",
+      "Storage": "Depolama",
+      "AppleCare": "AppleCare ve Garanti",
+      "AirDrop": "AirDrop ve Handoff",
+      "AutoFill": "Otomatik Doldurma ve Parolar",
+      "DateTime": "Tarih ve Saat",
+      "LanguageRegion": "Dil ve Bölge",
+      "LoginItems": "Giriş Öğeleri",
+      "Sharing": "Paylaşım",
+      "StartupDisk": "Başlangıç Diski",
+      "TimeMachine": "Time Machine",
+      "DeviceManagement": "Cihaz Yönetimi",
+      "TransferReset": "Aktar veya Sıfırla"
+    },
+    "AppleAccount": {
+      "Edit": "Düzenle",
+      "PersonalInformation": "Kişisel Bilgiler",
+      "SignInSecurity": "Giriş ve Güvenlik",
+      "PaymentShipping": "Ödeme ve Teslimat",
+      "iCloud": "iCloud",
+      "MediaPurchases": "Medya ve Satın Almalar",
+      "Family": "Aile",
+      "SetUp": "Ayarla",
+      "Devices": "Aygıtlar",
+      "ThisMac": "Bu MacBook Pro 14\"",
+      "SignOut": "Çıkış Yap..."
+    },
+    "LanguageRegion": {
+      "Title": "Dil ve Bölge",
+      "PreferredLanguages": "Tercih Edilen Diller",
+      "Region": "Bölge",
+      "Calendar": "Takvim",
+      "Temperature": "Sıcaklık",
+      "Celsius": "Santigrat (°C)",
+      "Fahrenheit": "Fahrenhayt (°F)",
+      "MeasurementSystem": "Ölçü Sistemi",
+      "Metric": "Metrik",
+      "US": "ABD",
+      "UK": "BK",
+      "FirstDayOfWeek": "Haftanın ilk günü",
+      "DateFormat": "Tarih formatı",
+      "NumberFormat": "Sayı formatı",
+      "LiveText": "Canlı Metin",
+      "LiveTextDesc": "Kopyalamak veya işlem yapmak için görüntülerdeki metni seçin.",
+      "Applications": "Uygulamalar",
+      "ApplicationsDesc": "Aşağıdaki uygulamalar için dil ayarlarını özelleştirin:",
+      "TranslationLanguages": "Çeviri Dilleri..."
+    },
+    "Sidebar": {
+      "Search": "Ara",
+      "NotImplemented": "Bu bölüm henüz uygulanmadı.",
+      "AppleAccount": "Apple Hesabı",
+      "WiFi": "Wi-Fi",
+      "Bluetooth": "Bluetooth",
+      "Network": "Ağ",
+      "General": "Genel",
+      "Appearance": "Görünüm",
+      "Accessibility": "Erişilebilirlik",
+      "MenuBar": "Denetim Merkezi",
+      "DesktopDock": "Masaüstü ve Dock",
+      "Displays": "Ekranlar",
+      "Spotlight": "Spotlight",
+      "Wallpaper": "Duvar Kağıdı",
+      "ScreenSaver": "Ekran Koruyucu",
+      "Battery": "Pil",
+      "Sound": "Ses",
+      "Notifications": "Bildirimler",
+      "Focus": "Odak",
+      "ScreenTime": "Ekran Süresi",
+      "PrivacySecurity": "Gizlilik ve Güvenlik",
+      "LockScreen": "Kilit Ekranı",
+      "TouchIDPassword": "Touch ID ve Parola",
+      "UsersGroups": "Kullanıcılar ve Gruplar",
+      "Keyboard": "Klavye",
+      "Trackpad": "İzleme Dörtgeni",
+      "PrintersScanners": "Yazıcılar ve Tarayıcılar",
+      "Storage": "Depolama"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "Description": "İnternet'e ve kablosuz aygıtlara bağlanmak için Wi-Fi'yi ayarlayın.",
+      "Connected": "Bağlı",
+      "Details": "Ayrıntılar...",
+      "KnownNetworks": "Bilinen Ağlar",
+      "OtherNetworks": "Diğer Ağlar",
+      "Connect": "Bağlan",
+      "Other": "Diğer...",
+      "AskToJoin": "Ağlara katılmadan önce sor",
+      "AskToJoinDesc": "Bilinen ağlara otomatik olarak katılın.",
+      "Notify": "Bildir",
+      "AskToJoinHotspots": "Kişisel Erişim Noktalarına katılmadan önce sor",
+      "AskToJoinHotspotsDesc": "Kişisel Erişim Noktalarına otomatik olarak katılmaya izin ver.",
+      "AskToJoinAction": "Sor",
+      "Advanced": "İleri Düzey..."
+    },
+    "Bluetooth": {
+      "Title": "Bluetooth",
+      "Description": "Kulaklık, fare ve klavye gibi kablosuz aksesuarları bağlayın.",
+      "Discoverable": "Bluetooth ayarları açıkken \"MacBook Pro\" olarak görünür.",
+      "MyDevices": "Aygıtlarım",
+      "NotConnected": "Bağlı Değil",
+      "NearbyDevices": "Yakındaki Aygıtlar",
+      "Searching": "Aranıyor..."
+    },
+    "Network": {
+      "Title": "Ağ",
+      "WiFi": "Wi-Fi",
+      "Connected": "Bağlı",
+      "Firewall": "Güvenlik Duvarı",
+      "Inactive": "Etkin Değil",
+      "OtherServices": "Diğer Servisler",
+      "NotConnected": "Bağlı Değil"
+    },
+    "Appearance": {
+      "Title": "Görünüm",
+      "Description": "Tercih ettiğiniz görünümü seçin.",
+      "Light": "Açık",
+      "Dark": "Koyu",
+      "Auto": "Otomatik",
+      "AccentColor": "Vurgu rengi",
+      "HighlightColor": "Vurgu rengi",
+      "Automatic": "Otomatik",
+      "SidebarIconSize": "Kenar çubuğu simge boyutu",
+      "Medium": "Orta",
+      "WallpaperTinting": "Pencerelerde duvar kağıdı tonlamasına izin ver",
+      "ShowScrollBars": "Kaydırma çubuklarını göster",
+      "ScrollAuto": "Fareye veya izleme dörtgenine göre otomatik",
+      "ScrollWhenScrolling": "Kaydırırken",
+      "ScrollAlways": "Her Zaman",
+      "ClickScrollBar": "Kaydırma çubuğuna tıklandığında",
+      "JumpNextPage": "sonraki sayfaya atla",
+      "JumpSpotClicked": "tıklanan noktaya atla"
+    },
+    "Accessibility": {
+      "Title": "Erişilebilirlik",
+      "Description": "Mac'inizi görme, işitme ve motor ihtiyaçlarınıza göre uyarlayın.",
+      "LearnMore": "Daha fazla bilgi...",
+      "Vision": "Görme",
+      "VoiceOver": "VoiceOver",
+      "Zoom": "Büyütme",
+      "HoverText": "Metni Büyüt",
+      "Display": "Ekran",
+      "Motion": "Hareket",
+      "ReadSpeak": "Seslendirilen İçerik",
+      "AudioDescriptions": "Sesli Betimlemeler",
+      "Hearing": "İşitme",
+      "HearingDevices": "İşitme Cihazları",
+      "Audio": "Ses",
+      "Captions": "Altyazılar",
+      "LiveCaptions": "Canlı Altyazılar",
+      "NameRecognition": "Ses ile Denetim",
+      "Motor": "Motor",
+      "VoiceControl": "Sesle Denetim",
+      "Keyboard": "Klavye",
+      "PointerControl": "İmleç Denetimi",
+      "SwitchControl": "Anahtarla Denetim",
+      "General": "Genel",
+      "Siri": "Siri",
+      "Shortcut": "Kestirme"
+    },
+    "MenuBar": {
+      "Title": "Denetim Merkezi",
+      "Description": "Menü çubuğunda ve Denetim Merkezi'nde gösterilen öğeleri değiştirin.",
+      "AutoHide": "Menü çubuğunu otomatik olarak gizle ve göster",
+      "Never": "Asla",
+      "RecentDocs": "Son kullanılan belgeler, uygulamalar ve sunucular",
+      "None": "Yok",
+      "Controls": "Denetim Merkezi Modülleri",
+      "ControlCenter": "Denetim Merkezi",
+      "ShowInMenuBar": "Menü Çubuğunda Göster",
+      "DontShowInMenuBar": "Menü Çubuğunda Gösterme",
+      "Siri": "Siri",
+      "Spotlight": "Spotlight",
+      "VolumeFeedback": "Ses düzeyi değiştiğinde ses çal",
+      "Clock": "Saat"
+    },
+    "DesktopDock": {
+      "Title": "Masaüstü ve Dock",
+      "Description": "Dock ve masaüstünün görünümünü değiştirin.",
+      "Dock": "Dock",
+      "Size": "Boyut",
+      "Magnification": "Büyütme",
+      "Small": "Küçük",
+      "Large": "Büyük",
+      "Position": "Ekrandaki konumu",
+      "Bottom": "Alt",
+      "MinimiseUsing": "Pencereleri şununla küçült",
+      "GenieEffect": "Genie Efekti",
+      "DoubleClickTitle": "Pencerenin başlık çubuğuna çift tıklandığında",
+      "Zoom": "büyüt/küçült",
+      "MinimiseToIcon": "Pencereleri uygulama simgesine küçült",
+      "AutoHideDock": "Dock'u otomatik olarak gizle ve göster",
+      "AnimateOpening": "Uygulamaları açarken hareketlendir",
+      "ShowIndicators": "Açık uygulamalar için göstergeleri göster",
+      "ShowRecent": "Son kullanılan uygulamaları Dock'ta göster",
+      "DesktopStageManager": "Masaüstü ve Sahne Yöneticisi",
+      "ShowItems": "Öğeleri göster",
+      "OnDesktop": "Masaüstünde",
+      "ClickWallpaper": "Masaüstünü göstermek için duvar kağıdına tıklayın",
+      "Always": "Her Zaman",
+      "StageManager": "Sahne Yöneticisi",
+      "Widgets": "Araç Takımları",
+      "ShowWidgets": "Araç Takımlarını Göster",
+      "WidgetStyle": "Araç Takımı Stili",
+      "Automatic": "Otomatik",
+      "UseIPhoneWidgets": "iPhone araç takımlarını kullan"
+    },
+    "Displays": {
+      "Title": "Ekranlar",
+      "Description": "Ayarlarını değiştirmek için bir ekran seçin.",
+      "BuiltInDisplay": "Yerleşik Ekran",
+      "UseAs": "Şu olarak kullan",
+      "MainDisplay": "Ana Ekran",
+      "Resolution": "Çözünürlük",
+      "Default": "Varsayılan",
+      "MoreSpace": "Daha Fazla Alan",
+      "LargerText": "Daha Büyük Metin",
+      "Brightness": "Parlaklık",
+      "TrueTone": "True Tone",
+      "Preset": "Ön ayar",
+      "RefreshRate": "Yenileme Hızı",
+      "ProMotion": "ProMotion",
+      "Advanced": "İleri Düzey..."
+    },
+    "Spotlight": {
+      "Title": "Spotlight",
+      "Description": "Mac'inizde arama yapın.",
+      "SearchPlaceholder": "Spotlight Araması",
+      "SearchResults": "Arama Sonuçları",
+      "Privacy": "Spotlight Gizliliği...",
+      "Categories": {
+        "Applications": "Uygulamalar",
+        "Calculator": "Hesap Makinesi",
+        "Contacts": "Kişiler",
+        "Conversion": "Dönüştürme",
+        "Definition": "Tanım",
+        "Developer": "Geliştirici",
+        "Documents": "Belgeler",
+        "Events & Reminders": "Etkinlikler ve Anımsatıcılar",
+        "Folders": "Klasörler",
+        "Fonts": "Yazı Tipleri",
+        "Images": "Görüntüler",
+        "Mail & Messages": "Mail ve Mesajlar",
+        "Movies": "Filmler",
+        "Music": "Müzik",
+        "Other": "Diğer",
+        "PDF Documents": "PDF Belgeleri",
+        "Presentations": "Sunumlar",
+        "Siri Suggestions": "Siri Önerileri",
+        "Spreadsheets": "Hesap Tabloları",
+        "System Preferences": "Sistem Tercihleri",
+        "Tips": "İpuçları",
+        "Bookmarks & History": "Yer İşaretleri ve Geçmiş"
+      }
+    },
+    "Notifications": {
+      "Title": "Bildirimler",
+      "Description": "Bildirimlerin nasıl gösterileceğini denetleyin.",
+      "Preview": "Önizlemeyi Göster",
+      "ShowPreviews": "Önizlemeleri göster",
+      "Always": "Her Zaman",
+      "ApplicationNotifications": "Uygulama Bildirimleri",
+      "Apps": {
+        "AppStore": "App Store",
+        "Calendar": "Takvim",
+        "FaceTime": "FaceTime",
+        "Mail": "Mail",
+        "Messages": "Mesajlar",
+        "Photos": "Fotoğraflar",
+        "Reminders": "Anımsatıcılar",
+        "Safari": "Safari"
+      }
+    },
+    "Sound": {
+      "Title": "Ses",
+      "Description": "Ses ayarlarını değiştirin.",
+      "OutputInput": "Çıkış ve Giriş",
+      "Output": "Çıkış",
+      "Input": "Giriş",
+      "SelectOutput": "Ses çıkışı için bir aygıt seçin:",
+      "Speakers": "MacBook Pro Hoparlörleri",
+      "BuiltIn": "Yerleşik",
+      "OutputVolume": "Çıkış ses düzeyi",
+      "Mute": "Sessiz",
+      "ShowInMenuBar": "Sesi menü çubuğunda göster",
+      "Always": "Her Zaman",
+      "AlertSoundGroup": "Uyarı sesi",
+      "AlertSound": "Uyarı sesi",
+      "Boop": "Boop",
+      "AlertVolume": "Uyarı ses düzeyi",
+      "PlayUIEffects": "Kullanıcı arayüzü ses efektlerini çal"
+    },
+    "Focus": {
+      "Title": "Odak",
+      "Description": "Ayarlarını özelleştirmek için bir odak seçin.",
+      "DoNotDisturb": "Rahatsız Etme",
+      "ShareAcrossDevices": "Aygıtlar Arasında Paylaş",
+      "FocusStatus": "Odak Durumu",
+      "On": "Açık",
+      "Off": "Kapalı",
+      "SetUp": "Ayarla",
+      "FocusModes": "Odak Modları",
+      "Personal": "Kişisel",
+      "Sleep": "Uyku",
+      "Work": "İş",
+      "AddFocus": "Odak Ekle"
+    },
+    "ScreenTime": {
+      "Title": "Ekran Süresi",
+      "Description": "Kullanımınızı izleyin ve sınırlar belirleyin.",
+      "DailyAverage": "Günlük Ortalama",
+      "FromLastWeek": "geçen haftadan itibaren",
+      "Downtime": "Atıl Süre",
+      "AppLimits": "Uygulama Sınırları",
+      "LimitsCount": "{count} sınır",
+      "AlwaysAllowed": "Her Zaman İzin Verilen",
+      "AllowedApps": "Telefon, Harita, Mesajlar",
+      "ContentPrivacy": "İçerik ve Gizlilik",
+      "On": "Açık",
+      "Off": "Kapalı",
+      "ShareAcrossDevices": "Aygıtlar Arasında Paylaş",
+      "LockSettings": "Ekran Süresi Ayarlarını Kilitle"
+    },
+    "Battery": {
+      "Title": "Pil",
+      "Description": "Pil sağlığını ve kullanımını görüntüleyin.",
+      "BatteryLevel": "Pil Düzeyi",
+      "LastCharged": "Son şarj %100 8:00",
+      "LowPowerMode": "Düşük Güç Modu",
+      "Never": "Asla",
+      "BatteryHealth": "Pil Sağlığı",
+      "Normal": "Normal",
+      "OptimisedCharging": "İyileştirilmiş Pil Şarjı",
+      "Options": "Seçenekler..."
+    },
+    "Keyboard": {
+      "Title": "Klavye",
+      "Description": "Klavye ayarlarını değiştirin.",
+      "KeyRepeat": "Tuş Yinelemesi",
+      "Slow": "Yavaş",
+      "Fast": "Hızlı",
+      "DelayUntilRepeat": "Yineleme Gecikmesi",
+      "Long": "Uzun",
+      "Short": "Kısa",
+      "AdjustBrightness": "Klavye parlaklığını zayıf ışıkta ayarla",
+      "KeyboardNavigation": "Klavye dolaşımı",
+      "Shortcuts": "Klavye Kestirmeleri...",
+      "TextInput": "Metin Girişi",
+      "InputSources": "Giriş Kaynakları",
+      "Edit": "Düzenle...",
+      "Dictation": "Dikte"
+    },
+    "LockScreen": {
+      "Title": "Kilit Ekranı",
+      "Description": "Kilit ekranı ayarlarını değiştirin.",
+      "TurnOffDisplayBattery": "Pildeyken boştaysa ekranı kapat",
+      "TurnOffDisplayAdapter": "Adaptördeyken boştaysa ekranı kapat",
+      "TwoMinutes": "2 dakika",
+      "TenMinutes": "10 dakika",
+      "RequirePassword": "Ekran koruyucu başladıktan veya ekran kapandıktan sonra parola iste",
+      "Immediately": "Hemen",
+      "ShowMessage": "Kilitliyken mesaj göster",
+      "Set": "Ayarla...",
+      "LoginWindowShows": "Giriş penceresinde gösterilecekler",
+      "ListOfUsers": "Kullanıcı listesi",
+      "ShowLargeClock": "Büyük saati göster",
+      "OnLockScreen": "Kilit ekranında"
+    },
+    "PrivacySecurity": {
+      "Title": "Gizlilik ve Güvenlik",
+      "Description": "Hangi uygulamaların bilgilerinize erişebileceğini denetleyin.",
+      "Privacy": "Gizlilik",
+      "LocationServices": "Konum Servisleri",
+      "On": "Açık",
+      "Off": "Kapalı",
+      "Camera": "Kamera",
+      "Microphone": "Mikrofon",
+      "FilesFolders": "Dosyalar ve Klasörler",
+      "ScreenRecording": "Ekran Kaydı",
+      "AppsCount": "{count, plural, =0 {Uygulama Yok} other {# Uygulama}}",
+      "Security": "Güvenlik",
+      "FileVault": "FileVault",
+      "LockdownMode": "Kilitleme Modu",
+      "Others": "Diğerleri",
+      "Extensions": "Uzantılar",
+      "Profiles": "Profiller"
+    },
+    "PrintersScanners": {
+      "Title": "Yazıcılar ve Tarayıcılar",
+      "Description": "Yazıcıları ve tarayıcıları yönetin.",
+      "Printers": "Yazıcılar",
+      "IdleLastUsed": "Boşta, Son Kullanılan",
+      "Offline": "Çevrimdışı",
+      "AddPrinter": "Yazıcı, Tarayıcı veya Faks Ekle..."
+    },
+    "ScreenSaver": {
+      "Title": "Ekran Koruyucu",
+      "Description": "Bir ekran koruyucu seçin.",
+      "Preview": "Önizleme",
+      "ShowOnAllSpaces": "Tüm alanlarda göster",
+      "ScreenSavers": "Ekran Koruyucular",
+      "StartAfter": "Şu süreden sonra başlat",
+      "FiveMinutes": "5 dakika",
+      "ShowWithClock": "Saat ile göster",
+      "ScreensaverNames": {
+        "Ventura": "Ventura",
+        "Monterey": "Monterey",
+        "BigSur": "Big Sur",
+        "Catalina": "Catalina",
+        "Hello": "Merhaba",
+        "Drift": "Sürüklenme",
+        "Flurry": "Flurry",
+        "Shell": "Kabuk"
+      }
+    },
+    "Storage": {
+      "Title": "Depolama",
+      "Description": "Sürücüleri ve verileri yönetin.",
+      "MacintoshHD": "Macintosh HD",
+      "AvailableSpace": "{available} GB / {total} GB kullanılabilir",
+      "Apps": "Uygulamalar",
+      "Documents": "Belgeler",
+      "SystemData": "Sistem Verileri",
+      "macOS": "macOS",
+      "OtherUsers": "Diğer Kullanıcılar",
+      "Recommendations": "Öneriler",
+      "StoreInICloud": "iCloud'da Sakla",
+      "StoreInICloudDesc": "Tüm dosyalarınızı, fotoğraflarınızı ve mesajlarınızı iCloud'da saklayın ve bu Mac'te yer kazanın.",
+      "StoreInICloudButton": "iCloud'da Sakla...",
+      "Categories": "Kategoriler",
+      "Applications": "Uygulamalar"
+    },
+    "TouchIDPassword": {
+      "Title": "Touch ID ve Parola",
+      "Description": "Mac'inizin kilidini açmak için bir parmak izi ekleyin.",
+      "TouchID": "Touch ID",
+      "Finger1": "Parmak 1",
+      "AddFingerprint": "Parmak İzi Ekle",
+      "UseTouchIDFor": "Touch ID'yi şunun için kullan:",
+      "UnlockingMac": "Mac'inizin kilidini açma",
+      "ApplePay": "Apple Pay",
+      "iTunesAppStore": "iTunes Store ve App Store",
+      "AutoFillPasswords": "Parolaları Otomatik Doldurma",
+      "Password": "Parola",
+      "LastChanged": "Son Değişiklik: 24.11.2024",
+      "Change": "Değiştir...",
+      "RequirePasswordScreenSaver": "Ekran koruyucu başladıktan veya ekran kapandıktan sonra parola iste",
+      "Immediately": "Hemen",
+      "RequirePasswordIdle": "Bilgisayar boşta kaldıktan sonra parola iste",
+      "Never": "Asla",
+      "Seconds": "{count} saniye",
+      "Minute": "{count} dakika",
+      "Minutes": "{count} dakika",
+      "AppleWatch": "Apple Watch",
+      "AppleWatchUnlock": "Uygulamaların ve Mac'inizin kilidini açmak için Apple Watch'u kullanın"
+    },
+    "Trackpad": {
+      "Title": "İzleme Dörtgeni",
+      "Description": "İzleme dörtgeni ayarlarını değiştirin.",
+      "PointClick": "İşaretleme ve Tıklama",
+      "ScrollZoom": "Kaydırma ve Büyütme",
+      "MoreGestures": "Diğer Hareketler",
+      "TrackingSpeed": "İzleme hızı",
+      "Slow": "Yavaş",
+      "Fast": "Hızlı",
+      "Click": "Tıklama",
+      "Medium": "Orta",
+      "ForceClick": "Kuvvetli Tıklama ve dokunuş",
+      "LookUp": "Sözlük ve veri dedektörleri",
+      "SecondaryClick": "İkincil tıklama",
+      "ClickTwoFingers": "İki parmakla tıklayın veya dokunun",
+      "TapToClick": "Tıklamak için dokun",
+      "VideoPreview": "Video Önizleme"
+    },
+    "UsersGroups": {
+      "Title": "Kullanıcılar ve Gruplar",
+      "Description": "Kullanıcı hesaplarını ve grupları yönetin.",
+      "CurrentUser": "Mevcut Kullanıcı",
+      "Admin": "Yönetici",
+      "OtherUsers": "Diğer Kullanıcılar",
+      "GuestUser": "Konuk Kullanıcı",
+      "Off": "Kapalı",
+      "AddAccount": "Hesap Ekle...",
+      "AutoLogin": "Otomatik giriş",
+      "AllowNetworkUsers": "Ağ kullanıcılarının giriş penceresinde oturum açmasına izin ver"
+    },
+    "Wallpaper": {
+      "Title": "Duvar Kağıdı",
+      "Description": "Masaüstü duvar kağıdını seçin.",
+      "ShowOnAllSpaces": "Tüm Alanlarda Göster",
+      "DynamicWallpapers": "Dinamik Duvar Kağıtları",
+      "Pictures": "Resimler",
+      "AddPhoto": "Fotoğraf Ekle"
+    },
+    "LanguageSelector": {
+      "Title": "Eklemek için tercih edilen bir dil seçin",
+      "Search": "Ara",
+      "Cancel": "İptal",
+      "Add": "Ekle"
+    }
+  },
+  "Languages": {
+    "English": "İngilizce",
+    "Spanish": "İspanyolca",
+    "French": "Fransızca",
+    "German": "Almanca",
+    "Italian": "İtalyanca",
+    "Japanese": "Japonca",
+    "Chinese": "Çince",
+    "Portuguese": "Portekizce",
+    "Russian": "Rusça",
+    "Korean": "Korece",
+    "Dutch": "Flemenkçe",
+    "Swedish": "İsveççe",
+    "Danish": "Danca",
+    "Norwegian": "Norveççe",
+    "Finnish": "Fince",
+    "Polish": "Lehçe",
+    "Turkish": "Türkçe",
+    "Arabic": "Arapça",
+    "Hindi": "Hintçe",
+    "Bengali": "Bengalce",
+    "Vietnamese": "Vietnamca",
+    "Thai": "Tayca",
+    "Greek": "Yunanca",
+    "Czech": "Çekçe",
+    "Hungarian": "Macarca",
+    "Romanian": "Rumence",
+    "Ukrainian": "Ukraynaca",
+    "Indonesian": "Endonezce",
+    "Malay": "Malayca",
+    "Croatian": "Hırvatça",
+    "Slovak": "Slovakça",
+    "Slovenian": "Slovence",
+    "Bulgarian": "Bulgarca",
+    "Serbian": "Sırpça",
+    "Hebrew": "İbranice"
+  },
+  "Finder": {
+    "Search": "Ara",
+    "Sidebar": {
+      "Favorites": "Favoriler",
+      "Locations": "Konumlar",
+      "AirDrop": "AirDrop",
+      "Recents": "Son Kullanılanlar",
+      "Applications": "Uygulamalar",
+      "Desktop": "Masaüstü",
+      "Documents": "Belgeler",
+      "Downloads": "İndirilenler",
+      "Pictures": "Resimler",
+      "Home": "Ev",
+      "MacintoshHD": "Macintosh HD",
+      "iCloudDrive": "iCloud Drive"
+    },
+    "Menu": {
+      "NewFolder": "Yeni Klasör",
+      "GetInfo": "Bilgi Ver",
+      "ChangeBackground": "Arka Planı Değiştir...",
+      "Open": "Aç",
+      "MoveToBin": "Çöp Sepetine Taşı",
+      "Rename": "Yeniden Adlandır",
+      "OpenItems": "{count} Öğeyi Aç",
+      "MoveItemsToBin": "{count} Öğeyi Çöp Sepetine Taşı"
+    },
+    "Status": {
+      "Loading": "Yükleniyor...",
+      "EmptyFolder": "Boş Klasör",
+      "ItemCount": "{count, plural, =1 {1 öğe} other {# öğe}}",
+      "SpaceAvailable": "{amount} GB boş"
+    },
+    "Errors": {
+      "NoApp": "\"{ext}\" belgesini açmak için ayarlanmış bir uygulama yok.",
+      "CreateFolderFailed": "Klasör oluşturma başarısız",
+      "MoveToBinFailed": "Çöp Sepetine taşıma başarısız"
+    }
+  },
+  "Safari": {
+    "Title": "Safari",
+    "StartPage": "Başlangıç Sayfası",
+    "Loading": "Yükleniyor...",
+    "SearchPlaceholder": "Ara veya web sitesi ismi gir",
+    "NoInternet": "İnternet Bağlantısı Yok",
+    "NoInternetDesc": "Bilgisayarınız internete bağlı değil. Bu sayfa görüntülenemiyor.",
+    "Favorites": {
+      "Apple": "Apple",
+      "Google": "Google",
+      "Wikipedia": "Wikipedia",
+      "GitHub": "GitHub"
+    }
+  },
+  "Mail": {
+    "Inbox": "Gelen Kutusu",
+    "MessagesCount": "{count, plural, =1 {1 Mesaj} other {# Mesaj}}",
+    "Favorites": "Favoriler",
+    "AllInboxes": "Tüm Gelen Kutuları",
+    "VIP": "VIP",
+    "Sent": "Gönderilen",
+    "Search": "Ara",
+    "NoMessageSelected": "İleti Seçilmedi",
+    "To": "Kime: {name}"
+  },
+  "Messages": {
+    "AppTitle": "Mesajlar",
+    "SigningIn": "{name} olarak giriş yapılıyor...",
+    "SidebarTitle": "Mesajlar",
+    "NoOnlineUsers": "Çevrimiçi kullanıcı yok.",
+    "NoMessages": "Mesaj yok",
+    "To": "Kime: {name}",
+    "InputPlaceholder": "iMessage",
+    "NoContactSelected": "Mesaj göndermek için bir kişi seçin"
+  },
+  "Photos": {
+    "Sidebar": {
+      "Library": "Arşiv",
+      "Collections": "Koleksiyonlar",
+      "Pinned": "İğnelenmiş",
+      "Albums": "Albümler",
+      "Utilities": "Yardımcılar",
+      "Projects": "Projeler",
+      "Favourites": "Favoriler",
+      "RecentlySaved": "Son Kaydedilenler",
+      "Videos": "Videolar",
+      "Screenshots": "Ekran Resimleri",
+      "PeoplePets": "Kişiler ve Evcil Hayvanlar",
+      "SharedAlbums": "Paylaşılan Albümler",
+      "Activity": "Aktivite",
+      "RecentlyDeleted": "Son Silinenler",
+      "Duplicates": "Yinelenenler",
+      "Map": "Harita",
+      "AllProjects": "Tüm Projeler"
+    },
+    "Tabs": {
+      "Years": "Yıllar",
+      "Months": "Aylar",
+      "AllPhotos": "Tüm Fotoğraflar"
+    },
+    "Search": "Ara",
+    "Collections": {
+      "Title": "Koleksiyonlar",
+      "Memories": "Anılar",
+      "NoMemories": "Anı Yok",
+      "NoMemoriesDesc": "Anılar yaratıldığında burada görünecek.",
+      "Albums": "Albümler",
+      "NoAlbums": "Albüm Yok"
+    },
+    "EmptyState": {
+      "NoItems": "{title} içinde öğe yok"
+    },
+    "Locked": {
+      "Title": "{title} Kilitli",
+      "Desc": "Görüntülemek için kimliğinizi doğrulayın."
+    }
+  },
+  "Notes": {
+    "Sidebar": {
+      "iCloud": "iCloud",
+      "Notes": "Notlar",
+      "RecentlyDeleted": "Son Silinenler"
+    },
+    "Search": "Ara",
+    "NewNote": "Yeni Not",
+    "NoAdditionalText": "Ek metin yok",
+    "Editor": {
+      "TitlePlaceholder": "Başlık",
+      "ContentPlaceholder": "Yazmaya başlayın...",
+      "AddToDesktop": "Masaüstüne Ekle",
+      "Restore": "Geri Yükle",
+      "Delete": "Notu Sil",
+      "DeletePermanently": "Kalıcı Olarak Sil",
+      "EmptyState": "Bir not seçin veya oluşturun",
+      "Date": "Bugün {time}"
+    }
+  },
+  "Reminders": {
+    "Search": "Ara",
+    "Sidebar": {
+      "MyLists": "Listelerim",
+      "Reminders": "Anımsatıcılar",
+      "Work": "İş",
+      "Today": "Bugün",
+      "Scheduled": "Zamanlanmış",
+      "All": "Tümü",
+      "Flagged": "Bayraklı"
+    },
+    "AddReminder": "Yeni Anımsatıcı",
+    "Actions": {
+      "Add": "Ekle",
+      "Cancel": "İptal",
+      "Delete": "Anımsatıcıyı Sil",
+      "MarkComplete": "Tamamlandı Olarak İşaretle",
+      "MarkIncomplete": "Tamamlanmadı Olarak İşaretle",
+      "Flag": "Bayrak Ekle",
+      "Unflag": "Bayrağı Kaldır"
+    },
+    "Inputs": {
+      "Title": "Başlık",
+      "Notes": "Notlar",
+      "Date": "Tarih",
+      "Time": "Saat",
+      "Tags": "Etiketler"
+    },
+    "EmptyState": {
+      "NoReminders": "Anımsatıcı Yok",
+      "CreateOne": "Yeni Bir Tane Yarat"
+    }
+  },
+  "Calendar": {
+    "Search": "Ara",
+    "Today": "Bugün",
+    "Day": "Gün",
+    "Week": "Hafta",
+    "Month": "Ay",
+    "Year": "Yıl",
+    "AddEvent": "Etkinlik Ekle",
+    "NoEvents": "Etkinlik Yok",
+    "NewEvent": "Yeni Etkinlik",
+    "TitlePlaceholder": "Etkinlik Adı",
+    "Location": "Konum",
+    "AllDay": "Tüm Gün",
+    "From": "Başlangıç",
+    "To": "Bitiş",
+    "Repeat": "Tekrar",
+    "Never": "Asla",
+    "Daily": "Her Gün",
+    "Weekly": "Her Hafta",
+    "Monthly": "Her Ay",
+    "Yearly": "Her Yıl",
+    "Alert": "Uyarı",
+    "AtTime": "Etkinlik saatinde",
+    "5MinBefore": "5 dakika önce",
+    "10MinBefore": "10 dakika önce",
+    "15MinBefore": "15 dakika önce",
+    "30MinBefore": "30 dakika önce",
+    "1HourBefore": "1 saat önce",
+    "2HoursBefore": "2 saat önce",
+    "1DayBefore": "1 gün önce",
+    "2DaysBefore": "2 gün önce",
+    "Notes": "Notlar",
+    "DeleteEvent": "Etkinliği Sil",
+    "ShortDays": {
+      "Sun": "Paz",
+      "Mon": "Pzt",
+      "Tue": "Sal",
+      "Wed": "Çar",
+      "Thu": "Per",
+      "Fri": "Cum",
+      "Sat": "Cmt"
+    },
+    "Months": {
+      "January": "Ocak",
+      "February": "Şubat",
+      "March": "Mart",
+      "April": "Nisan",
+      "May": "Mayıs",
+      "June": "Haziran",
+      "July": "Temmuz",
+      "August": "Ağustos",
+      "September": "Eylül",
+      "October": "Ekim",
+      "November": "Kasım",
+      "December": "Aralık"
+    },
+    "Sidebar": {
+      "iCloud": "ICLOUD",
+      "Other": "OTHER",
+      "NoInvitations": "No invitations"
+    },
+    "Toolbar": {
+      "Today": "Today",
+      "SearchPlaceholder": "Search events...",
+      "View": {
+        "day": "day",
+        "week": "week",
+        "month": "month",
+        "year": "year"
+      }
+    },
+    "EventModal": {
+      "Title": "New Event",
+      "EventTitlePlaceholder": "Event Title",
+      "CalendarLabel": "Calendar",
+      "Cancel": "Cancel",
+      "AddEvent": "Add Event"
+    },
+    "SearchResults": {
+      "Title": "Search Results",
+      "NoEvents": "No events found"
+    },
+    "Event": {
+      "NoLocation": "No location",
+      "EventLabel": "Event: {title} at {location}"
+    },
+    "Weekdays": {
+      "Sun": "Sun",
+      "Mon": "Mon",
+      "Tue": "Tue",
+      "Wed": "Wed",
+      "Thu": "Thu",
+      "Fri": "Fri",
+      "Sat": "Sat"
+    },
+    "WeekdaysShort": {
+      "Sun": "S",
+      "Mon": "M",
+      "Tue": "T",
+      "Wed": "W",
+      "Thu": "T",
+      "Fri": "F",
+      "Sat": "S"
+    }
+  },
+  "Maps": {
+    "Search": "Ara",
+    "SearchPlaceholder": "Bir yer veya adres arayın",
+    "Directions": "Yol Tarifi",
+    "From": "Çıkış",
+    "To": "Varış",
+    "Transport": {
+      "Drive": "Araç",
+      "Walk": "Yürüme",
+      "Transit": "Toplu Taşıma",
+      "Cycle": "Bisiklet"
+    },
+    "LocateMe": "Beni Bul",
+    "ZoomIn": "Yakınlaştır",
+    "ZoomOut": "Uzaklaştır",
+    "MapType": {
+      "Standard": "Standart",
+      "Hybrid": "Hibrit",
+      "Satellite": "Uydu"
+    },
+    "Sidebar": {
+      "Favorites": "FAVORITES",
+      "Recent": "RECENT",
+      "NoRecentSearches": "No recent searches",
+      "RecentLabel": "Recent"
+    },
+    "Locations": {
+      "Home": "Home",
+      "Work": "Work"
+    },
+    "Controls": {
+      "SwitchToSatellite": "Switch to Satellite",
+      "SwitchToSatelliteLabel": "Switch to Satellite view",
+      "SwitchToMap": "Switch to Map",
+      "SwitchToMapLabel": "Switch to Map view",
+      "CurrentLocation": "Current Location",
+      "ShowCurrentLocation": "Show current location",
+      "MapInfo": "Map information"
+    },
+    "Permission": {
+      "AppName": "Maps",
+      "Title": "Location",
+      "Reason": "Maps needs access to your location to show where you are.",
+      "Error": "Could not get your location. Please ensure location services are enabled.",
+      "NotSupported": "Geolocation is not supported by your browser."
+    }
+  },
+  "FaceTime": {
+    "AppName": "FaceTime",
+    "NewFaceTime": "Yeni FaceTime",
+    "CreateLink": "Bağlantı Oluştur",
+    "EnterNameOrEmail": "İsim, e-posta veya numara",
+    "Suggested": "Önerilenler",
+    "NoRecents": "Son Yapılanlar Yok",
+    "FaceTimeVideo": "FaceTime Görüntülü",
+    "FaceTimeAudio": "FaceTime Sesli",
+    "JoinCall": "Katıl",
+    "Waiting": "Bekleniyor...",
+    "Connected": "Bağlandı",
+    "Reconnecting": "Yeniden Bağlanılıyor...",
+    "CallEnded": "Arama Sonlandırıldı",
+    "Mute": "Sessize Al",
+    "Unmute": "Sesi Aç",
+    "VideoOff": "Görüntü Kapalı",
+    "VideoOn": "Görüntü Açık",
+    "End": "Bitir",
+    "FullScreen": "Tam Ekran",
+    "ExitFullScreen": "Tam Ekrandan Çık",
+    "Effects": "Efektler",
+    "ShareScreen": "Ekranı Paylaş",
+    "Connecting": "Bağlanılıyor...",
+    "Unavailable": "Kullanılamıyor",
+    "Title": "FaceTime",
+    "ConnectingAs": "Connecting as {name}...",
+    "IncomingCall": "{name} is calling...",
+    "Accept": "Accept",
+    "Decline": "Decline",
+    "Contacts": "Contacts",
+    "NoContacts": "No one else is online.",
+    "Video": "Video",
+    "SelectContact": "Select a contact to call",
+    "Aria": {
+      "RemoteVideo": "Remote video feed",
+      "LocalVideo": "Local video preview",
+      "EndCall": "End Call",
+      "CallContact": "Call {name}",
+      "VideoCallContact": "Video call {name}",
+      "LocalPreview": "Local camera preview"
+    },
+    "Permission": {
+      "AppName": "FaceTime",
+      "Title": "Camera and Microphone",
+      "Reason": "FaceTime needs access to your camera and microphone to make calls."
+    }
+  },
+  "Contacts": {
+    "Search": "Ara",
+    "AllContacts": "Tüm Kişiler",
+    "MyCard": "Kartım",
+    "AddContact": "Kişi Ekle",
+    "Edit": "Düzenle",
+    "Done": "Bitti",
+    "FirstName": "Ad",
+    "LastName": "Soyad",
+    "Company": "Şirket",
+    "Phone": "Telefon",
+    "Email": "E-posta",
+    "Notes": "Notlar",
+    "Message": "Mesaj",
+    "Call": "Ara",
+    "Video": "Görüntülü",
+    "Mail": "Mail",
+    "Pay": "Öde",
+    "NoContacts": "Kişi Yok",
+    "DeleteContact": "Kişiyi Sil",
+    "SearchPlaceholder": "Search",
+    "SearchAria": "Search contacts",
+    "Count": "{count} Contacts",
+    "EditContact": "Edit Contact",
+    "NewContact": "New Contact",
+    "Preview": "Preview",
+    "Cancel": "Cancel",
+    "NoNotes": "No notes",
+    "NoSelection": "No Contact Selected",
+    "Labels": {
+      "FirstName": "First Name",
+      "LastName": "Last Name",
+      "Company": "Company",
+      "Phone": "Phone",
+      "Email": "Email",
+      "Notes": "Notes",
+      "Mobile": "mobile",
+      "Home": "home",
+      "Message": "message",
+      "Video": "video",
+      "Mail": "mail"
+    },
+    "Alerts": {
+      "DeleteConfirm": "Are you sure you want to delete this contact?",
+      "NameRequired": "Please enter a name or company."
+    },
+    "Aria": {
+      "AddContact": "Add new contact",
+      "Contact": "Contact: {name}",
+      "Action": "{action} {name}"
+    }
+  },
+  "Calculator": {
+    "Clear": "C",
+    "AllClear": "AC",
+    "Negate": "+/-",
+    "Percent": "%",
+    "Divide": "÷",
+    "Multiply": "×",
+    "Subtract": "-",
+    "Add": "+",
+    "Equals": "=",
+    "Decimal": ",",
+    "AC": "AC",
+    "ToggleSign": "Toggle sign",
+    "Percentage": "Percentage",
+    "Calculate": "Calculate result"
+  },
+  "Clock": {
+    "WorldClock": "Dünya Saati",
+    "Alarm": "Alarm",
+    "Stopwatch": "Kronometre",
+    "Timer": "Sayaç",
+    "Add": "Ekle",
+    "Edit": "Düzenle",
+    "Start": "Başlat",
+    "Stop": "Durdur",
+    "Reset": "Sıfırla",
+    "Lap": "Tur",
+    "Resume": "Sürdür",
+    "Pause": "Duraklat",
+    "Cancel": "İptal",
+    "Save": "Kaydet",
+    "Label": "Etiket",
+    "Sound": "Ses",
+    "Snooze": "Ertele",
+    "WhenTimerEnds": "Sayaç Bittiğinde",
+    "StopPlaying": "Çalmayı Durdur",
+    "Tabs": {
+      "WorldClock": "World Clock",
+      "Alarms": "Alarms",
+      "Stopwatch": "Stopwatch",
+      "Timers": "Timers"
+    },
+    "AddClock": "Add clock",
+    "Locations": {
+      "NewDelhi": "New Delhi"
+    },
+    "Today": "Today",
+    "HRS": "HRS"
+  },
+  "Weather": {
+    "Loading": "Yükleniyor...",
+    "Error": "Hava durumu yüklenemedi",
+    "SearchPlaceholder": "Şehir ara",
+    "MyLocation": "Konumum",
+    "Humidity": "Nem",
+    "Wind": "Rüzgar",
+    "Rain": "Yağmur",
+    "FeelsLike": "Hissedilen",
+    "UVIndex": "UV İndeksi",
+    "Pressure": "Basınç",
+    "Visibility": "Görüş Mesafesi",
+    "Sunrise": "Gün Doğumu",
+    "Sunset": "Gün Batımı",
+    "Forecast": {
+      "Hourly": "Hourly Forecast",
+      "TenDay": "10-Day Forecast",
+      "Now": "Now",
+      "Today": "Today"
+    },
+    "Hourly": "Saatlik",
+    "Daily": "Günlük",
+    "High": "Y",
+    "Low": "D",
+    "Conditions": {
+      "Clear": "Açık",
+      "Cloudy": "Bulutlu",
+      "Rain": "Yağmur",
+      "Snow": "Kar",
+      "Thunderstorm": "Fırtına",
+      "Drizzle": "Çiseleme",
+      "Mist": "Pus"
+    },
+    "Retry": "Retry",
+    "Searching": "Searching...",
+    "NoResults": "No results found",
+    "Recent": "Recent",
+    "Popular": "Popular",
+    "Sidebar": {
+      "Open": "Open sidebar",
+      "Close": "Close sidebar"
+    },
+    "Aria": {
+      "SelectLocation": "Select {name}, {country}"
+    },
+    "Details": {
+      "AirQuality": "Air Quality",
+      "UVIndex": "UV Index",
+      "Wind": "Wind",
+      "Sunset": "Sunset",
+      "Sunrise": "Sunrise:",
+      "FeelsLike": "Feels Like",
+      "Humidity": "Humidity",
+      "Visibility": "Visibility",
+      "Pressure": "Pressure",
+      "hPa": "hPa"
+    },
+    "Descriptions": {
+      "AirQualityDesc": "Air quality index is 130, similar to yesterday at about this time.",
+      "UVIndexDesc": "Use sun protection until 4PM.",
+      "FeelsLikeDesc": "Similar to the actual temperature.",
+      "DewPointDesc": "The dew point is {temp}° right now.",
+      "VisibilityDesc": "Perfectly clear view.",
+      "Footer": "Weather for {location} • Open-Meteo Data",
+      "PollutionLevel": "Moderately Polluted",
+      "UVLevel": "Moderate"
+    }
+  },
+  "Stocks": {
+    "Search": "Ara",
+    "Watchlist": "İzleme Listesi",
+    "MarketOpen": "Piyasa Açık",
+    "MarketClosed": "Piyasa Kapalı",
+    "PreMarket": "Piyasa Öncesi",
+    "AfterHours": "Kapanış Sonrası",
+    "Loading": "Yükleniyor...",
+    "Error": "Hata oluştu",
+    "AddSymbol": "Sembol Ekle",
+    "Remove": "Kaldır",
+    "Chart": "Grafik",
+    "News": "Haberler",
+    "Summary": "Özet",
+    "Open": "Açılış",
+    "High": "En Yüksek",
+    "Low": "En Düşük",
+    "Vol": "Hacim",
+    "PE": "F/K",
+    "MktCap": "Piy. Değ.",
+    "52WHigh": "52H En Yüksek",
+    "52WLow": "52H En Düşük",
+    "AvgVol": "Ort. Hacim",
+    "Yield": "Getiri",
+    "Beta": "Beta",
+    "EPS": "HBK",
+    "Title": "Stocks",
+    "Searching": "Searching...",
+    "KeyStatistics": "Key Statistics",
+    "BusinessNews": "Business News",
+    "ShowMore": "Show More",
+    "Aria": {
+      "Search": "Search stocks",
+      "Select": "Select stock {symbol}",
+      "ReadNews": "Read news: {title}"
+    },
+    "Stats": {
+      "Open": "Open",
+      "High": "High",
+      "Low": "Low",
+      "Vol": "Vol",
+      "PE": "P/E",
+      "MktCap": "Mkt Cap",
+      "52WH": "52W H",
+      "52WL": "52W L"
+    }
+  },
+  "Desktop": {
+    "ContextMenu": {
+      "NewFolder": "Yeni Klasör",
+      "GetInfo": "Bilgi Ver",
+      "ChangeDesktopBackground": "Masaüstü Arka Planını Değiştir...",
+      "UseStacks": "Yığınları Kullan",
+      "SortBy": "Sıralama Ölçütü",
+      "CleanUp": "Düzenle",
+      "CleanUpBy": "Düzenleme Ölçütü",
+      "ShowViewOptions": "Görüntü Seçeneklerini Göster",
+      "ChangeWallpaper": "Change Wallpaper...",
+      "EditWidgets": "Edit Widgets...",
+      "Tags": "Tags",
+      "None": "None",
+      "SnapToGrid": "Snap to Grid",
+      "Name": "Name",
+      "Kind": "Kind",
+      "DateLastOpened": "Date Last Opened",
+      "DateAdded": "Date Added",
+      "DateModified": "Date Modified",
+      "DateCreated": "Date Created",
+      "Size": "Size"
+    },
+    "SortOptions": {
+      "Name": "Ad",
+      "Kind": "Tür",
+      "DateLastOpened": "Son Açılış Tarihi",
+      "DateAdded": "Eklenme Tarihi",
+      "DateModified": "Değiştirilme Tarihi",
+      "DateCreated": "Yaratılış Tarihi",
+      "Size": "Boyut",
+      "Tags": "Etiketler"
+    },
+    "Guest": "Guest",
+    "UntitledFolder": "untitled folder",
+    "NoAppAvailable": "No application available to open .{ext} files.",
+    "MoveToBin": {
+      "Failed": "Failed to move to bin",
+      "NotSupported": "Failed to move to bin. Folder moves not fully supported yet."
+    }
+  },
+  "ControlCenter": {
+    "Title": "Denetim Merkezi",
+    "WiFi": "Wi-Fi",
+    "Bluetooth": "Bluetooth",
+    "AirDrop": "AirDrop",
+    "DoNotDisturb": "Rahatsız Etme",
+    "KeyboardBrightness": "Klavye Parlaklığı",
+    "ScreenMirroring": "Ekran Yansıtma",
+    "Display": "Ekran",
+    "Sound": "Ses",
+    "Playing": "Yürütülüyor",
+    "On": "Açık",
+    "Off": "Kapalı",
+    "NotConnected": "Bağlı Değil",
+    "Connect": "Bağlan",
+    "HomeNetwork": "Home Network",
+    "ContactsOnly": "Contacts Only",
+    "NotPlaying": "Not Playing",
+    "Music": "Music"
+  },
+  "LockScreenApp": {
+    "EnterPassword": "Parola Girin",
+    "ClickToUnlock": "Kilidi açmak için tıklayın",
+    "TouchID": "Touch ID",
+    "Cancel": "İptal",
+    "SwitchUser": "Kullanıcı Değiştir"
+  },
+  "NotificationCenter": {
+    "Title": "Bildirim Merkezi",
+    "NoNotifications": "Bildirim Yok",
+    "ClearAll": "Tümünü Temizle",
+    "Widgets": "Widgets",
+    "Done": "Done",
+    "Edit": "Edit",
+    "AddWidget": "Add Widget"
+  },
+  "Widgets": {
+    "AllWidgets": "Tüm Araç Takımları",
+    "Search": "Ara",
+    "AddWidget": "Araç Takımı Ekle",
+    "Loading": "Loading...",
+    "Calendar": {
+      "Title": "Calendar"
+    },
+    "Weather": {
+      "Title": "Weather"
+    },
+    "Stocks": {
+      "Title": "Stocks"
+    },
+    "Reminders": {
+      "Title": "Reminders",
+      "NoReminders": "No reminders"
+    },
+    "Notes": {
+      "Title": "Notes",
+      "Content": "Buy milk, eggs, and bread.<br />Call mom at 5pm.<br />Meeting with team tomorrow."
+    }
+  },
+  "Window": {
+    "Minimize": "Simge Durumuna Küçült",
+    "Maximize": "Büyüt",
+    "Close": "Kapat",
+    "Restore": "Restore",
+    "MoveTo": "Move Window to...",
+    "LeftSide": "Left Side of Screen",
+    "RightSide": "Right Side of Screen",
+    "EnterFullScreen": "Enter Full Screen"
+  },
+  "Dock": {
+    "AriaLabel": "Uygulama Dock'u",
+    "Trash": "Çöp Sepeti"
+  },
+  "Apps": {
+    "Finder": "Finder",
+    "Launchpad": "Launchpad",
+    "Safari": "Safari",
+    "Messages": "Mesajlar",
+    "Mail": "Mail",
+    "Maps": "Harita",
+    "Photos": "Fotoğraflar",
+    "FaceTime": "FaceTime",
+    "Calendar": "Takvim",
+    "Contacts": "Kişiler",
+    "Reminders": "Anımsatıcılar",
+    "Notes": "Notlar",
+    "TV": "TV",
+    "Music": "Müzik",
+    "News": "Haberler",
+    "SystemSettings": "Sistem Ayarları",
+    "AppStore": "App Store",
+    "Trash": "Çöp Sepeti",
+    "VSCode": {
+      "Title": "Visual Studio Code"
+    },
+    "LeetCode": {
+      "Title": "LeetCode",
+      "Common": {
+        "Loading": "Loading Profile...",
+        "NoData": "No data",
+        "Retry": "Retry",
+        "ShowMore": "Show more",
+        "GoToLeetCode": "Go to LeetCode"
+      },
+      "Badges": {
+        "Title": "Badges",
+        "MostRecent": "Most Recent Badge"
+      },
+      "Stats": {
+        "Title": "Community Stats",
+        "Views": "Views",
+        "Solution": "Solution",
+        "Discuss": "Discuss",
+        "Reputation": "Reputation"
+      },
+      "Languages": {
+        "Title": "Languages",
+        "ProblemsSolved": "problems solved"
+      },
+      "Profile": {
+        "Rank": "Rank"
+      },
+      "Submissions": {
+        "RecentAC": "Recent AC",
+        "List": "List",
+        "Solutions": "Solutions",
+        "Discuss": "Discuss",
+        "TimeAgo": "2 months ago"
+      },
+      "Skills": {
+        "Title": "Skills",
+        "Advanced": "Advanced",
+        "Intermediate": "Intermediate"
+      },
+      "Solved": {
+        "Solved": "Solved",
+        "Easy": "Easy",
+        "Medium": "Med.",
+        "Hard": "Hard"
+      },
+      "Calendar": {
+        "SubmissionsLastYear": "submissions in the past one year",
+        "TotalActiveDays": "Total active days:",
+        "MaxStreak": "Max streak:",
+        "Current": "Current",
+        "Months": {
+          "Jan": "Jan",
+          "Feb": "Feb",
+          "Mar": "Mar",
+          "Apr": "Apr",
+          "May": "May",
+          "Jun": "Jun",
+          "Jul": "Jul",
+          "Aug": "Aug",
+          "Sep": "Sep",
+          "Oct": "Oct",
+          "Nov": "Nov",
+          "Dec": "Dec"
+        }
+      }
+    },
+    "V86": {
+      "Title": "Sanal Makine",
+      "NoFileSelected": "No file selected",
+      "ScriptLoadError": "Failed to load V86 script",
+      "FileReadError": "Failed to read file",
+      "StartError": "Failed to start emulator",
+      "Booting": "Booting {filename}...",
+      "ErrorPrefix": "Error: {error}",
+      "ClickToCapture": "Click to capture mouse (Esc to release)"
+    },
+    "Freeform": "Freeform",
+    "Terminal": "Terminal",
+    "Calculator": "Calculator",
+    "TextEdit": "TextEdit",
+    "MediaPlayer": "Media Player",
+    "Preview": "Preview",
+    "VirtualMachine": "Virtual Machine"
+  },
+  "News": {
+    "Title": "News",
+    "Categories": {
+      "TopStories": "Top Stories",
+      "Technology": "Technology",
+      "Business": "Business",
+      "Science": "Science",
+      "Health": "Health",
+      "Entertainment": "Entertainment",
+      "Sports": "Sports"
+    },
+    "SearchPlaceholder": "Search stories...",
+    "SearchLabel": "Search",
+    "SearchTitle": "Search: \"{query}\"",
+    "Loading": "Loading top stories...",
+    "Error": "Failed to load news. Please try again later.",
+    "TryAgain": "Try Again",
+    "NoResults": "No stories found matching \"{query}\"",
+    "ClearSearch": "Clear Search",
+    "TopStory": "Top Story",
+    "Refresh": "Refresh",
+    "Aria": {
+      "Category": "Category: {label}",
+      "Search": "Search stories",
+      "Refresh": "Refresh news",
+      "ReadTopStory": "Read top story: {title}",
+      "ReadArticle": "Read article: {title}",
+      "Share": "Share article",
+      "Like": "Like article"
+    }
+  },
+  "Music": {
+    "AppleMusic": "Apple Music",
+    "Library": "Library",
+    "ListenNow": "Listen Now",
+    "Browse": "Browse",
+    "Radio": "Radio",
+    "RecentlyAdded": "Recently Added",
+    "Artists": "Artists",
+    "Albums": "Albums",
+    "Songs": "Songs",
+    "Search": "Search",
+    "SearchTitle": "Search: {query}",
+    "Aria": {
+      "Search": "Search music",
+      "GoBack": "Go back",
+      "GoForward": "Go forward",
+      "Prev": "Previous song",
+      "Next": "Next song",
+      "Play": "Play",
+      "Pause": "Pause",
+      "PlaySong": "Play {track} by {artist}",
+      "PauseSong": "Pause {track}",
+      "Lyrics": "Toggle lyrics",
+      "Queue": "Toggle queue",
+      "Mute": "Toggle mute",
+      "VolSlider": "Volume slider",
+      "SeekSlider": "Seek slider"
+    },
+    "Queue": {
+      "Title": "Playing Next",
+      "Empty": "Queue is empty"
+    },
+    "Lyrics": {
+      "NotAvailable": "Lyrics are not available for this song in the preview mode.",
+      "Imagine": "But imagine the lyrics appearing here, perfectly synced with the music...",
+      "Lalala": "La la la...",
+      "Placeholder": "Play a song to see lyrics"
+    }
+  },
+  "TV": {
+    "WatchNow": "Watch Now",
+    "Movies": "Movies",
+    "TVShows": "TV Shows",
+    "Kids": "Kids",
+    "Library": "Library",
+    "SearchResults": "Search Results",
+    "NoShows": "No shows found.",
+    "SearchPlaceholder": "Search",
+    "SearchLabel": "Search TV Shows",
+    "Series": "Series",
+    "PlayEpisode": "Play Episode 1",
+    "AddToUpNext": "Add to Up Next",
+    "Added": "Added",
+    "OpenYouTube": "Open in YouTube",
+    "ViewAccount": "View Account",
+    "Aria": {
+      "Play": "Play {name}",
+      "CloseVideo": "Close video",
+      "AddLibrary": "Add to Library",
+      "RemoveLibrary": "Remove from Library"
+    },
+    "Genres": {
+      "Drama": "Drama",
+      "Action": "Action",
+      "Comedy": "Comedy",
+      "ScienceFiction": "Science-Fiction",
+      "Thriller": "Thriller"
+    }
+  },
+  "Terminal": {
+    "Guest": "Guest",
+    "Welcome": "Welcome to Terminal",
+    "HelpPrompt": "Type 'help' for a list of commands.",
+    "AvailableCommands": "Available commands: ls, cd, pwd, mkdir, touch, echo, cat, clear, whoami, ping, man, rm, rmdir, vi",
+    "CommandNotFound": "command not found: {command}",
+    "Error": "Error: {message}",
+    "AriaInput": "Terminal Input",
+    "Usage": {
+      "Ping": "usage: ping host",
+      "Mkdir": "usage: mkdir directory_name",
+      "Rmdir": "usage: rmdir directory_name",
+      "Rm": "usage: rm [-rf] file_name",
+      "Touch": "usage: touch file_name",
+      "Cat": "usage: cat file_name",
+      "Vi": "usage: vi file_name",
+      "Man": "What manual page do you want?"
+    },
+    "Errors": {
+      "PingResolve": "ping: cannot resolve {host}: Unknown host",
+      "NoManual": "No manual entry for {command}",
+      "NoSuchFile": "{cmd}: {path}: No such file or directory",
+      "NotADirectory": "{cmd}: {path}: Not a directory",
+      "DirectoryNotEmpty": "{cmd}: {path}: Directory not empty",
+      "IsADirectory": "{cmd}: {path}: is a directory"
+    },
+    "Messages": {
+      "PingStats": "PING {host} (127.0.0.1): 56 data bytes\n64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.045 ms\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.082 ms\n64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.067 ms\n\n--- {host} ping statistics ---\n3 packets transmitted, 3 packets received, 0.0% packet loss",
+      "OpeningTextEdit": "Opening {file} in TextEdit..."
+    },
+    "ManPages": {
+      "ls": "ls - list directory contents\n\nUsage: ls [options] [file|dir]\n\nOptions:\n  -a, --all      do not ignore entries starting with .\n  -l             use a long listing format",
+      "cd": "cd - change the shell working directory\n\nUsage: cd [dir]\n\nChange the current directory to DIR. The default DIR is the value of the HOME shell variable.",
+      "pwd": "pwd - print name of current/working directory\n\nUsage: pwd\n\nPrint the full filename of the current working directory.",
+      "mkdir": "mkdir - make directories\n\nUsage: mkdir [DIRECTORY]\n\nCreate the DIRECTORY(ies), if they do not already exist.",
+      "touch": "touch - change file timestamps\n\nUsage: touch [FILE]\n\nUpdate the access and modification times of each FILE to the current time. If FILE does not exist it is created empty.",
+      "echo": "echo - display a line of text\n\nUsage: echo [STRING]...\n\nEcho the STRING(s) to standard output.",
+      "cat": "cat - concatenate files and print on the standard output\n\nUsage: cat [FILE]...\n\nConcatenate FILE(s) to standard output.",
+      "clear": "clear - clear the terminal screen\n\nUsage: clear",
+      "whoami": "whoami - print effective userid\n\nUsage: whoami\n\nPrint the user name associated with the current effective user ID.",
+      "ping": "ping - send ICMP ECHO_REQUEST to network hosts\n\nUsage: ping [HOST]\n\nSend ICMP ECHO_REQUEST to network hosts.",
+      "man": "man - an interface to the system reference manuals\n\nUsage: man [COMMAND]\n\nDisplay the manual page for COMMAND.",
+      "rm": "rm - remove files or directories\n\nUsage: rm [OPTION]... [FILE]...\n\nRemove (unlink) the FILE(s).\n\nOptions:\n  -r, -R, --recursive   remove directories and their contents recursively\n  -f, --force           ignore nonexistent files and arguments, never prompt",
+      "rmdir": "rmdir - remove empty directories\n\nUsage: rmdir [DIRECTORY]...\n\nRemove the DIRECTORY(ies), if they are empty.",
+      "vi": "vi - screen-oriented (visual) display editor\n\nUsage: vi [FILE]\n\nEdit FILE."
+    }
+  },
+  "TextEdit": {
+    "Guest": "Guest",
+    "Untitled": "Untitled.txt",
+    "Save": "Save",
+    "Loading": "Loading...",
+    "Placeholder": "Type your notes here...",
+    "SavedAlert": "Saved to {path}/{filename}"
+  },
+  "PDFViewer": {
+    "Document": "Document.pdf",
+    "PageInfo": "Page {current} of {total}",
+    "View": "View",
+    "ZoomIn": "Zoom In",
+    "ZoomOut": "Zoom Out",
+    "LoadingThumbnails": "Loading thumbnails...",
+    "Loading": "Loading...",
+    "NoPDF": "No PDF",
+    "FailedToLoad": "Failed to load PDF",
+    "NoPDFLoaded": "No PDF loaded"
+  },
+  "Spotlight": {
+    "Placeholder": "Spotlight Search",
+    "SearchWebFor": "Search Web for \"{query}\"",
+    "NoResults": "No results found",
+    "Open": "Open",
+    "Kinds": {
+      "Web": "Web Search",
+      "App": "Application",
+      "Directory": "Directory",
+      "File": "File"
+    },
+    "Aria": {
+      "Open": "Open {name}"
+    }
+  },
+  "MenuBar": {
+    "Apple": {
+      "AboutThisMac": "About This Mac",
+      "SystemSettings": "System Settings...",
+      "AppStore": "App Store...",
+      "RecentItems": "Recent Items",
+      "ForceQuit": "Force Quit...",
+      "Sleep": "Sleep",
+      "Restart": "Restart...",
+      "ShutDown": "Shut Down...",
+      "LockScreen": "Lock Screen"
+    },
+    "App": {
+      "About": "About {app}",
+      "Quit": "Quit {app}"
+    },
+    "File": {
+      "Title": "File",
+      "New": "New",
+      "Open": "Open...",
+      "Save": "Save",
+      "Duplicate": "Duplicate",
+      "NewFinderWindow": "New Finder Window",
+      "NewFolder": "New Folder",
+      "GetInfo": "Get Info"
+    },
+    "Edit": {
+      "Title": "Edit",
+      "Undo": "Undo",
+      "Redo": "Redo",
+      "Cut": "Cut",
+      "Copy": "Copy",
+      "Paste": "Paste"
+    },
+    "View": {
+      "Title": "View",
+      "AsIcons": "As Icons",
+      "AsList": "As List",
+      "AsColumns": "As Columns"
+    },
+    "Window": {
+      "Title": "Window",
+      "Minimize": "Minimize",
+      "Zoom": "Zoom"
+    },
+    "Help": {
+      "Title": "Help",
+      "MacOSHelp": "macOS Help"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "KnownNetworks": "Known Networks",
+      "OtherNetworks": "Other Networks",
+      "Settings": "Wi-Fi Settings..."
+    },
+    "Battery": {
+      "Title": "Battery",
+      "PowerSource": "Power Source: {source}",
+      "PowerAdapter": "Power Adapter",
+      "Battery": "Battery",
+      "EnergyMode": "Energy Mode",
+      "Automatic": "Automatic",
+      "LowPower": "Low Power",
+      "HighPower": "High Power",
+      "SignificantEnergy": "Using Significant Energy",
+      "Settings": "Battery Settings..."
+    },
+    "Aria": {
+      "Clipboard": "Clipboard",
+      "MediaPlayer": "Media Player",
+      "Spotlight": "Spotlight Search",
+      "ControlCenter": "Control Center",
+      "Siri": "Siri",
+      "Clock": "Clock and Notification Center"
+    }
+  },
+  "WeatherDropdown": {
+    "Searching": "Searching...",
+    "SearchCity": "Search city...",
+    "Now": "Now",
+    "Today": "Today",
+    "OpenWeather": "Open Weather"
+  },
+  "LockScreen": {
+    "IncorrectPassword": "Incorrect password",
+    "Guest": "Guest",
+    "EnterPassword": "Enter Password",
+    "Hint": "Touch ID or enter password (hint: {hint})",
+    "Login": "Login",
+    "Cancel": "Cancel",
+    "Aria": {
+      "UserAvatar": "User avatar, click to login",
+      "User": "User {name}, click to login",
+      "Password": "Password",
+      "Submit": "Submit password"
+    }
+  }
 }

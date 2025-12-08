@@ -3,6 +3,7 @@ import { Search, Trash2, Folder, Plus, Edit3, MonitorUp } from "lucide-react";
 import { fs } from "../lib/FileSystem";
 import { useSystemStore } from "../store/systemStore";
 import { useStickyNoteStore } from "../store/stickyNoteStore";
+import { useTranslations } from "next-intl";
 
 interface Note {
   id: string;
@@ -25,6 +26,7 @@ export const Notes: React.FC<NotesProps> = ({
   initialFilename,
   initialNoteId,
 }) => {
+  const t = useTranslations("Notes");
   const { user } = useSystemStore();
   const { addNote } = useStickyNoteStore();
   const [activeFolder, setActiveFolder] = useState<"Notes" | "Trash">("Notes");
@@ -102,10 +104,12 @@ export const Notes: React.FC<NotesProps> = ({
               id: Date.now().toString(),
               title,
               content,
-              date: `Today at ${new Date().toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}`,
+              date: t("Editor.Date", {
+                time: new Date().toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                }),
+              }),
               timestamp: Date.now(),
               folder: "Notes",
             };
@@ -119,7 +123,7 @@ export const Notes: React.FC<NotesProps> = ({
       }
     };
     loadFile();
-  }, [initialPath, initialFilename]);
+  }, [initialPath, initialFilename, t]);
 
   // Save to LocalStorage
   useEffect(() => {
@@ -128,16 +132,18 @@ export const Notes: React.FC<NotesProps> = ({
 
   const formatDate = () => {
     const now = new Date();
-    return `Today at ${now.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    })}`;
+    return t("Editor.Date", {
+      time: now.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+    });
   };
 
   const createNote = () => {
     const newNote: Note = {
       id: Date.now().toString(),
-      title: "New Note",
+      title: t("NewNote"),
       content: "",
       date: formatDate(),
       timestamp: Date.now(),
@@ -252,7 +258,7 @@ export const Notes: React.FC<NotesProps> = ({
       {/* Folders Sidebar */}
       <div className="w-56 bg-[#f2f2f7]/90 dark:bg-[#2d2d2d]/90 backdrop-blur-xl border-r border-gray-200 dark:border-black/20 flex flex-col pt-12 px-2">
         <div className="px-3 mb-2 text-xs font-semibold text-gray-500 dark:text-gray-400">
-          ICLOUD
+          {t("Sidebar.iCloud")}
         </div>
         <div
           onClick={() => setActiveFolder("Notes")}
@@ -268,10 +274,10 @@ export const Notes: React.FC<NotesProps> = ({
               setActiveFolder("Notes");
             }
           }}
-          aria-label="Notes folder"
+          aria-label={t("Sidebar.Notes")}
         >
           <Folder size={16} className="text-[#facc15] fill-[#facc15]" />
-          <span className="text-sm font-medium">Notes</span>
+          <span className="text-sm font-medium">{t("Sidebar.Notes")}</span>
         </div>
         <div
           onClick={() => setActiveFolder("Trash")}
@@ -287,10 +293,10 @@ export const Notes: React.FC<NotesProps> = ({
               setActiveFolder("Trash");
             }
           }}
-          aria-label="Trash folder"
+          aria-label={t("Sidebar.RecentlyDeleted")}
         >
           <Trash2 size={16} />
-          <span className="text-sm">Recently Deleted</span>
+          <span className="text-sm">{t("Sidebar.RecentlyDeleted")}</span>
         </div>
       </div>
 
@@ -299,13 +305,15 @@ export const Notes: React.FC<NotesProps> = ({
         <div className="p-4 border-b border-gray-200 dark:border-gray-700/50">
           <div className="flex items-center justify-between mb-3">
             <h2 className="font-bold text-lg">
-              {activeFolder === "Trash" ? "Recently Deleted" : "Notes"}
+              {activeFolder === "Trash"
+                ? t("Sidebar.RecentlyDeleted")
+                : t("Sidebar.Notes")}
             </h2>
             {activeFolder === "Notes" && (
               <button
                 onClick={createNote}
                 className="hover:bg-gray-100 dark:hover:bg-white/10 p-1 rounded"
-                aria-label="Create new note"
+                aria-label={t("NewNote")}
               >
                 <Plus size={20} className="text-[#facc15]" />
               </button>
@@ -318,7 +326,7 @@ export const Notes: React.FC<NotesProps> = ({
             />
             <input
               type="text"
-              placeholder="Search"
+              placeholder={t("Search")}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-gray-100 dark:bg-gray-800 border-none rounded-lg pl-8 pr-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#facc15]/50 transition-all"
@@ -352,7 +360,7 @@ export const Notes: React.FC<NotesProps> = ({
                     : "text-gray-900 dark:text-white"
                 }`}
               >
-                {note.title || "New Note"}
+                {note.title || t("NewNote")}
               </h4>
               <div
                 className={`flex items-center gap-2 text-xs ${
@@ -363,7 +371,7 @@ export const Notes: React.FC<NotesProps> = ({
               >
                 <span className="shrink-0">{note.date.split(" at")[0]}</span>
                 <span className="truncate">
-                  {note.content.substring(0, 30) || "No additional text"}
+                  {note.content.substring(0, 30) || t("NoAdditionalText")}
                 </span>
               </div>
             </div>
@@ -382,8 +390,8 @@ export const Notes: React.FC<NotesProps> = ({
                   <button
                     onClick={addToDesktop}
                     className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md text-gray-500 hover:text-[#facc15] transition-colors"
-                    title="Add to Desktop"
-                    aria-label="Add to Desktop"
+                    title={t("Editor.AddToDesktop")}
+                    aria-label={t("Editor.AddToDesktop")}
                   >
                     <MonitorUp size={18} />
                   </button>
@@ -393,9 +401,11 @@ export const Notes: React.FC<NotesProps> = ({
                   <button
                     onClick={() => restoreNote(selectedNote.id)}
                     className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md text-gray-500 hover:text-green-500 transition-colors"
-                    title="Restore Note"
+                    title={t("Editor.Restore")}
                   >
-                    <span className="text-xs font-bold">Restore</span>
+                    <span className="text-xs font-bold">
+                      {t("Editor.Restore")}
+                    </span>
                   </button>
                 ) : null}
 
@@ -404,13 +414,13 @@ export const Notes: React.FC<NotesProps> = ({
                   className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md text-gray-500 hover:text-red-500 transition-colors"
                   title={
                     activeFolder === "Trash"
-                      ? "Delete Permanently"
-                      : "Delete Note"
+                      ? t("Editor.DeletePermanently")
+                      : t("Editor.Delete")
                   }
                   aria-label={
                     activeFolder === "Trash"
-                      ? "Delete Permanently"
-                      : "Delete Note"
+                      ? t("Editor.DeletePermanently")
+                      : t("Editor.Delete")
                   }
                 >
                   <Trash2 size={18} />
@@ -435,7 +445,7 @@ export const Notes: React.FC<NotesProps> = ({
                 }
                 disabled={activeFolder === "Trash"}
                 className="w-full text-3xl font-bold mb-4 bg-transparent border-none focus:outline-none placeholder-gray-400 text-gray-900 dark:text-white disabled:opacity-50"
-                placeholder="Title"
+                placeholder={t("Editor.TitlePlaceholder")}
                 aria-label="Note title"
               />
               <textarea
@@ -445,7 +455,7 @@ export const Notes: React.FC<NotesProps> = ({
                 }
                 disabled={activeFolder === "Trash"}
                 className="w-full h-[calc(100%-4rem)] text-lg leading-relaxed text-gray-800 dark:text-gray-300 bg-transparent border-none focus:outline-none resize-none placeholder-gray-400 disabled:opacity-50"
-                placeholder="Type your note here..."
+                placeholder={t("Editor.ContentPlaceholder")}
                 aria-label="Note content"
               />
             </div>
@@ -453,7 +463,7 @@ export const Notes: React.FC<NotesProps> = ({
         ) : (
           <div className="flex-1 flex flex-col items-center justify-center text-gray-400">
             <Folder size={64} className="mb-4 opacity-20" />
-            <p className="text-lg">Select a note or create a new one</p>
+            <p className="text-lg">{t("Editor.EmptyState")}</p>
           </div>
         )}
       </div>

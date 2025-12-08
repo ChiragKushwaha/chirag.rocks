@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import {
   Play,
   Plus,
@@ -29,6 +30,7 @@ interface Show {
 }
 
 export const TV: React.FC = () => {
+  const t = useTranslations("TV");
   const [activeTab, setActiveTab] = useState("watch-now");
   const [searchQuery, setSearchQuery] = useState("");
   const [playingShow, setPlayingShow] = useState<Show | null>(null);
@@ -135,28 +137,28 @@ export const TV: React.FC = () => {
   };
 
   const navItems = [
-    { id: "watch-now", label: "Watch Now", icon: Home },
-    { id: "movies", label: "Movies", icon: Film },
-    { id: "tv-shows", label: "TV Shows", icon: Tv },
-    { id: "kids", label: "Kids", icon: Baby },
-    { id: "library", label: "Library", icon: Library },
+    { id: "watch-now", label: t("WatchNow"), icon: Home },
+    { id: "movies", label: t("Movies"), icon: Film },
+    { id: "tv-shows", label: t("TVShows"), icon: Tv },
+    { id: "kids", label: t("Kids"), icon: Baby },
+    { id: "library", label: t("Library"), icon: Library },
   ];
 
   const renderGrid = (items: Show[]) => (
     <div className="px-8 py-8">
       <h2 className="text-2xl font-bold mb-6 text-white/90">
         {searchQuery
-          ? "Search Results"
+          ? t("SearchResults")
           : activeTab === "library"
-          ? "Library"
+          ? t("Library")
           : activeTab === "movies"
-          ? "Movies"
+          ? t("Movies")
           : activeTab === "tv-shows"
-          ? "TV Shows"
-          : "Kids"}
+          ? t("TVShows")
+          : t("Kids")}
       </h2>
       {items.length === 0 ? (
-        <div className="text-gray-400 text-lg">No shows found.</div>
+        <div className="text-gray-400 text-lg">{t("NoShows")}</div>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
           {items.map((show) => (
@@ -171,7 +173,7 @@ export const TV: React.FC = () => {
                   setPlayingShow(show);
                 }
               }}
-              aria-label={`Play ${show.name}`}
+              aria-label={t("Aria.Play", { name: show.name })}
             >
               <Image
                 src={show.image?.medium || ""}
@@ -203,8 +205,8 @@ export const TV: React.FC = () => {
                     className="p-1 hover:bg-white/20 rounded-full"
                     aria-label={
                       isInLibrary(show)
-                        ? "Remove from Library"
-                        : "Add to Library"
+                        ? t("Aria.RemoveLibrary")
+                        : t("Aria.AddLibrary")
                     }
                   >
                     {isInLibrary(show) ? (
@@ -238,7 +240,7 @@ export const TV: React.FC = () => {
           <button
             onClick={() => setPlayingShow(null)}
             className="absolute top-8 right-8 p-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors z-50 backdrop-blur-md"
-            aria-label="Close video"
+            aria-label={t("Aria.CloseVideo")}
           >
             <X size={24} />
           </button>
@@ -268,7 +270,7 @@ export const TV: React.FC = () => {
               className="flex items-center gap-2 px-6 py-2 bg-white/10 hover:bg-white/20 rounded-full text-sm font-medium transition-colors"
             >
               <ExternalLink size={16} />
-              Open in YouTube
+              {t("OpenYouTube")}
             </a>
           </div>
         </div>
@@ -283,10 +285,10 @@ export const TV: React.FC = () => {
           />
           <input
             type="text"
-            placeholder="Search"
+            placeholder={t("SearchPlaceholder")}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            aria-label="Search TV Shows"
+            aria-label={t("SearchLabel")}
             className="w-full bg-black/20 border-none rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-white/20 text-white placeholder-gray-500 transition-all"
           />
         </div>
@@ -323,7 +325,9 @@ export const TV: React.FC = () => {
             </div>
             <div className="flex flex-col">
               <span className="text-xs font-medium text-white">Chirag</span>
-              <span className="text-[10px] text-gray-400">View Account</span>
+              <span className="text-[10px] text-gray-400">
+                {t("ViewAccount")}
+              </span>
             </div>
           </div>
         </div>
@@ -356,7 +360,7 @@ export const TV: React.FC = () => {
                 <div className="relative z-10 max-w-2xl animate-in fade-in slide-in-from-bottom-10 duration-700">
                   <div className="flex items-center gap-3 mb-4">
                     <span className="px-2 py-0.5 bg-white text-black text-[10px] font-bold rounded uppercase tracking-wider shadow-lg">
-                      Series
+                      {t("Series")}
                     </span>
                     <span className="text-sm font-medium text-gray-200 drop-shadow-md">
                       {heroShow.genres.join(" • ")}
@@ -375,7 +379,7 @@ export const TV: React.FC = () => {
                       className="flex items-center gap-2 px-8 py-3 bg-white text-black rounded-lg font-bold hover:bg-gray-200 transition-colors shadow-xl shadow-black/20"
                     >
                       <Play size={20} fill="currentColor" />
-                      Play Episode 1
+                      {t("PlayEpisode")}
                     </button>
                     <button
                       onClick={() => toggleLibrary(heroShow)}
@@ -384,12 +388,12 @@ export const TV: React.FC = () => {
                       {isInLibrary(heroShow) ? (
                         <>
                           <Check size={20} />
-                          Added
+                          {t("Added")}
                         </>
                       ) : (
                         <>
                           <Plus size={20} />
-                          Add to Up Next
+                          {t("AddToUpNext")}
                         </>
                       )}
                     </button>
@@ -408,7 +412,17 @@ export const TV: React.FC = () => {
                   <section key={genre}>
                     <div className="flex items-center justify-between mb-4">
                       <h2 className="text-xl font-bold text-white/90 flex items-center gap-2">
-                        {genre}
+                        {genre === "Drama"
+                          ? t("Genres.Drama")
+                          : genre === "Action"
+                          ? t("Genres.Action")
+                          : genre === "Comedy"
+                          ? t("Genres.Comedy")
+                          : genre === "Science-Fiction"
+                          ? t("Genres.ScienceFiction")
+                          : genre === "Thriller"
+                          ? t("Genres.Thriller")
+                          : genre}
                         <span className="text-gray-500 text-sm font-normal">
                           &gt;
                         </span>

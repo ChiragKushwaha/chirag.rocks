@@ -10,6 +10,7 @@ import { Weather } from "../../apps/Weather";
 import { StockData } from "../../lib/stockApi";
 import { Stocks } from "../../apps/Stocks";
 import { useStockStore } from "../../store/stockStore";
+import { useTranslations, useLocale } from "next-intl";
 interface WidgetProps {
   size: "small" | "medium" | "large";
   type: "calendar" | "weather" | "stocks" | "reminders" | "notes";
@@ -17,6 +18,8 @@ interface WidgetProps {
 }
 
 export const Widget: React.FC<WidgetProps> = ({ size, type, title }) => {
+  const t = useTranslations("Widgets");
+  const locale = useLocale();
   const { launchProcess } = useProcessStore();
   const { reminders } = useReminderStore();
   const { weather } = useWeather();
@@ -86,13 +89,14 @@ export const Widget: React.FC<WidgetProps> = ({ size, type, title }) => {
         return (
           <div className="flex flex-col items-center justify-center h-full bg-white dark:bg-[#2c2c2e] text-black dark:text-white">
             <div className="text-red-500 font-bold text-sm uppercase">
-              {today.toLocaleDateString("en-US", { weekday: "long" })}
+              {today.toLocaleDateString(locale, { weekday: "long" })}
             </div>
             <div className="text-5xl font-light">{today.getDate()}</div>
           </div>
         );
       case "weather":
-        if (!weather) return <div className="p-4 text-white">Loading...</div>;
+        if (!weather)
+          return <div className="p-4 text-white">{t("Loading")}</div>;
         return (
           <div className="flex flex-col p-4 h-full bg-linear-to-b from-[#1e3a8a] to-[#3b82f6] text-white">
             <div className="text-sm font-medium">{weather.location}</div>
@@ -110,12 +114,13 @@ export const Widget: React.FC<WidgetProps> = ({ size, type, title }) => {
           </div>
         );
       case "stocks":
-        if (!stockData) return <div className="p-4 text-white">Loading...</div>;
+        if (!stockData)
+          return <div className="p-4 text-white">{t("Loading")}</div>;
         const isPositive = stockData.change >= 0;
         return (
           <div className="flex flex-col p-3 h-full bg-[#1c1c1e] text-white">
             <div className="flex justify-between items-center mb-2">
-              <span className="font-bold text-sm">Stocks</span>
+              <span className="font-bold text-sm">{t("Stocks.Title")}</span>
               <TrendingUp
                 size={14}
                 className={isPositive ? "text-green-500" : "text-red-500"}
@@ -143,11 +148,13 @@ export const Widget: React.FC<WidgetProps> = ({ size, type, title }) => {
           <div className="flex flex-col p-3 h-full bg-white dark:bg-[#2c2c2e] text-black dark:text-white">
             <div className="font-bold text-sm mb-2 flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-blue-500" />
-              Reminders
+              {t("Reminders.Title")}
             </div>
             <div className="space-y-2 overflow-hidden">
               {dueReminders.length === 0 ? (
-                <div className="text-xs text-gray-400">No reminders</div>
+                <div className="text-xs text-gray-400">
+                  {t("Reminders.NoReminders")}
+                </div>
               ) : (
                 dueReminders.map((r) => (
                   <div key={r.id} className="flex items-center gap-2 text-xs">
@@ -174,14 +181,11 @@ export const Widget: React.FC<WidgetProps> = ({ size, type, title }) => {
       case "notes":
         return (
           <div className="flex flex-col p-3 h-full bg-[#fef9c3] text-gray-800 font-serif">
-            <div className="font-bold text-sm mb-1">Notes</div>
-            <div className="text-xs leading-relaxed overflow-hidden">
-              Buy milk, eggs, and bread.
-              <br />
-              Call mom at 5pm.
-              <br />
-              Meeting with team tomorrow.
-            </div>
+            <div className="font-bold text-sm mb-1">{t("Notes.Title")}</div>
+            <div
+              className="text-xs leading-relaxed overflow-hidden"
+              dangerouslySetInnerHTML={{ __html: t.raw("Notes.Content") }} // Allow HTML for <br/>
+            />
           </div>
         );
       default:

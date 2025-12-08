@@ -1,5 +1,6 @@
 import React from "react";
 import { ViewMode, CalendarEvent } from "../types";
+import { useTranslations } from "next-intl";
 
 interface YearViewProps {
   currentDate: Date;
@@ -20,6 +21,7 @@ export const YearView: React.FC<YearViewProps> = ({
   isSameDay,
   getEventsForDay,
 }) => {
+  const t = useTranslations("Calendar");
   const months = Array.from({ length: 12 }, (_, i) => i);
   return (
     <div className="grid grid-cols-4 gap-4 p-4 overflow-y-auto h-full">
@@ -52,9 +54,9 @@ export const YearView: React.FC<YearViewProps> = ({
               {date.toLocaleString("default", { month: "long" })}
             </div>
             <div className="grid grid-cols-7 text-[10px] gap-y-1">
-              {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
+              {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d, i) => (
                 <div key={`${d}-${i}`} className="text-gray-400 text-center">
-                  {d}
+                  {t(`WeekdaysShort.${d}`)}
                 </div>
               ))}
               {Array.from({ length: start }).map((_, i) => (

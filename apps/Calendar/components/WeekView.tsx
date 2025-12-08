@@ -1,6 +1,7 @@
 import React from "react";
 import { CALENDARS } from "../constants";
 import { CalendarEvent } from "../types";
+import { useTranslations } from "next-intl";
 
 interface WeekViewProps {
   currentDate: Date;
@@ -13,6 +14,7 @@ export const WeekView: React.FC<WeekViewProps> = ({
   isSameDay,
   getEventsForDay,
 }) => {
+  const t = useTranslations("Calendar");
   const startOfWeek = new Date(currentDate);
   startOfWeek.setDate(currentDate.getDate() - currentDate.getDay());
 
@@ -22,6 +24,8 @@ export const WeekView: React.FC<WeekViewProps> = ({
     day.setDate(startOfWeek.getDate() + i);
     weekDays.push(day);
   }
+
+  const weekdayKeys = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return (
     <div className="flex flex-col h-full overflow-y-auto">
@@ -37,7 +41,7 @@ export const WeekView: React.FC<WeekViewProps> = ({
             }`}
           >
             <div className="text-xs font-medium">
-              {day.toLocaleDateString("en-US", { weekday: "short" })}
+              {t(`WeekdaysShort.${weekdayKeys[day.getDay()]}`)}
             </div>
             <div
               className={`text-xl font-light w-8 h-8 mx-auto flex items-center justify-center rounded-full ${
@@ -95,7 +99,10 @@ export const WeekView: React.FC<WeekViewProps> = ({
                     }}
                     role="button"
                     tabIndex={0}
-                    aria-label={`Event: ${event.title} at ${event.location}`}
+                    aria-label={`${t("EventLabel", {
+                      title: event.title,
+                      location: event.location || "",
+                    })}`}
                   >
                     <div className="font-semibold">{event.title}</div>
                     <div>{event.location}</div>

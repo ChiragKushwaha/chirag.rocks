@@ -7,6 +7,7 @@ const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
   // ... existing config code ...
+
   images: {
     remotePatterns: [
       {

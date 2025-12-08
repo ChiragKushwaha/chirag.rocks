@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Plus, Globe, AlarmClock, Timer, Hourglass } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export const Clock: React.FC = () => {
-  const [activeTab, setActiveTab] = useState("World Clock");
+  const t = useTranslations("Clock");
+  const [activeTab, setActiveTab] = useState("WorldClock");
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -35,10 +37,10 @@ export const Clock: React.FC = () => {
 
         <div className="flex bg-[#1C1C1E] rounded-lg p-1 gap-1">
           {[
-            { name: "World Clock", icon: Globe },
-            { name: "Alarms", icon: AlarmClock },
-            { name: "Stopwatch", icon: Timer },
-            { name: "Timers", icon: Hourglass },
+            { name: "WorldClock", label: t("Tabs.WorldClock"), icon: Globe },
+            { name: "Alarms", label: t("Tabs.Alarms"), icon: AlarmClock },
+            { name: "Stopwatch", label: t("Tabs.Stopwatch"), icon: Timer },
+            { name: "Timers", label: t("Tabs.Timers"), icon: Hourglass },
           ].map((tab) => (
             <button
               key={tab.name}
@@ -49,14 +51,14 @@ export const Clock: React.FC = () => {
                   : "text-white/50 hover:text-white/80"
               }`}
             >
-              {tab.name}
+              {tab.label}
             </button>
           ))}
         </div>
 
         <button
           className="w-8 h-8 rounded-full bg-[#3A3A3C] flex items-center justify-center hover:bg-[#48484A] transition-colors"
-          aria-label="Add clock"
+          aria-label={t("AddClock")}
         >
           <Plus size={16} />
         </button>
@@ -123,7 +125,7 @@ export const Clock: React.FC = () => {
           <div className="absolute top-[45%] left-[70%] flex flex-col items-center group cursor-pointer">
             <div className="w-2 h-2 bg-[#FF9F0A] rounded-full shadow-[0_0_10px_#FF9F0A]" />
             <div className="mt-1 text-xs font-medium text-white drop-shadow-md">
-              New Delhi
+              {t("Locations.NewDelhi")}
             </div>
             <div className="text-[10px] text-white/70">
               {time.toLocaleTimeString([], {
@@ -193,8 +195,12 @@ export const Clock: React.FC = () => {
               <div className="absolute top-1/2 left-1/2 w-1.5 h-1.5 bg-[#FF9F0A] rounded-full -translate-x-1/2 -translate-y-1/2" />
             </div>
             <div className="text-center">
-              <div className="text-sm font-medium">New Delhi</div>
-              <div className="text-xs text-white/50">Today, +0 HRS</div>
+              <div className="text-sm font-medium">
+                {t("Locations.NewDelhi")}
+              </div>
+              <div className="text-xs text-white/50">
+                {t("Today")}, +0 {t("HRS")}
+              </div>
             </div>
           </div>
         </div>

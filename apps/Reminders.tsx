@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Search, Plus, Calendar, Flag, List, Clock, X } from "lucide-react";
 import { useReminderStore } from "../store/reminderStore";
+import { useTranslations } from "next-intl";
 
 export const Reminders: React.FC = () => {
+  const t = useTranslations("Reminders");
   const { reminders, addReminder, toggleReminder, deleteReminder, toggleFlag } =
     useReminderStore();
   const [activeList, setActiveList] = useState("Reminders");
@@ -96,11 +98,11 @@ export const Reminders: React.FC = () => {
           />
           <input
             type="text"
-            placeholder="Search"
+            placeholder={t("Search")}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-gray-200 dark:bg-black/20 border-none rounded-md pl-8 pr-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50"
-            aria-label="Search reminders"
+            aria-label={t("Search")}
           />
         </div>
 
@@ -123,7 +125,7 @@ export const Reminders: React.FC = () => {
               </span>
             </div>
             <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
-              Today
+              {t("Sidebar.Today")}
             </span>
           </div>
           <div
@@ -151,7 +153,7 @@ export const Reminders: React.FC = () => {
               </span>
             </div>
             <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
-              Scheduled
+              {t("Sidebar.Scheduled")}
             </span>
           </div>
           <div
@@ -175,7 +177,7 @@ export const Reminders: React.FC = () => {
               <span className="text-xl font-bold">{reminders.length}</span>
             </div>
             <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
-              All
+              {t("Sidebar.All")}
             </span>
           </div>
           <div
@@ -203,13 +205,13 @@ export const Reminders: React.FC = () => {
               </span>
             </div>
             <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
-              Flagged
+              {t("Sidebar.Flagged")}
             </span>
           </div>
         </div>
 
         <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2 px-2">
-          MY LISTS
+          {t("Sidebar.MyLists")}
         </h3>
         <div className="space-y-1">
           <div
@@ -226,13 +228,13 @@ export const Reminders: React.FC = () => {
                 setActiveList("Reminders");
               }
             }}
-            aria-label="Reminders list"
+            aria-label={t("Sidebar.Reminders")}
           >
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-white">
                 <List size={12} />
               </div>
-              <span className="text-sm">Reminders</span>
+              <span className="text-sm">{t("Sidebar.Reminders")}</span>
             </div>
             <span className="text-xs text-gray-500">
               {reminders.filter((r) => r.list === "Reminders").length}
@@ -252,13 +254,13 @@ export const Reminders: React.FC = () => {
                 setActiveList("Work");
               }
             }}
-            aria-label="Work list"
+            aria-label={t("Sidebar.Work")}
           >
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center text-white">
                 <List size={12} />
               </div>
-              <span className="text-sm">Work</span>
+              <span className="text-sm">{t("Sidebar.Work")}</span>
             </div>
             <span className="text-xs text-gray-500">
               {reminders.filter((r) => r.list === "Work").length}
@@ -271,7 +273,17 @@ export const Reminders: React.FC = () => {
       <div className="flex-1 flex flex-col bg-white dark:bg-[#1e1e1e]">
         <div className="p-8 flex-1 overflow-y-auto">
           <h1 className="text-3xl font-bold mb-6 text-blue-500">
-            {activeList}
+            {activeList === "Reminders"
+              ? t("Sidebar.Reminders")
+              : activeList === "Work"
+              ? t("Sidebar.Work")
+              : activeList === "Scheduled"
+              ? t("Sidebar.Scheduled")
+              : activeList === "All"
+              ? t("Sidebar.All")
+              : activeList === "Flagged"
+              ? t("Sidebar.Flagged")
+              : activeList}
           </h1>
 
           <div className="space-y-1">
@@ -289,8 +301,8 @@ export const Reminders: React.FC = () => {
                   }`}
                   aria-label={
                     reminder.completed
-                      ? "Mark as incomplete"
-                      : "Mark as complete"
+                      ? t("Actions.MarkIncomplete")
+                      : t("Actions.MarkComplete")
                   }
                 >
                   {reminder.completed && (
@@ -327,7 +339,7 @@ export const Reminders: React.FC = () => {
                       : "text-gray-300 hover:text-orange-500"
                   }`}
                   aria-label={
-                    reminder.flagged ? "Unflag reminder" : "Flag reminder"
+                    reminder.flagged ? t("Actions.Unflag") : t("Actions.Flag")
                   }
                 >
                   <Flag
@@ -339,7 +351,7 @@ export const Reminders: React.FC = () => {
                 <button
                   onClick={() => deleteReminder(reminder.id)}
                   className="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500"
-                  aria-label="Delete reminder"
+                  aria-label={t("Actions.Delete")}
                 >
                   <X size={16} />
                 </button>
@@ -351,7 +363,7 @@ export const Reminders: React.FC = () => {
               <div className="mt-2 p-3 bg-gray-50 dark:bg-[#2c2c2e] rounded-lg border border-gray-200 dark:border-gray-700">
                 <input
                   type="text"
-                  placeholder="Title"
+                  placeholder={t("Inputs.Title")}
                   autoFocus
                   className="w-full bg-transparent border-none text-base focus:outline-none mb-2"
                   value={newText}
@@ -360,7 +372,7 @@ export const Reminders: React.FC = () => {
                     if (e.key === "Enter") handleAddReminder();
                     if (e.key === "Escape") setIsAdding(false);
                   }}
-                  aria-label="Reminder title"
+                  aria-label={t("Inputs.Title")}
                 />
                 <div className="flex gap-2">
                   <div className="flex items-center gap-1 bg-white dark:bg-black/20 px-2 py-1 rounded border border-gray-200 dark:border-gray-600">
@@ -389,13 +401,13 @@ export const Reminders: React.FC = () => {
                     onClick={() => setIsAdding(false)}
                     className="px-3 py-1 text-sm text-gray-500 hover:bg-gray-200 dark:hover:bg-white/10 rounded"
                   >
-                    Cancel
+                    {t("Actions.Cancel")}
                   </button>
                   <button
                     onClick={handleAddReminder}
                     className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
                   >
-                    Add
+                    {t("Actions.Add")}
                   </button>
                 </div>
               </div>
@@ -410,10 +422,10 @@ export const Reminders: React.FC = () => {
                     setIsAdding(true);
                   }
                 }}
-                aria-label="Create new reminder"
+                aria-label={t("AddReminder")}
               >
                 <Plus size={20} />
-                <span>New Reminder</span>
+                <span>{t("AddReminder")}</span>
               </div>
             )}
           </div>

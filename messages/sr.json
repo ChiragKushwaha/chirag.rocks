@@ -1,4 +1,1742 @@
 {
-  "Hello": "Hello world!",
-  "Welcome": "Welcome to the multi-language app"
+  "Hello": {
+    "world": "Здраво свете",
+    "GetStarted": "Започни"
+  },
+  "Common": {
+    "OK": "У реду",
+    "Cancel": "Откажи",
+    "Yes": "Да",
+    "No": "Не",
+    "Back": "Назад",
+    "Continue": "Настави",
+    "Done": "Готово",
+    "Edit": "Уреди",
+    "Delete": "Обриши",
+    "Save": "Сачувај",
+    "Close": "Затвори",
+    "Error": "Грешка",
+    "Success": "Успех"
+  },
+  "Setup": {
+    "Common": {
+      "Continue": "Настави",
+      "Back": "Назад",
+      "NotNow": "Не сада",
+      "Cancel": "Откажи",
+      "LearnMore": "Сазнајте више"
+    },
+    "Language": {
+      "Title": "Изаберите Језик",
+      "Description": "Изаберите језик који желите да користите на овом Mac-у.",
+      "TableLabel": "Језик",
+      "Primary": "Примарни"
+    },
+    "Region": {
+      "Title": "Изаберите Вашу земљу или регион"
+    },
+    "DataPrivacy": {
+      "Title": "Подаци и приватност",
+      "IconText": "Ова икона се појављује када Apple функција затражи коришћење ваших личних података.",
+      "FeatureText": "Нећете видети ову икону уз сваку функцију. Apple прикупља ове информације само када је то потребно за омогућавање функција, заштиту услуга или персонализацију вашег искуства.",
+      "PrivacyText": "Apple верује да је приватност основно људско право, па је сваки Apple производ дизајниран тако да минимизира прикупљање и коришћење ваших података, користи обраду на уређају кад год је то могуће, и пружа транспарентност и контролу над вашим информацијама."
+    },
+    "TouchID": {
+      "Title": "Touch ID",
+      "SetupLater": "Подесите Touch ID касније",
+      "Description": "Користите отисак прста за откључавање Mac-а и куповину помоћу Apple Pay-а. Поставите прст на Touch ID да бисте започели."
+    },
+    "Fingerprint": {
+      "Title": "Поставите свој прст",
+      "Instruction": "Више пута подигните и спустите прст на Touch ID",
+      "Success": "✓ Touch ID је спреман"
+    },
+    "Languages": {
+      "Title": "Писани и говорни језици",
+      "Description": "Језици наведени испод се обично користе у вашем региону. Можете користити ова подешавања или их прилагодити појединачно.",
+      "Preferred": "Жељени језици",
+      "InputSources": "Извори уноса",
+      "Dictation": "Диктат",
+      "Customize": "Прилагоди подешавања"
+    },
+    "Accessibility": {
+      "Title": "Приступачност",
+      "Description": "Функције приступачности прилагођавају Mac вашим визуелним, слушним и моторичким потребама. Можете их укључити сада и завршити подешавање, или их прилагодити касније у Системским подешавањима. Погледајте категорије испод за доступне функције.",
+      "Vision": "Вид",
+      "Motor": "Моторика",
+      "Hearing": "Слух",
+      "Cognitive": "Когнитивне"
+    },
+    "Migration": {
+      "Title": "Асистент за миграцију",
+      "Description": "Ако имате информације на другом Mac-у или Windows рачунару, можете их пренети на овај Mac. Такође можете пренети податке са Time Machine резервне копије или другог покретачког диска.",
+      "Question": "Како желите да пренесете своје информације?",
+      "FromMac": "Са Mac-а, Time Machine резервне копије или покретачког диска",
+      "FromPC": "Са Windows рачунара"
+    },
+    "AppleID": {
+      "Title": "Пријавите се помоћу Apple ID-а",
+      "Description": "Пријавите се да бисте користили iCloud, App Store и друге Apple услуге.",
+      "Label": "Apple ID",
+      "CreateNew": "Креирај нови Apple ID",
+      "Forgot": "Заборавили сте Apple ID или лозинку?",
+      "UseDifferent": "Користити различите Apple ID-јеве за iCloud и Медије?",
+      "Info": "Овај Mac ће бити повезан са вашим Apple ID-јем, а ваши подаци као што су фотографије, контакти и документи биће сачувани у iCloud-у, тако да им можете приступити на другим уређајима.",
+      "SeeData": "Погледајте како се управља подацима",
+      "SetupLater": "Подеси касније",
+      "ErrorRequired": "Унесите Apple ID."
+    },
+    "Account": {
+      "Title": "Креирај налог рачунара",
+      "CreateAppleID": "Креирај Apple ID",
+      "Description": "Унесите своје име и информације о налогу за подешавање рачунара.",
+      "Name": "Пуно име",
+      "Email": "Е-маил адреса",
+      "Age": "Старост",
+      "Phone": "Број мобилног телефона",
+      "Password": "Лозинка",
+      "Errors": {
+        "NameRequired": "Пуно име је обавезно.",
+        "EmailRequired": "Е-маил је обавезан.",
+        "EmailInvalid": "Унесите важећу е-маил адресу.",
+        "AgeRequired": "Старост је обавезна.",
+        "AgeInvalid": "Унесите важећу старост.",
+        "PhoneRequired": "Број телефона је обавезан.",
+        "PasswordRequired": "Лозинка је обавезна.",
+        "PasswordLength": "Лозинка мора имати најмање 6 карактера."
+      }
+    },
+    "Theme": {
+      "Title": "Изаберите свој изглед",
+      "Description": "Изаберите Светло или Тамно да бисте променили изглед система и апликација.",
+      "Light": "Светло",
+      "Dark": "Тамно"
+    }
+  },
+  "SystemSettings": {
+    "General": {
+      "Title": "Опште",
+      "Description": "Управљајте општим подешавањима и преференцама за ваш Mac, укључујући ажурирање софтвера, језик уређаја, AirDrop и још много тога.",
+      "About": "О овом Mac-у",
+      "SoftwareUpdate": "Ажурирање софтвера",
+      "Storage": "Складиште",
+      "AppleCare": "AppleCare и гаранција",
+      "AirDrop": "AirDrop и Handoff",
+      "AutoFill": "Аутоматско попуњавање и лозинке",
+      "DateTime": "Датум и време",
+      "LanguageRegion": "Језик и регион",
+      "LoginItems": "Ставке за пријављивање",
+      "Sharing": "Дељење",
+      "StartupDisk": "Покретачки диск",
+      "TimeMachine": "Time Machine",
+      "DeviceManagement": "Управљање уређајима",
+      "TransferReset": "Пренос или ресетовање"
+    },
+    "AppleAccount": {
+      "Edit": "Уреди",
+      "PersonalInformation": "Личне информације",
+      "SignInSecurity": "Пријављивање и безбедност",
+      "PaymentShipping": "Плаћање и достава",
+      "iCloud": "iCloud",
+      "MediaPurchases": "Медији и куповине",
+      "Family": "Породично дељење",
+      "SetUp": "Подеси",
+      "Devices": "Уређаји",
+      "ThisMac": "Овај MacBook Pro 14\"",
+      "SignOut": "Одјави се..."
+    },
+    "LanguageRegion": {
+      "Title": "Језик и регион",
+      "PreferredLanguages": "Жељени језици",
+      "Region": "Регион",
+      "Calendar": "Календар",
+      "Temperature": "Температура",
+      "Celsius": "Целзијус (°C)",
+      "Fahrenheit": "Фаренхајт (°F)",
+      "MeasurementSystem": "Мерни систем",
+      "Metric": "Метрички",
+      "US": "Амерички",
+      "UK": "Британски",
+      "FirstDayOfWeek": "Први дан у недељи",
+      "DateFormat": "Формат датума",
+      "NumberFormat": "Формат броја",
+      "LiveText": "Текст уживо",
+      "LiveTextDesc": "Изаберите текст на сликама да бисте копирали или извршили акцију.",
+      "Applications": "Апликације",
+      "ApplicationsDesc": "Прилагодите подешавања језика за одређене апликације испод:",
+      "TranslationLanguages": "Језици превода..."
+    },
+    "Sidebar": {
+      "Search": "Претрага",
+      "NotImplemented": "Овај одељак још није имплементиран.",
+      "AppleAccount": "Apple налог",
+      "WiFi": "Wi-Fi",
+      "Bluetooth": "Bluetooth",
+      "Network": "Мрежа",
+      "General": "Опште",
+      "Appearance": "Изглед",
+      "Accessibility": "Приступачност",
+      "MenuBar": "Контролни центар",
+      "DesktopDock": "Радна површина и Dock",
+      "Displays": "Екрани",
+      "Spotlight": "Spotlight",
+      "Wallpaper": "Позадина",
+      "ScreenSaver": "Чувар екрана",
+      "Battery": "Батерија",
+      "Sound": "Звук",
+      "Notifications": "Обавештења",
+      "Focus": "Фокус",
+      "ScreenTime": "Време пред екраном",
+      "PrivacySecurity": "Приватност и безбедност",
+      "LockScreen": "Закључани екран",
+      "TouchIDPassword": "Touch ID и лозинка",
+      "UsersGroups": "Корисници и групе",
+      "Keyboard": "Тастатура",
+      "Trackpad": "Trackpad",
+      "PrintersScanners": "Штампачи и скенери",
+      "Storage": "Складиште"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "Description": "Подесите Wi-Fi за повезивање на интернет и бежичне уређаје.",
+      "Connected": "Повезано",
+      "Details": "Детаљи...",
+      "KnownNetworks": "Познате мреже",
+      "OtherNetworks": "Друге мреже",
+      "Connect": "Повежи",
+      "Other": "Друго...",
+      "AskToJoin": "Питај за придруживање мрежама",
+      "AskToJoinDesc": "Познате мреже ће се аутоматски придружити. Ако нема доступних познатих мрежа, мораћете ручно да изаберете мрежу.",
+      "Notify": "Обавести",
+      "AskToJoinHotspots": "Питај за придруживање хотспотовима",
+      "AskToJoinHotspotsDesc": "Дозволи аутоматско откривање личних хотспотова када нема доступних Wi-Fi мрежа.",
+      "AskToJoinAction": "Питај за придруживање",
+      "Advanced": "Напредно..."
+    },
+    "Bluetooth": {
+      "Title": "Bluetooth",
+      "Description": "Управљајте Bluetooth везама са бежичним уређајима.",
+      "Discoverable": "Сада видљив као \"MacBook Pro\"",
+      "MyDevices": "Моји уређаји",
+      "NotConnected": "Није повезано",
+      "NearbyDevices": "Уређаји у близини",
+      "Searching": "Претрага..."
+    },
+    "Network": {
+      "Title": "Мрежа",
+      "WiFi": "Wi-Fi",
+      "Connected": "Повезано",
+      "Firewall": "Заштитни зид",
+      "Inactive": "Неактиван",
+      "OtherServices": "Друге услуге",
+      "NotConnected": "Није повезано"
+    },
+    "Appearance": {
+      "Title": "Изглед",
+      "Description": "Подесите изглед са уграђеним светлим и тамним модовима и још много тога.",
+      "Light": "Светло",
+      "Dark": "Тамно",
+      "Auto": "Аутоматски",
+      "AccentColor": "Акцент боја",
+      "HighlightColor": "Боја истицања",
+      "Automatic": "Аутоматски",
+      "SidebarIconSize": "Величина икона у бочној траци",
+      "Medium": "Средња",
+      "WallpaperTinting": "Дозволи нијансирање позадине у прозорима",
+      "ShowScrollBars": "Прикажи клизаче",
+      "ScrollAuto": "Аутоматски према мишу или трекпеду",
+      "ScrollWhenScrolling": "Приликом померања",
+      "ScrollAlways": "Увек",
+      "ClickScrollBar": "Кликните на клизач да",
+      "JumpNextPage": "Пређите на следећу страницу",
+      "JumpSpotClicked": "Пређите на кликнуто место"
+    },
+    "Accessibility": {
+      "Title": "Приступачност",
+      "Description": "Опције приступачности за вид, слух и моторику.",
+      "LearnMore": "Сазнајте више...",
+      "Vision": "Вид",
+      "VoiceOver": "VoiceOver",
+      "Zoom": "Зум",
+      "HoverText": "Текст при преласку мишем",
+      "Display": "Екран",
+      "Motion": "Покрет",
+      "ReadSpeak": "Говорни садржај",
+      "AudioDescriptions": "Аудио описи",
+      "Hearing": "Слух",
+      "HearingDevices": "Слушни апарати",
+      "Audio": "Аудио",
+      "Captions": "Титлови",
+      "LiveCaptions": "Титлови уживо",
+      "NameRecognition": "Препознавање имена",
+      "Motor": "Моторика",
+      "VoiceControl": "Гласовна контрола",
+      "Keyboard": "Тастатура",
+      "PointerControl": "Контрола показивача",
+      "SwitchControl": "Контрола прекидача",
+      "General": "Опште",
+      "Siri": "Siri",
+      "Shortcut": "Пречица"
+    },
+    "MenuBar": {
+      "Title": "Контролни Центар",
+      "Description": "Прилагодите Контролни центар, ставке траке менија.",
+      "AutoHide": "Аутоматски сакриј и прикажи траку менија",
+      "Never": "Никада",
+      "RecentDocs": "Недавни документи, апликације и сервери",
+      "None": "Ништа",
+      "Controls": "Модули контролног центра",
+      "ControlCenter": "Контролни центар",
+      "ShowInMenuBar": "Прикажи у траци менија",
+      "DontShowInMenuBar": "Не приказуј у траци менија",
+      "Siri": "Siri",
+      "Spotlight": "Spotlight",
+      "VolumeFeedback": "Репродукуј звук при промени јачине",
+      "Clock": "Сат"
+    },
+    "DesktopDock": {
+      "Title": "Радна површина и Dock",
+      "Description": "Опције за Dock и радну површину.",
+      "Dock": "Dock",
+      "Size": "Величина",
+      "Magnification": "Увећање",
+      "Small": "Мала",
+      "Large": "Велика",
+      "Position": "Положај на екрану",
+      "Bottom": "Доле",
+      "MinimiseUsing": "Минимизирај прозоре користећи",
+      "GenieEffect": "Ефекат духа",
+      "DoubleClickTitle": "Двоструки клик на наслов прозора",
+      "Zoom": "Зум",
+      "MinimiseToIcon": "Минимизирај прозоре у икону апликације",
+      "AutoHideDock": "Аутоматски сакриј и прикажи Dock",
+      "AnimateOpening": "Анимирај отварање апликација",
+      "ShowIndicators": "Прикажи индикаторе за отворене апликације",
+      "ShowRecent": "Прикажи недавне апликације у Dock-у",
+      "DesktopStageManager": "Радна површина и Stage Manager",
+      "ShowItems": "Прикажи ставке",
+      "OnDesktop": "На радној површини",
+      "ClickWallpaper": "Кликните на позадину да бисте открили радну површину",
+      "Always": "Увек",
+      "StageManager": "Stage Manager",
+      "Widgets": "Виџети",
+      "ShowWidgets": "Прикажи виџете",
+      "WidgetStyle": "Стил виџета",
+      "Automatic": "Аутоматски",
+      "UseIPhoneWidgets": "Користи iPhone виџете"
+    },
+    "Displays": {
+      "Title": "Екрани",
+      "Description": "Подесите поставке екрана.",
+      "BuiltInDisplay": "Уграђени екран",
+      "UseAs": "Користи као",
+      "MainDisplay": "Главни екран",
+      "Resolution": "Резолуција",
+      "Default": "Подразумевано",
+      "MoreSpace": "Више простора",
+      "LargerText": "Већи текст",
+      "Brightness": "Осветљење",
+      "TrueTone": "True Tone",
+      "Preset": "Унапред подешено",
+      "RefreshRate": "Стопа освежавања",
+      "ProMotion": "ProMotion",
+      "Advanced": "Напредно..."
+    },
+    "Spotlight": {
+      "Title": "Spotlight",
+      "Description": "Поставке претраге.",
+      "SearchPlaceholder": "Spotlight претрага",
+      "SearchResults": "Резултати претраге",
+      "Privacy": "Spotlight приватност...",
+      "Categories": {
+        "Applications": "Апликације",
+        "Calculator": "Калкулатор",
+        "Contacts": "Контакти",
+        "Conversion": "Конверзија",
+        "Definition": "Дефиниција",
+        "Developer": "Програмер",
+        "Documents": "Документи",
+        "Events & Reminders": "Догађаји и подсетници",
+        "Folders": "Фолдери",
+        "Fonts": "Фонтови",
+        "Images": "Слике",
+        "Mail & Messages": "Пошта и поруке",
+        "Movies": "Филмови",
+        "Music": "Музика",
+        "Other": "Друго",
+        "PDF Documents": "PDF документи",
+        "Presentations": "Презентације",
+        "Siri Suggestions": "Siri предлози",
+        "Spreadsheets": "Табеле",
+        "System Preferences": "Системске поставке",
+        "Tips": "Савети",
+        "Bookmarks & History": "Обележивачи и историја"
+      }
+    },
+    "Notifications": {
+      "Title": "Обавештења",
+      "Description": "Поставке обавештења апликација.",
+      "Preview": "Прикажи прегледе",
+      "ShowPreviews": "Прикажи прегледе",
+      "Always": "Увек",
+      "ApplicationNotifications": "Обавештења апликација",
+      "Apps": {
+        "AppStore": "App Store",
+        "Calendar": "Календар",
+        "FaceTime": "FaceTime",
+        "Mail": "Mail",
+        "Messages": "Поруке",
+        "Photos": "Фотографије",
+        "Reminders": "Подсетници",
+        "Safari": "Safari"
+      }
+    },
+    "Sound": {
+      "Title": "Звук",
+      "Description": "Поставке звука.",
+      "OutputInput": "Излаз и улаз",
+      "Output": "Излаз",
+      "Input": "Улаз",
+      "SelectOutput": "Изаберите уређај за излаз звука:",
+      "Speakers": "MacBook Pro звучници",
+      "BuiltIn": "Уграђени",
+      "OutputVolume": "Излазна јачина",
+      "Mute": "Утишај",
+      "ShowInMenuBar": "Прикажи Звук у траци менија",
+      "Always": "Увек",
+      "AlertSoundGroup": "Звук упозорења",
+      "AlertSound": "Звук упозорења",
+      "Boop": "Boop",
+      "AlertVolume": "Јачина упозорења",
+      "PlayUIEffects": "Репродукуј звучне ефекте корисничког интерфејса"
+    },
+    "Focus": {
+      "Title": "Фокус",
+      "Description": "Подесите режиме фокуса.",
+      "DoNotDisturb": "Не узнемиравај",
+      "ShareAcrossDevices": "Дели између уређаја",
+      "FocusStatus": "Статус фокуса",
+      "On": "Укључено",
+      "Off": "Искључено",
+      "SetUp": "Подеси",
+      "FocusModes": "Режими фокуса",
+      "Personal": "Лично",
+      "Sleep": "Спавање",
+      "Work": "Посао",
+      "AddFocus": "Додај фокус"
+    },
+    "ScreenTime": {
+      "Title": "Време пред екраном",
+      "Description": "Пратите употребу и поставите ограничења.",
+      "DailyAverage": "Дневни просек",
+      "FromLastWeek": "од прошле недеље",
+      "Downtime": "Време мировања",
+      "AppLimits": "Ограничења апликација",
+      "LimitsCount": "{count} ограничења",
+      "AlwaysAllowed": "Увек дозвољено",
+      "AllowedApps": "Телефон, Мапе, Поруке",
+      "ContentPrivacy": "Садржај и приватност",
+      "On": "Укључено",
+      "Off": "Искључено",
+      "ShareAcrossDevices": "Дели између уређаја",
+      "LockSettings": "Закључај поставке времена пред екраном"
+    },
+    "Battery": {
+      "Title": "Батерија",
+      "Description": "Групе поставки батерије.",
+      "BatteryLevel": "Ниво батерије",
+      "LastCharged": "Последњи пут напуњено до 100% у 8:00",
+      "LowPowerMode": "Режим ниске потрошње",
+      "Never": "Никада",
+      "BatteryHealth": "Здравље батерије",
+      "Normal": "Нормално",
+      "OptimisedCharging": "Оптимизовано пуњење батерије",
+      "Options": "Опције..."
+    },
+    "Keyboard": {
+      "Title": "Тастатура",
+      "Description": "Поставке тастатуре.",
+      "KeyRepeat": "Понављање тастера",
+      "Slow": "Споро",
+      "Fast": "Брзо",
+      "DelayUntilRepeat": "Кашњење до понављања",
+      "Long": "Дуго",
+      "Short": "Кратко",
+      "AdjustBrightness": "Прилагоди светлину тастатуре при слабом осветљењу",
+      "KeyboardNavigation": "Навигација тастатуром",
+      "Shortcuts": "Пречице...",
+      "TextInput": "Унос текста",
+      "InputSources": "Извори уноса",
+      "Edit": "Уреди...",
+      "Dictation": "Диктат"
+    },
+    "LockScreen": {
+      "Title": "Закључани екран",
+      "Description": "Поставке закључаног екрана.",
+      "TurnOffDisplayBattery": "Искључи екран на батерији када је неактиван",
+      "TurnOffDisplayAdapter": "Искључи екран на пуњачу када је неактиван",
+      "TwoMinutes": "2 минута",
+      "TenMinutes": "10 минута",
+      "RequirePassword": "Захтевај лозинку након покретања чувара екрана или искључивања екрана",
+      "Immediately": "Одмах",
+      "ShowMessage": "Прикажи поруку при закључавању",
+      "Set": "Постави...",
+      "LoginWindowShows": "Прозор за пријаву показује",
+      "ListOfUsers": "Листа корисника",
+      "ShowLargeClock": "Прикажи велики сат",
+      "OnLockScreen": "На закључаном екрану"
+    },
+    "PrivacySecurity": {
+      "Title": "Приватност и безбедност",
+      "Description": "Поставке приватности и безбедности.",
+      "Privacy": "Приватност",
+      "LocationServices": "Услуге локације",
+      "On": "Укључено",
+      "Off": "Искључено",
+      "Camera": "Камера",
+      "Microphone": "Микрофон",
+      "FilesFolders": "Фајлови и фасцикле",
+      "ScreenRecording": "Снимање екрана",
+      "AppsCount": "{count, plural, =0 {Нема апликација} one {# апликација} few {# апликације} many {# апликација} other {# апликација}}",
+      "Security": "Безбедност",
+      "FileVault": "FileVault",
+      "LockdownMode": "Режим закључавања",
+      "Others": "Друго",
+      "Extensions": "Екстензије",
+      "Profiles": "Профили"
+    },
+    "PrintersScanners": {
+      "Title": "Штампачи и скенери",
+      "Description": "Поставке штампача и скенера.",
+      "Printers": "Штампачи",
+      "IdleLastUsed": "У мировању, Последње коришћено",
+      "Offline": "Ван мреже",
+      "AddPrinter": "Додај штампач, скенер или факс..."
+    },
+    "ScreenSaver": {
+      "Title": "Чувар екрана",
+      "Description": "Поставке чувара екрана.",
+      "Preview": "Преглед",
+      "ShowOnAllSpaces": "Прикажи на свим радним површинама",
+      "ScreenSavers": "Чувари екрана",
+      "StartAfter": "Почни након",
+      "FiveMinutes": "5 минута",
+      "ShowWithClock": "Прикажи са сатом",
+      "ScreensaverNames": {
+        "Ventura": "Ventura",
+        "Monterey": "Monterey",
+        "BigSur": "Big Sur",
+        "Catalina": "Catalina",
+        "Hello": "Hello",
+        "Drift": "Drift",
+        "Flurry": "Flurry",
+        "Shell": "Shell"
+      }
+    },
+    "Storage": {
+      "Title": "Складиште",
+      "Description": "Управљајте складиштем.",
+      "MacintoshHD": "Macintosh HD",
+      "AvailableSpace": "{available} GB / {total} GB доступно",
+      "Apps": "Апликације",
+      "Documents": "Документи",
+      "SystemData": "Системски подаци",
+      "macOS": "macOS",
+      "OtherUsers": "Други корисници",
+      "Recommendations": "Препоруке",
+      "StoreInICloud": "Чувај у iCloud-у",
+      "StoreInICloudDesc": "Чувајте све ваше фајлове, фотографије и поруке у iCloud-у и уштедите простор на овом Mac-у.",
+      "StoreInICloudButton": "Чувај у iCloud-у...",
+      "Categories": "Категорије",
+      "Applications": "Апликације"
+    },
+    "TouchIDPassword": {
+      "Title": "Touch ID и лозинка",
+      "Description": "Додајте отисак прста за откључавање вашег Mac-а.",
+      "TouchID": "Touch ID",
+      "Finger1": "Прст 1",
+      "AddFingerprint": "Додај отисак прста",
+      "UseTouchIDFor": "Користи Touch ID за:",
+      "UnlockingMac": "Откључавање вашег Mac-а",
+      "ApplePay": "Apple Pay",
+      "iTunesAppStore": "iTunes Store и App Store",
+      "AutoFillPasswords": "Аутоматско попуњавање лозинки",
+      "Password": "Лозинка",
+      "LastChanged": "Последња измена: 24.11.2024",
+      "Change": "Промени...",
+      "RequirePasswordScreenSaver": "Захтевај лозинку након покретања чувара екрана или искључивања екрана",
+      "Immediately": "Одмах",
+      "RequirePasswordIdle": "Захтевај лозинку након неактивности",
+      "Never": "Никада",
+      "Seconds": "{count} секунди",
+      "Minute": "{count} минут",
+      "Minutes": "{count} минута",
+      "AppleWatch": "Apple Watch",
+      "AppleWatchUnlock": "Користи Apple Watch за откључавање апликација и вашег Mac-а"
+    },
+    "Trackpad": {
+      "Title": "Trackpad",
+      "Description": "Поставке трекпеда.",
+      "PointClick": "Покажи и кликни",
+      "ScrollZoom": "Померање и зумирање",
+      "MoreGestures": "Више покрета",
+      "TrackingSpeed": "Брзина праћења",
+      "Slow": "Споро",
+      "Fast": "Брзо",
+      "Click": "Клик",
+      "Medium": "Средње",
+      "ForceClick": "Јаки клик и хаптички одзив",
+      "LookUp": "Потражи и детектори података",
+      "SecondaryClick": "Секундарни клик",
+      "ClickTwoFingers": "Клик са два прста",
+      "TapToClick": "Тапни за клик",
+      "VideoPreview": "Видео преглед"
+    },
+    "UsersGroups": {
+      "Title": "Корисници и групе",
+      "Description": "Управљајте корисницима.",
+      "CurrentUser": "Тренутни корисник",
+      "Admin": "Администратор",
+      "OtherUsers": "Други корисници",
+      "GuestUser": "Гост",
+      "Off": "Искључено",
+      "AddAccount": "Додај налог...",
+      "AutoLogin": "Аутоматска пријава",
+      "AllowNetworkUsers": "Дозволи мрежним корисницима пријаву на прозору за пријаву"
+    },
+    "Wallpaper": {
+      "Title": "Позадина",
+      "Description": "Изаберите позадину.",
+      "ShowOnAllSpaces": "Прикажи на свим радним површинама",
+      "DynamicWallpapers": "Динамичне позадине",
+      "Pictures": "Слике",
+      "AddPhoto": "Додај фотографију"
+    },
+    "LanguageSelector": {
+      "Title": "Изаберите жељени језик за додавање",
+      "Search": "Претрага",
+      "Cancel": "Откажи",
+      "Add": "Додај"
+    }
+  },
+  "Languages": {
+    "English": "Енглески",
+    "Spanish": "Шпански",
+    "French": "Француски",
+    "German": "Немачки",
+    "Italian": "Италијански",
+    "Japanese": "Јапански",
+    "Chinese": "Кинески",
+    "Portuguese": "Португалски",
+    "Russian": "Руски",
+    "Korean": "Корејски",
+    "Dutch": "Холандски",
+    "Swedish": "Шведски",
+    "Danish": "Дански",
+    "Norwegian": "Норвешки",
+    "Finnish": "Фински",
+    "Polish": "Пољски",
+    "Turkish": "Турски",
+    "Arabic": "Арапски",
+    "Hindi": "Хинди",
+    "Bengali": "Бенгалски",
+    "Vietnamese": "Вијетнамски",
+    "Thai": "Тајландски",
+    "Greek": "Грчки",
+    "Czech": "Чешки",
+    "Hungarian": "Мађарски",
+    "Romanian": "Румунски",
+    "Ukrainian": "Украјински",
+    "Indonesian": "Индонежански",
+    "Malay": "Малајски",
+    "Croatian": "Хрватски",
+    "Slovak": "Словачки",
+    "Slovenian": "Словеначки",
+    "Bulgarian": "Бугарски",
+    "Serbian": "Српски",
+    "Hebrew": "Хебрејски"
+  },
+  "Finder": {
+    "Search": "Претрага",
+    "Sidebar": {
+      "Favorites": "Омиљено",
+      "Locations": "Локације",
+      "AirDrop": "AirDrop",
+      "Recents": "Недавно",
+      "Applications": "Апликације",
+      "Desktop": "Радна површина",
+      "Documents": "Документи",
+      "Downloads": "Преузимања",
+      "Pictures": "Слике",
+      "Home": "Home",
+      "MacintoshHD": "Macintosh HD",
+      "iCloudDrive": "iCloud Drive"
+    },
+    "Menu": {
+      "NewFolder": "Нови фолдер",
+      "GetInfo": "Информације",
+      "ChangeBackground": "Промени позадину...",
+      "Open": "Отвори",
+      "MoveToBin": "Премести у корпу",
+      "Rename": "Преименуј",
+      "OpenItems": "Отвори {count, plural, one {1 ставку} few {ставке} many {ставки} other {ставки}}",
+      "MoveItemsToBin": "Премести {count, plural, one {1 ставку} few {ставке} many {ставки} other {ставки}} у корпу"
+    },
+    "Status": {
+      "Loading": "Учитавање...",
+      "EmptyFolder": "Празaн фолдер",
+      "ItemCount": "{count, plural, =1 {1 ставка} one {# ставка} few {# ставке} many {# ставки} other {# ставки}}",
+      "SpaceAvailable": "{amount} GB доступно"
+    },
+    "Errors": {
+      "NoApp": "Нема постављене апликације за отварање документа \"{ext}\".",
+      "CreateFolderFailed": "Креирање фолдера није успело",
+      "MoveToBinFailed": "Премештање у корпу није успело"
+    }
+  },
+  "Safari": {
+    "Title": "Safari",
+    "StartPage": "Почетна страница",
+    "Loading": "Учитавање...",
+    "SearchPlaceholder": "Претрага или унесите име веб сајта",
+    "NoInternet": "Нема интернет везе",
+    "NoInternetDesc": "Ваш рачунар није повезан на интернет. Ова страница се не може приказати.",
+    "Favorites": {
+      "Apple": "Apple",
+      "Google": "Google",
+      "Wikipedia": "Wikipedia",
+      "GitHub": "GitHub"
+    }
+  },
+  "Mail": {
+    "Inbox": "Примљено",
+    "MessagesCount": "{count, plural, =1 {1 порука} one {# порука} few {# поруке} many {# порука} other {# порука}}",
+    "Favorites": "Омиљено",
+    "AllInboxes": "Сва сандучета",
+    "VIP": "VIP",
+    "Sent": "Послато",
+    "Search": "Претрага",
+    "NoMessageSelected": "Ниједна порука није изабрана",
+    "To": "За: {name}"
+  },
+  "Messages": {
+    "AppTitle": "Поруке",
+    "SigningIn": "Пријављивање као {name}...",
+    "SidebarTitle": "Поруке",
+    "NoOnlineUsers": "Нема корисника на мрежи.",
+    "NoMessages": "Нема порука",
+    "To": "За: {name}",
+    "InputPlaceholder": "iMessage",
+    "NoContactSelected": "Изаберите контакт за слање поруке"
+  },
+  "Photos": {
+    "Sidebar": {
+      "Library": "Библиотека",
+      "Collections": "Колекције",
+      "Pinned": "Закачено",
+      "Albums": "Албуми",
+      "Utilities": "Услужни програми",
+      "Projects": "Пројекти",
+      "Favourites": "Омиљено",
+      "RecentlySaved": "Недавно сачувано",
+      "Videos": "Видео записи",
+      "Screenshots": "Снимци екрана",
+      "PeoplePets": "Људи и љубимци",
+      "SharedAlbums": "Дељени албуми",
+      "Activity": "Активност",
+      "RecentlyDeleted": "Недавно обрисано",
+      "Duplicates": "Дупликати",
+      "Map": "Мапа",
+      "AllProjects": "Сви пројекти"
+    },
+    "Tabs": {
+      "Years": "Године",
+      "Months": "Месеци",
+      "AllPhotos": "Све фотографије"
+    },
+    "Search": "Претрага",
+    "Collections": {
+      "Title": "Колекције",
+      "Memories": "Успомене",
+      "NoMemories": "Нема успомена",
+      "NoMemoriesDesc": "Успомене ће се појавити овде када их креирате.",
+      "Albums": "Албуми",
+      "NoAlbums": "Нема албума"
+    },
+    "EmptyState": {
+      "NoItems": "Нема ставки у {title}"
+    },
+    "Locked": {
+      "Title": "{title} Закључано",
+      "Desc": "Потврдите идентитет за преглед."
+    }
+  },
+  "Notes": {
+    "Sidebar": {
+      "iCloud": "iCloud",
+      "Notes": "Белешке",
+      "RecentlyDeleted": "Недавно обрисано"
+    },
+    "Search": "Претрага",
+    "NewNote": "Нова белешка",
+    "NoAdditionalText": "Нема додатног текста",
+    "Editor": {
+      "TitlePlaceholder": "Наслов",
+      "ContentPlaceholder": "Почните да куцате...",
+      "AddToDesktop": "Додај на радну површину",
+      "Restore": "Врати",
+      "Delete": "Обриши белешку",
+      "DeletePermanently": "Трајно обриши",
+      "EmptyState": "Изаберите или креирајте белешку",
+      "Date": "Данас у {time}"
+    }
+  },
+  "Reminders": {
+    "Search": "Претрага",
+    "Sidebar": {
+      "MyLists": "Моје листе",
+      "Reminders": "Подсетници",
+      "Work": "Посао",
+      "Today": "Данас",
+      "Scheduled": "Заказано",
+      "All": "Све",
+      "Flagged": "Означено"
+    },
+    "AddReminder": "Нови подсетник",
+    "Actions": {
+      "Add": "Додај",
+      "Cancel": "Откажи",
+      "Delete": "Обриши подсетник",
+      "MarkComplete": "Означи као завршено",
+      "MarkIncomplete": "Означи као незавршено",
+      "Flag": "Означи",
+      "Unflag": "Уклони ознаку"
+    },
+    "Inputs": {
+      "Title": "Наслов",
+      "Notes": "Белешке",
+      "Date": "Датум",
+      "Time": "Време",
+      "Tags": "Ознаке"
+    },
+    "EmptyState": {
+      "NoReminders": "Нема подсетника",
+      "CreateOne": "Креирај подсетник"
+    }
+  },
+  "Calendar": {
+    "Search": "Претрага",
+    "Today": "Данас",
+    "Day": "Дан",
+    "Week": "Недеља",
+    "Month": "Месец",
+    "Year": "Година",
+    "AddEvent": "Додај догађај",
+    "NoEvents": "Нема догађаја",
+    "NewEvent": "Нови догађај",
+    "TitlePlaceholder": "Наслов догађаја",
+    "Location": "Локација",
+    "AllDay": "Цео дан",
+    "From": "Од",
+    "To": "До",
+    "Repeat": "Понављање",
+    "Never": "Никада",
+    "Daily": "Дневно",
+    "Weekly": "Недељно",
+    "Monthly": "Месечно",
+    "Yearly": "Годишње",
+    "Alert": "Упозорење",
+    "AtTime": "У време догађаја",
+    "5MinBefore": "5 минута пре",
+    "10MinBefore": "10 минута пре",
+    "15MinBefore": "15 минута пре",
+    "30MinBefore": "30 минута пре",
+    "1HourBefore": "1 сат пре",
+    "2HoursBefore": "2 сата пре",
+    "1DayBefore": "1 дан пре",
+    "2DaysBefore": "2 дана пре",
+    "Notes": "Белешке",
+    "DeleteEvent": "Обриши догађај",
+    "ShortDays": {
+      "Sun": "Нед",
+      "Mon": "Пон",
+      "Tue": "Уто",
+      "Wed": "Сре",
+      "Thu": "Чет",
+      "Fri": "Пет",
+      "Sat": "Суб"
+    },
+    "Months": {
+      "January": "Јануар",
+      "February": "Фебруар",
+      "March": "Март",
+      "April": "Април",
+      "May": "Мај",
+      "June": "Јун",
+      "July": "Јул",
+      "August": "Август",
+      "September": "Септембар",
+      "October": "Октобар",
+      "November": "Новембар",
+      "December": "Децембар"
+    },
+    "Sidebar": {
+      "iCloud": "ICLOUD",
+      "Other": "OTHER",
+      "NoInvitations": "No invitations"
+    },
+    "Toolbar": {
+      "Today": "Today",
+      "SearchPlaceholder": "Search events...",
+      "View": {
+        "day": "day",
+        "week": "week",
+        "month": "month",
+        "year": "year"
+      }
+    },
+    "EventModal": {
+      "Title": "New Event",
+      "EventTitlePlaceholder": "Event Title",
+      "CalendarLabel": "Calendar",
+      "Cancel": "Cancel",
+      "AddEvent": "Add Event"
+    },
+    "SearchResults": {
+      "Title": "Search Results",
+      "NoEvents": "No events found"
+    },
+    "Event": {
+      "NoLocation": "No location",
+      "EventLabel": "Event: {title} at {location}"
+    },
+    "Weekdays": {
+      "Sun": "Sun",
+      "Mon": "Mon",
+      "Tue": "Tue",
+      "Wed": "Wed",
+      "Thu": "Thu",
+      "Fri": "Fri",
+      "Sat": "Sat"
+    },
+    "WeekdaysShort": {
+      "Sun": "S",
+      "Mon": "M",
+      "Tue": "T",
+      "Wed": "W",
+      "Thu": "T",
+      "Fri": "F",
+      "Sat": "S"
+    }
+  },
+  "Maps": {
+    "Search": "Претрага",
+    "SearchPlaceholder": "Претрага места или адресе",
+    "Directions": "Упутства",
+    "From": "Од",
+    "To": "До",
+    "Transport": {
+      "Drive": "Вожња",
+      "Walk": "Ходање",
+      "Transit": "Јавни превоз",
+      "Cycle": "Бицикл"
+    },
+    "LocateMe": "Пронађи ме",
+    "ZoomIn": "Увећај",
+    "ZoomOut": "Умањи",
+    "MapType": {
+      "Standard": "Стандардно",
+      "Hybrid": "Хибридно",
+      "Satellite": "Сателит"
+    },
+    "Sidebar": {
+      "Favorites": "FAVORITES",
+      "Recent": "RECENT",
+      "NoRecentSearches": "No recent searches",
+      "RecentLabel": "Recent"
+    },
+    "Locations": {
+      "Home": "Home",
+      "Work": "Work"
+    },
+    "Controls": {
+      "SwitchToSatellite": "Switch to Satellite",
+      "SwitchToSatelliteLabel": "Switch to Satellite view",
+      "SwitchToMap": "Switch to Map",
+      "SwitchToMapLabel": "Switch to Map view",
+      "CurrentLocation": "Current Location",
+      "ShowCurrentLocation": "Show current location",
+      "MapInfo": "Map information"
+    },
+    "Permission": {
+      "AppName": "Maps",
+      "Title": "Location",
+      "Reason": "Maps needs access to your location to show where you are.",
+      "Error": "Could not get your location. Please ensure location services are enabled.",
+      "NotSupported": "Geolocation is not supported by your browser."
+    }
+  },
+  "FaceTime": {
+    "AppName": "FaceTime",
+    "NewFaceTime": "Нови FaceTime",
+    "CreateLink": "Креирај везу",
+    "EnterNameOrEmail": "Име, е-маил или број",
+    "Suggested": "Предложено",
+    "NoRecents": "Нема недавних позива",
+    "FaceTimeVideo": "FaceTime Видео",
+    "FaceTimeAudio": "FaceTime Аудио",
+    "JoinCall": "Придружи се",
+    "Waiting": "Чекање...",
+    "Connected": "Повезано",
+    "Reconnecting": "Поновно повезивање...",
+    "CallEnded": "Позив завршен",
+    "Mute": "Утишај",
+    "Unmute": "Укључи звук",
+    "VideoOff": "Искључи видео",
+    "VideoOn": "Укључи видео",
+    "End": "Заврши",
+    "FullScreen": "Цео екран",
+    "ExitFullScreen": "Изађи из целог екрана",
+    "Effects": "Ефекти",
+    "ShareScreen": "Дели екран",
+    "Connecting": "Повезивање...",
+    "Unavailable": "Недоступно",
+    "Title": "FaceTime",
+    "ConnectingAs": "Connecting as {name}...",
+    "IncomingCall": "{name} is calling...",
+    "Accept": "Accept",
+    "Decline": "Decline",
+    "Contacts": "Contacts",
+    "NoContacts": "No one else is online.",
+    "Video": "Video",
+    "SelectContact": "Select a contact to call",
+    "Aria": {
+      "RemoteVideo": "Remote video feed",
+      "LocalVideo": "Local video preview",
+      "EndCall": "End Call",
+      "CallContact": "Call {name}",
+      "VideoCallContact": "Video call {name}",
+      "LocalPreview": "Local camera preview"
+    },
+    "Permission": {
+      "AppName": "FaceTime",
+      "Title": "Camera and Microphone",
+      "Reason": "FaceTime needs access to your camera and microphone to make calls."
+    }
+  },
+  "Contacts": {
+    "Search": "Претрага",
+    "AllContacts": "Сви контакти",
+    "MyCard": "Моја визит карта",
+    "AddContact": "Додај контакт",
+    "Edit": "Уреди",
+    "Done": "Готово",
+    "FirstName": "Име",
+    "LastName": "Презиме",
+    "Company": "Компанија",
+    "Phone": "Телефон",
+    "Email": "Е-маил",
+    "Notes": "Белешке",
+    "Message": "Порука",
+    "Call": "Позив",
+    "Video": "Видео",
+    "Mail": "Пошта",
+    "Pay": "Плати",
+    "NoContacts": "Нема контаката",
+    "DeleteContact": "Обриши контакт",
+    "SearchPlaceholder": "Search",
+    "SearchAria": "Search contacts",
+    "Count": "{count} Contacts",
+    "EditContact": "Edit Contact",
+    "NewContact": "New Contact",
+    "Preview": "Preview",
+    "Cancel": "Cancel",
+    "NoNotes": "No notes",
+    "NoSelection": "No Contact Selected",
+    "Labels": {
+      "FirstName": "First Name",
+      "LastName": "Last Name",
+      "Company": "Company",
+      "Phone": "Phone",
+      "Email": "Email",
+      "Notes": "Notes",
+      "Mobile": "mobile",
+      "Home": "home",
+      "Message": "message",
+      "Video": "video",
+      "Mail": "mail"
+    },
+    "Alerts": {
+      "DeleteConfirm": "Are you sure you want to delete this contact?",
+      "NameRequired": "Please enter a name or company."
+    },
+    "Aria": {
+      "AddContact": "Add new contact",
+      "Contact": "Contact: {name}",
+      "Action": "{action} {name}"
+    }
+  },
+  "Calculator": {
+    "Clear": "C",
+    "AllClear": "AC",
+    "Negate": "+/-",
+    "Percent": "%",
+    "Divide": "÷",
+    "Multiply": "×",
+    "Subtract": "-",
+    "Add": "+",
+    "Equals": "=",
+    "Decimal": ",",
+    "AC": "AC",
+    "ToggleSign": "Toggle sign",
+    "Percentage": "Percentage",
+    "Calculate": "Calculate result"
+  },
+  "Clock": {
+    "WorldClock": "Светски сат",
+    "Alarm": "Аларм",
+    "Stopwatch": "Штоперица",
+    "Timer": "Тајмер",
+    "Add": "Додај",
+    "Edit": "Уреди",
+    "Start": "Старт",
+    "Stop": "Стоп",
+    "Reset": "Ресетуј",
+    "Lap": "Круг",
+    "Resume": "Настави",
+    "Pause": "Пауза",
+    "Cancel": "Откажи",
+    "Save": "Сачувај",
+    "Label": "Ознака",
+    "Sound": "Звук",
+    "Snooze": "Одложи",
+    "WhenTimerEnds": "Када се тајмер заврши",
+    "StopPlaying": "Заустави репродукцију",
+    "Tabs": {
+      "WorldClock": "World Clock",
+      "Alarms": "Alarms",
+      "Stopwatch": "Stopwatch",
+      "Timers": "Timers"
+    },
+    "AddClock": "Add clock",
+    "Locations": {
+      "NewDelhi": "New Delhi"
+    },
+    "Today": "Today",
+    "HRS": "HRS"
+  },
+  "Weather": {
+    "Loading": "Учитавање...",
+    "Error": "Грешка при учитавању времена",
+    "SearchPlaceholder": "Претрага града",
+    "MyLocation": "Моја локација",
+    "Humidity": "Влажност",
+    "Wind": "Ветар",
+    "Rain": "Киша",
+    "FeelsLike": "Субјективни осећај",
+    "UVIndex": "UV индекс",
+    "Pressure": "Притисак",
+    "Visibility": "Видљивост",
+    "Sunrise": "Излазак сунца",
+    "Sunset": "Залазак сунца",
+    "Forecast": {
+      "Hourly": "Hourly Forecast",
+      "TenDay": "10-Day Forecast",
+      "Now": "Now",
+      "Today": "Today"
+    },
+    "Hourly": "По сатима",
+    "Daily": "Дневно",
+    "High": "Макс",
+    "Low": "Мин",
+    "Conditions": {
+      "Clear": "Ведро",
+      "Cloudy": "Облачно",
+      "Rain": "Киша",
+      "Snow": "Снег",
+      "Thunderstorm": "Олуја",
+      "Drizzle": "Росуља",
+      "Mist": "Магла"
+    },
+    "Retry": "Retry",
+    "Searching": "Searching...",
+    "NoResults": "No results found",
+    "Recent": "Recent",
+    "Popular": "Popular",
+    "Sidebar": {
+      "Open": "Open sidebar",
+      "Close": "Close sidebar"
+    },
+    "Aria": {
+      "SelectLocation": "Select {name}, {country}"
+    },
+    "Details": {
+      "AirQuality": "Air Quality",
+      "UVIndex": "UV Index",
+      "Wind": "Wind",
+      "Sunset": "Sunset",
+      "Sunrise": "Sunrise:",
+      "FeelsLike": "Feels Like",
+      "Humidity": "Humidity",
+      "Visibility": "Visibility",
+      "Pressure": "Pressure",
+      "hPa": "hPa"
+    },
+    "Descriptions": {
+      "AirQualityDesc": "Air quality index is 130, similar to yesterday at about this time.",
+      "UVIndexDesc": "Use sun protection until 4PM.",
+      "FeelsLikeDesc": "Similar to the actual temperature.",
+      "DewPointDesc": "The dew point is {temp}° right now.",
+      "VisibilityDesc": "Perfectly clear view.",
+      "Footer": "Weather for {location} • Open-Meteo Data",
+      "PollutionLevel": "Moderately Polluted",
+      "UVLevel": "Moderate"
+    }
+  },
+  "Stocks": {
+    "Search": "Претрага",
+    "Watchlist": "Листа за праћење",
+    "MarketOpen": "Тржиште отворено",
+    "MarketClosed": "Тржиште затворено",
+    "PreMarket": "Пре тржишта",
+    "AfterHours": "Након радног времена",
+    "Loading": "Учитавање...",
+    "Error": "Грешка при учитавању",
+    "AddSymbol": "Додај симбол",
+    "Remove": "Уклони",
+    "Chart": "Графикон",
+    "News": "Вести",
+    "Summary": "Резиме",
+    "Open": "Отворено",
+    "High": "Макс",
+    "Low": "Мин",
+    "Vol": "Вол",
+    "PE": "P/E",
+    "MktCap": "Трж. кап.",
+    "52WHigh": "52Н Макс",
+    "52WLow": "52Н Мин",
+    "AvgVol": "Прос. вол",
+    "Yield": "Принос",
+    "Beta": "Бета",
+    "EPS": "EPS",
+    "Title": "Stocks",
+    "Searching": "Searching...",
+    "KeyStatistics": "Key Statistics",
+    "BusinessNews": "Business News",
+    "ShowMore": "Show More",
+    "Aria": {
+      "Search": "Search stocks",
+      "Select": "Select stock {symbol}",
+      "ReadNews": "Read news: {title}"
+    },
+    "Stats": {
+      "Open": "Open",
+      "High": "High",
+      "Low": "Low",
+      "Vol": "Vol",
+      "PE": "P/E",
+      "MktCap": "Mkt Cap",
+      "52WH": "52W H",
+      "52WL": "52W L"
+    }
+  },
+  "Desktop": {
+    "ContextMenu": {
+      "NewFolder": "Нови фолдер",
+      "GetInfo": "Информације",
+      "ChangeDesktopBackground": "Промени позадину...",
+      "UseStacks": "Користи групе",
+      "SortBy": "Сортирај по",
+      "CleanUp": "Очисти",
+      "CleanUpBy": "Очисти по",
+      "ShowViewOptions": "Прикажи опције приказа",
+      "ChangeWallpaper": "Change Wallpaper...",
+      "EditWidgets": "Edit Widgets...",
+      "Tags": "Tags",
+      "None": "None",
+      "SnapToGrid": "Snap to Grid",
+      "Name": "Name",
+      "Kind": "Kind",
+      "DateLastOpened": "Date Last Opened",
+      "DateAdded": "Date Added",
+      "DateModified": "Date Modified",
+      "DateCreated": "Date Created",
+      "Size": "Size"
+    },
+    "SortOptions": {
+      "Name": "Име",
+      "Kind": "Врста",
+      "DateLastOpened": "Датум отварања",
+      "DateAdded": "Датум додавања",
+      "DateModified": "Датум измене",
+      "DateCreated": "Датум креирања",
+      "Size": "Величина",
+      "Tags": "Ознаке"
+    },
+    "Guest": "Guest",
+    "UntitledFolder": "untitled folder",
+    "NoAppAvailable": "No application available to open .{ext} files.",
+    "MoveToBin": {
+      "Failed": "Failed to move to bin",
+      "NotSupported": "Failed to move to bin. Folder moves not fully supported yet."
+    }
+  },
+  "ControlCenter": {
+    "Title": "Контролни центар",
+    "WiFi": "Wi-Fi",
+    "Bluetooth": "Bluetooth",
+    "AirDrop": "AirDrop",
+    "DoNotDisturb": "Не узнемиравај",
+    "KeyboardBrightness": "Светлина тастатуре",
+    "ScreenMirroring": "Дељење екрана",
+    "Display": "Екран",
+    "Sound": "Звук",
+    "Playing": "Репродукује се",
+    "On": "Укљ.",
+    "Off": "Искљ.",
+    "NotConnected": "Није повезано",
+    "Connect": "Повежи",
+    "HomeNetwork": "Home Network",
+    "ContactsOnly": "Contacts Only",
+    "NotPlaying": "Not Playing",
+    "Music": "Music"
+  },
+  "LockScreenApp": {
+    "EnterPassword": "Унесите лозинку",
+    "ClickToUnlock": "Кликните за откључавање",
+    "TouchID": "Touch ID",
+    "Cancel": "Откажи",
+    "SwitchUser": "Промени корисника"
+  },
+  "NotificationCenter": {
+    "Title": "Центар за обавештења",
+    "NoNotifications": "Нема обавештења",
+    "ClearAll": "Обриши све",
+    "Widgets": "Widgets",
+    "Done": "Done",
+    "Edit": "Edit",
+    "AddWidget": "Add Widget"
+  },
+  "Widgets": {
+    "AllWidgets": "Сви виџети",
+    "Search": "Претрага",
+    "AddWidget": "Додај виџет",
+    "Loading": "Loading...",
+    "Calendar": {
+      "Title": "Calendar"
+    },
+    "Weather": {
+      "Title": "Weather"
+    },
+    "Stocks": {
+      "Title": "Stocks"
+    },
+    "Reminders": {
+      "Title": "Reminders",
+      "NoReminders": "No reminders"
+    },
+    "Notes": {
+      "Title": "Notes",
+      "Content": "Buy milk, eggs, and bread.<br />Call mom at 5pm.<br />Meeting with team tomorrow."
+    }
+  },
+  "Window": {
+    "Minimize": "Минимизирај",
+    "Maximize": "Максимизирај",
+    "Close": "Затвори",
+    "Restore": "Restore",
+    "MoveTo": "Move Window to...",
+    "LeftSide": "Left Side of Screen",
+    "RightSide": "Right Side of Screen",
+    "EnterFullScreen": "Enter Full Screen"
+  },
+  "Dock": {
+    "Trash": "Trash",
+    "AriaLabel": "Application dock"
+  },
+  "Apps": {
+    "VSCode": {
+      "Title": "Visual Studio Code"
+    },
+    "LeetCode": {
+      "Title": "LeetCode",
+      "Common": {
+        "Loading": "Loading Profile...",
+        "NoData": "No data",
+        "Retry": "Retry",
+        "ShowMore": "Show more",
+        "GoToLeetCode": "Go to LeetCode"
+      },
+      "Badges": {
+        "Title": "Badges",
+        "MostRecent": "Most Recent Badge"
+      },
+      "Stats": {
+        "Title": "Community Stats",
+        "Views": "Views",
+        "Solution": "Solution",
+        "Discuss": "Discuss",
+        "Reputation": "Reputation"
+      },
+      "Languages": {
+        "Title": "Languages",
+        "ProblemsSolved": "problems solved"
+      },
+      "Profile": {
+        "Rank": "Rank"
+      },
+      "Submissions": {
+        "RecentAC": "Recent AC",
+        "List": "List",
+        "Solutions": "Solutions",
+        "Discuss": "Discuss",
+        "TimeAgo": "2 months ago"
+      },
+      "Skills": {
+        "Title": "Skills",
+        "Advanced": "Advanced",
+        "Intermediate": "Intermediate"
+      },
+      "Solved": {
+        "Solved": "Solved",
+        "Easy": "Easy",
+        "Medium": "Med.",
+        "Hard": "Hard"
+      },
+      "Calendar": {
+        "SubmissionsLastYear": "submissions in the past one year",
+        "TotalActiveDays": "Total active days:",
+        "MaxStreak": "Max streak:",
+        "Current": "Current",
+        "Months": {
+          "Jan": "Jan",
+          "Feb": "Feb",
+          "Mar": "Mar",
+          "Apr": "Apr",
+          "May": "May",
+          "Jun": "Jun",
+          "Jul": "Jul",
+          "Aug": "Aug",
+          "Sep": "Sep",
+          "Oct": "Oct",
+          "Nov": "Nov",
+          "Dec": "Dec"
+        }
+      }
+    },
+    "V86": {
+      "Title": "Virtual Machine",
+      "NoFileSelected": "No file selected",
+      "ScriptLoadError": "Failed to load V86 script",
+      "FileReadError": "Failed to read file",
+      "StartError": "Failed to start emulator",
+      "Booting": "Booting {filename}...",
+      "ErrorPrefix": "Error: {error}",
+      "ClickToCapture": "Click to capture mouse (Esc to release)"
+    },
+    "Finder": "Finder",
+    "Launchpad": "Launchpad",
+    "Safari": "Safari",
+    "Messages": "Messages",
+    "Mail": "Mail",
+    "Maps": "Maps",
+    "Photos": "Photos",
+    "FaceTime": "FaceTime",
+    "Calendar": "Calendar",
+    "Contacts": "Contacts",
+    "Reminders": "Reminders",
+    "Notes": "Notes",
+    "TV": "TV",
+    "Music": "Music",
+    "News": "News",
+    "SystemSettings": "System Settings",
+    "AppStore": "App Store",
+    "Trash": "Trash",
+    "Freeform": "Freeform",
+    "Terminal": "Terminal",
+    "Calculator": "Calculator",
+    "TextEdit": "TextEdit",
+    "MediaPlayer": "Media Player",
+    "Preview": "Preview",
+    "VirtualMachine": "Virtual Machine"
+  },
+  "News": {
+    "Title": "News",
+    "Categories": {
+      "TopStories": "Top Stories",
+      "Technology": "Technology",
+      "Business": "Business",
+      "Science": "Science",
+      "Health": "Health",
+      "Entertainment": "Entertainment",
+      "Sports": "Sports"
+    },
+    "SearchPlaceholder": "Search stories...",
+    "SearchLabel": "Search",
+    "SearchTitle": "Search: \"{query}\"",
+    "Loading": "Loading top stories...",
+    "Error": "Failed to load news. Please try again later.",
+    "TryAgain": "Try Again",
+    "NoResults": "No stories found matching \"{query}\"",
+    "ClearSearch": "Clear Search",
+    "TopStory": "Top Story",
+    "Refresh": "Refresh",
+    "Aria": {
+      "Category": "Category: {label}",
+      "Search": "Search stories",
+      "Refresh": "Refresh news",
+      "ReadTopStory": "Read top story: {title}",
+      "ReadArticle": "Read article: {title}",
+      "Share": "Share article",
+      "Like": "Like article"
+    }
+  },
+  "Music": {
+    "AppleMusic": "Apple Music",
+    "Library": "Library",
+    "ListenNow": "Listen Now",
+    "Browse": "Browse",
+    "Radio": "Radio",
+    "RecentlyAdded": "Recently Added",
+    "Artists": "Artists",
+    "Albums": "Albums",
+    "Songs": "Songs",
+    "Search": "Search",
+    "SearchTitle": "Search: {query}",
+    "Aria": {
+      "Search": "Search music",
+      "GoBack": "Go back",
+      "GoForward": "Go forward",
+      "Prev": "Previous song",
+      "Next": "Next song",
+      "Play": "Play",
+      "Pause": "Pause",
+      "PlaySong": "Play {track} by {artist}",
+      "PauseSong": "Pause {track}",
+      "Lyrics": "Toggle lyrics",
+      "Queue": "Toggle queue",
+      "Mute": "Toggle mute",
+      "VolSlider": "Volume slider",
+      "SeekSlider": "Seek slider"
+    },
+    "Queue": {
+      "Title": "Playing Next",
+      "Empty": "Queue is empty"
+    },
+    "Lyrics": {
+      "NotAvailable": "Lyrics are not available for this song in the preview mode.",
+      "Imagine": "But imagine the lyrics appearing here, perfectly synced with the music...",
+      "Lalala": "La la la...",
+      "Placeholder": "Play a song to see lyrics"
+    }
+  },
+  "TV": {
+    "WatchNow": "Watch Now",
+    "Movies": "Movies",
+    "TVShows": "TV Shows",
+    "Kids": "Kids",
+    "Library": "Library",
+    "SearchResults": "Search Results",
+    "NoShows": "No shows found.",
+    "SearchPlaceholder": "Search",
+    "SearchLabel": "Search TV Shows",
+    "Series": "Series",
+    "PlayEpisode": "Play Episode 1",
+    "AddToUpNext": "Add to Up Next",
+    "Added": "Added",
+    "OpenYouTube": "Open in YouTube",
+    "ViewAccount": "View Account",
+    "Aria": {
+      "Play": "Play {name}",
+      "CloseVideo": "Close video",
+      "AddLibrary": "Add to Library",
+      "RemoveLibrary": "Remove from Library"
+    },
+    "Genres": {
+      "Drama": "Drama",
+      "Action": "Action",
+      "Comedy": "Comedy",
+      "ScienceFiction": "Science-Fiction",
+      "Thriller": "Thriller"
+    }
+  },
+  "Terminal": {
+    "Guest": "Guest",
+    "Welcome": "Welcome to Terminal",
+    "HelpPrompt": "Type 'help' for a list of commands.",
+    "AvailableCommands": "Available commands: ls, cd, pwd, mkdir, touch, echo, cat, clear, whoami, ping, man, rm, rmdir, vi",
+    "CommandNotFound": "command not found: {command}",
+    "Error": "Error: {message}",
+    "AriaInput": "Terminal Input",
+    "Usage": {
+      "Ping": "usage: ping host",
+      "Mkdir": "usage: mkdir directory_name",
+      "Rmdir": "usage: rmdir directory_name",
+      "Rm": "usage: rm [-rf] file_name",
+      "Touch": "usage: touch file_name",
+      "Cat": "usage: cat file_name",
+      "Vi": "usage: vi file_name",
+      "Man": "What manual page do you want?"
+    },
+    "Errors": {
+      "PingResolve": "ping: cannot resolve {host}: Unknown host",
+      "NoManual": "No manual entry for {command}",
+      "NoSuchFile": "{cmd}: {path}: No such file or directory",
+      "NotADirectory": "{cmd}: {path}: Not a directory",
+      "DirectoryNotEmpty": "{cmd}: {path}: Directory not empty",
+      "IsADirectory": "{cmd}: {path}: is a directory"
+    },
+    "Messages": {
+      "PingStats": "PING {host} (127.0.0.1): 56 data bytes\n64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.045 ms\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.082 ms\n64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.067 ms\n\n--- {host} ping statistics ---\n3 packets transmitted, 3 packets received, 0.0% packet loss",
+      "OpeningTextEdit": "Opening {file} in TextEdit..."
+    },
+    "ManPages": {
+      "ls": "ls - list directory contents\n\nUsage: ls [options] [file|dir]\n\nOptions:\n  -a, --all      do not ignore entries starting with .\n  -l             use a long listing format",
+      "cd": "cd - change the shell working directory\n\nUsage: cd [dir]\n\nChange the current directory to DIR. The default DIR is the value of the HOME shell variable.",
+      "pwd": "pwd - print name of current/working directory\n\nUsage: pwd\n\nPrint the full filename of the current working directory.",
+      "mkdir": "mkdir - make directories\n\nUsage: mkdir [DIRECTORY]\n\nCreate the DIRECTORY(ies), if they do not already exist.",
+      "touch": "touch - change file timestamps\n\nUsage: touch [FILE]\n\nUpdate the access and modification times of each FILE to the current time. If FILE does not exist it is created empty.",
+      "echo": "echo - display a line of text\n\nUsage: echo [STRING]...\n\nEcho the STRING(s) to standard output.",
+      "cat": "cat - concatenate files and print on the standard output\n\nUsage: cat [FILE]...\n\nConcatenate FILE(s) to standard output.",
+      "clear": "clear - clear the terminal screen\n\nUsage: clear",
+      "whoami": "whoami - print effective userid\n\nUsage: whoami\n\nPrint the user name associated with the current effective user ID.",
+      "ping": "ping - send ICMP ECHO_REQUEST to network hosts\n\nUsage: ping [HOST]\n\nSend ICMP ECHO_REQUEST to network hosts.",
+      "man": "man - an interface to the system reference manuals\n\nUsage: man [COMMAND]\n\nDisplay the manual page for COMMAND.",
+      "rm": "rm - remove files or directories\n\nUsage: rm [OPTION]... [FILE]...\n\nRemove (unlink) the FILE(s).\n\nOptions:\n  -r, -R, --recursive   remove directories and their contents recursively\n  -f, --force           ignore nonexistent files and arguments, never prompt",
+      "rmdir": "rmdir - remove empty directories\n\nUsage: rmdir [DIRECTORY]...\n\nRemove the DIRECTORY(ies), if they are empty.",
+      "vi": "vi - screen-oriented (visual) display editor\n\nUsage: vi [FILE]\n\nEdit FILE."
+    }
+  },
+  "TextEdit": {
+    "Guest": "Guest",
+    "Untitled": "Untitled.txt",
+    "Save": "Save",
+    "Loading": "Loading...",
+    "Placeholder": "Type your notes here...",
+    "SavedAlert": "Saved to {path}/{filename}"
+  },
+  "PDFViewer": {
+    "Document": "Document.pdf",
+    "PageInfo": "Page {current} of {total}",
+    "View": "View",
+    "ZoomIn": "Zoom In",
+    "ZoomOut": "Zoom Out",
+    "LoadingThumbnails": "Loading thumbnails...",
+    "Loading": "Loading...",
+    "NoPDF": "No PDF",
+    "FailedToLoad": "Failed to load PDF",
+    "NoPDFLoaded": "No PDF loaded"
+  },
+  "Spotlight": {
+    "Placeholder": "Spotlight Search",
+    "SearchWebFor": "Search Web for \"{query}\"",
+    "NoResults": "No results found",
+    "Open": "Open",
+    "Kinds": {
+      "Web": "Web Search",
+      "App": "Application",
+      "Directory": "Directory",
+      "File": "File"
+    },
+    "Aria": {
+      "Open": "Open {name}"
+    }
+  },
+  "MenuBar": {
+    "Apple": {
+      "AboutThisMac": "About This Mac",
+      "SystemSettings": "System Settings...",
+      "AppStore": "App Store...",
+      "RecentItems": "Recent Items",
+      "ForceQuit": "Force Quit...",
+      "Sleep": "Sleep",
+      "Restart": "Restart...",
+      "ShutDown": "Shut Down...",
+      "LockScreen": "Lock Screen"
+    },
+    "App": {
+      "About": "About {app}",
+      "Quit": "Quit {app}"
+    },
+    "File": {
+      "Title": "File",
+      "New": "New",
+      "Open": "Open...",
+      "Save": "Save",
+      "Duplicate": "Duplicate",
+      "NewFinderWindow": "New Finder Window",
+      "NewFolder": "New Folder",
+      "GetInfo": "Get Info"
+    },
+    "Edit": {
+      "Title": "Edit",
+      "Undo": "Undo",
+      "Redo": "Redo",
+      "Cut": "Cut",
+      "Copy": "Copy",
+      "Paste": "Paste"
+    },
+    "View": {
+      "Title": "View",
+      "AsIcons": "As Icons",
+      "AsList": "As List",
+      "AsColumns": "As Columns"
+    },
+    "Window": {
+      "Title": "Window",
+      "Minimize": "Minimize",
+      "Zoom": "Zoom"
+    },
+    "Help": {
+      "Title": "Help",
+      "MacOSHelp": "macOS Help"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "KnownNetworks": "Known Networks",
+      "OtherNetworks": "Other Networks",
+      "Settings": "Wi-Fi Settings..."
+    },
+    "Battery": {
+      "Title": "Battery",
+      "PowerSource": "Power Source: {source}",
+      "PowerAdapter": "Power Adapter",
+      "Battery": "Battery",
+      "EnergyMode": "Energy Mode",
+      "Automatic": "Automatic",
+      "LowPower": "Low Power",
+      "HighPower": "High Power",
+      "SignificantEnergy": "Using Significant Energy",
+      "Settings": "Battery Settings..."
+    },
+    "Aria": {
+      "Clipboard": "Clipboard",
+      "MediaPlayer": "Media Player",
+      "Spotlight": "Spotlight Search",
+      "ControlCenter": "Control Center",
+      "Siri": "Siri",
+      "Clock": "Clock and Notification Center"
+    }
+  },
+  "WeatherDropdown": {
+    "Searching": "Searching...",
+    "SearchCity": "Search city...",
+    "Now": "Now",
+    "Today": "Today",
+    "OpenWeather": "Open Weather"
+  },
+  "LockScreen": {
+    "IncorrectPassword": "Incorrect password",
+    "Guest": "Guest",
+    "EnterPassword": "Enter Password",
+    "Hint": "Touch ID or enter password (hint: {hint})",
+    "Login": "Login",
+    "Cancel": "Cancel",
+    "Aria": {
+      "UserAvatar": "User avatar, click to login",
+      "User": "User {name}, click to login",
+      "Password": "Password",
+      "Submit": "Submit password"
+    }
+  }
 }

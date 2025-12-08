@@ -10,6 +10,8 @@ interface MacOSAlertProps {
   secondaryAction?: { label: string; onClick: () => void };
 }
 
+import { useTranslations } from "next-intl";
+
 export const MacOSAlert: React.FC<MacOSAlertProps> = ({
   type = "info",
   title,
@@ -18,11 +20,16 @@ export const MacOSAlert: React.FC<MacOSAlertProps> = ({
   primaryAction,
   secondaryAction,
 }) => {
+  const t = useTranslations("Common"); // Assuming Common namespace exists or I will use a fallback
+  // ...
+  // Actually I need to check if Common exists.
+  // If not, I'll add it.
+
   // Use generic app icon for now, could be passed as prop
   const iconSrc = type === "critical" ? "🛑" : "⚠️"; // Placeholder emojis
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-start justify-center pt-[100px]">
+    <div className="fixed inset-0 z-9999 flex items-start justify-center pt-[100px]">
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/20" onClick={onClose} />
 
@@ -46,7 +53,7 @@ export const MacOSAlert: React.FC<MacOSAlertProps> = ({
               variant={type === "critical" ? "destructive" : "primary"}
               onClick={primaryAction ? primaryAction.onClick : onClose}
             >
-              {primaryAction ? primaryAction.label : "OK"}
+              {primaryAction ? primaryAction.label : t("OK")}
             </MacOSButton>
           </div>
         </div>

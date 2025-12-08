@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import { LeetCodeData } from "../types";
 
+import { useTranslations } from "next-intl";
+
 interface ProfileCardProps {
   matchedUser: LeetCodeData["matchedUser"];
   url: string;
@@ -20,6 +22,9 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
   matchedUser,
   url,
 }) => {
+  const t = useTranslations("LeetCode.Profile");
+  const tCommon = useTranslations("LeetCode.Common");
+
   return (
     <div className="bg-[#282828] rounded-lg p-4 flex flex-col gap-4">
       <div className="flex gap-4 items-start">
@@ -50,7 +55,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
             @{matchedUser.username}
           </div>
           <div className="text-xs font-medium text-white">
-            Rank{" "}
+            {t("Rank")}{" "}
             <span className="font-bold">
               {matchedUser.profile.ranking.toLocaleString()}
             </span>
@@ -126,7 +131,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
         target="_blank"
         className="mt-2 w-full flex items-center justify-center gap-2 bg-[#ffa116] hover:bg-[#ffb13d] text-black font-medium py-2 rounded transition-colors text-sm"
       >
-        Go to LeetCode <ExternalLink size={14} />
+        {tCommon("GoToLeetCode")} <ExternalLink size={14} />
       </a>
     </div>
   );

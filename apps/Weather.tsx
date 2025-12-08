@@ -17,6 +17,7 @@ import {
   fetchWeather,
   WeatherData,
 } from "../lib/weatherApi";
+import { useTranslations } from "next-intl";
 
 const POPULAR_LOCATIONS = [
   { name: "New York", lat: 40.7128, lon: -74.006, country: "USA" },
@@ -27,6 +28,7 @@ const POPULAR_LOCATIONS = [
 ];
 
 export const Weather: React.FC = () => {
+  const t = useTranslations("Weather");
   const { weather: initialData, loading, error } = useWeather();
   const [data, setData] = useState<WeatherData | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -98,7 +100,7 @@ export const Weather: React.FC = () => {
       <div className="flex items-center justify-center h-full bg-slate-900 text-white">
         <div className="flex flex-col items-center gap-4">
           <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white"></div>
-          <div>Loading Weather...</div>
+          <div>{t("Loading")}</div>
         </div>
       </div>
     );
@@ -108,15 +110,13 @@ export const Weather: React.FC = () => {
     return (
       <div className="flex items-center justify-center h-full bg-slate-900 text-white">
         <div className="flex flex-col items-center gap-4 text-center px-4">
-          <div className="text-red-400 font-medium text-lg">
-            Unable to load weather
-          </div>
+          <div className="text-red-400 font-medium text-lg">{t("Error")}</div>
           <div className="text-white/60 max-w-md">{error}</div>
           <button
             onClick={() => window.location.reload()}
             className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors text-sm mt-2"
           >
-            Retry
+            {t("Retry")}
           </button>
         </div>
       </div>
@@ -136,11 +136,11 @@ export const Weather: React.FC = () => {
         <div className="p-4">
           <input
             type="text"
-            placeholder={isSearching ? "Searching..." : "Search city"}
+            placeholder={isSearching ? t("Searching") : t("SearchPlaceholder")}
             value={searchQuery}
             onChange={handleSearch}
             className="w-full bg-white/10 rounded-lg px-3 py-1.5 text-sm text-white placeholder-white/40 focus:outline-none focus:ring-1 focus:ring-white/20"
-            aria-label="Search city"
+            aria-label={t("SearchPlaceholder")}
           />
         </div>
         <div className="flex-1 overflow-y-auto">
@@ -167,7 +167,7 @@ export const Weather: React.FC = () => {
               ))
             ) : (
               <div className="p-4 text-xs opacity-50 text-center">
-                No results found
+                {t("NoResults")}
               </div>
             )
           ) : (
@@ -175,7 +175,7 @@ export const Weather: React.FC = () => {
               {recentLocations.length > 0 && (
                 <div className="mb-4">
                   <div className="px-4 py-2 text-xs font-semibold opacity-50 uppercase tracking-wider">
-                    Recent
+                    {t("Recent")}
                   </div>
                   {recentLocations.map((loc, i) => (
                     <div
@@ -189,7 +189,10 @@ export const Weather: React.FC = () => {
                           selectLocation(loc);
                         }
                       }}
-                      aria-label={`Select ${loc.name}, ${loc.country}`}
+                      aria-label={t("Aria.SelectLocation", {
+                        name: loc.name,
+                        country: loc.country,
+                      })}
                     >
                       <span className="font-medium text-sm">{loc.name}</span>
                       <span className="text-xs opacity-60">{loc.country}</span>
@@ -200,7 +203,7 @@ export const Weather: React.FC = () => {
 
               <div>
                 <div className="px-4 py-2 text-xs font-semibold opacity-50 uppercase tracking-wider">
-                  Popular
+                  {t("Popular")}
                 </div>
                 {POPULAR_LOCATIONS.map((loc, i) => (
                   <div
@@ -237,7 +240,7 @@ export const Weather: React.FC = () => {
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="p-2 hover:bg-white/10 rounded-lg transition-colors"
-            aria-label={sidebarOpen ? "Close sidebar" : "Open sidebar"}
+            aria-label={sidebarOpen ? t("Sidebar.Close") : t("Sidebar.Open")}
           >
             {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -271,7 +274,7 @@ export const Weather: React.FC = () => {
                 <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
                   <Sun size={10} />
                 </div>
-                Hourly Forecast
+                {t("Forecast.Hourly")}
               </div>
               <div className="flex overflow-x-auto gap-8 pb-2 scrollbar-hide">
                 {data.hourly.time.slice(0, 24).map((time, i) => {
@@ -291,7 +294,7 @@ export const Weather: React.FC = () => {
                     >
                       <span className="text-sm font-medium opacity-90">
                         {isNow
-                          ? "Now"
+                          ? t("Forecast.Now")
                           : `${hour % 12 || 12}${hour >= 12 ? "PM" : "AM"}`}
                       </span>
                       <Icon size={32} className="drop-shadow-md" />
@@ -312,14 +315,14 @@ export const Weather: React.FC = () => {
                   <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
                     <Sun size={10} />
                   </div>
-                  10-Day Forecast
+                  {t("Forecast.TenDay")}
                 </div>
                 <div className="flex flex-col gap-1">
                   {data.daily.time.map((time, i) => {
                     const date = new Date(time);
                     const dayName =
                       i === 0
-                        ? "Today"
+                        ? t("Forecast.Today")
                         : date.toLocaleDateString("en-US", {
                             weekday: "short",
                           });
@@ -372,20 +375,19 @@ export const Weather: React.FC = () => {
                   <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
                     <Wind size={10} />
                   </div>
-                  Air Quality
+                  {t("Details.AirQuality")}
                 </div>
                 <div className="flex-1 flex flex-col justify-between">
                   <div>
                     <div className="text-3xl font-semibold">130</div>
                     <div className="text-sm font-medium mt-1">
-                      Moderately Polluted
+                      {t("Descriptions.PollutionLevel")}
                     </div>
                   </div>
                   <div className="mt-4">
                     <div className="h-2 w-full bg-linear-to-r from-green-400 via-yellow-400 to-red-500 rounded-full" />
                     <div className="text-xs opacity-70 mt-2 leading-relaxed">
-                      Air quality index is 130, similar to yesterday at about
-                      this time.
+                      {t("Descriptions.AirQualityDesc")}
                     </div>
                   </div>
                 </div>
@@ -397,14 +399,16 @@ export const Weather: React.FC = () => {
                   <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
                     <Sun size={10} />
                   </div>
-                  UV Index
+                  {t("Details.UVIndex")}
                 </div>
                 <div className="flex-1 flex flex-col justify-between">
                   <div>
                     <div className="text-3xl font-semibold">
                       {Math.round(data.daily.uvIndex[0])}
                     </div>
-                    <div className="text-sm font-medium mt-1">Moderate</div>
+                    <div className="text-sm font-medium mt-1">
+                      {t("Descriptions.UVLevel")}
+                    </div>
                   </div>
                   <div className="mt-4">
                     <div className="h-2 w-full bg-linear-to-r from-green-400 to-purple-500 rounded-full relative">
@@ -416,7 +420,7 @@ export const Weather: React.FC = () => {
                       />
                     </div>
                     <div className="text-xs opacity-70 mt-2 leading-relaxed">
-                      Use sun protection until 4PM.
+                      {t("Descriptions.UVIndexDesc")}
                     </div>
                   </div>
                 </div>
@@ -428,7 +432,7 @@ export const Weather: React.FC = () => {
                   <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
                     <Wind size={10} />
                   </div>
-                  Wind
+                  {t("Details.Wind")}
                 </div>
                 <div className="flex items-center justify-center h-full relative">
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -472,7 +476,7 @@ export const Weather: React.FC = () => {
                   <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
                     <Sun size={10} />
                   </div>
-                  Sunset
+                  {t("Details.Sunset")}
                 </div>
                 <div className="flex-1 flex flex-col justify-center items-center">
                   <div className="text-3xl font-medium">
@@ -482,7 +486,7 @@ export const Weather: React.FC = () => {
                     })}
                   </div>
                   <div className="text-xs opacity-70 mt-1">
-                    Sunrise:{" "}
+                    {t("Details.Sunrise")}{" "}
                     {new Date(data.daily.sunrise[1]).toLocaleTimeString([], {
                       hour: "2-digit",
                       minute: "2-digit",
@@ -502,14 +506,14 @@ export const Weather: React.FC = () => {
                   <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
                     <Thermometer size={10} />
                   </div>
-                  Feels Like
+                  {t("Details.FeelsLike")}
                 </div>
                 <div className="flex-1 flex flex-col justify-between">
                   <div className="text-4xl font-semibold">
                     {data.current.temp}°
                   </div>
                   <div className="text-xs opacity-70 leading-relaxed">
-                    Similar to the actual temperature.
+                    {t("Descriptions.FeelsLikeDesc")}
                   </div>
                 </div>
               </div>
@@ -520,15 +524,16 @@ export const Weather: React.FC = () => {
                   <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
                     <Droplets size={10} />
                   </div>
-                  Humidity
+                  {t("Details.Humidity")}
                 </div>
                 <div className="flex-1 flex flex-col justify-between">
                   <div className="text-4xl font-semibold">
                     {data.current.humidity}%
                   </div>
                   <div className="text-xs opacity-70 leading-relaxed">
-                    The dew point is {Math.round(data.current.temp - 5)}° right
-                    now.
+                    {t("Descriptions.DewPointDesc", {
+                      temp: Math.round(data.current.temp - 5),
+                    })}
                   </div>
                 </div>
               </div>
@@ -539,12 +544,12 @@ export const Weather: React.FC = () => {
                   <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
                     <Eye size={10} />
                   </div>
-                  Visibility
+                  {t("Details.Visibility")}
                 </div>
                 <div className="flex-1 flex flex-col justify-between">
                   <div className="text-4xl font-semibold">24 km</div>
                   <div className="text-xs opacity-70 leading-relaxed">
-                    Perfectly clear view.
+                    {t("Descriptions.VisibilityDesc")}
                   </div>
                 </div>
               </div>
@@ -555,20 +560,22 @@ export const Weather: React.FC = () => {
                   <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
                     <Gauge size={10} />
                   </div>
-                  Pressure
+                  {t("Details.Pressure")}
                 </div>
                 <div className="flex-1 flex flex-col justify-center items-center relative">
                   <div className="w-24 h-24 rounded-full border-[6px] border-white/10 border-t-white/90 rotate-135" />
                   <div className="absolute flex flex-col items-center">
                     <span className="text-2xl font-bold">1012</span>
-                    <span className="text-xs opacity-70">hPa</span>
+                    <span className="text-xs opacity-70">
+                      {t("Details.hPa")}
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="text-center text-xs opacity-50 pb-8 pt-4">
-              Weather for {data.location} • Open-Meteo Data
+              {t("Descriptions.Footer", { location: data.location })}
             </div>
           </div>
         </div>

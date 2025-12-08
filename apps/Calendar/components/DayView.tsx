@@ -2,6 +2,7 @@ import React from "react";
 import { MapPin } from "lucide-react";
 import { CALENDARS } from "../constants";
 import { CalendarEvent } from "../types";
+import { useTranslations } from "next-intl";
 
 interface DayViewProps {
   currentDate: Date;
@@ -12,6 +13,7 @@ export const DayView: React.FC<DayViewProps> = ({
   currentDate,
   getEventsForDay,
 }) => {
+  const t = useTranslations("Calendar.Event");
   return (
     <div className="flex flex-col h-full overflow-y-auto">
       <div className="p-4 border-b border-gray-200 dark:border-white/10 sticky top-0 bg-white dark:bg-[#1e1e1e] z-10">
@@ -60,12 +62,12 @@ export const DayView: React.FC<DayViewProps> = ({
                 role="button"
                 tabIndex={0}
                 aria-label={`Event: ${event.title} at ${
-                  event.location || "No location"
+                  event.location || t("NoLocation")
                 }`}
               >
                 <div className="font-semibold">{event.title}</div>
                 <div className="opacity-90 text-xs flex items-center gap-1 mt-0.5">
-                  <MapPin size={10} /> {event.location || "No location"}
+                  <MapPin size={10} /> {event.location || t("NoLocation")}
                 </div>
               </div>
             );

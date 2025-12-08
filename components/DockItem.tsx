@@ -28,11 +28,17 @@ import { Photos } from "../apps/Photos";
 
 interface DockItemProps {
   name: string;
+  label?: string; // Translated name for display
   icon: string;
   mouseX: number | null;
 }
 
-export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
+export const DockItem: React.FC<DockItemProps> = ({
+  name,
+  label,
+  icon,
+  mouseX,
+}) => {
   const { launchProcess, processes, activePid } = useProcessStore();
   const { trashCount } = useSystemStore();
 
@@ -159,6 +165,8 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
 
   const width = baseWidth * scale;
 
+  const displayName = label || name;
+
   return (
     <div className="group relative flex flex-col items-center">
       {/* Tooltip */}
@@ -167,14 +175,14 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
                    backdrop-blur-md border border-gray-600/50 opacity-0 group-hover:opacity-100 
                    transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50 font-medium"
       >
-        {name}
+        {displayName}
       </div>
 
       {/* Icon */}
       <button
         ref={imgRef}
         onClick={handleClick}
-        aria-label={`${name}${isOpen ? " (running)" : ""}`}
+        aria-label={`${displayName}${isOpen ? " (running)" : ""}`}
         style={{
           width: `${width}px`,
           height: `${width}px`,
@@ -196,7 +204,7 @@ export const DockItem: React.FC<DockItemProps> = ({ name, icon, mouseX }) => {
         onAnimationEnd={() => setIsBouncing(false)}
       >
         <span
-          className="filter drop-shadow-md transform translate-y-[1px]"
+          className="filter drop-shadow-md transform translate-y-px"
           style={{ width: width, height: width }}
         >
           {name === "Calendar" ? (

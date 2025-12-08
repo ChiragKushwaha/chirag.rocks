@@ -4,8 +4,11 @@ import { useSystemStore } from "../store/systemStore";
 import { Widget } from "./widgets/Widget";
 import { X, MinusCircle } from "lucide-react";
 import { useNotificationStore, Notification } from "../store/notificationStore";
+import { useTranslations } from "next-intl";
 
 export const NotificationCenter: React.FC = () => {
+  const t = useTranslations("NotificationCenter");
+  const tWidgets = useTranslations("Widgets");
   const { isNotificationCenterOpen, toggleNotificationCenter } =
     useSystemStore();
   const { notifications, removeNotification, clearAll } =
@@ -61,7 +64,7 @@ export const NotificationCenter: React.FC = () => {
           <div className="mb-6">
             <div className="flex justify-between items-center mb-2">
               <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
-                Notifications
+                {t("Title")}
               </h3>
               <button
                 onClick={clearAll}
@@ -160,7 +163,7 @@ export const NotificationCenter: React.FC = () => {
         <div>
           <div className="flex justify-between items-center mb-2">
             <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
-              Widgets
+              {t("Widgets")}
             </h3>
             <button
               onClick={() => setIsEditing(!isEditing)}
@@ -170,18 +173,34 @@ export const NotificationCenter: React.FC = () => {
                   : "text-blue-500 hover:bg-blue-500/10"
               }`}
             >
-              {isEditing ? "Done" : "Edit"}
+              {isEditing ? t("Done") : t("Edit")}
             </button>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             {/* Wrap widgets to handle edit mode (shake effect) */}
             {[
-              { size: "small", type: "calendar", title: "Calendar" },
-              { size: "small", type: "weather", title: "Weather" },
-              { size: "medium", type: "reminders", title: "Reminders" },
-              { size: "medium", type: "stocks", title: "Stocks" },
-              { size: "small", type: "notes", title: "Notes" },
+              {
+                size: "small",
+                type: "calendar",
+                title: tWidgets("Calendar.Title"),
+              },
+              {
+                size: "small",
+                type: "weather",
+                title: tWidgets("Weather.Title"),
+              },
+              {
+                size: "medium",
+                type: "reminders",
+                title: tWidgets("Reminders.Title"),
+              },
+              {
+                size: "medium",
+                type: "stocks",
+                title: tWidgets("Stocks.Title"),
+              },
+              { size: "small", type: "notes", title: tWidgets("Notes.Title") },
             ].map((w, i) => (
               <div
                 key={i}
@@ -203,7 +222,7 @@ export const NotificationCenter: React.FC = () => {
             ))}
 
             <div className="col-span-1 h-36 rounded-2xl bg-white/20 dark:bg-white/5 flex items-center justify-center text-xs text-gray-400 border-2 border-dashed border-white/10 hover:bg-white/10 transition-colors cursor-pointer">
-              Add Widget
+              {t("AddWidget")}
             </div>
           </div>
         </div>

@@ -1,4 +1,1595 @@
 {
-  "Hello": "Hello world!",
-  "Welcome": "Welcome to the multi-language app"
+  "Hello": {
+    "world": "Helló világ!",
+    "GetStarted": "Kezdés"
+  },
+  "Setup": {
+    "Common": {
+      "Continue": "Folytatás",
+      "Back": "Vissza",
+      "NotNow": "Most nem",
+      "Cancel": "Mégse",
+      "LearnMore": "További információ"
+    },
+    "Language": {
+      "Title": "Válasszon nyelvet",
+      "Description": "Válassza ki a Macen használni kívánt nyelvet.",
+      "TableLabel": "Nyelv",
+      "Primary": "Elsődleges"
+    },
+    "Region": {
+      "Title": "Válasszon országot vagy régiót"
+    },
+    "DataPrivacy": {
+      "Title": "Adatok és adatvédelem",
+      "IconText": "Ez az ikon akkor jelenik meg, ha egy Apple funkció a személyes adatainak használatát kéri.",
+      "FeatureText": "Nem fogja ezt minden funkciónál látni, mivel az Apple csak akkor gyűjti ezeket az adatokat, ha szükség van rájuk a funkciók engedélyezéséhez, szolgáltatásaink biztosításához vagy az élmény személyre szabásához.",
+      "PrivacyText": "Az Apple hisz abban, hogy az adatvédelem alapvető emberi jog, ezért minden Apple terméket úgy terveztünk, hogy minimalizálja az adatgyűjtést és -használatot, lehetőség szerint eszközön belüli feldolgozást alkalmazzon, valamint átláthatóságot és ellenőrzést biztosítson az információi felett."
+    },
+    "TouchID": {
+      "Title": "Touch ID",
+      "SetupLater": "Touch ID beállítása később",
+      "Description": "Használja az ujjlenyomatát a Mac feloldásához és az Apple Payjel történő vásárláshoz. Kezdje azzal, hogy az ujját a Touch ID-ra helyezi."
+    },
+    "Fingerprint": {
+      "Title": "Helyezze el az ujját",
+      "Instruction": "Emelje fel és pihentesse az ujját többször a Touch ID-n",
+      "Success": "✓ Touch ID sikeresen konfigurálva"
+    },
+    "Languages": {
+      "Title": "Írott és beszélt nyelvek",
+      "Description": "A következő nyelveket gyakran használják az Ön régiójában. Beállíthatja a Macet ezek használatára, vagy egyedileg testreszabhatja őket.",
+      "Preferred": "Preferált nyelvek",
+      "InputSources": "Bemeneti források",
+      "Dictation": "Diktálás",
+      "Customize": "Beállítások testreszabása"
+    },
+    "Accessibility": {
+      "Title": "Kisegítő lehetőségek",
+      "Description": "A kisegítő lehetőségek az Ön egyéni igényeihez igazítják a Macet. Most bekapcsolhatja őket, hogy segítsenek a beállításban, később pedig tovább testreszabhatja őket a Rendszerbeállításokban.",
+      "Vision": "Látás",
+      "Motor": "Mozgás",
+      "Hearing": "Hallás",
+      "Cognitive": "Kognitív"
+    },
+    "Migration": {
+      "Title": "Költöztető asszisztens",
+      "Description": "Ha vannak adatai egy másik Macen vagy Windows PC-n, átviheti azokat erre a Macre. Átvihet adatokat Time Machine biztonsági mentésből vagy más indítólemezről is.",
+      "Question": "Hogyan szeretné átvinni az adatait?",
+      "FromMac": "Macről, Time Machine mentésből vagy indítólemezről",
+      "FromPC": "Windows PC-ről"
+    },
+    "AppleID": {
+      "Title": "Jelentkezzen be Apple ID-val",
+      "Description": "Jelentkezzen be az iCloud, az App Store és más Apple szolgáltatások használatához.",
+      "Label": "Apple ID",
+      "CreateNew": "Új Apple ID létrehozása",
+      "Forgot": "Elfelejtette az Apple ID-t vagy jelszót?",
+      "UseDifferent": "Különböző Apple ID-k használata az iCloudhoz és a médiavásárlásokhoz?",
+      "Info": "Ez a Mac az Apple ID-jához lesz társítva, és az olyan adatok, mint a fotók, névjegyek és dokumentumok az iCloudban lesznek tárolva, így más eszközökön is elérheti őket.",
+      "SeeData": "Adatkezelés megtekintése",
+      "SetupLater": "Beállítás később",
+      "ErrorRequired": "Kérjük, adja meg az Apple ID-ját."
+    },
+    "Account": {
+      "Title": "Hozza létre számítógépes fiókját",
+      "CreateAppleID": "Apple ID létrehozása",
+      "Description": "Adja meg a nevét és a fiókadatait a számítógép beállításához.",
+      "Name": "Teljes név",
+      "Email": "Email cím",
+      "Age": "Életkor",
+      "Phone": "Mobil szám",
+      "Password": "Jelszó",
+      "Errors": {
+        "NameRequired": "A teljes név megadása kötelező.",
+        "EmailRequired": "Az email cím megadása kötelező.",
+        "EmailInvalid": "Adjon meg érvényes email címet.",
+        "AgeRequired": "Az életkor megadása kötelező.",
+        "AgeInvalid": "Adjon meg érvényes életkort.",
+        "PhoneRequired": "A telefonszám megadása kötelező.",
+        "PasswordRequired": "A jelszó megadása kötelező.",
+        "PasswordLength": "A jelszónak legalább 6 karakter hosszúnak kell lennie."
+      }
+    },
+    "Theme": {
+      "Title": "Válasszon megjelenést",
+      "Description": "Válassza a Világos vagy Sötét megjelenést. A rendszerfelület és az alkalmazások automatikusan alkalmazkodnak.",
+      "Light": "Világos",
+      "Dark": "Sötét"
+    }
+  },
+  "SystemSettings": {
+    "General": {
+      "Title": "Általános",
+      "Description": "Kezelje a Mac általános beállításait, például a szoftverfrissítést, a nyelvet, az AirDropot és egyebeket.",
+      "About": "Infó",
+      "SoftwareUpdate": "Szoftverfrissítés",
+      "Storage": "Tárhely",
+      "AppleCare": "AppleCare és jótállás",
+      "AirDrop": "AirDrop és Handoff",
+      "AutoFill": "Automatikus kitöltés és jelszavak",
+      "DateTime": "Dátum és idő",
+      "LanguageRegion": "Nyelv és régió",
+      "LoginItems": "Bejelentkezési elemek és bővítmények",
+      "Sharing": "Megosztás",
+      "StartupDisk": "Indítólemez",
+      "TimeMachine": "Time Machine",
+      "DeviceManagement": "Eszközfelügyelet",
+      "TransferReset": "Átvitel vagy visszaállítás"
+    },
+    "AppleAccount": {
+      "Edit": "Szerkesztés",
+      "PersonalInformation": "Személyes adatok",
+      "SignInSecurity": "Bejelentkezés és biztonság",
+      "PaymentShipping": "Fizetés és szállítás",
+      "iCloud": "iCloud",
+      "MediaPurchases": "Média és vásárlások",
+      "Family": "Család",
+      "SetUp": "Beállítás",
+      "Devices": "Eszközök",
+      "ThisMac": "Ez a MacBook Pro 14″",
+      "SignOut": "Kijelentkezés..."
+    },
+    "LanguageRegion": {
+      "Title": "Nyelv és régió",
+      "PreferredLanguages": "Preferált nyelvek",
+      "Region": "Régió",
+      "Calendar": "Naptár",
+      "Temperature": "Hőmérséklet",
+      "Celsius": "Celsius (°C)",
+      "Fahrenheit": "Fahrenheit (°F)",
+      "MeasurementSystem": "Mértékegységrendszer",
+      "Metric": "Metrikus",
+      "US": "USA",
+      "UK": "Egyesült Királyság",
+      "FirstDayOfWeek": "A hét első napja",
+      "DateFormat": "Dátumformátum",
+      "NumberFormat": "Számformátum",
+      "LiveText": "Élő szöveg",
+      "LiveTextDesc": "Szöveg kijelölése képeken másoláshoz vagy műveletekhez.",
+      "Applications": "Alkalmazások",
+      "ApplicationsDesc": "Nyelvi beállítások testreszabása a következő alkalmazásokhoz:",
+      "TranslationLanguages": "Fordítási nyelvek..."
+    },
+    "Sidebar": {
+      "Search": "Keresés",
+      "NotImplemented": "Ez a rész még nincs implementálva.",
+      "AppleAccount": "Apple Fiók",
+      "WiFi": "Wi-Fi",
+      "Bluetooth": "Bluetooth",
+      "Network": "Hálózat",
+      "General": "Általános",
+      "Appearance": "Megjelenés",
+      "Accessibility": "Kisegítő lehetőségek",
+      "MenuBar": "Menüsor",
+      "DesktopDock": "Íróasztal és Dock",
+      "Displays": "Kijelzők",
+      "Spotlight": "Spotlight",
+      "Wallpaper": "Háttérkép",
+      "ScreenSaver": "Képernyővédő",
+      "Battery": "Akkumulátor",
+      "Sound": "Hang",
+      "Notifications": "Értesítések",
+      "Focus": "Fókusz",
+      "ScreenTime": "Képernyőidő",
+      "PrivacySecurity": "Adatvédelem és biztonság",
+      "LockScreen": "Zárolási képernyő",
+      "TouchIDPassword": "Touch ID és jelszó",
+      "UsersGroups": "Felhasználók és csoportok",
+      "Keyboard": "Billentyűzet",
+      "Trackpad": "Trackpad",
+      "PrintersScanners": "Nyomtatók és szkennerek",
+      "Storage": "Tárhely"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "Description": "Állítsa be a Wi-Fi-t a Mac internetkapcsolatához.",
+      "Connected": "Kapcsolódva",
+      "Details": "Részletek...",
+      "KnownNetworks": "Ismert hálózatok",
+      "OtherNetworks": "Egyéb hálózatok",
+      "Connect": "Csatlakozás",
+      "Other": "Egyéb...",
+      "AskToJoin": "Csatlakozási kérelem hálózatokhoz",
+      "AskToJoinDesc": "Az ismert hálózatokhoz automatikusan csatlakozik.",
+      "Notify": "Értesítés",
+      "AskToJoinHotspots": "Csatlakozási kérelem hotspotokhoz",
+      "AskToJoinHotspotsDesc": "Engedélyezze a Macnek a közeli személyes hotspotok automatikus felderítését.",
+      "AskToJoinAction": "Kérdezzen rá",
+      "Advanced": "Haladó..."
+    },
+    "Bluetooth": {
+      "Title": "Bluetooth",
+      "Description": "Csatlakoztasson kiegészítőket, amelyeket zenehallgatáshoz, gépeléshez és játékhoz használhat.",
+      "Discoverable": "Ez a Mac „MacBook Pro” néven látható, amíg a Bluetooth beállítások nyitva vannak.",
+      "MyDevices": "Saját eszközök",
+      "NotConnected": "Nincs kapcsolódva",
+      "NearbyDevices": "Közeli eszközök",
+      "Searching": "Keresés..."
+    },
+    "Network": {
+      "Title": "Hálózat",
+      "WiFi": "Wi-Fi",
+      "Connected": "Kapcsolódva",
+      "Firewall": "Tűzfal",
+      "Inactive": "Inaktív",
+      "OtherServices": "Egyéb szolgáltatások",
+      "NotConnected": "Nincs hálózat"
+    },
+    "Appearance": {
+      "Title": "Megjelenés",
+      "Description": "Válassza ki a preferált megjelenést.",
+      "Light": "Világos",
+      "Dark": "Sötét",
+      "Auto": "Automatikus",
+      "AccentColor": "Kiemelés színe",
+      "HighlightColor": "Kijelölés színe",
+      "Automatic": "Automatikus",
+      "SidebarIconSize": "Oldalsáv ikon mérete",
+      "Medium": "Közepes",
+      "WallpaperTinting": "Háttérkép árnyalatának engedélyezése az ablakokban",
+      "ShowScrollBars": "Görgetősávok megjelenítése",
+      "ScrollAuto": "Automatikusan egér vagy trackpad alapján",
+      "ScrollWhenScrolling": "Görgetéskor",
+      "ScrollAlways": "Mindig",
+      "ClickScrollBar": "Kattintás a görgetősávban",
+      "JumpNextPage": "Ugrás a következő oldalra",
+      "JumpSpotClicked": "Ugrás a kattintott helyre"
+    },
+    "Accessibility": {
+      "Title": "Kisegítő lehetőségek",
+      "Description": "Testreszabhatja a Macet az egyéni igényeinek megfelelően látás, hallás, mozgás és kognitív funkciók terén.",
+      "LearnMore": "További információ...",
+      "Vision": "Látás",
+      "VoiceOver": "VoiceOver",
+      "Zoom": "Nagyítás",
+      "HoverText": "Lebegő szöveg",
+      "Display": "Kijelző",
+      "Motion": "Mozgás",
+      "ReadSpeak": "Felolvasás",
+      "AudioDescriptions": "Hangos leírás",
+      "Hearing": "Hallás",
+      "HearingDevices": "Hallókészülékek",
+      "Audio": "Hang",
+      "Captions": "Feliratok",
+      "LiveCaptions": "Élő feliratok",
+      "NameRecognition": "Névfelismerés",
+      "Motor": "Mozgás",
+      "VoiceControl": "Hangvezérlés",
+      "Keyboard": "Billentyűzet",
+      "PointerControl": "Mutatóvezérlés",
+      "SwitchControl": "Kapcsolóvezérlés",
+      "General": "Általános",
+      "Siri": "Siri",
+      "Shortcut": "Parancs"
+    },
+    "MenuBar": {
+      "Title": "Menüsor",
+      "Description": "A menüsor beállításainak módosítása.",
+      "AutoHide": "A menüsor automatikus elrejtése és megjelenítése",
+      "Never": "Soha",
+      "RecentDocs": "Legutóbbi dokumentumok, alkalmazások és szerverek",
+      "None": "Nincs",
+      "Controls": "Menüsor elemek",
+      "ControlCenter": "Vezérlőközpont",
+      "ShowInMenuBar": "Megjelenítés a menüsoron",
+      "DontShowInMenuBar": "Ne jelenjen meg a menüsoron",
+      "Siri": "Siri",
+      "Spotlight": "Spotlight",
+      "VolumeFeedback": "Visszajelzés lejátszása hangerő módosításakor"
+    },
+    "DesktopDock": {
+      "Title": "Íróasztal és Dock",
+      "Description": "Módosítsa a Dock és az íróasztal megjelenését.",
+      "Dock": "Dock",
+      "Size": "Méret",
+      "Magnification": "Nagyítás",
+      "Small": "Kicsi",
+      "Large": "Nagy",
+      "Position": "Pozíció a képernyőn",
+      "Bottom": "Lent",
+      "MinimiseUsing": "Ablakok kicsinyítése",
+      "GenieEffect": "Genie effektus",
+      "DoubleClickTitle": "Dupla kattintás az ablak címsorára",
+      "Zoom": "Nagyítás",
+      "MinimiseToIcon": "Ablakok kicsinyítése az alkalmazás ikonjába",
+      "AutoHideDock": "Dock automatikus elrejtése és megjelenítése",
+      "AnimateOpening": "Alkalmazások megnyitásának animálása",
+      "ShowIndicators": "Jelzők megjelenítése a megnyitott alkalmazásoknál",
+      "ShowRecent": "Legutóbbi alkalmazások megjelenítése a Dockban",
+      "DesktopStageManager": "Íróasztal és Porondmester",
+      "ShowItems": "Elemek megjelenítése",
+      "OnDesktop": "Az íróasztalon",
+      "ClickWallpaper": "Kattintás a háttérképre az íróasztal megjelenítéséhez",
+      "Always": "Mindig",
+      "StageManager": "Porondmester",
+      "Widgets": "Widgetek",
+      "ShowWidgets": "Widgetek megjelenítése",
+      "WidgetStyle": "Widget stílus",
+      "Automatic": "Automatikus",
+      "UseIPhoneWidgets": "iPhone widgetek használata"
+    },
+    "Displays": {
+      "Title": "Kijelzők",
+      "Description": "Válasszon ki egy kijelzőt a beállításai módosításához.",
+      "BuiltInDisplay": "Beépített kijelző",
+      "UseAs": "Használat mint",
+      "MainDisplay": "Fő kijelző",
+      "Resolution": "Felbontás",
+      "Default": "Alapértelmezett",
+      "MoreSpace": "Több hely",
+      "LargerText": "Nagyobb szöveg",
+      "Brightness": "Fényerő",
+      "TrueTone": "True Tone",
+      "Preset": "Előre beállított",
+      "RefreshRate": "Frissítési gyakoriság",
+      "ProMotion": "ProMotion",
+      "Advanced": "Haladó..."
+    },
+    "Spotlight": {
+      "Title": "Spotlight",
+      "Description": "Keresés a Macen.",
+      "SearchPlaceholder": "Spotlight keresés",
+      "SearchResults": "Keresési eredmények",
+      "Privacy": "Spotlight adatvédelem...",
+      "Categories": {
+        "Applications": "Alkalmazások",
+        "Calculator": "Számológép",
+        "Contacts": "Kontaktok",
+        "Conversion": "Konverzió",
+        "Definition": "Definíció",
+        "Developer": "Fejlesztő",
+        "Documents": "Dokumentumok",
+        "Events & Reminders": "Események és emlékeztetők",
+        "Folders": "Mappák",
+        "Fonts": "Betűtípusok",
+        "Images": "Képek",
+        "Mail & Messages": "Mail és üzenetek",
+        "Movies": "Filmek",
+        "Music": "Zene",
+        "Other": "Egyéb",
+        "PDF Documents": "PDF dokumentumok",
+        "Presentations": "Prezentációk",
+        "Siri Suggestions": "Siri javaslatok",
+        "Spreadsheets": "Táblázatok",
+        "System Preferences": "Rendszerbeállítások",
+        "Tips": "Tippek",
+        "Bookmarks & History": "Könyvjelzők és előzmények"
+      }
+    },
+    "Notifications": {
+      "Title": "Értesítések",
+      "Description": "Vezérelje az értesítések megjelenítését.",
+      "Preview": "Előnézet",
+      "ShowPreviews": "Előnézetek megjelenítése",
+      "Always": "Mindig",
+      "ApplicationNotifications": "Alkalmazás értesítések",
+      "Apps": {
+        "AppStore": "App Store",
+        "Calendar": "Naptár",
+        "FaceTime": "FaceTime",
+        "Mail": "Mail",
+        "Messages": "Üzenetek",
+        "Photos": "Fotók",
+        "Reminders": "Emlékeztetők",
+        "Safari": "Safari"
+      }
+    },
+    "Sound": {
+      "Title": "Hang",
+      "Description": "Hangbeállítások módosítása.",
+      "OutputInput": "Kimenet és Bemenet",
+      "Output": "Kimenet",
+      "Input": "Bemenet",
+      "SelectOutput": "Válasszon kimeneti eszközt:",
+      "Speakers": "MacBook Pro hangszórók",
+      "BuiltIn": "Beépített",
+      "OutputVolume": "Kimeneti hangerő",
+      "Mute": "Némítás",
+      "ShowInMenuBar": "Hang megjelenítése a menüsoron",
+      "Always": "Mindig",
+      "AlertSoundGroup": "Figyelmeztető hang",
+      "AlertSound": "Figyelmeztető hang",
+      "Boop": "Boop",
+      "AlertVolume": "Figyelmeztetés hangereje",
+      "PlayUIEffects": "Felhasználói felület hanghatásainak lejátszása"
+    },
+    "Focus": {
+      "Title": "Fókusz",
+      "Description": "Válasszon ki egy Fókuszt a beállításai testreszabásához.",
+      "DoNotDisturb": "Ne zavarjanak",
+      "ShareAcrossDevices": "Megosztás eszközök között",
+      "FocusStatus": "Fókusz állapot",
+      "On": "Be",
+      "Off": "Ki",
+      "SetUp": "Beállítás",
+      "FocusModes": "Fókusz módok",
+      "Personal": "Személyes",
+      "Sleep": "Alvás",
+      "Work": "Munka",
+      "AddFocus": "Fókusz hozzáadása"
+    },
+    "ScreenTime": {
+      "Title": "Képernyőidő",
+      "Description": "Használat figyelése és korlátok beállítása.",
+      "DailyAverage": "Napi átlag",
+      "FromLastWeek": "a múlt hétről",
+      "Downtime": "Nyugalmi idő",
+      "AppLimits": "Alkalmazás korlátok",
+      "LimitsCount": "{count} korlát",
+      "AlwaysAllowed": "Mindig engedélyezett",
+      "AllowedApps": "Telefon, Térkép, Üzenetek",
+      "ContentPrivacy": "Tartalom és adatvédelem",
+      "On": "Be",
+      "Off": "Ki",
+      "ShareAcrossDevices": "Megosztás eszközök között",
+      "LockSettings": "Képernyőidő beállítások zárolása"
+    },
+    "Battery": {
+      "Title": "Akkumulátor",
+      "Description": "Ellenőrizze az akkumulátor állapotát és használatát.",
+      "BatteryLevel": "Akkumulátor töltöttsége",
+      "LastCharged": "Utoljára 100%-ra feltöltve ma 8:00-kor",
+      "LowPowerMode": "Alacsony töltöttségű mód",
+      "Never": "Soha",
+      "BatteryHealth": "Akkumulátor állapota",
+      "Normal": "Normál",
+      "OptimisedCharging": "Optimalizált töltés",
+      "Options": "Opciók..."
+    },
+    "Keyboard": {
+      "Title": "Billentyűzet",
+      "Description": "Billentyűzet beállításainak módosítása.",
+      "KeyRepeat": "Billentyűismétlés",
+      "Slow": "Lassú",
+      "Fast": "Gyors",
+      "DelayUntilRepeat": "Ismétlés késleltetése",
+      "Long": "Hosszú",
+      "Short": "Rövid",
+      "AdjustBrightness": "Billentyűzet fényerejének beállítása gyenge fénynél",
+      "KeyboardNavigation": "Billentyűzet navigáció",
+      "Shortcuts": "Billentyűparancsok...",
+      "TextInput": "Szövegbevitel",
+      "InputSources": "Bemeneti források",
+      "Edit": "Szerkesztés...",
+      "Dictation": "Diktálás"
+    },
+    "LockScreen": {
+      "Title": "Zárolási képernyő",
+      "Description": "Módosítsa a zárolási képernyő beállításait.",
+      "TurnOffDisplayBattery": "Kijelző kikapcsolása akkumulátorról, ha inaktív",
+      "TurnOffDisplayAdapter": "Kijelző kikapcsolása hálózati adapterről, ha inaktív",
+      "TwoMinutes": "2 perc",
+      "TenMinutes": "10 perc",
+      "RequirePassword": "Jelszó kérése képernyővédő vagy kijelző kikapcsolása után",
+      "Immediately": "Azonnal",
+      "ShowMessage": "Üzenet megjelenítése zároláskor",
+      "Set": "Beállítás...",
+      "LoginWindowShows": "Bejelentkezési ablak tartalma",
+      "ListOfUsers": "Felhasználók listája",
+      "ShowLargeClock": "Nagy óra megjelenítése",
+      "OnLockScreen": "Zárolási képernyőn"
+    },
+    "PrivacySecurity": {
+      "Title": "Adatvédelem és biztonság",
+      "Description": "Szabályozza, mely alkalmazások férhetnek hozzá adataihoz.",
+      "Privacy": "Adatvédelem",
+      "LocationServices": "Helymeghatározás",
+      "On": "Be",
+      "Off": "Ki",
+      "Camera": "Kamera",
+      "Microphone": "Mikrofon",
+      "FilesFolders": "Fájlok és mappák",
+      "ScreenRecording": "Képernyőfelvétel",
+      "AppsCount": "{count, plural, =0 {0 alk} one {1 alk} other {# alk}}",
+      "Security": "Biztonság",
+      "FileVault": "FileVault",
+      "LockdownMode": "Zárolási mód",
+      "Others": "Egyéb",
+      "Extensions": "Bővítmények",
+      "Profiles": "Profilok"
+    },
+    "PrintersScanners": {
+      "Title": "Nyomtatók és szkennerek",
+      "Description": "Nyomtatók és szkennerek beállítása.",
+      "Printers": "Nyomtatók",
+      "IdleLastUsed": "Tétlen, Legutóbb használt",
+      "Offline": "Offline",
+      "AddPrinter": "Nyomtató, szkenner vagy fax hozzáadása..."
+    },
+    "ScreenSaver": {
+      "Title": "Képernyővédő",
+      "Description": "Válasszon képernyővédőt.",
+      "Preview": "Előnézet",
+      "ShowOnAllSpaces": "Megjelenítés minden térben",
+      "ScreenSavers": "Képernyővédők",
+      "StartAfter": "Indítás ennyi idő után",
+      "FiveMinutes": "5 perc",
+      "ShowWithClock": "Megjelenítés órával",
+      "ScreensaverNames": {
+        "Ventura": "Ventura",
+        "Monterey": "Monterey",
+        "BigSur": "Big Sur",
+        "Catalina": "Catalina",
+        "Hello": "Hello",
+        "Drift": "Drift",
+        "Flurry": "Flurry",
+        "Shell": "Shell"
+      }
+    },
+    "Storage": {
+      "Title": "Tárhely",
+      "Description": "Lemezterület kezelése.",
+      "MacintoshHD": "Macintosh HD",
+      "AvailableSpace": "{available} GB szabad / {total} GB",
+      "Apps": "Alkalmazások",
+      "Documents": "Dokumentumok",
+      "SystemData": "Rendszeradatok",
+      "macOS": "macOS",
+      "OtherUsers": "Egyéb felhasználók",
+      "Recommendations": "Javaslatok",
+      "StoreInICloud": "Tárolás az iCloudban",
+      "StoreInICloudDesc": "Tárolja fájljait, fotóit és üzeneteit az iCloudban, hogy helyet takarítson meg ezen a Macen.",
+      "StoreInICloudButton": "Tárolás az iCloudban...",
+      "Categories": "Kategóriák",
+      "Applications": "Alkalmazások"
+    },
+    "TouchIDPassword": {
+      "Title": "Touch ID és jelszó",
+      "Description": "Adjon hozzá ujjlenyomatot a Mac feloldásához.",
+      "TouchID": "Touch ID",
+      "Finger1": "1. ujj",
+      "AddFingerprint": "Ujjlenyomat hozzáadása",
+      "UseTouchIDFor": "Touch ID használata a következőkhöz:",
+      "UnlockingMac": "A Mac feloldása",
+      "ApplePay": "Apple Pay",
+      "iTunesAppStore": "iTunes Store, App Store és Apple Books",
+      "AutoFillPasswords": "Jelszavak automatikus kitöltése",
+      "Password": "Jelszó",
+      "LastChanged": "Utolsó módosítás: 2024. 11. 24.",
+      "Change": "Módosítás...",
+      "RequirePasswordScreenSaver": "Jelszó kérése képernyővédő vagy kijelző kikapcsolása után",
+      "Immediately": "Azonnal",
+      "RequirePasswordIdle": "Jelszó kérése tétlenség után",
+      "Never": "Soha",
+      "Seconds": "{count} másodperc",
+      "Minute": "{count} perc",
+      "Minutes": "{count} perc",
+      "AppleWatch": "Apple Watch",
+      "AppleWatchUnlock": "Használja az Apple Watch-ot alkalmazások és a Mac feloldásához"
+    },
+    "Trackpad": {
+      "Title": "Trackpad",
+      "Description": "Trackpad beállítások módosítása.",
+      "PointClick": "Mutatás és kattintás",
+      "ScrollZoom": "Görgetés és nagyítás",
+      "MoreGestures": "További gesztusok",
+      "TrackingSpeed": "Követési sebesség",
+      "Slow": "Lassú",
+      "Fast": "Gyors",
+      "Click": "Kattintás",
+      "Medium": "Közepes",
+      "ForceClick": "Erős kattintás és haptikus visszajelzés",
+      "LookUp": "Keresés és adatdetektorok",
+      "SecondaryClick": "Másodlagos kattintás",
+      "ClickTwoFingers": "Kattintás két ujjal",
+      "TapToClick": "Koppintás a kattintáshoz",
+      "VideoPreview": "Video előnézet"
+    },
+    "UsersGroups": {
+      "Title": "Felhasználók és csoportok",
+      "Description": "Felhasználói fiókok és csoportok kezelése.",
+      "CurrentUser": "Jelenlegi felhasználó",
+      "Admin": "Rendszergazda",
+      "OtherUsers": "Egyéb felhasználók",
+      "GuestUser": "Vendég felhasználó",
+      "Off": "Ki",
+      "AddAccount": "Fiók hozzáadása...",
+      "AutoLogin": "Automatikus bejelentkezés mint",
+      "AllowNetworkUsers": "Hálózati felhasználók bejelentkezésének engedélyezése a bejelentkezési ablakban"
+    },
+    "Wallpaper": {
+      "Title": "Háttérkép",
+      "Description": "Válasszon háttérképet.",
+      "ShowOnAllSpaces": "Megjelenítés minden térben",
+      "DynamicWallpapers": "Dinamikus háttérképek",
+      "Pictures": "Képek",
+      "AddPhoto": "Fotó hozzáadása"
+    },
+    "LanguageSelector": {
+      "Title": "Válasszon preferált nyelvet a hozzáadáshoz",
+      "Search": "Keresés",
+      "Cancel": "Mégse",
+      "Add": "Hozzáadás"
+    }
+  },
+  "Languages": {
+    "English": "Angol",
+    "Spanish": "Spanyol",
+    "French": "Francia",
+    "German": "Német",
+    "Italian": "Olasz",
+    "Japanese": "Japán",
+    "Chinese": "Kínai",
+    "Portuguese": "Portugál",
+    "Russian": "Orosz",
+    "Korean": "Koreai",
+    "Dutch": "Holland",
+    "Swedish": "Svéd",
+    "Danish": "Dán",
+    "Norwegian": "Norvég",
+    "Finnish": "Finn",
+    "Polish": "Lengyel",
+    "Turkish": "Török",
+    "Arabic": "Arab",
+    "Hindi": "Hindi",
+    "Bengali": "Bengáli",
+    "Vietnamese": "Vietnámi",
+    "Thai": "Thai",
+    "Greek": "Görög",
+    "Czech": "Cseh",
+    "Hungarian": "Magyar",
+    "Romanian": "Román",
+    "Ukrainian": "Ukrán",
+    "Indonesian": "Indonéz",
+    "Malay": "Maláj",
+    "Croatian": "Horvát",
+    "Slovak": "Szlovák",
+    "Slovenian": "Szlovén",
+    "Bulgarian": "Bolgár",
+    "Serbian": "Szerb",
+    "Hebrew": "Héber"
+  },
+  "Finder": {
+    "Search": "Keresés",
+    "Sidebar": {
+      "Favorites": "Kedvencek",
+      "Locations": "Helyek",
+      "AirDrop": "AirDrop",
+      "Recents": "Legutóbbiak",
+      "Applications": "Alkalmazások",
+      "Desktop": "Íróasztal",
+      "Documents": "Dokumentumok",
+      "Downloads": "Letöltések",
+      "Pictures": "Képek",
+      "Home": "Saját mappa",
+      "MacintoshHD": "Macintosh HD",
+      "iCloudDrive": "iCloud Drive"
+    },
+    "Menu": {
+      "NewFolder": "Új mappa",
+      "GetInfo": "Infó megjelenítése",
+      "ChangeBackground": "Háttér megváltoztatása...",
+      "Open": "Megnyitás",
+      "MoveToBin": "Áthelyezés a kukába",
+      "Rename": "Átnevezés",
+      "OpenItems": "{count} elem megnyitása",
+      "MoveItemsToBin": "{count} elem áthelyezése a kukába"
+    },
+    "Status": {
+      "Loading": "Betöltés...",
+      "EmptyFolder": "A mappa üres",
+      "ItemCount": "{count, plural, =1 {1 elem} other {# elem}}",
+      "SpaceAvailable": "{amount} GB szabad"
+    },
+    "Errors": {
+      "NoApp": "Nincs elérhető alkalmazás a(z) .{ext} fájlok megnyitásához.",
+      "CreateFolderFailed": "Nem sikerült létrehozni a mappát",
+      "MoveToBinFailed": "Nem sikerült áthelyezni az elemeket a kukába"
+    }
+  },
+  "Safari": {
+    "Title": "Safari",
+    "StartPage": "Kezdőlap",
+    "Loading": "Betöltés...",
+    "SearchPlaceholder": "Keresés vagy webhely nevének megadása",
+    "NoInternet": "Nincs internetkapcsolat",
+    "NoInternetDesc": "Ez az oldal nem jeleníthető meg, mert a számítógép offline állapotban van.",
+    "Favorites": {
+      "Apple": "Apple",
+      "Google": "Google",
+      "Wikipedia": "Wikipédia",
+      "GitHub": "GitHub"
+    }
+  },
+  "Mail": {
+    "Inbox": "Bejövő",
+    "MessagesCount": "{count, plural, =1 {1 üzenet} other {# üzenet}}",
+    "Favorites": "KEDVENCEK",
+    "AllInboxes": "Összes bejövő",
+    "VIP": "VIP",
+    "Sent": "Elküldött",
+    "Search": "Keresés",
+    "NoMessageSelected": "Válasszon emailt",
+    "To": "Címzett: {name}"
+  },
+  "Messages": {
+    "AppTitle": "Üzenetek",
+    "SigningIn": "Bejelentkezés mint {name}...",
+    "SidebarTitle": "Üzenetek",
+    "NoOnlineUsers": "Senki más nincs online.",
+    "NoMessages": "Nincsenek üzenetek",
+    "To": "Címzett: {name}",
+    "InputPlaceholder": "iMessage",
+    "NoContactSelected": "Válasszon kapcsolatot az üzenetküldéshez"
+  },
+  "Photos": {
+    "Sidebar": {
+      "Library": "Könyvtár",
+      "Collections": "Gyűjtemények",
+      "Pinned": "Rögzített",
+      "Albums": "Albumok",
+      "Utilities": "Eszközök",
+      "Projects": "Projektek",
+      "Favourites": "Kedvencek",
+      "RecentlySaved": "Legutóbb mentett",
+      "Videos": "Videók",
+      "Screenshots": "Képernyőfotók",
+      "PeoplePets": "Személyek és háziállatok",
+      "SharedAlbums": "Megosztott albumok",
+      "Activity": "Tevékenység",
+      "RecentlyDeleted": "Legutóbb törölt",
+      "Duplicates": "Duplikátumok",
+      "Map": "Térkép",
+      "AllProjects": "Minden projekt"
+    },
+    "Tabs": {
+      "Years": "Évek",
+      "Months": "Hónapok",
+      "AllPhotos": "Összes fotó"
+    },
+    "Search": "Keresés",
+    "Collections": {
+      "Title": "Gyűjtemények",
+      "Memories": "Emlékek",
+      "NoMemories": "Nincsenek elérhető emlékek",
+      "NoMemoriesDesc": "Az emlékek itt jelennek meg, amikor elérhetők.",
+      "Albums": "Albumok",
+      "NoAlbums": "Nincsenek elérhető albumok"
+    },
+    "EmptyState": {
+      "NoItems": "Nincs találat a következőben: {title}"
+    },
+    "Locked": {
+      "Title": "{title} zárolva van",
+      "Desc": "Hitelesítse magát az elemek megtekintéséhez."
+    }
+  },
+  "Notes": {
+    "Sidebar": {
+      "iCloud": "ICLOUD",
+      "Notes": "Notes",
+      "RecentlyDeleted": "Recently Deleted"
+    },
+    "Search": "Search",
+    "NewNote": "New Note",
+    "NoAdditionalText": "No additional text",
+    "Editor": {
+      "TitlePlaceholder": "Title",
+      "ContentPlaceholder": "Type your note here...",
+      "AddToDesktop": "Add to Desktop",
+      "Restore": "Restore",
+      "Delete": "Delete Note",
+      "DeletePermanently": "Delete Permanently",
+      "EmptyState": "Select a note or create a new one",
+      "Date": "Today at {time}"
+    }
+  },
+  "Reminders": {
+    "Search": "Search",
+    "Sidebar": {
+      "MyLists": "MY LISTS",
+      "Reminders": "Reminders",
+      "Work": "Work",
+      "Today": "Today",
+      "Scheduled": "Scheduled",
+      "All": "All",
+      "Flagged": "Flagged"
+    },
+    "AddReminder": "New Reminder",
+    "Actions": {
+      "Add": "Add",
+      "Cancel": "Cancel",
+      "Delete": "Delete reminder",
+      "MarkComplete": "Mark as complete",
+      "MarkIncomplete": "Mark as incomplete",
+      "Flag": "Flag reminder",
+      "Unflag": "Unflag reminder"
+    },
+    "Inputs": {
+      "Title": "Title",
+      "Date": "Date",
+      "Time": "Time"
+    }
+  },
+  "Calendar": {
+    "Sidebar": {
+      "iCloud": "ICLOUD",
+      "Other": "OTHER",
+      "NoInvitations": "No invitations"
+    },
+    "Toolbar": {
+      "Today": "Today",
+      "SearchPlaceholder": "Search events...",
+      "View": {
+        "day": "day",
+        "week": "week",
+        "month": "month",
+        "year": "year"
+      }
+    },
+    "EventModal": {
+      "Title": "New Event",
+      "EventTitlePlaceholder": "Event Title",
+      "CalendarLabel": "Calendar",
+      "Cancel": "Cancel",
+      "AddEvent": "Add Event"
+    },
+    "SearchResults": {
+      "Title": "Search Results",
+      "NoEvents": "No events found"
+    },
+    "Event": {
+      "NoLocation": "No location",
+      "EventLabel": "Event: {title} at {location}"
+    },
+    "Weekdays": {
+      "Sun": "Sun",
+      "Mon": "Mon",
+      "Tue": "Tue",
+      "Wed": "Wed",
+      "Thu": "Thu",
+      "Fri": "Fri",
+      "Sat": "Sat"
+    },
+    "WeekdaysShort": {
+      "Sun": "S",
+      "Mon": "M",
+      "Tue": "T",
+      "Wed": "W",
+      "Thu": "T",
+      "Fri": "F",
+      "Sat": "S"
+    }
+  },
+  "Maps": {
+    "Title": "Térkép",
+    "Search": "Hely vagy cím keresése",
+    "SearchPlaceholder": "Keresés a Térképen",
+    "Sidebar": {
+      "Favorites": "Kedvencek",
+      "Guides": "Útmutatók",
+      "Recents": "Legutóbbiak",
+      "Home": "Otthon",
+      "Work": "Munka",
+      "Recent": "Legutóbbi",
+      "NoRecentSearches": "Nincsenek legutóbbi keresések",
+      "RecentLabel": "Legutóbbi"
+    },
+    "Locations": {
+      "Home": "Otthon",
+      "Work": "Munka"
+    },
+    "Controls": {
+      "SwitchToSatellite": "Váltás Műholdra",
+      "SwitchToSatelliteLabel": "Váltás Műhold nézetre",
+      "SwitchToMap": "Váltás Térképre",
+      "SwitchToMapLabel": "Váltás Térkép nézetre",
+      "CurrentLocation": "Jelenlegi helyzet",
+      "ShowCurrentLocation": "Jelenlegi helyzet megjelenítése",
+      "MapInfo": "Térkép információ"
+    },
+    "Permission": {
+      "AppName": "Térkép",
+      "Title": "Helyzet",
+      "Reason": "A Térképnek hozzá kell férnie a helyzetéhez, hogy megmutassa, hol van.",
+      "Error": "Nem sikerült meghatározni a helyzetét. Ellenőrizze a helymeghatározás engedélyezését.",
+      "NotSupported": "A böngésző nem támogatja a helymeghatározást."
+    },
+    "Map": {
+      "Standard": "Térkép",
+      "Satellite": "Műhold",
+      "Traffic": "Forgalom",
+      "3D": "3D"
+    }
+  },
+  "FaceTime": {
+    "Title": "FaceTime",
+    "NewFaceTime": "Új FaceTime",
+    "CreateLink": "Link létrehozása",
+    "EnterName": "Írjon be egy nevet, emailt vagy telefonszámot",
+    "NoRecents": "Nincsenek legutóbbi hívások",
+    "Effects": "Hatások",
+    "Video": "Videó",
+    "Mic": "Mikrofon",
+    "ConnectingAs": "Connecting as {name}...",
+    "IncomingCall": "{name} is calling...",
+    "Accept": "Accept",
+    "Decline": "Decline",
+    "End": "End",
+    "Contacts": "Contacts",
+    "NoContacts": "No one else is online.",
+    "SelectContact": "Select a contact to call",
+    "Aria": {
+      "RemoteVideo": "Remote video feed",
+      "LocalVideo": "Local video preview",
+      "EndCall": "End Call",
+      "CallContact": "Call {name}",
+      "VideoCallContact": "Video call {name}",
+      "LocalPreview": "Local camera preview"
+    },
+    "Permission": {
+      "AppName": "FaceTime",
+      "Title": "Camera and Microphone",
+      "Reason": "FaceTime needs access to your camera and microphone to make calls."
+    }
+  },
+  "Contacts": {
+    "Sidebar": {
+      "AllContacts": "Összes kontakt",
+      "MyCard": "Saját kártya"
+    },
+    "Search": "Keresés",
+    "Detail": {
+      "Message": "Üzenet",
+      "Mobile": "mobil",
+      "Home": "otthon",
+      "Work": "munka",
+      "Email": "email",
+      "Notes": "Jegyzetek",
+      "SendMessage": "Üzenet küldése",
+      "FacetimeAudio": "FaceTime Audió",
+      "FacetimeVideo": "FaceTime Videó",
+      "Pay": "Fizetés"
+    },
+    "Edit": "Szerkesztés",
+    "Done": "Kész",
+    "NewContact": "Új kontakt",
+    "SearchPlaceholder": "Search",
+    "SearchAria": "Search contacts",
+    "Count": "{count} Contacts",
+    "EditContact": "Edit Contact",
+    "Preview": "Preview",
+    "DeleteContact": "Delete Contact",
+    "Cancel": "Cancel",
+    "NoNotes": "No notes",
+    "NoSelection": "No Contact Selected",
+    "Labels": {
+      "FirstName": "First Name",
+      "LastName": "Last Name",
+      "Company": "Company",
+      "Phone": "Phone",
+      "Email": "Email",
+      "Notes": "Notes",
+      "Mobile": "mobile",
+      "Home": "home",
+      "Message": "message",
+      "Video": "video",
+      "Mail": "mail"
+    },
+    "Alerts": {
+      "DeleteConfirm": "Are you sure you want to delete this contact?",
+      "NameRequired": "Please enter a name or company."
+    },
+    "Aria": {
+      "AddContact": "Add new contact",
+      "Contact": "Contact: {name}",
+      "Action": "{action} {name}"
+    }
+  },
+  "Calculator": {
+    "Clear": "AC",
+    "AC": "AC",
+    "AllClear": "All Clear",
+    "ToggleSign": "Toggle sign",
+    "Percentage": "Percentage",
+    "Divide": "Divide",
+    "Multiply": "Multiply",
+    "Subtract": "Subtract",
+    "Add": "Add",
+    "Calculate": "Calculate result"
+  },
+  "Clock": {
+    "WorldClock": "Világóra",
+    "Alarm": "Ébresztés",
+    "Stopwatch": "Stopper",
+    "Timer": "Időzítő",
+    "Start": "Indítás",
+    "Stop": "Leállítás",
+    "Reset": "Visszaállítás",
+    "Lap": "Kör",
+    "Resume": "Folytatás",
+    "Pause": "Szünet",
+    "Cancel": "Mégse",
+    "WhenTimerEnds": "Amikor az időzítő lejár",
+    "Radar": "Radar",
+    "Tabs": {
+      "WorldClock": "World Clock",
+      "Alarms": "Alarms",
+      "Stopwatch": "Stopwatch",
+      "Timers": "Timers"
+    },
+    "AddClock": "Add clock",
+    "Locations": {
+      "NewDelhi": "New Delhi"
+    },
+    "Today": "Today",
+    "HRS": "HRS"
+  },
+  "Weather": {
+    "Search": "Város vagy repülőtér keresése",
+    "MyLocation": "Saját helyzetem",
+    "Condition": {
+      "Sunny": "Napos",
+      "Cloudy": "Felhős",
+      "Rain": "Eső",
+      "Snow": "Hó",
+      "Thunderstorm": "Zivatar",
+      "PartlyCloudy": "Részben felhős",
+      "Clear": "Tiszta",
+      "Drizzle": "Szitálás",
+      "HeavyRain": "Heves eső",
+      "Fog": "Köd"
+    },
+    "Forecast": {
+      "Today": "Ma",
+      "Hourly": "Óránként",
+      "Daily": "Napi",
+      "High": "H: {temp}°",
+      "Low": "L: {temp}°",
+      "Precipitation": "Csapadék",
+      "UVIndex": "UV Index",
+      "PollutionLevel": "Moderately Polluted",
+      "UVLevel": "Moderate",
+      "TenDay": "10-Day Forecast",
+      "Now": "Now"
+    },
+    "Loading": "Loading Weather...",
+    "Error": "Unable to load weather",
+    "Retry": "Retry",
+    "SearchPlaceholder": "Search city",
+    "Searching": "Searching...",
+    "NoResults": "No results found",
+    "Recent": "Recent",
+    "Popular": "Popular",
+    "Sidebar": {
+      "Open": "Open sidebar",
+      "Close": "Close sidebar"
+    },
+    "Aria": {
+      "SelectLocation": "Select {name}, {country}"
+    },
+    "Details": {
+      "AirQuality": "Air Quality",
+      "UVIndex": "UV Index",
+      "Wind": "Wind",
+      "Sunset": "Sunset",
+      "Sunrise": "Sunrise:",
+      "FeelsLike": "Feels Like",
+      "Humidity": "Humidity",
+      "Visibility": "Visibility",
+      "Pressure": "Pressure",
+      "hPa": "hPa"
+    },
+    "Descriptions": {
+      "AirQualityDesc": "Air quality index is 130, similar to yesterday at about this time.",
+      "UVIndexDesc": "Use sun protection until 4PM.",
+      "FeelsLikeDesc": "Similar to the actual temperature.",
+      "DewPointDesc": "The dew point is {temp}° right now.",
+      "VisibilityDesc": "Perfectly clear view.",
+      "Footer": "Weather for {location} • Open-Meteo Data",
+      "PollutionLevel": "Moderately Polluted",
+      "UVLevel": "Moderate"
+    }
+  },
+  "Stocks": {
+    "Loading": "Loading Market Data...",
+    "Error": "Failed to load stocks.",
+    "Title": "Stocks",
+    "Search": "Search",
+    "Searching": "Searching...",
+    "Watchlist": "Watchlist",
+    "KeyStatistics": "Key Statistics",
+    "BusinessNews": "Business News",
+    "ShowMore": "Show More",
+    "Aria": {
+      "Search": "Search stocks",
+      "Select": "Select stock {symbol}",
+      "ReadNews": "Read news: {title}"
+    },
+    "Stats": {
+      "Open": "Open",
+      "High": "High",
+      "Low": "Low",
+      "Vol": "Vol",
+      "PE": "P/E",
+      "MktCap": "Mkt Cap",
+      "52WH": "52W H",
+      "52WL": "52W L"
+    }
+  },
+  "News": {
+    "Title": "Hírek",
+    "Categories": {
+      "TopStories": "Fő hírek",
+      "Technology": "Technológia",
+      "Business": "Üzlet",
+      "Science": "Tudomány",
+      "Health": "Egészség",
+      "Entertainment": "Szórakozás",
+      "Sports": "Sport"
+    },
+    "SearchPlaceholder": "Hírek keresése...",
+    "SearchLabel": "Keresés",
+    "SearchTitle": "Keresés: \"{query}\"",
+    "Loading": "Fő hírek betöltése...",
+    "Error": "Nem sikerült betölteni a híreket. Próbálja újra később.",
+    "TryAgain": "Próbálja újra",
+    "NoResults": "Nincs találat a(z) \"{query}\" keresésre",
+    "ClearSearch": "Keresés törlése",
+    "TopStory": "Kiemelt hír",
+    "Refresh": "Frissítés",
+    "Aria": {
+      "Category": "Kategória: {label}",
+      "Search": "Hírek keresése",
+      "Refresh": "Hírek frissítése",
+      "ReadTopStory": "Kiemelt hír olvasása: {title}",
+      "ReadArticle": "Cikk olvasása: {title}",
+      "Share": "Cikk megosztása",
+      "Like": "Cikk kedvelése"
+    }
+  },
+  "Music": {
+    "AppleMusic": "Apple Music",
+    "Library": "Könyvtár",
+    "ListenNow": "Hallgatás most",
+    "Browse": "Böngészés",
+    "Radio": "Rádió",
+    "RecentlyAdded": "Legutóbb hozzáadott",
+    "Artists": "Előadók",
+    "Albums": "Albumok",
+    "Songs": "Dalok",
+    "Search": "Keresés",
+    "SearchTitle": "Keresés: {query}",
+    "Aria": {
+      "Search": "Zene keresése",
+      "GoBack": "Visszalépés",
+      "GoForward": "Előrelépés",
+      "Prev": "Előző dal",
+      "Next": "Következő dal",
+      "Play": "Lejátszás",
+      "Pause": "Szünet",
+      "PlaySong": "{track} lejátszása tőle: {artist}",
+      "PauseSong": "{track} szüneteltetése",
+      "Lyrics": "Dalszöveg megjelenítése/elrejtése",
+      "Queue": "Várólista megjelenítése/elrejtése",
+      "Mute": "Némítás be/ki",
+      "VolSlider": "Hangerő csúszka",
+      "SeekSlider": "Keresés csúszka"
+    },
+    "Queue": {
+      "Title": "Következő",
+      "Empty": "A várólista üres"
+    },
+    "Lyrics": {
+      "NotAvailable": "A dalszöveg nem érhető el ehhez a dalhoz előnézeti módban.",
+      "Imagine": "De képzelje el, hogy a dalszöveg itt megjelenik, tökéletesen szinkronban a zenével...",
+      "Lalala": "Lá lá lá...",
+      "Placeholder": "Játsszon le egy dalt a dalszöveg megtekintéséhez"
+    }
+  },
+  "TV": {
+    "WatchNow": "Nézés most",
+    "Movies": "Filmek",
+    "TVShows": "TV Műsorok",
+    "Kids": "Gyerekek",
+    "Library": "Könyvtár",
+    "SearchResults": "Keresési eredmények",
+    "NoShows": "Nincs találat.",
+    "SearchPlaceholder": "Keresés",
+    "SearchLabel": "TV műsorok keresése",
+    "Series": "Sorozat",
+    "PlayEpisode": "1. epizód lejátszása",
+    "AddToUpNext": "Hozzáadás a Következőkhöz",
+    "Added": "Hozzáadva",
+    "OpenYouTube": "Megnyitás a YouTube-on",
+    "ViewAccount": "Fiók megtekintése",
+    "Aria": {
+      "Play": "{name} lejátszása",
+      "CloseVideo": "Videó bezárása",
+      "AddLibrary": "Hozzáadás a könyvtárhoz",
+      "RemoveLibrary": "Eltávolítás a könyvtárból"
+    },
+    "Genres": {
+      "Drama": "Dráma",
+      "Action": "Akció",
+      "Comedy": "Vígjáték",
+      "ScienceFiction": "Sci-Fi",
+      "Thriller": "Thriller"
+    }
+  },
+  "Terminal": {
+    "Guest": "Vendég",
+    "Welcome": "Üdvözli a Terminál",
+    "HelpPrompt": "Írja be a 'help' parancsot a parancsok listájához.",
+    "AvailableCommands": "Elérhető parancsok: ls, cd, pwd, mkdir, touch, echo, cat, clear, whoami, ping, man, rm, rmdir, vi",
+    "CommandNotFound": "parancs nem található: {command}",
+    "Error": "Hiba: {message}",
+    "AriaInput": "Terminál bemenet",
+    "Usage": {
+      "Ping": "használat: ping host",
+      "Mkdir": "használat: mkdir directory_name",
+      "Rmdir": "használat: rmdir directory_name",
+      "Rm": "használat: rm [-rf] file_name",
+      "Touch": "használat: touch file_name",
+      "Cat": "használat: cat file_name",
+      "Vi": "használat: vi file_name",
+      "Man": "Melyik kézikönyv oldalt kéri?"
+    },
+    "Errors": {
+      "PingResolve": "ping: nem oldható fel {host}: Ismeretlen host",
+      "NoManual": "Nincs kézikönyv bejegyzés a következőhöz: {command}",
+      "NoSuchFile": "{cmd}: {path}: Nincs ilyen fájl vagy könyvtár",
+      "NotADirectory": "{cmd}: {path}: Nem könyvtár",
+      "DirectoryNotEmpty": "{cmd}: {path}: A könyvtár nem üres",
+      "IsADirectory": "{cmd}: {path}: ez egy könyvtár"
+    },
+    "Messages": {
+      "PingStats": "PING {host} (127.0.0.1): 56 adat bájt\n64 bájt innen: 127.0.0.1: icmp_seq=0 ttl=64 idő=0.045 ms\n64 bájt innen: 127.0.0.1: icmp_seq=1 ttl=64 idő=0.082 ms\n64 bájt innen: 127.0.0.1: icmp_seq=2 ttl=64 idő=0.067 ms\n\n--- {host} ping statisztika ---\n3 csomag küldve, 3 csomag fogadva, 0.0% csomagveszteség",
+      "OpeningTextEdit": "{file} megnyitása a Szövegszerkesztőben..."
+    },
+    "ManPages": {
+      "ls": "ls - könyvtár tartalmának listázása\n\nHasználat: ls [opciók] [fájl|könyvtár]\n\nOpciók:\n  -a, --all      ne hagyja figyelmen kívül a . -tal kezdődő bejegyzéseket\n  -l             hosszú listázási formátum használata",
+      "cd": "cd - a shell munkakönyvtárának megváltoztatása\n\nHasználat: cd [könyvtár]\n\nVáltsa át az aktuális könyvtárat a [könyvtár]-ra. Az alapértelmezett [könyvtár] a HOME shell változó értéke.",
+      "pwd": "pwd - a jelenlegi/munkakönyvtár nevének kiírása\n\nHasználat: pwd\n\nKiírja a jelenlegi munkakönyvtár teljes elérési útját.",
+      "mkdir": "mkdir - könyvtárak létrehozása\n\nHasználat: mkdir [KÖNYVTÁR]\n\nLétrehozza a KÖNYVTÁR(aka)t, ha még nem léteznek.",
+      "touch": "touch - fájl időbélyegek módosítása\n\nHasználat: touch [FÁJL]\n\nFrissíti minden FÁJL hozzáférési és módosítási idejét a jelenlegi időre. Ha a FÁJL nem létezik, létrehozza üresen.",
+      "echo": "echo - szövegsor megjelenítése\n\nHasználat: echo [KARAKTERLÁNC]...\n\nKiírja a KARAKTERLÁNC(oka)t a standard kimenetre.",
+      "cat": "cat - fájlok összefűzése és kiírása a standard kimenetre\n\nHasználat: cat [FÁJL]...\n\nÖsszefűzi a FÁJL(oka)t a standard kimenetre.",
+      "clear": "clear - törli a terminál képernyőjét\n\nHasználat: clear",
+      "whoami": "whoami - kiírja az effektív felhasználónevet\n\nHasználat: whoami\n\nKiírja a jelenlegi effektív felhasználói azonosítóhoz tartozó felhasználónevet.",
+      "ping": "ping - ICMP ECHO_REQUEST küldése hálózati hostoknak\n\nHasználat: ping [HOST]\n\nICMP ECHO_REQUEST küldése hálózati hostoknak.",
+      "man": "man - interfész a rendszer referencia kézikönyveihez\n\nHasználat: man [PARANCS]\n\nMegjeleníti a PARANCS kézikönyv oldalát.",
+      "rm": "rm - fájlok vagy könyvtárak eltávolítása\n\nHasználat: rm [OPCIÓ]... [FÁJL]...\n\nEltávolítja (törli) a FÁJL(oka)t.\n\nOpciók:\n  -r, -R, --recursive   könyvtárak és tartalmuk rekurzív eltávolítása\n  -f, --force           nem létező fájlok és argumentumok figyelmen kívül hagyása, soha ne kérdezzen rá",
+      "rmdir": "rmdir - üres könyvtárak eltávolítása\n\nHasználat: rmdir [KÖNYVTÁR]...\n\nEltávolítja a KÖNYVTÁR(aka)t, ha üresek.",
+      "vi": "vi - képernyő-orientált (vizuális) szövegszerkesztő\n\nHasználat: vi [FÁJL]\n\nFÁJL szerkesztése."
+    }
+  },
+  "TextEdit": {
+    "Guest": "Vendég",
+    "Untitled": "Névtelen.txt",
+    "Save": "Mentés",
+    "Loading": "Betöltés...",
+    "Placeholder": "Írja ide a jegyzeteit...",
+    "SavedAlert": "Mentve ide: {path}/{filename}"
+  },
+  "PDFViewer": {
+    "Document": "Dokumentum.pdf",
+    "PageInfo": "{current} / {total} oldal",
+    "View": "Nézet",
+    "ZoomIn": "Nagyítás",
+    "ZoomOut": "Kicsinyítés",
+    "LoadingThumbnails": "Bélyegképek betöltése...",
+    "Loading": "Betöltés...",
+    "NoPDF": "Nincs PDF",
+    "FailedToLoad": "Nem sikerült betölteni a PDF-et",
+    "NoPDFLoaded": "Nincs betöltött PDF"
+  },
+  "Spotlight": {
+    "Placeholder": "Spotlight keresés",
+    "SearchWebFor": "Internetes keresés: \"{query}\"",
+    "NoResults": "Nincs találat",
+    "Open": "Megnyitás",
+    "Kinds": {
+      "Web": "Internetes keresés",
+      "App": "Alkalmazás",
+      "Directory": "Könyvtár",
+      "File": "Fájl"
+    },
+    "Aria": {
+      "Open": "{name} megnyitása"
+    }
+  },
+  "Desktop": {
+    "Guest": "Vendég",
+    "UntitledFolder": "névtelen mappa",
+    "NoAppAvailable": "Nincs elérhető alkalmazás a(z) .{ext} fájlok megnyitásához.",
+    "MoveToBin": {
+      "Failed": "Nem sikerült a kukába helyezni",
+      "NotSupported": "Nem sikerült a kukába helyezni. A mappák áthelyezése még nem teljesen támogatott."
+    },
+    "ContextMenu": {
+      "NewFolder": "Új mappa",
+      "GetInfo": "Infó megjelenítése",
+      "ChangeWallpaper": "Háttérkép módosítása...",
+      "EditWidgets": "Widgetek szerkesztése...",
+      "UseStacks": "Paklik használata",
+      "SortBy": "Rendezés",
+      "CleanUp": "Elrendezés",
+      "CleanUpBy": "Elrendezés szempontja",
+      "ShowViewOptions": "Nézetbeállítások megjelenítése",
+      "Tags": "Címkék",
+      "None": "Nincs",
+      "SnapToGrid": "Rácshoz igazítás",
+      "Name": "Név",
+      "Kind": "Fajta",
+      "DateLastOpened": "Utolsó megnyitás dátuma",
+      "DateAdded": "Hozzáadás dátuma",
+      "DateModified": "Módosítás dátuma",
+      "DateCreated": "Létrehozás dátuma",
+      "Size": "Méret"
+    }
+  },
+  "MenuBar": {
+    "Apple": {
+      "AboutThisMac": "A Mac névjegye",
+      "SystemSettings": "Rendszerbeállítások...",
+      "AppStore": "App Store...",
+      "RecentItems": "Legutóbbi elemek",
+      "ForceQuit": "Kényszerített kilépés...",
+      "Sleep": "Altatás",
+      "Restart": "Újraindítás...",
+      "ShutDown": "Kikapcsolás...",
+      "LockScreen": "Zárolási képernyő"
+    },
+    "App": {
+      "About": "A(z) {app} névjegye",
+      "Quit": "Kilépés a következőből: {app}"
+    },
+    "File": {
+      "Title": "Fájl",
+      "New": "Új",
+      "Open": "Megnyitás...",
+      "Save": "Mentés",
+      "Duplicate": "Duplikálás",
+      "NewFinderWindow": "Új Finder ablak",
+      "NewFolder": "Új mappa",
+      "GetInfo": "Infó megjelenítése"
+    },
+    "Edit": {
+      "Title": "Szerkesztés",
+      "Undo": "Visszavonás",
+      "Redo": "Ismétlés",
+      "Cut": "Kivágás",
+      "Copy": "Másolás",
+      "Paste": "Beillesztés"
+    },
+    "View": {
+      "Title": "Nézet",
+      "AsIcons": "Ikonként",
+      "AsList": "Listaként",
+      "AsColumns": "Oszlopként"
+    },
+    "Window": {
+      "Title": "Ablak",
+      "Minimize": "Kis méret",
+      "Zoom": "Nagyítás"
+    },
+    "Help": {
+      "Title": "Súgó",
+      "MacOSHelp": "macOS Súgó"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "KnownNetworks": "Ismert hálózatok",
+      "OtherNetworks": "Egyéb hálózatok",
+      "Settings": "Wi-Fi beállítások..."
+    },
+    "Battery": {
+      "Title": "Akkumulátor",
+      "PowerSource": "Áramforrás: {source}",
+      "PowerAdapter": "Hálózati adapter",
+      "Battery": "Akkumulátor",
+      "EnergyMode": "Energiamód",
+      "Automatic": "Automatikus",
+      "LowPower": "Alacsony töltöttségű mód",
+      "HighPower": "Nagy teljesítményű mód",
+      "SignificantEnergy": "Jelentős energiafogyasztás",
+      "Settings": "Akkumulátor beállítások..."
+    },
+    "Aria": {
+      "Clipboard": "Vágólap",
+      "MediaPlayer": "Médialejátszó",
+      "Spotlight": "Spotlight keresés",
+      "ControlCenter": "Vezérlőközpont",
+      "Siri": "Siri",
+      "Clock": "Óra és Értesítési központ"
+    }
+  },
+  "ControlCenter": {
+    "WiFi": "Wi-Fi",
+    "HomeNetwork": "Otthoni hálózat",
+    "Off": "Ki",
+    "On": "Be",
+    "Bluetooth": "Bluetooth",
+    "AirDrop": "AirDrop",
+    "ContactsOnly": "Csak kontaktok",
+    "DoNotDisturb": "Ne zavarjanak",
+    "ScreenMirroring": "Képernyőtükrözés",
+    "Display": "Kijelző",
+    "Sound": "Hang",
+    "NotPlaying": "Nem játszik le",
+    "Music": "Zene"
+  },
+  "WeatherDropdown": {
+    "Searching": "Keresés...",
+    "SearchCity": "Város keresése...",
+    "Now": "Most",
+    "Today": "Ma",
+    "OpenWeather": "Időjárás megnyitása"
+  },
+  "LockScreen": {
+    "IncorrectPassword": "Hibás jelszó",
+    "Guest": "Vendég",
+    "EnterPassword": "Adja meg a jelszót",
+    "Hint": "Touch ID vagy jelszó (tipp: {hint})",
+    "Login": "Bejelentkezés",
+    "Cancel": "Mégse",
+    "Aria": {
+      "UserAvatar": "Felhasználói avatar, kattintson a bejelentkezéshez",
+      "User": "{name} felhasználó, kattintson a bejelentkezéshez",
+      "Password": "Jelszó",
+      "Submit": "Jelszó elküldése"
+    }
+  },
+  "NotificationCenter": {
+    "Title": "Értesítések",
+    "Widgets": "Widgetek",
+    "Done": "Kész",
+    "Edit": "Szerkesztés",
+    "AddWidget": "Widget hozzáadása"
+  },
+  "Widgets": {
+    "Loading": "Betöltés...",
+    "Calendar": {
+      "Title": "Naptár"
+    },
+    "Weather": {
+      "Title": "Időjárás"
+    },
+    "Stocks": {
+      "Title": "Részvények"
+    },
+    "Reminders": {
+      "Title": "Emlékeztetők",
+      "NoReminders": "Nincsenek emlékeztetők"
+    },
+    "Notes": {
+      "Title": "Jegyzetek",
+      "Content": "Venni tejet, tojást és kenyeret.<br />Anyát felhívni 5-kor.<br />Megbeszélés a csapattal holnap."
+    }
+  },
+  "Window": {
+    "Minimize": "Kis méret",
+    "Maximize": "Teljes méret",
+    "Restore": "Visszaállítás",
+    "Close": "Bezárás",
+    "MoveTo": "Ablak áthelyezése...",
+    "LeftSide": "A képernyő bal oldalára",
+    "RightSide": "A képernyő jobb oldalára",
+    "EnterFullScreen": "Belépés teljes képernyőre"
+  },
+  "Dock": {
+    "AriaLabel": "Alkalmazás dock",
+    "Trash": "Kuka"
+  },
+  "Apps": {
+    "Finder": "Finder",
+    "Launchpad": "Launchpad",
+    "Safari": "Safari",
+    "Messages": "Üzenetek",
+    "Mail": "Mail",
+    "Maps": "Térkép",
+    "Photos": "Fotók",
+    "FaceTime": "FaceTime",
+    "Calendar": "Naptár",
+    "Contacts": "Kontaktok",
+    "Reminders": "Emlékeztetők",
+    "Notes": "Jegyzetek",
+    "Freeform": "Freeform",
+    "TV": "TV",
+    "Music": "Zene",
+    "News": "Hírek",
+    "AppStore": "App Store",
+    "SystemSettings": "Rendszerbeállítások",
+    "Terminal": "Terminál",
+    "Calculator": "Számológép",
+    "Trash": "Kuka",
+    "TextEdit": "Szövegszerkesztő",
+    "MediaPlayer": "Médialejátszó",
+    "Preview": "Megtekintő",
+    "VirtualMachine": "Virtuális Gép",
+    "VSCode": {
+      "Title": "VS Code szerkesztő"
+    },
+    "LeetCode": {
+      "Common": {
+        "Loading": "Profil betöltése...",
+        "NoData": "Nincs adat",
+        "Retry": "Újra",
+        "ShowMore": "Több megjelenítése",
+        "GoToLeetCode": "Ugrás a LeetCode-ra"
+      },
+      "Badges": {
+        "Title": "Jelvények",
+        "MostRecent": "Legutóbbi jelvény"
+      },
+      "Stats": {
+        "Title": "Közösségi statisztikák",
+        "Views": "Megtekintések",
+        "Solution": "Megoldás",
+        "Discuss": "Vitatér",
+        "Reputation": "Hírnév"
+      },
+      "Languages": {
+        "Title": "Nyelvek",
+        "ProblemsSolved": "megoldott probléma"
+      },
+      "Profile": {
+        "Rank": "Helyezés"
+      },
+      "Submissions": {
+        "RecentAC": "Legutóbbi AC",
+        "List": "Lista",
+        "Solutions": "Megoldások",
+        "Discuss": "Vitatér",
+        "TimeAgo": "2 hónapja"
+      },
+      "Skills": {
+        "Title": "Készségek",
+        "Advanced": "Haladó",
+        "Intermediate": "Középhaladó"
+      },
+      "Solved": {
+        "Solved": "Megoldva",
+        "Easy": "Könnyű",
+        "Medium": "Közepes",
+        "Hard": "Nehéz"
+      },
+      "Calendar": {
+        "SubmissionsLastYear": "beküldés az elmúlt egy évben",
+        "TotalActiveDays": "Összes aktív nap:",
+        "MaxStreak": "Leghosszabb sorozat:",
+        "Current": "Jelenlegi",
+        "Months": {
+          "Jan": "Jan",
+          "Feb": "Feb",
+          "Mar": "Már",
+          "Apr": "Ápr",
+          "May": "Máj",
+          "Jun": "Jún",
+          "Jul": "Júl",
+          "Aug": "Aug",
+          "Sep": "Szep",
+          "Oct": "Okt",
+          "Nov": "Nov",
+          "Dec": "Dec"
+        }
+      }
+    },
+    "V86": {
+      "NoFileSelected": "Nincs fájl kiválasztva",
+      "ScriptLoadError": "Nem sikerült betölteni a V86 szkriptet",
+      "FileReadError": "Nem sikerült a fájl olvasása",
+      "StartError": "Nem sikerült elindítani az emulátort",
+      "Booting": "Rendszerbetöltés {filename}...",
+      "ErrorPrefix": "Hiba: {error}",
+      "ClickToCapture": "Kattintson az egér elfogásához (Esc a kiengedéshez)"
+    }
+  },
+  "Common": {
+    "OK": "OK",
+    "Cancel": "Mégse",
+    "Yes": "Igen",
+    "No": "Nem",
+    "Back": "Vissza",
+    "Continue": "Folytatás",
+    "Done": "Kész",
+    "Edit": "Szerkesztés",
+    "Delete": "Törlés",
+    "Save": "Mentés",
+    "Close": "Bezárás",
+    "Error": "Hiba",
+    "Success": "Siker"
+  }
 }

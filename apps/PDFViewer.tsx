@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { Document, Page, pdfjs } from "react-pdf";
 import { ZoomIn, ZoomOut, Download } from "lucide-react";
 import "react-pdf/dist/Page/AnnotationLayer.css";
@@ -19,12 +20,13 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
   initialPath,
   initialFilename,
 }) => {
+  const t = useTranslations("PDFViewer");
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [numPages, setNumPages] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [zoom, setZoom] = useState(100);
   const [showThumbnails, setShowThumbnails] = useState(true);
-  const [fileName, setFileName] = useState(initialFilename || "Document.pdf");
+  const [fileName, setFileName] = useState(initialFilename || t("Document"));
   const { launchProcess, processes, focusProcess } = useProcessStore();
 
   useEffect(() => {
@@ -146,7 +148,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
                 ? "bg-gray-200 dark:bg-[#4c4c4e] text-black dark:text-white"
                 : "hover:bg-gray-200 dark:hover:bg-[#4c4c4e] text-gray-600 dark:text-[#dfdfdf]"
             }`}
-            title="View"
+            title={t("View")}
           >
             <div className="w-4 h-4 border-2 border-current rounded-[2px] flex">
               <div className="w-1.5 border-r border-current h-full bg-current opacity-50"></div>
@@ -160,7 +162,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
             {fileName}
           </h2>
           <div className="text-[10px] text-gray-500 dark:text-[#9a9a9a] font-medium">
-            Page {currentPage} of {numPages || "--"}
+            {t("PageInfo", { current: currentPage, total: numPages || "--" })}
           </div>
         </div>
 
@@ -170,7 +172,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
             <button
               onClick={handleZoomOut}
               className="p-1 hover:bg-gray-200 dark:hover:bg-[#4c4c4e] rounded transition-colors text-gray-600 dark:text-[#dfdfdf]"
-              title="Zoom Out"
+              title={t("ZoomOut")}
             >
               <ZoomOut size={16} />
             </button>
@@ -178,7 +180,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
             <button
               onClick={handleZoomIn}
               className="p-1 hover:bg-gray-200 dark:hover:bg-[#4c4c4e] rounded transition-colors text-gray-600 dark:text-[#dfdfdf]"
-              title="Zoom In"
+              title={t("ZoomIn")}
             >
               <ZoomIn size={16} />
             </button>
@@ -204,7 +206,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
                   className="space-y-4"
                   loading={
                     <div className="p-4 text-center text-gray-400 dark:text-[#9a9a9a] text-xs">
-                      Loading thumbnails...
+                      {t("LoadingThumbnails")}
                     </div>
                   }
                 >
@@ -251,7 +253,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
                 </Document>
               ) : (
                 <div className="p-4 text-center text-gray-400 dark:text-[#9a9a9a] text-xs">
-                  {pdfUrl ? "Loading..." : "No PDF"}
+                  {pdfUrl ? t("Loading") : t("NoPDF")}
                 </div>
               )}
             </div>
@@ -277,7 +279,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
                   }
                   error={
                     <div className="flex items-center justify-center h-[800px] w-[600px] bg-white dark:bg-[#2c2c2e] text-red-500 dark:text-red-400">
-                      Failed to load PDF
+                      {t("FailedToLoad")}
                     </div>
                   }
                   onLoadError={(error) =>
@@ -297,7 +299,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
           ) : (
             <div className="flex items-center justify-center h-full text-gray-400 dark:text-[#9a9a9a]">
               <div className="text-center">
-                <p>No PDF loaded</p>
+                <p>{t("NoPDFLoaded")}</p>
               </div>
             </div>
           )}

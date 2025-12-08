@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 import { fs } from "../lib/FileSystem";
 
 interface TerminalProps {
@@ -10,9 +11,10 @@ import { useProcessStore } from "../store/processStore";
 import { TextEdit } from "./TextEdit";
 
 export const Terminal: React.FC<TerminalProps> = ({ initialPath }) => {
+  const t = useTranslations("Terminal");
   const { user } = useSystemStore();
   const { launchProcess } = useProcessStore();
-  const userName = user?.name || "Guest";
+  const userName = user?.name || t("Guest");
   const userHome = `/Users/${userName}`;
 
   // Use initialPath if provided, otherwise default to userHome
@@ -20,29 +22,25 @@ export const Terminal: React.FC<TerminalProps> = ({ initialPath }) => {
 
   // Man Pages Data
   const manPages: Record<string, string> = {
-    ls: "ls - list directory contents\n\nUsage: ls [options] [file|dir]\n\nOptions:\n  -a, --all      do not ignore entries starting with .\n  -l             use a long listing format",
-    cd: "cd - change the shell working directory\n\nUsage: cd [dir]\n\nChange the current directory to DIR. The default DIR is the value of the HOME shell variable.",
-    pwd: "pwd - print name of current/working directory\n\nUsage: pwd\n\nPrint the full filename of the current working directory.",
-    mkdir:
-      "mkdir - make directories\n\nUsage: mkdir [DIRECTORY]\n\nCreate the DIRECTORY(ies), if they do not already exist.",
-    touch:
-      "touch - change file timestamps\n\nUsage: touch [FILE]\n\nUpdate the access and modification times of each FILE to the current time. If FILE does not exist it is created empty.",
-    echo: "echo - display a line of text\n\nUsage: echo [STRING]...\n\nEcho the STRING(s) to standard output.",
-    cat: "cat - concatenate files and print on the standard output\n\nUsage: cat [FILE]...\n\nConcatenate FILE(s) to standard output.",
-    clear: "clear - clear the terminal screen\n\nUsage: clear",
-    whoami:
-      "whoami - print effective userid\n\nUsage: whoami\n\nPrint the user name associated with the current effective user ID.",
-    ping: "ping - send ICMP ECHO_REQUEST to network hosts\n\nUsage: ping [HOST]\n\nSend ICMP ECHO_REQUEST to network hosts.",
-    man: "man - an interface to the system reference manuals\n\nUsage: man [COMMAND]\n\nDisplay the manual page for COMMAND.",
-    rm: "rm - remove files or directories\n\nUsage: rm [OPTION]... [FILE]...\n\nRemove (unlink) the FILE(s).\n\nOptions:\n  -r, -R, --recursive   remove directories and their contents recursively\n  -f, --force           ignore nonexistent files and arguments, never prompt",
-    rmdir:
-      "rmdir - remove empty directories\n\nUsage: rmdir [DIRECTORY]...\n\nRemove the DIRECTORY(ies), if they are empty.",
-    vi: "vi - screen-oriented (visual) display editor\n\nUsage: vi [FILE]\n\nEdit FILE.",
+    ls: t("ManPages.ls"),
+    cd: t("ManPages.cd"),
+    pwd: t("ManPages.pwd"),
+    mkdir: t("ManPages.mkdir"),
+    touch: t("ManPages.touch"),
+    echo: t("ManPages.echo"),
+    cat: t("ManPages.cat"),
+    clear: t("ManPages.clear"),
+    whoami: t("ManPages.whoami"),
+    ping: t("ManPages.ping"),
+    man: t("ManPages.man"),
+    rm: t("ManPages.rm"),
+    rmdir: t("ManPages.rmdir"),
+    vi: t("ManPages.vi"),
   };
 
   const [history, setHistory] = useState<(string | React.ReactNode)[]>([
-    "Welcome to Terminal",
-    "Type 'help' for a list of commands.",
+    t("Welcome"),
+    t("HelpPrompt"),
   ]);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
@@ -78,8 +76,8 @@ export const Terminal: React.FC<TerminalProps> = ({ initialPath }) => {
     try {
       switch (command) {
         case "help":
-          output =
-            "Available commands: ls, cd, pwd, mkdir, touch, echo, cat, clear, whoami, ping, man, rm, rmdir, vi";
+        case "help":
+          output = t("AvailableCommands");
           break;
         case "clear":
           setHistory([]);
@@ -92,11 +90,11 @@ export const Terminal: React.FC<TerminalProps> = ({ initialPath }) => {
           break;
         case "ping":
           if (!useSystemStore.getState().wifiEnabled) {
-            output = `ping: cannot resolve ${args[0]}: Unknown host`;
+            output = t("Errors.PingResolve", { host: args[0] });
           } else if (args[0]) {
-            output = `PING ${args[0]} (127.0.0.1): 56 data bytes\n64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.045 ms\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.082 ms\n64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.067 ms\n\n--- ${args[0]} ping statistics ---\n3 packets transmitted, 3 packets received, 0.0% packet loss`;
+            output = t("Messages.PingStats", { host: args[0] });
           } else {
-            output = "usage: ping host";
+            output = t("Usage.Ping");
           }
           break;
         case "man":
@@ -104,10 +102,10 @@ export const Terminal: React.FC<TerminalProps> = ({ initialPath }) => {
             if (manPages[args[0]]) {
               output = manPages[args[0]];
             } else {
-              output = `No manual entry for ${args[0]}`;
+              output = t("Errors.NoManual", { command: args[0] });
             }
           } else {
-            output = "What manual page do you want?";
+            output = t("Usage.Man");
           }
           break;
         case "ls":
@@ -167,7 +165,7 @@ export const Terminal: React.FC<TerminalProps> = ({ initialPath }) => {
               );
             }
           } else {
-            output = `ls: ${pathArg || ""}: No such file or directory`;
+            output = t("Errors.NoSuchFile", { cmd: "ls", path: pathArg || "" });
           }
           break;
         case "cd":
@@ -189,21 +187,20 @@ export const Terminal: React.FC<TerminalProps> = ({ initialPath }) => {
 
           if (await fs.exists(finalPath)) {
             try {
-              // Verify it is a directory by trying to list it
               await fs.ls(finalPath);
               setCurrentPath(finalPath);
             } catch {
-              output = `cd: ${args[0]}: Not a directory`;
+              output = t("Errors.NotADirectory", { cmd: "cd", path: args[0] });
             }
           } else {
-            output = `cd: ${args[0]}: No such file or directory`;
+            output = t("Errors.NoSuchFile", { cmd: "cd", path: args[0] });
           }
           break;
         case "mkdir":
           if (args[0]) {
             await fs.mkdir(resolvePath(args[0]));
           } else {
-            output = "usage: mkdir directory_name";
+            output = t("Usage.Mkdir");
           }
           break;
         case "rmdir":
@@ -218,13 +215,16 @@ export const Terminal: React.FC<TerminalProps> = ({ initialPath }) => {
                   dirPath.split("/").pop()!
                 );
               } else {
-                output = `rmdir: ${args[0]}: Directory not empty`;
+                output = t("Errors.DirectoryNotEmpty", {
+                  cmd: "rmdir",
+                  path: args[0],
+                });
               }
             } else {
-              output = `rmdir: ${args[0]}: No such file or directory`;
+              output = t("Errors.NoSuchFile", { cmd: "rmdir", path: args[0] });
             }
           } else {
-            output = "usage: rmdir directory_name";
+            output = t("Usage.Rmdir");
           }
           break;
         case "rm":
@@ -243,7 +243,10 @@ export const Terminal: React.FC<TerminalProps> = ({ initialPath }) => {
               } catch {}
 
               if (isDir && !isRecursive) {
-                output = `rm: ${rmPathArg}: is a directory`;
+                output = t("Errors.IsADirectory", {
+                  cmd: "rm",
+                  path: rmPathArg,
+                });
               } else {
                 await fs.delete(
                   targetRmPath.substring(0, targetRmPath.lastIndexOf("/")),
@@ -251,10 +254,10 @@ export const Terminal: React.FC<TerminalProps> = ({ initialPath }) => {
                 );
               }
             } else {
-              output = `rm: ${rmPathArg}: No such file or directory`;
+              output = t("Errors.NoSuchFile", { cmd: "rm", path: rmPathArg });
             }
           } else {
-            output = "usage: rm [-rf] file_name";
+            output = t("Usage.Rm");
           }
           break;
         case "touch":
@@ -266,7 +269,7 @@ export const Terminal: React.FC<TerminalProps> = ({ initialPath }) => {
               ""
             );
           } else {
-            output = "usage: touch file_name";
+            output = t("Usage.Touch");
           }
           break;
         case "echo":
@@ -282,10 +285,10 @@ export const Terminal: React.FC<TerminalProps> = ({ initialPath }) => {
             if (await fs.exists(targetFile)) {
               output = await fs.readFile(path, name);
             } else {
-              output = `cat: ${args[0]}: No such file or directory`;
+              output = t("Errors.NoSuchFile", { cmd: "cat", path: args[0] });
             }
           } else {
-            output = "usage: cat file_name";
+            output = t("Usage.Cat");
           }
           break;
         case "vi":
@@ -307,18 +310,19 @@ export const Terminal: React.FC<TerminalProps> = ({ initialPath }) => {
               "📝",
               <TextEdit initialPath={path} initialFilename={filename} />
             );
-            output = `Opening ${args[0]} in TextEdit...`;
+
+            output = t("Messages.OpeningTextEdit", { file: args[0] });
           } else {
-            output = "usage: vi file_name";
+            output = t("Usage.Vi");
           }
           break;
         case "":
           break;
         default:
-          output = `command not found: ${command}`;
+          output = t("CommandNotFound", { command: command });
       }
     } catch (e) {
-      output = `Error: ${(e as Error).message}`;
+      output = t("Error", { message: (e as Error).message });
     }
 
     setHistory((prev) => [
@@ -374,7 +378,7 @@ export const Terminal: React.FC<TerminalProps> = ({ initialPath }) => {
             }
           }}
           className="flex-1 bg-transparent outline-none border-none text-green-400"
-          aria-label="Terminal Input"
+          aria-label={t("AriaInput")}
           autoFocus
         />
       </div>

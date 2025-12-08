@@ -16,6 +16,7 @@ import {
   Play,
   SkipForward,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface ControlCenterProps {
   isOpen: boolean;
@@ -40,6 +41,7 @@ export const ControlCenter: React.FC<ControlCenterProps> = ({
     volume,
     setVolume,
   } = useSystemStore();
+  const t = useTranslations("ControlCenter");
 
   const ref = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = React.useState(false);
@@ -90,9 +92,9 @@ export const ControlCenter: React.FC<ControlCenterProps> = ({
               {wifiEnabled ? <Wifi size={16} /> : <WifiOff size={16} />}
             </button>
             <div className="flex flex-col leading-none">
-              <span className="text-[13px] font-semibold">Wi-Fi</span>
+              <span className="text-[13px] font-semibold">{t("WiFi")}</span>
               <span className="text-[11px] text-gray-500 dark:text-gray-400 truncate w-20">
-                {wifiEnabled ? "Home Network" : "Off"}
+                {wifiEnabled ? t("HomeNetwork") : t("Off")}
               </span>
             </div>
           </div>
@@ -114,9 +116,11 @@ export const ControlCenter: React.FC<ControlCenterProps> = ({
               )}
             </button>
             <div className="flex flex-col leading-none">
-              <span className="text-[13px] font-semibold">Bluetooth</span>
+              <span className="text-[13px] font-semibold">
+                {t("Bluetooth")}
+              </span>
               <span className="text-[11px] text-gray-500 dark:text-gray-400">
-                {bluetoothEnabled ? "On" : "Off"}
+                {bluetoothEnabled ? t("On") : t("Off")}
               </span>
             </div>
           </div>
@@ -137,9 +141,9 @@ export const ControlCenter: React.FC<ControlCenterProps> = ({
               />
             </button>
             <div className="flex flex-col leading-none">
-              <span className="text-[13px] font-semibold">AirDrop</span>
+              <span className="text-[13px] font-semibold">{t("AirDrop")}</span>
               <span className="text-[11px] text-gray-500 dark:text-gray-400">
-                {airdropEnabled ? "Contacts Only" : "Off"}
+                {airdropEnabled ? t("ContactsOnly") : t("Off")}
               </span>
             </div>
           </div>
@@ -151,7 +155,9 @@ export const ControlCenter: React.FC<ControlCenterProps> = ({
             <div className="w-8 h-8 rounded-full bg-indigo-500/20 dark:bg-indigo-500/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
               <Moon size={16} fill="currentColor" />
             </div>
-            <span className="text-[13px] font-semibold">Do Not Disturb</span>
+            <span className="text-[13px] font-semibold">
+              {t("DoNotDisturb")}
+            </span>
           </div>
 
           {/* Screen Mirroring (Mock) */}
@@ -159,7 +165,9 @@ export const ControlCenter: React.FC<ControlCenterProps> = ({
             <div className="w-8 h-8 rounded-full bg-transparent border border-gray-400/50 flex items-center justify-center">
               <Monitor size={16} />
             </div>
-            <span className="text-[13px] font-semibold">Screen Mirroring</span>
+            <span className="text-[13px] font-semibold">
+              {t("ScreenMirroring")}
+            </span>
           </div>
         </div>
       </div>
@@ -167,7 +175,7 @@ export const ControlCenter: React.FC<ControlCenterProps> = ({
       {/* Display Slider */}
       <div className="bg-white/50 dark:bg-[#2b2b2b]/50 rounded-xl p-3 mb-3 shadow-sm border border-black/5 dark:border-white/5">
         <div className="flex flex-col gap-2">
-          <span className="text-[13px] font-semibold ml-1">Display</span>
+          <span className="text-[13px] font-semibold ml-1">{t("Display")}</span>
           <div className="relative h-7 w-full bg-gray-200 dark:bg-black/40 rounded-full overflow-hidden group">
             <div
               className="absolute top-0 left-0 h-full bg-white dark:bg-white transition-all duration-75"
@@ -191,7 +199,7 @@ export const ControlCenter: React.FC<ControlCenterProps> = ({
       {/* Sound Slider */}
       <div className="bg-white/50 dark:bg-[#2b2b2b]/50 rounded-xl p-3 mb-3 shadow-sm border border-black/5 dark:border-white/5">
         <div className="flex flex-col gap-2">
-          <span className="text-[13px] font-semibold ml-1">Sound</span>
+          <span className="text-[13px] font-semibold ml-1">{t("Sound")}</span>
           <div className="relative h-7 w-full bg-gray-200 dark:bg-black/40 rounded-full overflow-hidden group">
             <div
               className="absolute top-0 left-0 h-full bg-white dark:bg-white transition-all duration-75"
@@ -218,9 +226,9 @@ export const ControlCenter: React.FC<ControlCenterProps> = ({
           <Music size={20} />
         </div>
         <div className="flex-1 flex flex-col justify-center">
-          <span className="text-[13px] font-semibold">Not Playing</span>
+          <span className="text-[13px] font-semibold">{t("NotPlaying")}</span>
           <span className="text-[11px] text-gray-500 dark:text-gray-400">
-            Music
+            {t("Music")}
           </span>
         </div>
         <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">

@@ -1,4 +1,1742 @@
 {
-  "Hello": "Hello world!",
-  "Welcome": "Welcome to the multi-language app"
+  "Hello": {
+    "world": "สวัสดีชาวโลก",
+    "GetStarted": "เริ่มต้นใช้งาน"
+  },
+  "Common": {
+    "OK": "ตกลง",
+    "Cancel": "ยกเลิก",
+    "Yes": "ใช่",
+    "No": "ไม่",
+    "Back": "ย้อนกลับ",
+    "Continue": "ดำเนินการต่อ",
+    "Done": "เสร็จสิ้น",
+    "Edit": "แก้ไข",
+    "Delete": "ลบ",
+    "Save": "บันทึก",
+    "Close": "ปิด",
+    "Error": "ข้อผิดพลาด",
+    "Success": "สำเร็จ"
+  },
+  "Setup": {
+    "Common": {
+      "Continue": "ดำเนินการต่อ",
+      "Back": "ย้อนกลับ",
+      "NotNow": "ไม่ใช่ตอนนี้",
+      "Cancel": "ยกเลิก",
+      "LearnMore": "เรียนรู้เพิ่มเติม"
+    },
+    "Language": {
+      "Title": "เลือกภาษา",
+      "Description": "เลือกภาษาที่ต้องการใช้ใน Mac นี้",
+      "TableLabel": "ภาษา",
+      "Primary": "หลัก"
+    },
+    "Region": {
+      "Title": "เลือกประเทศหรือภูมิภาคของคุณ"
+    },
+    "DataPrivacy": {
+      "Title": "ข้อมูลและความเป็นส่วนตัว",
+      "IconText": "ไอคอนนี้จะปรากฏเมื่อคุณสมบัติของ Apple ขอใช้ข้อมูลส่วนตัวของคุณ",
+      "FeatureText": "คุณจะไม่เห็นไอคอนนี้กับทุกคุณสมบัติ Apple จะรวบรวมข้อมูลนี้เมื่อจำเป็นเท่านั้นเพื่อเปิดใช้งานคุณสมบัติ รักษาความปลอดภัย หรือปรับแต่งประสบการณ์ของคุณ",
+      "PrivacyText": "Apple เชื่อว่าความเป็นส่วนตัวเป็นสิทธิมนุษยชนขั้นพื้นฐาน ดังนั้นผลิตภัณฑ์ Apple ทุกชิ้นจึงได้รับการออกแบบมาเพื่อลดการรวบรวมและการใช้ข้อมูลของคุณ ประมวลผลบนอุปกรณ์เมื่อเป็นไปได้ และให้ความโปร่งใสและการควบคุมข้อมูลของคุณ"
+    },
+    "TouchID": {
+      "Title": "Touch ID",
+      "SetupLater": "ตั้งค่า Touch ID ภายหลัง",
+      "Description": "ใช้ลายนิ้วมือเพื่อปลดล็อก Mac และซื้อสินค้าด้วย Apple Pay วางนิ้วของคุณบน Touch ID เพื่อเริ่มต้น"
+    },
+    "Fingerprint": {
+      "Title": "วางนิ้วของคุณ",
+      "Instruction": "ยกและวางนิ้วบน Touch ID ซ้ำๆ",
+      "Success": "✓ Touch ID พร้อมแล้ว"
+    },
+    "Languages": {
+      "Title": "ภาษาที่เขียนและพูด",
+      "Description": "ภาษาที่มีรายชื่อด้านล่างเป็นภาษาที่ใช้กันทั่วไปในภูมิภาคของคุณ คุณสามารถใช้การตั้งค่าเหล่านี้หรือกำหนดเองได้",
+      "Preferred": "ภาษาที่ต้องการ",
+      "InputSources": "แหล่งป้อนข้อมูล",
+      "Dictation": "เขียนตามคำบอก",
+      "Customize": "ปรับแต่งการตั้งค่า"
+    },
+    "Accessibility": {
+      "Title": "การช่วยการเข้าถึง",
+      "Description": "คุณสมบัติการช่วยการเข้าถึงจะปรับ Mac ให้เข้ากับความต้องการทางสายตา การได้ยิน และการเคลื่อนไหวของคุณ คุณสามารถเปิดใช้งานได้ตอนนี้และตั้งค่าให้เสร็จสิ้น หรือปรับแต่งภายหลังในการตั้งค่าระบบ ดูหมวดหมู่ด้านล่างสำหรับคุณสมบัติที่มี",
+      "Vision": "การมองเห็น",
+      "Motor": "การเคลื่อนไหว",
+      "Hearing": "การได้ยิน",
+      "Cognitive": "การรับรู้"
+    },
+    "Migration": {
+      "Title": "ผู้ช่วยการย้ายข้อมูล",
+      "Description": "หากคุณมีข้อมูลบน Mac เครื่องอื่นหรือ Windows PC คุณสามารถถ่ายโอนมายัง Mac นี้ได้ คุณยังสามารถถ่ายโอนข้อมูลจากข้อมูลสำรอง Time Machine หรือดิสก์เริ่มต้นระบบอื่นๆ ได้",
+      "Question": "คุณต้องการถ่ายโอนข้อมูลของคุณอย่างไร?",
+      "FromMac": "จาก Mac, ข้อมูลสำรอง Time Machine หรือดิสก์เริ่มต้นระบบ",
+      "FromPC": "จาก Windows PC"
+    },
+    "AppleID": {
+      "Title": "ลงชื่อเข้าใช้ด้วย Apple ID ของคุณ",
+      "Description": "ลงชื่อเข้าใช้เพื่อใช้ iCloud, App Store และบริการอื่นๆ ของ Apple",
+      "Label": "Apple ID",
+      "CreateNew": "สร้าง Apple ID ใหม่",
+      "Forgot": "ลืม Apple ID หรือรหัสผ่าน?",
+      "UseDifferent": "ใช้ Apple ID ต่างกันสำหรับ iCloud และสื่อหรือไม่?",
+      "Info": "Mac นี้จะเชื่อมโยงกับ Apple ID ของคุณ และข้อมูลของคุณ เช่น รูปภาพ รายชื่อ และเอกสาร จะถูกเก็บไว้ใน iCloud เพื่อให้คุณเข้าถึงได้จากอุปกรณ์อื่นๆ",
+      "SeeData": "ดูวิธีจัดการข้อมูล",
+      "SetupLater": "ตั้งค่าภายหลัง",
+      "ErrorRequired": "ป้อน Apple ID"
+    },
+    "Account": {
+      "Title": "สร้างบัญชีคอมพิวเตอร์",
+      "CreateAppleID": "สร้าง Apple ID",
+      "Description": "ป้อนชื่อและข้อมูลบัญชีของคุณเพื่อตั้งค่าคอมพิวเตอร์",
+      "Name": "ชื่อเต็ม",
+      "Email": "ที่อยู่อีเมล",
+      "Age": "อายุ",
+      "Phone": "หมายเลขโทรศัพท์มือถือ",
+      "Password": "รหัสผ่าน",
+      "Errors": {
+        "NameRequired": "จำเป็นต้องระบุชื่อเต็ม",
+        "EmailRequired": "จำเป็นต้องระบุอีเมล",
+        "EmailInvalid": "ป้อนที่อยู่อีเมลที่ถูกต้อง",
+        "AgeRequired": "จำเป็นต้องระบุอายุ",
+        "AgeInvalid": "ป้อนอายุที่ถูกต้อง",
+        "PhoneRequired": "จำเป็นต้องระบุหมายเลขโทรศัพท์",
+        "PasswordRequired": "จำเป็นต้องระบุรหัสผ่าน",
+        "PasswordLength": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร"
+      }
+    },
+    "Theme": {
+      "Title": "เลือกรูปลักษณ์ของคุณ",
+      "Description": "เลือกสว่างหรือมืดเพื่อเปลี่ยนแนวทางการแสดงผลของระบบและแอป",
+      "Light": "สว่าง",
+      "Dark": "มืด"
+    }
+  },
+  "SystemSettings": {
+    "General": {
+      "Title": "ทั่วไป",
+      "Description": "จัดการการตั้งค่าทั่วไปสำหรับ Mac ของคุณ รวมถึงการอัปเดตซอฟต์แวร์ ภาษาของอุปกรณ์ AirDrop และอื่นๆ",
+      "About": "เกี่ยวกับ Mac เครื่องนี้",
+      "SoftwareUpdate": "รายการอัปเดตซอฟต์แวร์",
+      "Storage": "พื้นที่จัดเก็บข้อมูล",
+      "AppleCare": "AppleCare และการรับประกัน",
+      "AirDrop": "AirDrop และ Handoff",
+      "AutoFill": "ป้อนอัตโนมัติและรหัสผ่าน",
+      "DateTime": "วันและเวลา",
+      "LanguageRegion": "ภาษาและภูมิภาค",
+      "LoginItems": "รายการเข้าสู่ระบบ",
+      "Sharing": "การแชร์",
+      "StartupDisk": "ดิสก์เริ่มต้นระบบ",
+      "TimeMachine": "Time Machine",
+      "DeviceManagement": "การจัดการอุปกรณ์",
+      "TransferReset": "ถ่ายโอนหรือรีเซ็ต"
+    },
+    "AppleAccount": {
+      "Edit": "แก้ไข",
+      "PersonalInformation": "ข้อมูลส่วนบุคคล",
+      "SignInSecurity": "ลงชื่อเข้าใช้และความปลอดภัย",
+      "PaymentShipping": "การชำระเงินและการจัดส่ง",
+      "iCloud": "iCloud",
+      "MediaPurchases": "สื่อและสินค้าที่ซื้อ",
+      "Family": "การแชร์กันในครอบครัว",
+      "SetUp": "ตั้งค่า",
+      "Devices": "อุปกรณ์",
+      "ThisMac": "MacBook Pro 14 นิ้ว เครื่องนี้",
+      "SignOut": "ลงชื่อออก..."
+    },
+    "LanguageRegion": {
+      "Title": "ภาษาและภูมิภาค",
+      "PreferredLanguages": "ภาษาที่ต้องการ",
+      "Region": "ภูมิภาค",
+      "Calendar": "ปฏิทิน",
+      "Temperature": "อุณหภูมิ",
+      "Celsius": "เซลเซียส (°C)",
+      "Fahrenheit": "ฟาเรนไฮต์ (°F)",
+      "MeasurementSystem": "ระบบการวัด",
+      "Metric": "เมตริก",
+      "US": "สหรัฐอเมริกา",
+      "UK": "สหราชอาณาจักร",
+      "FirstDayOfWeek": "วันแรกของสัปดาห์",
+      "DateFormat": "รูปแบบวันที่",
+      "NumberFormat": "รูปแบบตัวเลข",
+      "LiveText": "ข้อความในภาพ",
+      "LiveTextDesc": "เลือกข้อความในรูปภาพเพื่อคัดลอกหรือดำเนินการ",
+      "Applications": "แอปพลิเคชัน",
+      "ApplicationsDesc": "ปรับแต่งการตั้งค่าภาษาสำหรับแอปพลิเคชันเฉพาะด้านล่าง:",
+      "TranslationLanguages": "ภาษาที่แปล..."
+    },
+    "Sidebar": {
+      "Search": "ค้นหา",
+      "NotImplemented": "ส่วนนี้ยังไม่ได้ใช้งาน",
+      "AppleAccount": "บัญชี Apple",
+      "WiFi": "Wi-Fi",
+      "Bluetooth": "Bluetooth",
+      "Network": "เครือข่าย",
+      "General": "ทั่วไป",
+      "Appearance": "รูปลักษณ์",
+      "Accessibility": "การช่วยการเข้าถึง",
+      "MenuBar": "ศูนย์ควบคุม",
+      "DesktopDock": "เดสก์ท็อปและ Dock",
+      "Displays": "จอภาพ",
+      "Spotlight": "Spotlight",
+      "Wallpaper": "ภาพพื้นหลัง",
+      "ScreenSaver": "รหัสผ่านหน้าจอ",
+      "Battery": "แบตเตอรี่",
+      "Sound": "เสียง",
+      "Notifications": "การแจ้งเตือน",
+      "Focus": "โฟกัส",
+      "ScreenTime": "เวลาหน้าจอ",
+      "PrivacySecurity": "ความเป็นส่วนตัวและความปลอดภัย",
+      "LockScreen": "หน้าจอล็อก",
+      "TouchIDPassword": "Touch ID และรหัสผ่าน",
+      "UsersGroups": "ผู้ใช้และกลุ่ม",
+      "Keyboard": "แป้นพิมพ์",
+      "Trackpad": "แทร็คแพด",
+      "PrintersScanners": "เครื่องพิมพ์และเครื่องสแกน",
+      "Storage": "พื้นที่จัดเก็บข้อมูล"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "Description": "ตั้งค่า Wi-Fi เพื่อเชื่อมต่ออินเทอร์เน็ตและอุปกรณ์ไร้สาย",
+      "Connected": "เชื่อมต่อแล้ว",
+      "Details": "รายละเอียด...",
+      "KnownNetworks": "เครือข่ายที่รู้จัก",
+      "OtherNetworks": "เครือข่ายอื่น",
+      "Connect": "เชื่อมต่อ",
+      "Other": "อื่น...",
+      "AskToJoin": "ถามเพื่อเข้าร่วมเครือข่าย",
+      "AskToJoinDesc": "เครือข่ายที่รู้จักจะเข้าร่วมโดยอัตโนมัติ หากไม่มีเครือข่ายที่รู้จัก คุณจะต้องเลือกเครือข่ายด้วยตนเอง",
+      "Notify": "แจ้งเตือน",
+      "AskToJoinHotspots": "ถามเพื่อเข้าร่วมฮอตสปอต",
+      "AskToJoinHotspotsDesc": "อนุญาตให้ Mac ค้นพบฮอตสปอตส่วนบุคคลโดยอัตโนมัติเมื่อไม่มีเครือข่าย Wi-Fi",
+      "AskToJoinAction": "ถามเพื่อเข้าร่วม",
+      "Advanced": "ขั้นสูง..."
+    },
+    "Bluetooth": {
+      "Title": "Bluetooth",
+      "Description": "จัดการการเชื่อมต่อ Bluetooth กับอุปกรณ์ไร้สาย",
+      "Discoverable": "มองเห็นได้ในชื่อ \"MacBook Pro\"",
+      "MyDevices": "อุปกรณ์ของฉัน",
+      "NotConnected": "ไม่ได้เชื่อมต่อ",
+      "NearbyDevices": "อุปกรณ์ใกล้เคียง",
+      "Searching": "กำลังค้นหา..."
+    },
+    "Network": {
+      "Title": "เครือข่าย",
+      "WiFi": "Wi-Fi",
+      "Connected": "เชื่อมต่อแล้ว",
+      "Firewall": "ไฟร์วอลล์",
+      "Inactive": "ไม่ทำงาน",
+      "OtherServices": "บริการอื่น",
+      "NotConnected": "ไม่ได้เชื่อมต่อ"
+    },
+    "Appearance": {
+      "Title": "รูปลักษณ์",
+      "Description": "ตั้งค่ารูปลักษณ์ด้วยโหมดสว่างและมืดในตัวและอื่นๆ",
+      "Light": "สว่าง",
+      "Dark": "มืด",
+      "Auto": "อัตโนมัติ",
+      "AccentColor": "สีเน้น",
+      "HighlightColor": "สีไฮไลท์",
+      "Automatic": "อัตโนมัติ",
+      "SidebarIconSize": "ขนาดไอคอนแถบด้านข้าง",
+      "Medium": "กลาง",
+      "WallpaperTinting": "อนุญาตให้ย้อมสีภาพพื้นหลังในหน้าต่าง",
+      "ShowScrollBars": "แสดงแถบเลื่อน",
+      "ScrollAuto": "อัตโนมัติตามเมาส์หรือแทร็คแพด",
+      "ScrollWhenScrolling": "เมื่อเลื่อน",
+      "ScrollAlways": "ตลอดเวลา",
+      "ClickScrollBar": "คลิกในแถบเลื่อนเพื่อ",
+      "JumpNextPage": "ไปที่หน้าถัดไป",
+      "JumpSpotClicked": "ไปที่จุดที่คลิก"
+    },
+    "Accessibility": {
+      "Title": "การช่วยการเข้าถึง",
+      "Description": "ตัวเลือกการช่วยการเข้าถึงสำหรับการมองเห็น การได้ยิน และการเคลื่อนไหว",
+      "LearnMore": "เรียนรู้เพิ่มเติม...",
+      "Vision": "การมองเห็น",
+      "VoiceOver": "VoiceOver",
+      "Zoom": "ซูม",
+      "HoverText": "ข้อความเมื่อวางเมาส์",
+      "Display": "จอภาพ",
+      "Motion": "การเคลื่อนไหว",
+      "ReadSpeak": "อ่านเนื้อหา",
+      "AudioDescriptions": "คำบรรยายภาพ",
+      "Hearing": "การได้ยิน",
+      "HearingDevices": "อุปกรณ์ช่วยฟัง",
+      "Audio": "เสียง",
+      "Captions": "คำบรรยาย",
+      "LiveCaptions": "คำบรรยายสด",
+      "NameRecognition": "การจดจำชื่อ",
+      "Motor": "การเคลื่อนไหว",
+      "VoiceControl": "การสั่งงานด้วยเสียง",
+      "Keyboard": "แป้นพิมพ์",
+      "PointerControl": "การควบคุมตัวชี้",
+      "SwitchControl": "การควบคุมสวิตช์",
+      "General": "ทั่วไป",
+      "Siri": "Siri",
+      "Shortcut": "ทางลัด"
+    },
+    "MenuBar": {
+      "Title": "ศูนย์ควบคุม",
+      "Description": "ปรับแต่งศูนย์ควบคุมและรายการแถบเมนู",
+      "AutoHide": "ซ่อนและแสดงแถบเมนูอัตโนมัติ",
+      "Never": "ไม่เลย",
+      "RecentDocs": "เอกสาร แอป และเซิร์ฟเวอร์ล่าสุด",
+      "None": "ไม่มี",
+      "Controls": "โมดูลศูนย์ควบคุม",
+      "ControlCenter": "ศูนย์ควบคุม",
+      "ShowInMenuBar": "แสดงในแถบเมนู",
+      "DontShowInMenuBar": "ไม่แสดงในแถบเมนู",
+      "Siri": "Siri",
+      "Spotlight": "Spotlight",
+      "VolumeFeedback": "เล่นเสียงเมื่อเปลี่ยนระดับเสียง",
+      "Clock": "นาฬิกา"
+    },
+    "DesktopDock": {
+      "Title": "เดสก์ท็อปและ Dock",
+      "Description": "ตัวเลือกสำหรับ Dock และเดสก์ท็อป",
+      "Dock": "Dock",
+      "Size": "ขนาด",
+      "Magnification": "การขยาย",
+      "Small": "เล็ก",
+      "Large": "ใหญ่",
+      "Position": "ตำแหน่งบนหน้าจอ",
+      "Bottom": "ล่าง",
+      "MinimiseUsing": "ย่อหน้าต่างโดยใช้",
+      "GenieEffect": "เอฟเฟกต์จีนี่",
+      "DoubleClickTitle": "ดับเบิลคลิกที่แถบชื่อหน้าต่างเพื่อ",
+      "Zoom": "ซูม",
+      "MinimiseToIcon": "ย่อหน้าต่างลงในไอคอนแอปพลิเคชัน",
+      "AutoHideDock": "ซ่อนและแสดง Dock อัตโนมัติ",
+      "AnimateOpening": "เคลื่อนไหวเมื่อเปิดแอปพลิเคชัน",
+      "ShowIndicators": "แสดงตัวบ่งชี้สำหรับแอปพลิเคชันที่เปิดอยู่",
+      "ShowRecent": "แสดงแอปพลิเคชันล่าสุดใน Dock",
+      "DesktopStageManager": "เดสก์ท็อปและตัวจัดการให้อยู่ตรงกลาง",
+      "ShowItems": "แสดงรายการ",
+      "OnDesktop": "บนเดสก์ท็อป",
+      "ClickWallpaper": "คลิกภาพพื้นหลังเพื่อเปิดเดสก์ท็อป",
+      "Always": "ตลอดเวลา",
+      "StageManager": "ตัวจัดการให้อยู่ตรงกลาง",
+      "Widgets": "วิดเจ็ต",
+      "ShowWidgets": "แสดงวิดเจ็ต",
+      "WidgetStyle": "รูปแบบวิดเจ็ต",
+      "Automatic": "อัตโนมัติ",
+      "UseIPhoneWidgets": "ใช้วิดเจ็ต iPhone"
+    },
+    "Displays": {
+      "Title": "จอภาพ",
+      "Description": "ตั้งค่าการแสดงผล",
+      "BuiltInDisplay": "จอภาพในตัว",
+      "UseAs": "ใช้เป็น",
+      "MainDisplay": "จอภาพหลัก",
+      "Resolution": "ความละเอียด",
+      "Default": "เริ่มต้น",
+      "MoreSpace": "พื้นที่มากขึ้น",
+      "LargerText": "ข้อความใหญ่ขึ้น",
+      "Brightness": "ความสว่าง",
+      "TrueTone": "True Tone",
+      "Preset": "ค่าที่ตั้งไว้ล่วงหน้า",
+      "RefreshRate": "อัตราการรีเฟรช",
+      "ProMotion": "ProMotion",
+      "Advanced": "ขั้นสูง..."
+    },
+    "Spotlight": {
+      "Title": "Spotlight",
+      "Description": "การตั้งค่าการค้นหา",
+      "SearchPlaceholder": "การค้นหา Spotlight",
+      "SearchResults": "ผลการค้นหา",
+      "Privacy": "ความเป็นส่วนตัวของ Spotlight...",
+      "Categories": {
+        "Applications": "แอปพลิเคชัน",
+        "Calculator": "เครื่องคิดเลข",
+        "Contacts": "รายชื่อ",
+        "Conversion": "การแปลง",
+        "Definition": "คำนิยาม",
+        "Developer": "นักพัฒนา",
+        "Documents": "เอกสาร",
+        "Events & Reminders": "กิจกรรมและการแจ้งเตือน",
+        "Folders": "โฟลเดอร์",
+        "Fonts": "แบบอักษร",
+        "Images": "รูปภาพ",
+        "Mail & Messages": "เมลและข้อความ",
+        "Movies": "ภาพยนตร์",
+        "Music": "เพลง",
+        "Other": "อื่นๆ",
+        "PDF Documents": "เอกสาร PDF",
+        "Presentations": "งานนำเสนอ",
+        "Siri Suggestions": "คำแนะนำโดย Siri",
+        "Spreadsheets": "สเปรดชีต",
+        "System Preferences": "การตั้งค่าระบบ",
+        "Tips": "เคล็ดลับ",
+        "Bookmarks & History": "บุ๊กมาร์กและประวัติ"
+      }
+    },
+    "Notifications": {
+      "Title": "การแจ้งเตือน",
+      "Description": "การตั้งค่าการแจ้งเตือนแอปพลิเคชัน",
+      "Preview": "แสดงตัวอย่าง",
+      "ShowPreviews": "แสดงตัวอย่าง",
+      "Always": "ตลอดเวลา",
+      "ApplicationNotifications": "การแจ้งเตือนแอปพลิเคชัน",
+      "Apps": {
+        "AppStore": "App Store",
+        "Calendar": "ปฏิทิน",
+        "FaceTime": "FaceTime",
+        "Mail": "เมล",
+        "Messages": "ข้อความ",
+        "Photos": "รูปภาพ",
+        "Reminders": "เตือนความจำ",
+        "Safari": "Safari"
+      }
+    },
+    "Sound": {
+      "Title": "เสียง",
+      "Description": "การตั้งค่าเสียง",
+      "OutputInput": "เอาต์พุตและอินพุต",
+      "Output": "เอาต์พุต",
+      "Input": "อินพุต",
+      "SelectOutput": "เลือกอุปกรณ์สำหรับเอาต์พุตเสียง:",
+      "Speakers": "ลำโพง MacBook Pro",
+      "BuiltIn": "ในตัว",
+      "OutputVolume": "ระดับเสียงเอาต์พุต",
+      "Mute": "ปิดเสียง",
+      "ShowInMenuBar": "แสดงเสียงในแถบเมนู",
+      "Always": "ตลอดเวลา",
+      "AlertSoundGroup": "เสียงเตือน",
+      "AlertSound": "เสียงเตือน",
+      "Boop": "Boop",
+      "AlertVolume": "ระดับเสียงเตือน",
+      "PlayUIEffects": "เล่นเอฟเฟกต์เสียงส่วนติดต่อผู้ใช้"
+    },
+    "Focus": {
+      "Title": "โฟกัส",
+      "Description": "กำหนดค่าโหมดโฟกัส",
+      "DoNotDisturb": "ห้ามรบกวน",
+      "ShareAcrossDevices": "แชร์ข้ามอุปกรณ์",
+      "FocusStatus": "สถานะโฟกัส",
+      "On": "เปิด",
+      "Off": "ปิด",
+      "SetUp": "ตั้งค่า",
+      "FocusModes": "โหมดโฟกัส",
+      "Personal": "ส่วนบุคคล",
+      "Sleep": "นอนหลับ",
+      "Work": "งาน",
+      "AddFocus": "เพิ่มโฟกัส"
+    },
+    "ScreenTime": {
+      "Title": "เวลาหน้าจอ",
+      "Description": "ตรวจสอบการใช้งานและกำหนดขีดจำกัด",
+      "DailyAverage": "เฉลี่ยรายวัน",
+      "FromLastWeek": "จากสัปดาห์ที่แล้ว",
+      "Downtime": "เวลาไม่ใช้งาน",
+      "AppLimits": "จำกัดการใช้แอป",
+      "LimitsCount": "{count} ขีดจำกัด",
+      "AlwaysAllowed": "อนุญาตเสมอ",
+      "AllowedApps": "โทรศัพท์, แผนที่, ข้อความ",
+      "ContentPrivacy": "เนื้อหาและความเป็นส่วนตัว",
+      "On": "เปิด",
+      "Off": "ปิด",
+      "ShareAcrossDevices": "แชร์ข้ามอุปกรณ์",
+      "LockSettings": "ล็อกการตั้งค่าเวลาหน้าจอ"
+    },
+    "Battery": {
+      "Title": "แบตเตอรี่",
+      "Description": "การตั้งค่าแบตเตอรี่",
+      "BatteryLevel": "ระดับแบตเตอรี่",
+      "LastCharged": "ชาร์จครั้งล่าสุดถึง 100% เมื่อ 8:00 น.",
+      "LowPowerMode": "โหมดพลังงานต่ำ",
+      "Never": "ไม่เลย",
+      "BatteryHealth": "สุขภาพแบตเตอรี่",
+      "Normal": "ปกติ",
+      "OptimisedCharging": "การชาร์จเพื่อถนอมแบตเตอรี่",
+      "Options": "ตัวเลือก..."
+    },
+    "Keyboard": {
+      "Title": "แป้นพิมพ์",
+      "Description": "การตั้งค่าแป้นพิมพ์",
+      "KeyRepeat": "การซ้ำแป้น",
+      "Slow": "ช้า",
+      "Fast": "เร็ว",
+      "DelayUntilRepeat": "การหน่วงเวลาก่อนซ้ำ",
+      "Long": "ยาว",
+      "Short": "สั้น",
+      "AdjustBrightness": "ปรับความสว่างแป้นพิมพ์ในที่แสงน้อย",
+      "KeyboardNavigation": "การนำทางด้วยแป้นพิมพ์",
+      "Shortcuts": "ทางลัด...",
+      "TextInput": "การป้อนข้อความ",
+      "InputSources": "แหล่งป้อนข้อมูล",
+      "Edit": "แก้ไข...",
+      "Dictation": "การป้อนตามคำบอก"
+    },
+    "LockScreen": {
+      "Title": "หน้าจอล็อก",
+      "Description": "การตั้งค่าหน้าจอล็อก",
+      "TurnOffDisplayBattery": "ปิดจอภาพเมื่อใช้แบตเตอรี่เมื่อไม่ได้ใช้งาน",
+      "TurnOffDisplayAdapter": "ปิดจอภาพเมื่อใช้อะแดปเตอร์แปลงไฟเมื่อไม่ได้ใช้งาน",
+      "TwoMinutes": "2 นาที",
+      "TenMinutes": "10 นาที",
+      "RequirePassword": "ต้องใส่รหัสผ่านหลังจากสกรีนเซฟเวอร์เริ่มทำงานหรือปิดหน้าจอ",
+      "Immediately": "ทันที",
+      "ShowMessage": "แสดงข้อความเมื่อล็อก",
+      "Set": "ตั้งค่า...",
+      "LoginWindowShows": "หน้าต่างเข้าสู่ระบบแสดง",
+      "ListOfUsers": "รายชื่อผู้ใช้",
+      "ShowLargeClock": "แสดงนาฬิกาขนาดใหญ่",
+      "OnLockScreen": "บนหน้าจอล็อก"
+    },
+    "PrivacySecurity": {
+      "Title": "ความเป็นส่วนตัวและความปลอดภัย",
+      "Description": "การตั้งค่าความเป็นส่วนตัวและความปลอดภัย",
+      "Privacy": "ความเป็นส่วนตัว",
+      "LocationServices": "บริการหาตำแหน่งที่ตั้ง",
+      "On": "เปิด",
+      "Off": "ปิด",
+      "Camera": "กล้อง",
+      "Microphone": "ไมโครโฟน",
+      "FilesFolders": "ไฟล์และโฟลเดอร์",
+      "ScreenRecording": "การบันทึกหน้าจอ",
+      "AppsCount": "{count, plural, =0 {ไม่มีแอป} other {# แอป}}",
+      "Security": "ความปลอดภัย",
+      "FileVault": "FileVault",
+      "LockdownMode": "โหมดล็อกดาวน์",
+      "Others": "อื่น ๆ",
+      "Extensions": "ส่วนขยาย",
+      "Profiles": "โปรไฟล์"
+    },
+    "PrintersScanners": {
+      "Title": "เครื่องพิมพ์และเครื่องสแกน",
+      "Description": "การตั้งค่าเครื่องพิมพ์และเครื่องสแกน",
+      "Printers": "เครื่องพิมพ์",
+      "IdleLastUsed": "ไม่ได้ใช้งาน, ใช้งานล่าสุด",
+      "Offline": "ออฟไลน์",
+      "AddPrinter": "เพิ่มเครื่องพิมพ์ เครื่องสแกน หรือเครื่องแฟกซ์..."
+    },
+    "ScreenSaver": {
+      "Title": "สกรีนเซฟเวอร์",
+      "Description": "การตั้งค่าสกรีนเซฟเวอร์",
+      "Preview": "ดูตัวอย่าง",
+      "ShowOnAllSpaces": "แสดงในทุกพื้นที่",
+      "ScreenSavers": "สกรีนเซฟเวอร์",
+      "StartAfter": "เริ่มหลังจาก",
+      "FiveMinutes": "5 นาที",
+      "ShowWithClock": "แสดงพร้อมนาฬิกา",
+      "ScreensaverNames": {
+        "Ventura": "Ventura",
+        "Monterey": "Monterey",
+        "BigSur": "Big Sur",
+        "Catalina": "Catalina",
+        "Hello": "Hello",
+        "Drift": "Drift",
+        "Flurry": "Flurry",
+        "Shell": "Shell"
+      }
+    },
+    "Storage": {
+      "Title": "พื้นที่จัดเก็บข้อมูล",
+      "Description": "จัดการพื้นที่จัดเก็บข้อมูล",
+      "MacintoshHD": "Macintosh HD",
+      "AvailableSpace": "{available} GB / {total} GB ที่ใช้ได้",
+      "Apps": "แอปพลิเคชัน",
+      "Documents": "เอกสาร",
+      "SystemData": "ข้อมูลระบบ",
+      "macOS": "macOS",
+      "OtherUsers": "ผู้ใช้อื่น",
+      "Recommendations": "คำแนะนำ",
+      "StoreInICloud": "จัดเก็บใน iCloud",
+      "StoreInICloudDesc": "จัดเก็บไฟล์ทั้งหมด รูปภาพ และข้อความใน iCloud และประหยัดพื้นที่ใน Mac นี้",
+      "StoreInICloudButton": "จัดเก็บใน iCloud...",
+      "Categories": "หมวดหมู่",
+      "Applications": "แอปพลิเคชัน"
+    },
+    "TouchIDPassword": {
+      "Title": "Touch ID และรหัสผ่าน",
+      "Description": "เพิ่มลายนิ้วมือเพื่อปลดล็อก Mac ของคุณ",
+      "TouchID": "Touch ID",
+      "Finger1": "นิ้ว 1",
+      "AddFingerprint": "เพิ่มลายนิ้วมือ",
+      "UseTouchIDFor": "ใช้ Touch ID สำหรับ:",
+      "UnlockingMac": "การปลดล็อก Mac ของคุณ",
+      "ApplePay": "Apple Pay",
+      "iTunesAppStore": "iTunes Store และ App Store",
+      "AutoFillPasswords": "ป้อนรหัสผ่านอัตโนมัติ",
+      "Password": "รหัสผ่าน",
+      "LastChanged": "เปลี่ยนล่าสุด: 24/11/2024",
+      "Change": "เปลี่ยน...",
+      "RequirePasswordScreenSaver": "ต้องใส่รหัสผ่านหลังจากสกรีนเซฟเวอร์เริ่มทำงานหรือปิดหน้าจอ",
+      "Immediately": "ทันที",
+      "RequirePasswordIdle": "ต้องใส่รหัสผ่านหลังจากไม่มีการใช้งาน",
+      "Never": "ไม่เลย",
+      "Seconds": "{count} วินาที",
+      "Minute": "{count} นาที",
+      "Minutes": "{count} นาที",
+      "AppleWatch": "Apple Watch",
+      "AppleWatchUnlock": "ใช้ Apple Watch เพื่อปลดล็อกแอปพลิเคชันและ Mac ของคุณ"
+    },
+    "Trackpad": {
+      "Title": "แทร็คแพด",
+      "Description": "การตั้งค่าแทร็คแพด",
+      "PointClick": "ชี้และคลิก",
+      "ScrollZoom": "เลื่อนและซูม",
+      "MoreGestures": "ท่าทางเพิ่มเติม",
+      "TrackingSpeed": "ความเร็วในการติดตาม",
+      "Slow": "ช้า",
+      "Fast": "เร็ว",
+      "Click": "คลิก",
+      "Medium": "กลาง",
+      "ForceClick": "คลิกตามแรงกดและการตอบสนอง",
+      "LookUp": "ค้นหาและตัวตรวจจับข้อมูล",
+      "SecondaryClick": "คลิกรอง",
+      "ClickTwoFingers": "คลิกด้วยสองนิ้ว",
+      "TapToClick": "แตะเพื่อคลิก",
+      "VideoPreview": "ตัวอย่างวิดีโอ"
+    },
+    "UsersGroups": {
+      "Title": "ผู้ใช้และกลุ่ม",
+      "Description": "จัดการผู้ใช้",
+      "CurrentUser": "ผู้ใช้ปัจจุบัน",
+      "Admin": "ผู้ดูแลระบบ",
+      "OtherUsers": "ผู้ใช้อื่น",
+      "GuestUser": "ผู้ใช้ทั่วไป",
+      "Off": "ปิด",
+      "AddAccount": "เพิ่มบัญชี...",
+      "AutoLogin": "เข้าสู่ระบบโดยอัตโนมัติ",
+      "AllowNetworkUsers": "อนุญาตให้ผู้ใช้เครือข่ายเข้าสู่ระบบที่หน้าต่างเข้าสู่ระบบ"
+    },
+    "Wallpaper": {
+      "Title": "ภาพพื้นหลัง",
+      "Description": "เลือกภาพพื้นหลัง",
+      "ShowOnAllSpaces": "แสดงในทุกพื้นที่",
+      "DynamicWallpapers": "ภาพพื้นหลังแบบไดนามิก",
+      "Pictures": "รูปภาพ",
+      "AddPhoto": "เพิ่มรูปภาพ"
+    },
+    "LanguageSelector": {
+      "Title": "เลือกภาษาที่ต้องการเพิ่ม",
+      "Search": "ค้นหา",
+      "Cancel": "ยกเลิก",
+      "Add": "เพิ่ม"
+    }
+  },
+  "Languages": {
+    "English": "อังกฤษ",
+    "Spanish": "สเปน",
+    "French": "ฝรั่งเศส",
+    "German": "เยอรมัน",
+    "Italian": "อิตาลี",
+    "Japanese": "ญี่ปุ่น",
+    "Chinese": "จีน",
+    "Portuguese": "โปรตุเกส",
+    "Russian": "รัสเซีย",
+    "Korean": "เกาหลี",
+    "Dutch": "ดัตช์",
+    "Swedish": "สวีเดน",
+    "Danish": "เดนมาร์ก",
+    "Norwegian": "นอร์เวย์",
+    "Finnish": "ฟินแลนด์",
+    "Polish": "โปแลนด์",
+    "Turkish": "ตุรกี",
+    "Arabic": "อาหรับ",
+    "Hindi": "ฮินดี",
+    "Bengali": "เบงกาลี",
+    "Vietnamese": "เวียดนาม",
+    "Thai": "ไทย",
+    "Greek": "กรีก",
+    "Czech": "เช็ก",
+    "Hungarian": "ฮังการี",
+    "Romanian": "โรมาเนีย",
+    "Ukrainian": "ยูเครน",
+    "Indonesian": "อินโดนีเซีย",
+    "Malay": "มาเลย์",
+    "Croatian": "โครเอเชีย",
+    "Slovak": "สโลวัก",
+    "Slovenian": "สโลวีเนีย",
+    "Bulgarian": "บัลแกเรีย",
+    "Serbian": "เซอร์เบีย",
+    "Hebrew": "ฮีบรู"
+  },
+  "Finder": {
+    "Search": "ค้นหา",
+    "Sidebar": {
+      "Favorites": "รายการโปรด",
+      "Locations": "สถานที่",
+      "AirDrop": "AirDrop",
+      "Recents": "ล่าสุด",
+      "Applications": "แอปพลิเคชัน",
+      "Desktop": "เดสก์ท็อป",
+      "Documents": "เอกสาร",
+      "Downloads": "รายการดาวน์โหลด",
+      "Pictures": "รูปภาพ",
+      "Home": "บ้าน",
+      "MacintoshHD": "Macintosh HD",
+      "iCloudDrive": "iCloud Drive"
+    },
+    "Menu": {
+      "NewFolder": "โฟลเดอร์ใหม่",
+      "GetInfo": "ดูข้อมูล",
+      "ChangeBackground": "เปลี่ยนภาพพื้นหลัง...",
+      "Open": "เปิด",
+      "MoveToBin": "ย้ายไปที่ถังขยะ",
+      "Rename": "เปลี่ยนชื่อ",
+      "OpenItems": "เปิด {count, plural, other {# รายการ}}",
+      "MoveItemsToBin": "ย้าย {count, plural, other {# รายการ}} ไปที่ถังขยะ"
+    },
+    "Status": {
+      "Loading": "กำลังโหลด...",
+      "EmptyFolder": "โฟลเดอร์ว่าง",
+      "ItemCount": "{count, plural, other {# รายการ}}",
+      "SpaceAvailable": "{amount} GB ที่ใช้ได้"
+    },
+    "Errors": {
+      "NoApp": "ไม่มีแอปพลิเคชันที่ตั้งค่าให้เปิดเอกสาร \"{ext}\"",
+      "CreateFolderFailed": "สร้างโฟลเดอร์ไม่สำเร็จ",
+      "MoveToBinFailed": "ย้ายไปที่ถังขยะไม่สำเร็จ"
+    }
+  },
+  "Safari": {
+    "Title": "Safari",
+    "StartPage": "หน้าเริ่มต้น",
+    "Loading": "กำลังโหลด...",
+    "SearchPlaceholder": "ค้นหาหรือป้อนชื่อเว็บไซต์",
+    "NoInternet": "ไม่มีการเชื่อมต่ออินเทอร์เน็ต",
+    "NoInternetDesc": "คอมพิวเตอร์ของคุณไม่ได้เชื่อมต่อกับอินเทอร์เน็ต ไม่สามารถแสดงหน้านี้ได้",
+    "Favorites": {
+      "Apple": "Apple",
+      "Google": "Google",
+      "Wikipedia": "Wikipedia",
+      "GitHub": "GitHub"
+    }
+  },
+  "Mail": {
+    "Inbox": "กล่องจดหมาย",
+    "MessagesCount": "{count, plural, other {# ข้อความ}}",
+    "Favorites": "รายการโปรด",
+    "AllInboxes": "กล่องจดหมายทั้งหมด",
+    "VIP": "VIP",
+    "Sent": "ส่งแล้ว",
+    "Search": "ค้นหา",
+    "NoMessageSelected": "ไม่ได้เลือกข้อความ",
+    "To": "ถึง: {name}"
+  },
+  "Messages": {
+    "AppTitle": "ข้อความ",
+    "SigningIn": "กำลังลงชื่อเข้าใช้ในชื่อ {name}...",
+    "SidebarTitle": "ข้อความ",
+    "NoOnlineUsers": "ไม่มีผู้ใช้ออนไลน์",
+    "NoMessages": "ไม่มีข้อความ",
+    "To": "ถึง: {name}",
+    "InputPlaceholder": "iMessage",
+    "NoContactSelected": "เลือกผู้ติดต่อเพื่อส่งข้อความ"
+  },
+  "Photos": {
+    "Sidebar": {
+      "Library": "คลัง",
+      "Collections": "คอลเลกชั่น",
+      "Pinned": "ปักหมุด",
+      "Albums": "อัลบั้ม",
+      "Utilities": "ยูทิลิตี้",
+      "Projects": "โปรเจ็กต์",
+      "Favourites": "รายการโปรด",
+      "RecentlySaved": "บันทึกล่าสุด",
+      "Videos": "วิดีโอ",
+      "Screenshots": "ภาพหน้าจอ",
+      "PeoplePets": "ผู้คนและสัตว์เลี้ยง",
+      "SharedAlbums": "อัลบั้มที่แชร์",
+      "Activity": "กิจกรรม",
+      "RecentlyDeleted": "ลบล่าสุด",
+      "Duplicates": "ซ้ำ",
+      "Map": "แผนที่",
+      "AllProjects": "โปรเจ็กต์ทั้งหมด"
+    },
+    "Tabs": {
+      "Years": "ปี",
+      "Months": "เดือน",
+      "AllPhotos": "รูปภาพทั้งหมด"
+    },
+    "Search": "ค้นหา",
+    "Collections": {
+      "Title": "คอลเลกชั่น",
+      "Memories": "ความทรงจำ",
+      "NoMemories": "ไม่มีความทรงจำ",
+      "NoMemoriesDesc": "ความทรงจำจะปรากฏที่นี่เมื่อคุณสร้าง",
+      "Albums": "อัลบั้ม",
+      "NoAlbums": "ไม่มีอัลบั้ม"
+    },
+    "EmptyState": {
+      "NoItems": "ไม่มีรายการใน {title}"
+    },
+    "Locked": {
+      "Title": "{title} ล็อกแล้ว",
+      "Desc": "ตรวจสอบสิทธิ์เพื่อดู"
+    }
+  },
+  "Notes": {
+    "Sidebar": {
+      "iCloud": "iCloud",
+      "Notes": "โน้ต",
+      "RecentlyDeleted": "ลบล่าสุด"
+    },
+    "Search": "ค้นหา",
+    "NewNote": "โน้ตใหม่",
+    "NoAdditionalText": "ไม่มีข้อความเพิ่มเติม",
+    "Editor": {
+      "TitlePlaceholder": "ชื่อเรื่อง",
+      "ContentPlaceholder": "เริ่มพิมพ์...",
+      "AddToDesktop": "เพิ่มไปที่เดสก์ท็อป",
+      "Restore": "กู้คืน",
+      "Delete": "ลบโน้ต",
+      "DeletePermanently": "ลบถาวร",
+      "EmptyState": "เลือกหรือสร้างโน้ต",
+      "Date": "วันนี้เวลา {time}"
+    }
+  },
+  "Reminders": {
+    "Search": "ค้นหา",
+    "Sidebar": {
+      "MyLists": "รายการของฉัน",
+      "Reminders": "เตือนความจำ",
+      "Work": "งาน",
+      "Today": "วันนี้",
+      "Scheduled": "กำหนดเวลาแล้ว",
+      "All": "ทั้งหมด",
+      "Flagged": "ธง"
+    },
+    "AddReminder": "เตือนความจำใหม่",
+    "Actions": {
+      "Add": "เพิ่ม",
+      "Cancel": "ยกเลิก",
+      "Delete": "ลบเตือนความจำ",
+      "MarkComplete": "ทำเครื่องหมายว่าเสร็จแล้ว",
+      "MarkIncomplete": "ทำเครื่องหมายว่าไม่เสร็จ",
+      "Flag": "ธง",
+      "Unflag": "เลิกธง"
+    },
+    "Inputs": {
+      "Title": "ชื่อเรื่อง",
+      "Notes": "โน้ต",
+      "Date": "วันที่",
+      "Time": "เวลา",
+      "Tags": "แท็ก"
+    },
+    "EmptyState": {
+      "NoReminders": "ไม่มีเตือนความจำ",
+      "CreateOne": "สร้างเตือนความจำ"
+    }
+  },
+  "Calendar": {
+    "Search": "ค้นหา",
+    "Today": "วันนี้",
+    "Day": "วัน",
+    "Week": "สัปดาห์",
+    "Month": "เดือน",
+    "Year": "ปี",
+    "AddEvent": "เพิ่มกิจกรรม",
+    "NoEvents": "ไม่มีกิจกรรม",
+    "NewEvent": "กิจกรรมใหม่",
+    "TitlePlaceholder": "ชื่อกิจกรรม",
+    "Location": "สถานที่",
+    "AllDay": "ทั้งวัน",
+    "From": "จาก",
+    "To": "ถึง",
+    "Repeat": "ทำซ้ำ",
+    "Never": "ไม่เลย",
+    "Daily": "ทุกวัน",
+    "Weekly": "ทุกสัปดาห์",
+    "Monthly": "ทุกเดือน",
+    "Yearly": "ทุกปี",
+    "Alert": "เตือน",
+    "AtTime": "เมื่อถึงเวลากิจกรรม",
+    "5MinBefore": "5 นาทีก่อน",
+    "10MinBefore": "10 นาทีก่อน",
+    "15MinBefore": "15 นาทีก่อน",
+    "30MinBefore": "30 นาทีก่อน",
+    "1HourBefore": "1 ชั่วโมงก่อน",
+    "2HoursBefore": "2 ชั่วโมงก่อน",
+    "1DayBefore": "1 วันก่อน",
+    "2DaysBefore": "2 วันก่อน",
+    "Notes": "โน้ต",
+    "DeleteEvent": "ลบกิจกรรม",
+    "ShortDays": {
+      "Sun": "อา.",
+      "Mon": "จ.",
+      "Tue": "อ.",
+      "Wed": "พ.",
+      "Thu": "พฤ.",
+      "Fri": "ศ.",
+      "Sat": "ส."
+    },
+    "Months": {
+      "January": "มกราคม",
+      "February": "กุมภาพันธ์",
+      "March": "มีนาคม",
+      "April": "เมษายน",
+      "May": "พฤษภาคม",
+      "June": "มิถุนายน",
+      "July": "กรกฎาคม",
+      "August": "สิงหาคม",
+      "September": "กันยายน",
+      "October": "ตุลาคม",
+      "November": "พฤศจิกายน",
+      "December": "ธันวาคม"
+    },
+    "Sidebar": {
+      "iCloud": "ICLOUD",
+      "Other": "OTHER",
+      "NoInvitations": "No invitations"
+    },
+    "Toolbar": {
+      "Today": "Today",
+      "SearchPlaceholder": "Search events...",
+      "View": {
+        "day": "day",
+        "week": "week",
+        "month": "month",
+        "year": "year"
+      }
+    },
+    "EventModal": {
+      "Title": "New Event",
+      "EventTitlePlaceholder": "Event Title",
+      "CalendarLabel": "Calendar",
+      "Cancel": "Cancel",
+      "AddEvent": "Add Event"
+    },
+    "SearchResults": {
+      "Title": "Search Results",
+      "NoEvents": "No events found"
+    },
+    "Event": {
+      "NoLocation": "No location",
+      "EventLabel": "Event: {title} at {location}"
+    },
+    "Weekdays": {
+      "Sun": "Sun",
+      "Mon": "Mon",
+      "Tue": "Tue",
+      "Wed": "Wed",
+      "Thu": "Thu",
+      "Fri": "Fri",
+      "Sat": "Sat"
+    },
+    "WeekdaysShort": {
+      "Sun": "S",
+      "Mon": "M",
+      "Tue": "T",
+      "Wed": "W",
+      "Thu": "T",
+      "Fri": "F",
+      "Sat": "S"
+    }
+  },
+  "Maps": {
+    "Search": "ค้นหา",
+    "SearchPlaceholder": "ค้นหาสถานที่หรือที่อยู่",
+    "Directions": "เส้นทาง",
+    "From": "จาก",
+    "To": "ถึง",
+    "Transport": {
+      "Drive": "ขับรถ",
+      "Walk": "เดิน",
+      "Transit": "ขนส่งสาธารณะ",
+      "Cycle": "จักรยาน"
+    },
+    "LocateMe": "ค้นหาฉัน",
+    "ZoomIn": "ซูมเข้า",
+    "ZoomOut": "ซูมออก",
+    "MapType": {
+      "Standard": "มาตรฐาน",
+      "Hybrid": "ไฮบริด",
+      "Satellite": "ดาวเทียม"
+    },
+    "Sidebar": {
+      "Favorites": "FAVORITES",
+      "Recent": "RECENT",
+      "NoRecentSearches": "No recent searches",
+      "RecentLabel": "Recent"
+    },
+    "Locations": {
+      "Home": "Home",
+      "Work": "Work"
+    },
+    "Controls": {
+      "SwitchToSatellite": "Switch to Satellite",
+      "SwitchToSatelliteLabel": "Switch to Satellite view",
+      "SwitchToMap": "Switch to Map",
+      "SwitchToMapLabel": "Switch to Map view",
+      "CurrentLocation": "Current Location",
+      "ShowCurrentLocation": "Show current location",
+      "MapInfo": "Map information"
+    },
+    "Permission": {
+      "AppName": "Maps",
+      "Title": "Location",
+      "Reason": "Maps needs access to your location to show where you are.",
+      "Error": "Could not get your location. Please ensure location services are enabled.",
+      "NotSupported": "Geolocation is not supported by your browser."
+    }
+  },
+  "FaceTime": {
+    "AppName": "FaceTime",
+    "NewFaceTime": "FaceTime ใหม่",
+    "CreateLink": "สร้างลิงก์",
+    "EnterNameOrEmail": "ชื่อ อีเมล หรือเบอร์โทร",
+    "Suggested": "แนะนำ",
+    "NoRecents": "ไม่มีรายการล่าสุด",
+    "FaceTimeVideo": "FaceTime วิดีโอ",
+    "FaceTimeAudio": "FaceTime เสียง",
+    "JoinCall": "เข้าร่วม",
+    "Waiting": "กำลังรอ...",
+    "Connected": "เชื่อมต่อแล้ว",
+    "Reconnecting": "กำลังเชื่อมต่อใหม่...",
+    "CallEnded": "การโทรสิ้นสุดลง",
+    "Mute": "ปิดเสียง",
+    "Unmute": "เปิดเสียง",
+    "VideoOff": "ปิดวิดีโอ",
+    "VideoOn": "เปิดวิดีโอ",
+    "End": "วางสาย",
+    "FullScreen": "เต็มหน้าจอ",
+    "ExitFullScreen": "ออกจากโหมดเต็มหน้าจอ",
+    "Effects": "เอฟเฟกต์",
+    "ShareScreen": "แชร์หน้าจอ",
+    "Connecting": "กำลังเชื่อมต่อ...",
+    "Unavailable": "ไม่พร้อมใช้งาน",
+    "Title": "FaceTime",
+    "ConnectingAs": "Connecting as {name}...",
+    "IncomingCall": "{name} is calling...",
+    "Accept": "Accept",
+    "Decline": "Decline",
+    "Contacts": "Contacts",
+    "NoContacts": "No one else is online.",
+    "Video": "Video",
+    "SelectContact": "Select a contact to call",
+    "Aria": {
+      "RemoteVideo": "Remote video feed",
+      "LocalVideo": "Local video preview",
+      "EndCall": "End Call",
+      "CallContact": "Call {name}",
+      "VideoCallContact": "Video call {name}",
+      "LocalPreview": "Local camera preview"
+    },
+    "Permission": {
+      "AppName": "FaceTime",
+      "Title": "Camera and Microphone",
+      "Reason": "FaceTime needs access to your camera and microphone to make calls."
+    }
+  },
+  "Contacts": {
+    "Search": "ค้นหา",
+    "AllContacts": "รายชื่อทั้งหมด",
+    "MyCard": "บัตรของฉัน",
+    "AddContact": "เพิ่มรายชื่อ",
+    "Edit": "แก้ไข",
+    "Done": "เสร็จสิ้น",
+    "FirstName": "ชื่อ",
+    "LastName": "นามสกุล",
+    "Company": "บริษัท",
+    "Phone": "โทรศัพท์",
+    "Email": "อีเมล",
+    "Notes": "โน้ต",
+    "Message": "ข้อความ",
+    "Call": "โทร",
+    "Video": "วิดีโอ",
+    "Mail": "เมล",
+    "Pay": "ชำระเงิน",
+    "NoContacts": "ไม่มีรายชื่อ",
+    "DeleteContact": "ลบรายชื่อ",
+    "SearchPlaceholder": "Search",
+    "SearchAria": "Search contacts",
+    "Count": "{count} Contacts",
+    "EditContact": "Edit Contact",
+    "NewContact": "New Contact",
+    "Preview": "Preview",
+    "Cancel": "Cancel",
+    "NoNotes": "No notes",
+    "NoSelection": "No Contact Selected",
+    "Labels": {
+      "FirstName": "First Name",
+      "LastName": "Last Name",
+      "Company": "Company",
+      "Phone": "Phone",
+      "Email": "Email",
+      "Notes": "Notes",
+      "Mobile": "mobile",
+      "Home": "home",
+      "Message": "message",
+      "Video": "video",
+      "Mail": "mail"
+    },
+    "Alerts": {
+      "DeleteConfirm": "Are you sure you want to delete this contact?",
+      "NameRequired": "Please enter a name or company."
+    },
+    "Aria": {
+      "AddContact": "Add new contact",
+      "Contact": "Contact: {name}",
+      "Action": "{action} {name}"
+    }
+  },
+  "Calculator": {
+    "Clear": "C",
+    "AllClear": "AC",
+    "Negate": "+/-",
+    "Percent": "%",
+    "Divide": "÷",
+    "Multiply": "×",
+    "Subtract": "-",
+    "Add": "+",
+    "Equals": "=",
+    "Decimal": ".",
+    "AC": "AC",
+    "ToggleSign": "Toggle sign",
+    "Percentage": "Percentage",
+    "Calculate": "Calculate result"
+  },
+  "Clock": {
+    "WorldClock": "นาฬิกาโลก",
+    "Alarm": "นาฬิกาปลุก",
+    "Stopwatch": "นาฬิกาจับเวลา",
+    "Timer": "ตัวนับถอยหลัง",
+    "Add": "เพิ่ม",
+    "Edit": "แก้ไข",
+    "Start": "เริ่ม",
+    "Stop": "หยุด",
+    "Reset": "รีเซ็ต",
+    "Lap": "รอบ",
+    "Resume": "ทำต่อ",
+    "Pause": "หยุดชั่วคราว",
+    "Cancel": "ยกเลิก",
+    "Save": "บันทึก",
+    "Label": "ป้ายกำกับ",
+    "Sound": "เสียง",
+    "Snooze": "เลื่อนปลุก",
+    "WhenTimerEnds": "เมื่อตัวนับถอยหลังสิ้นสุด",
+    "StopPlaying": "หยุดเล่น",
+    "Tabs": {
+      "WorldClock": "World Clock",
+      "Alarms": "Alarms",
+      "Stopwatch": "Stopwatch",
+      "Timers": "Timers"
+    },
+    "AddClock": "Add clock",
+    "Locations": {
+      "NewDelhi": "New Delhi"
+    },
+    "Today": "Today",
+    "HRS": "HRS"
+  },
+  "Weather": {
+    "Loading": "กำลังโหลด...",
+    "Error": "ข้อผิดพลาดในการโหลดสภาพอากาศ",
+    "SearchPlaceholder": "ค้นหาเมือง",
+    "MyLocation": "ตำแหน่งของฉัน",
+    "Humidity": "ความชื้น",
+    "Wind": "ลม",
+    "Rain": "ฝน",
+    "FeelsLike": "รู้สึกเหมือน",
+    "UVIndex": "ดัชนี UV",
+    "Pressure": "ความกดอากาศ",
+    "Visibility": "การมองเห็น",
+    "Sunrise": "พระอาทิตย์ขึ้น",
+    "Sunset": "พระอาทิตย์ตก",
+    "Forecast": {
+      "Hourly": "Hourly Forecast",
+      "TenDay": "10-Day Forecast",
+      "Now": "Now",
+      "Today": "Today"
+    },
+    "Hourly": "รายชั่วโมง",
+    "Daily": "รายวัน",
+    "High": "ส.",
+    "Low": "ต.",
+    "Conditions": {
+      "Clear": "แจ่มใส",
+      "Cloudy": "มีเมฆมาก",
+      "Rain": "ฝน",
+      "Snow": "หิมะ",
+      "Thunderstorm": "พายุฝนฟ้าคะนอง",
+      "Drizzle": "ฝนปรอยๆ",
+      "Mist": "หมอก"
+    },
+    "Retry": "Retry",
+    "Searching": "Searching...",
+    "NoResults": "No results found",
+    "Recent": "Recent",
+    "Popular": "Popular",
+    "Sidebar": {
+      "Open": "Open sidebar",
+      "Close": "Close sidebar"
+    },
+    "Aria": {
+      "SelectLocation": "Select {name}, {country}"
+    },
+    "Details": {
+      "AirQuality": "Air Quality",
+      "UVIndex": "UV Index",
+      "Wind": "Wind",
+      "Sunset": "Sunset",
+      "Sunrise": "Sunrise:",
+      "FeelsLike": "Feels Like",
+      "Humidity": "Humidity",
+      "Visibility": "Visibility",
+      "Pressure": "Pressure",
+      "hPa": "hPa"
+    },
+    "Descriptions": {
+      "AirQualityDesc": "Air quality index is 130, similar to yesterday at about this time.",
+      "UVIndexDesc": "Use sun protection until 4PM.",
+      "FeelsLikeDesc": "Similar to the actual temperature.",
+      "DewPointDesc": "The dew point is {temp}° right now.",
+      "VisibilityDesc": "Perfectly clear view.",
+      "Footer": "Weather for {location} • Open-Meteo Data",
+      "PollutionLevel": "Moderately Polluted",
+      "UVLevel": "Moderate"
+    }
+  },
+  "Stocks": {
+    "Search": "ค้นหา",
+    "Watchlist": "รายการที่ติดตาม",
+    "MarketOpen": "ตลาดเปิด",
+    "MarketClosed": "ตลาดปิด",
+    "PreMarket": "ก่อนตลาดเปิด",
+    "AfterHours": "หลังตลาดปิด",
+    "Loading": "กำลังโหลด...",
+    "Error": "ข้อผิดพลาดในการโหลด",
+    "AddSymbol": "เพิ่มสัญลักษณ์",
+    "Remove": "ลบออก",
+    "Chart": "แผนภูมิ",
+    "News": "ข่าว",
+    "Summary": "สรุป",
+    "Open": "เปิด",
+    "High": "สูงสุด",
+    "Low": "ต่ำสุด",
+    "Vol": "ปริมาณ",
+    "PE": "P/E",
+    "MktCap": "มูลค่าตลาด",
+    "52WHigh": "สูงสุด 52 สัปดาห์",
+    "52WLow": "ต่ำสุด 52 สัปดาห์",
+    "AvgVol": "ปริมาณเฉลี่ย",
+    "Yield": "ผลตอบแทน",
+    "Beta": "เบต้า",
+    "EPS": "EPS",
+    "Title": "Stocks",
+    "Searching": "Searching...",
+    "KeyStatistics": "Key Statistics",
+    "BusinessNews": "Business News",
+    "ShowMore": "Show More",
+    "Aria": {
+      "Search": "Search stocks",
+      "Select": "Select stock {symbol}",
+      "ReadNews": "Read news: {title}"
+    },
+    "Stats": {
+      "Open": "Open",
+      "High": "High",
+      "Low": "Low",
+      "Vol": "Vol",
+      "PE": "P/E",
+      "MktCap": "Mkt Cap",
+      "52WH": "52W H",
+      "52WL": "52W L"
+    }
+  },
+  "Desktop": {
+    "ContextMenu": {
+      "NewFolder": "โฟลเดอร์ใหม่",
+      "GetInfo": "ดูข้อมูล",
+      "ChangeDesktopBackground": "เปลี่ยนภาพพื้นหลัง...",
+      "UseStacks": "ใช้สแต็ค",
+      "SortBy": "จัดเรียงตาม",
+      "CleanUp": "จัดระเบียบ",
+      "CleanUpBy": "จัดระเบียบตาม",
+      "ShowViewOptions": "แสดงตัวเลือกมุมมอง",
+      "ChangeWallpaper": "Change Wallpaper...",
+      "EditWidgets": "Edit Widgets...",
+      "Tags": "Tags",
+      "None": "None",
+      "SnapToGrid": "Snap to Grid",
+      "Name": "Name",
+      "Kind": "Kind",
+      "DateLastOpened": "Date Last Opened",
+      "DateAdded": "Date Added",
+      "DateModified": "Date Modified",
+      "DateCreated": "Date Created",
+      "Size": "Size"
+    },
+    "SortOptions": {
+      "Name": "ชื่อ",
+      "Kind": "ชนิด",
+      "DateLastOpened": "วันที่เปิดล่าสุด",
+      "DateAdded": "วันที่เพิ่ม",
+      "DateModified": "วันที่แก้ไข",
+      "DateCreated": "วันที่สร้าง",
+      "Size": "ขนาด",
+      "Tags": "แท็ก"
+    },
+    "Guest": "Guest",
+    "UntitledFolder": "untitled folder",
+    "NoAppAvailable": "No application available to open .{ext} files.",
+    "MoveToBin": {
+      "Failed": "Failed to move to bin",
+      "NotSupported": "Failed to move to bin. Folder moves not fully supported yet."
+    }
+  },
+  "ControlCenter": {
+    "Title": "ศูนย์ควบคุม",
+    "WiFi": "Wi-Fi",
+    "Bluetooth": "Bluetooth",
+    "AirDrop": "AirDrop",
+    "DoNotDisturb": "ห้ามรบกวน",
+    "KeyboardBrightness": "ความสว่างแป้นพิมพ์",
+    "ScreenMirroring": "การสะท้อนหน้าจอ",
+    "Display": "จอภาพ",
+    "Sound": "เสียง",
+    "Playing": "กำลังเล่น",
+    "On": "เปิด",
+    "Off": "ปิด",
+    "NotConnected": "ไม่ได้เชื่อมต่อ",
+    "Connect": "เชื่อมต่อ",
+    "HomeNetwork": "Home Network",
+    "ContactsOnly": "Contacts Only",
+    "NotPlaying": "Not Playing",
+    "Music": "Music"
+  },
+  "LockScreenApp": {
+    "EnterPassword": "ป้อนรหัสผ่าน",
+    "ClickToUnlock": "คลิกเพื่อปลดล็อก",
+    "TouchID": "Touch ID",
+    "Cancel": "ยกเลิก",
+    "SwitchUser": "เปลี่ยนผู้ใช้"
+  },
+  "NotificationCenter": {
+    "Title": "ศูนย์การแจ้งเตือน",
+    "NoNotifications": "ไม่มีการแจ้งเตือน",
+    "ClearAll": "ล้างทั้งหมด",
+    "Widgets": "Widgets",
+    "Done": "Done",
+    "Edit": "Edit",
+    "AddWidget": "Add Widget"
+  },
+  "Widgets": {
+    "AllWidgets": "วิดเจ็ตทั้งหมด",
+    "Search": "ค้นหา",
+    "AddWidget": "เพิ่มวิดเจ็ต",
+    "Loading": "Loading...",
+    "Calendar": {
+      "Title": "Calendar"
+    },
+    "Weather": {
+      "Title": "Weather"
+    },
+    "Stocks": {
+      "Title": "Stocks"
+    },
+    "Reminders": {
+      "Title": "Reminders",
+      "NoReminders": "No reminders"
+    },
+    "Notes": {
+      "Title": "Notes",
+      "Content": "Buy milk, eggs, and bread.<br />Call mom at 5pm.<br />Meeting with team tomorrow."
+    }
+  },
+  "Window": {
+    "Minimize": "ย่อเก็บ",
+    "Maximize": "ขยาย",
+    "Close": "ปิด",
+    "Restore": "Restore",
+    "MoveTo": "Move Window to...",
+    "LeftSide": "Left Side of Screen",
+    "RightSide": "Right Side of Screen",
+    "EnterFullScreen": "Enter Full Screen"
+  },
+  "Dock": {
+    "AriaLabel": "แท่นวางแอปพลิเคชัน",
+    "Trash": "ถังขยะ"
+  },
+  "Apps": {
+    "Finder": "Finder",
+    "Launchpad": "Launchpad",
+    "Safari": "Safari",
+    "Messages": "ข้อความ",
+    "Mail": "เมล",
+    "Maps": "แผนที่",
+    "Photos": "รูปภาพ",
+    "FaceTime": "FaceTime",
+    "Calendar": "ปฏิทิน",
+    "Contacts": "รายชื่อ",
+    "Reminders": "เตือนความจำ",
+    "Notes": "โน้ต",
+    "TV": "TV",
+    "Music": "เพลง",
+    "News": "ข่าว",
+    "SystemSettings": "การตั้งค่าระบบ",
+    "AppStore": "App Store",
+    "Trash": "ถังขยะ",
+    "VSCode": {
+      "Title": "Visual Studio Code"
+    },
+    "LeetCode": {
+      "Title": "LeetCode",
+      "Common": {
+        "Loading": "Loading Profile...",
+        "NoData": "No data",
+        "Retry": "Retry",
+        "ShowMore": "Show more",
+        "GoToLeetCode": "Go to LeetCode"
+      },
+      "Badges": {
+        "Title": "Badges",
+        "MostRecent": "Most Recent Badge"
+      },
+      "Stats": {
+        "Title": "Community Stats",
+        "Views": "Views",
+        "Solution": "Solution",
+        "Discuss": "Discuss",
+        "Reputation": "Reputation"
+      },
+      "Languages": {
+        "Title": "Languages",
+        "ProblemsSolved": "problems solved"
+      },
+      "Profile": {
+        "Rank": "Rank"
+      },
+      "Submissions": {
+        "RecentAC": "Recent AC",
+        "List": "List",
+        "Solutions": "Solutions",
+        "Discuss": "Discuss",
+        "TimeAgo": "2 months ago"
+      },
+      "Skills": {
+        "Title": "Skills",
+        "Advanced": "Advanced",
+        "Intermediate": "Intermediate"
+      },
+      "Solved": {
+        "Solved": "Solved",
+        "Easy": "Easy",
+        "Medium": "Med.",
+        "Hard": "Hard"
+      },
+      "Calendar": {
+        "SubmissionsLastYear": "submissions in the past one year",
+        "TotalActiveDays": "Total active days:",
+        "MaxStreak": "Max streak:",
+        "Current": "Current",
+        "Months": {
+          "Jan": "Jan",
+          "Feb": "Feb",
+          "Mar": "Mar",
+          "Apr": "Apr",
+          "May": "May",
+          "Jun": "Jun",
+          "Jul": "Jul",
+          "Aug": "Aug",
+          "Sep": "Sep",
+          "Oct": "Oct",
+          "Nov": "Nov",
+          "Dec": "Dec"
+        }
+      }
+    },
+    "V86": {
+      "Title": "Virtual Machine",
+      "NoFileSelected": "No file selected",
+      "ScriptLoadError": "Failed to load V86 script",
+      "FileReadError": "Failed to read file",
+      "StartError": "Failed to start emulator",
+      "Booting": "Booting {filename}...",
+      "ErrorPrefix": "Error: {error}",
+      "ClickToCapture": "Click to capture mouse (Esc to release)"
+    },
+    "Freeform": "Freeform",
+    "Terminal": "Terminal",
+    "Calculator": "Calculator",
+    "TextEdit": "TextEdit",
+    "MediaPlayer": "Media Player",
+    "Preview": "Preview",
+    "VirtualMachine": "Virtual Machine"
+  },
+  "News": {
+    "Title": "News",
+    "Categories": {
+      "TopStories": "Top Stories",
+      "Technology": "Technology",
+      "Business": "Business",
+      "Science": "Science",
+      "Health": "Health",
+      "Entertainment": "Entertainment",
+      "Sports": "Sports"
+    },
+    "SearchPlaceholder": "Search stories...",
+    "SearchLabel": "Search",
+    "SearchTitle": "Search: \"{query}\"",
+    "Loading": "Loading top stories...",
+    "Error": "Failed to load news. Please try again later.",
+    "TryAgain": "Try Again",
+    "NoResults": "No stories found matching \"{query}\"",
+    "ClearSearch": "Clear Search",
+    "TopStory": "Top Story",
+    "Refresh": "Refresh",
+    "Aria": {
+      "Category": "Category: {label}",
+      "Search": "Search stories",
+      "Refresh": "Refresh news",
+      "ReadTopStory": "Read top story: {title}",
+      "ReadArticle": "Read article: {title}",
+      "Share": "Share article",
+      "Like": "Like article"
+    }
+  },
+  "Music": {
+    "AppleMusic": "Apple Music",
+    "Library": "Library",
+    "ListenNow": "Listen Now",
+    "Browse": "Browse",
+    "Radio": "Radio",
+    "RecentlyAdded": "Recently Added",
+    "Artists": "Artists",
+    "Albums": "Albums",
+    "Songs": "Songs",
+    "Search": "Search",
+    "SearchTitle": "Search: {query}",
+    "Aria": {
+      "Search": "Search music",
+      "GoBack": "Go back",
+      "GoForward": "Go forward",
+      "Prev": "Previous song",
+      "Next": "Next song",
+      "Play": "Play",
+      "Pause": "Pause",
+      "PlaySong": "Play {track} by {artist}",
+      "PauseSong": "Pause {track}",
+      "Lyrics": "Toggle lyrics",
+      "Queue": "Toggle queue",
+      "Mute": "Toggle mute",
+      "VolSlider": "Volume slider",
+      "SeekSlider": "Seek slider"
+    },
+    "Queue": {
+      "Title": "Playing Next",
+      "Empty": "Queue is empty"
+    },
+    "Lyrics": {
+      "NotAvailable": "Lyrics are not available for this song in the preview mode.",
+      "Imagine": "But imagine the lyrics appearing here, perfectly synced with the music...",
+      "Lalala": "La la la...",
+      "Placeholder": "Play a song to see lyrics"
+    }
+  },
+  "TV": {
+    "WatchNow": "Watch Now",
+    "Movies": "Movies",
+    "TVShows": "TV Shows",
+    "Kids": "Kids",
+    "Library": "Library",
+    "SearchResults": "Search Results",
+    "NoShows": "No shows found.",
+    "SearchPlaceholder": "Search",
+    "SearchLabel": "Search TV Shows",
+    "Series": "Series",
+    "PlayEpisode": "Play Episode 1",
+    "AddToUpNext": "Add to Up Next",
+    "Added": "Added",
+    "OpenYouTube": "Open in YouTube",
+    "ViewAccount": "View Account",
+    "Aria": {
+      "Play": "Play {name}",
+      "CloseVideo": "Close video",
+      "AddLibrary": "Add to Library",
+      "RemoveLibrary": "Remove from Library"
+    },
+    "Genres": {
+      "Drama": "Drama",
+      "Action": "Action",
+      "Comedy": "Comedy",
+      "ScienceFiction": "Science-Fiction",
+      "Thriller": "Thriller"
+    }
+  },
+  "Terminal": {
+    "Guest": "Guest",
+    "Welcome": "Welcome to Terminal",
+    "HelpPrompt": "Type 'help' for a list of commands.",
+    "AvailableCommands": "Available commands: ls, cd, pwd, mkdir, touch, echo, cat, clear, whoami, ping, man, rm, rmdir, vi",
+    "CommandNotFound": "command not found: {command}",
+    "Error": "Error: {message}",
+    "AriaInput": "Terminal Input",
+    "Usage": {
+      "Ping": "usage: ping host",
+      "Mkdir": "usage: mkdir directory_name",
+      "Rmdir": "usage: rmdir directory_name",
+      "Rm": "usage: rm [-rf] file_name",
+      "Touch": "usage: touch file_name",
+      "Cat": "usage: cat file_name",
+      "Vi": "usage: vi file_name",
+      "Man": "What manual page do you want?"
+    },
+    "Errors": {
+      "PingResolve": "ping: cannot resolve {host}: Unknown host",
+      "NoManual": "No manual entry for {command}",
+      "NoSuchFile": "{cmd}: {path}: No such file or directory",
+      "NotADirectory": "{cmd}: {path}: Not a directory",
+      "DirectoryNotEmpty": "{cmd}: {path}: Directory not empty",
+      "IsADirectory": "{cmd}: {path}: is a directory"
+    },
+    "Messages": {
+      "PingStats": "PING {host} (127.0.0.1): 56 data bytes\n64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.045 ms\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.082 ms\n64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.067 ms\n\n--- {host} ping statistics ---\n3 packets transmitted, 3 packets received, 0.0% packet loss",
+      "OpeningTextEdit": "Opening {file} in TextEdit..."
+    },
+    "ManPages": {
+      "ls": "ls - list directory contents\n\nUsage: ls [options] [file|dir]\n\nOptions:\n  -a, --all      do not ignore entries starting with .\n  -l             use a long listing format",
+      "cd": "cd - change the shell working directory\n\nUsage: cd [dir]\n\nChange the current directory to DIR. The default DIR is the value of the HOME shell variable.",
+      "pwd": "pwd - print name of current/working directory\n\nUsage: pwd\n\nPrint the full filename of the current working directory.",
+      "mkdir": "mkdir - make directories\n\nUsage: mkdir [DIRECTORY]\n\nCreate the DIRECTORY(ies), if they do not already exist.",
+      "touch": "touch - change file timestamps\n\nUsage: touch [FILE]\n\nUpdate the access and modification times of each FILE to the current time. If FILE does not exist it is created empty.",
+      "echo": "echo - display a line of text\n\nUsage: echo [STRING]...\n\nEcho the STRING(s) to standard output.",
+      "cat": "cat - concatenate files and print on the standard output\n\nUsage: cat [FILE]...\n\nConcatenate FILE(s) to standard output.",
+      "clear": "clear - clear the terminal screen\n\nUsage: clear",
+      "whoami": "whoami - print effective userid\n\nUsage: whoami\n\nPrint the user name associated with the current effective user ID.",
+      "ping": "ping - send ICMP ECHO_REQUEST to network hosts\n\nUsage: ping [HOST]\n\nSend ICMP ECHO_REQUEST to network hosts.",
+      "man": "man - an interface to the system reference manuals\n\nUsage: man [COMMAND]\n\nDisplay the manual page for COMMAND.",
+      "rm": "rm - remove files or directories\n\nUsage: rm [OPTION]... [FILE]...\n\nRemove (unlink) the FILE(s).\n\nOptions:\n  -r, -R, --recursive   remove directories and their contents recursively\n  -f, --force           ignore nonexistent files and arguments, never prompt",
+      "rmdir": "rmdir - remove empty directories\n\nUsage: rmdir [DIRECTORY]...\n\nRemove the DIRECTORY(ies), if they are empty.",
+      "vi": "vi - screen-oriented (visual) display editor\n\nUsage: vi [FILE]\n\nEdit FILE."
+    }
+  },
+  "TextEdit": {
+    "Guest": "Guest",
+    "Untitled": "Untitled.txt",
+    "Save": "Save",
+    "Loading": "Loading...",
+    "Placeholder": "Type your notes here...",
+    "SavedAlert": "Saved to {path}/{filename}"
+  },
+  "PDFViewer": {
+    "Document": "Document.pdf",
+    "PageInfo": "Page {current} of {total}",
+    "View": "View",
+    "ZoomIn": "Zoom In",
+    "ZoomOut": "Zoom Out",
+    "LoadingThumbnails": "Loading thumbnails...",
+    "Loading": "Loading...",
+    "NoPDF": "No PDF",
+    "FailedToLoad": "Failed to load PDF",
+    "NoPDFLoaded": "No PDF loaded"
+  },
+  "Spotlight": {
+    "Placeholder": "Spotlight Search",
+    "SearchWebFor": "Search Web for \"{query}\"",
+    "NoResults": "No results found",
+    "Open": "Open",
+    "Kinds": {
+      "Web": "Web Search",
+      "App": "Application",
+      "Directory": "Directory",
+      "File": "File"
+    },
+    "Aria": {
+      "Open": "Open {name}"
+    }
+  },
+  "MenuBar": {
+    "Apple": {
+      "AboutThisMac": "About This Mac",
+      "SystemSettings": "System Settings...",
+      "AppStore": "App Store...",
+      "RecentItems": "Recent Items",
+      "ForceQuit": "Force Quit...",
+      "Sleep": "Sleep",
+      "Restart": "Restart...",
+      "ShutDown": "Shut Down...",
+      "LockScreen": "Lock Screen"
+    },
+    "App": {
+      "About": "About {app}",
+      "Quit": "Quit {app}"
+    },
+    "File": {
+      "Title": "File",
+      "New": "New",
+      "Open": "Open...",
+      "Save": "Save",
+      "Duplicate": "Duplicate",
+      "NewFinderWindow": "New Finder Window",
+      "NewFolder": "New Folder",
+      "GetInfo": "Get Info"
+    },
+    "Edit": {
+      "Title": "Edit",
+      "Undo": "Undo",
+      "Redo": "Redo",
+      "Cut": "Cut",
+      "Copy": "Copy",
+      "Paste": "Paste"
+    },
+    "View": {
+      "Title": "View",
+      "AsIcons": "As Icons",
+      "AsList": "As List",
+      "AsColumns": "As Columns"
+    },
+    "Window": {
+      "Title": "Window",
+      "Minimize": "Minimize",
+      "Zoom": "Zoom"
+    },
+    "Help": {
+      "Title": "Help",
+      "MacOSHelp": "macOS Help"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "KnownNetworks": "Known Networks",
+      "OtherNetworks": "Other Networks",
+      "Settings": "Wi-Fi Settings..."
+    },
+    "Battery": {
+      "Title": "Battery",
+      "PowerSource": "Power Source: {source}",
+      "PowerAdapter": "Power Adapter",
+      "Battery": "Battery",
+      "EnergyMode": "Energy Mode",
+      "Automatic": "Automatic",
+      "LowPower": "Low Power",
+      "HighPower": "High Power",
+      "SignificantEnergy": "Using Significant Energy",
+      "Settings": "Battery Settings..."
+    },
+    "Aria": {
+      "Clipboard": "Clipboard",
+      "MediaPlayer": "Media Player",
+      "Spotlight": "Spotlight Search",
+      "ControlCenter": "Control Center",
+      "Siri": "Siri",
+      "Clock": "Clock and Notification Center"
+    }
+  },
+  "WeatherDropdown": {
+    "Searching": "Searching...",
+    "SearchCity": "Search city...",
+    "Now": "Now",
+    "Today": "Today",
+    "OpenWeather": "Open Weather"
+  },
+  "LockScreen": {
+    "IncorrectPassword": "Incorrect password",
+    "Guest": "Guest",
+    "EnterPassword": "Enter Password",
+    "Hint": "Touch ID or enter password (hint: {hint})",
+    "Login": "Login",
+    "Cancel": "Cancel",
+    "Aria": {
+      "UserAvatar": "User avatar, click to login",
+      "User": "User {name}, click to login",
+      "Password": "Password",
+      "Submit": "Submit password"
+    }
+  }
 }

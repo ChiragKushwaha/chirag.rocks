@@ -1,11 +1,13 @@
 import React from "react";
 import { CALENDARS } from "../constants";
+import { useTranslations } from "next-intl";
 
 interface SidebarProps {
   currentDate: Date;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ currentDate }) => {
+  const t = useTranslations("Calendar.Sidebar");
   return (
     <div className="w-60 bg-gray-50/90 dark:bg-[#2b2b2b]/90 backdrop-blur-xl border-r border-gray-200 dark:border-black/20 flex flex-col p-4 pt-8">
       <div className="mb-6">
@@ -27,7 +29,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentDate }) => {
       <div className="space-y-6">
         <div>
           <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2 px-2">
-            ICLOUD
+            {t("iCloud")}
           </h3>
           <div className="space-y-1">
             {CALENDARS.slice(0, 3).map((cal) => (
@@ -46,7 +48,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentDate }) => {
 
         <div>
           <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2 px-2">
-            OTHER
+            {t("Other")}
           </h3>
           <div className="space-y-1">
             {CALENDARS.slice(3).map((cal) => (
@@ -66,7 +68,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentDate }) => {
 
       <div className="mt-auto">
         <div className="bg-gray-200 dark:bg-white/10 rounded-lg p-3 text-xs text-gray-500 dark:text-gray-400 text-center">
-          No invitations
+          {t("NoInvitations")}
         </div>
       </div>
     </div>

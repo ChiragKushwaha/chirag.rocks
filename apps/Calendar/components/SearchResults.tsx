@@ -1,6 +1,7 @@
 import React from "react";
 import { CALENDARS } from "../constants";
 import { CalendarEvent } from "../types";
+import { useTranslations } from "next-intl";
 
 interface SearchResultsProps {
   events: CalendarEvent[];
@@ -11,6 +12,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
   events,
   searchQuery,
 }) => {
+  const t = useTranslations("Calendar.SearchResults");
   const filteredEvents = events.filter(
     (e) =>
       e.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -20,10 +22,10 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
   return (
     <div className="flex flex-col h-full overflow-y-auto p-4 space-y-2">
       <h2 className="text-lg font-semibold mb-2 dark:text-white">
-        Search Results
+        {t("Title")}
       </h2>
       {filteredEvents.length === 0 ? (
-        <div className="text-gray-500 text-center mt-10">No events found</div>
+        <div className="text-gray-500 text-center mt-10">{t("NoEvents")}</div>
       ) : (
         filteredEvents.map((event) => (
           <div

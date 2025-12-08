@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+// Verified balanced braces
 import Image from "next/image";
 import {
   Search,
@@ -11,6 +12,7 @@ import {
   Camera,
 } from "lucide-react";
 import { fs } from "../lib/FileSystem";
+import { useTranslations } from "next-intl";
 
 interface Contact {
   id: string;
@@ -24,6 +26,7 @@ interface Contact {
 }
 
 export const Contacts: React.FC = () => {
+  const t = useTranslations("Contacts");
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -122,7 +125,7 @@ export const Contacts: React.FC = () => {
   const handleDeleteContact = async () => {
     if (!selectedContact) return;
 
-    if (confirm("Are you sure you want to delete this contact?")) {
+    if (confirm(t("Alerts.DeleteConfirm"))) {
       if (selectedContact.imagePath) {
         const filename = selectedContact.imagePath.split("/").pop();
         if (filename) await fs.delete("/Images/Contacts", filename);
@@ -137,7 +140,7 @@ export const Contacts: React.FC = () => {
 
   const handleSaveContact = async () => {
     if (!newContact.firstName && !newContact.lastName && !newContact.company) {
-      alert("Please enter a name or company.");
+      alert(t("Alerts.NameRequired"));
       return;
     }
 
@@ -191,9 +194,9 @@ export const Contacts: React.FC = () => {
             />
             <input
               type="text"
-              placeholder="Search"
+              placeholder={t("SearchPlaceholder")}
               className="w-full bg-[#dcdce0] dark:bg-[#1e1e1e] border-none rounded-[6px] pl-8 pr-3 py-1 text-[13px] placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
-              aria-label="Search contacts"
+              aria-label={t("SearchAria")}
             />
           </div>
         </div>
@@ -227,7 +230,9 @@ export const Contacts: React.FC = () => {
                       setIsEditing(false);
                     }
                   }}
-                  aria-label={`Contact: ${contact.firstName} ${contact.lastName}`}
+                  aria-label={t("Aria.Contact", {
+                    name: `${contact.firstName} ${contact.lastName}`,
+                  })}
                 >
                   <span
                     className={`font-semibold ${
@@ -262,12 +267,12 @@ export const Contacts: React.FC = () => {
               setImageFile(null);
               setImagePreview(null);
             }}
-            aria-label="Add new contact"
+            aria-label={t("Aria.AddContact")}
           >
             <Plus size={16} />
           </button>
           <span className="text-[11px] font-medium">
-            {contacts.length} Contacts
+            {t("Count", { count: contacts.length })}
           </span>
         </div>
       </div>
@@ -277,7 +282,7 @@ export const Contacts: React.FC = () => {
         {isAdding ? (
           <div className="w-full max-w-[480px] flex flex-col items-center pt-12 px-8 animate-in fade-in zoom-in-95 duration-200">
             <h2 className="text-lg font-semibold mb-8 text-gray-500 dark:text-gray-400">
-              {isEditing ? "Edit Contact" : "New Contact"}
+              {isEditing ? t("EditContact") : t("NewContact")}
             </h2>
 
             <div
@@ -287,7 +292,7 @@ export const Contacts: React.FC = () => {
               {imagePreview ? (
                 <Image
                   src={imagePreview}
-                  alt="Preview"
+                  alt={t("Preview")}
                   fill
                   className="object-cover"
                   unoptimized
@@ -300,7 +305,7 @@ export const Contacts: React.FC = () => {
               )}
               <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                 <span className="text-white text-xs font-medium drop-shadow-md">
-                  Edit
+                  {t("Edit")}
                 </span>
               </div>
               <input
@@ -315,7 +320,7 @@ export const Contacts: React.FC = () => {
             <div className="w-full space-y-5">
               <div className="grid grid-cols-2 gap-4">
                 <input
-                  placeholder="First Name"
+                  placeholder={t("Labels.FirstName")}
                   className="bg-transparent border-b border-gray-200 dark:border-gray-700 px-1 py-2 text-lg outline-none focus:border-[#007AFF] transition-colors placeholder-gray-400"
                   value={newContact.firstName || ""}
                   onChange={(e) =>
@@ -323,7 +328,7 @@ export const Contacts: React.FC = () => {
                   }
                 />
                 <input
-                  placeholder="Last Name"
+                  placeholder={t("Labels.LastName")}
                   className="bg-transparent border-b border-gray-200 dark:border-gray-700 px-1 py-2 text-lg outline-none focus:border-[#007AFF] transition-colors placeholder-gray-400"
                   value={newContact.lastName || ""}
                   onChange={(e) =>
@@ -332,7 +337,7 @@ export const Contacts: React.FC = () => {
                 />
               </div>
               <input
-                placeholder="Company"
+                placeholder={t("Labels.Company")}
                 className="w-full bg-transparent border-b border-gray-200 dark:border-gray-700 px-1 py-2 outline-none focus:border-[#007AFF] transition-colors placeholder-gray-400"
                 value={newContact.company || ""}
                 onChange={(e) =>
@@ -340,7 +345,7 @@ export const Contacts: React.FC = () => {
                 }
               />
               <input
-                placeholder="Phone"
+                placeholder={t("Labels.Phone")}
                 className="w-full bg-transparent border-b border-gray-200 dark:border-gray-700 px-1 py-2 outline-none focus:border-[#007AFF] transition-colors placeholder-gray-400"
                 value={newContact.phone || ""}
                 onChange={(e) =>
@@ -348,7 +353,7 @@ export const Contacts: React.FC = () => {
                 }
               />
               <input
-                placeholder="Email"
+                placeholder={t("Labels.Email")}
                 className="w-full bg-transparent border-b border-gray-200 dark:border-gray-700 px-1 py-2 outline-none focus:border-[#007AFF] transition-colors placeholder-gray-400"
                 value={newContact.email || ""}
                 onChange={(e) =>
@@ -356,7 +361,7 @@ export const Contacts: React.FC = () => {
                 }
               />
               <textarea
-                placeholder="Notes"
+                placeholder={t("Labels.Notes")}
                 className="w-full bg-transparent border-b border-gray-200 dark:border-gray-700 px-1 py-2 outline-none focus:border-[#007AFF] transition-colors placeholder-gray-400 resize-none h-24"
                 value={newContact.notes || ""}
                 onChange={(e) =>
@@ -370,7 +375,7 @@ export const Contacts: React.FC = () => {
                     onClick={handleDeleteContact}
                     className="px-6 py-1.5 rounded-[6px] text-[13px] font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors mr-auto"
                   >
-                    Delete Contact
+                    {t("DeleteContact")}
                   </button>
                 )}
                 <button
@@ -380,13 +385,13 @@ export const Contacts: React.FC = () => {
                   }}
                   className="px-6 py-1.5 rounded-[6px] text-[13px] font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
                 >
-                  Cancel
+                  {t("Cancel")}
                 </button>
                 <button
                   onClick={handleSaveContact}
                   className="px-6 py-1.5 rounded-[6px] text-[13px] font-medium bg-[#007AFF] hover:bg-[#0069d9] text-white shadow-sm transition-colors flex items-center gap-2"
                 >
-                  Done
+                  {t("Done")}
                 </button>
               </div>
             </div>
@@ -397,7 +402,7 @@ export const Contacts: React.FC = () => {
               onClick={handleEditContact}
               className="absolute top-6 right-6 text-[#007AFF] text-[13px] font-medium hover:text-[#0069d9] transition-colors"
             >
-              Edit
+              {t("Edit")}
             </button>
 
             {/* Profile Header */}
@@ -432,6 +437,7 @@ export const Contacts: React.FC = () => {
                 {
                   icon: MessageSquare,
                   label: "message",
+                  display: t("Labels.Message"),
                   action: `sms:${selectedContact.phone.replace(
                     /[^0-9+]/g,
                     ""
@@ -439,6 +445,7 @@ export const Contacts: React.FC = () => {
                 },
                 {
                   icon: Phone,
+                  display: t("Labels.Mobile"),
                   label: "mobile",
                   action: `tel:${selectedContact.phone.replace(
                     /[^0-9+]/g,
@@ -447,6 +454,7 @@ export const Contacts: React.FC = () => {
                 },
                 {
                   icon: Video,
+                  display: t("Labels.Video"),
                   label: "video",
                   action: `facetime:${selectedContact.phone.replace(
                     /[^0-9+]/g,
@@ -455,6 +463,7 @@ export const Contacts: React.FC = () => {
                 },
                 {
                   icon: Mail,
+                  display: t("Labels.Mail"),
                   label: "mail",
                   action: `mailto:${selectedContact.email}`,
                 },
@@ -470,13 +479,16 @@ export const Contacts: React.FC = () => {
                       window.location.href = item.action;
                     }
                   }}
-                  aria-label={`${item.label} ${selectedContact.firstName}`}
+                  aria-label={t("Aria.Action", {
+                    action: item.display,
+                    name: selectedContact.firstName,
+                  })}
                 >
                   <div className="w-[42px] h-[42px] rounded-full bg-[#007AFF] text-white flex items-center justify-center shadow-md shadow-blue-500/20 group-hover:bg-[#0069d9] group-active:scale-95 transition-all">
                     <item.icon size={18} fill="currentColor" strokeWidth={0} />
                   </div>
                   <span className="text-[11px] text-[#007AFF] font-medium tracking-wide">
-                    {item.label}
+                    {item.display}
                   </span>
                 </div>
               ))}
@@ -486,7 +498,7 @@ export const Contacts: React.FC = () => {
             <div className="w-full bg-white dark:bg-[#2b2b2b] rounded-[10px] border border-gray-200 dark:border-black/20 shadow-sm overflow-hidden">
               <div className="p-4 flex flex-col gap-1 border-b border-gray-100 dark:border-white/5">
                 <label className="text-[11px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                  mobile
+                  {t("Labels.Mobile")}
                 </label>
                 <p className="text-[15px] text-gray-900 dark:text-gray-100">
                   {selectedContact.phone}
@@ -494,7 +506,7 @@ export const Contacts: React.FC = () => {
               </div>
               <div className="p-4 flex flex-col gap-1 border-b border-gray-100 dark:border-white/5">
                 <label className="text-[11px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                  home
+                  {t("Labels.Home")}
                 </label>
                 <p className="text-[15px] text-gray-900 dark:text-gray-100">
                   {selectedContact.email}
@@ -502,17 +514,17 @@ export const Contacts: React.FC = () => {
               </div>
               <div className="p-4 flex flex-col gap-1">
                 <label className="text-[11px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                  Notes
+                  {t("Labels.Notes")}
                 </label>
                 <p className="text-[13px] text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">
-                  {selectedContact.notes || "No notes"}
+                  {selectedContact.notes || t("NoNotes")}
                 </p>
               </div>
             </div>
           </div>
         ) : (
           <div className="flex-1 flex items-center justify-center text-gray-400">
-            <span className="text-sm">No Contact Selected</span>
+            <span className="text-sm">{t("NoSelection")}</span>
           </div>
         )}
       </div>

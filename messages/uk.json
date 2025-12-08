@@ -1,4 +1,1742 @@
 {
-  "Hello": "Hello world!",
-  "Welcome": "Welcome to the multi-language app"
+  "Hello": {
+    "world": "Привіт, світ",
+    "GetStarted": "Почати"
+  },
+  "Common": {
+    "OK": "ОК",
+    "Cancel": "Скасувати",
+    "Yes": "Так",
+    "No": "Ні",
+    "Back": "Назад",
+    "Continue": "Продовжити",
+    "Done": "Готово",
+    "Edit": "Редагувати",
+    "Delete": "Видалити",
+    "Save": "Зберегти",
+    "Close": "Закрити",
+    "Error": "Помилка",
+    "Success": "Успіх"
+  },
+  "Setup": {
+    "Common": {
+      "Continue": "Продовжити",
+      "Back": "Назад",
+      "NotNow": "Не зараз",
+      "Cancel": "Скасувати",
+      "LearnMore": "Дізнатися більше"
+    },
+    "Language": {
+      "Title": "Виберіть мову",
+      "Description": "Виберіть мову, яку ви хочете використовувати на цьому Mac.",
+      "TableLabel": "Мова",
+      "Primary": "Основна"
+    },
+    "Region": {
+      "Title": "Виберіть свою країну або регіон"
+    },
+    "DataPrivacy": {
+      "Title": "Дані та конфіденційність",
+      "IconText": "Ця іконка з'являється, коли функція Apple запитує використання вашої особистої інформації.",
+      "FeatureText": "Ви не побачите цю іконку з кожною функцією. Apple збирає цю інформацію лише тоді, коли це необхідно для ввімкнення функцій, захисту наших служб або персоналізації вашого досвіду.",
+      "PrivacyText": "Apple вважає конфіденційність фундаментальним правом людини, тому кожен продукт Apple розроблений для мінімізації збору та використання ваших даних, використання обробки на пристрої, коли це можливо, та забезпечення прозорості й контролю над вашою інформацією."
+    },
+    "TouchID": {
+      "Title": "Touch ID",
+      "SetupLater": "Налаштувати Touch ID пізніше",
+      "Description": "Використовуйте відбиток пальця для розблокування Mac і покупок за допомогою Apple Pay. Покладіть палець на Touch ID, щоб почати."
+    },
+    "Fingerprint": {
+      "Title": "Покладіть палець",
+      "Instruction": "Піднімайте і кладіть палець на Touch ID кілька разів",
+      "Success": "✓ Touch ID готовий"
+    },
+    "Languages": {
+      "Title": "Письмові та розмовні мови",
+      "Description": "Нижче наведено мови, які зазвичай використовуються у вашому регіоні. Ви можете використовувати ці налаштування або налаштувати їх індивідуально.",
+      "Preferred": "Бажані мови",
+      "InputSources": "Джерела введення",
+      "Dictation": "Диктування",
+      "Customize": "Налаштувати параметри"
+    },
+    "Accessibility": {
+      "Title": "Доступність",
+      "Description": "Функції доступності адаптують Mac до ваших візуальних, слухових та моторних потреб. Ви можете ввімкнути їх зараз і завершити налаштування або налаштувати їх пізніше в Системних параметрах. Дивіться категорії нижче для доступних функцій.",
+      "Vision": "Зір",
+      "Motor": "Моторика",
+      "Hearing": "Слух",
+      "Cognitive": "Когнітивні"
+    },
+    "Migration": {
+      "Title": "Асистент міграції",
+      "Description": "Якщо у вас є інформація на іншому Mac або ПК з Windows, ви можете перенести її на цей Mac. Ви також можете перенести дані з резервної копії Time Machine або іншого стартового диска.",
+      "Question": "Як ви хочете перенести свою інформацію?",
+      "FromMac": "З Mac, резервної копії Time Machine або стартового диска",
+      "FromPC": "З ПК з Windows"
+    },
+    "AppleID": {
+      "Title": "Увійдіть за допомогою Apple ID",
+      "Description": "Увійдіть, щоб використовувати iCloud, App Store та інші служби Apple.",
+      "Label": "Apple ID",
+      "CreateNew": "Створити новий Apple ID",
+      "Forgot": "Забули Apple ID або пароль?",
+      "UseDifferent": "Використовувати різні Apple ID для iCloud і медіа?",
+      "Info": "Цей Mac буде пов'язаний з вашим Apple ID, і ваші дані, такі як фотографії, контакти та документи, будуть збережені в iCloud, щоб ви могли отримати до них доступ на інших ваших пристроях.",
+      "SeeData": "Дивіться, як керуються даними",
+      "SetupLater": "Налаштувати пізніше",
+      "ErrorRequired": "Введіть Apple ID."
+    },
+    "Account": {
+      "Title": "Створити обліковий запис комп'ютера",
+      "CreateAppleID": "Створити Apple ID",
+      "Description": "Введіть своє ім'я та дані облікового запису для налаштування комп'ютера.",
+      "Name": "Повне ім'я",
+      "Email": "Електронна адреса",
+      "Age": "Вік",
+      "Phone": "Номер мобільного телефону",
+      "Password": "Пароль",
+      "Errors": {
+        "NameRequired": "Потрібне повне ім'я.",
+        "EmailRequired": "Потрібна електронна пошта.",
+        "EmailInvalid": "Введіть дійсну електронну адресу.",
+        "AgeRequired": "Потрібен вік.",
+        "AgeInvalid": "Введіть дійсний вік.",
+        "PhoneRequired": "Потрібен номер телефону.",
+        "PasswordRequired": "Потрібен пароль.",
+        "PasswordLength": "Пароль повинен бути не менше 6 символів."
+      }
+    },
+    "Theme": {
+      "Title": "Виберіть свій вигляд",
+      "Description": "Виберіть Світлий або Темний, щоб змінити вигляд системи та програм.",
+      "Light": "Світлий",
+      "Dark": "Темний"
+    }
+  },
+  "SystemSettings": {
+    "General": {
+      "Title": "Загальні",
+      "Description": "Керуйте загальними налаштуваннями та параметрами для вашого Mac, включаючи оновлення програмного забезпечення, мову пристрою, AirDrop та інше.",
+      "About": "Про цей Mac",
+      "SoftwareUpdate": "Оновлення програмного забезпечення",
+      "Storage": "Сховище",
+      "AppleCare": "AppleCare та гарантія",
+      "AirDrop": "AirDrop та Handoff",
+      "AutoFill": "Автозаповнення та паролі",
+      "DateTime": "Дату і час",
+      "LanguageRegion": "Мова та регіон",
+      "LoginItems": "Елементи входу",
+      "Sharing": "Спільний доступ",
+      "StartupDisk": "Стартовий диск",
+      "TimeMachine": "Time Machine",
+      "DeviceManagement": "Керування пристроєм",
+      "TransferReset": "Перенести або скинути"
+    },
+    "AppleAccount": {
+      "Edit": "Редагувати",
+      "PersonalInformation": "Особиста інформація",
+      "SignInSecurity": "Вхід та безпека",
+      "PaymentShipping": "Оплата та доставка",
+      "iCloud": "iCloud",
+      "MediaPurchases": "Медіа та покупки",
+      "Family": "Сімейний доступ",
+      "SetUp": "Налаштувати",
+      "Devices": "Пристрої",
+      "ThisMac": "Цей MacBook Pro 14\"",
+      "SignOut": "Вийти..."
+    },
+    "LanguageRegion": {
+      "Title": "Мова та регіон",
+      "PreferredLanguages": "Бажані мови",
+      "Region": "Регіон",
+      "Calendar": "Календар",
+      "Temperature": "Температура",
+      "Celsius": "Цельсій (°C)",
+      "Fahrenheit": "Фаренгейт (°F)",
+      "MeasurementSystem": "Система вимірювання",
+      "Metric": "Метрична",
+      "US": "США",
+      "UK": "Великобританія",
+      "FirstDayOfWeek": "Перший день тижня",
+      "DateFormat": "Формат дати",
+      "NumberFormat": "Формат чисел",
+      "LiveText": "Живий текст",
+      "LiveTextDesc": "Виберіть текст на зображеннях для копіювання або виконання дій.",
+      "Applications": "Програми",
+      "ApplicationsDesc": "Налаштуйте мовні параметри для конкретних програм нижче:",
+      "TranslationLanguages": "Мови перекладу..."
+    },
+    "Sidebar": {
+      "Search": "Пошук",
+      "NotImplemented": "Цей пошук ще не реалізовано.",
+      "AppleAccount": "Обліковий запис Apple",
+      "WiFi": "Wi-Fi",
+      "Bluetooth": "Bluetooth",
+      "Network": "Мережа",
+      "General": "Загальні",
+      "Appearance": "Вигляд",
+      "Accessibility": "Доступність",
+      "MenuBar": "Центр керування",
+      "DesktopDock": "Робочий стіл та Dock",
+      "Displays": "Дисплеї",
+      "Spotlight": "Spotlight",
+      "Wallpaper": "Шпалери",
+      "ScreenSaver": "Заставка",
+      "Battery": "Акумулятор",
+      "Sound": "Звук",
+      "Notifications": "Сповіщення",
+      "Focus": "Зосередження",
+      "ScreenTime": "Екранний час",
+      "PrivacySecurity": "Конфіденційність та безпека",
+      "LockScreen": "Екран блокування",
+      "TouchIDPassword": "Touch ID та пароль",
+      "UsersGroups": "Користувачі та групи",
+      "Keyboard": "Клавіатура",
+      "Trackpad": "Трекпад",
+      "PrintersScanners": "Принтери та сканери",
+      "Storage": "Сховище"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "Description": "Налаштуйте Wi-Fi для підключення до Інтернету та бездротових пристроїв.",
+      "Connected": "Підключено",
+      "Details": "Деталі...",
+      "KnownNetworks": "Відомі мережі",
+      "OtherNetworks": "Інші мережі",
+      "Connect": "Підключити",
+      "Other": "Інше...",
+      "AskToJoin": "Запитувати про підключення до мереж",
+      "AskToJoinDesc": "Відомі мережі будуть приєднані автоматично. Якщо відомі мережі недоступні, вам доведеться вибрати мережу вручну.",
+      "Notify": "Сповістити",
+      "AskToJoinHotspots": "Запитувати про приєднання до хот-спотів",
+      "AskToJoinHotspotsDesc": "Дозволити Mac автоматично виявляти особисті хот-споти, коли мережі Wi-Fi недоступні.",
+      "AskToJoinAction": "Попросити приєднатися",
+      "Advanced": "Додатково..."
+    },
+    "Bluetooth": {
+      "Title": "Bluetooth",
+      "Description": "Керуйте з'єднаннями Bluetooth з бездротовими пристроями.",
+      "Discoverable": "Зараз видно як \"MacBook Pro\"",
+      "MyDevices": "Мої пристрої",
+      "NotConnected": "Не підключено",
+      "NearbyDevices": "Пристрої поблизу",
+      "Searching": "Пошук..."
+    },
+    "Network": {
+      "Title": "Мережа",
+      "WiFi": "Wi-Fi",
+      "Connected": "Підключено",
+      "Firewall": "Брандмауер",
+      "Inactive": "Неактивний",
+      "OtherServices": "Інші служби",
+      "NotConnected": "Не підключено"
+    },
+    "Appearance": {
+      "Title": "Вигляд",
+      "Description": "Налаштуйте вигляд за допомогою вбудованих світлих і темних режимів та іншого.",
+      "Light": "Світлий",
+      "Dark": "Темний",
+      "Auto": "Авто",
+      "AccentColor": "Колір акценту",
+      "HighlightColor": "Колір виділення",
+      "Automatic": "Автоматичний",
+      "SidebarIconSize": "Розмір іконок бічної панелі",
+      "Medium": "Середній",
+      "WallpaperTinting": "Дозволити тонування шпалер у вікнах",
+      "ShowScrollBars": "Показувати смуги прокрутки",
+      "ScrollAuto": "Автоматично на основі миші або трекпада",
+      "ScrollWhenScrolling": "Під час прокручування",
+      "ScrollAlways": "Завжди",
+      "ClickScrollBar": "Клацніть на смузі прокрутки, щоб",
+      "JumpNextPage": "Перейти на наступну сторінку",
+      "JumpSpotClicked": "Перейти до місця клацання"
+    },
+    "Accessibility": {
+      "Title": "Доступність",
+      "Description": "Параметри доступності для зору, слуху та моторики.",
+      "LearnMore": "Дізнатися більше...",
+      "Vision": "Зір",
+      "VoiceOver": "VoiceOver",
+      "Zoom": "Масштабування",
+      "HoverText": "Текст при наведенні",
+      "Display": "Дисплей",
+      "Motion": "Рух",
+      "ReadSpeak": "Читання вмісту",
+      "AudioDescriptions": "Аудіоописи",
+      "Hearing": "Слух",
+      "HearingDevices": "Слухові апарати",
+      "Audio": "Аудіо",
+      "Captions": "Субтитри",
+      "LiveCaptions": "Живі субтитри",
+      "NameRecognition": "Розпізнавання імені",
+      "Motor": "Моторика",
+      "VoiceControl": "Голосове керування",
+      "Keyboard": "Клавіатура",
+      "PointerControl": "Керування вказівником",
+      "SwitchControl": "Керування перемикачами",
+      "General": "Загальні",
+      "Siri": "Siri",
+      "Shortcut": "Ярлик"
+    },
+    "MenuBar": {
+      "Title": "Центр керування",
+      "Description": "Налаштуйте Центр керування та елементи рядка меню.",
+      "AutoHide": "Автоматично приховувати та показувати рядок меню",
+      "Never": "Ніколи",
+      "RecentDocs": "Останні документи, програми та сервери",
+      "None": "Немає",
+      "Controls": "Модулі Центру керування",
+      "ControlCenter": "Центр керування",
+      "ShowInMenuBar": "Показувати в рядку меню",
+      "DontShowInMenuBar": "Не показувати в рядку меню",
+      "Siri": "Siri",
+      "Spotlight": "Spotlight",
+      "VolumeFeedback": "Відтворювати звук при зміні гучності",
+      "Clock": "Годинник"
+    },
+    "DesktopDock": {
+      "Title": "Робочий стіл та Dock",
+      "Description": "Параметри для Dock та робочого столу.",
+      "Dock": "Dock",
+      "Size": "Розмір",
+      "Magnification": "Збільшення",
+      "Small": "Малий",
+      "Large": "Великий",
+      "Position": "Положення на екрані",
+      "Bottom": "Внизу",
+      "MinimiseUsing": "Згортати вікна, використовуючи",
+      "GenieEffect": "Ефект джина",
+      "DoubleClickTitle": "Двічі клацніть заголовок вікна, щоб",
+      "Zoom": "Збільшити",
+      "MinimiseToIcon": "Згортати вікна в іконку програми",
+      "AutoHideDock": "Автоматично приховувати та показувати Dock",
+      "AnimateOpening": "Анімувати відкриття програм",
+      "ShowIndicators": "Показувати індикатори для відкритих програм",
+      "ShowRecent": "Показувати останні програми в Dock",
+      "DesktopStageManager": "Робочий стіл та Постановник",
+      "ShowItems": "Показувати елементи",
+      "OnDesktop": "На робочому столі",
+      "ClickWallpaper": "Клацніть шпалери, щоб показати робочий стіл",
+      "Always": "Завжди",
+      "StageManager": "Постановник",
+      "Widgets": "Віджети",
+      "ShowWidgets": "Показувати віджети",
+      "WidgetStyle": "Стиль віджетів",
+      "Automatic": "Автоматичний",
+      "UseIPhoneWidgets": "Використовувати віджети iPhone"
+    },
+    "Displays": {
+      "Title": "Дисплеї",
+      "Description": "Тонко налаштуйте параметри дисплея.",
+      "BuiltInDisplay": "Вбудований дисплей",
+      "UseAs": "Використовувати як",
+      "MainDisplay": "Головний дисплей",
+      "Resolution": "Роздільна здатність",
+      "Default": "За замовчуванням",
+      "MoreSpace": "Більше простору",
+      "LargerText": "Більший текст",
+      "Brightness": "Яскравість",
+      "TrueTone": "True Tone",
+      "Preset": "Попереднє налаштування",
+      "RefreshRate": "Частота оновлення",
+      "ProMotion": "ProMotion",
+      "Advanced": "Додатково..."
+    },
+    "Spotlight": {
+      "Title": "Spotlight",
+      "Description": "Налаштування пошуку.",
+      "SearchPlaceholder": "Пошук Spotlight",
+      "SearchResults": "Результати пошуку",
+      "Privacy": "Конфіденційність Spotlight...",
+      "Categories": {
+        "Applications": "Програми",
+        "Calculator": "Калькулятор",
+        "Contacts": "Контакти",
+        "Conversion": "Конвертація",
+        "Definition": "Визначення",
+        "Developer": "Розробник",
+        "Documents": "Документи",
+        "Events & Reminders": "Події та нагадування",
+        "Folders": "Папки",
+        "Fonts": "Шрифти",
+        "Images": "Зображення",
+        "Mail & Messages": "Пошта та Повідомлення",
+        "Movies": "Фільми",
+        "Music": "Музика",
+        "Other": "Інше",
+        "PDF Documents": "PDF-документи",
+        "Presentations": "Презентації",
+        "Siri Suggestions": "Пропозиції Siri",
+        "Spreadsheets": "Електронні таблиці",
+        "System Preferences": "Системні параметри",
+        "Tips": "Поради",
+        "Bookmarks & History": "Закладки та історія"
+      }
+    },
+    "Notifications": {
+      "Title": "Сповіщення",
+      "Description": "Налаштування сповіщень програм.",
+      "Preview": "Показувати попередній перегляд",
+      "ShowPreviews": "Показувати попередній перегляд",
+      "Always": "Завжди",
+      "ApplicationNotifications": "Сповіщення програм",
+      "Apps": {
+        "AppStore": "App Store",
+        "Calendar": "Календар",
+        "FaceTime": "FaceTime",
+        "Mail": "Пошта",
+        "Messages": "Повідомлення",
+        "Photos": "Фотографії",
+        "Reminders": "Нагадування",
+        "Safari": "Safari"
+      }
+    },
+    "Sound": {
+      "Title": "Звук",
+      "Description": "Налаштування звуку.",
+      "OutputInput": "Вихід і вхід",
+      "Output": "Вихід",
+      "Input": "Вхід",
+      "SelectOutput": "Виберіть пристрій для виведення звуку:",
+      "Speakers": "Динаміки MacBook Pro",
+      "BuiltIn": "Вбудовані",
+      "OutputVolume": "Гучність виходу",
+      "Mute": "Вимкнути звук",
+      "ShowInMenuBar": "Показувати звук у рядку меню",
+      "Always": "Завжди",
+      "AlertSoundGroup": "Звук сповіщення",
+      "AlertSound": "Звук сповіщення",
+      "Boop": "Boop",
+      "AlertVolume": "Гучність сповіщення",
+      "PlayUIEffects": "Відтворювати звукові ефекти інтерфейсу"
+    },
+    "Focus": {
+      "Title": "Зосередження",
+      "Description": "Налаштуйте режими зосередження.",
+      "DoNotDisturb": "Не турбувати",
+      "ShareAcrossDevices": "Спільний доступ на пристроях",
+      "FocusStatus": "Статус зосередження",
+      "On": "Увімк.",
+      "Off": "Вимк.",
+      "SetUp": "Налаштувати",
+      "FocusModes": "Режими зосередження",
+      "Personal": "Особисте",
+      "Sleep": "Сон",
+      "Work": "Робота",
+      "AddFocus": "Додати зосередження"
+    },
+    "ScreenTime": {
+      "Title": "Екранний час",
+      "Description": "Моніторинг використання та встановлення лімітів.",
+      "DailyAverage": "Середнє за день",
+      "FromLastWeek": "з минулого тижня",
+      "Downtime": "Час спокою",
+      "AppLimits": "Ліміти програм",
+      "LimitsCount": "{count} лімітів",
+      "AlwaysAllowed": "Завжди дозволено",
+      "AllowedApps": "Телефон, Карти, Повідомлення",
+      "ContentPrivacy": "Вміст і конфіденційність",
+      "On": "Увімк.",
+      "Off": "Вимк.",
+      "ShareAcrossDevices": "Спільний доступ на пристроях",
+      "LockSettings": "Заблокувати налаштування екранного часу"
+    },
+    "Battery": {
+      "Title": "Акумулятор",
+      "Description": "Налаштування акумулятора.",
+      "BatteryLevel": "Рівень заряду",
+      "LastCharged": "Востаннє заряджено до 100% о 8:00",
+      "LowPowerMode": "Режим низького енергоспоживання",
+      "Never": "Ніколи",
+      "BatteryHealth": "Стан акумулятора",
+      "Normal": "Нормальний",
+      "OptimisedCharging": "Оптимізоване заряджання",
+      "Options": "Параметри..."
+    },
+    "Keyboard": {
+      "Title": "Клавіатура",
+      "Description": "Налаштування клавіатури.",
+      "KeyRepeat": "Повторення клавіш",
+      "Slow": "Повільно",
+      "Fast": "Швидко",
+      "DelayUntilRepeat": "Затримка до повторення",
+      "Long": "Довго",
+      "Short": "Коротко",
+      "AdjustBrightness": "Регулювати яскравість клавіатури за слабкого освітлення",
+      "KeyboardNavigation": "Навігація клавіатурою",
+      "Shortcuts": "Шорткати...",
+      "TextInput": "Введення тексту",
+      "InputSources": "Джерела введення",
+      "Edit": "Редагувати...",
+      "Dictation": "Диктування"
+    },
+    "LockScreen": {
+      "Title": "Екран блокування",
+      "Description": "Налаштування екрана блокування.",
+      "TurnOffDisplayBattery": "Вимкнути дисплей при роботі від акумулятора, коли він неактивний",
+      "TurnOffDisplayAdapter": "Вимкнути дисплей при роботі від адаптера, коли він неактивний",
+      "TwoMinutes": "2 хвилини",
+      "TenMinutes": "10 хвилин",
+      "RequirePassword": "Вимагати пароль після запуску заставки або вимкнення дисплея",
+      "Immediately": "Негайно",
+      "ShowMessage": "Показувати повідомлення під час блокування",
+      "Set": "Встановити...",
+      "LoginWindowShows": "Вікно входу показує",
+      "ListOfUsers": "Список користувачів",
+      "ShowLargeClock": "Показати великий годинник",
+      "OnLockScreen": "На екрані блокування"
+    },
+    "PrivacySecurity": {
+      "Title": "Конфіденційність та безпека",
+      "Description": "Налаштування конфіденційності та безпеки.",
+      "Privacy": "Конфіденційність",
+      "LocationServices": "Служби локації",
+      "On": "Увімк.",
+      "Off": "Вимк.",
+      "Camera": "Камера",
+      "Microphone": "Мікрофон",
+      "FilesFolders": "Файли та папки",
+      "ScreenRecording": "Запис екрану",
+      "AppsCount": "{count, plural, one {1 програма} few {# програми} many {# програм} other {# програми}}",
+      "Security": "Безпека",
+      "FileVault": "FileVault",
+      "LockdownMode": "Режим блокування",
+      "Others": "Інше",
+      "Extensions": "Розширення",
+      "Profiles": "Профілі"
+    },
+    "PrintersScanners": {
+      "Title": "Принтери та сканери",
+      "Description": "Налаштування принтерів та сканерів.",
+      "Printers": "Принтери",
+      "IdleLastUsed": "Неактивний, Останнє використання",
+      "Offline": "Офлайн",
+      "AddPrinter": "Додати принтер, сканер або факс..."
+    },
+    "ScreenSaver": {
+      "Title": "Заставка",
+      "Description": "Налаштування заставки.",
+      "Preview": "Попередній перегляд",
+      "ShowOnAllSpaces": "Показувати на всіх робочих місцях",
+      "ScreenSavers": "Заставки",
+      "StartAfter": "Почати після",
+      "FiveMinutes": "5 хвилин",
+      "ShowWithClock": "Показувати з годинником",
+      "ScreensaverNames": {
+        "Ventura": "Ventura",
+        "Monterey": "Monterey",
+        "BigSur": "Big Sur",
+        "Catalina": "Catalina",
+        "Hello": "Hello",
+        "Drift": "Drift",
+        "Flurry": "Flurry",
+        "Shell": "Shell"
+      }
+    },
+    "Storage": {
+      "Title": "Сховище",
+      "Description": "Керуйте сховищем.",
+      "MacintoshHD": "Macintosh HD",
+      "AvailableSpace": "{available} ГБ / {total} ГБ доступно",
+      "Apps": "Програми",
+      "Documents": "Документи",
+      "SystemData": "Системні дані",
+      "macOS": "macOS",
+      "OtherUsers": "Інші користувачі",
+      "Recommendations": "Рекомендації",
+      "StoreInICloud": "Зберігати в iCloud",
+      "StoreInICloudDesc": "Зберігайте всі свої файли, фотографії та повідомлення в iCloud і заощаджуйте місце на цьому Mac.",
+      "StoreInICloudButton": "Зберігати в iCloud...",
+      "Categories": "Категорії",
+      "Applications": "Програми"
+    },
+    "TouchIDPassword": {
+      "Title": "Touch ID та пароль",
+      "Description": "Додайте відбиток пальця, щоб розблокувати Mac.",
+      "TouchID": "Touch ID",
+      "Finger1": "Палець 1",
+      "AddFingerprint": "Додати відбиток пальця",
+      "UseTouchIDFor": "Використовуйте Touch ID для:",
+      "UnlockingMac": "Розблокування Mac",
+      "ApplePay": "Apple Pay",
+      "iTunesAppStore": "iTunes Store та App Store",
+      "AutoFillPasswords": "Автозаповнення паролів",
+      "Password": "Пароль",
+      "LastChanged": "Остання зміна: 24.11.2024",
+      "Change": "Змінити...",
+      "RequirePasswordScreenSaver": "Вимагати пароль після заставки або вимкнення дисплея",
+      "Immediately": "Негайно",
+      "RequirePasswordIdle": "Вимагати пароль після бездіяльності",
+      "Never": "Ніколи",
+      "Seconds": "{count} секунд",
+      "Minute": "{count} хвилина",
+      "Minutes": "{count} хвилин",
+      "AppleWatch": "Apple Watch",
+      "AppleWatchUnlock": "Використовуйте Apple Watch для розблокування програм і Mac"
+    },
+    "Trackpad": {
+      "Title": "Трекпад",
+      "Description": "Налаштування трекпада.",
+      "PointClick": "Вказати та клацнути",
+      "ScrollZoom": "Прокрутка та масштабування",
+      "MoreGestures": "Більше жестів",
+      "TrackingSpeed": "Швидкість відстеження",
+      "Slow": "Повільно",
+      "Fast": "Швидко",
+      "Click": "Клацання",
+      "Medium": "Середнє",
+      "ForceClick": "Сильне клацання та тактильний відгук",
+      "LookUp": "Пошук та детектори даних",
+      "SecondaryClick": "Вторинне клацання",
+      "ClickTwoFingers": "Клацання двома пальцями",
+      "TapToClick": "Натисніть для клацання",
+      "VideoPreview": "Попередній перегляд відео"
+    },
+    "UsersGroups": {
+      "Title": "Користувачі та групи",
+      "Description": "Керуйте користувачами.",
+      "CurrentUser": "Поточний користувач",
+      "Admin": "Адміністратор",
+      "OtherUsers": "Інші користувачі",
+      "GuestUser": "Гість",
+      "Off": "Вимк.",
+      "AddAccount": "Додати обліковий запис...",
+      "AutoLogin": "Автоматичний вхід",
+      "AllowNetworkUsers": "Дозволити мережевим користувачам входити у вікні входу"
+    },
+    "Wallpaper": {
+      "Title": "Шпалери",
+      "Description": "Виберіть шпалери.",
+      "ShowOnAllSpaces": "Показувати на всіх робочих місцях",
+      "DynamicWallpapers": "Динамічні шпалери",
+      "Pictures": "Зображення",
+      "AddPhoto": "Додати фото"
+    },
+    "LanguageSelector": {
+      "Title": "Виберіть бажану мову для додавання",
+      "Search": "Пошук",
+      "Cancel": "Скасувати",
+      "Add": "Додати"
+    }
+  },
+  "Languages": {
+    "English": "Англійська",
+    "Spanish": "Іспанська",
+    "French": "Французька",
+    "German": "Німецька",
+    "Italian": "Італійська",
+    "Japanese": "Японська",
+    "Chinese": "Китайська",
+    "Portuguese": "Португальська",
+    "Russian": "Російська",
+    "Korean": "Корейська",
+    "Dutch": "Голландська",
+    "Swedish": "Шведська",
+    "Danish": "Данська",
+    "Norwegian": "Норвезька",
+    "Finnish": "Фінська",
+    "Polish": "Польська",
+    "Turkish": "Турецька",
+    "Arabic": "Арабська",
+    "Hindi": "Гінді",
+    "Bengali": "Бенгальська",
+    "Vietnamese": "В'єтнамська",
+    "Thai": "Тайська",
+    "Greek": "Грецька",
+    "Czech": "Чеська",
+    "Hungarian": "Угорська",
+    "Romanian": "Румунська",
+    "Ukrainian": "Українська",
+    "Indonesian": "Індонезійська",
+    "Malay": "Малайська",
+    "Croatian": "Хорватська",
+    "Slovak": "Словацька",
+    "Slovenian": "Словенська",
+    "Bulgarian": "Болгарська",
+    "Serbian": "Сербська",
+    "Hebrew": "Іврит"
+  },
+  "Finder": {
+    "Search": "Пошук",
+    "Sidebar": {
+      "Favorites": "Обране",
+      "Locations": "Місця",
+      "AirDrop": "AirDrop",
+      "Recents": "Останні",
+      "Applications": "Програми",
+      "Desktop": "Робочий стіл",
+      "Documents": "Документи",
+      "Downloads": "Завантаження",
+      "Pictures": "Зображення",
+      "Home": "Home",
+      "MacintoshHD": "Macintosh HD",
+      "iCloudDrive": "iCloud Drive"
+    },
+    "Menu": {
+      "NewFolder": "Нова папка",
+      "GetInfo": "Отримати інформацію",
+      "ChangeBackground": "Змінити фон...",
+      "Open": "Відкрити",
+      "MoveToBin": "Перемістити в кошик",
+      "Rename": "Перейменувати",
+      "OpenItems": "Відкрити {count, plural, one {1 елемент} few {# елементи} many {# елементів} other {# елементів}}",
+      "MoveItemsToBin": "Перемістити {count, plural, one {1 елемент} few {# елементи} many {# елементів} other {# елементів}} в кошик"
+    },
+    "Status": {
+      "Loading": "Завантаження...",
+      "EmptyFolder": "Порожня папка",
+      "ItemCount": "{count, plural, one {1 елемент} few {# елементи} many {# елементів} other {# елементів}}",
+      "SpaceAvailable": "{amount} ГБ доступно"
+    },
+    "Errors": {
+      "NoApp": "Програму для відкриття документа \"{ext}\" не налаштовано.",
+      "CreateFolderFailed": "Не вдалося створити папку",
+      "MoveToBinFailed": "Не вдалося перемістити в кошик"
+    }
+  },
+  "Safari": {
+    "Title": "Safari",
+    "StartPage": "Початкова сторінка",
+    "Loading": "Завантаження...",
+    "SearchPlaceholder": "Пошук або введення імені веб-сайту",
+    "NoInternet": "Немає підключення до Інтернету",
+    "NoInternetDesc": "Ваш комп'ютер не підключено до Інтернету. Цю сторінку неможливо відобразити.",
+    "Favorites": {
+      "Apple": "Apple",
+      "Google": "Google",
+      "Wikipedia": "Wikipedia",
+      "GitHub": "GitHub"
+    }
+  },
+  "Mail": {
+    "Inbox": "Вхідні",
+    "MessagesCount": "{count, plural, one {1 повідомлення} few {# повідомлення} many {# повідомлень} other {# повідомлень}}",
+    "Favorites": "Обране",
+    "AllInboxes": "Усі вхідні",
+    "VIP": "VIP",
+    "Sent": "Надіслані",
+    "Search": "Пошук",
+    "NoMessageSelected": "Повідомлення не вибрано",
+    "To": "Кому: {name}"
+  },
+  "Messages": {
+    "AppTitle": "Повідомлення",
+    "SigningIn": "Вхід як {name}...",
+    "SidebarTitle": "Повідомлення",
+    "NoOnlineUsers": "Немає онлайн-користувачів.",
+    "NoMessages": "Немає повідомлень",
+    "To": "Кому: {name}",
+    "InputPlaceholder": "iMessage",
+    "NoContactSelected": "Виберіть контакт для надсилання повідомлення"
+  },
+  "Photos": {
+    "Sidebar": {
+      "Library": "Бібліотека",
+      "Collections": "Колекції",
+      "Pinned": "Закріплені",
+      "Albums": "Альбоми",
+      "Utilities": "Утиліти",
+      "Projects": "Проєкти",
+      "Favourites": "Обране",
+      "RecentlySaved": "Нещодавно збережені",
+      "Videos": "Відео",
+      "Screenshots": "Знімки екрана",
+      "PeoplePets": "Люди та домашні тварини",
+      "SharedAlbums": "Спільні альбоми",
+      "Activity": "Активність",
+      "RecentlyDeleted": "Нещодавно видалені",
+      "Duplicates": "Дублікати",
+      "Map": "Карта",
+      "AllProjects": "Усі проєкти"
+    },
+    "Tabs": {
+      "Years": "Роки",
+      "Months": "Місяці",
+      "AllPhotos": "Усі фото"
+    },
+    "Search": "Пошук",
+    "Collections": {
+      "Title": "Колекції",
+      "Memories": "Спогади",
+      "NoMemories": "Немає спогадів",
+      "NoMemoriesDesc": "Спогади з'являться тут, коли ви створите їх.",
+      "Albums": "Альбоми",
+      "NoAlbums": "Немає альбомів"
+    },
+    "EmptyState": {
+      "NoItems": "Немає елементів у {title}"
+    },
+    "Locked": {
+      "Title": "{title} заблоковано",
+      "Desc": "Автентифікуйтеся для перегляду"
+    }
+  },
+  "Notes": {
+    "Sidebar": {
+      "iCloud": "iCloud",
+      "Notes": "Нотатки",
+      "RecentlyDeleted": "Нещодавно видалені"
+    },
+    "Search": "Пошук",
+    "NewNote": "Нова нотатка",
+    "NoAdditionalText": "Немає додаткового тексту",
+    "Editor": {
+      "TitlePlaceholder": "Заголовок",
+      "ContentPlaceholder": "Почніть вводити...",
+      "AddToDesktop": "Додати на робочий стіл",
+      "Restore": "Відновити",
+      "Delete": "Видалити нотатку",
+      "DeletePermanently": "Видалити назавжди",
+      "EmptyState": "Виберіть або створіть нотатку",
+      "Date": "Сьогодні о {time}"
+    }
+  },
+  "Reminders": {
+    "Search": "Пошук",
+    "Sidebar": {
+      "MyLists": "Мої списки",
+      "Reminders": "Нагадування",
+      "Work": "Робота",
+      "Today": "Сьогодні",
+      "Scheduled": "Заплановано",
+      "All": "Усі",
+      "Flagged": "З прапорцем"
+    },
+    "AddReminder": "Нове нагадування",
+    "Actions": {
+      "Add": "Додати",
+      "Cancel": "Скасувати",
+      "Delete": "Видалити нагадування",
+      "MarkComplete": "Позначити як виконане",
+      "MarkIncomplete": "Позначити як невиконане",
+      "Flag": "Позначити прапорцем",
+      "Unflag": "Зняти прапорець"
+    },
+    "Inputs": {
+      "Title": "Заголовок",
+      "Notes": "Нотатки",
+      "Date": "Дата",
+      "Time": "Час",
+      "Tags": "Теги"
+    },
+    "EmptyState": {
+      "NoReminders": "Немає нагадувань",
+      "CreateOne": "Створити нагадування"
+    }
+  },
+  "Calendar": {
+    "Search": "Пошук",
+    "Today": "Сьогодні",
+    "Day": "День",
+    "Week": "Тиждень",
+    "Month": "Місяць",
+    "Year": "Рік",
+    "AddEvent": "Додати подію",
+    "NoEvents": "Немає подій",
+    "NewEvent": "Нова подія",
+    "TitlePlaceholder": "Назва події",
+    "Location": "Місце",
+    "AllDay": "Весь день",
+    "From": "З",
+    "To": "До",
+    "Repeat": "Повторення",
+    "Never": "Ніколи",
+    "Daily": "Щодня",
+    "Weekly": "Щотижня",
+    "Monthly": "Щомісяця",
+    "Yearly": "Щороку",
+    "Alert": "Сповіщення",
+    "AtTime": "У час події",
+    "5MinBefore": "За 5 хвилин",
+    "10MinBefore": "За 10 хвилин",
+    "15MinBefore": "За 15 хвилин",
+    "30MinBefore": "За 30 хвилин",
+    "1HourBefore": "За 1 годину",
+    "2HoursBefore": "За 2 години",
+    "1DayBefore": "За 1 день",
+    "2DaysBefore": "За 2 дні",
+    "Notes": "Нотатки",
+    "DeleteEvent": "Видалити подію",
+    "ShortDays": {
+      "Sun": "Нд",
+      "Mon": "Пн",
+      "Tue": "Вт",
+      "Wed": "Ср",
+      "Thu": "Чт",
+      "Fri": "Пт",
+      "Sat": "Сб"
+    },
+    "Months": {
+      "January": "Січень",
+      "February": "Лютий",
+      "March": "Березень",
+      "April": "Квітень",
+      "May": "Травень",
+      "June": "Червень",
+      "July": "Липень",
+      "August": "Серпень",
+      "September": "Вересень",
+      "October": "Жовтень",
+      "November": "Листопад",
+      "December": "Грудень"
+    },
+    "Sidebar": {
+      "iCloud": "ICLOUD",
+      "Other": "OTHER",
+      "NoInvitations": "No invitations"
+    },
+    "Toolbar": {
+      "Today": "Today",
+      "SearchPlaceholder": "Search events...",
+      "View": {
+        "day": "day",
+        "week": "week",
+        "month": "month",
+        "year": "year"
+      }
+    },
+    "EventModal": {
+      "Title": "New Event",
+      "EventTitlePlaceholder": "Event Title",
+      "CalendarLabel": "Calendar",
+      "Cancel": "Cancel",
+      "AddEvent": "Add Event"
+    },
+    "SearchResults": {
+      "Title": "Search Results",
+      "NoEvents": "No events found"
+    },
+    "Event": {
+      "NoLocation": "No location",
+      "EventLabel": "Event: {title} at {location}"
+    },
+    "Weekdays": {
+      "Sun": "Sun",
+      "Mon": "Mon",
+      "Tue": "Tue",
+      "Wed": "Wed",
+      "Thu": "Thu",
+      "Fri": "Fri",
+      "Sat": "Sat"
+    },
+    "WeekdaysShort": {
+      "Sun": "S",
+      "Mon": "M",
+      "Tue": "T",
+      "Wed": "W",
+      "Thu": "T",
+      "Fri": "F",
+      "Sat": "S"
+    }
+  },
+  "Maps": {
+    "Search": "Пошук",
+    "SearchPlaceholder": "Пошук місця або адреси",
+    "Directions": "Маршрут",
+    "From": "Звідки",
+    "To": "Куди",
+    "Transport": {
+      "Drive": "Авто",
+      "Walk": "Пішки",
+      "Transit": "Транспорт",
+      "Cycle": "Велосипед"
+    },
+    "LocateMe": "Знайти мене",
+    "ZoomIn": "Збільшити",
+    "ZoomOut": "Зменшити",
+    "MapType": {
+      "Standard": "Стандартна",
+      "Hybrid": "Гібрид",
+      "Satellite": "Супутник"
+    },
+    "Sidebar": {
+      "Favorites": "FAVORITES",
+      "Recent": "RECENT",
+      "NoRecentSearches": "No recent searches",
+      "RecentLabel": "Recent"
+    },
+    "Locations": {
+      "Home": "Home",
+      "Work": "Work"
+    },
+    "Controls": {
+      "SwitchToSatellite": "Switch to Satellite",
+      "SwitchToSatelliteLabel": "Switch to Satellite view",
+      "SwitchToMap": "Switch to Map",
+      "SwitchToMapLabel": "Switch to Map view",
+      "CurrentLocation": "Current Location",
+      "ShowCurrentLocation": "Show current location",
+      "MapInfo": "Map information"
+    },
+    "Permission": {
+      "AppName": "Maps",
+      "Title": "Location",
+      "Reason": "Maps needs access to your location to show where you are.",
+      "Error": "Could not get your location. Please ensure location services are enabled.",
+      "NotSupported": "Geolocation is not supported by your browser."
+    }
+  },
+  "FaceTime": {
+    "AppName": "FaceTime",
+    "NewFaceTime": "Новий FaceTime",
+    "CreateLink": "Створити посилання",
+    "EnterNameOrEmail": "Ім'я, електронна пошта або номер",
+    "Suggested": "Запропоновані",
+    "NoRecents": "Немає недавніх",
+    "FaceTimeVideo": "FaceTime Відео",
+    "FaceTimeAudio": "FaceTime Аудіо",
+    "JoinCall": "Приєднатися",
+    "Waiting": "Очікування...",
+    "Connected": "Підключено",
+    "Reconnecting": "Перепідключення...",
+    "CallEnded": "Виклик завершено",
+    "Mute": "Вимкнути звук",
+    "Unmute": "Увімкнути звук",
+    "VideoOff": "Вимкнути відео",
+    "VideoOn": "Увімкнути відео",
+    "End": "Завершити",
+    "FullScreen": "На весь екран",
+    "ExitFullScreen": "Вийти з повноекранного режиму",
+    "Effects": "Ефекти",
+    "ShareScreen": "Спільний екран",
+    "Connecting": "Підключення...",
+    "Unavailable": "Недоступний",
+    "Title": "FaceTime",
+    "ConnectingAs": "Connecting as {name}...",
+    "IncomingCall": "{name} is calling...",
+    "Accept": "Accept",
+    "Decline": "Decline",
+    "Contacts": "Contacts",
+    "NoContacts": "No one else is online.",
+    "Video": "Video",
+    "SelectContact": "Select a contact to call",
+    "Aria": {
+      "RemoteVideo": "Remote video feed",
+      "LocalVideo": "Local video preview",
+      "EndCall": "End Call",
+      "CallContact": "Call {name}",
+      "VideoCallContact": "Video call {name}",
+      "LocalPreview": "Local camera preview"
+    },
+    "Permission": {
+      "AppName": "FaceTime",
+      "Title": "Camera and Microphone",
+      "Reason": "FaceTime needs access to your camera and microphone to make calls."
+    }
+  },
+  "Contacts": {
+    "Search": "Пошук",
+    "AllContacts": "Усі контакти",
+    "MyCard": "Моя картка",
+    "AddContact": "Додати контакт",
+    "Edit": "Редагувати",
+    "Done": "Готово",
+    "FirstName": "Ім'я",
+    "LastName": "Прізвище",
+    "Company": "Компанія",
+    "Phone": "Телефон",
+    "Email": "Електронна пошта",
+    "Notes": "Нотатки",
+    "Message": "Повідомлення",
+    "Call": "Виклик",
+    "Video": "Відео",
+    "Mail": "Пошта",
+    "Pay": "Оплатити",
+    "NoContacts": "Немає контактів",
+    "DeleteContact": "Видалити контакт",
+    "SearchPlaceholder": "Search",
+    "SearchAria": "Search contacts",
+    "Count": "{count} Contacts",
+    "EditContact": "Edit Contact",
+    "NewContact": "New Contact",
+    "Preview": "Preview",
+    "Cancel": "Cancel",
+    "NoNotes": "No notes",
+    "NoSelection": "No Contact Selected",
+    "Labels": {
+      "FirstName": "First Name",
+      "LastName": "Last Name",
+      "Company": "Company",
+      "Phone": "Phone",
+      "Email": "Email",
+      "Notes": "Notes",
+      "Mobile": "mobile",
+      "Home": "home",
+      "Message": "message",
+      "Video": "video",
+      "Mail": "mail"
+    },
+    "Alerts": {
+      "DeleteConfirm": "Are you sure you want to delete this contact?",
+      "NameRequired": "Please enter a name or company."
+    },
+    "Aria": {
+      "AddContact": "Add new contact",
+      "Contact": "Contact: {name}",
+      "Action": "{action} {name}"
+    }
+  },
+  "Calculator": {
+    "Clear": "C",
+    "AllClear": "AC",
+    "Negate": "+/-",
+    "Percent": "%",
+    "Divide": "÷",
+    "Multiply": "×",
+    "Subtract": "-",
+    "Add": "+",
+    "Equals": "=",
+    "Decimal": ".",
+    "AC": "AC",
+    "ToggleSign": "Toggle sign",
+    "Percentage": "Percentage",
+    "Calculate": "Calculate result"
+  },
+  "Clock": {
+    "WorldClock": "Світовий годинник",
+    "Alarm": "Будильник",
+    "Stopwatch": "Секундомір",
+    "Timer": "Таймер",
+    "Add": "Додати",
+    "Edit": "Редагувати",
+    "Start": "Старт",
+    "Stop": "Стоп",
+    "Reset": "Скинути",
+    "Lap": "Коло",
+    "Resume": "Продовжити",
+    "Pause": "Пауза",
+    "Cancel": "Скасувати",
+    "Save": "Зберегти",
+    "Label": "Мітка",
+    "Sound": "Звук",
+    "Snooze": "Відкласти",
+    "WhenTimerEnds": "Коли таймер закінчиться",
+    "StopPlaying": "Зупинити відтворення",
+    "Tabs": {
+      "WorldClock": "World Clock",
+      "Alarms": "Alarms",
+      "Stopwatch": "Stopwatch",
+      "Timers": "Timers"
+    },
+    "AddClock": "Add clock",
+    "Locations": {
+      "NewDelhi": "New Delhi"
+    },
+    "Today": "Today",
+    "HRS": "HRS"
+  },
+  "Weather": {
+    "Loading": "Завантаження...",
+    "Error": "Помилка завантаження погоди",
+    "SearchPlaceholder": "Пошук міста",
+    "MyLocation": "Моє місцезнаходження",
+    "Humidity": "Вологість",
+    "Wind": "Вітер",
+    "Rain": "Дощ",
+    "FeelsLike": "Відчувається як",
+    "UVIndex": "УФ-індекс",
+    "Pressure": "Тиск",
+    "Visibility": "Видимість",
+    "Sunrise": "Схід сонця",
+    "Sunset": "Захід сонця",
+    "Forecast": {
+      "Hourly": "Hourly Forecast",
+      "TenDay": "10-Day Forecast",
+      "Now": "Now",
+      "Today": "Today"
+    },
+    "Hourly": "Погодинно",
+    "Daily": "Щодня",
+    "High": "Висока",
+    "Low": "Низька",
+    "Conditions": {
+      "Clear": "Ясно",
+      "Cloudy": "Хмарно",
+      "Rain": "Дощ",
+      "Snow": "Сніг",
+      "Thunderstorm": "Гроза",
+      "Drizzle": "Мряка",
+      "Mist": "Туман"
+    },
+    "Retry": "Retry",
+    "Searching": "Searching...",
+    "NoResults": "No results found",
+    "Recent": "Recent",
+    "Popular": "Popular",
+    "Sidebar": {
+      "Open": "Open sidebar",
+      "Close": "Close sidebar"
+    },
+    "Aria": {
+      "SelectLocation": "Select {name}, {country}"
+    },
+    "Details": {
+      "AirQuality": "Air Quality",
+      "UVIndex": "UV Index",
+      "Wind": "Wind",
+      "Sunset": "Sunset",
+      "Sunrise": "Sunrise:",
+      "FeelsLike": "Feels Like",
+      "Humidity": "Humidity",
+      "Visibility": "Visibility",
+      "Pressure": "Pressure",
+      "hPa": "hPa"
+    },
+    "Descriptions": {
+      "AirQualityDesc": "Air quality index is 130, similar to yesterday at about this time.",
+      "UVIndexDesc": "Use sun protection until 4PM.",
+      "FeelsLikeDesc": "Similar to the actual temperature.",
+      "DewPointDesc": "The dew point is {temp}° right now.",
+      "VisibilityDesc": "Perfectly clear view.",
+      "Footer": "Weather for {location} • Open-Meteo Data",
+      "PollutionLevel": "Moderately Polluted",
+      "UVLevel": "Moderate"
+    }
+  },
+  "Stocks": {
+    "Search": "Пошук",
+    "Watchlist": "Список спостереження",
+    "MarketOpen": "Ринок відкрито",
+    "MarketClosed": "Ринок закрито",
+    "PreMarket": "До відкриття ринку",
+    "AfterHours": "Після закриття ринку",
+    "Loading": "Завантаження...",
+    "Error": "Помилка завантаження",
+    "AddSymbol": "Додати символ",
+    "Remove": "Видалити",
+    "Chart": "Графік",
+    "News": "Новини",
+    "Summary": "Підсумок",
+    "Open": "Відкриття",
+    "High": "Максимум",
+    "Low": "Мінімум",
+    "Vol": "Обсяг",
+    "PE": "P/E",
+    "MktCap": "Ринкова капіталізація",
+    "52WHigh": "52-тижневий максимум",
+    "52WLow": "52-тижневий мінімум",
+    "AvgVol": "Середній обсяг",
+    "Yield": "Дохідність",
+    "Beta": "Бета",
+    "EPS": "EPS",
+    "Title": "Stocks",
+    "Searching": "Searching...",
+    "KeyStatistics": "Key Statistics",
+    "BusinessNews": "Business News",
+    "ShowMore": "Show More",
+    "Aria": {
+      "Search": "Search stocks",
+      "Select": "Select stock {symbol}",
+      "ReadNews": "Read news: {title}"
+    },
+    "Stats": {
+      "Open": "Open",
+      "High": "High",
+      "Low": "Low",
+      "Vol": "Vol",
+      "PE": "P/E",
+      "MktCap": "Mkt Cap",
+      "52WH": "52W H",
+      "52WL": "52W L"
+    }
+  },
+  "Desktop": {
+    "ContextMenu": {
+      "NewFolder": "Нова папка",
+      "GetInfo": "Отримати інформацію",
+      "ChangeDesktopBackground": "Змінити фон робочого столу...",
+      "UseStacks": "Використовувати стоси",
+      "SortBy": "Сортувати за",
+      "CleanUp": "Прибрати",
+      "CleanUpBy": "Прибрати за",
+      "ShowViewOptions": "Показати параметри перегляду",
+      "ChangeWallpaper": "Change Wallpaper...",
+      "EditWidgets": "Edit Widgets...",
+      "Tags": "Tags",
+      "None": "None",
+      "SnapToGrid": "Snap to Grid",
+      "Name": "Name",
+      "Kind": "Kind",
+      "DateLastOpened": "Date Last Opened",
+      "DateAdded": "Date Added",
+      "DateModified": "Date Modified",
+      "DateCreated": "Date Created",
+      "Size": "Size"
+    },
+    "SortOptions": {
+      "Name": "Ім'я",
+      "Kind": "Тип",
+      "DateLastOpened": "Дата останнього відкриття",
+      "DateAdded": "Дата додавання",
+      "DateModified": "Дата зміни",
+      "DateCreated": "Дата створення",
+      "Size": "Розмір",
+      "Tags": "Теги"
+    },
+    "Guest": "Guest",
+    "UntitledFolder": "untitled folder",
+    "NoAppAvailable": "No application available to open .{ext} files.",
+    "MoveToBin": {
+      "Failed": "Failed to move to bin",
+      "NotSupported": "Failed to move to bin. Folder moves not fully supported yet."
+    }
+  },
+  "ControlCenter": {
+    "Title": "Центр керування",
+    "WiFi": "Wi-Fi",
+    "Bluetooth": "Bluetooth",
+    "AirDrop": "AirDrop",
+    "DoNotDisturb": "Не турбувати",
+    "KeyboardBrightness": "Яскравість клавіатури",
+    "ScreenMirroring": "Дублювання екрану",
+    "Display": "Дисплей",
+    "Sound": "Звук",
+    "Playing": "Відтворення",
+    "On": "Увімк.",
+    "Off": "Вимк.",
+    "NotConnected": "Не підключено",
+    "Connect": "Підключити",
+    "HomeNetwork": "Home Network",
+    "ContactsOnly": "Contacts Only",
+    "NotPlaying": "Not Playing",
+    "Music": "Music"
+  },
+  "LockScreenApp": {
+    "EnterPassword": "Введіть пароль",
+    "ClickToUnlock": "Натисніть, щоб розблокувати",
+    "TouchID": "Touch ID",
+    "Cancel": "Скасувати",
+    "SwitchUser": "Змінити користувача"
+  },
+  "NotificationCenter": {
+    "Title": "Центр сповіщень",
+    "NoNotifications": "Немає сповіщень",
+    "ClearAll": "Очистити все",
+    "Widgets": "Widgets",
+    "Done": "Done",
+    "Edit": "Edit",
+    "AddWidget": "Add Widget"
+  },
+  "Widgets": {
+    "AllWidgets": "Усі віджети",
+    "Search": "Пошук",
+    "AddWidget": "Додати віджет",
+    "Loading": "Loading...",
+    "Calendar": {
+      "Title": "Calendar"
+    },
+    "Weather": {
+      "Title": "Weather"
+    },
+    "Stocks": {
+      "Title": "Stocks"
+    },
+    "Reminders": {
+      "Title": "Reminders",
+      "NoReminders": "No reminders"
+    },
+    "Notes": {
+      "Title": "Notes",
+      "Content": "Buy milk, eggs, and bread.<br />Call mom at 5pm.<br />Meeting with team tomorrow."
+    }
+  },
+  "Window": {
+    "Minimize": "Згорнути",
+    "Maximize": "Розгорнути",
+    "Close": "Закрити",
+    "Restore": "Restore",
+    "MoveTo": "Move Window to...",
+    "LeftSide": "Left Side of Screen",
+    "RightSide": "Right Side of Screen",
+    "EnterFullScreen": "Enter Full Screen"
+  },
+  "Dock": {
+    "AriaLabel": "Панель програм",
+    "Trash": "Кошик"
+  },
+  "Apps": {
+    "Finder": "Finder",
+    "Launchpad": "Launchpad",
+    "Safari": "Safari",
+    "Messages": "Повідомлення",
+    "Mail": "Пошта",
+    "Maps": "Карти",
+    "Photos": "Фотографії",
+    "FaceTime": "FaceTime",
+    "Calendar": "Календар",
+    "Contacts": "Контакти",
+    "Reminders": "Нагадування",
+    "Notes": "Нотатки",
+    "TV": "TV",
+    "Music": "Музика",
+    "News": "Новини",
+    "SystemSettings": "Системні параметри",
+    "AppStore": "App Store",
+    "Trash": "Кошик",
+    "VSCode": {
+      "Title": "Visual Studio Code"
+    },
+    "LeetCode": {
+      "Title": "LeetCode",
+      "Common": {
+        "Loading": "Loading Profile...",
+        "NoData": "No data",
+        "Retry": "Retry",
+        "ShowMore": "Show more",
+        "GoToLeetCode": "Go to LeetCode"
+      },
+      "Badges": {
+        "Title": "Badges",
+        "MostRecent": "Most Recent Badge"
+      },
+      "Stats": {
+        "Title": "Community Stats",
+        "Views": "Views",
+        "Solution": "Solution",
+        "Discuss": "Discuss",
+        "Reputation": "Reputation"
+      },
+      "Languages": {
+        "Title": "Languages",
+        "ProblemsSolved": "problems solved"
+      },
+      "Profile": {
+        "Rank": "Rank"
+      },
+      "Submissions": {
+        "RecentAC": "Recent AC",
+        "List": "List",
+        "Solutions": "Solutions",
+        "Discuss": "Discuss",
+        "TimeAgo": "2 months ago"
+      },
+      "Skills": {
+        "Title": "Skills",
+        "Advanced": "Advanced",
+        "Intermediate": "Intermediate"
+      },
+      "Solved": {
+        "Solved": "Solved",
+        "Easy": "Easy",
+        "Medium": "Med.",
+        "Hard": "Hard"
+      },
+      "Calendar": {
+        "SubmissionsLastYear": "submissions in the past one year",
+        "TotalActiveDays": "Total active days:",
+        "MaxStreak": "Max streak:",
+        "Current": "Current",
+        "Months": {
+          "Jan": "Jan",
+          "Feb": "Feb",
+          "Mar": "Mar",
+          "Apr": "Apr",
+          "May": "May",
+          "Jun": "Jun",
+          "Jul": "Jul",
+          "Aug": "Aug",
+          "Sep": "Sep",
+          "Oct": "Oct",
+          "Nov": "Nov",
+          "Dec": "Dec"
+        }
+      }
+    },
+    "V86": {
+      "Title": "Virtual Machine",
+      "NoFileSelected": "No file selected",
+      "ScriptLoadError": "Failed to load V86 script",
+      "FileReadError": "Failed to read file",
+      "StartError": "Failed to start emulator",
+      "Booting": "Booting {filename}...",
+      "ErrorPrefix": "Error: {error}",
+      "ClickToCapture": "Click to capture mouse (Esc to release)"
+    },
+    "Freeform": "Freeform",
+    "Terminal": "Terminal",
+    "Calculator": "Calculator",
+    "TextEdit": "TextEdit",
+    "MediaPlayer": "Media Player",
+    "Preview": "Preview",
+    "VirtualMachine": "Virtual Machine"
+  },
+  "News": {
+    "Title": "News",
+    "Categories": {
+      "TopStories": "Top Stories",
+      "Technology": "Technology",
+      "Business": "Business",
+      "Science": "Science",
+      "Health": "Health",
+      "Entertainment": "Entertainment",
+      "Sports": "Sports"
+    },
+    "SearchPlaceholder": "Search stories...",
+    "SearchLabel": "Search",
+    "SearchTitle": "Search: \"{query}\"",
+    "Loading": "Loading top stories...",
+    "Error": "Failed to load news. Please try again later.",
+    "TryAgain": "Try Again",
+    "NoResults": "No stories found matching \"{query}\"",
+    "ClearSearch": "Clear Search",
+    "TopStory": "Top Story",
+    "Refresh": "Refresh",
+    "Aria": {
+      "Category": "Category: {label}",
+      "Search": "Search stories",
+      "Refresh": "Refresh news",
+      "ReadTopStory": "Read top story: {title}",
+      "ReadArticle": "Read article: {title}",
+      "Share": "Share article",
+      "Like": "Like article"
+    }
+  },
+  "Music": {
+    "AppleMusic": "Apple Music",
+    "Library": "Library",
+    "ListenNow": "Listen Now",
+    "Browse": "Browse",
+    "Radio": "Radio",
+    "RecentlyAdded": "Recently Added",
+    "Artists": "Artists",
+    "Albums": "Albums",
+    "Songs": "Songs",
+    "Search": "Search",
+    "SearchTitle": "Search: {query}",
+    "Aria": {
+      "Search": "Search music",
+      "GoBack": "Go back",
+      "GoForward": "Go forward",
+      "Prev": "Previous song",
+      "Next": "Next song",
+      "Play": "Play",
+      "Pause": "Pause",
+      "PlaySong": "Play {track} by {artist}",
+      "PauseSong": "Pause {track}",
+      "Lyrics": "Toggle lyrics",
+      "Queue": "Toggle queue",
+      "Mute": "Toggle mute",
+      "VolSlider": "Volume slider",
+      "SeekSlider": "Seek slider"
+    },
+    "Queue": {
+      "Title": "Playing Next",
+      "Empty": "Queue is empty"
+    },
+    "Lyrics": {
+      "NotAvailable": "Lyrics are not available for this song in the preview mode.",
+      "Imagine": "But imagine the lyrics appearing here, perfectly synced with the music...",
+      "Lalala": "La la la...",
+      "Placeholder": "Play a song to see lyrics"
+    }
+  },
+  "TV": {
+    "WatchNow": "Watch Now",
+    "Movies": "Movies",
+    "TVShows": "TV Shows",
+    "Kids": "Kids",
+    "Library": "Library",
+    "SearchResults": "Search Results",
+    "NoShows": "No shows found.",
+    "SearchPlaceholder": "Search",
+    "SearchLabel": "Search TV Shows",
+    "Series": "Series",
+    "PlayEpisode": "Play Episode 1",
+    "AddToUpNext": "Add to Up Next",
+    "Added": "Added",
+    "OpenYouTube": "Open in YouTube",
+    "ViewAccount": "View Account",
+    "Aria": {
+      "Play": "Play {name}",
+      "CloseVideo": "Close video",
+      "AddLibrary": "Add to Library",
+      "RemoveLibrary": "Remove from Library"
+    },
+    "Genres": {
+      "Drama": "Drama",
+      "Action": "Action",
+      "Comedy": "Comedy",
+      "ScienceFiction": "Science-Fiction",
+      "Thriller": "Thriller"
+    }
+  },
+  "Terminal": {
+    "Guest": "Guest",
+    "Welcome": "Welcome to Terminal",
+    "HelpPrompt": "Type 'help' for a list of commands.",
+    "AvailableCommands": "Available commands: ls, cd, pwd, mkdir, touch, echo, cat, clear, whoami, ping, man, rm, rmdir, vi",
+    "CommandNotFound": "command not found: {command}",
+    "Error": "Error: {message}",
+    "AriaInput": "Terminal Input",
+    "Usage": {
+      "Ping": "usage: ping host",
+      "Mkdir": "usage: mkdir directory_name",
+      "Rmdir": "usage: rmdir directory_name",
+      "Rm": "usage: rm [-rf] file_name",
+      "Touch": "usage: touch file_name",
+      "Cat": "usage: cat file_name",
+      "Vi": "usage: vi file_name",
+      "Man": "What manual page do you want?"
+    },
+    "Errors": {
+      "PingResolve": "ping: cannot resolve {host}: Unknown host",
+      "NoManual": "No manual entry for {command}",
+      "NoSuchFile": "{cmd}: {path}: No such file or directory",
+      "NotADirectory": "{cmd}: {path}: Not a directory",
+      "DirectoryNotEmpty": "{cmd}: {path}: Directory not empty",
+      "IsADirectory": "{cmd}: {path}: is a directory"
+    },
+    "Messages": {
+      "PingStats": "PING {host} (127.0.0.1): 56 data bytes\n64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.045 ms\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.082 ms\n64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.067 ms\n\n--- {host} ping statistics ---\n3 packets transmitted, 3 packets received, 0.0% packet loss",
+      "OpeningTextEdit": "Opening {file} in TextEdit..."
+    },
+    "ManPages": {
+      "ls": "ls - list directory contents\n\nUsage: ls [options] [file|dir]\n\nOptions:\n  -a, --all      do not ignore entries starting with .\n  -l             use a long listing format",
+      "cd": "cd - change the shell working directory\n\nUsage: cd [dir]\n\nChange the current directory to DIR. The default DIR is the value of the HOME shell variable.",
+      "pwd": "pwd - print name of current/working directory\n\nUsage: pwd\n\nPrint the full filename of the current working directory.",
+      "mkdir": "mkdir - make directories\n\nUsage: mkdir [DIRECTORY]\n\nCreate the DIRECTORY(ies), if they do not already exist.",
+      "touch": "touch - change file timestamps\n\nUsage: touch [FILE]\n\nUpdate the access and modification times of each FILE to the current time. If FILE does not exist it is created empty.",
+      "echo": "echo - display a line of text\n\nUsage: echo [STRING]...\n\nEcho the STRING(s) to standard output.",
+      "cat": "cat - concatenate files and print on the standard output\n\nUsage: cat [FILE]...\n\nConcatenate FILE(s) to standard output.",
+      "clear": "clear - clear the terminal screen\n\nUsage: clear",
+      "whoami": "whoami - print effective userid\n\nUsage: whoami\n\nPrint the user name associated with the current effective user ID.",
+      "ping": "ping - send ICMP ECHO_REQUEST to network hosts\n\nUsage: ping [HOST]\n\nSend ICMP ECHO_REQUEST to network hosts.",
+      "man": "man - an interface to the system reference manuals\n\nUsage: man [COMMAND]\n\nDisplay the manual page for COMMAND.",
+      "rm": "rm - remove files or directories\n\nUsage: rm [OPTION]... [FILE]...\n\nRemove (unlink) the FILE(s).\n\nOptions:\n  -r, -R, --recursive   remove directories and their contents recursively\n  -f, --force           ignore nonexistent files and arguments, never prompt",
+      "rmdir": "rmdir - remove empty directories\n\nUsage: rmdir [DIRECTORY]...\n\nRemove the DIRECTORY(ies), if they are empty.",
+      "vi": "vi - screen-oriented (visual) display editor\n\nUsage: vi [FILE]\n\nEdit FILE."
+    }
+  },
+  "TextEdit": {
+    "Guest": "Guest",
+    "Untitled": "Untitled.txt",
+    "Save": "Save",
+    "Loading": "Loading...",
+    "Placeholder": "Type your notes here...",
+    "SavedAlert": "Saved to {path}/{filename}"
+  },
+  "PDFViewer": {
+    "Document": "Document.pdf",
+    "PageInfo": "Page {current} of {total}",
+    "View": "View",
+    "ZoomIn": "Zoom In",
+    "ZoomOut": "Zoom Out",
+    "LoadingThumbnails": "Loading thumbnails...",
+    "Loading": "Loading...",
+    "NoPDF": "No PDF",
+    "FailedToLoad": "Failed to load PDF",
+    "NoPDFLoaded": "No PDF loaded"
+  },
+  "Spotlight": {
+    "Placeholder": "Spotlight Search",
+    "SearchWebFor": "Search Web for \"{query}\"",
+    "NoResults": "No results found",
+    "Open": "Open",
+    "Kinds": {
+      "Web": "Web Search",
+      "App": "Application",
+      "Directory": "Directory",
+      "File": "File"
+    },
+    "Aria": {
+      "Open": "Open {name}"
+    }
+  },
+  "MenuBar": {
+    "Apple": {
+      "AboutThisMac": "About This Mac",
+      "SystemSettings": "System Settings...",
+      "AppStore": "App Store...",
+      "RecentItems": "Recent Items",
+      "ForceQuit": "Force Quit...",
+      "Sleep": "Sleep",
+      "Restart": "Restart...",
+      "ShutDown": "Shut Down...",
+      "LockScreen": "Lock Screen"
+    },
+    "App": {
+      "About": "About {app}",
+      "Quit": "Quit {app}"
+    },
+    "File": {
+      "Title": "File",
+      "New": "New",
+      "Open": "Open...",
+      "Save": "Save",
+      "Duplicate": "Duplicate",
+      "NewFinderWindow": "New Finder Window",
+      "NewFolder": "New Folder",
+      "GetInfo": "Get Info"
+    },
+    "Edit": {
+      "Title": "Edit",
+      "Undo": "Undo",
+      "Redo": "Redo",
+      "Cut": "Cut",
+      "Copy": "Copy",
+      "Paste": "Paste"
+    },
+    "View": {
+      "Title": "View",
+      "AsIcons": "As Icons",
+      "AsList": "As List",
+      "AsColumns": "As Columns"
+    },
+    "Window": {
+      "Title": "Window",
+      "Minimize": "Minimize",
+      "Zoom": "Zoom"
+    },
+    "Help": {
+      "Title": "Help",
+      "MacOSHelp": "macOS Help"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "KnownNetworks": "Known Networks",
+      "OtherNetworks": "Other Networks",
+      "Settings": "Wi-Fi Settings..."
+    },
+    "Battery": {
+      "Title": "Battery",
+      "PowerSource": "Power Source: {source}",
+      "PowerAdapter": "Power Adapter",
+      "Battery": "Battery",
+      "EnergyMode": "Energy Mode",
+      "Automatic": "Automatic",
+      "LowPower": "Low Power",
+      "HighPower": "High Power",
+      "SignificantEnergy": "Using Significant Energy",
+      "Settings": "Battery Settings..."
+    },
+    "Aria": {
+      "Clipboard": "Clipboard",
+      "MediaPlayer": "Media Player",
+      "Spotlight": "Spotlight Search",
+      "ControlCenter": "Control Center",
+      "Siri": "Siri",
+      "Clock": "Clock and Notification Center"
+    }
+  },
+  "WeatherDropdown": {
+    "Searching": "Searching...",
+    "SearchCity": "Search city...",
+    "Now": "Now",
+    "Today": "Today",
+    "OpenWeather": "Open Weather"
+  },
+  "LockScreen": {
+    "IncorrectPassword": "Incorrect password",
+    "Guest": "Guest",
+    "EnterPassword": "Enter Password",
+    "Hint": "Touch ID or enter password (hint: {hint})",
+    "Login": "Login",
+    "Cancel": "Cancel",
+    "Aria": {
+      "UserAvatar": "User avatar, click to login",
+      "User": "User {name}, click to login",
+      "Password": "Password",
+      "Submit": "Submit password"
+    }
+  }
 }

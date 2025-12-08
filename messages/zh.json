@@ -1,4 +1,1742 @@
 {
-  "Hello": "Hello world!",
-  "Welcome": "Welcome to the multi-language app"
+  "Hello": {
+    "world": "你好，世界",
+    "GetStarted": "开始"
+  },
+  "Common": {
+    "OK": "确定",
+    "Cancel": "取消",
+    "Yes": "是",
+    "No": "否",
+    "Back": "返回",
+    "Continue": "继续",
+    "Done": "完成",
+    "Edit": "编辑",
+    "Delete": "删除",
+    "Save": "保存",
+    "Close": "关闭",
+    "Error": "错误",
+    "Success": "成功"
+  },
+  "Setup": {
+    "Common": {
+      "Continue": "继续",
+      "Back": "返回",
+      "NotNow": "稍后",
+      "Cancel": "取消",
+      "LearnMore": "了解更多"
+    },
+    "Language": {
+      "Title": "选择语言",
+      "Description": "选择您希望在这台 Mac 上使用的语言。",
+      "TableLabel": "语言",
+      "Primary": "主要"
+    },
+    "Region": {
+      "Title": "选择您的国家或地区"
+    },
+    "DataPrivacy": {
+      "Title": "数据与隐私",
+      "IconText": "当 Apple 功能要求使用您的个人信息时，会出现此图标。",
+      "FeatureText": "您不会在每项功能中都看到此图标。Apple 仅在需要开启功能、保护服务安全或个性化您的体验时收集此信息。",
+      "PrivacyText": "Apple 坚信隐私是一项基本人权，因此每款 Apple 产品都旨在最大限度地减少数据收集和使用，尽可能在设备上处理，并就您的信息提供透明度和控制权。"
+    },
+    "TouchID": {
+      "Title": "触控 ID",
+      "SetupLater": "稍后设置触控 ID",
+      "Description": "使用指纹解锁 Mac 和使用 Apple Pay 购物。请把手指放在触控 ID 上以开始。"
+    },
+    "Fingerprint": {
+      "Title": "放置手指",
+      "Instruction": "反复抬起并放置手指...",
+      "Success": "✓ 触控 ID 已就绪"
+    },
+    "Languages": {
+      "Title": "书面和口头语言",
+      "Description": "以下列出的语言在您所在的地区很常用。您可以使用这些设置，也可以单独自定义。",
+      "Preferred": "首选语言",
+      "InputSources": "输入源",
+      "Dictation": "听写",
+      "Customize": "自定义设置"
+    },
+    "Accessibility": {
+      "Title": "辅助功能",
+      "Description": "辅助功能可根据您的视觉、听觉和运动需求调整 Mac。您可以现在开启这些功能，稍后在系统设置中自定义。查看以下类别以了解可用功能。",
+      "Vision": "视觉",
+      "Motor": "交互",
+      "Hearing": "听觉",
+      "Cognitive": "认知"
+    },
+    "Migration": {
+      "Title": "迁移助理",
+      "Description": "如果您在另一台 Mac 或 Windows PC 上有信息，可以将其传输到这台 Mac。您也可以从 Time Machine 备份或其他启动磁盘传输数据。",
+      "Question": "您想如何传输信息？",
+      "FromMac": "从 Mac、Time Machine 备份或启动磁盘",
+      "FromPC": "从 Windows PC"
+    },
+    "AppleID": {
+      "Title": "使用 Apple ID 登录",
+      "Description": "登录以使用 iCloud、App Store 和其他 Apple 服务。",
+      "Label": "Apple ID",
+      "CreateNew": "创建新 Apple ID",
+      "Forgot": "忘记了 Apple ID 或密码？",
+      "UseDifferent": "iCloud 和购买项目使用不同的 Apple ID？",
+      "Info": "此 Mac 将与您的 Apple ID 关联，您的照片、联系信息和文稿等数据将存储在 iCloud 中，以便您从其他设备访问。",
+      "SeeData": "了解数据管理方式",
+      "SetupLater": "稍后设置",
+      "ErrorRequired": "请输入 Apple ID。"
+    },
+    "Account": {
+      "Title": "创建电脑账户",
+      "CreateAppleID": "创建 Apple ID",
+      "Description": "输入您的姓名和账户详细信息以设置电脑。",
+      "Name": "全名",
+      "Email": "电子邮件地址",
+      "Age": "年龄",
+      "Phone": "移动电话号码",
+      "Password": "密码",
+      "Errors": {
+        "NameRequired": "必须填写全名。",
+        "EmailRequired": "必须填写电子邮件。",
+        "EmailInvalid": "请输入有效的电子邮件地址。",
+        "AgeRequired": "必须填写年龄。",
+        "AgeInvalid": "请输入有效的年龄。",
+        "PhoneRequired": "必须填写电话号码。",
+        "PasswordRequired": "必须填写密码。",
+        "PasswordLength": "密码长度至少为 6 个字符。"
+      }
+    },
+    "Theme": {
+      "Title": "选择外观",
+      "Description": "选择“浅色”或“深色”以更改系统和应用程序的外观。",
+      "Light": "浅色",
+      "Dark": "深色"
+    }
+  },
+  "SystemSettings": {
+    "General": {
+      "Title": "通用",
+      "Description": "管理 Mac 的常规设置和偏好，包括软件更新、设备语言、隔空投送等。",
+      "About": "关于本机",
+      "SoftwareUpdate": "软件更新",
+      "Storage": "存储空间",
+      "AppleCare": "AppleCare 与保修",
+      "AirDrop": "隔空投送与接力",
+      "AutoFill": "自动填充与密码",
+      "DateTime": "日期与时间",
+      "LanguageRegion": "语言与地区",
+      "LoginItems": "登录项",
+      "Sharing": "共享",
+      "StartupDisk": "启动磁盘",
+      "TimeMachine": "时间机器",
+      "DeviceManagement": "设备管理",
+      "TransferReset": "传输或还原"
+    },
+    "AppleAccount": {
+      "Edit": "编辑",
+      "PersonalInformation": "个人信息",
+      "SignInSecurity": "登录与安全性",
+      "PaymentShipping": "付款与配送",
+      "iCloud": "iCloud",
+      "MediaPurchases": "媒体与购买项目",
+      "Family": "家人共享",
+      "SetUp": "设置",
+      "Devices": "设备",
+      "ThisMac": "本 MacBook Pro 14\"",
+      "SignOut": "退出登录..."
+    },
+    "LanguageRegion": {
+      "Title": "语言与地区",
+      "PreferredLanguages": "首选语言",
+      "Region": "地区",
+      "Calendar": "日历",
+      "Temperature": "温度",
+      "Celsius": "摄氏度 (°C)",
+      "Fahrenheit": "华氏度 (°F)",
+      "MeasurementSystem": "测量系统",
+      "Metric": "公制",
+      "US": "美制",
+      "UK": "英制",
+      "FirstDayOfWeek": "每周的第一天",
+      "DateFormat": "日期格式",
+      "NumberFormat": "数字格式",
+      "LiveText": "实况文本",
+      "LiveTextDesc": "选择图像中的文本以拷贝或进行操作。",
+      "Applications": "应用程序",
+      "ApplicationsDesc": "自定以下应用程序的语言设置：",
+      "TranslationLanguages": "翻译语言..."
+    },
+    "Sidebar": {
+      "Search": "搜索",
+      "NotImplemented": "此部分尚未实施。",
+      "AppleAccount": "Apple 账户",
+      "WiFi": "无线局域网",
+      "Bluetooth": "蓝牙",
+      "Network": "网络",
+      "General": "通用",
+      "Appearance": "外观",
+      "Accessibility": "辅助功能",
+      "MenuBar": "控制中心",
+      "DesktopDock": "桌面与程序坞",
+      "Displays": "显示器",
+      "Spotlight": "聚焦",
+      "Wallpaper": "墙纸",
+      "ScreenSaver": "屏幕保护程序",
+      "Battery": "电池",
+      "Sound": "声音",
+      "Notifications": "通知",
+      "Focus": "专注模式",
+      "ScreenTime": "屏幕使用时间",
+      "PrivacySecurity": "隐私与安全性",
+      "LockScreen": "锁定屏幕",
+      "TouchIDPassword": "触控 ID 与密码",
+      "UsersGroups": "用户与群组",
+      "Keyboard": "键盘",
+      "Trackpad": "触控板",
+      "PrintersScanners": "打印机与扫描仪",
+      "Storage": "存储空间"
+    },
+    "Wifi": {
+      "Title": "无线局域网",
+      "Description": "设置无线局域网以连接互联网和无线设备。",
+      "Connected": "已连接",
+      "Details": "详细信息...",
+      "KnownNetworks": "已知网络",
+      "OtherNetworks": "其他网络",
+      "Connect": "连接",
+      "Other": "其他...",
+      "AskToJoin": "加入网络前询问",
+      "AskToJoinDesc": "自动加入已知网络。",
+      "Notify": "通知",
+      "AskToJoinHotspots": "加入个人热点前询问",
+      "AskToJoinHotspotsDesc": "允许自动加入个人热点。",
+      "AskToJoinAction": "询问",
+      "Advanced": "高级..."
+    },
+    "Bluetooth": {
+      "Title": "蓝牙",
+      "Description": "连接无线配件，如耳机、鼠标和键盘。",
+      "Discoverable": "在蓝牙设置打开时显示为“MacBook Pro”。",
+      "MyDevices": "我的设备",
+      "NotConnected": "未连接",
+      "NearbyDevices": "附近的设备",
+      "Searching": "正在搜索..."
+    },
+    "Network": {
+      "Title": "网络",
+      "WiFi": "无线局域网",
+      "Connected": "已连接",
+      "Firewall": "防火墙",
+      "Inactive": "未激活",
+      "OtherServices": "其他服务",
+      "NotConnected": "未连接"
+    },
+    "Appearance": {
+      "Title": "外观",
+      "Description": "选择您喜欢的外观。",
+      "Light": "浅色",
+      "Dark": "深色",
+      "Auto": "自动",
+      "AccentColor": "强调色",
+      "HighlightColor": "高亮色",
+      "Automatic": "自动",
+      "SidebarIconSize": "边栏图标大小",
+      "Medium": "中",
+      "WallpaperTinting": "允许在窗口中进行墙纸调色",
+      "ShowScrollBars": "显示滚动条",
+      "ScrollAuto": "根据鼠标或触控板自动显示",
+      "ScrollWhenScrolling": "滚动时",
+      "ScrollAlways": "始终",
+      "ClickScrollBar": "点按滚动条",
+      "JumpNextPage": "跳至下一页",
+      "JumpSpotClicked": "跳至点按位置"
+    },
+    "Accessibility": {
+      "Title": "辅助功能",
+      "Description": "根据您的视觉、听觉和交互需求调整 Mac。",
+      "LearnMore": "了解更多...",
+      "Vision": "视觉",
+      "VoiceOver": "旁白",
+      "Zoom": "缩放",
+      "HoverText": "悬停文本",
+      "Display": "显示",
+      "Motion": "动态效果",
+      "ReadSpeak": "朗读内容",
+      "AudioDescriptions": "口述影像",
+      "Hearing": "听觉",
+      "HearingDevices": "助听设备",
+      "Audio": "音频",
+      "Captions": "字幕",
+      "LiveCaptions": "实时字幕",
+      "NameRecognition": "声音识别",
+      "Motor": "交互",
+      "VoiceControl": "语音控制",
+      "Keyboard": "键盘",
+      "PointerControl": "指针控制",
+      "SwitchControl": "切换控制",
+      "General": "通用",
+      "Siri": "Siri",
+      "Shortcut": "快捷键"
+    },
+    "MenuBar": {
+      "Title": "控制中心",
+      "Description": "更改菜单栏和控制中心中显示的内容。",
+      "AutoHide": "自动隐藏和显示菜单栏",
+      "Never": "从不",
+      "RecentDocs": "最近使用的文稿、应用程序和服务器",
+      "None": "无",
+      "Controls": "控制中心模块",
+      "ControlCenter": "控制中心",
+      "ShowInMenuBar": "在菜单栏中显示",
+      "DontShowInMenuBar": "不在菜单栏中显示",
+      "Siri": "Siri",
+      "Spotlight": "聚焦",
+      "VolumeFeedback": "更改音量时播放反馈音",
+      "Clock": "时钟"
+    },
+    "DesktopDock": {
+      "Title": "桌面与程序坞",
+      "Description": "更改程序坞和桌面的外观。",
+      "Dock": "程序坞",
+      "Size": "大小",
+      "Magnification": "放大",
+      "Small": "小",
+      "Large": "大",
+      "Position": "屏幕上的位置",
+      "Bottom": "底部",
+      "MinimiseUsing": "最小化窗口时使用",
+      "GenieEffect": "神奇效果",
+      "DoubleClickTitle": "双击窗口的标题栏以",
+      "Zoom": "缩放",
+      "MinimiseToIcon": "将窗口最小化为应用程序图标",
+      "AutoHideDock": "自动隐藏和显示程序坞",
+      "AnimateOpening": "弹跳打开应用程序",
+      "ShowIndicators": "显示已打开应用程序的指示灯",
+      "ShowRecent": "在程序坞中显示最近使用的应用程序",
+      "DesktopStageManager": "桌面与台前调度",
+      "ShowItems": "显示项目",
+      "OnDesktop": "在桌面上",
+      "ClickWallpaper": "点按墙纸以显示桌面",
+      "Always": "始终",
+      "StageManager": "台前调度",
+      "Widgets": "小组件",
+      "ShowWidgets": "显示小组件",
+      "WidgetStyle": "小组件样式",
+      "Automatic": "自动",
+      "UseIPhoneWidgets": "使用 iPhone 小组件"
+    },
+    "Displays": {
+      "Title": "显示器",
+      "Description": "选择显示器以更改其设置。",
+      "BuiltInDisplay": "内建显示器",
+      "UseAs": "用作",
+      "MainDisplay": "主显示器",
+      "Resolution": "分辨率",
+      "Default": "默认",
+      "MoreSpace": "更多空间",
+      "LargerText": "较大文字",
+      "Brightness": "亮度",
+      "TrueTone": "原彩显示",
+      "Preset": "预设",
+      "RefreshRate": "刷新率",
+      "ProMotion": "ProMotion 自适应",
+      "Advanced": "高级..."
+    },
+    "Spotlight": {
+      "Title": "聚焦",
+      "Description": "在 Mac 上搜索。",
+      "SearchPlaceholder": "聚焦搜索",
+      "SearchResults": "搜索结果",
+      "Privacy": "聚焦隐私...",
+      "Categories": {
+        "Applications": "应用程序",
+        "Calculator": "计算器",
+        "Contacts": "通讯录",
+        "Conversion": "转换",
+        "Definition": "定义",
+        "Developer": "开发者",
+        "Documents": "文稿",
+        "Events & Reminders": "事件与提醒事项",
+        "Folders": "文件夹",
+        "Fonts": "字体",
+        "Images": "图像",
+        "Mail & Messages": "邮件与信息",
+        "Movies": "电影",
+        "Music": "音乐",
+        "Other": "其他",
+        "PDF Documents": "PDF 文稿",
+        "Presentations": "演示文稿",
+        "Siri Suggestions": "Siri 建议",
+        "Spreadsheets": "电子表格",
+        "System Preferences": "系统设置",
+        "Tips": "提示",
+        "Bookmarks & History": "书签与历史记录"
+      }
+    },
+    "Notifications": {
+      "Title": "通知",
+      "Description": "控制通知的显示方式。",
+      "Preview": "显示预览",
+      "ShowPreviews": "显示预览",
+      "Always": "始终",
+      "ApplicationNotifications": "应用程序通知",
+      "Apps": {
+        "AppStore": "App Store",
+        "Calendar": "日历",
+        "FaceTime": "FaceTime 通话",
+        "Mail": "邮件",
+        "Messages": "信息",
+        "Photos": "照片",
+        "Reminders": "提醒事项",
+        "Safari": "Safari 浏览器"
+      }
+    },
+    "Sound": {
+      "Title": "声音",
+      "Description": "更改声音设置。",
+      "OutputInput": "输出与输入",
+      "Output": "输出",
+      "Input": "输入",
+      "SelectOutput": "选择声音输出设备：",
+      "Speakers": "MacBook Pro 扬声器",
+      "BuiltIn": "内建",
+      "OutputVolume": "输出音量",
+      "Mute": "静音",
+      "ShowInMenuBar": "在菜单栏中显示声音",
+      "Always": "始终",
+      "AlertSoundGroup": "提示音",
+      "AlertSound": "提示音",
+      "Boop": "Boop",
+      "AlertVolume": "提示音量",
+      "PlayUIEffects": "播放用户界面声音效果"
+    },
+    "Focus": {
+      "Title": "专注模式",
+      "Description": "选择专注模式以自定其设置。",
+      "DoNotDisturb": "勿扰模式",
+      "ShareAcrossDevices": "在设备之间共享",
+      "FocusStatus": "专注模式状态",
+      "On": "开启",
+      "Off": "关闭",
+      "SetUp": "设置",
+      "FocusModes": "专注模式",
+      "Personal": "个人",
+      "Sleep": "睡眠",
+      "Work": "工作",
+      "AddFocus": "添加专注模式"
+    },
+    "ScreenTime": {
+      "Title": "屏幕使用时间",
+      "Description": "监控使用情况并设置限额。",
+      "DailyAverage": "日平均",
+      "FromLastWeek": "与上周相比",
+      "Downtime": "停用时间",
+      "AppLimits": "App 限额",
+      "LimitsCount": "{count} 个限额",
+      "AlwaysAllowed": "始终允许",
+      "AllowedApps": "电话、地图、信息",
+      "ContentPrivacy": "内容与隐私",
+      "On": "开启",
+      "Off": "关闭",
+      "ShareAcrossDevices": "在设备之间共享",
+      "LockSettings": "锁定屏幕使用时间设置"
+    },
+    "Battery": {
+      "Title": "电池",
+      "Description": "查看电池健康和使用情况。",
+      "BatteryLevel": "电池电量",
+      "LastCharged": "上次充至 100% 是在 8:00",
+      "LowPowerMode": "低电量模式",
+      "Never": "从不",
+      "BatteryHealth": "电池健康",
+      "Normal": "正常",
+      "OptimisedCharging": "优化电池充电",
+      "Options": "选项..."
+    },
+    "Keyboard": {
+      "Title": "键盘",
+      "Description": "更改键盘设置。",
+      "KeyRepeat": "按键重复",
+      "Slow": "慢",
+      "Fast": "快",
+      "DelayUntilRepeat": "重复前延迟",
+      "Long": "长",
+      "Short": "短",
+      "AdjustBrightness": "在光线较弱时调节键盘亮度",
+      "KeyboardNavigation": "键盘导航",
+      "Shortcuts": "键盘快捷键...",
+      "TextInput": "文本输入",
+      "InputSources": "输入源",
+      "Edit": "编辑...",
+      "Dictation": "听写"
+    },
+    "LockScreen": {
+      "Title": "锁定屏幕",
+      "Description": "更改锁定屏幕设置。",
+      "TurnOffDisplayBattery": "使用电池且闲置时关闭显示器",
+      "TurnOffDisplayAdapter": "使用电源适配器且闲置时关闭显示器",
+      "TwoMinutes": "2 分钟",
+      "TenMinutes": "10 分钟",
+      "RequirePassword": "屏幕保护程序启动或显示器关闭后需要密码",
+      "Immediately": "立即",
+      "ShowMessage": "锁定时显示信息",
+      "Set": "设置...",
+      "LoginWindowShows": "登录窗口显示",
+      "ListOfUsers": "用户列表",
+      "ShowLargeClock": "显示大时钟",
+      "OnLockScreen": "在锁定屏幕上"
+    },
+    "PrivacySecurity": {
+      "Title": "隐私与安全性",
+      "Description": "控制哪些应用程序可以访问您的信息。",
+      "Privacy": "隐私",
+      "LocationServices": "定位服务",
+      "On": "开启",
+      "Off": "关闭",
+      "Camera": "摄像头",
+      "Microphone": "麦克风",
+      "FilesFolders": "文件和文件夹",
+      "ScreenRecording": "屏幕录制",
+      "AppsCount": "{count, plural, =0 {无应用程序} other {# 个应用程序}}",
+      "Security": "安全性",
+      "FileVault": "文件保险箱",
+      "LockdownMode": "锁定模式",
+      "Others": "其他",
+      "Extensions": "扩展",
+      "Profiles": "描述文件"
+    },
+    "PrintersScanners": {
+      "Title": "打印机与扫描仪",
+      "Description": "管理打印机和扫描仪。",
+      "Printers": "打印机",
+      "IdleLastUsed": "闲置，上次使用",
+      "Offline": "离线",
+      "AddPrinter": "添加打印机、扫描仪或传真机..."
+    },
+    "ScreenSaver": {
+      "Title": "屏幕保护程序",
+      "Description": "选取屏幕保护程序。",
+      "Preview": "预览",
+      "ShowOnAllSpaces": "在所有空间中显示",
+      "ScreenSavers": "屏幕保护程序",
+      "StartAfter": "此时间后开始",
+      "FiveMinutes": "5 分钟",
+      "ShowWithClock": "与时钟一起显示",
+      "ScreensaverNames": {
+        "Ventura": "Ventura",
+        "Monterey": "Monterey",
+        "BigSur": "Big Sur",
+        "Catalina": "Catalina",
+        "Hello": "你好",
+        "Drift": "漂移",
+        "Flurry": "弗里克",
+        "Shell": "贝壳"
+      }
+    },
+    "Storage": {
+      "Title": "存储空间",
+      "Description": "管理驱动器和数据。",
+      "MacintoshHD": "Macintosh HD",
+      "AvailableSpace": "{available} GB / {total} GB 可用",
+      "Apps": "应用程序",
+      "Documents": "文稿",
+      "SystemData": "系统数据",
+      "macOS": "macOS",
+      "OtherUsers": "其他用户",
+      "Recommendations": "推荐",
+      "StoreInICloud": "储存在 iCloud 中",
+      "StoreInICloudDesc": "将所有文件、照片和信息储存在 iCloud 中，以节省此 Mac 的空间。",
+      "StoreInICloudButton": "储存在 iCloud 中...",
+      "Categories": "类别",
+      "Applications": "应用程序"
+    },
+    "TouchIDPassword": {
+      "Title": "触控 ID 与密码",
+      "Description": "添加指纹以解锁 Mac。",
+      "TouchID": "触控 ID",
+      "Finger1": "指纹 1",
+      "AddFingerprint": "添加指纹",
+      "UseTouchIDFor": "将触控 ID 用于：",
+      "UnlockingMac": "解锁 Mac",
+      "ApplePay": "Apple Pay",
+      "iTunesAppStore": "iTunes Store 与 App Store",
+      "AutoFillPasswords": "自动填充密码",
+      "Password": "密码",
+      "LastChanged": "上次修改：2024.11.24",
+      "Change": "更改...",
+      "RequirePasswordScreenSaver": "屏幕保护程序启动或显示器关闭后需要密码",
+      "Immediately": "立即",
+      "RequirePasswordIdle": "电脑闲置后需要密码",
+      "Never": "从不",
+      "Seconds": "{count} 秒",
+      "Minute": "{count} 分钟",
+      "Minutes": "{count} 分钟",
+      "AppleWatch": "Apple Watch",
+      "AppleWatchUnlock": "使用 Apple Watch 解锁应用程序和 Mac"
+    },
+    "Trackpad": {
+      "Title": "触控板",
+      "Description": "更改触控板设置。",
+      "PointClick": "光标与点按",
+      "ScrollZoom": "滚动缩放",
+      "MoreGestures": "更多手势",
+      "TrackingSpeed": "跟踪速度",
+      "Slow": "慢",
+      "Fast": "快",
+      "Click": "点按",
+      "Medium": "中",
+      "ForceClick": "用力点按和触感反馈",
+      "LookUp": "查询与数据检测器",
+      "SecondaryClick": "辅助点按",
+      "ClickTwoFingers": "用双指点按或轻点",
+      "TapToClick": "轻点来点按",
+      "VideoPreview": "视频预览"
+    },
+    "UsersGroups": {
+      "Title": "用户与群组",
+      "Description": "管理用户账户和群组。",
+      "CurrentUser": "当前用户",
+      "Admin": "管理员",
+      "OtherUsers": "其他用户",
+      "GuestUser": "客人用户",
+      "Off": "关闭",
+      "AddAccount": "添加账户...",
+      "AutoLogin": "自动登录",
+      "AllowNetworkUsers": "允许网络用户在登录窗口登录"
+    },
+    "Wallpaper": {
+      "Title": "墙纸",
+      "Description": "选取桌面墙纸。",
+      "ShowOnAllSpaces": "在所有空间中显示",
+      "DynamicWallpapers": "动态墙纸",
+      "Pictures": "图片",
+      "AddPhoto": "添加照片"
+    },
+    "LanguageSelector": {
+      "Title": "选择要添加的首选语言",
+      "Search": "搜索",
+      "Cancel": "取消",
+      "Add": "添加"
+    }
+  },
+  "Languages": {
+    "English": "英语",
+    "Spanish": "西班牙语",
+    "French": "法语",
+    "German": "德语",
+    "Italian": "意大利语",
+    "Japanese": "日语",
+    "Chinese": "中文",
+    "Portuguese": "葡萄牙语",
+    "Russian": "俄语",
+    "Korean": "韩语",
+    "Dutch": "荷兰语",
+    "Swedish": "瑞典语",
+    "Danish": "丹麦语",
+    "Norwegian": "挪威语",
+    "Finnish": "芬兰语",
+    "Polish": "波兰语",
+    "Turkish": "土耳其语",
+    "Arabic": "阿拉伯语",
+    "Hindi": "印地语",
+    "Bengali": "孟加拉语",
+    "Vietnamese": "越南语",
+    "Thai": "泰语",
+    "Greek": "希腊语",
+    "Czech": "捷克语",
+    "Hungarian": "匈牙利语",
+    "Romanian": "罗马尼亚语",
+    "Ukrainian": "乌克兰语",
+    "Indonesian": "印尼语",
+    "Malay": "马来语",
+    "Croatian": "克罗地亚语",
+    "Slovak": "斯洛伐克语",
+    "Slovenian": "斯洛文尼亚语",
+    "Bulgarian": "保加利亚语",
+    "Serbian": "塞尔维亚语",
+    "Hebrew": "希伯来语"
+  },
+  "Finder": {
+    "Search": "搜索",
+    "Sidebar": {
+      "Favorites": "个人收藏",
+      "Locations": "位置",
+      "AirDrop": "隔空投送",
+      "Recents": "最近使用",
+      "Applications": "应用程序",
+      "Desktop": "桌面",
+      "Documents": "文稿",
+      "Downloads": "下载",
+      "Pictures": "图片",
+      "Home": "主页",
+      "MacintoshHD": "Macintosh HD",
+      "iCloudDrive": "iCloud 云盘"
+    },
+    "Menu": {
+      "NewFolder": "新建文件夹",
+      "GetInfo": "显示简介",
+      "ChangeBackground": "更改背景...",
+      "Open": "打开",
+      "MoveToBin": "移到废纸篓",
+      "Rename": "重命名",
+      "OpenItems": "打开 {count} 个项目",
+      "MoveItemsToBin": "将 {count} 个项目移到废纸篓"
+    },
+    "Status": {
+      "Loading": "正在加载...",
+      "EmptyFolder": "空文件夹",
+      "ItemCount": "{count, plural, =1 {1 个项目} other {# 个项目}}",
+      "SpaceAvailable": "{amount} GB 可用"
+    },
+    "Errors": {
+      "NoApp": "没有设置应用程序来打开文稿“{ext}”。",
+      "CreateFolderFailed": "创建文件夹失败",
+      "MoveToBinFailed": "移到废纸篓失败"
+    }
+  },
+  "Safari": {
+    "Title": "Safari 浏览器",
+    "StartPage": "起始页",
+    "Loading": "正在加载...",
+    "SearchPlaceholder": "搜索或输入网站名称",
+    "NoInternet": "无互联网连接",
+    "NoInternetDesc": "您的电脑未连接到互联网，无法显示此页面。",
+    "Favorites": {
+      "Apple": "Apple",
+      "Google": "Google",
+      "Wikipedia": "维基百科",
+      "GitHub": "GitHub"
+    }
+  },
+  "Mail": {
+    "Inbox": "收件箱",
+    "MessagesCount": "{count, plural, =1 {1 封邮件} other {# 封邮件}}",
+    "Favorites": "个人收藏",
+    "AllInboxes": "所有收件箱",
+    "VIP": "VIP",
+    "Sent": "已发送",
+    "Search": "搜索",
+    "NoMessageSelected": "未选择邮件",
+    "To": "收件人：{name}"
+  },
+  "Messages": {
+    "AppTitle": "信息",
+    "SigningIn": "正在以 {name} 身份登录...",
+    "SidebarTitle": "信息",
+    "NoOnlineUsers": "无在线用户。",
+    "NoMessages": "无信息",
+    "To": "收件人：{name}",
+    "InputPlaceholder": "iMessage 信息",
+    "NoContactSelected": "选择一个联系人以发送信息"
+  },
+  "Photos": {
+    "Sidebar": {
+      "Library": "图库",
+      "Collections": "精选",
+      "Pinned": "已固定",
+      "Albums": "相簿",
+      "Utilities": "其他",
+      "Projects": "项目",
+      "Favourites": "个人收藏",
+      "RecentlySaved": "最近保存",
+      "Videos": "视频",
+      "Screenshots": "截屏",
+      "PeoplePets": "人物与宠物",
+      "SharedAlbums": "共享相簿",
+      "Activity": "动态",
+      "RecentlyDeleted": "最近删除",
+      "Duplicates": "重复项目",
+      "Map": "地图",
+      "AllProjects": "所有项目"
+    },
+    "Tabs": {
+      "Years": "年",
+      "Months": "月",
+      "AllPhotos": "所有照片"
+    },
+    "Search": "搜索",
+    "Collections": {
+      "Title": "精选",
+      "Memories": "回忆",
+      "NoMemories": "无回忆",
+      "NoMemoriesDesc": "回忆将在创建后显示。",
+      "Albums": "相簿",
+      "NoAlbums": "无相簿"
+    },
+    "EmptyState": {
+      "NoItems": "{title} 中无项目"
+    },
+    "Locked": {
+      "Title": "{title} 已锁定",
+      "Desc": "验证身份以查看。"
+    }
+  },
+  "Notes": {
+    "Sidebar": {
+      "iCloud": "iCloud",
+      "Notes": "备忘录",
+      "RecentlyDeleted": "最近删除"
+    },
+    "Search": "搜索",
+    "NewNote": "新建备忘录",
+    "NoAdditionalText": "无从属文本",
+    "Editor": {
+      "TitlePlaceholder": "标题",
+      "ContentPlaceholder": "开始输入...",
+      "AddToDesktop": "添加到桌面",
+      "Restore": "恢复",
+      "Delete": "删除备忘录",
+      "DeletePermanently": "永久删除",
+      "EmptyState": "选择或创建一个备忘录",
+      "Date": "今天 {time}"
+    }
+  },
+  "Reminders": {
+    "Search": "搜索",
+    "Sidebar": {
+      "MyLists": "我的列表",
+      "Reminders": "提醒事项",
+      "Work": "工作",
+      "Today": "今天",
+      "Scheduled": "计划",
+      "All": "全部",
+      "Flagged": "旗标"
+    },
+    "AddReminder": "新建提醒事项",
+    "Actions": {
+      "Add": "添加",
+      "Cancel": "取消",
+      "Delete": "删除提醒事项",
+      "MarkComplete": "标记为已完成",
+      "MarkIncomplete": "标记为未完成",
+      "Flag": "添加旗标",
+      "Unflag": "移除旗标"
+    },
+    "Inputs": {
+      "Title": "标题",
+      "Notes": "备注",
+      "Date": "日期",
+      "Time": "时间",
+      "Tags": "标签"
+    },
+    "EmptyState": {
+      "NoReminders": "无提醒事项",
+      "CreateOne": "创建一个"
+    }
+  },
+  "Calendar": {
+    "Search": "搜索",
+    "Today": "今天",
+    "Day": "日",
+    "Week": "周",
+    "Month": "月",
+    "Year": "年",
+    "AddEvent": "添加日程",
+    "NoEvents": "无日程",
+    "NewEvent": "新建日程",
+    "TitlePlaceholder": "日程标题",
+    "Location": "位置",
+    "AllDay": "全天",
+    "From": "开始",
+    "To": "结束",
+    "Repeat": "重复",
+    "Never": "从不",
+    "Daily": "每天",
+    "Weekly": "每周",
+    "Monthly": "每月",
+    "Yearly": "每年",
+    "Alert": "提醒",
+    "AtTime": "日程发生时",
+    "5MinBefore": "5 分钟前",
+    "10MinBefore": "10 分钟前",
+    "15MinBefore": "15 分钟前",
+    "30MinBefore": "30 分钟前",
+    "1HourBefore": "1 小时前",
+    "2HoursBefore": "2 小时前",
+    "1DayBefore": "1 天前",
+    "2DaysBefore": "2 天前",
+    "Notes": "备注",
+    "DeleteEvent": "删除日程",
+    "ShortDays": {
+      "Sun": "周日",
+      "Mon": "周一",
+      "Tue": "周二",
+      "Wed": "周三",
+      "Thu": "周四",
+      "Fri": "周五",
+      "Sat": "周六"
+    },
+    "Months": {
+      "January": "一月",
+      "February": "二月",
+      "March": "三月",
+      "April": "四月",
+      "May": "五月",
+      "June": "六月",
+      "July": "七月",
+      "August": "八月",
+      "September": "九月",
+      "October": "十月",
+      "November": "十一月",
+      "December": "十二月"
+    },
+    "Sidebar": {
+      "iCloud": "ICLOUD",
+      "Other": "OTHER",
+      "NoInvitations": "No invitations"
+    },
+    "Toolbar": {
+      "Today": "今天",
+      "SearchPlaceholder": "搜索",
+      "View": {
+        "day": "日",
+        "week": "周",
+        "month": "月",
+        "year": "年"
+      }
+    },
+    "EventModal": {
+      "Title": "New Event",
+      "EventTitlePlaceholder": "Event Title",
+      "CalendarLabel": "Calendar",
+      "Cancel": "Cancel",
+      "AddEvent": "Add Event"
+    },
+    "SearchResults": {
+      "Title": "Search Results",
+      "NoEvents": "No events found"
+    },
+    "Event": {
+      "NoLocation": "No location",
+      "EventLabel": "Event: {title} at {location}"
+    },
+    "Weekdays": {
+      "Sun": "周日",
+      "Mon": "周一",
+      "Tue": "周二",
+      "Wed": "周三",
+      "Thu": "周四",
+      "Fri": "周五",
+      "Sat": "周六"
+    },
+    "WeekdaysShort": {
+      "Sun": "周日",
+      "Mon": "周一",
+      "Tue": "周二",
+      "Wed": "周三",
+      "Thu": "周四",
+      "Fri": "周五",
+      "Sat": "周六"
+    }
+  },
+  "Maps": {
+    "Search": "搜索",
+    "SearchPlaceholder": "搜索地点或地址",
+    "Directions": "路线",
+    "From": "起点",
+    "To": "终点",
+    "Transport": {
+      "Drive": "驾车",
+      "Walk": "步行",
+      "Transit": "公交",
+      "Cycle": "骑行"
+    },
+    "LocateMe": "定位",
+    "ZoomIn": "放大",
+    "ZoomOut": "缩小",
+    "MapType": {
+      "Standard": "标准",
+      "Hybrid": "混合",
+      "Satellite": "卫星"
+    },
+    "Sidebar": {
+      "Favorites": "FAVORITES",
+      "Recent": "RECENT",
+      "NoRecentSearches": "No recent searches",
+      "RecentLabel": "Recent"
+    },
+    "Locations": {
+      "Home": "Home",
+      "Work": "Work"
+    },
+    "Controls": {
+      "SwitchToSatellite": "Switch to Satellite",
+      "SwitchToSatelliteLabel": "Switch to Satellite view",
+      "SwitchToMap": "Switch to Map",
+      "SwitchToMapLabel": "Switch to Map view",
+      "CurrentLocation": "Current Location",
+      "ShowCurrentLocation": "Show current location",
+      "MapInfo": "Map information"
+    },
+    "Permission": {
+      "AppName": "Maps",
+      "Title": "Location",
+      "Reason": "Maps needs access to your location to show where you are.",
+      "Error": "Could not get your location. Please ensure location services are enabled.",
+      "NotSupported": "Geolocation is not supported by your browser."
+    }
+  },
+  "FaceTime": {
+    "AppName": "FaceTime 通话",
+    "NewFaceTime": "新建 FaceTime 通话",
+    "CreateLink": "创建链接",
+    "EnterNameOrEmail": "姓名、电子邮件或号码",
+    "Suggested": "建议",
+    "NoRecents": "无最近通话",
+    "FaceTimeVideo": "FaceTime 视频",
+    "FaceTimeAudio": "FaceTime 音频",
+    "JoinCall": "加入",
+    "Waiting": "等待中...",
+    "Connected": "已连接",
+    "Reconnecting": "重新连接中...",
+    "CallEnded": "通话结束",
+    "Mute": "静音",
+    "Unmute": "取消静音",
+    "VideoOff": "关闭摄像",
+    "VideoOn": "开启摄像",
+    "End": "结束",
+    "FullScreen": "全屏幕",
+    "ExitFullScreen": "退出全屏幕",
+    "Effects": "效果",
+    "ShareScreen": "共享屏幕",
+    "Connecting": "连接中...",
+    "Unavailable": "不可用",
+    "Title": "FaceTime",
+    "ConnectingAs": "Connecting as {name}...",
+    "IncomingCall": "{name} is calling...",
+    "Accept": "Accept",
+    "Decline": "Decline",
+    "Contacts": "Contacts",
+    "NoContacts": "No one else is online.",
+    "Video": "Video",
+    "SelectContact": "Select a contact to call",
+    "Aria": {
+      "RemoteVideo": "Remote video feed",
+      "LocalVideo": "Local video preview",
+      "EndCall": "End Call",
+      "CallContact": "Call {name}",
+      "VideoCallContact": "Video call {name}",
+      "LocalPreview": "Local camera preview"
+    },
+    "Permission": {
+      "AppName": "FaceTime",
+      "Title": "Camera and Microphone",
+      "Reason": "FaceTime needs access to your camera and microphone to make calls."
+    }
+  },
+  "Contacts": {
+    "Search": "搜索",
+    "AllContacts": "所有联系人",
+    "MyCard": "我的名片",
+    "AddContact": "添加联系人",
+    "Edit": "编辑",
+    "Done": "完成",
+    "FirstName": "名字",
+    "LastName": "姓氏",
+    "Company": "公司",
+    "Phone": "电话",
+    "Email": "电子邮件",
+    "Notes": "备注",
+    "Message": "信息",
+    "Call": "致电",
+    "Video": "视频",
+    "Mail": "邮件",
+    "Pay": "支付",
+    "NoContacts": "无联系人",
+    "DeleteContact": "删除联系人",
+    "SearchPlaceholder": "Search",
+    "SearchAria": "Search contacts",
+    "Count": "{count} Contacts",
+    "EditContact": "Edit Contact",
+    "NewContact": "New Contact",
+    "Preview": "Preview",
+    "Cancel": "Cancel",
+    "NoNotes": "No notes",
+    "NoSelection": "No Contact Selected",
+    "Labels": {
+      "FirstName": "First Name",
+      "LastName": "Last Name",
+      "Company": "Company",
+      "Phone": "Phone",
+      "Email": "Email",
+      "Notes": "Notes",
+      "Mobile": "mobile",
+      "Home": "home",
+      "Message": "message",
+      "Video": "video",
+      "Mail": "mail"
+    },
+    "Alerts": {
+      "DeleteConfirm": "Are you sure you want to delete this contact?",
+      "NameRequired": "Please enter a name or company."
+    },
+    "Aria": {
+      "AddContact": "Add new contact",
+      "Contact": "Contact: {name}",
+      "Action": "{action} {name}"
+    }
+  },
+  "Calculator": {
+    "Clear": "C",
+    "AllClear": "AC",
+    "Negate": "+/-",
+    "Percent": "%",
+    "Divide": "÷",
+    "Multiply": "×",
+    "Subtract": "-",
+    "Add": "+",
+    "Equals": "=",
+    "Decimal": ".",
+    "AC": "AC",
+    "ToggleSign": "Toggle sign",
+    "Percentage": "Percentage",
+    "Calculate": "Calculate result"
+  },
+  "Clock": {
+    "WorldClock": "世界时钟",
+    "Alarm": "闹钟",
+    "Stopwatch": "秒表",
+    "Timer": "计时器",
+    "Add": "添加",
+    "Edit": "编辑",
+    "Start": "启动",
+    "Stop": "停止",
+    "Reset": "复位",
+    "Lap": "计次",
+    "Resume": "继续",
+    "Pause": "暂停",
+    "Cancel": "取消",
+    "Save": "保存",
+    "Label": "标签",
+    "Sound": "声音",
+    "Snooze": "稍后提醒",
+    "WhenTimerEnds": "计时结束时启用",
+    "StopPlaying": "停止播放",
+    "Tabs": {
+      "WorldClock": "World Clock",
+      "Alarms": "Alarms",
+      "Stopwatch": "Stopwatch",
+      "Timers": "Timers"
+    },
+    "AddClock": "Add clock",
+    "Locations": {
+      "NewDelhi": "New Delhi"
+    },
+    "Today": "Today",
+    "HRS": "HRS"
+  },
+  "Weather": {
+    "Loading": "正在加载...",
+    "Error": "无法载入天气",
+    "SearchPlaceholder": "搜索城市",
+    "MyLocation": "我的位置",
+    "Humidity": "湿度",
+    "Wind": "风",
+    "Rain": "降雨",
+    "FeelsLike": "体感",
+    "UVIndex": "紫外线指数",
+    "Pressure": "气压",
+    "Visibility": "能见度",
+    "Sunrise": "日出",
+    "Sunset": "日落",
+    "Forecast": {
+      "Hourly": "每小时",
+      "TenDay": "10 天",
+      "Now": "现在",
+      "Today": "今天"
+    },
+    "Hourly": "每小时",
+    "Daily": "每天",
+    "High": "高",
+    "Low": "低",
+    "Conditions": {
+      "Clear": "晴",
+      "Cloudy": "多云",
+      "Rain": "雨",
+      "Snow": "雪",
+      "Thunderstorm": "雷暴",
+      "Drizzle": "毛毛雨",
+      "Mist": "薄雾"
+    },
+    "Retry": "Retry",
+    "Searching": "正在搜索...",
+    "NoResults": "无结果",
+    "Recent": "Recent",
+    "Popular": "Popular",
+    "Sidebar": {
+      "Open": "Open sidebar",
+      "Close": "Close sidebar"
+    },
+    "Aria": {
+      "SelectLocation": "Select {name}, {country}"
+    },
+    "Details": {
+      "AirQuality": "空气质量",
+      "UVIndex": "紫外线指数",
+      "Wind": "风",
+      "Sunset": "日落",
+      "Sunrise": "日出",
+      "FeelsLike": "体感",
+      "Humidity": "湿度",
+      "Visibility": "能见度",
+      "Pressure": "气压",
+      "hPa": "百帕"
+    },
+    "Descriptions": {
+      "AirQualityDesc": "Air quality index is 130, similar to yesterday at about this time.",
+      "UVIndexDesc": "Use sun protection until 4PM.",
+      "FeelsLikeDesc": "Similar to the actual temperature.",
+      "DewPointDesc": "The dew point is {temp}° right now.",
+      "VisibilityDesc": "Perfectly clear view.",
+      "Footer": "Weather for {location} • Open-Meteo Data",
+      "PollutionLevel": "Moderately Polluted",
+      "UVLevel": "Moderate"
+    }
+  },
+  "Stocks": {
+    "Search": "搜索",
+    "Watchlist": "关注列表",
+    "MarketOpen": "盘中",
+    "MarketClosed": "收盘",
+    "PreMarket": "盘前",
+    "AfterHours": "盘后",
+    "Loading": "正在加载...",
+    "Error": "加载数据出错",
+    "AddSymbol": "添加代码",
+    "Remove": "移除",
+    "Chart": "图表",
+    "News": "新闻",
+    "Summary": "摘要",
+    "Open": "开盘",
+    "High": "最高",
+    "Low": "最低",
+    "Vol": "成交量",
+    "PE": "市盈率",
+    "MktCap": "市值",
+    "52WHigh": "52周最高",
+    "52WLow": "52周最低",
+    "AvgVol": "平均成交量",
+    "Yield": "收益率",
+    "Beta": "Beta",
+    "EPS": "每股收益",
+    "Title": "股市",
+    "Searching": "正在搜索...",
+    "KeyStatistics": "关键统计",
+    "BusinessNews": "商业新闻",
+    "ShowMore": "Show More",
+    "Aria": {
+      "Search": "Search stocks",
+      "Select": "Select stock {symbol}",
+      "ReadNews": "Read news: {title}"
+    },
+    "Stats": {
+      "Open": "Open",
+      "High": "High",
+      "Low": "Low",
+      "Vol": "Vol",
+      "PE": "P/E",
+      "MktCap": "Mkt Cap",
+      "52WH": "52W H",
+      "52WL": "52W L"
+    }
+  },
+  "Desktop": {
+    "ContextMenu": {
+      "NewFolder": "新建文件夹",
+      "GetInfo": "显示简介",
+      "ChangeDesktopBackground": "更改桌面背景...",
+      "UseStacks": "使用叠放",
+      "SortBy": "排序方式",
+      "CleanUp": "整理",
+      "CleanUpBy": "整理方式",
+      "ShowViewOptions": "显示查看选项",
+      "ChangeWallpaper": "Change Wallpaper...",
+      "EditWidgets": "Edit Widgets...",
+      "Tags": "Tags",
+      "None": "None",
+      "SnapToGrid": "Snap to Grid",
+      "Name": "Name",
+      "Kind": "Kind",
+      "DateLastOpened": "Date Last Opened",
+      "DateAdded": "Date Added",
+      "DateModified": "Date Modified",
+      "DateCreated": "Date Created",
+      "Size": "Size"
+    },
+    "SortOptions": {
+      "Name": "名称",
+      "Kind": "种类",
+      "DateLastOpened": "上次打开日期",
+      "DateAdded": "添加日期",
+      "DateModified": "修改日期",
+      "DateCreated": "创建日期",
+      "Size": "大小",
+      "Tags": "标签"
+    },
+    "Guest": "Guest",
+    "UntitledFolder": "untitled folder",
+    "NoAppAvailable": "No application available to open .{ext} files.",
+    "MoveToBin": {
+      "Failed": "Failed to move to bin",
+      "NotSupported": "Failed to move to bin. Folder moves not fully supported yet."
+    }
+  },
+  "ControlCenter": {
+    "Title": "控制中心",
+    "WiFi": "无线局域网",
+    "Bluetooth": "蓝牙",
+    "AirDrop": "隔空投送",
+    "DoNotDisturb": "勿扰模式",
+    "KeyboardBrightness": "键盘亮度",
+    "ScreenMirroring": "屏幕镜像",
+    "Display": "显示器",
+    "Sound": "声音",
+    "Playing": "正在播放",
+    "On": "开启",
+    "Off": "关闭",
+    "NotConnected": "未连接",
+    "Connect": "连接",
+    "HomeNetwork": "Home Network",
+    "ContactsOnly": "Contacts Only",
+    "NotPlaying": "Not Playing",
+    "Music": "Music"
+  },
+  "LockScreenApp": {
+    "EnterPassword": "输入密码",
+    "ClickToUnlock": "点按以解锁",
+    "TouchID": "触控 ID",
+    "Cancel": "取消",
+    "SwitchUser": "切换用户"
+  },
+  "NotificationCenter": {
+    "Title": "通知中心",
+    "NoNotifications": "无通知",
+    "ClearAll": "全部清除",
+    "Widgets": "Widgets",
+    "Done": "Done",
+    "Edit": "Edit",
+    "AddWidget": "Add Widget"
+  },
+  "Widgets": {
+    "AllWidgets": "所有小组件",
+    "Search": "搜索",
+    "AddWidget": "添加小组件",
+    "Loading": "Loading...",
+    "Calendar": {
+      "Title": "Calendar"
+    },
+    "Weather": {
+      "Title": "Weather"
+    },
+    "Stocks": {
+      "Title": "Stocks"
+    },
+    "Reminders": {
+      "Title": "Reminders",
+      "NoReminders": "No reminders"
+    },
+    "Notes": {
+      "Title": "Notes",
+      "Content": "Buy milk, eggs, and bread.<br />Call mom at 5pm.<br />Meeting with team tomorrow."
+    }
+  },
+  "Window": {
+    "Minimize": "最小化",
+    "Maximize": "最大化",
+    "Close": "关闭",
+    "Restore": "Restore",
+    "MoveTo": "Move Window to...",
+    "LeftSide": "Left Side of Screen",
+    "RightSide": "Right Side of Screen",
+    "EnterFullScreen": "Enter Full Screen"
+  },
+  "Dock": {
+    "AriaLabel": "程序坞",
+    "Trash": "废纸篓"
+  },
+  "Apps": {
+    "Finder": "Finder",
+    "Launchpad": "启动台",
+    "Safari": "Safari 浏览器",
+    "Messages": "信息",
+    "Mail": "邮件",
+    "Maps": "地图",
+    "Photos": "照片",
+    "FaceTime": "FaceTime 通话",
+    "Calendar": "日历",
+    "Contacts": "通讯录",
+    "Reminders": "提醒事项",
+    "Notes": "备忘录",
+    "TV": "西瓜视频",
+    "Music": "音乐",
+    "News": "新闻",
+    "SystemSettings": "系统设置",
+    "AppStore": "App Store",
+    "Trash": "废纸篓",
+    "VSCode": {
+      "Title": "Visual Studio Code"
+    },
+    "LeetCode": {
+      "Title": "力扣 (LeetCode)",
+      "Common": {
+        "Loading": "加载中...",
+        "NoData": "无数据",
+        "Retry": "Retry",
+        "ShowMore": "Show more",
+        "GoToLeetCode": "Go to LeetCode"
+      },
+      "Badges": {
+        "Title": "Badges",
+        "MostRecent": "Most Recent Badge"
+      },
+      "Stats": {
+        "Title": "统计",
+        "Views": "浏览",
+        "Solution": "解答",
+        "Discuss": "讨论",
+        "Reputation": "Reputation"
+      },
+      "Languages": {
+        "Title": "Languages",
+        "ProblemsSolved": "problems solved"
+      },
+      "Profile": {
+        "Rank": "Rank"
+      },
+      "Submissions": {
+        "RecentAC": "Recent AC",
+        "List": "List",
+        "Solutions": "Solutions",
+        "Discuss": "Discuss",
+        "TimeAgo": "2 months ago"
+      },
+      "Skills": {
+        "Title": "Skills",
+        "Advanced": "Advanced",
+        "Intermediate": "Intermediate"
+      },
+      "Solved": {
+        "Solved": "Solved",
+        "Easy": "Easy",
+        "Medium": "Med.",
+        "Hard": "Hard"
+      },
+      "Calendar": {
+        "SubmissionsLastYear": "submissions in the past one year",
+        "TotalActiveDays": "Total active days:",
+        "MaxStreak": "Max streak:",
+        "Current": "Current",
+        "Months": {
+          "Jan": "Jan",
+          "Feb": "Feb",
+          "Mar": "Mar",
+          "Apr": "Apr",
+          "May": "May",
+          "Jun": "Jun",
+          "Jul": "Jul",
+          "Aug": "Aug",
+          "Sep": "Sep",
+          "Oct": "Oct",
+          "Nov": "Nov",
+          "Dec": "Dec"
+        }
+      }
+    },
+    "V86": {
+      "Title": "虚拟机",
+      "NoFileSelected": "No file selected",
+      "ScriptLoadError": "Failed to load V86 script",
+      "FileReadError": "Failed to read file",
+      "StartError": "Failed to start emulator",
+      "Booting": "Booting {filename}...",
+      "ErrorPrefix": "Error: {error}",
+      "ClickToCapture": "Click to capture mouse (Esc to release)"
+    },
+    "Freeform": "Freeform",
+    "Terminal": "终端",
+    "Calculator": "计算器",
+    "TextEdit": "文本编辑",
+    "MediaPlayer": "媒体播放器",
+    "Preview": "预览",
+    "VirtualMachine": "Virtual Machine"
+  },
+  "News": {
+    "Title": "新闻",
+    "Categories": {
+      "TopStories": "Top Stories",
+      "Technology": "Technology",
+      "Business": "Business",
+      "Science": "Science",
+      "Health": "Health",
+      "Entertainment": "Entertainment",
+      "Sports": "Sports"
+    },
+    "SearchPlaceholder": "搜索",
+    "SearchLabel": "Search",
+    "SearchTitle": "Search: \"{query}\"",
+    "Loading": "加载中...",
+    "Error": "Failed to load news. Please try again later.",
+    "TryAgain": "Try Again",
+    "NoResults": "No stories found matching \"{query}\"",
+    "ClearSearch": "Clear Search",
+    "TopStory": "Top Story",
+    "Refresh": "Refresh",
+    "Aria": {
+      "Category": "Category: {label}",
+      "Search": "Search stories",
+      "Refresh": "Refresh news",
+      "ReadTopStory": "Read top story: {title}",
+      "ReadArticle": "Read article: {title}",
+      "Share": "Share article",
+      "Like": "Like article"
+    }
+  },
+  "Music": {
+    "AppleMusic": "Apple Music",
+    "Library": "资料库",
+    "ListenNow": "现在收听",
+    "Browse": "浏览",
+    "Radio": "广播",
+    "RecentlyAdded": "Recently Added",
+    "Artists": "Artists",
+    "Albums": "Albums",
+    "Songs": "Songs",
+    "Search": "搜索",
+    "SearchTitle": "Search: {query}",
+    "Aria": {
+      "Search": "Search music",
+      "GoBack": "Go back",
+      "GoForward": "Go forward",
+      "Prev": "Previous song",
+      "Next": "Next song",
+      "Play": "Play",
+      "Pause": "Pause",
+      "PlaySong": "Play {track} by {artist}",
+      "PauseSong": "Pause {track}",
+      "Lyrics": "Toggle lyrics",
+      "Queue": "Toggle queue",
+      "Mute": "Toggle mute",
+      "VolSlider": "Volume slider",
+      "SeekSlider": "Seek slider"
+    },
+    "Queue": {
+      "Title": "Playing Next",
+      "Empty": "Queue is empty"
+    },
+    "Lyrics": {
+      "NotAvailable": "Lyrics are not available for this song in the preview mode.",
+      "Imagine": "But imagine the lyrics appearing here, perfectly synced with the music...",
+      "Lalala": "La la la...",
+      "Placeholder": "Play a song to see lyrics"
+    }
+  },
+  "TV": {
+    "WatchNow": "立即观看",
+    "Movies": "电影",
+    "TVShows": "电视节目",
+    "Kids": "Kids",
+    "Library": "资料库",
+    "SearchResults": "Search Results",
+    "NoShows": "No shows found.",
+    "SearchPlaceholder": "Search",
+    "SearchLabel": "Search TV Shows",
+    "Series": "Series",
+    "PlayEpisode": "Play Episode 1",
+    "AddToUpNext": "Add to Up Next",
+    "Added": "Added",
+    "OpenYouTube": "Open in YouTube",
+    "ViewAccount": "View Account",
+    "Aria": {
+      "Play": "Play {name}",
+      "CloseVideo": "Close video",
+      "AddLibrary": "Add to Library",
+      "RemoveLibrary": "Remove from Library"
+    },
+    "Genres": {
+      "Drama": "Drama",
+      "Action": "Action",
+      "Comedy": "Comedy",
+      "ScienceFiction": "Science-Fiction",
+      "Thriller": "Thriller"
+    }
+  },
+  "Terminal": {
+    "Guest": "Guest",
+    "Welcome": "欢迎使用终端",
+    "HelpPrompt": "输入 'help' 获取帮助。",
+    "AvailableCommands": "Available commands: ls, cd, pwd, mkdir, touch, echo, cat, clear, whoami, ping, man, rm, rmdir, vi",
+    "CommandNotFound": "未找到命令：{command}",
+    "Error": "Error: {message}",
+    "AriaInput": "Terminal Input",
+    "Usage": {
+      "Ping": "usage: ping host",
+      "Mkdir": "usage: mkdir directory_name",
+      "Rmdir": "usage: rmdir directory_name",
+      "Rm": "usage: rm [-rf] file_name",
+      "Touch": "usage: touch file_name",
+      "Cat": "usage: cat file_name",
+      "Vi": "usage: vi file_name",
+      "Man": "What manual page do you want?"
+    },
+    "Errors": {
+      "PingResolve": "ping: cannot resolve {host}: Unknown host",
+      "NoManual": "No manual entry for {command}",
+      "NoSuchFile": "{cmd}: {path}: No such file or directory",
+      "NotADirectory": "{cmd}: {path}: Not a directory",
+      "DirectoryNotEmpty": "{cmd}: {path}: Directory not empty",
+      "IsADirectory": "{cmd}: {path}: is a directory"
+    },
+    "Messages": {
+      "PingStats": "PING {host} (127.0.0.1): 56 data bytes\n64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.045 ms\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.082 ms\n64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.067 ms\n\n--- {host} ping statistics ---\n3 packets transmitted, 3 packets received, 0.0% packet loss",
+      "OpeningTextEdit": "Opening {file} in TextEdit..."
+    },
+    "ManPages": {
+      "ls": "ls - list directory contents\n\nUsage: ls [options] [file|dir]\n\nOptions:\n  -a, --all      do not ignore entries starting with .\n  -l             use a long listing format",
+      "cd": "cd - change the shell working directory\n\nUsage: cd [dir]\n\nChange the current directory to DIR. The default DIR is the value of the HOME shell variable.",
+      "pwd": "pwd - print name of current/working directory\n\nUsage: pwd\n\nPrint the full filename of the current working directory.",
+      "mkdir": "mkdir - make directories\n\nUsage: mkdir [DIRECTORY]\n\nCreate the DIRECTORY(ies), if they do not already exist.",
+      "touch": "touch - change file timestamps\n\nUsage: touch [FILE]\n\nUpdate the access and modification times of each FILE to the current time. If FILE does not exist it is created empty.",
+      "echo": "echo - display a line of text\n\nUsage: echo [STRING]...\n\nEcho the STRING(s) to standard output.",
+      "cat": "cat - concatenate files and print on the standard output\n\nUsage: cat [FILE]...\n\nConcatenate FILE(s) to standard output.",
+      "clear": "clear - clear the terminal screen\n\nUsage: clear",
+      "whoami": "whoami - print effective userid\n\nUsage: whoami\n\nPrint the user name associated with the current effective user ID.",
+      "ping": "ping - send ICMP ECHO_REQUEST to network hosts\n\nUsage: ping [HOST]\n\nSend ICMP ECHO_REQUEST to network hosts.",
+      "man": "man - an interface to the system reference manuals\n\nUsage: man [COMMAND]\n\nDisplay the manual page for COMMAND.",
+      "rm": "rm - remove files or directories\n\nUsage: rm [OPTION]... [FILE]...\n\nRemove (unlink) the FILE(s).\n\nOptions:\n  -r, -R, --recursive   remove directories and their contents recursively\n  -f, --force           ignore nonexistent files and arguments, never prompt",
+      "rmdir": "rmdir - remove empty directories\n\nUsage: rmdir [DIRECTORY]...\n\nRemove the DIRECTORY(ies), if they are empty.",
+      "vi": "vi - screen-oriented (visual) display editor\n\nUsage: vi [FILE]\n\nEdit FILE."
+    }
+  },
+  "TextEdit": {
+    "Guest": "Guest",
+    "Untitled": "Untitled.txt",
+    "Save": "Save",
+    "Loading": "Loading...",
+    "Placeholder": "Type your notes here...",
+    "SavedAlert": "Saved to {path}/{filename}"
+  },
+  "PDFViewer": {
+    "Document": "Document.pdf",
+    "PageInfo": "Page {current} of {total}",
+    "View": "View",
+    "ZoomIn": "Zoom In",
+    "ZoomOut": "Zoom Out",
+    "LoadingThumbnails": "Loading thumbnails...",
+    "Loading": "Loading...",
+    "NoPDF": "No PDF",
+    "FailedToLoad": "Failed to load PDF",
+    "NoPDFLoaded": "No PDF loaded"
+  },
+  "Spotlight": {
+    "Placeholder": "Spotlight Search",
+    "SearchWebFor": "Search Web for \"{query}\"",
+    "NoResults": "No results found",
+    "Open": "Open",
+    "Kinds": {
+      "Web": "Web Search",
+      "App": "Application",
+      "Directory": "Directory",
+      "File": "File"
+    },
+    "Aria": {
+      "Open": "Open {name}"
+    }
+  },
+  "MenuBar": {
+    "Apple": {
+      "AboutThisMac": "关于本机",
+      "SystemSettings": "系统设置...",
+      "AppStore": "App Store...",
+      "RecentItems": "最近使用的项目",
+      "ForceQuit": "强制退出...",
+      "Sleep": "睡眠",
+      "Restart": "重新启动...",
+      "ShutDown": "关机...",
+      "LockScreen": "锁定屏幕"
+    },
+    "App": {
+      "About": "About {app}",
+      "Quit": "Quit {app}"
+    },
+    "File": {
+      "Title": "文件",
+      "New": "新建",
+      "Open": "打开...",
+      "Save": "保存",
+      "Duplicate": "Duplicate",
+      "NewFinderWindow": "New Finder Window",
+      "NewFolder": "New Folder",
+      "GetInfo": "Get Info"
+    },
+    "Edit": {
+      "Title": "编辑",
+      "Undo": "撤销",
+      "Redo": "Redo",
+      "Cut": "Cut",
+      "Copy": "拷贝",
+      "Paste": "粘贴"
+    },
+    "View": {
+      "Title": "显示",
+      "AsIcons": "As Icons",
+      "AsList": "As List",
+      "AsColumns": "As Columns"
+    },
+    "Window": {
+      "Title": "窗口",
+      "Minimize": "Minimize",
+      "Zoom": "Zoom"
+    },
+    "Help": {
+      "Title": "帮助",
+      "MacOSHelp": "macOS Help"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "KnownNetworks": "Known Networks",
+      "OtherNetworks": "Other Networks",
+      "Settings": "Wi-Fi Settings..."
+    },
+    "Battery": {
+      "Title": "Battery",
+      "PowerSource": "Power Source: {source}",
+      "PowerAdapter": "Power Adapter",
+      "Battery": "Battery",
+      "EnergyMode": "Energy Mode",
+      "Automatic": "Automatic",
+      "LowPower": "Low Power",
+      "HighPower": "High Power",
+      "SignificantEnergy": "Using Significant Energy",
+      "Settings": "Battery Settings..."
+    },
+    "Aria": {
+      "Clipboard": "Clipboard",
+      "MediaPlayer": "Media Player",
+      "Spotlight": "Spotlight Search",
+      "ControlCenter": "Control Center",
+      "Siri": "Siri",
+      "Clock": "Clock and Notification Center"
+    }
+  },
+  "WeatherDropdown": {
+    "Searching": "Searching...",
+    "SearchCity": "Search city...",
+    "Now": "Now",
+    "Today": "Today",
+    "OpenWeather": "Open Weather"
+  },
+  "LockScreen": {
+    "IncorrectPassword": "Incorrect password",
+    "Guest": "Guest",
+    "EnterPassword": "Enter Password",
+    "Hint": "Touch ID or enter password (hint: {hint})",
+    "Login": "Login",
+    "Cancel": "Cancel",
+    "Aria": {
+      "UserAvatar": "User avatar, click to login",
+      "User": "User {name}, click to login",
+      "Password": "Password",
+      "Submit": "Submit password"
+    }
+  }
 }

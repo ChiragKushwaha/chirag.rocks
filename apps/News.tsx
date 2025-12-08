@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Search, Layout, Heart, Share, RefreshCw } from "lucide-react";
+import { useTranslations, useFormatter } from "next-intl";
 
 interface Article {
   source: {
@@ -33,6 +34,8 @@ const CATEGORIES = [
 ];
 
 export const News: React.FC = () => {
+  const t = useTranslations("News");
+  const format = useFormatter();
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("general");
@@ -52,7 +55,7 @@ export const News: React.FC = () => {
       const data: NewsResponse = await response.json();
       setArticles(data.articles);
     } catch (err) {
-      setError("Failed to load news. Please try again later.");
+      setError(t("Error"));
       console.error(err);
     } finally {
       setLoading(false);
@@ -81,7 +84,7 @@ export const News: React.FC = () => {
       {/* Sidebar */}
       <div className="w-60 bg-[#f5f5f7] dark:bg-[#2b2b2b] border-r border-gray-200 dark:border-black/20 flex flex-col p-4">
         <div className="flex items-center gap-2 mb-6 px-2">
-          <span className="text-xl font-bold text-red-500">News</span>
+          <span className="text-xl font-bold text-red-500">{t("Title")}</span>
         </div>
 
         <div className="space-y-1">
@@ -107,14 +110,33 @@ export const News: React.FC = () => {
                   setIsSearchActive(false);
                 }
               }}
-              aria-label={`Category: ${cat.label}`}
+              aria-label={t("Aria.Category", { label: cat.label })}
             >
               {cat.id === "general" ? (
                 <Layout size={16} className="text-red-500" />
               ) : (
                 <span className="w-4 h-4" /> // Spacer for alignment
               )}
-              <span className="text-sm">{cat.label}</span>
+              <span className="text-sm">
+                {
+                  // Map category IDs to translated labels
+                  cat.id === "general"
+                    ? t("Categories.TopStories")
+                    : cat.id === "technology"
+                    ? t("Categories.Technology")
+                    : cat.id === "business"
+                    ? t("Categories.Business")
+                    : cat.id === "science"
+                    ? t("Categories.Science")
+                    : cat.id === "health"
+                    ? t("Categories.Health")
+                    : cat.id === "entertainment"
+                    ? t("Categories.Entertainment")
+                    : cat.id === "sports"
+                    ? t("Categories.Sports")
+                    : cat.label
+                }
+              </span>
             </div>
           ))}
         </div>
@@ -135,7 +157,7 @@ export const News: React.FC = () => {
             {isSearchActive ? (
               <input
                 type="text"
-                placeholder="Search stories..."
+                placeholder={t("SearchPlaceholder")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="bg-transparent border-none outline-none text-sm w-full placeholder-gray-500"
@@ -143,10 +165,10 @@ export const News: React.FC = () => {
                 onBlur={() => {
                   if (!searchQuery) setIsSearchActive(false);
                 }}
-                aria-label="Search stories"
+                aria-label={t("Aria.Search")}
               />
             ) : (
-              <span className="text-sm text-gray-500">Search</span>
+              <span className="text-sm text-gray-500">{t("SearchLabel")}</span>
             )}
           </div>
         </div>
@@ -158,11 +180,25 @@ export const News: React.FC = () => {
           <div>
             <h1 className="text-3xl font-bold mb-1 capitalize">
               {searchQuery
-                ? `Search: "${searchQuery}"`
+                ? t("SearchTitle", { query: searchQuery })
+                : activeCategory === "general"
+                ? t("Categories.TopStories")
+                : activeCategory === "technology"
+                ? t("Categories.Technology")
+                : activeCategory === "business"
+                ? t("Categories.Business")
+                : activeCategory === "science"
+                ? t("Categories.Science")
+                : activeCategory === "health"
+                ? t("Categories.Health")
+                : activeCategory === "entertainment"
+                ? t("Categories.Entertainment")
+                : activeCategory === "sports"
+                ? t("Categories.Sports")
                 : CATEGORIES.find((c) => c.id === activeCategory)?.label}
             </h1>
             <p className="text-gray-500 dark:text-gray-400 text-sm font-medium uppercase">
-              {new Date().toLocaleDateString("en-US", {
+              {format.dateTime(new Date(), {
                 weekday: "long",
                 month: "long",
                 day: "numeric",
@@ -172,8 +208,8 @@ export const News: React.FC = () => {
           <button
             onClick={() => fetchNews(activeCategory)}
             className="p-2 hover:bg-gray-100 dark:hover:bg-white/10 rounded-full transition-colors"
-            title="Refresh"
-            aria-label="Refresh news"
+            title={t("Refresh")}
+            aria-label={t("Aria.Refresh")}
           >
             <RefreshCw size={20} className={loading ? "animate-spin" : ""} />
           </button>
@@ -182,7 +218,7 @@ export const News: React.FC = () => {
         {loading ? (
           <div className="flex flex-col items-center justify-center h-64 space-y-4">
             <div className="w-8 h-8 border-4 border-red-500 border-t-transparent rounded-full animate-spin" />
-            <p className="text-gray-500">Loading top stories...</p>
+            <p className="text-gray-500">{t("Loading")}</p>
           </div>
         ) : error ? (
           <div className="flex flex-col items-center justify-center h-64 text-center">
@@ -191,19 +227,19 @@ export const News: React.FC = () => {
               onClick={() => fetchNews(activeCategory)}
               className="text-blue-500 hover:underline"
             >
-              Try Again
+              {t("TryAgain")}
             </button>
           </div>
         ) : filteredArticles.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-64 text-center">
             <p className="text-gray-500 text-lg">
-              No stories found matching &quot;{searchQuery}&quot;
+              {t("NoResults", { query: searchQuery })}
             </p>
             <button
               onClick={() => setSearchQuery("")}
               className="mt-2 text-blue-500 hover:underline"
             >
-              Clear Search
+              {t("ClearSearch")}
             </button>
           </div>
         ) : (
@@ -222,7 +258,7 @@ export const News: React.FC = () => {
                 }}
                 aria-label={`Read top story: ${featuredArticle.title}`}
               >
-                <div className="aspect-[2/1] bg-gray-200 dark:bg-gray-800 rounded-xl mb-4 overflow-hidden relative">
+                <div className="aspect-2/1 bg-gray-200 dark:bg-gray-800 rounded-xl mb-4 overflow-hidden relative">
                   {featuredArticle.urlToImage ? (
                     <Image
                       src={featuredArticle.urlToImage || ""}
@@ -238,7 +274,7 @@ export const News: React.FC = () => {
                   )}
                   <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
                     <span className="text-red-500 font-bold text-sm mb-2 uppercase tracking-wide">
-                      Top Story
+                      {t("TopStory")}
                     </span>
                     <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight mb-2 drop-shadow-md">
                       {featuredArticle.title}
@@ -265,9 +301,9 @@ export const News: React.FC = () => {
                       window.open(article.url, "_blank");
                     }
                   }}
-                  aria-label={`Read article: ${article.title}`}
+                  aria-label={t("Aria.ReadArticle", { title: article.title })}
                 >
-                  <div className="w-32 h-24 rounded-lg flex-shrink-0 bg-gray-200 dark:bg-gray-800 overflow-hidden relative">
+                  <div className="w-32 h-24 rounded-lg shrink-0 bg-gray-200 dark:bg-gray-800 overflow-hidden relative">
                     {article.urlToImage ? (
                       <Image
                         src={article.urlToImage || ""}
@@ -309,7 +345,7 @@ export const News: React.FC = () => {
                           e.stopPropagation();
                           // Share logic placeholder
                         }}
-                        aria-label="Share article"
+                        aria-label={t("Aria.Share")}
                       >
                         <Share size={14} />
                       </button>
@@ -319,7 +355,7 @@ export const News: React.FC = () => {
                           e.stopPropagation();
                           // Like logic placeholder
                         }}
-                        aria-label="Like article"
+                        aria-label={t("Aria.Like")}
                       >
                         <Heart size={14} />
                       </button>

@@ -1,4 +1,1742 @@
 {
-  "Hello": "Hello world!",
-  "Welcome": "Welcome to the multi-language app"
+  "Hello": {
+    "world": "Hej världen",
+    "GetStarted": "Kom igång"
+  },
+  "Common": {
+    "OK": "OK",
+    "Cancel": "Avbryt",
+    "Yes": "Ja",
+    "No": "Nej",
+    "Back": "Tillbaka",
+    "Continue": "Fortsätt",
+    "Done": "Klar",
+    "Edit": "Ändra",
+    "Delete": "Radera",
+    "Save": "Spara",
+    "Close": "Stäng",
+    "Error": "Fel",
+    "Success": "Klart"
+  },
+  "Setup": {
+    "Common": {
+      "Continue": "Fortsätt",
+      "Back": "Tillbaka",
+      "NotNow": "Inte nu",
+      "Cancel": "Avbryt",
+      "LearnMore": "Läs mer"
+    },
+    "Language": {
+      "Title": "Välj språk",
+      "Description": "Välj det språk du vill använda på denna Mac.",
+      "TableLabel": "Språk",
+      "Primary": "Primärt"
+    },
+    "Region": {
+      "Title": "Välj ditt land eller din region"
+    },
+    "DataPrivacy": {
+      "Title": "Data och integritet",
+      "IconText": "Den här symbolen visas när en Apple-funktion ber om att få använda din personliga information.",
+      "FeatureText": "Du kommer inte att se den här symbolen vid varje funktion. Apple samlar endast in denna information när det behövs för att aktivera funktioner, skydda våra tjänster eller anpassa din upplevelse.",
+      "PrivacyText": "Apple anser att integritet är en grundläggande mänsklig rättighet, så varje Apple-produkt är utformad för att minimera insamling och användning av dina data, använda bearbetning på enheten när det är möjligt, och ge transparens och kontroll över din information."
+    },
+    "TouchID": {
+      "Title": "Touch ID",
+      "SetupLater": "Ställ in Touch ID senare",
+      "Description": "Använd ditt fingeravtryck för att låsa upp din Mac och göra köp med Apple Pay. Placera ditt finger på Touch ID för att börja."
+    },
+    "Fingerprint": {
+      "Title": "Placera ditt finger",
+      "Instruction": "Lyft och vila fingret på Touch ID upprepade gånger",
+      "Success": "✓ Touch ID är klart"
+    },
+    "Languages": {
+      "Title": "Skrivna och talade språk",
+      "Description": "Språken som listas nedan används ofta i din region. Du kan använda dessa inställningar eller anpassa dem individuellt.",
+      "Preferred": "Föredragna språk",
+      "InputSources": "Inmatningskällor",
+      "Dictation": "Diktat",
+      "Customize": "Anpassa inställningar"
+    },
+    "Accessibility": {
+      "Title": "Hjälpmedel",
+      "Description": "Hjälpmedelsfunktioner anpassar din Mac efter dina visuella, auditiva och motoriska behov. Du kan slå på dem nu och slutföra installationen, eller anpassa dem senare i Systeminställningar. Se kategorierna nedan för tillgängliga funktioner.",
+      "Vision": "Syn",
+      "Motor": "Motorik",
+      "Hearing": "Hörsel",
+      "Cognitive": "Kognitivt"
+    },
+    "Migration": {
+      "Title": "Flyttassistent",
+      "Description": "Om du har information på en annan Mac eller en Windows-dator kan du överföra den till denna Mac. Du kan också överföra data från en Time Machine-säkerhetskopia eller annan startskiva.",
+      "Question": "Hur vill du överföra din information?",
+      "FromMac": "Från en Mac, Time Machine-säkerhetskopia eller startskiva",
+      "FromPC": "Från en Windows-dator"
+    },
+    "AppleID": {
+      "Title": "Logga in med ditt Apple-ID",
+      "Description": "Logga in för att använda iCloud, App Store och andra Apple-tjänster.",
+      "Label": "Apple-ID",
+      "CreateNew": "Skapa nytt Apple-ID",
+      "Forgot": "Glömt Apple-ID eller lösenord?",
+      "UseDifferent": "Använd olika Apple-ID för iCloud och media?",
+      "Info": "Denna Mac kommer att kopplas till ditt Apple-ID, och dina data som foton, kontakter och dokument kommer att sparas i iCloud, så att du kan komma åt dem på dina andra enheter.",
+      "SeeData": "Se hur data hanteras",
+      "SetupLater": "Ställ in senare",
+      "ErrorRequired": "Ange ett Apple-ID."
+    },
+    "Account": {
+      "Title": "Skapa ett datorkonto",
+      "CreateAppleID": "Skapa Apple-ID",
+      "Description": "Ange ditt namn och kontoinformation för att ställa in datorn.",
+      "Name": "Fullständigt namn",
+      "Email": "E-postadress",
+      "Age": "Ålder",
+      "Phone": "Mobilnummer",
+      "Password": "Lösenord",
+      "Errors": {
+        "NameRequired": "Fullständigt namn krävs.",
+        "EmailRequired": "E-post krävs.",
+        "EmailInvalid": "Ange en giltig e-postadress.",
+        "AgeRequired": "Ålder krävs.",
+        "AgeInvalid": "Ange en giltig ålder.",
+        "PhoneRequired": "Telefonnummer krävs.",
+        "PasswordRequired": "Lösenord krävs.",
+        "PasswordLength": "Lösenordet måste vara minst 6 tecken."
+      }
+    },
+    "Theme": {
+      "Title": "Välj ditt utseende",
+      "Description": "Välj Ljust eller Mörkt för att ändra hur systemet och apparna ser ut.",
+      "Light": "Ljust",
+      "Dark": "Mörkt"
+    }
+  },
+  "SystemSettings": {
+    "General": {
+      "Title": "Allmänt",
+      "Description": "Hantera allmänna inställningar och preferenser för din Mac, inklusive programuppdatering, enhetsspråk, AirDrop och mer.",
+      "About": "Om den här datorn",
+      "SoftwareUpdate": "Programuppdatering",
+      "Storage": "Lagring",
+      "AppleCare": "AppleCare och garanti",
+      "AirDrop": "AirDrop och Handoff",
+      "AutoFill": "Autofyll och lösenord",
+      "DateTime": "Datum och tid",
+      "LanguageRegion": "Språk och region",
+      "LoginItems": "Inloggningsobjekt",
+      "Sharing": "Delning",
+      "StartupDisk": "Startskiva",
+      "TimeMachine": "Time Machine",
+      "DeviceManagement": "Enhetshantering",
+      "TransferReset": "Överför eller återställ"
+    },
+    "AppleAccount": {
+      "Edit": "Ändra",
+      "PersonalInformation": "Personlig information",
+      "SignInSecurity": "Inloggning och säkerhet",
+      "PaymentShipping": "Betalning och leverans",
+      "iCloud": "iCloud",
+      "MediaPurchases": "Media och köp",
+      "Family": "Familjedelning",
+      "SetUp": "Ställ in",
+      "Devices": "Enheter",
+      "ThisMac": "Denna MacBook Pro 14\"",
+      "SignOut": "Logga ut..."
+    },
+    "LanguageRegion": {
+      "Title": "Språk och region",
+      "PreferredLanguages": "Föredragna språk",
+      "Region": "Region",
+      "Calendar": "Kalender",
+      "Temperature": "Temperatur",
+      "Celsius": "Celsius (°C)",
+      "Fahrenheit": "Fahrenheit (°F)",
+      "MeasurementSystem": "Mätsystem",
+      "Metric": "Metriskt",
+      "US": "USA",
+      "UK": "Storbritannien",
+      "FirstDayOfWeek": "Första dagen i veckan",
+      "DateFormat": "Datumformat",
+      "NumberFormat": "Nummerformat",
+      "LiveText": "Livetext",
+      "LiveTextDesc": "Markera text i bilder för att kopiera eller utföra åtgärder.",
+      "Applications": "Program",
+      "ApplicationsDesc": "Anpassa språkinställningar för specifika program nedan:",
+      "TranslationLanguages": "Översättningsspråk..."
+    },
+    "Sidebar": {
+      "Search": "Sök",
+      "NotImplemented": "Denna sökning är inte implementerad än.",
+      "AppleAccount": "Apple-konto",
+      "WiFi": "Wi-Fi",
+      "Bluetooth": "Bluetooth",
+      "Network": "Nätverk",
+      "General": "Allmänt",
+      "Appearance": "Utseende",
+      "Accessibility": "Hjälpmedel",
+      "MenuBar": "Kontrollcenter",
+      "DesktopDock": "Skrivbord och Dock",
+      "Displays": "Bildskärmar",
+      "Spotlight": "Spotlight",
+      "Wallpaper": "Bakgrund",
+      "ScreenSaver": "Skärmsläckare",
+      "Battery": "Batteri",
+      "Sound": "Ljud",
+      "Notifications": "Notiser",
+      "Focus": "Fokus",
+      "ScreenTime": "Skärmtid",
+      "PrivacySecurity": "Integritet och säkerhet",
+      "LockScreen": "Låsskärm",
+      "TouchIDPassword": "Touch ID och lösenord",
+      "UsersGroups": "Användare och grupper",
+      "Keyboard": "Tangentbord",
+      "Trackpad": "Styrplatta",
+      "PrintersScanners": "Skrivare och skannrar",
+      "Storage": "Lagring"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "Description": "Ställ in Wi-Fi för att ansluta till internet och trådlösa enheter.",
+      "Connected": "Ansluten",
+      "Details": "Detaljer...",
+      "KnownNetworks": "Kända nätverk",
+      "OtherNetworks": "Andra nätverk",
+      "Connect": "Anslut",
+      "Other": "Annat...",
+      "AskToJoin": "Fråga om anslutning till nätverk",
+      "AskToJoinDesc": "Kända nätverk ansluts automatiskt. Om inga kända nätverk är tillgängliga måste du välja ett nätverk manuellt.",
+      "Notify": "Meddela",
+      "AskToJoinHotspots": "Fråga om anslutning till hotspot",
+      "AskToJoinHotspotsDesc": "Tillåt att din Mac automatiskt upptäcker personliga hotspots när inga Wi-Fi-nätverk är tillgängliga.",
+      "AskToJoinAction": "Fråga om anslutning",
+      "Advanced": "Avancerat..."
+    },
+    "Bluetooth": {
+      "Title": "Bluetooth",
+      "Description": "Hantera Bluetooth-anslutningar till trådlösa enheter.",
+      "Discoverable": "Nu synlig som \"MacBook Pro\"",
+      "MyDevices": "Mina enheter",
+      "NotConnected": "Ej ansluten",
+      "NearbyDevices": "Enheter i närheten",
+      "Searching": "Söker..."
+    },
+    "Network": {
+      "Title": "Nätverk",
+      "WiFi": "Wi-Fi",
+      "Connected": "Ansluten",
+      "Firewall": "Brandvägg",
+      "Inactive": "Inaktiv",
+      "OtherServices": "Andra tjänster",
+      "NotConnected": "Ej ansluten"
+    },
+    "Appearance": {
+      "Title": "Utseende",
+      "Description": "Ställ in utseendet med inbyggda ljusa och mörka lägen och mer.",
+      "Light": "Ljust",
+      "Dark": "Mörkt",
+      "Auto": "Automatiskt",
+      "AccentColor": "Accentfärg",
+      "HighlightColor": "Markeringsfärg",
+      "Automatic": "Automatisk",
+      "SidebarIconSize": "Symbolstorlek i sidofält",
+      "Medium": "Medium",
+      "WallpaperTinting": "Tillåt bakgrundstoning i fönster",
+      "ShowScrollBars": "Visa rullningslister",
+      "ScrollAuto": "Automatiskt baserat på mus eller styrplatta",
+      "ScrollWhenScrolling": "Vid rullning",
+      "ScrollAlways": "Alltid",
+      "ClickScrollBar": "Klicka i rullningslisten för att",
+      "JumpNextPage": "Hoppa till nästa sida",
+      "JumpSpotClicked": "Hoppa till klickad plats"
+    },
+    "Accessibility": {
+      "Title": "Hjälpmedel",
+      "Description": "Alternativ för syn, hörsel och motorik.",
+      "LearnMore": "Läs mer...",
+      "Vision": "Syn",
+      "VoiceOver": "VoiceOver",
+      "Zoom": "Zooma",
+      "HoverText": "Hovringstext",
+      "Display": "Bildskärm",
+      "Motion": "Rörelse",
+      "ReadSpeak": "Talat innehåll",
+      "AudioDescriptions": "Syntolkning",
+      "Hearing": "Hörsel",
+      "HearingDevices": "Hörapparater",
+      "Audio": "Ljud",
+      "Captions": "Textning",
+      "LiveCaptions": "Direkttextning",
+      "NameRecognition": "Namnigenkänning",
+      "Motor": "Motorik",
+      "VoiceControl": "Röststyrning",
+      "Keyboard": "Tangentbord",
+      "PointerControl": "Pekarkontroll",
+      "SwitchControl": "Reglagestyrning",
+      "General": "Allmänt",
+      "Siri": "Siri",
+      "Shortcut": "Genväg"
+    },
+    "MenuBar": {
+      "Title": "Kontrollcenter",
+      "Description": "Anpassa Kontrollcenter och menyradsobjekt.",
+      "AutoHide": "Göm och visa menyraden automatiskt",
+      "Never": "Aldrig",
+      "RecentDocs": "Senaste dokument, program och servrar",
+      "None": "Inga",
+      "Controls": "Kontrollcenters moduler",
+      "ControlCenter": "Kontrollcenter",
+      "ShowInMenuBar": "Visa i menyraden",
+      "DontShowInMenuBar": "Visa inte i menyraden",
+      "Siri": "Siri",
+      "Spotlight": "Spotlight",
+      "VolumeFeedback": "Spela ljud vid volymändring",
+      "Clock": "Klocka"
+    },
+    "DesktopDock": {
+      "Title": "Skrivbord och Dock",
+      "Description": "Alternativ för Dock och skrivbordet.",
+      "Dock": "Dock",
+      "Size": "Storlek",
+      "Magnification": "Förstoring",
+      "Small": "Liten",
+      "Large": "Stor",
+      "Position": "Position på skärmen",
+      "Bottom": "Nederkant",
+      "MinimiseUsing": "Minimera fönster med",
+      "GenieEffect": "Anden i flaskan",
+      "DoubleClickTitle": "Dubbelklicka på fönstrets namnlist för att",
+      "Zoom": "Zooma",
+      "MinimiseToIcon": "Minimera fönster till programsymbol",
+      "AutoHideDock": "Göm och visa Dock automatiskt",
+      "AnimateOpening": "Animera öppning av program",
+      "ShowIndicators": "Visa indikatorer för öppna program",
+      "ShowRecent": "Visa senaste program i Dock",
+      "DesktopStageManager": "Skrivbord och Blickfång",
+      "ShowItems": "Visa objekt",
+      "OnDesktop": "På skrivbordet",
+      "ClickWallpaper": "Klicka på bakgrunden för att visa skrivbordet",
+      "Always": "Alltid",
+      "StageManager": "Blickfång",
+      "Widgets": "Widgetar",
+      "ShowWidgets": "Visa widgetar",
+      "WidgetStyle": "Widgetstil",
+      "Automatic": "Automatisk",
+      "UseIPhoneWidgets": "Använd iPhone-widgetar"
+    },
+    "Displays": {
+      "Title": "Bildskärmar",
+      "Description": "Ställ in bildskärmsinställningar.",
+      "BuiltInDisplay": "Inbyggd bildskärm",
+      "UseAs": "Använd som",
+      "MainDisplay": "Huvudskärm",
+      "Resolution": "Upplösning",
+      "Default": "Förval",
+      "MoreSpace": "Mer utrymme",
+      "LargerText": "Större text",
+      "Brightness": "Ljusstyrka",
+      "TrueTone": "True Tone",
+      "Preset": "Förinställning",
+      "RefreshRate": "Uppdateringsfrekvens",
+      "ProMotion": "ProMotion",
+      "Advanced": "Avancerat..."
+    },
+    "Spotlight": {
+      "Title": "Spotlight",
+      "Description": "Sökinställningar.",
+      "SearchPlaceholder": "Spotlight-sökning",
+      "SearchResults": "Sökresultat",
+      "Privacy": "Spotlight-integritet...",
+      "Categories": {
+        "Applications": "Program",
+        "Calculator": "Kalkylator",
+        "Contacts": "Kontakter",
+        "Conversion": "Konvertering",
+        "Definition": "Definition",
+        "Developer": "Utvecklare",
+        "Documents": "Dokument",
+        "Events & Reminders": "Händelser och påminnelser",
+        "Folders": "Mappar",
+        "Fonts": "Typsnitt",
+        "Images": "Bilder",
+        "Mail & Messages": "Mail och Meddelanden",
+        "Movies": "Filmer",
+        "Music": "Musik",
+        "Other": "Annat",
+        "PDF Documents": "PDF-dokument",
+        "Presentations": "Presentationer",
+        "Siri Suggestions": "Siri-förslag",
+        "Spreadsheets": "Kalkylblad",
+        "System Preferences": "Systeminställningar",
+        "Tips": "Tips",
+        "Bookmarks & History": "Bokmärken och historik"
+      }
+    },
+    "Notifications": {
+      "Title": "Notiser",
+      "Description": "Notisinställningar för program.",
+      "Preview": "Visa förhandsvisning",
+      "ShowPreviews": "Visa förhandsvisning",
+      "Always": "Alltid",
+      "ApplicationNotifications": "Programnotiser",
+      "Apps": {
+        "AppStore": "App Store",
+        "Calendar": "Kalender",
+        "FaceTime": "FaceTime",
+        "Mail": "Mail",
+        "Messages": "Meddelanden",
+        "Photos": "Bilder",
+        "Reminders": "Påminnelser",
+        "Safari": "Safari"
+      }
+    },
+    "Sound": {
+      "Title": "Ljud",
+      "Description": "Ljudinställningar.",
+      "OutputInput": "Utdata och indata",
+      "Output": "Utdata",
+      "Input": "Indata",
+      "SelectOutput": "Välj enhet för ljudutgång:",
+      "Speakers": "MacBook Pro-högtalare",
+      "BuiltIn": "Inbyggda",
+      "OutputVolume": "Utvolym",
+      "Mute": "Ljud av",
+      "ShowInMenuBar": "Visa Ljud i menyraden",
+      "Always": "Alltid",
+      "AlertSoundGroup": "Varningsljud",
+      "AlertSound": "Varningsljud",
+      "Boop": "Boop",
+      "AlertVolume": "Varningsvolym",
+      "PlayUIEffects": "Spela ljudeffekter för användargränssnitt"
+    },
+    "Focus": {
+      "Title": "Fokus",
+      "Description": "Konfigurera fokuslägen.",
+      "DoNotDisturb": "Stör ej",
+      "ShareAcrossDevices": "Dela mellan enheter",
+      "FocusStatus": "Fokusstatus",
+      "On": "På",
+      "Off": "Av",
+      "SetUp": "Ställ in",
+      "FocusModes": "Fokuslägen",
+      "Personal": "Personligt",
+      "Sleep": "Sömn",
+      "Work": "Arbete",
+      "AddFocus": "Lägg till fokus"
+    },
+    "ScreenTime": {
+      "Title": "Skärmtid",
+      "Description": "Övervaka användning och sätt gränser.",
+      "DailyAverage": "Dagligt genomsnitt",
+      "FromLastWeek": "från förra veckan",
+      "Downtime": "Skärmfri tid",
+      "AppLimits": "Appbegränsningar",
+      "LimitsCount": "{count} begränsningar",
+      "AlwaysAllowed": "Alltid tillåtet",
+      "AllowedApps": "Telefon, Kartor, Meddelanden",
+      "ContentPrivacy": "Innehåll och integritet",
+      "On": "På",
+      "Off": "Av",
+      "ShareAcrossDevices": "Dela mellan enheter",
+      "LockSettings": "Lås inställningar för skärmtid"
+    },
+    "Battery": {
+      "Title": "Batteri",
+      "Description": "Batteriinställningar.",
+      "BatteryLevel": "Batterinivå",
+      "LastCharged": "Senast laddad till 100% kl 8:00",
+      "LowPowerMode": "Strömsparläge",
+      "Never": "Aldrig",
+      "BatteryHealth": "Batterihälsa",
+      "Normal": "Normal",
+      "OptimisedCharging": "Optimerad batteriladdning",
+      "Options": "Alternativ..."
+    },
+    "Keyboard": {
+      "Title": "Tangentbord",
+      "Description": "Tangentbordsinställningar.",
+      "KeyRepeat": "Tangentupprepning",
+      "Slow": "Långsam",
+      "Fast": "Snabb",
+      "DelayUntilRepeat": "Fördröjning till upprepning",
+      "Long": "Lång",
+      "Short": "Kort",
+      "AdjustBrightness": "Justera ljusstyrka vid svagt ljus",
+      "KeyboardNavigation": "Tangentbordsnavigering",
+      "Shortcuts": "Kortkommandon...",
+      "TextInput": "Textinmatning",
+      "InputSources": "Inmatningskällor",
+      "Edit": "Ändra...",
+      "Dictation": "Diktat"
+    },
+    "LockScreen": {
+      "Title": "Låsskärm",
+      "Description": "Inställningar för låsskärm.",
+      "TurnOffDisplayBattery": "Stäng av skärmen på batteri vid inaktivitet",
+      "TurnOffDisplayAdapter": "Stäng av skärmen på strömadapter vid inaktivitet",
+      "TwoMinutes": "2 minuter",
+      "TenMinutes": "10 minuter",
+      "RequirePassword": "Kräv lösenord efter att skärmsläckare startat eller skärmen stängts av",
+      "Immediately": "Omedelbart",
+      "ShowMessage": "Visa meddelande vid låsning",
+      "Set": "Ställ in...",
+      "LoginWindowShows": "Inloggningsfönstret visar",
+      "ListOfUsers": "Lista över användare",
+      "ShowLargeClock": "Visa stor klocka",
+      "OnLockScreen": "På låsskärmen"
+    },
+    "PrivacySecurity": {
+      "Title": "Integritet och säkerhet",
+      "Description": "Sekretess- och säkerhetsinställningar.",
+      "Privacy": "Integritet",
+      "LocationServices": "Platstjänster",
+      "On": "På",
+      "Off": "Av",
+      "Camera": "Kamera",
+      "Microphone": "Mikrofon",
+      "FilesFolders": "Filer och mappar",
+      "ScreenRecording": "Skärminspelning",
+      "AppsCount": "{count, plural, =0 {Inga appar} one {# app} other {# appar}}",
+      "Security": "Säkerhet",
+      "FileVault": "FileVault",
+      "LockdownMode": "Låst läge",
+      "Others": "Övrigt",
+      "Extensions": "Tillägg",
+      "Profiles": "Profiler"
+    },
+    "PrintersScanners": {
+      "Title": "Skrivare och skannrar",
+      "Description": "Inställningar för skrivare och skannrar.",
+      "Printers": "Skrivare",
+      "IdleLastUsed": "Inaktiv, Senast använd",
+      "Offline": "Offline",
+      "AddPrinter": "Lägg till skrivare, skanner eller fax..."
+    },
+    "ScreenSaver": {
+      "Title": "Skärmsläckare",
+      "Description": "Inställningar för skärmsläckare.",
+      "Preview": "Förhandsvisning",
+      "ShowOnAllSpaces": "Visa på alla arbetsytor",
+      "ScreenSavers": "Skärmsläckare",
+      "StartAfter": "Starta efter",
+      "FiveMinutes": "5 minuter",
+      "ShowWithClock": "Visa med klocka",
+      "ScreensaverNames": {
+        "Ventura": "Ventura",
+        "Monterey": "Monterey",
+        "BigSur": "Big Sur",
+        "Catalina": "Catalina",
+        "Hello": "Hello",
+        "Drift": "Drift",
+        "Flurry": "Flurry",
+        "Shell": "Shell"
+      }
+    },
+    "Storage": {
+      "Title": "Lagring",
+      "Description": "Hantera lagring.",
+      "MacintoshHD": "Macintosh HD",
+      "AvailableSpace": "{available} GB / {total} GB tillgängligt",
+      "Apps": "Program",
+      "Documents": "Dokument",
+      "SystemData": "Systemdata",
+      "macOS": "macOS",
+      "OtherUsers": "Andra användare",
+      "Recommendations": "Rekommendationer",
+      "StoreInICloud": "Lagra i iCloud",
+      "StoreInICloudDesc": "Spara alla dina filer, foton och meddelanden i iCloud och spara utrymme på denna Mac.",
+      "StoreInICloudButton": "Lagra i iCloud...",
+      "Categories": "Kategorier",
+      "Applications": "Program"
+    },
+    "TouchIDPassword": {
+      "Title": "Touch ID och lösenord",
+      "Description": "Lägg till fingeravtryck för att låsa upp din Mac.",
+      "TouchID": "Touch ID",
+      "Finger1": "Finger 1",
+      "AddFingerprint": "Lägg till fingeravtryck",
+      "UseTouchIDFor": "Använd Touch ID för:",
+      "UnlockingMac": "Låsa upp din Mac",
+      "ApplePay": "Apple Pay",
+      "iTunesAppStore": "iTunes Store och App Store",
+      "AutoFillPasswords": "Autofyll lösenord",
+      "Password": "Lösenord",
+      "LastChanged": "Senast ändrat: 24.11.2024",
+      "Change": "Ändra...",
+      "RequirePasswordScreenSaver": "Kräv lösenord efter skärmsläckare eller skärmavstängning",
+      "Immediately": "Omedelbart",
+      "RequirePasswordIdle": "Kräv lösenord efter inaktivitet",
+      "Never": "Aldrig",
+      "Seconds": "{count} sekunder",
+      "Minute": "{count} minut",
+      "Minutes": "{count} minuter",
+      "AppleWatch": "Apple Watch",
+      "AppleWatchUnlock": "Använd Apple Watch för att låsa upp dina program och din Mac"
+    },
+    "Trackpad": {
+      "Title": "Styrplatta",
+      "Description": "Inställningar för styrplatta.",
+      "PointClick": "Peka och klicka",
+      "ScrollZoom": "Rulla och zooma",
+      "MoreGestures": "Fler gester",
+      "TrackingSpeed": "Pekarhastighet",
+      "Slow": "Långsam",
+      "Fast": "Snabb",
+      "Click": "Klick",
+      "Medium": "Medium",
+      "ForceClick": "Hårt klick och haptisk återkoppling",
+      "LookUp": "Slå upp och dataavkännare",
+      "SecondaryClick": "Sekundärklick",
+      "ClickTwoFingers": "Klicka med två fingrar",
+      "TapToClick": "Tryck för att klicka",
+      "VideoPreview": "Videoförhandsvisning"
+    },
+    "UsersGroups": {
+      "Title": "Användare och grupper",
+      "Description": "Hantera användare.",
+      "CurrentUser": "Nuvarande användare",
+      "Admin": "Administratör",
+      "OtherUsers": "Andra användare",
+      "GuestUser": "Gäst",
+      "Off": "Av",
+      "AddAccount": "Lägg till konto...",
+      "AutoLogin": "Automatisk inloggning",
+      "AllowNetworkUsers": "Tillåt nätverksanvändare att logga in vid inloggningsfönstret"
+    },
+    "Wallpaper": {
+      "Title": "Bakgrund",
+      "Description": "Välj bakgrund.",
+      "ShowOnAllSpaces": "Visa på alla arbetsytor",
+      "DynamicWallpapers": "Dynamiska bakgrunder",
+      "Pictures": "Bilder",
+      "AddPhoto": "Lägg till foto"
+    },
+    "LanguageSelector": {
+      "Title": "Välj önskat språk att lägga till",
+      "Search": "Sök",
+      "Cancel": "Avbryt",
+      "Add": "Lägg till"
+    }
+  },
+  "Languages": {
+    "English": "Engelska",
+    "Spanish": "Spanska",
+    "French": "Franska",
+    "German": "Tyska",
+    "Italian": "Italienska",
+    "Japanese": "Japanska",
+    "Chinese": "Kinesiska",
+    "Portuguese": "Portugisiska",
+    "Russian": "Ryska",
+    "Korean": "Koreanska",
+    "Dutch": "Holländska",
+    "Swedish": "Svenska",
+    "Danish": "Danska",
+    "Norwegian": "Norska",
+    "Finnish": "Finska",
+    "Polish": "Polska",
+    "Turkish": "Turkiska",
+    "Arabic": "Arabiska",
+    "Hindi": "Hindi",
+    "Bengali": "Bengali",
+    "Vietnamese": "Vietnamesiska",
+    "Thai": "Thailändska",
+    "Greek": "Grekiska",
+    "Czech": "Tjeckiska",
+    "Hungarian": "Ungerska",
+    "Romanian": "Rumänska",
+    "Ukrainian": "Ukrainska",
+    "Indonesian": "Indonesiska",
+    "Malay": "Malajiska",
+    "Croatian": "Kroatiska",
+    "Slovak": "Slovakiska",
+    "Slovenian": "Slovenska",
+    "Bulgarian": "Bulgariska",
+    "Serbian": "Serbiska",
+    "Hebrew": "Hebreiska"
+  },
+  "Finder": {
+    "Search": "Sök",
+    "Sidebar": {
+      "Favorites": "Favoriter",
+      "Locations": "Platser",
+      "AirDrop": "AirDrop",
+      "Recents": "Senaste",
+      "Applications": "Program",
+      "Desktop": "Skrivbord",
+      "Documents": "Dokument",
+      "Downloads": "Hämtade filer",
+      "Pictures": "Bilder",
+      "Home": "Home",
+      "MacintoshHD": "Macintosh HD",
+      "iCloudDrive": "iCloud Drive"
+    },
+    "Menu": {
+      "NewFolder": "Ny mapp",
+      "GetInfo": "Visa info",
+      "ChangeBackground": "Ändra bakgrund...",
+      "Open": "Öppna",
+      "MoveToBin": "Flytta till papperskorgen",
+      "Rename": "Byt namn",
+      "OpenItems": "Öppna {count, plural, one {1 objekt} other {objekt}}",
+      "MoveItemsToBin": "Flytta {count, plural, one {1 objekt} other {objekt}} till papperskorgen"
+    },
+    "Status": {
+      "Loading": "Läser in...",
+      "EmptyFolder": "Tom mapp",
+      "ItemCount": "{count, plural, one {1 objekt} other {# objekt}}",
+      "SpaceAvailable": "{amount} GB tillgängligt"
+    },
+    "Errors": {
+      "NoApp": "Det finns inget program inställt för att öppna dokumentet \"{ext}\".",
+      "CreateFolderFailed": "Misslyckades att skapa mapp",
+      "MoveToBinFailed": "Misslyckades att flytta till papperskorgen"
+    }
+  },
+  "Safari": {
+    "Title": "Safari",
+    "StartPage": "Startsida",
+    "Loading": "Läser in...",
+    "SearchPlaceholder": "Sök eller ange webbplatsnamn",
+    "NoInternet": "Ingen internetanslutning",
+    "NoInternetDesc": "Din dator är inte ansluten till internet. Denna sida kan inte visas.",
+    "Favorites": {
+      "Apple": "Apple",
+      "Google": "Google",
+      "Wikipedia": "Wikipedia",
+      "GitHub": "GitHub"
+    }
+  },
+  "Mail": {
+    "Inbox": "Inkorg",
+    "MessagesCount": "{count, plural, one {1 meddelande} other {# meddelanden}}",
+    "Favorites": "Favoriter",
+    "AllInboxes": "Alla inkorgar",
+    "VIP": "VIP",
+    "Sent": "Skickat",
+    "Search": "Sök",
+    "NoMessageSelected": "Inget meddelande valt",
+    "To": "Till: {name}"
+  },
+  "Messages": {
+    "AppTitle": "Meddelanden",
+    "SigningIn": "Loggar in som {name}...",
+    "SidebarTitle": "Meddelanden",
+    "NoOnlineUsers": "Inga inloggade användare.",
+    "NoMessages": "Inga meddelanden",
+    "To": "Till: {name}",
+    "InputPlaceholder": "iMessage",
+    "NoContactSelected": "Välj en kontakt att skicka meddelande till"
+  },
+  "Photos": {
+    "Sidebar": {
+      "Library": "Bibliotek",
+      "Collections": "Samlingar",
+      "Pinned": "Fastnålade",
+      "Albums": "Album",
+      "Utilities": "Verktyg",
+      "Projects": "Projekt",
+      "Favourites": "Favoriter",
+      "RecentlySaved": "Nyligen sparade",
+      "Videos": "Videor",
+      "Screenshots": "Skärmavbilder",
+      "PeoplePets": "Personer och husdjur",
+      "SharedAlbums": "Delade album",
+      "Activity": "Aktivitet",
+      "RecentlyDeleted": "Nyligen raderade",
+      "Duplicates": "Dubletter",
+      "Map": "Karta",
+      "AllProjects": "Alla projekt"
+    },
+    "Tabs": {
+      "Years": "År",
+      "Months": "Månader",
+      "AllPhotos": "Alla bilder"
+    },
+    "Search": "Sök",
+    "Collections": {
+      "Title": "Samlingar",
+      "Memories": "Minnen",
+      "NoMemories": "Inga minnen",
+      "NoMemoriesDesc": "Minnen visas här när du skapar dem.",
+      "Albums": "Album",
+      "NoAlbums": "Inga album"
+    },
+    "EmptyState": {
+      "NoItems": "Inga objekt i {title}"
+    },
+    "Locked": {
+      "Title": "{title} Låst",
+      "Desc": "Autentisera för att visa."
+    }
+  },
+  "Notes": {
+    "Sidebar": {
+      "iCloud": "iCloud",
+      "Notes": "Anteckningar",
+      "RecentlyDeleted": "Nyligen raderade"
+    },
+    "Search": "Sök",
+    "NewNote": "Ny anteckning",
+    "NoAdditionalText": "Ingen ytterligare text",
+    "Editor": {
+      "TitlePlaceholder": "Titel",
+      "ContentPlaceholder": "Börja skriva...",
+      "AddToDesktop": "Lägg till på skrivbordet",
+      "Restore": "Återställ",
+      "Delete": "Radera anteckning",
+      "DeletePermanently": "Radera permanent",
+      "EmptyState": "Välj eller skapa en anteckning",
+      "Date": "Idag kl {time}"
+    }
+  },
+  "Reminders": {
+    "Search": "Sök",
+    "Sidebar": {
+      "MyLists": "Mina listor",
+      "Reminders": "Påminnelser",
+      "Work": "Arbete",
+      "Today": "Idag",
+      "Scheduled": "Schemalagt",
+      "All": "Alla",
+      "Flagged": "Flaggade"
+    },
+    "AddReminder": "Ny påminnelse",
+    "Actions": {
+      "Add": "Lägg till",
+      "Cancel": "Avbryt",
+      "Delete": "Radera påminnelse",
+      "MarkComplete": "Markera som klar",
+      "MarkIncomplete": "Markera som ej klar",
+      "Flag": "Flagga",
+      "Unflag": "Ta bort flagga"
+    },
+    "Inputs": {
+      "Title": "Titel",
+      "Notes": "Anteckningar",
+      "Date": "Datum",
+      "Time": "Tid",
+      "Tags": "Taggar"
+    },
+    "EmptyState": {
+      "NoReminders": "Inga påminnelser",
+      "CreateOne": "Skapa en påminnelse"
+    }
+  },
+  "Calendar": {
+    "Search": "Sök",
+    "Today": "Idag",
+    "Day": "Dag",
+    "Week": "Vecka",
+    "Month": "Månad",
+    "Year": "År",
+    "AddEvent": "Lägg till händelse",
+    "NoEvents": "Inga händelser",
+    "NewEvent": "Ny händelse",
+    "TitlePlaceholder": "Händelsetitel",
+    "Location": "Plats",
+    "AllDay": "Heldag",
+    "From": "Från",
+    "To": "Till",
+    "Repeat": "Upprepa",
+    "Never": "Aldrig",
+    "Daily": "Dagligen",
+    "Weekly": "Veckovis",
+    "Monthly": "Månadsvis",
+    "Yearly": "Årligen",
+    "Alert": "Notis",
+    "AtTime": "Vid händelse",
+    "5MinBefore": "5 minuter före",
+    "10MinBefore": "10 minuter före",
+    "15MinBefore": "15 minuter före",
+    "30MinBefore": "30 minuter före",
+    "1HourBefore": "1 timme före",
+    "2HoursBefore": "2 timmar före",
+    "1DayBefore": "1 dag före",
+    "2DaysBefore": "2 dagar före",
+    "Notes": "Anteckningar",
+    "DeleteEvent": "Radera händelse",
+    "ShortDays": {
+      "Sun": "Sön",
+      "Mon": "Mån",
+      "Tue": "Tis",
+      "Wed": "Ons",
+      "Thu": "Tor",
+      "Fri": "Fre",
+      "Sat": "Lör"
+    },
+    "Months": {
+      "January": "Januari",
+      "February": "Februari",
+      "March": "Mars",
+      "April": "April",
+      "May": "Maj",
+      "June": "Juni",
+      "July": "Juli",
+      "August": "Augusti",
+      "September": "September",
+      "October": "Oktober",
+      "November": "November",
+      "December": "December"
+    },
+    "Sidebar": {
+      "iCloud": "ICLOUD",
+      "Other": "OTHER",
+      "NoInvitations": "No invitations"
+    },
+    "Toolbar": {
+      "Today": "Today",
+      "SearchPlaceholder": "Search events...",
+      "View": {
+        "day": "day",
+        "week": "week",
+        "month": "month",
+        "year": "year"
+      }
+    },
+    "EventModal": {
+      "Title": "New Event",
+      "EventTitlePlaceholder": "Event Title",
+      "CalendarLabel": "Calendar",
+      "Cancel": "Cancel",
+      "AddEvent": "Add Event"
+    },
+    "SearchResults": {
+      "Title": "Search Results",
+      "NoEvents": "No events found"
+    },
+    "Event": {
+      "NoLocation": "No location",
+      "EventLabel": "Event: {title} at {location}"
+    },
+    "Weekdays": {
+      "Sun": "Sun",
+      "Mon": "Mon",
+      "Tue": "Tue",
+      "Wed": "Wed",
+      "Thu": "Thu",
+      "Fri": "Fri",
+      "Sat": "Sat"
+    },
+    "WeekdaysShort": {
+      "Sun": "S",
+      "Mon": "M",
+      "Tue": "T",
+      "Wed": "W",
+      "Thu": "T",
+      "Fri": "F",
+      "Sat": "S"
+    }
+  },
+  "Maps": {
+    "Search": "Sök",
+    "SearchPlaceholder": "Sök plats eller adress",
+    "Directions": "Vägbeskrivning",
+    "From": "Från",
+    "To": "Till",
+    "Transport": {
+      "Drive": "Bil",
+      "Walk": "Gång",
+      "Transit": "Kollektivtrafik",
+      "Cycle": "Cykel"
+    },
+    "LocateMe": "Hitta mig",
+    "ZoomIn": "Zooma in",
+    "ZoomOut": "Zooma ut",
+    "MapType": {
+      "Standard": "Standard",
+      "Hybrid": "Hybrid",
+      "Satellite": "Satellit"
+    },
+    "Sidebar": {
+      "Favorites": "FAVORITES",
+      "Recent": "RECENT",
+      "NoRecentSearches": "No recent searches",
+      "RecentLabel": "Recent"
+    },
+    "Locations": {
+      "Home": "Home",
+      "Work": "Work"
+    },
+    "Controls": {
+      "SwitchToSatellite": "Switch to Satellite",
+      "SwitchToSatelliteLabel": "Switch to Satellite view",
+      "SwitchToMap": "Switch to Map",
+      "SwitchToMapLabel": "Switch to Map view",
+      "CurrentLocation": "Current Location",
+      "ShowCurrentLocation": "Show current location",
+      "MapInfo": "Map information"
+    },
+    "Permission": {
+      "AppName": "Maps",
+      "Title": "Location",
+      "Reason": "Maps needs access to your location to show where you are.",
+      "Error": "Could not get your location. Please ensure location services are enabled.",
+      "NotSupported": "Geolocation is not supported by your browser."
+    }
+  },
+  "FaceTime": {
+    "AppName": "FaceTime",
+    "NewFaceTime": "Ny FaceTime",
+    "CreateLink": "Skapa länk",
+    "EnterNameOrEmail": "Namn, e-post eller nummer",
+    "Suggested": "Förslag",
+    "NoRecents": "Inga senaste samtal",
+    "FaceTimeVideo": "FaceTime-video",
+    "FaceTimeAudio": "FaceTime-ljud",
+    "JoinCall": "Gå med",
+    "Waiting": "Väntar...",
+    "Connected": "Ansluten",
+    "Reconnecting": "Återansluter...",
+    "CallEnded": "Samtal avslutat",
+    "Mute": "Ljud av",
+    "Unmute": "Ljud på",
+    "VideoOff": "Video av",
+    "VideoOn": "Video på",
+    "End": "Avsluta",
+    "FullScreen": "Helskärm",
+    "ExitFullScreen": "Avsluta helskärm",
+    "Effects": "Effekter",
+    "ShareScreen": "Dela skärm",
+    "Connecting": "Ansluter...",
+    "Unavailable": "Ej tillgänglig",
+    "Title": "FaceTime",
+    "ConnectingAs": "Connecting as {name}...",
+    "IncomingCall": "{name} is calling...",
+    "Accept": "Accept",
+    "Decline": "Decline",
+    "Contacts": "Contacts",
+    "NoContacts": "No one else is online.",
+    "Video": "Video",
+    "SelectContact": "Select a contact to call",
+    "Aria": {
+      "RemoteVideo": "Remote video feed",
+      "LocalVideo": "Local video preview",
+      "EndCall": "End Call",
+      "CallContact": "Call {name}",
+      "VideoCallContact": "Video call {name}",
+      "LocalPreview": "Local camera preview"
+    },
+    "Permission": {
+      "AppName": "FaceTime",
+      "Title": "Camera and Microphone",
+      "Reason": "FaceTime needs access to your camera and microphone to make calls."
+    }
+  },
+  "Contacts": {
+    "Search": "Sök",
+    "AllContacts": "Alla kontakter",
+    "MyCard": "Mitt kontaktkort",
+    "AddContact": "Lägg till kontakt",
+    "Edit": "Ändra",
+    "Done": "Klar",
+    "FirstName": "Förnamn",
+    "LastName": "Efternamn",
+    "Company": "Företag",
+    "Phone": "Telefon",
+    "Email": "E-post",
+    "Notes": "Anteckningar",
+    "Message": "Meddelande",
+    "Call": "Ring",
+    "Video": "Video",
+    "Mail": "Mail",
+    "Pay": "Betala",
+    "NoContacts": "Inga kontakter",
+    "DeleteContact": "Radera kontakt",
+    "SearchPlaceholder": "Search",
+    "SearchAria": "Search contacts",
+    "Count": "{count} Contacts",
+    "EditContact": "Edit Contact",
+    "NewContact": "New Contact",
+    "Preview": "Preview",
+    "Cancel": "Cancel",
+    "NoNotes": "No notes",
+    "NoSelection": "No Contact Selected",
+    "Labels": {
+      "FirstName": "First Name",
+      "LastName": "Last Name",
+      "Company": "Company",
+      "Phone": "Phone",
+      "Email": "Email",
+      "Notes": "Notes",
+      "Mobile": "mobile",
+      "Home": "home",
+      "Message": "message",
+      "Video": "video",
+      "Mail": "mail"
+    },
+    "Alerts": {
+      "DeleteConfirm": "Are you sure you want to delete this contact?",
+      "NameRequired": "Please enter a name or company."
+    },
+    "Aria": {
+      "AddContact": "Add new contact",
+      "Contact": "Contact: {name}",
+      "Action": "{action} {name}"
+    }
+  },
+  "Calculator": {
+    "Clear": "C",
+    "AllClear": "AC",
+    "Negate": "+/-",
+    "Percent": "%",
+    "Divide": "÷",
+    "Multiply": "×",
+    "Subtract": "-",
+    "Add": "+",
+    "Equals": "=",
+    "Decimal": ",",
+    "AC": "AC",
+    "ToggleSign": "Toggle sign",
+    "Percentage": "Percentage",
+    "Calculate": "Calculate result"
+  },
+  "Clock": {
+    "WorldClock": "Världsklocka",
+    "Alarm": "Väckarklocka",
+    "Stopwatch": "Tidtagarur",
+    "Timer": "Timer",
+    "Add": "Lägg till",
+    "Edit": "Ändra",
+    "Start": "Starta",
+    "Stop": "Stopp",
+    "Reset": "Återställ",
+    "Lap": "Varv",
+    "Resume": "Återuppta",
+    "Pause": "Paus",
+    "Cancel": "Avbryt",
+    "Save": "Spara",
+    "Label": "Etikett",
+    "Sound": "Ljud",
+    "Snooze": "Snooza",
+    "WhenTimerEnds": "När tiden går ut",
+    "StopPlaying": "Sluta spela",
+    "Tabs": {
+      "WorldClock": "World Clock",
+      "Alarms": "Alarms",
+      "Stopwatch": "Stopwatch",
+      "Timers": "Timers"
+    },
+    "AddClock": "Add clock",
+    "Locations": {
+      "NewDelhi": "New Delhi"
+    },
+    "Today": "Today",
+    "HRS": "HRS"
+  },
+  "Weather": {
+    "Loading": "Läser in...",
+    "Error": "Fel vid inläsning av väder",
+    "SearchPlaceholder": "Sök stad",
+    "MyLocation": "Min plats",
+    "Humidity": "Luftfuktighet",
+    "Wind": "Vind",
+    "Rain": "Regn",
+    "FeelsLike": "Känns som",
+    "UVIndex": "UV-index",
+    "Pressure": "Tryck",
+    "Visibility": "Sikt",
+    "Sunrise": "Soluppgång",
+    "Sunset": "Solnedgång",
+    "Forecast": {
+      "Hourly": "Hourly Forecast",
+      "TenDay": "10-Day Forecast",
+      "Now": "Now",
+      "Today": "Today"
+    },
+    "Hourly": "Timvis",
+    "Daily": "Dagligen",
+    "High": "H",
+    "Low": "L",
+    "Conditions": {
+      "Clear": "Klart",
+      "Cloudy": "Molnigt",
+      "Rain": "Regn",
+      "Snow": "Snö",
+      "Thunderstorm": "Åskväder",
+      "Drizzle": "Duggregn",
+      "Mist": "Dis"
+    },
+    "Retry": "Retry",
+    "Searching": "Searching...",
+    "NoResults": "No results found",
+    "Recent": "Recent",
+    "Popular": "Popular",
+    "Sidebar": {
+      "Open": "Open sidebar",
+      "Close": "Close sidebar"
+    },
+    "Aria": {
+      "SelectLocation": "Select {name}, {country}"
+    },
+    "Details": {
+      "AirQuality": "Air Quality",
+      "UVIndex": "UV Index",
+      "Wind": "Wind",
+      "Sunset": "Sunset",
+      "Sunrise": "Sunrise:",
+      "FeelsLike": "Feels Like",
+      "Humidity": "Humidity",
+      "Visibility": "Visibility",
+      "Pressure": "Pressure",
+      "hPa": "hPa"
+    },
+    "Descriptions": {
+      "AirQualityDesc": "Air quality index is 130, similar to yesterday at about this time.",
+      "UVIndexDesc": "Use sun protection until 4PM.",
+      "FeelsLikeDesc": "Similar to the actual temperature.",
+      "DewPointDesc": "The dew point is {temp}° right now.",
+      "VisibilityDesc": "Perfectly clear view.",
+      "Footer": "Weather for {location} • Open-Meteo Data",
+      "PollutionLevel": "Moderately Polluted",
+      "UVLevel": "Moderate"
+    }
+  },
+  "Stocks": {
+    "Search": "Sök",
+    "Watchlist": "Bevakningslista",
+    "MarketOpen": "Marknaden öppen",
+    "MarketClosed": "Marknaden stängd",
+    "PreMarket": "Före öppning",
+    "AfterHours": "Efter stängning",
+    "Loading": "Läser in...",
+    "Error": "Fel vid inläsning",
+    "AddSymbol": "Lägg till symbol",
+    "Remove": "Ta bort",
+    "Chart": "Diagram",
+    "News": "Nyheter",
+    "Summary": "Sammanfattning",
+    "Open": "Öppning",
+    "High": "Högst",
+    "Low": "Lägst",
+    "Vol": "Vol",
+    "PE": "P/E",
+    "MktCap": "Börsvärde",
+    "52WHigh": "52V Högst",
+    "52WLow": "52V Lägst",
+    "AvgVol": "Genomsnittlig volym",
+    "Yield": "Avkastning",
+    "Beta": "Beta",
+    "EPS": "Vinst/aktie",
+    "Title": "Stocks",
+    "Searching": "Searching...",
+    "KeyStatistics": "Key Statistics",
+    "BusinessNews": "Business News",
+    "ShowMore": "Show More",
+    "Aria": {
+      "Search": "Search stocks",
+      "Select": "Select stock {symbol}",
+      "ReadNews": "Read news: {title}"
+    },
+    "Stats": {
+      "Open": "Open",
+      "High": "High",
+      "Low": "Low",
+      "Vol": "Vol",
+      "PE": "P/E",
+      "MktCap": "Mkt Cap",
+      "52WH": "52W H",
+      "52WL": "52W L"
+    }
+  },
+  "Desktop": {
+    "ContextMenu": {
+      "NewFolder": "Ny mapp",
+      "GetInfo": "Visa info",
+      "ChangeDesktopBackground": "Ändra bakgrund...",
+      "UseStacks": "Använd travar",
+      "SortBy": "Sortera efter",
+      "CleanUp": "Ordna",
+      "CleanUpBy": "Ordna efter",
+      "ShowViewOptions": "Visa visningsalternativ",
+      "ChangeWallpaper": "Change Wallpaper...",
+      "EditWidgets": "Edit Widgets...",
+      "Tags": "Tags",
+      "None": "None",
+      "SnapToGrid": "Snap to Grid",
+      "Name": "Name",
+      "Kind": "Kind",
+      "DateLastOpened": "Date Last Opened",
+      "DateAdded": "Date Added",
+      "DateModified": "Date Modified",
+      "DateCreated": "Date Created",
+      "Size": "Size"
+    },
+    "SortOptions": {
+      "Name": "Namn",
+      "Kind": "Typ",
+      "DateLastOpened": "Senast öppnad",
+      "DateAdded": "Tillagd",
+      "DateModified": "Ändrad",
+      "DateCreated": "Skapad",
+      "Size": "Storlek",
+      "Tags": "Taggar"
+    },
+    "Guest": "Guest",
+    "UntitledFolder": "untitled folder",
+    "NoAppAvailable": "No application available to open .{ext} files.",
+    "MoveToBin": {
+      "Failed": "Failed to move to bin",
+      "NotSupported": "Failed to move to bin. Folder moves not fully supported yet."
+    }
+  },
+  "ControlCenter": {
+    "Title": "Kontrollcenter",
+    "WiFi": "Wi-Fi",
+    "Bluetooth": "Bluetooth",
+    "AirDrop": "AirDrop",
+    "DoNotDisturb": "Stör ej",
+    "KeyboardBrightness": "Ljusstyrka",
+    "ScreenMirroring": "Skärmdubblering",
+    "Display": "Bildskärm",
+    "Sound": "Ljud",
+    "Playing": "Spelas nu",
+    "On": "På",
+    "Off": "Av",
+    "NotConnected": "Ej ansluten",
+    "Connect": "Anslut",
+    "HomeNetwork": "Home Network",
+    "ContactsOnly": "Contacts Only",
+    "NotPlaying": "Not Playing",
+    "Music": "Music"
+  },
+  "LockScreenApp": {
+    "EnterPassword": "Ange lösenord",
+    "ClickToUnlock": "Klicka för att låsa upp",
+    "TouchID": "Touch ID",
+    "Cancel": "Avbryt",
+    "SwitchUser": "Byt användare"
+  },
+  "NotificationCenter": {
+    "Title": "Notiscenter",
+    "NoNotifications": "Inga notiser",
+    "ClearAll": "Rensa alla",
+    "Widgets": "Widgets",
+    "Done": "Done",
+    "Edit": "Edit",
+    "AddWidget": "Add Widget"
+  },
+  "Widgets": {
+    "AllWidgets": "Alla widgetar",
+    "Search": "Sök",
+    "AddWidget": "Lägg till widget",
+    "Loading": "Loading...",
+    "Calendar": {
+      "Title": "Calendar"
+    },
+    "Weather": {
+      "Title": "Weather"
+    },
+    "Stocks": {
+      "Title": "Stocks"
+    },
+    "Reminders": {
+      "Title": "Reminders",
+      "NoReminders": "No reminders"
+    },
+    "Notes": {
+      "Title": "Notes",
+      "Content": "Buy milk, eggs, and bread.<br />Call mom at 5pm.<br />Meeting with team tomorrow."
+    }
+  },
+  "Window": {
+    "Minimize": "Minimera",
+    "Maximize": "Maximera",
+    "Close": "Stäng",
+    "Restore": "Restore",
+    "MoveTo": "Move Window to...",
+    "LeftSide": "Left Side of Screen",
+    "RightSide": "Right Side of Screen",
+    "EnterFullScreen": "Enter Full Screen"
+  },
+  "Dock": {
+    "Trash": "Papperskorg",
+    "AriaLabel": "Application dock"
+  },
+  "Apps": {
+    "VSCode": {
+      "Title": "Visual Studio Code"
+    },
+    "LeetCode": {
+      "Title": "LeetCode",
+      "Common": {
+        "Loading": "Loading Profile...",
+        "NoData": "No data",
+        "Retry": "Retry",
+        "ShowMore": "Show more",
+        "GoToLeetCode": "Go to LeetCode"
+      },
+      "Badges": {
+        "Title": "Badges",
+        "MostRecent": "Most Recent Badge"
+      },
+      "Stats": {
+        "Title": "Community Stats",
+        "Views": "Views",
+        "Solution": "Solution",
+        "Discuss": "Discuss",
+        "Reputation": "Reputation"
+      },
+      "Languages": {
+        "Title": "Languages",
+        "ProblemsSolved": "problems solved"
+      },
+      "Profile": {
+        "Rank": "Rank"
+      },
+      "Submissions": {
+        "RecentAC": "Recent AC",
+        "List": "List",
+        "Solutions": "Solutions",
+        "Discuss": "Discuss",
+        "TimeAgo": "2 months ago"
+      },
+      "Skills": {
+        "Title": "Skills",
+        "Advanced": "Advanced",
+        "Intermediate": "Intermediate"
+      },
+      "Solved": {
+        "Solved": "Solved",
+        "Easy": "Easy",
+        "Medium": "Med.",
+        "Hard": "Hard"
+      },
+      "Calendar": {
+        "SubmissionsLastYear": "submissions in the past one year",
+        "TotalActiveDays": "Total active days:",
+        "MaxStreak": "Max streak:",
+        "Current": "Current",
+        "Months": {
+          "Jan": "Jan",
+          "Feb": "Feb",
+          "Mar": "Mar",
+          "Apr": "Apr",
+          "May": "May",
+          "Jun": "Jun",
+          "Jul": "Jul",
+          "Aug": "Aug",
+          "Sep": "Sep",
+          "Oct": "Oct",
+          "Nov": "Nov",
+          "Dec": "Dec"
+        }
+      }
+    },
+    "V86": {
+      "Title": "Virtual Machine",
+      "NoFileSelected": "No file selected",
+      "ScriptLoadError": "Failed to load V86 script",
+      "FileReadError": "Failed to read file",
+      "StartError": "Failed to start emulator",
+      "Booting": "Booting {filename}...",
+      "ErrorPrefix": "Error: {error}",
+      "ClickToCapture": "Click to capture mouse (Esc to release)"
+    },
+    "Finder": "Finder",
+    "Launchpad": "Launchpad",
+    "Safari": "Safari",
+    "Messages": "Meddelanden",
+    "Mail": "Mail",
+    "Maps": "Kartor",
+    "Photos": "Bilder",
+    "FaceTime": "FaceTime",
+    "Calendar": "Kalender",
+    "Contacts": "Kontakter",
+    "Reminders": "Påminnelser",
+    "Notes": "Anteckningar",
+    "TV": "TV",
+    "Music": "Musik",
+    "News": "Nyheter",
+    "SystemSettings": "Systeminställningar",
+    "AppStore": "App Store",
+    "Trash": "Papperskorg",
+    "Freeform": "Freeform",
+    "Terminal": "Terminal",
+    "Calculator": "Calculator",
+    "TextEdit": "TextEdit",
+    "MediaPlayer": "Media Player",
+    "Preview": "Preview",
+    "VirtualMachine": "Virtual Machine"
+  },
+  "News": {
+    "Title": "News",
+    "Categories": {
+      "TopStories": "Top Stories",
+      "Technology": "Technology",
+      "Business": "Business",
+      "Science": "Science",
+      "Health": "Health",
+      "Entertainment": "Entertainment",
+      "Sports": "Sports"
+    },
+    "SearchPlaceholder": "Search stories...",
+    "SearchLabel": "Search",
+    "SearchTitle": "Search: \"{query}\"",
+    "Loading": "Loading top stories...",
+    "Error": "Failed to load news. Please try again later.",
+    "TryAgain": "Try Again",
+    "NoResults": "No stories found matching \"{query}\"",
+    "ClearSearch": "Clear Search",
+    "TopStory": "Top Story",
+    "Refresh": "Refresh",
+    "Aria": {
+      "Category": "Category: {label}",
+      "Search": "Search stories",
+      "Refresh": "Refresh news",
+      "ReadTopStory": "Read top story: {title}",
+      "ReadArticle": "Read article: {title}",
+      "Share": "Share article",
+      "Like": "Like article"
+    }
+  },
+  "Music": {
+    "AppleMusic": "Apple Music",
+    "Library": "Library",
+    "ListenNow": "Listen Now",
+    "Browse": "Browse",
+    "Radio": "Radio",
+    "RecentlyAdded": "Recently Added",
+    "Artists": "Artists",
+    "Albums": "Albums",
+    "Songs": "Songs",
+    "Search": "Search",
+    "SearchTitle": "Search: {query}",
+    "Aria": {
+      "Search": "Search music",
+      "GoBack": "Go back",
+      "GoForward": "Go forward",
+      "Prev": "Previous song",
+      "Next": "Next song",
+      "Play": "Play",
+      "Pause": "Pause",
+      "PlaySong": "Play {track} by {artist}",
+      "PauseSong": "Pause {track}",
+      "Lyrics": "Toggle lyrics",
+      "Queue": "Toggle queue",
+      "Mute": "Toggle mute",
+      "VolSlider": "Volume slider",
+      "SeekSlider": "Seek slider"
+    },
+    "Queue": {
+      "Title": "Playing Next",
+      "Empty": "Queue is empty"
+    },
+    "Lyrics": {
+      "NotAvailable": "Lyrics are not available for this song in the preview mode.",
+      "Imagine": "But imagine the lyrics appearing here, perfectly synced with the music...",
+      "Lalala": "La la la...",
+      "Placeholder": "Play a song to see lyrics"
+    }
+  },
+  "TV": {
+    "WatchNow": "Watch Now",
+    "Movies": "Movies",
+    "TVShows": "TV Shows",
+    "Kids": "Kids",
+    "Library": "Library",
+    "SearchResults": "Search Results",
+    "NoShows": "No shows found.",
+    "SearchPlaceholder": "Search",
+    "SearchLabel": "Search TV Shows",
+    "Series": "Series",
+    "PlayEpisode": "Play Episode 1",
+    "AddToUpNext": "Add to Up Next",
+    "Added": "Added",
+    "OpenYouTube": "Open in YouTube",
+    "ViewAccount": "View Account",
+    "Aria": {
+      "Play": "Play {name}",
+      "CloseVideo": "Close video",
+      "AddLibrary": "Add to Library",
+      "RemoveLibrary": "Remove from Library"
+    },
+    "Genres": {
+      "Drama": "Drama",
+      "Action": "Action",
+      "Comedy": "Comedy",
+      "ScienceFiction": "Science-Fiction",
+      "Thriller": "Thriller"
+    }
+  },
+  "Terminal": {
+    "Guest": "Guest",
+    "Welcome": "Welcome to Terminal",
+    "HelpPrompt": "Type 'help' for a list of commands.",
+    "AvailableCommands": "Available commands: ls, cd, pwd, mkdir, touch, echo, cat, clear, whoami, ping, man, rm, rmdir, vi",
+    "CommandNotFound": "command not found: {command}",
+    "Error": "Error: {message}",
+    "AriaInput": "Terminal Input",
+    "Usage": {
+      "Ping": "usage: ping host",
+      "Mkdir": "usage: mkdir directory_name",
+      "Rmdir": "usage: rmdir directory_name",
+      "Rm": "usage: rm [-rf] file_name",
+      "Touch": "usage: touch file_name",
+      "Cat": "usage: cat file_name",
+      "Vi": "usage: vi file_name",
+      "Man": "What manual page do you want?"
+    },
+    "Errors": {
+      "PingResolve": "ping: cannot resolve {host}: Unknown host",
+      "NoManual": "No manual entry for {command}",
+      "NoSuchFile": "{cmd}: {path}: No such file or directory",
+      "NotADirectory": "{cmd}: {path}: Not a directory",
+      "DirectoryNotEmpty": "{cmd}: {path}: Directory not empty",
+      "IsADirectory": "{cmd}: {path}: is a directory"
+    },
+    "Messages": {
+      "PingStats": "PING {host} (127.0.0.1): 56 data bytes\n64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.045 ms\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.082 ms\n64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.067 ms\n\n--- {host} ping statistics ---\n3 packets transmitted, 3 packets received, 0.0% packet loss",
+      "OpeningTextEdit": "Opening {file} in TextEdit..."
+    },
+    "ManPages": {
+      "ls": "ls - list directory contents\n\nUsage: ls [options] [file|dir]\n\nOptions:\n  -a, --all      do not ignore entries starting with .\n  -l             use a long listing format",
+      "cd": "cd - change the shell working directory\n\nUsage: cd [dir]\n\nChange the current directory to DIR. The default DIR is the value of the HOME shell variable.",
+      "pwd": "pwd - print name of current/working directory\n\nUsage: pwd\n\nPrint the full filename of the current working directory.",
+      "mkdir": "mkdir - make directories\n\nUsage: mkdir [DIRECTORY]\n\nCreate the DIRECTORY(ies), if they do not already exist.",
+      "touch": "touch - change file timestamps\n\nUsage: touch [FILE]\n\nUpdate the access and modification times of each FILE to the current time. If FILE does not exist it is created empty.",
+      "echo": "echo - display a line of text\n\nUsage: echo [STRING]...\n\nEcho the STRING(s) to standard output.",
+      "cat": "cat - concatenate files and print on the standard output\n\nUsage: cat [FILE]...\n\nConcatenate FILE(s) to standard output.",
+      "clear": "clear - clear the terminal screen\n\nUsage: clear",
+      "whoami": "whoami - print effective userid\n\nUsage: whoami\n\nPrint the user name associated with the current effective user ID.",
+      "ping": "ping - send ICMP ECHO_REQUEST to network hosts\n\nUsage: ping [HOST]\n\nSend ICMP ECHO_REQUEST to network hosts.",
+      "man": "man - an interface to the system reference manuals\n\nUsage: man [COMMAND]\n\nDisplay the manual page for COMMAND.",
+      "rm": "rm - remove files or directories\n\nUsage: rm [OPTION]... [FILE]...\n\nRemove (unlink) the FILE(s).\n\nOptions:\n  -r, -R, --recursive   remove directories and their contents recursively\n  -f, --force           ignore nonexistent files and arguments, never prompt",
+      "rmdir": "rmdir - remove empty directories\n\nUsage: rmdir [DIRECTORY]...\n\nRemove the DIRECTORY(ies), if they are empty.",
+      "vi": "vi - screen-oriented (visual) display editor\n\nUsage: vi [FILE]\n\nEdit FILE."
+    }
+  },
+  "TextEdit": {
+    "Guest": "Guest",
+    "Untitled": "Untitled.txt",
+    "Save": "Save",
+    "Loading": "Loading...",
+    "Placeholder": "Type your notes here...",
+    "SavedAlert": "Saved to {path}/{filename}"
+  },
+  "PDFViewer": {
+    "Document": "Document.pdf",
+    "PageInfo": "Page {current} of {total}",
+    "View": "View",
+    "ZoomIn": "Zoom In",
+    "ZoomOut": "Zoom Out",
+    "LoadingThumbnails": "Loading thumbnails...",
+    "Loading": "Loading...",
+    "NoPDF": "No PDF",
+    "FailedToLoad": "Failed to load PDF",
+    "NoPDFLoaded": "No PDF loaded"
+  },
+  "Spotlight": {
+    "Placeholder": "Spotlight Search",
+    "SearchWebFor": "Search Web for \"{query}\"",
+    "NoResults": "No results found",
+    "Open": "Open",
+    "Kinds": {
+      "Web": "Web Search",
+      "App": "Application",
+      "Directory": "Directory",
+      "File": "File"
+    },
+    "Aria": {
+      "Open": "Open {name}"
+    }
+  },
+  "MenuBar": {
+    "Apple": {
+      "AboutThisMac": "About This Mac",
+      "SystemSettings": "System Settings...",
+      "AppStore": "App Store...",
+      "RecentItems": "Recent Items",
+      "ForceQuit": "Force Quit...",
+      "Sleep": "Sleep",
+      "Restart": "Restart...",
+      "ShutDown": "Shut Down...",
+      "LockScreen": "Lock Screen"
+    },
+    "App": {
+      "About": "About {app}",
+      "Quit": "Quit {app}"
+    },
+    "File": {
+      "Title": "File",
+      "New": "New",
+      "Open": "Open...",
+      "Save": "Save",
+      "Duplicate": "Duplicate",
+      "NewFinderWindow": "New Finder Window",
+      "NewFolder": "New Folder",
+      "GetInfo": "Get Info"
+    },
+    "Edit": {
+      "Title": "Edit",
+      "Undo": "Undo",
+      "Redo": "Redo",
+      "Cut": "Cut",
+      "Copy": "Copy",
+      "Paste": "Paste"
+    },
+    "View": {
+      "Title": "View",
+      "AsIcons": "As Icons",
+      "AsList": "As List",
+      "AsColumns": "As Columns"
+    },
+    "Window": {
+      "Title": "Window",
+      "Minimize": "Minimize",
+      "Zoom": "Zoom"
+    },
+    "Help": {
+      "Title": "Help",
+      "MacOSHelp": "macOS Help"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "KnownNetworks": "Known Networks",
+      "OtherNetworks": "Other Networks",
+      "Settings": "Wi-Fi Settings..."
+    },
+    "Battery": {
+      "Title": "Battery",
+      "PowerSource": "Power Source: {source}",
+      "PowerAdapter": "Power Adapter",
+      "Battery": "Battery",
+      "EnergyMode": "Energy Mode",
+      "Automatic": "Automatic",
+      "LowPower": "Low Power",
+      "HighPower": "High Power",
+      "SignificantEnergy": "Using Significant Energy",
+      "Settings": "Battery Settings..."
+    },
+    "Aria": {
+      "Clipboard": "Clipboard",
+      "MediaPlayer": "Media Player",
+      "Spotlight": "Spotlight Search",
+      "ControlCenter": "Control Center",
+      "Siri": "Siri",
+      "Clock": "Clock and Notification Center"
+    }
+  },
+  "WeatherDropdown": {
+    "Searching": "Searching...",
+    "SearchCity": "Search city...",
+    "Now": "Now",
+    "Today": "Today",
+    "OpenWeather": "Open Weather"
+  },
+  "LockScreen": {
+    "IncorrectPassword": "Incorrect password",
+    "Guest": "Guest",
+    "EnterPassword": "Enter Password",
+    "Hint": "Touch ID or enter password (hint: {hint})",
+    "Login": "Login",
+    "Cancel": "Cancel",
+    "Aria": {
+      "UserAvatar": "User avatar, click to login",
+      "User": "User {name}, click to login",
+      "Password": "Password",
+      "Submit": "Submit password"
+    }
+  }
 }

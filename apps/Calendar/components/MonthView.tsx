@@ -1,6 +1,7 @@
 import React from "react";
 import { CALENDARS } from "../constants";
 import { CalendarEvent } from "../types";
+import { useTranslations } from "next-intl";
 
 interface MonthViewProps {
   currentDate: Date;
@@ -23,6 +24,7 @@ export const MonthView: React.FC<MonthViewProps> = ({
   isSameDay,
   getEventsForDay,
 }) => {
+  const t = useTranslations("Calendar");
   const totalDays = daysInMonth(currentDate);
   const startDay = startDayOfMonth(currentDate);
   const days = [];
@@ -104,7 +106,7 @@ export const MonthView: React.FC<MonthViewProps> = ({
             key={day}
             className="py-2 text-center text-xs font-semibold text-gray-500 dark:text-gray-400 border-r border-gray-200 dark:border-white/10 last:border-r-0"
           >
-            {day}
+            {t(`Weekdays.${day}`)}
           </div>
         ))}
       </div>

@@ -1,4 +1,1741 @@
 {
-  "Hello": "Hello world!",
-  "Welcome": "Welcome to the multi-language app"
+  "Hello": {
+    "world": "こんにちは世界",
+    "GetStarted": "始める"
+  },
+  "Common": {
+    "OK": "OK",
+    "Cancel": "キャンセル",
+    "Yes": "はい",
+    "No": "いいえ",
+    "Back": "戻る",
+    "Continue": "続ける",
+    "Done": "完了",
+    "Edit": "編集",
+    "Delete": "削除",
+    "Save": "保存",
+    "Close": "閉じる",
+    "Error": "エラー",
+    "Success": "成功"
+  },
+  "Setup": {
+    "Common": {
+      "Continue": "続ける",
+      "Back": "戻る",
+      "NotNow": "今はしない",
+      "Cancel": "キャンセル",
+      "LearnMore": "詳しい情報"
+    },
+    "Language": {
+      "Title": "言語を選択",
+      "Description": "Macで使用する言語を選択してください。",
+      "TableLabel": "言語",
+      "Primary": "優先"
+    },
+    "Region": {
+      "Title": "国または地域を選択"
+    },
+    "DataPrivacy": {
+      "Title": "データとプライバシー",
+      "IconText": "Appleの機能があなたの個人情報の使用を求める場合、このアイコンが表示されます。",
+      "FeatureText": "すべての機能でこれが表示されるわけではありません。Appleは機能を有効にする、サービスを保護する、または体験をパーソナライズするために必要な場合にのみ、この情報を収集します。",
+      "PrivacyText": "Appleはプライバシーは基本的人権であると考えています。そのため、すべてのApple製品はデータの収集と使用を最小限に抑え、可能な限りデバイス上で処理を行い、情報の透明性と管理を提供するように設計されています。"
+    },
+    "TouchID": {
+      "Title": "Touch ID",
+      "SetupLater": "あとでTouch IDを設定",
+      "Description": "指紋を使ってMacのロックを解除したり、Apple Payで購入したりできます。指をTouch IDに置いて始めてください。"
+    },
+    "Fingerprint": {
+      "Title": "指を置く",
+      "Instruction": "指を離して、繰り返しTouch IDに置いてください",
+      "Success": "✓ Touch IDの準備完了"
+    },
+    "Languages": {
+      "Title": "書き言葉と話し言葉",
+      "Description": "以下の言語は、お住まいの地域で一般的に使用されています。Macをこれらの設定で使用するか、個別にカスタマイズできます。",
+      "Preferred": "優先する言語",
+      "InputSources": "入力ソース",
+      "Dictation": "音声入力",
+      "Customize": "設定をカスタマイズ"
+    },
+    "Accessibility": {
+      "Title": "アクセシビリティ",
+      "Description": "アクセシビリティ機能は、Macを個人のニーズに合わせます。今すぐ有効にして設定を完了したり、後でシステム設定でカスタマイズしたりできます。以下の各カテゴリで使用可能な機能をご覧ください。",
+      "Vision": "視覚",
+      "Motor": "身体機能",
+      "Hearing": "聴覚",
+      "Cognitive": "認知"
+    },
+    "Migration": {
+      "Title": "移行アシスタント",
+      "Description": "別のMacやWindows PCに情報がある場合は、このMacに転送できます。Time Machineバックアップや別の起動ディスクから情報を転送することもできます。",
+      "Question": "どのように情報を転送しますか？",
+      "FromMac": "Mac、Time Machineバックアップ、または起動ディスクから",
+      "FromPC": "Windows PCから"
+    },
+    "AppleID": {
+      "Title": "Apple IDでサインイン",
+      "Description": "iCloud、App Store、その他のAppleサービスを使用するにはサインインしてください。",
+      "Label": "Apple ID",
+      "CreateNew": "新規Apple IDを作成",
+      "Forgot": "Apple IDまたはパスワードをお忘れですか？",
+      "UseDifferent": "iCloudとメディア購入に異なるApple IDを使用しますか？",
+      "Info": "このMacはApple IDに関連付けられ、写真、連絡先、書類などのデータはiCloudに保存されるため、他のデバイスからアクセスできます。",
+      "SeeData": "データ管理方法を見る",
+      "SetupLater": "あとで設定",
+      "ErrorRequired": "Apple IDを入力してください。"
+    },
+    "Account": {
+      "Title": "コンピュータアカウントを作成",
+      "CreateAppleID": "Apple IDを作成",
+      "Description": "コンピュータを設定するために、名前とアカウントの詳細を入力してください。",
+      "Name": "フルネーム",
+      "Email": "メールアドレス",
+      "Age": "年齢",
+      "Phone": "携帯電話番号",
+      "Password": "パスワード",
+      "Errors": {
+        "NameRequired": "フルネームが必要です。",
+        "EmailRequired": "メールアドレスが必要です。",
+        "EmailInvalid": "有効なメールアドレスを入力してください。",
+        "AgeRequired": "年齢が必要です。",
+        "AgeInvalid": "有効な年齢を入力してください。",
+        "PhoneRequired": "電話番号が必要です。",
+        "PasswordRequired": "パスワードが必要です。",
+        "PasswordLength": "パスワードは6文字以上である必要があります。"
+      }
+    },
+    "Theme": {
+      "Title": "外観モードを選択",
+      "Description": "ライトまたはダークモードを選択してください。システムとアプリは自動的に適応します。",
+      "Light": "ライト",
+      "Dark": "ダーク"
+    }
+  },
+  "SystemSettings": {
+    "General": {
+      "Title": "一般",
+      "Description": "ソフトウェアアップデート、デバイスの言語、AirDropなど、Macの全体的な設定と環境設定を管理します。",
+      "About": "情報",
+      "SoftwareUpdate": "ソフトウェアアップデート",
+      "Storage": "ストレージ",
+      "AppleCare": "AppleCareと保証",
+      "AirDrop": "AirDropとHandoff",
+      "AutoFill": "自動入力とパスワード",
+      "DateTime": "日付と時刻",
+      "LanguageRegion": "言語と地域",
+      "LoginItems": "ログイン項目",
+      "Sharing": "共有",
+      "StartupDisk": "起動ディスク",
+      "TimeMachine": "Time Machine",
+      "DeviceManagement": "デバイス管理",
+      "TransferReset": "転送またはリセット"
+    },
+    "AppleAccount": {
+      "Edit": "編集",
+      "PersonalInformation": "個人情報",
+      "SignInSecurity": "サインインとセキュリティ",
+      "PaymentShipping": "支払いと配送先",
+      "iCloud": "iCloud",
+      "MediaPurchases": "メディアと購入",
+      "Family": "ファミリー",
+      "SetUp": "設定",
+      "Devices": "デバイス",
+      "ThisMac": "このMacBook Pro 14インチ",
+      "SignOut": "サインアウト..."
+    },
+    "LanguageRegion": {
+      "Title": "言語と地域",
+      "PreferredLanguages": "優先する言語",
+      "Region": "地域",
+      "Calendar": "暦法",
+      "Temperature": "温度",
+      "Celsius": "摂氏 (°C)",
+      "Fahrenheit": "華氏 (°F)",
+      "MeasurementSystem": "単位系",
+      "Metric": "メートル法",
+      "US": "US",
+      "UK": "UK",
+      "FirstDayOfWeek": "週の始まりの曜日",
+      "DateFormat": "日付の形式",
+      "NumberFormat": "数字の形式",
+      "LiveText": "テキスト認識表示",
+      "LiveTextDesc": "画像内のテキストを選択してコピーまたはアクションを実行します。",
+      "Applications": "アプリケーション",
+      "ApplicationsDesc": "以下のアプリケーションの言語設定をカスタマイズ:",
+      "TranslationLanguages": "翻訳言語..."
+    },
+    "Sidebar": {
+      "Search": "検索",
+      "NotImplemented": "このセクションはまだ実装されていません。",
+      "AppleAccount": "Appleアカウント",
+      "WiFi": "Wi-Fi",
+      "Bluetooth": "Bluetooth",
+      "Network": "ネットワーク",
+      "General": "一般",
+      "Appearance": "外観",
+      "Accessibility": "アクセシビリティ",
+      "MenuBar": "コントロールセンター",
+      "DesktopDock": "デスクトップとDock",
+      "Displays": "ディスプレイ",
+      "Spotlight": "Spotlight",
+      "Wallpaper": "壁紙",
+      "ScreenSaver": "スクリーンセーバ",
+      "Battery": "バッテリー",
+      "Sound": "サウンド",
+      "Notifications": "通知",
+      "Focus": "集中モード",
+      "ScreenTime": "スクリーンタイム",
+      "PrivacySecurity": "プライバシーとセキュリティ",
+      "LockScreen": "ロック画面",
+      "TouchIDPassword": "Touch IDとパスワード",
+      "UsersGroups": "ユーザとグループ",
+      "Keyboard": "キーボード",
+      "Trackpad": "トラックパッド",
+      "PrintersScanners": "プリンタとスキャナ",
+      "Storage": "ストレージ"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "Description": "Wi-Fiを設定してMacをワイヤレスでインターネットに接続します。",
+      "Connected": "接続済み",
+      "Details": "詳細...",
+      "KnownNetworks": "既知のネットワーク",
+      "OtherNetworks": "その他のネットワーク",
+      "Connect": "接続",
+      "Other": "その他...",
+      "AskToJoin": "ネットワークへの接続を確認",
+      "AskToJoinDesc": "既知のネットワークには自動的に接続されます。",
+      "Notify": "通知",
+      "AskToJoinHotspots": "ホットスポットへの接続を確認",
+      "AskToJoinHotspotsDesc": "個人のホットスポットへの自動接続を許可します。",
+      "AskToJoinAction": "確認",
+      "Advanced": "詳細..."
+    },
+    "Bluetooth": {
+      "Title": "Bluetooth",
+      "Description": "ヘッドフォン、マウス、キーボードなどのワイヤレスアクセサリを接続します。",
+      "Discoverable": "Bluetooth設定を開いている間は\"MacBook Pro\"として検出可能です。",
+      "MyDevices": "自分のデバイス",
+      "NotConnected": "未接続",
+      "NearbyDevices": "近くのデバイス",
+      "Searching": "検索中..."
+    },
+    "Network": {
+      "Title": "ネットワーク",
+      "WiFi": "Wi-Fi",
+      "Connected": "接続済み",
+      "Firewall": "ファイアウォール",
+      "Inactive": "無効",
+      "OtherServices": "その他のサービス",
+      "NotConnected": "未接続"
+    },
+    "Appearance": {
+      "Title": "外観",
+      "Description": "お好みの外観を選択してください。",
+      "Light": "ライト",
+      "Dark": "ダーク",
+      "Auto": "自動",
+      "AccentColor": "アクセントカラー",
+      "HighlightColor": "強調表示色",
+      "Automatic": "自動",
+      "SidebarIconSize": "サイドバーのアイコンサイズ",
+      "Medium": "中",
+      "WallpaperTinting": "ウインドウでの壁紙の色合い調整を許可",
+      "ShowScrollBars": "スクロールバーを表示",
+      "ScrollAuto": "マウスまたはトラックパッドに基づいて自動的に表示",
+      "ScrollWhenScrolling": "スクロール時に表示",
+      "ScrollAlways": "常に表示",
+      "ClickScrollBar": "スクロールバーのクリック時",
+      "JumpNextPage": "次のページに移動",
+      "JumpSpotClicked": "クリックした場所に移動"
+    },
+    "Accessibility": {
+      "Title": "アクセシビリティ",
+      "Description": "視覚、聴覚、身体機能のニーズに合わせてMacをカスタマイズします。",
+      "LearnMore": "詳しい情報...",
+      "Vision": "視覚",
+      "VoiceOver": "VoiceOver",
+      "Zoom": "ズーム機能",
+      "HoverText": "ホバーテキスト",
+      "Display": "ディスプレイ",
+      "Motion": "動作",
+      "ReadSpeak": "読み上げコンテンツ",
+      "AudioDescriptions": "音声解説",
+      "Hearing": "聴覚",
+      "HearingDevices": "ヒアリングデバイス",
+      "Audio": "オーディオ",
+      "Captions": "キャプション",
+      "LiveCaptions": "ライブキャプション",
+      "NameRecognition": "名前の認識",
+      "Motor": "身体機能",
+      "VoiceControl": "音声コントロール",
+      "Keyboard": "キーボード",
+      "PointerControl": "ポインタコントロール",
+      "SwitchControl": "スイッチコントロール",
+      "General": "一般",
+      "Siri": "Siri",
+      "Shortcut": "ショートカット"
+    },
+    "MenuBar": {
+      "Title": "コントロールセンター",
+      "Description": "メニューバーの設定を変更します。",
+      "AutoHide": "メニューバーを自動的に非表示/表示",
+      "Never": "しない",
+      "RecentDocs": "最近使った書類、アプリケーション、サーバ",
+      "None": "なし",
+      "Controls": "コントロールセンターモジュール",
+      "ControlCenter": "コントロールセンター",
+      "ShowInMenuBar": "メニューバーに表示",
+      "DontShowInMenuBar": "メニューバーに表示しない",
+      "Siri": "Siri",
+      "Spotlight": "Spotlight",
+      "VolumeFeedback": "音量を変更するときにフィードバックを再生"
+    },
+    "DesktopDock": {
+      "Title": "デスクトップとDock",
+      "Description": "Dockとデスクトップの外観を変更します。",
+      "Dock": "Dock",
+      "Size": "サイズ",
+      "Magnification": "拡大",
+      "Small": "小",
+      "Large": "大",
+      "Position": "画面上の位置",
+      "Bottom": "下",
+      "MinimiseUsing": "ウインドウをしまうときのエフェクト",
+      "GenieEffect": "ジニーエフェクト",
+      "DoubleClickTitle": "ウインドウのタイトルバーをダブルクリックして",
+      "Zoom": "拡大/縮小",
+      "MinimiseToIcon": "ウインドウをアプリケーションアイコンにしまう",
+      "AutoHideDock": "Dockを自動的に非表示/表示",
+      "AnimateOpening": "起動中のアプリケーションをアニメーションで表示",
+      "ShowIndicators": "開いているアプリケーションのインジケータを表示",
+      "ShowRecent": "最近使ったアプリケーションをDockに表示",
+      "DesktopStageManager": "デスクトップとステージマネージャ",
+      "ShowItems": "項目を表示",
+      "OnDesktop": "デスクトップ上",
+      "ClickWallpaper": "壁紙をクリックしてデスクトップを表示",
+      "Always": "常に表示",
+      "StageManager": "ステージマネージャ",
+      "Widgets": "ウィジェット",
+      "ShowWidgets": "ウィジェットを表示",
+      "WidgetStyle": "ウィジェットのスタイル",
+      "Automatic": "自動",
+      "UseIPhoneWidgets": "iPhoneのウィジェットを使用"
+    },
+    "Displays": {
+      "Title": "ディスプレイ",
+      "Description": "設定を変更するディスプレイを選択します。",
+      "BuiltInDisplay": "内蔵ディスプレイ",
+      "UseAs": "使用形態",
+      "MainDisplay": "メインディスプレイ",
+      "Resolution": "解像度",
+      "Default": "デフォルト",
+      "MoreSpace": "スペースを拡大",
+      "LargerText": "文字を拡大",
+      "Brightness": "輝度",
+      "TrueTone": "True Tone",
+      "Preset": "プリセット",
+      "RefreshRate": "リフレッシュレート",
+      "ProMotion": "ProMotion",
+      "Advanced": "詳細..."
+    },
+    "Spotlight": {
+      "Title": "Spotlight",
+      "Description": "Mac内を検索します。",
+      "SearchPlaceholder": "Spotlight検索",
+      "SearchResults": "検索結果",
+      "Privacy": "Spotlightのプライバシー...",
+      "Categories": {
+        "Applications": "アプリケーション",
+        "Calculator": "計算機",
+        "Contacts": "連絡先",
+        "Conversion": "変換",
+        "Definition": "定義",
+        "Developer": "デベロッパ",
+        "Documents": "書類",
+        "Events & Reminders": "イベントとリマインダー",
+        "Folders": "フォルダ",
+        "Fonts": "フォント",
+        "Images": "画像",
+        "Mail & Messages": "メールとメッセージ",
+        "Movies": "ムービー",
+        "Music": "ミュージック",
+        "Other": "その他",
+        "PDF Documents": "PDF書類",
+        "Presentations": "プレゼンテーション",
+        "Siri Suggestions": "Siriからの提案",
+        "Spreadsheets": "スプレッドシート",
+        "System Preferences": "システム環境設定",
+        "Tips": "ヒント",
+        "Bookmarks & History": "ブックマークと履歴"
+      }
+    },
+    "Notifications": {
+      "Title": "通知",
+      "Description": "通知の表示方法を制御します。",
+      "Preview": "プレビュー表示",
+      "ShowPreviews": "プレビューを表示",
+      "Always": "常に表示",
+      "ApplicationNotifications": "アプリケーションの通知",
+      "Apps": {
+        "AppStore": "App Store",
+        "Calendar": "カレンダー",
+        "FaceTime": "FaceTime",
+        "Mail": "メール",
+        "Messages": "メッセージ",
+        "Photos": "写真",
+        "Reminders": "リマインダー",
+        "Safari": "Safari"
+      }
+    },
+    "Sound": {
+      "Title": "サウンド",
+      "Description": "サウンド設定を変更します。",
+      "OutputInput": "出力と入力",
+      "Output": "出力",
+      "Input": "入力",
+      "SelectOutput": "サウンドを出力する装置を選択:",
+      "Speakers": "MacBook Proのスピーカー",
+      "BuiltIn": "内蔵",
+      "OutputVolume": "出力音量",
+      "Mute": "消音",
+      "ShowInMenuBar": "サウンドをメニューバーに表示",
+      "Always": "常に表示",
+      "AlertSoundGroup": "警告音",
+      "AlertSound": "警告音",
+      "Boop": "Boop",
+      "AlertVolume": "警告音の音量",
+      "PlayUIEffects": "ユーザインターフェイスのサウンドエフェクトを再生"
+    },
+    "Focus": {
+      "Title": "集中モード",
+      "Description": "集中モードを選択して設定をカスタマイズします。",
+      "DoNotDisturb": "おやすみモード",
+      "ShareAcrossDevices": "デバイス間で共有",
+      "FocusStatus": "集中モード状況",
+      "On": "オン",
+      "Off": "オフ",
+      "SetUp": "設定",
+      "FocusModes": "集中モード",
+      "Personal": "パーソナル",
+      "Sleep": "睡眠",
+      "Work": "仕事",
+      "AddFocus": "集中モードを追加"
+    },
+    "ScreenTime": {
+      "Title": "スクリーンタイム",
+      "Description": "使用状況を監視し、制限を設定します。",
+      "DailyAverage": "1日あたり平均",
+      "FromLastWeek": "先週から",
+      "Downtime": "休止時間",
+      "AppLimits": "App使用時間の制限",
+      "LimitsCount": "{count}個の制限",
+      "AlwaysAllowed": "常に許可",
+      "AllowedApps": "電話、マップ、メッセージ",
+      "ContentPrivacy": "コンテンツとプライバシー",
+      "On": "オン",
+      "Off": "オフ",
+      "ShareAcrossDevices": "デバイス間で共有",
+      "LockSettings": "スクリーンタイム設定をロック"
+    },
+    "Battery": {
+      "Title": "バッテリー",
+      "Description": "バッテリーの状態と使用状況を確認します。",
+      "BatteryLevel": "バッテリー残量",
+      "LastCharged": "最後に100%まで充電されたのは本日8:00です",
+      "LowPowerMode": "低電力モード",
+      "Never": "しない",
+      "BatteryHealth": "バッテリーの状態",
+      "Normal": "正常",
+      "OptimisedCharging": "バッテリー充電の最適化",
+      "Options": "オプション..."
+    },
+    "Keyboard": {
+      "Title": "キーボード",
+      "Description": "キーボードの設定を変更します。",
+      "KeyRepeat": "キーのリピート",
+      "Slow": "遅い",
+      "Fast": "速い",
+      "DelayUntilRepeat": "リピート入力認識までの時間",
+      "Long": "長い",
+      "Short": "短い",
+      "AdjustBrightness": "環境光が暗い場合にキーボードの輝度を調整",
+      "KeyboardNavigation": "キーボードナビゲーション",
+      "Shortcuts": "キーボードショートカット...",
+      "TextInput": "テキスト入力",
+      "InputSources": "入力ソース",
+      "Edit": "編集...",
+      "Dictation": "音声入力"
+    },
+    "LockScreen": {
+      "Title": "ロック画面",
+      "Description": "ロック画面の設定を変更します。",
+      "TurnOffDisplayBattery": "バッテリー使用時、ディスプレイがオフのときは使用しない",
+      "TurnOffDisplayAdapter": "電源アダプタ使用時、ディスプレイがオフのときは使用しない",
+      "TwoMinutes": "2分",
+      "TenMinutes": "10分",
+      "RequirePassword": "スクリーンセーバ開始後またはディスプレイオフ後にパスワードを要求",
+      "Immediately": "すぐに",
+      "ShowMessage": "ロック時にメッセージを表示",
+      "Set": "設定...",
+      "LoginWindowShows": "ログインウインドウに表示する項目",
+      "ListOfUsers": "ユーザのリスト",
+      "ShowLargeClock": "大きな時計を表示",
+      "OnLockScreen": "ロック画面"
+    },
+    "PrivacySecurity": {
+      "Title": "プライバシーとセキュリティ",
+      "Description": "情報へのアクセスを許可するアプリケーションを制御します。",
+      "Privacy": "プライバシー",
+      "LocationServices": "位置情報サービス",
+      "On": "オン",
+      "Off": "オフ",
+      "Camera": "カメラ",
+      "Microphone": "マイク",
+      "FilesFolders": "ファイルとフォルダ",
+      "ScreenRecording": "画面収録",
+      "AppsCount": "{count, plural, =0 {0個のアプリケーション} other {#個のアプリケーション}}",
+      "Security": "セキュリティ",
+      "FileVault": "FileVault",
+      "LockdownMode": "ロックダウンモード",
+      "Others": "その他",
+      "Extensions": "機能拡張",
+      "Profiles": "プロファイル"
+    },
+    "PrintersScanners": {
+      "Title": "プリンタとスキャナ",
+      "Description": "プリンタとスキャナを設定します。",
+      "Printers": "プリンタ",
+      "IdleLastUsed": "アイドル状態、最終使用",
+      "Offline": "オフライン",
+      "AddPrinter": "プリンタ、スキャナ、またはFAXを追加..."
+    },
+    "ScreenSaver": {
+      "Title": "スクリーンセーバ",
+      "Description": "スクリーンセーバを選択します。",
+      "Preview": "プレビュー",
+      "ShowOnAllSpaces": "すべての操作スペースで表示",
+      "ScreenSavers": "スクリーンセーバ",
+      "StartAfter": "開始までの時間",
+      "FiveMinutes": "5分",
+      "ShowWithClock": "時計と一緒に表示",
+      "ScreensaverNames": {
+        "Ventura": "Ventura",
+        "Monterey": "Monterey",
+        "BigSur": "Big Sur",
+        "Catalina": "Catalina",
+        "Hello": "ハロー",
+        "Drift": "ドリフト",
+        "Flurry": "フラリー",
+        "Shell": "シェル"
+      }
+    },
+    "Storage": {
+      "Title": "ストレージ",
+      "Description": "ドライブとデータを管理します。",
+      "MacintoshHD": "Macintosh HD",
+      "AvailableSpace": "{total} GB中{available} GB空き",
+      "Apps": "アプリケーション",
+      "Documents": "書類",
+      "SystemData": "システムデータ",
+      "macOS": "macOS",
+      "OtherUsers": "その他のユーザ",
+      "Recommendations": "おすすめ",
+      "StoreInICloud": "iCloudに保存",
+      "StoreInICloudDesc": "すべてのファイル、写真、メッセージをiCloudに保存して、このMacのスペースを節約します。",
+      "StoreInICloudButton": "iCloudに保存...",
+      "Categories": "カテゴリ",
+      "Applications": "アプリケーション"
+    },
+    "TouchIDPassword": {
+      "Title": "Touch IDとパスワード",
+      "Description": "Macのロック解除に使用する指紋を追加します。",
+      "TouchID": "Touch ID",
+      "Finger1": "指紋1",
+      "AddFingerprint": "指紋を追加",
+      "UseTouchIDFor": "Touch IDを使用",
+      "UnlockingMac": "Macのロック解除",
+      "ApplePay": "Apple Pay",
+      "iTunesAppStore": "iTunes StoreとApp Store",
+      "AutoFillPasswords": "パスワードの自動入力",
+      "Password": "パスワード",
+      "LastChanged": "最終変更日: 2024/11/24",
+      "Change": "変更...",
+      "RequirePasswordScreenSaver": "スクリーンセーバ開始後またはディスプレイオフ後にパスワードを要求",
+      "Immediately": "すぐに",
+      "RequirePasswordIdle": "コンピュータがアイドル状態の後にパスワードを要求",
+      "Never": "しない",
+      "Seconds": "{count}秒",
+      "Minute": "{count}分",
+      "Minutes": "{count}分",
+      "AppleWatch": "Apple Watch",
+      "AppleWatchUnlock": "Apple Watchを使ってアプリケーションとMacのロックを解除"
+    },
+    "Trackpad": {
+      "Title": "トラックパッド",
+      "Description": "トラックパッドの設定を変更します。",
+      "PointClick": "ポイントとクリック",
+      "ScrollZoom": "スクロールとズーム",
+      "MoreGestures": "その他のジェスチャ",
+      "TrackingSpeed": "軌跡の速さ",
+      "Slow": "遅い",
+      "Fast": "速い",
+      "Click": "クリック",
+      "Medium": "中",
+      "ForceClick": "強めのクリックと触覚フィードバック",
+      "LookUp": "調べる＆データ検出",
+      "SecondaryClick": "副ボタンのクリック",
+      "ClickTwoFingers": "2本指でクリックまたはタップ",
+      "TapToClick": "タップでクリック",
+      "VideoPreview": "ビデオプレビュー"
+    },
+    "UsersGroups": {
+      "Title": "ユーザとグループ",
+      "Description": "ユーザアカウントとグループを管理します。",
+      "CurrentUser": "現在のユーザ",
+      "Admin": "管理者",
+      "OtherUsers": "その他のユーザ",
+      "GuestUser": "ゲストユーザ",
+      "Off": "オフ",
+      "AddAccount": "アカウントを追加...",
+      "AutoLogin": "自動ログイン",
+      "AllowNetworkUsers": "ネットワークユーザにログインウインドウでのログインを許可"
+    },
+    "Wallpaper": {
+      "Title": "壁紙",
+      "Description": "デスクトップの背景画像を選択します。",
+      "ShowOnAllSpaces": "すべての操作スペースで表示",
+      "DynamicWallpapers": "ダイナミック壁紙",
+      "Pictures": "写真",
+      "AddPhoto": "写真を追加"
+    },
+    "LanguageSelector": {
+      "Title": "追加する優先言語を選択",
+      "Search": "検索",
+      "Cancel": "キャンセル",
+      "Add": "追加"
+    }
+  },
+  "Languages": {
+    "English": "英語",
+    "Spanish": "スペイン語",
+    "French": "フランス語",
+    "German": "ドイツ語",
+    "Italian": "イタリア語",
+    "Japanese": "日本語",
+    "Chinese": "中国語",
+    "Portuguese": "ポルトガル語",
+    "Russian": "ロシア語",
+    "Korean": "韓国語",
+    "Dutch": "オランダ語",
+    "Swedish": "スウェーデン語",
+    "Danish": "デンマーク語",
+    "Norwegian": "ノルウェー語",
+    "Finnish": "フィンランド語",
+    "Polish": "ポーランド語",
+    "Turkish": "トルコ語",
+    "Arabic": "アラビア語",
+    "Hindi": "ヒンディー語",
+    "Bengali": "ベンガル語",
+    "Vietnamese": "ベトナム語",
+    "Thai": "タイ語",
+    "Greek": "ギリシャ語",
+    "Czech": "チェコ語",
+    "Hungarian": "ハンガリー語",
+    "Romanian": "ルーマニア語",
+    "Ukrainian": "ウクライナ語",
+    "Indonesian": "インドネシア語",
+    "Malay": "マレー語",
+    "Croatian": "クロアチア語",
+    "Slovak": "スロバキア語",
+    "Slovenian": "スロベニア語",
+    "Bulgarian": "ブルガリア語",
+    "Serbian": "セルビア語",
+    "Hebrew": "ヘブライ語"
+  },
+  "Finder": {
+    "Search": "検索",
+    "Sidebar": {
+      "Favorites": "よく使う項目",
+      "Locations": "場所",
+      "AirDrop": "AirDrop",
+      "Recents": "最近の項目",
+      "Applications": "アプリケーション",
+      "Desktop": "デスクトップ",
+      "Documents": "書類",
+      "Downloads": "ダウンロード",
+      "Pictures": "ピクチャ",
+      "Home": "ホーム",
+      "MacintoshHD": "Macintosh HD",
+      "iCloudDrive": "iCloud Drive"
+    },
+    "Menu": {
+      "NewFolder": "新規フォルダ",
+      "GetInfo": "情報を見る",
+      "ChangeBackground": "背景を変更...",
+      "Open": "開く",
+      "MoveToBin": "ゴミ箱に入れる",
+      "Rename": "名前を変更",
+      "OpenItems": "{count}項目を開く",
+      "MoveItemsToBin": "{count}項目をゴミ箱に入れる"
+    },
+    "Status": {
+      "Loading": "読み込み中...",
+      "EmptyFolder": "空のフォルダ",
+      "ItemCount": "{count, plural, =1 {1項目} other {#項目}}",
+      "SpaceAvailable": "{amount} GB空き"
+    },
+    "Errors": {
+      "NoApp": "ファイル .{ext} を開くアプリケーションがありません。",
+      "CreateFolderFailed": "フォルダの作成に失敗しました",
+      "MoveToBinFailed": "ゴミ箱への移動に失敗しました"
+    }
+  },
+  "Safari": {
+    "Title": "Safari",
+    "StartPage": "スタートページ",
+    "Loading": "読み込み中...",
+    "SearchPlaceholder": "検索またはWebサイト名を入力",
+    "NoInternet": "インターネットに接続されていません",
+    "NoInternetDesc": "コンピュータがオフラインのため、このページは表示できません。",
+    "Favorites": {
+      "Apple": "Apple",
+      "Google": "Google",
+      "Wikipedia": "Wikipedia",
+      "GitHub": "GitHub"
+    }
+  },
+  "Mail": {
+    "Inbox": "受信トレイ",
+    "MessagesCount": "{count, plural, =1 {1件のメッセージ} other {#件のメッセージ}}",
+    "Favorites": "よく使う項目",
+    "AllInboxes": "すべての受信トレイ",
+    "VIP": "VIP",
+    "Sent": "送信済み",
+    "Search": "検索",
+    "NoMessageSelected": "メッセージが選択されていません",
+    "To": "宛先: {name}"
+  },
+  "Messages": {
+    "AppTitle": "メッセージ",
+    "SigningIn": "{name}としてサインイン中...",
+    "SidebarTitle": "メッセージ",
+    "NoOnlineUsers": "オンラインのユーザはいません。",
+    "NoMessages": "メッセージなし",
+    "To": "宛先: {name}",
+    "InputPlaceholder": "iMessage",
+    "NoContactSelected": "メッセージを送信する連絡先を選択してください"
+  },
+  "Photos": {
+    "Sidebar": {
+      "Library": "ライブラリ",
+      "Collections": "コレクション",
+      "Pinned": "ピン留め",
+      "Albums": "アルバム",
+      "Utilities": "その他",
+      "Projects": "プロジェクト",
+      "Favourites": "お気に入り",
+      "RecentlySaved": "最近保存した項目",
+      "Videos": "ビデオ",
+      "Screenshots": "スクリーンショット",
+      "PeoplePets": "ピープルとペット",
+      "SharedAlbums": "共有アルバム",
+      "Activity": "アクティビティ",
+      "RecentlyDeleted": "最近削除した項目",
+      "Duplicates": "重複項目",
+      "Map": "マップ",
+      "AllProjects": "すべてのプロジェクト"
+    },
+    "Tabs": {
+      "Years": "年別",
+      "Months": "月別",
+      "AllPhotos": "すべての写真"
+    },
+    "Search": "検索",
+    "Collections": {
+      "Title": "コレクション",
+      "Memories": "メモリー",
+      "NoMemories": "メモリーなし",
+      "NoMemoriesDesc": "メモリーは利用可能になるとここに表示されます。",
+      "Albums": "アルバム",
+      "NoAlbums": "アルバムなし"
+    },
+    "EmptyState": {
+      "NoItems": "{title}に項目はありません"
+    },
+    "Locked": {
+      "Title": "{title}はロックされています",
+      "Desc": "表示するには認証してください。"
+    }
+  },
+  "Notes": {
+    "Sidebar": {
+      "iCloud": "iCloud",
+      "Notes": "メモ",
+      "RecentlyDeleted": "最近削除した項目"
+    },
+    "Search": "検索",
+    "NewNote": "新規メモ",
+    "NoAdditionalText": "追加のテキストなし",
+    "Editor": {
+      "TitlePlaceholder": "タイトル",
+      "ContentPlaceholder": "ここにメモを入力...",
+      "AddToDesktop": "デスクトップに追加",
+      "Restore": "復元",
+      "Delete": "メモを削除",
+      "DeletePermanently": "完全に削除",
+      "EmptyState": "メモを選択または作成",
+      "Date": "今日 {time}"
+    }
+  },
+  "Reminders": {
+    "Search": "検索",
+    "Sidebar": {
+      "MyLists": "マイリスト",
+      "Reminders": "リマインダー",
+      "Work": "仕事",
+      "Today": "今日",
+      "Scheduled": "日時指定あり",
+      "All": "すべて",
+      "Flagged": "フラグ付き"
+    },
+    "AddReminder": "新規リマインダー",
+    "Actions": {
+      "Add": "追加",
+      "Cancel": "キャンセル",
+      "Delete": "リマインダーを削除",
+      "MarkComplete": "実行済みにする",
+      "MarkIncomplete": "未実行にする",
+      "Flag": "フラグ",
+      "Unflag": "フラグを外す"
+    },
+    "Inputs": {
+      "Title": "タイトル",
+      "Notes": "メモ",
+      "Date": "日付",
+      "Time": "時刻",
+      "Tags": "タグ"
+    },
+    "EmptyState": {
+      "NoReminders": "リマインダーなし",
+      "CreateOne": "作成する"
+    }
+  },
+  "Calendar": {
+    "Search": "検索",
+    "Today": "今日",
+    "Day": "日",
+    "Week": "週",
+    "Month": "月",
+    "Year": "年",
+    "AddEvent": "新規イベント",
+    "NoEvents": "イベントなし",
+    "NewEvent": "新規イベント",
+    "TitlePlaceholder": "イベント名",
+    "Location": "場所",
+    "AllDay": "終日",
+    "From": "開始",
+    "To": "終了",
+    "Repeat": "繰り返し",
+    "Never": "しない",
+    "Daily": "毎日",
+    "Weekly": "毎週",
+    "Monthly": "毎月",
+    "Yearly": "毎年",
+    "Alert": "通知",
+    "AtTime": "イベントの時刻",
+    "5MinBefore": "5分前",
+    "10MinBefore": "10分前",
+    "15MinBefore": "15分前",
+    "30MinBefore": "30分前",
+    "1HourBefore": "1時間前",
+    "2HoursBefore": "2時間前",
+    "1DayBefore": "1日前",
+    "2DaysBefore": "2日前",
+    "Notes": "メモ",
+    "DeleteEvent": "イベントを削除",
+    "ShortDays": {
+      "Sun": "日",
+      "Mon": "月",
+      "Tue": "火",
+      "Wed": "水",
+      "Thu": "木",
+      "Fri": "金",
+      "Sat": "土"
+    },
+    "Months": {
+      "January": "1月",
+      "February": "2月",
+      "March": "3月",
+      "April": "4月",
+      "May": "5月",
+      "June": "6月",
+      "July": "7月",
+      "August": "8月",
+      "September": "9月",
+      "October": "10月",
+      "November": "11月",
+      "December": "12月"
+    },
+    "Sidebar": {
+      "iCloud": "ICLOUD",
+      "Other": "OTHER",
+      "NoInvitations": "No invitations"
+    },
+    "Toolbar": {
+      "Today": "Today",
+      "SearchPlaceholder": "Search events...",
+      "View": {
+        "day": "day",
+        "week": "week",
+        "month": "month",
+        "year": "year"
+      }
+    },
+    "EventModal": {
+      "Title": "New Event",
+      "EventTitlePlaceholder": "Event Title",
+      "CalendarLabel": "Calendar",
+      "Cancel": "Cancel",
+      "AddEvent": "Add Event"
+    },
+    "SearchResults": {
+      "Title": "Search Results",
+      "NoEvents": "No events found"
+    },
+    "Event": {
+      "NoLocation": "No location",
+      "EventLabel": "Event: {title} at {location}"
+    },
+    "Weekdays": {
+      "Sun": "Sun",
+      "Mon": "Mon",
+      "Tue": "Tue",
+      "Wed": "Wed",
+      "Thu": "Thu",
+      "Fri": "Fri",
+      "Sat": "Sat"
+    },
+    "WeekdaysShort": {
+      "Sun": "S",
+      "Mon": "M",
+      "Tue": "T",
+      "Wed": "W",
+      "Thu": "T",
+      "Fri": "F",
+      "Sat": "S"
+    }
+  },
+  "Maps": {
+    "Search": "検索",
+    "SearchPlaceholder": "場所または住所を検索",
+    "Directions": "経路",
+    "From": "出発",
+    "To": "到着",
+    "Transport": {
+      "Drive": "車",
+      "Walk": "徒歩",
+      "Transit": "交通機関",
+      "Cycle": "自転車"
+    },
+    "LocateMe": "現在地",
+    "ZoomIn": "拡大",
+    "ZoomOut": "縮小",
+    "MapType": {
+      "Standard": "標準",
+      "Hybrid": "ハイブリッド",
+      "Satellite": "航空写真"
+    },
+    "Sidebar": {
+      "Favorites": "FAVORITES",
+      "Recent": "RECENT",
+      "NoRecentSearches": "No recent searches",
+      "RecentLabel": "Recent"
+    },
+    "Locations": {
+      "Home": "Home",
+      "Work": "Work"
+    },
+    "Controls": {
+      "SwitchToSatellite": "Switch to Satellite",
+      "SwitchToSatelliteLabel": "Switch to Satellite view",
+      "SwitchToMap": "Switch to Map",
+      "SwitchToMapLabel": "Switch to Map view",
+      "CurrentLocation": "Current Location",
+      "ShowCurrentLocation": "Show current location",
+      "MapInfo": "Map information"
+    },
+    "Permission": {
+      "AppName": "Maps",
+      "Title": "Location",
+      "Reason": "Maps needs access to your location to show where you are.",
+      "Error": "Could not get your location. Please ensure location services are enabled.",
+      "NotSupported": "Geolocation is not supported by your browser."
+    }
+  },
+  "FaceTime": {
+    "AppName": "FaceTime",
+    "NewFaceTime": "新規FaceTime",
+    "CreateLink": "リンクを作成",
+    "EnterNameOrEmail": "名前、メール、または番号を入力",
+    "Suggested": "提案",
+    "NoRecents": "履歴なし",
+    "FaceTimeVideo": "FaceTimeビデオ",
+    "FaceTimeAudio": "FaceTimeオーディオ",
+    "JoinCall": "参加",
+    "Waiting": "待機中...",
+    "Connected": "接続済み",
+    "Reconnecting": "再接続中...",
+    "CallEnded": "通話終了",
+    "Mute": "消音",
+    "Unmute": "消音解除",
+    "VideoOff": "ビデオオフ",
+    "VideoOn": "ビデオオン",
+    "End": "終了",
+    "FullScreen": "フルスクリーン",
+    "ExitFullScreen": "フルスクリーン解除",
+    "Effects": "エフェクト",
+    "ShareScreen": "画面共有",
+    "Connecting": "接続中...",
+    "Unavailable": "利用不可",
+    "Title": "FaceTime",
+    "ConnectingAs": "Connecting as {name}...",
+    "IncomingCall": "{name} is calling...",
+    "Accept": "Accept",
+    "Decline": "Decline",
+    "Contacts": "Contacts",
+    "NoContacts": "No one else is online.",
+    "Video": "Video",
+    "SelectContact": "Select a contact to call",
+    "Aria": {
+      "RemoteVideo": "Remote video feed",
+      "LocalVideo": "Local video preview",
+      "EndCall": "End Call",
+      "CallContact": "Call {name}",
+      "VideoCallContact": "Video call {name}",
+      "LocalPreview": "Local camera preview"
+    },
+    "Permission": {
+      "AppName": "FaceTime",
+      "Title": "Camera and Microphone",
+      "Reason": "FaceTime needs access to your camera and microphone to make calls."
+    }
+  },
+  "Contacts": {
+    "Search": "検索",
+    "AllContacts": "すべての連絡先",
+    "MyCard": "自分のカード",
+    "AddContact": "連絡先を追加",
+    "Edit": "編集",
+    "Done": "完了",
+    "FirstName": "名",
+    "LastName": "姓",
+    "Company": "会社",
+    "Phone": "電話",
+    "Email": "メール",
+    "Notes": "メモ",
+    "Message": "メッセージ",
+    "Call": "発信",
+    "Video": "ビデオ",
+    "Mail": "メール",
+    "Pay": "Pay",
+    "NoContacts": "連絡先なし",
+    "DeleteContact": "連絡先を削除",
+    "SearchPlaceholder": "Search",
+    "SearchAria": "Search contacts",
+    "Count": "{count} Contacts",
+    "EditContact": "Edit Contact",
+    "NewContact": "New Contact",
+    "Preview": "Preview",
+    "Cancel": "Cancel",
+    "NoNotes": "No notes",
+    "NoSelection": "No Contact Selected",
+    "Labels": {
+      "FirstName": "First Name",
+      "LastName": "Last Name",
+      "Company": "Company",
+      "Phone": "Phone",
+      "Email": "Email",
+      "Notes": "Notes",
+      "Mobile": "mobile",
+      "Home": "home",
+      "Message": "message",
+      "Video": "video",
+      "Mail": "mail"
+    },
+    "Alerts": {
+      "DeleteConfirm": "Are you sure you want to delete this contact?",
+      "NameRequired": "Please enter a name or company."
+    },
+    "Aria": {
+      "AddContact": "Add new contact",
+      "Contact": "Contact: {name}",
+      "Action": "{action} {name}"
+    }
+  },
+  "Calculator": {
+    "Clear": "C",
+    "AllClear": "AC",
+    "Negate": "+/-",
+    "Percent": "%",
+    "Divide": "÷",
+    "Multiply": "×",
+    "Subtract": "-",
+    "Add": "+",
+    "Equals": "=",
+    "Decimal": ".",
+    "AC": "AC",
+    "ToggleSign": "Toggle sign",
+    "Percentage": "Percentage",
+    "Calculate": "Calculate result"
+  },
+  "Clock": {
+    "WorldClock": "世界時計",
+    "Alarm": "アラーム",
+    "Stopwatch": "ストップウォッチ",
+    "Timer": "タイマー",
+    "Add": "追加",
+    "Edit": "編集",
+    "Start": "開始",
+    "Stop": "停止",
+    "Reset": "リセット",
+    "Lap": "ラップ",
+    "Resume": "再開",
+    "Pause": "一時停止",
+    "Cancel": "キャンセル",
+    "Save": "保存",
+    "Label": "ラベル",
+    "Sound": "サウンド",
+    "Snooze": "スヌーズ",
+    "WhenTimerEnds": "タイマー終了時",
+    "StopPlaying": "再生停止",
+    "Tabs": {
+      "WorldClock": "World Clock",
+      "Alarms": "Alarms",
+      "Stopwatch": "Stopwatch",
+      "Timers": "Timers"
+    },
+    "AddClock": "Add clock",
+    "Locations": {
+      "NewDelhi": "New Delhi"
+    },
+    "Today": "Today",
+    "HRS": "HRS"
+  },
+  "Weather": {
+    "Loading": "読み込み中...",
+    "Error": "天気の読み込みに失敗しました",
+    "SearchPlaceholder": "都市を検索",
+    "MyLocation": "現在地",
+    "Humidity": "湿度",
+    "Wind": "風",
+    "Rain": "降水確率",
+    "FeelsLike": "体感",
+    "UVIndex": "UV指数",
+    "Pressure": "気圧",
+    "Visibility": "視程",
+    "Sunrise": "日の出",
+    "Sunset": "日の入り",
+    "Forecast": {
+      "Hourly": "Hourly Forecast",
+      "TenDay": "10-Day Forecast",
+      "Now": "Now",
+      "Today": "Today"
+    },
+    "Hourly": "1時間ごと",
+    "Daily": "日間予報",
+    "High": "最高",
+    "Low": "最低",
+    "Conditions": {
+      "Clear": "快晴",
+      "Cloudy": "曇り",
+      "Rain": "雨",
+      "Snow": "雪",
+      "Thunderstorm": "雷雨",
+      "Drizzle": "霧雨",
+      "Mist": "霧"
+    },
+    "Retry": "Retry",
+    "Searching": "Searching...",
+    "NoResults": "No results found",
+    "Recent": "Recent",
+    "Popular": "Popular",
+    "Sidebar": {
+      "Open": "Open sidebar",
+      "Close": "Close sidebar"
+    },
+    "Aria": {
+      "SelectLocation": "Select {name}, {country}"
+    },
+    "Details": {
+      "AirQuality": "Air Quality",
+      "UVIndex": "UV Index",
+      "Wind": "Wind",
+      "Sunset": "Sunset",
+      "Sunrise": "Sunrise:",
+      "FeelsLike": "Feels Like",
+      "Humidity": "Humidity",
+      "Visibility": "Visibility",
+      "Pressure": "Pressure",
+      "hPa": "hPa"
+    },
+    "Descriptions": {
+      "AirQualityDesc": "Air quality index is 130, similar to yesterday at about this time.",
+      "UVIndexDesc": "Use sun protection until 4PM.",
+      "FeelsLikeDesc": "Similar to the actual temperature.",
+      "DewPointDesc": "The dew point is {temp}° right now.",
+      "VisibilityDesc": "Perfectly clear view.",
+      "Footer": "Weather for {location} • Open-Meteo Data",
+      "PollutionLevel": "Moderately Polluted",
+      "UVLevel": "Moderate"
+    }
+  },
+  "Stocks": {
+    "Search": "検索",
+    "Watchlist": "ウォッチリスト",
+    "MarketOpen": "市場オープン",
+    "MarketClosed": "市場クローズ",
+    "PreMarket": "プレマーケット",
+    "AfterHours": "時間外取引",
+    "Loading": "読み込み中...",
+    "Error": "データの読み込みに失敗しました",
+    "AddSymbol": "シンボルを追加",
+    "Remove": "削除",
+    "Chart": "チャート",
+    "News": "ニュース",
+    "Summary": "概要",
+    "Open": "始値",
+    "High": "高値",
+    "Low": "安値",
+    "Vol": "出来高",
+    "PE": "PER",
+    "MktCap": "時価総額",
+    "52WHigh": "52週高値",
+    "52WLow": "52週安値",
+    "AvgVol": "平均出来高",
+    "Yield": "利回り",
+    "Beta": "ベータ値",
+    "EPS": "EPS",
+    "Title": "Stocks",
+    "Searching": "Searching...",
+    "KeyStatistics": "Key Statistics",
+    "BusinessNews": "Business News",
+    "ShowMore": "Show More",
+    "Aria": {
+      "Search": "Search stocks",
+      "Select": "Select stock {symbol}",
+      "ReadNews": "Read news: {title}"
+    },
+    "Stats": {
+      "Open": "Open",
+      "High": "High",
+      "Low": "Low",
+      "Vol": "Vol",
+      "PE": "P/E",
+      "MktCap": "Mkt Cap",
+      "52WH": "52W H",
+      "52WL": "52W L"
+    }
+  },
+  "Desktop": {
+    "ContextMenu": {
+      "NewFolder": "新規フォルダ",
+      "GetInfo": "情報を見る",
+      "ChangeDesktopBackground": "デスクトップの背景を変更...",
+      "UseStacks": "スタックを使用",
+      "SortBy": "表示順序",
+      "CleanUp": "整頓",
+      "CleanUpBy": "整頓順序",
+      "ShowViewOptions": "表示オプションを表示",
+      "ChangeWallpaper": "Change Wallpaper...",
+      "EditWidgets": "Edit Widgets...",
+      "Tags": "Tags",
+      "None": "None",
+      "SnapToGrid": "Snap to Grid",
+      "Name": "Name",
+      "Kind": "Kind",
+      "DateLastOpened": "Date Last Opened",
+      "DateAdded": "Date Added",
+      "DateModified": "Date Modified",
+      "DateCreated": "Date Created",
+      "Size": "Size"
+    },
+    "SortOptions": {
+      "Name": "名前",
+      "Kind": "種類",
+      "DateLastOpened": "最後に開いた日",
+      "DateAdded": "追加日",
+      "DateModified": "変更日",
+      "DateCreated": "作成日",
+      "Size": "サイズ",
+      "Tags": "タグ"
+    },
+    "Guest": "Guest",
+    "UntitledFolder": "untitled folder",
+    "NoAppAvailable": "No application available to open .{ext} files.",
+    "MoveToBin": {
+      "Failed": "Failed to move to bin",
+      "NotSupported": "Failed to move to bin. Folder moves not fully supported yet."
+    }
+  },
+  "ControlCenter": {
+    "Title": "コントロールセンター",
+    "WiFi": "Wi-Fi",
+    "Bluetooth": "Bluetooth",
+    "AirDrop": "AirDrop",
+    "DoNotDisturb": "おやすみモード",
+    "KeyboardBrightness": "キーボードの輝度",
+    "ScreenMirroring": "画面ミラーリング",
+    "Display": "ディスプレイ",
+    "Sound": "サウンド",
+    "Playing": "再生中",
+    "On": "オン",
+    "Off": "オフ",
+    "NotConnected": "未接続",
+    "Connect": "接続",
+    "HomeNetwork": "Home Network",
+    "ContactsOnly": "Contacts Only",
+    "NotPlaying": "Not Playing",
+    "Music": "Music"
+  },
+  "LockScreenApp": {
+    "EnterPassword": "パスワードを入力",
+    "ClickToUnlock": "クリックしてロック解除",
+    "TouchID": "Touch ID",
+    "Cancel": "キャンセル",
+    "SwitchUser": "ユーザを切り替え"
+  },
+  "NotificationCenter": {
+    "Title": "通知センター",
+    "NoNotifications": "通知なし",
+    "ClearAll": "すべて消去",
+    "Widgets": "Widgets",
+    "Done": "Done",
+    "Edit": "Edit",
+    "AddWidget": "Add Widget"
+  },
+  "Widgets": {
+    "AllWidgets": "すべてのウィジェット",
+    "Search": "検索",
+    "AddWidget": "ウィジェットを追加",
+    "Loading": "Loading...",
+    "Calendar": {
+      "Title": "Calendar"
+    },
+    "Weather": {
+      "Title": "Weather"
+    },
+    "Stocks": {
+      "Title": "Stocks"
+    },
+    "Reminders": {
+      "Title": "Reminders",
+      "NoReminders": "No reminders"
+    },
+    "Notes": {
+      "Title": "Notes",
+      "Content": "Buy milk, eggs, and bread.<br />Call mom at 5pm.<br />Meeting with team tomorrow."
+    }
+  },
+  "Window": {
+    "Minimize": "しまう",
+    "Maximize": "拡大/縮小",
+    "Close": "閉じる",
+    "Restore": "Restore",
+    "MoveTo": "Move Window to...",
+    "LeftSide": "Left Side of Screen",
+    "RightSide": "Right Side of Screen",
+    "EnterFullScreen": "Enter Full Screen"
+  },
+  "Dock": {
+    "Trash": "ゴミ箱",
+    "AriaLabel": "Application dock"
+  },
+  "Apps": {
+    "VSCode": {
+      "Title": "Visual Studio Code"
+    },
+    "LeetCode": {
+      "Title": "LeetCode",
+      "Common": {
+        "Loading": "Loading Profile...",
+        "NoData": "No data",
+        "Retry": "Retry",
+        "ShowMore": "Show more",
+        "GoToLeetCode": "Go to LeetCode"
+      },
+      "Badges": {
+        "Title": "Badges",
+        "MostRecent": "Most Recent Badge"
+      },
+      "Stats": {
+        "Title": "Community Stats",
+        "Views": "Views",
+        "Solution": "Solution",
+        "Discuss": "Discuss",
+        "Reputation": "Reputation"
+      },
+      "Languages": {
+        "Title": "Languages",
+        "ProblemsSolved": "problems solved"
+      },
+      "Profile": {
+        "Rank": "Rank"
+      },
+      "Submissions": {
+        "RecentAC": "Recent AC",
+        "List": "List",
+        "Solutions": "Solutions",
+        "Discuss": "Discuss",
+        "TimeAgo": "2 months ago"
+      },
+      "Skills": {
+        "Title": "Skills",
+        "Advanced": "Advanced",
+        "Intermediate": "Intermediate"
+      },
+      "Solved": {
+        "Solved": "Solved",
+        "Easy": "Easy",
+        "Medium": "Med.",
+        "Hard": "Hard"
+      },
+      "Calendar": {
+        "SubmissionsLastYear": "submissions in the past one year",
+        "TotalActiveDays": "Total active days:",
+        "MaxStreak": "Max streak:",
+        "Current": "Current",
+        "Months": {
+          "Jan": "Jan",
+          "Feb": "Feb",
+          "Mar": "Mar",
+          "Apr": "Apr",
+          "May": "May",
+          "Jun": "Jun",
+          "Jul": "Jul",
+          "Aug": "Aug",
+          "Sep": "Sep",
+          "Oct": "Oct",
+          "Nov": "Nov",
+          "Dec": "Dec"
+        }
+      }
+    },
+    "V86": {
+      "Title": "仮想マシン",
+      "NoFileSelected": "No file selected",
+      "ScriptLoadError": "Failed to load V86 script",
+      "FileReadError": "Failed to read file",
+      "StartError": "Failed to start emulator",
+      "Booting": "Booting {filename}...",
+      "ErrorPrefix": "Error: {error}",
+      "ClickToCapture": "Click to capture mouse (Esc to release)"
+    },
+    "Finder": "Finder",
+    "Launchpad": "Launchpad",
+    "Safari": "Safari",
+    "Messages": "メッセージ",
+    "Mail": "メール",
+    "Maps": "マップ",
+    "Photos": "写真",
+    "FaceTime": "FaceTime",
+    "Calendar": "カレンダー",
+    "Contacts": "連絡先",
+    "Reminders": "リマインダー",
+    "Notes": "メモ",
+    "TV": "TV",
+    "Music": "ミュージック",
+    "News": "ニュース",
+    "SystemSettings": "システム設定",
+    "AppStore": "App Store",
+    "Trash": "ゴミ箱",
+    "Freeform": "Freeform",
+    "Terminal": "Terminal",
+    "Calculator": "Calculator",
+    "TextEdit": "TextEdit",
+    "MediaPlayer": "Media Player",
+    "Preview": "Preview",
+    "VirtualMachine": "Virtual Machine"
+  },
+  "News": {
+    "Title": "News",
+    "Categories": {
+      "TopStories": "Top Stories",
+      "Technology": "Technology",
+      "Business": "Business",
+      "Science": "Science",
+      "Health": "Health",
+      "Entertainment": "Entertainment",
+      "Sports": "Sports"
+    },
+    "SearchPlaceholder": "Search stories...",
+    "SearchLabel": "Search",
+    "SearchTitle": "Search: \"{query}\"",
+    "Loading": "Loading top stories...",
+    "Error": "Failed to load news. Please try again later.",
+    "TryAgain": "Try Again",
+    "NoResults": "No stories found matching \"{query}\"",
+    "ClearSearch": "Clear Search",
+    "TopStory": "Top Story",
+    "Refresh": "Refresh",
+    "Aria": {
+      "Category": "Category: {label}",
+      "Search": "Search stories",
+      "Refresh": "Refresh news",
+      "ReadTopStory": "Read top story: {title}",
+      "ReadArticle": "Read article: {title}",
+      "Share": "Share article",
+      "Like": "Like article"
+    }
+  },
+  "Music": {
+    "AppleMusic": "Apple Music",
+    "Library": "Library",
+    "ListenNow": "Listen Now",
+    "Browse": "Browse",
+    "Radio": "Radio",
+    "RecentlyAdded": "Recently Added",
+    "Artists": "Artists",
+    "Albums": "Albums",
+    "Songs": "Songs",
+    "Search": "Search",
+    "SearchTitle": "Search: {query}",
+    "Aria": {
+      "Search": "Search music",
+      "GoBack": "Go back",
+      "GoForward": "Go forward",
+      "Prev": "Previous song",
+      "Next": "Next song",
+      "Play": "Play",
+      "Pause": "Pause",
+      "PlaySong": "Play {track} by {artist}",
+      "PauseSong": "Pause {track}",
+      "Lyrics": "Toggle lyrics",
+      "Queue": "Toggle queue",
+      "Mute": "Toggle mute",
+      "VolSlider": "Volume slider",
+      "SeekSlider": "Seek slider"
+    },
+    "Queue": {
+      "Title": "Playing Next",
+      "Empty": "Queue is empty"
+    },
+    "Lyrics": {
+      "NotAvailable": "Lyrics are not available for this song in the preview mode.",
+      "Imagine": "But imagine the lyrics appearing here, perfectly synced with the music...",
+      "Lalala": "La la la...",
+      "Placeholder": "Play a song to see lyrics"
+    }
+  },
+  "TV": {
+    "WatchNow": "Watch Now",
+    "Movies": "Movies",
+    "TVShows": "TV Shows",
+    "Kids": "Kids",
+    "Library": "Library",
+    "SearchResults": "Search Results",
+    "NoShows": "No shows found.",
+    "SearchPlaceholder": "Search",
+    "SearchLabel": "Search TV Shows",
+    "Series": "Series",
+    "PlayEpisode": "Play Episode 1",
+    "AddToUpNext": "Add to Up Next",
+    "Added": "Added",
+    "OpenYouTube": "Open in YouTube",
+    "ViewAccount": "View Account",
+    "Aria": {
+      "Play": "Play {name}",
+      "CloseVideo": "Close video",
+      "AddLibrary": "Add to Library",
+      "RemoveLibrary": "Remove from Library"
+    },
+    "Genres": {
+      "Drama": "Drama",
+      "Action": "Action",
+      "Comedy": "Comedy",
+      "ScienceFiction": "Science-Fiction",
+      "Thriller": "Thriller"
+    }
+  },
+  "Terminal": {
+    "Guest": "Guest",
+    "Welcome": "Welcome to Terminal",
+    "HelpPrompt": "Type 'help' for a list of commands.",
+    "AvailableCommands": "Available commands: ls, cd, pwd, mkdir, touch, echo, cat, clear, whoami, ping, man, rm, rmdir, vi",
+    "CommandNotFound": "command not found: {command}",
+    "Error": "Error: {message}",
+    "AriaInput": "Terminal Input",
+    "Usage": {
+      "Ping": "usage: ping host",
+      "Mkdir": "usage: mkdir directory_name",
+      "Rmdir": "usage: rmdir directory_name",
+      "Rm": "usage: rm [-rf] file_name",
+      "Touch": "usage: touch file_name",
+      "Cat": "usage: cat file_name",
+      "Vi": "usage: vi file_name",
+      "Man": "What manual page do you want?"
+    },
+    "Errors": {
+      "PingResolve": "ping: cannot resolve {host}: Unknown host",
+      "NoManual": "No manual entry for {command}",
+      "NoSuchFile": "{cmd}: {path}: No such file or directory",
+      "NotADirectory": "{cmd}: {path}: Not a directory",
+      "DirectoryNotEmpty": "{cmd}: {path}: Directory not empty",
+      "IsADirectory": "{cmd}: {path}: is a directory"
+    },
+    "Messages": {
+      "PingStats": "PING {host} (127.0.0.1): 56 data bytes\n64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.045 ms\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.082 ms\n64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.067 ms\n\n--- {host} ping statistics ---\n3 packets transmitted, 3 packets received, 0.0% packet loss",
+      "OpeningTextEdit": "Opening {file} in TextEdit..."
+    },
+    "ManPages": {
+      "ls": "ls - list directory contents\n\nUsage: ls [options] [file|dir]\n\nOptions:\n  -a, --all      do not ignore entries starting with .\n  -l             use a long listing format",
+      "cd": "cd - change the shell working directory\n\nUsage: cd [dir]\n\nChange the current directory to DIR. The default DIR is the value of the HOME shell variable.",
+      "pwd": "pwd - print name of current/working directory\n\nUsage: pwd\n\nPrint the full filename of the current working directory.",
+      "mkdir": "mkdir - make directories\n\nUsage: mkdir [DIRECTORY]\n\nCreate the DIRECTORY(ies), if they do not already exist.",
+      "touch": "touch - change file timestamps\n\nUsage: touch [FILE]\n\nUpdate the access and modification times of each FILE to the current time. If FILE does not exist it is created empty.",
+      "echo": "echo - display a line of text\n\nUsage: echo [STRING]...\n\nEcho the STRING(s) to standard output.",
+      "cat": "cat - concatenate files and print on the standard output\n\nUsage: cat [FILE]...\n\nConcatenate FILE(s) to standard output.",
+      "clear": "clear - clear the terminal screen\n\nUsage: clear",
+      "whoami": "whoami - print effective userid\n\nUsage: whoami\n\nPrint the user name associated with the current effective user ID.",
+      "ping": "ping - send ICMP ECHO_REQUEST to network hosts\n\nUsage: ping [HOST]\n\nSend ICMP ECHO_REQUEST to network hosts.",
+      "man": "man - an interface to the system reference manuals\n\nUsage: man [COMMAND]\n\nDisplay the manual page for COMMAND.",
+      "rm": "rm - remove files or directories\n\nUsage: rm [OPTION]... [FILE]...\n\nRemove (unlink) the FILE(s).\n\nOptions:\n  -r, -R, --recursive   remove directories and their contents recursively\n  -f, --force           ignore nonexistent files and arguments, never prompt",
+      "rmdir": "rmdir - remove empty directories\n\nUsage: rmdir [DIRECTORY]...\n\nRemove the DIRECTORY(ies), if they are empty.",
+      "vi": "vi - screen-oriented (visual) display editor\n\nUsage: vi [FILE]\n\nEdit FILE."
+    }
+  },
+  "TextEdit": {
+    "Guest": "Guest",
+    "Untitled": "Untitled.txt",
+    "Save": "Save",
+    "Loading": "Loading...",
+    "Placeholder": "Type your notes here...",
+    "SavedAlert": "Saved to {path}/{filename}"
+  },
+  "PDFViewer": {
+    "Document": "Document.pdf",
+    "PageInfo": "Page {current} of {total}",
+    "View": "View",
+    "ZoomIn": "Zoom In",
+    "ZoomOut": "Zoom Out",
+    "LoadingThumbnails": "Loading thumbnails...",
+    "Loading": "Loading...",
+    "NoPDF": "No PDF",
+    "FailedToLoad": "Failed to load PDF",
+    "NoPDFLoaded": "No PDF loaded"
+  },
+  "Spotlight": {
+    "Placeholder": "Spotlight Search",
+    "SearchWebFor": "Search Web for \"{query}\"",
+    "NoResults": "No results found",
+    "Open": "Open",
+    "Kinds": {
+      "Web": "Web Search",
+      "App": "Application",
+      "Directory": "Directory",
+      "File": "File"
+    },
+    "Aria": {
+      "Open": "Open {name}"
+    }
+  },
+  "MenuBar": {
+    "Apple": {
+      "AboutThisMac": "About This Mac",
+      "SystemSettings": "System Settings...",
+      "AppStore": "App Store...",
+      "RecentItems": "Recent Items",
+      "ForceQuit": "Force Quit...",
+      "Sleep": "Sleep",
+      "Restart": "Restart...",
+      "ShutDown": "Shut Down...",
+      "LockScreen": "Lock Screen"
+    },
+    "App": {
+      "About": "About {app}",
+      "Quit": "Quit {app}"
+    },
+    "File": {
+      "Title": "File",
+      "New": "New",
+      "Open": "Open...",
+      "Save": "Save",
+      "Duplicate": "Duplicate",
+      "NewFinderWindow": "New Finder Window",
+      "NewFolder": "New Folder",
+      "GetInfo": "Get Info"
+    },
+    "Edit": {
+      "Title": "Edit",
+      "Undo": "Undo",
+      "Redo": "Redo",
+      "Cut": "Cut",
+      "Copy": "Copy",
+      "Paste": "Paste"
+    },
+    "View": {
+      "Title": "View",
+      "AsIcons": "As Icons",
+      "AsList": "As List",
+      "AsColumns": "As Columns"
+    },
+    "Window": {
+      "Title": "Window",
+      "Minimize": "Minimize",
+      "Zoom": "Zoom"
+    },
+    "Help": {
+      "Title": "Help",
+      "MacOSHelp": "macOS Help"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "KnownNetworks": "Known Networks",
+      "OtherNetworks": "Other Networks",
+      "Settings": "Wi-Fi Settings..."
+    },
+    "Battery": {
+      "Title": "Battery",
+      "PowerSource": "Power Source: {source}",
+      "PowerAdapter": "Power Adapter",
+      "Battery": "Battery",
+      "EnergyMode": "Energy Mode",
+      "Automatic": "Automatic",
+      "LowPower": "Low Power",
+      "HighPower": "High Power",
+      "SignificantEnergy": "Using Significant Energy",
+      "Settings": "Battery Settings..."
+    },
+    "Aria": {
+      "Clipboard": "Clipboard",
+      "MediaPlayer": "Media Player",
+      "Spotlight": "Spotlight Search",
+      "ControlCenter": "Control Center",
+      "Siri": "Siri",
+      "Clock": "Clock and Notification Center"
+    }
+  },
+  "WeatherDropdown": {
+    "Searching": "Searching...",
+    "SearchCity": "Search city...",
+    "Now": "Now",
+    "Today": "Today",
+    "OpenWeather": "Open Weather"
+  },
+  "LockScreen": {
+    "IncorrectPassword": "Incorrect password",
+    "Guest": "Guest",
+    "EnterPassword": "Enter Password",
+    "Hint": "Touch ID or enter password (hint: {hint})",
+    "Login": "Login",
+    "Cancel": "Cancel",
+    "Aria": {
+      "UserAvatar": "User avatar, click to login",
+      "User": "User {name}, click to login",
+      "Password": "Password",
+      "Submit": "Submit password"
+    }
+  }
 }

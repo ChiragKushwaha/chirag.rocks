@@ -1,3 +1,1525 @@
 {
-  "Hello": "¡Hola mundo!"
+  "Hello": {
+    "world": "¡Hola mundo!",
+    "GetStarted": "Empezar"
+  },
+  "Setup": {
+    "Common": {
+      "Continue": "Continuar",
+      "Back": "Atrás",
+      "NotNow": "Ahora no",
+      "Cancel": "Cancelar",
+      "LearnMore": "Más información"
+    },
+    "Language": {
+      "Title": "Selecciona tu idioma",
+      "Description": "Selecciona el idioma que te gustaría usar para tu Mac.",
+      "TableLabel": "Idioma",
+      "Primary": "Primario"
+    },
+    "Region": {
+      "Title": "Selecciona tu país o región"
+    },
+    "DataPrivacy": {
+      "Title": "Datos y privacidad",
+      "IconText": "Este icono aparece cuando una función de Apple solicita usar tu información personal.",
+      "FeatureText": "No verás esto con cada función, ya que Apple recopila esta información solo cuando es necesario para habilitar funciones, asegurar nuestros servicios o personalizar tu experiencia.",
+      "PrivacyText": "Apple cree que la privacidad es un derecho humano fundamental, por lo que cada producto de Apple está diseñado para minimizar la recopilación y el uso de tus datos, utilizar el procesamiento en el dispositivo siempre que sea posible y proporcionar transparencia y control sobre tu información."
+    },
+    "TouchID": {
+      "Title": "Touch ID",
+      "SetupLater": "Configurar Touch ID más tarde",
+      "Description": "Usa tu huella digital para desbloquear tu Mac y realizar compras con Apple Pay. Comienza colocando tu dedo o pulgar en Touch ID."
+    },
+    "Fingerprint": {
+      "Title": "Coloca tu dedo",
+      "Instruction": "Levanta y descansa tu dedo en Touch ID repetidamente",
+      "Success": "✓ Touch ID configurado con éxito"
+    },
+    "Languages": {
+      "Title": "Idiomas escritos y hablados",
+      "Description": "Los siguientes idiomas se usan comúnmente en tu región. Puedes configurar tu Mac para usar estos ajustes o personalizarlos individualmente.",
+      "Preferred": "Idiomas preferidos",
+      "InputSources": "Fuentes de entrada",
+      "Dictation": "Dictado",
+      "Customize": "Personalizar ajustes"
+    },
+    "Accessibility": {
+      "Title": "Accesibilidad",
+      "Description": "Las funciones de accesibilidad adaptan tu Mac a tus necesidades individuales. Puedes activarlas ahora para ayudarte a terminar la configuración y personalizarlas más tarde en Preferencias del Sistema. Mira lo que está disponible en cada una de las categorías a continuación.",
+      "Vision": "Visión",
+      "Motor": "Motriz",
+      "Hearing": "Audición",
+      "Cognitive": "Cognitivo"
+    },
+    "Migration": {
+      "Title": "Asistente de migración",
+      "Description": "Si tienes información en otro Mac o PC con Windows, puedes transferirla a este Mac. También puedes transferir información desde una copia de seguridad de Time Machine u otro disco de arranque.",
+      "Question": "¿Cómo quieres transferir tu información?",
+      "FromMac": "Desde un Mac, copia de seguridad de Time Machine o disco de arranque",
+      "FromPC": "Desde un PC con Windows"
+    },
+    "AppleID": {
+      "Title": "Inicia sesión con tu ID de Apple",
+      "Description": "Inicia sesión para usar iCloud, App Store y otros servicios de Apple.",
+      "Label": "ID de Apple",
+      "CreateNew": "Crear nuevo ID de Apple",
+      "Forgot": "¿Has olvidado tu ID de Apple o la contraseña?",
+      "UseDifferent": "¿Usar diferentes IDs de Apple para iCloud y compras multimedia?",
+      "Info": "Este Mac se asociará con tu ID de Apple, y los datos como fotos, contactos y documentos se almacenarán en iCloud para que puedas acceder a ellos en otros dispositivos.",
+      "SeeData": "Ver cómo se gestionan tus datos",
+      "SetupLater": "Configurar más tarde",
+      "ErrorRequired": "Por favor, introduce tu ID de Apple."
+    },
+    "Account": {
+      "Title": "Crea tu cuenta de ordenador",
+      "CreateAppleID": "Crear ID de Apple",
+      "Description": "Introduce tu nombre y detalles de cuenta para configurar tu ordenador.",
+      "Name": "Nombre completo",
+      "Email": "Dirección de correo electrónico",
+      "Age": "Edad",
+      "Phone": "Número de móvil",
+      "Password": "Contraseña",
+      "Errors": {
+        "NameRequired": "El nombre completo es obligatorio.",
+        "EmailRequired": "El correo electrónico es obligatorio.",
+        "EmailInvalid": "Introduce una dirección de correo válida.",
+        "AgeRequired": "La edad es obligatoria.",
+        "AgeInvalid": "Introduce una edad válida.",
+        "PhoneRequired": "El número de teléfono es obligatorio.",
+        "PasswordRequired": "La contraseña es obligatoria.",
+        "PasswordLength": "La contraseña debe tener al menos 6 caracteres."
+      }
+    },
+    "Theme": {
+      "Title": "Selecciona tu apariencia",
+      "Description": "Selecciona apariencia Clara u Oscura. La interfaz del sistema y las aplicaciones se adaptarán automáticamente.",
+      "Light": "Claro",
+      "Dark": "Oscuro"
+    }
+  },
+  "SystemSettings": {
+    "General": {
+      "Title": "General",
+      "Description": "Gestiona tu configuración general y preferencias de Mac, como actualizaciones de software, idioma del dispositivo, AirDrop y más.",
+      "About": "Información",
+      "SoftwareUpdate": "Actualización de software",
+      "Storage": "Almacenamiento",
+      "AppleCare": "AppleCare y garantía",
+      "AirDrop": "AirDrop y Handoff",
+      "AutoFill": "Autorrelleno y contraseñas",
+      "DateTime": "Fecha y hora",
+      "LanguageRegion": "Idioma y región",
+      "LoginItems": "Items de inicio y extensiones",
+      "Sharing": "Compartir",
+      "StartupDisk": "Disco de arranque",
+      "TimeMachine": "Time Machine",
+      "DeviceManagement": "Gestión de dispositivos",
+      "TransferReset": "Transferir o restablecer"
+    },
+    "AppleAccount": {
+      "Edit": "Editar",
+      "PersonalInformation": "Información personal",
+      "SignInSecurity": "Inicio de sesión y seguridad",
+      "PaymentShipping": "Pago y envío",
+      "iCloud": "iCloud",
+      "MediaPurchases": "Contenido y compras",
+      "Family": "Familia",
+      "SetUp": "Configurar",
+      "Devices": "Dispositivos",
+      "ThisMac": "Este MacBook Pro 14″",
+      "SignOut": "Cerrar sesión..."
+    },
+    "LanguageRegion": {
+      "Title": "Idioma y región",
+      "PreferredLanguages": "Idiomas preferidos",
+      "Region": "Región",
+      "Calendar": "Calendario",
+      "Temperature": "Temperatura",
+      "Celsius": "Celsius",
+      "Fahrenheit": "Fahrenheit",
+      "MeasurementSystem": "Sistema de medidas",
+      "Metric": "Métrico",
+      "US": "EE. UU.",
+      "UK": "Reino Unido",
+      "FirstDayOfWeek": "Primer día de la semana",
+      "DateFormat": "Formato de fecha",
+      "NumberFormat": "Formato de número",
+      "LiveText": "Texto en vivo",
+      "LiveTextDesc": "Selecciona texto en imágenes para copiar o realizar acciones.",
+      "Applications": "Aplicaciones",
+      "ApplicationsDesc": "Personaliza la configuración de idioma para las siguientes aplicaciones:",
+      "TranslationLanguages": "Idiomas de traducción..."
+    },
+    "Sidebar": {
+      "Search": "Buscar",
+      "NotImplemented": "Esta sección aún no está implementada.",
+      "AppleAccount": "Cuenta de Apple",
+      "WiFi": "Wi-Fi",
+      "Bluetooth": "Bluetooth",
+      "Network": "Red",
+      "General": "General",
+      "Appearance": "Apariencia",
+      "Accessibility": "Accesibilidad",
+      "MenuBar": "Barra de menús",
+      "DesktopDock": "Escritorio y Dock",
+      "Displays": "Pantallas",
+      "Spotlight": "Spotlight",
+      "Wallpaper": "Fondo de pantalla",
+      "ScreenSaver": "Salvapantallas",
+      "Battery": "Batería",
+      "Sound": "Sonido",
+      "Notifications": "Notificaciones",
+      "Focus": "Enfoque",
+      "ScreenTime": "Tiempo de uso",
+      "PrivacySecurity": "Privacidad y seguridad",
+      "LockScreen": "Pantalla de bloqueo",
+      "TouchIDPassword": "Touch ID y contraseña",
+      "UsersGroups": "Usuarios y grupos",
+      "Keyboard": "Teclado",
+      "Trackpad": "Trackpad",
+      "PrintersScanners": "Impresoras y escáneres",
+      "Storage": "Almacenamiento"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "Description": "Configura el Wi-Fi para conectar tu Mac a internet de forma inalámbrica.",
+      "Connected": "Conectado",
+      "Details": "Detalles...",
+      "KnownNetworks": "Redes conocidas",
+      "OtherNetworks": "Otras redes",
+      "Connect": "Conectar",
+      "Other": "Otras...",
+      "AskToJoin": "Preguntar al conectar",
+      "AskToJoinDesc": "Se conectará automáticamente a redes conocidas.",
+      "Notify": "Notificar",
+      "AskToJoinHotspots": "Preguntar para unirse a puntos de acceso",
+      "AskToJoinHotspotsDesc": "Permitir que este Mac descubra puntos de acceso personales cercanos.",
+      "AskToJoinAction": "Preguntar",
+      "Advanced": "Avanzado..."
+    },
+    "Bluetooth": {
+      "Title": "Bluetooth",
+      "Description": "Conecta accesorios para actividades como escuchar música, escribir o jugar.",
+      "Discoverable": "Este Mac es visible como MacBook Pro mientras los ajustes de Bluetooth estén abiertos.",
+      "MyDevices": "Mis dispositivos",
+      "NotConnected": "No conectado",
+      "NearbyDevices": "Dispositivos cercanos",
+      "Searching": "Buscando..."
+    },
+    "Network": {
+      "Title": "Red",
+      "WiFi": "Wi-Fi",
+      "Connected": "Conectado",
+      "Firewall": "Cortafuegos",
+      "Inactive": "Inactivo",
+      "OtherServices": "Otros servicios",
+      "NotConnected": "No conectado"
+    },
+    "Appearance": {
+      "Title": "Aspecto",
+      "Description": "Selecciona tu apariencia preferida.",
+      "Light": "Claro",
+      "Dark": "Oscuro",
+      "Auto": "Automático",
+      "AccentColor": "Color de acento",
+      "HighlightColor": "Color de realce",
+      "Automatic": "Automático",
+      "SidebarIconSize": "Tamaño de iconos laterales",
+      "Medium": "Mediano",
+      "WallpaperTinting": "Permitir tinte de fondo en ventanas",
+      "ShowScrollBars": "Mostrar barras de desplazamiento",
+      "ScrollAuto": "Automáticamente según ratón o trackpad",
+      "ScrollWhenScrolling": "Al desplazarse",
+      "ScrollAlways": "Siempre",
+      "ClickScrollBar": "Clic en barra de desplazamiento para",
+      "JumpNextPage": "Saltar a la página siguiente",
+      "JumpSpotClicked": "Saltar al punto pulsado"
+    },
+    "Accessibility": {
+      "Title": "Accesibilidad",
+      "Description": "Personaliza el Mac para que se adapte mejor a ti con funciones para visión, audición, motricidad y cognición.",
+      "LearnMore": "Saber más...",
+      "Vision": "Visión",
+      "VoiceOver": "VoiceOver",
+      "Zoom": "Zoom",
+      "HoverText": "Texto al pasar cursor",
+      "Display": "Pantalla",
+      "Motion": "Movimiento",
+      "ReadSpeak": "Leer contenido",
+      "AudioDescriptions": "Descripciones de audio",
+      "Hearing": "Audición",
+      "HearingDevices": "Dispositivos auditivos",
+      "Audio": "Audio",
+      "Captions": "Subtítulos",
+      "LiveCaptions": "Subtítulos en vivo",
+      "NameRecognition": "Reconocimiento nombres",
+      "Motor": "Motricidad",
+      "VoiceControl": "Control por voz",
+      "Keyboard": "Teclado",
+      "PointerControl": "Control del puntero",
+      "SwitchControl": "Control por botón",
+      "General": "General",
+      "Siri": "Siri",
+      "Shortcut": "Función rápida"
+    },
+    "MenuBar": {
+      "Title": "Barra de menús",
+      "Description": "Cambia los ajustes de la barra de menús.",
+      "AutoHide": "Ocultar y mostrar la barra de menús automáticamente",
+      "Never": "Nunca",
+      "RecentDocs": "Documentos, apps y servidores recientes",
+      "None": "Ninguno",
+      "Controls": "Controles de barra de menús",
+      "ControlCenter": "Centro de control",
+      "ShowInMenuBar": "Mostrar en barra de menús",
+      "DontShowInMenuBar": "No mostrar en barra de menús",
+      "Siri": "Siri",
+      "Spotlight": "Spotlight",
+      "VolumeFeedback": "Reproducir sonido al cambiar volumen"
+    },
+    "DesktopDock": {
+      "Title": "Escritorio y Dock",
+      "Description": "Cambia la apariencia del Dock y Escritorio.",
+      "Dock": "Dock",
+      "Size": "Tamaño",
+      "Magnification": "Ampliación",
+      "Small": "Pec.",
+      "Large": "Gde.",
+      "Position": "Posición en pantalla",
+      "Bottom": "Abajo",
+      "MinimiseUsing": "Minimizar usando efecto",
+      "GenieEffect": "Lámpara mágica",
+      "DoubleClickTitle": "Doble clic en título de ventana para",
+      "Zoom": "Ampliación",
+      "MinimiseToIcon": "Minimizar ventanas en icono de aplicación",
+      "AutoHideDock": "Ocultar y mostrar el Dock automáticamente",
+      "AnimateOpening": "Animación al abrir aplicaciones",
+      "ShowIndicators": "Mostrar indicadores en aplicaciones abiertas",
+      "ShowRecent": "Mostrar aplicaciones recientes en el Dock",
+      "DesktopStageManager": "Escritorio y Organizador Visual",
+      "ShowItems": "Mostrar items",
+      "OnDesktop": "En el escritorio",
+      "ClickWallpaper": "Clic en fondo para mostrar escritorio",
+      "Always": "Siempre",
+      "StageManager": "Organizador Visual",
+      "Widgets": "Widgets",
+      "ShowWidgets": "Mostrar widgets",
+      "WidgetStyle": "Estilo de widget",
+      "Automatic": "Automático",
+      "UseIPhoneWidgets": "Usar widgets de iPhone"
+    },
+    "Displays": {
+      "Title": "Pantallas",
+      "Description": "Selecciona una pantalla para cambiar sus ajustes.",
+      "BuiltInDisplay": "Pantalla integrada",
+      "UseAs": "Usar como",
+      "MainDisplay": "Pantalla principal",
+      "Resolution": "Resolución",
+      "Default": "Por defecto",
+      "MoreSpace": "Más espacio",
+      "LargerText": "Texto más grande",
+      "Brightness": "Brillo",
+      "TrueTone": "True Tone",
+      "Preset": "Preajuste",
+      "RefreshRate": "Frecuencia de actualización",
+      "ProMotion": "ProMotion",
+      "Advanced": "Avanzado..."
+    },
+    "Spotlight": {
+      "Title": "Spotlight",
+      "Description": "Buscar en tu Mac.",
+      "SearchPlaceholder": "Búsqueda Spotlight",
+      "SearchResults": "Resultados de búsqueda",
+      "Privacy": "Privacidad de Spotlight...",
+      "Categories": {
+        "Applications": "Aplicaciones",
+        "Calculator": "Calculadora",
+        "Contacts": "Contactos",
+        "Conversion": "Conversión",
+        "Definition": "Definición",
+        "Developer": "Desarrollador",
+        "Documents": "Documentos",
+        "Events & Reminders": "Eventos y recordatorios",
+        "Folders": "Carpetas",
+        "Fonts": "Fuentes",
+        "Images": "Imágenes",
+        "Mail & Messages": "Mail y Mensajes",
+        "Movies": "Películas",
+        "Music": "Música",
+        "Other": "Otros",
+        "PDF Documents": "Documentos PDF",
+        "Presentations": "Presentaciones",
+        "Siri Suggestions": "Sugerencias de Siri",
+        "Spreadsheets": "Hojas de cálculo",
+        "System Preferences": "Preferencias del Sistema",
+        "Tips": "Consejos",
+        "Bookmarks & History": "Marcadores e historial"
+      }
+    },
+    "Notifications": {
+      "Title": "Notificaciones",
+      "Description": "Controla cómo se muestran las notificaciones.",
+      "Preview": "Previsualización",
+      "ShowPreviews": "Mostrar previsualizaciones",
+      "Always": "Siempre",
+      "ApplicationNotifications": "Notificaciones de aplicaciones",
+      "Apps": {
+        "AppStore": "App Store",
+        "Calendar": "Calendario",
+        "FaceTime": "FaceTime",
+        "Mail": "Mail",
+        "Messages": "Mensajes",
+        "Photos": "Fotos",
+        "Reminders": "Recordatorios",
+        "Safari": "Safari"
+      }
+    },
+    "Sound": {
+      "Title": "Sonido",
+      "Description": "Cambia los ajustes de sonido.",
+      "OutputInput": "Salida y entrada",
+      "Output": "Salida",
+      "Input": "Entrada",
+      "SelectOutput": "Selecciona un dispositivo de salida:",
+      "Speakers": "Altavoces MacBook Pro",
+      "BuiltIn": "Integrado",
+      "OutputVolume": "Volumen de salida",
+      "Mute": "Silencio",
+      "ShowInMenuBar": "Mostrar sonido en la barra de menús",
+      "Always": "Siempre",
+      "AlertSoundGroup": "Sonido de alerta",
+      "AlertSound": "Sonido de alerta",
+      "Boop": "Boop",
+      "AlertVolume": "Volumen de alerta",
+      "PlayUIEffects": "Reproducir efectos de sonido de la interfaz"
+    },
+    "Focus": {
+      "Title": "Enfoque",
+      "Description": "Selecciona un enfoque para personalizar sus ajustes.",
+      "DoNotDisturb": "No molestar",
+      "ShareAcrossDevices": "Compartir entre dispositivos",
+      "FocusStatus": "Estado de enfoque",
+      "On": "Sí",
+      "Off": "No",
+      "SetUp": "Configurar",
+      "FocusModes": "Modos de enfoque",
+      "Personal": "Personal",
+      "Sleep": "Descanso",
+      "Work": "Trabajo",
+      "AddFocus": "Añadir enfoque"
+    },
+    "ScreenTime": {
+      "Title": "Tiempo de uso",
+      "Description": "Supervisar uso y establecer límites.",
+      "DailyAverage": "Promedio diario",
+      "FromLastWeek": "desde la semana pasada",
+      "Downtime": "Tiempo de inactividad",
+      "AppLimits": "Límites de uso de apps",
+      "LimitsCount": "{count} límites",
+      "AlwaysAllowed": "Siempre permitido",
+      "AllowedApps": "Teléfono, Mapas, Mensajes",
+      "ContentPrivacy": "Contenido y privacidad",
+      "On": "Sí",
+      "Off": "No",
+      "ShareAcrossDevices": "Compartir entre dispositivos",
+      "LockSettings": "Bloquear ajustes de Tiempo de uso"
+    },
+    "Battery": {
+      "Title": "Batería",
+      "Description": "Comprueba la salud y el uso de la batería.",
+      "BatteryLevel": "Nivel de batería",
+      "LastCharged": "Última carga al 100% hoy a las 8:00",
+      "LowPowerMode": "Modo de bajo consumo",
+      "Never": "Nunca",
+      "BatteryHealth": "Salud de la batería",
+      "Normal": "Normal",
+      "OptimisedCharging": "Carga optimizada",
+      "Options": "Opciones..."
+    },
+    "Keyboard": {
+      "Title": "Teclado",
+      "Description": "Cambia los ajustes del teclado.",
+      "KeyRepeat": "Repetición de tecla",
+      "Slow": "Lenta",
+      "Fast": "Rápida",
+      "DelayUntilRepeat": "Espera hasta la repetición",
+      "Long": "Larga",
+      "Short": "Corta",
+      "AdjustBrightness": "Ajustar brillo del teclado con poca luz",
+      "KeyboardNavigation": "Navegación por teclado",
+      "Shortcuts": "Funciones rápidas de teclado...",
+      "TextInput": "Entrada de texto",
+      "InputSources": "Fuentes de entrada",
+      "Edit": "Editar...",
+      "Dictation": "Dictado"
+    },
+    "LockScreen": {
+      "Title": "Pantalla de bloqueo",
+      "Description": "Cambia los ajustes de la pantalla de bloqueo.",
+      "TurnOffDisplayBattery": "Apagar pantalla con batería si está inactivo",
+      "TurnOffDisplayAdapter": "Apagar pantalla con adaptador si está inactivo",
+      "TwoMinutes": "2 minutos",
+      "TenMinutes": "10 minutos",
+      "RequirePassword": "Solicitar contraseña tras iniciar salvapantallas o apagar pantalla",
+      "Immediately": "Inmediatamente",
+      "ShowMessage": "Mostrar mensaje al bloquear",
+      "Set": "Definir...",
+      "LoginWindowShows": "Ventana de inicio muestra",
+      "ListOfUsers": "Lista de usuarios",
+      "ShowLargeClock": "Mostrar reloj grande",
+      "OnLockScreen": "En pantalla de bloqueo"
+    },
+    "PrivacySecurity": {
+      "Title": "Privacidad y seguridad",
+      "Description": "Controla qué aplicaciones pueden acceder a tu información.",
+      "Privacy": "Privacidad",
+      "LocationServices": "Localización",
+      "On": "Sí",
+      "Off": "No",
+      "Camera": "Cámara",
+      "Microphone": "Micrófono",
+      "FilesFolders": "Archivos y carpetas",
+      "ScreenRecording": "Grabación de pantalla",
+      "AppsCount": "{count} aplicaciones",
+      "Security": "Seguridad",
+      "FileVault": "FileVault",
+      "LockdownMode": "Modo de aislamiento",
+      "Others": "Otros",
+      "Extensions": "Extensiones",
+      "Profiles": "Perfiles"
+    },
+    "PrintersScanners": {
+      "Title": "Impresoras y escáneres",
+      "Description": "Configura impresoras y escáneres.",
+      "Printers": "Impresoras",
+      "IdleLastUsed": "Inactiva, último uso",
+      "Offline": "Desconectada",
+      "AddPrinter": "Añadir impresora, escáner o fax..."
+    },
+    "ScreenSaver": {
+      "Title": "Salvapantallas",
+      "Description": "Elige un salvapantallas.",
+      "Preview": "Previsualizar",
+      "ShowOnAllSpaces": "Mostrar en todos los espacios",
+      "ScreenSavers": "Salvapantallas",
+      "StartAfter": "Empezar tras",
+      "FiveMinutes": "5 minutos",
+      "ShowWithClock": "Mostrar con reloj",
+      "ScreensaverNames": {
+        "Ventura": "Ventura",
+        "Monterey": "Monterey",
+        "BigSur": "Big Sur",
+        "Catalina": "Catalina",
+        "Hello": "Hello",
+        "Drift": "Drift",
+        "Flurry": "Flurry",
+        "Shell": "Shell"
+      }
+    },
+    "Storage": {
+      "Title": "Almacenamiento",
+      "Description": "Gestiona el espacio en disco.",
+      "MacintoshHD": "Macintosh HD",
+      "AvailableSpace": "{available} GB disponibles de {total} GB",
+      "Apps": "Aplicaciones",
+      "Documents": "Documentos",
+      "SystemData": "Datos del sistema",
+      "macOS": "macOS",
+      "OtherUsers": "Otros usuarios",
+      "Recommendations": "Recomendaciones",
+      "StoreInICloud": "Guardar en iCloud",
+      "StoreInICloudDesc": "Guarda todos tus archivos, fotos y mensajes en iCloud y ahorra espacio en este Mac.",
+      "StoreInICloudButton": "Guardar en iCloud...",
+      "Categories": "Categorías",
+      "Applications": "Aplicaciones"
+    },
+    "TouchIDPassword": {
+      "Title": "Touch ID y contraseña",
+      "Description": "Añade una huella para desbloquear tu Mac.",
+      "TouchID": "Touch ID",
+      "Finger1": "Dedo 1",
+      "AddFingerprint": "Añadir huella",
+      "UseTouchIDFor": "Usar Touch ID para",
+      "UnlockingMac": "Desbloquear tu Mac",
+      "ApplePay": "Apple Pay",
+      "iTunesAppStore": "iTunes Store, App Store y Apple Books",
+      "AutoFillPasswords": "Autorellenar contraseñas",
+      "Password": "Contraseña",
+      "LastChanged": "Último cambio: 24/11/2024",
+      "Change": "Cambiar...",
+      "RequirePasswordScreenSaver": "Solicitar contraseña tras iniciar salvapantallas o apagar pantalla",
+      "Immediately": "Inmediatamente",
+      "RequirePasswordIdle": "Solicitar contraseña tras inactividad",
+      "Never": "Nunca",
+      "Seconds": "{count} segundos",
+      "Minute": "{count} minuto",
+      "Minutes": "{count} minutos",
+      "AppleWatch": "Apple Watch",
+      "AppleWatchUnlock": "Usa tu Apple Watch para desbloquear tus aplicaciones y tu Mac"
+    },
+    "Trackpad": {
+      "Title": "Trackpad",
+      "Description": "Cambia los ajustes del trackpad.",
+      "PointClick": "Señalar y hacer clic",
+      "ScrollZoom": "Desplazamiento y zoom",
+      "MoreGestures": "Más gestos",
+      "TrackingSpeed": "Velocidad del puntero",
+      "Slow": "Lenta",
+      "Fast": "Rápida",
+      "Click": "Clic",
+      "Medium": "Medio",
+      "ForceClick": "Clic fuerte y respuesta háptica",
+      "LookUp": "Consulta y detectores de datos",
+      "SecondaryClick": "Clic secundario",
+      "ClickTwoFingers": "Clic con dos dedos",
+      "TapToClick": "Pulsar para hacer clic",
+      "VideoPreview": "Vista previa de vídeo"
+    },
+    "UsersGroups": {
+      "Title": "Usuarios y grupos",
+      "Description": "Gestionar cuentas de usuario y grupos.",
+      "CurrentUser": "Usuario actual",
+      "Admin": "Admin",
+      "OtherUsers": "Otros usuarios",
+      "GuestUser": "Usuario invitado",
+      "Off": "No",
+      "AddAccount": "Añadir cuenta...",
+      "AutoLogin": "Inicio de sesión automático como",
+      "AllowNetworkUsers": "Permitir a usuarios de red iniciar sesión en la ventana de inicio"
+    },
+    "Wallpaper": {
+      "Title": "Fondo de pantalla",
+      "Description": "Elige una imagen de escritorio.",
+      "ShowOnAllSpaces": "Mostrar en todos los espacios",
+      "DynamicWallpapers": "Fondos dinámicos",
+      "Pictures": "Imágenes",
+      "AddPhoto": "Añadir foto"
+    },
+    "LanguageSelector": {
+      "Title": "Selecciona un idioma preferido para añadir",
+      "Search": "Buscar",
+      "Cancel": "Cancelar",
+      "Add": "Añadir"
+    }
+  },
+  "Languages": {
+    "English": "Inglés",
+    "Spanish": "Español",
+    "French": "Francés",
+    "German": "Alemán",
+    "Italian": "Italiano",
+    "Japanese": "Japonés",
+    "Chinese": "Chino",
+    "Portuguese": "Portugués",
+    "Russian": "Ruso",
+    "Korean": "Coreano",
+    "Dutch": "Neerlandés",
+    "Swedish": "Sueco",
+    "Danish": "Danés",
+    "Norwegian": "Noruego",
+    "Finnish": "Finlandés",
+    "Polish": "Polaco",
+    "Turkish": "Turco",
+    "Arabic": "Árabe",
+    "Hindi": "Hindi",
+    "Bengali": "Bengalí",
+    "Vietnamese": "Vietnamita",
+    "Thai": "Tailandés",
+    "Greek": "Griego",
+    "Czech": "Checo",
+    "Hungarian": "Húngaro",
+    "Romanian": "Rumano",
+    "Ukrainian": "Ucraniano",
+    "Indonesian": "Indonesio",
+    "Malay": "Malayo",
+    "Croatian": "Croata",
+    "Slovak": "Eslovaco",
+    "Slovenian": "Esloveno",
+    "Bulgarian": "Búlgaro",
+    "Serbian": "Serbio",
+    "Hebrew": "Hebreo"
+  },
+  "Finder": {
+    "Search": "Buscar",
+    "Sidebar": {
+      "Favorites": "Favoritos",
+      "Locations": "Ubicaciones",
+      "AirDrop": "AirDrop",
+      "Recents": "Recientes",
+      "Applications": "Aplicaciones",
+      "Desktop": "Escritorio",
+      "Documents": "Documentos",
+      "Downloads": "Descargas",
+      "Pictures": "Imágenes",
+      "Home": "Inicio",
+      "MacintoshHD": "Macintosh HD",
+      "iCloudDrive": "iCloud Drive"
+    },
+    "Menu": {
+      "NewFolder": "Nueva carpeta",
+      "GetInfo": "Obtener información",
+      "ChangeBackground": "Cambiar fondo...",
+      "Open": "Abrir",
+      "MoveToBin": "Mover a la papelera",
+      "Rename": "Renombrar",
+      "OpenItems": "Abrir {count} items",
+      "MoveItemsToBin": "Mover {count} items a la papelera"
+    },
+    "Status": {
+      "Loading": "Cargando...",
+      "EmptyFolder": "La carpeta está vacía",
+      "ItemCount": "{count} ítems",
+      "SpaceAvailable": "{amount} GB disponibles"
+    },
+    "Errors": {
+      "NoApp": "Ninguna aplicación disponible para abrir archivos .{ext}.",
+      "CreateFolderFailed": "Error al crear carpeta",
+      "MoveToBinFailed": "Error al mover items a la papelera"
+    }
+  },
+  "Safari": {
+    "Title": "Safari",
+    "StartPage": "Página de inicio",
+    "Loading": "Cargando...",
+    "SearchPlaceholder": "Buscar o introducir sitio web",
+    "NoInternet": "No estás conectado a Internet",
+    "NoInternetDesc": "Esta página no se puede mostrar porque tu ordenador está actualmente sin conexión.",
+    "Favorites": {
+      "Apple": "Apple",
+      "Google": "Google",
+      "Wikipedia": "Wikipedia",
+      "GitHub": "GitHub"
+    }
+  },
+  "Mail": {
+    "Inbox": "Buzón de entrada",
+    "MessagesCount": "{count, plural, =1 {1 mensaje} other {# mensajes}}",
+    "Favorites": "FAVORITOS",
+    "AllInboxes": "Todos los buzones",
+    "VIP": "VIP",
+    "Sent": "Enviado",
+    "Search": "Buscar",
+    "NoMessageSelected": "Selecciona un correo",
+    "To": "Para: {name}"
+  },
+  "Messages": {
+    "AppTitle": "Mensajes",
+    "SigningIn": "Iniciando sesión como {name}...",
+    "SidebarTitle": "Mensajes",
+    "NoOnlineUsers": "Nadie más está en línea.",
+    "NoMessages": "Sin mensajes",
+    "To": "Para: {name}",
+    "InputPlaceholder": "iMessage",
+    "NoContactSelected": "Selecciona un contacto para empezar"
+  },
+  "Photos": {
+    "Sidebar": {
+      "Library": "Fototeca",
+      "Collections": "Colecciones",
+      "Pinned": "Fijado",
+      "Albums": "Álbumes",
+      "Utilities": "Utilidades",
+      "Projects": "Proyectos",
+      "Favourites": "Favoritos",
+      "RecentlySaved": "Recientemente guardado",
+      "Videos": "Vídeos",
+      "Screenshots": "Capturas",
+      "PeoplePets": "Personas y mascotas",
+      "SharedAlbums": "Álbumes compartidos",
+      "Activity": "Actividad",
+      "RecentlyDeleted": "Eliminado recientemente",
+      "Duplicates": "Duplicados",
+      "Map": "Mapa",
+      "AllProjects": "Todos los proyectos"
+    },
+    "Tabs": {
+      "Years": "Años",
+      "Months": "Meses",
+      "AllPhotos": "Todas las fotos"
+    },
+    "Search": "Buscar",
+    "Collections": {
+      "Title": "Colecciones",
+      "Memories": "Recuerdos",
+      "NoMemories": "Sin recuerdos disponibles",
+      "NoMemoriesDesc": "Los recuerdos aparecerán aquí cuando estén disponibles.",
+      "Albums": "Álbumes",
+      "NoAlbums": "Sin álbumes disponibles"
+    },
+    "EmptyState": {
+      "NoItems": "No se encontraron items en {title}"
+    },
+    "Locked": {
+      "Title": "{title} está bloqueado",
+      "Desc": "Autentícate para ver estos items."
+    }
+  },
+  "Notes": {
+    "Sidebar": {
+      "iCloud": "ICLOUD",
+      "Notes": "Notas",
+      "RecentlyDeleted": "Eliminado hace poco"
+    },
+    "Search": "Buscar",
+    "NewNote": "Nueva nota",
+    "NoAdditionalText": "Sin texto adicional",
+    "Editor": {
+      "TitlePlaceholder": "Título",
+      "ContentPlaceholder": "Escribe tu nota aquí...",
+      "AddToDesktop": "Añadir al escritorio",
+      "Restore": "Restaurar",
+      "Delete": "Eliminar nota",
+      "DeletePermanently": "Eliminar permanentemente",
+      "EmptyState": "Selecciona una nota o crea una nueva",
+      "Date": "Hoy a las {time}"
+    }
+  },
+  "Reminders": {
+    "Search": "Buscar",
+    "Sidebar": {
+      "MyLists": "MIS LISTAS",
+      "Reminders": "Recordatorios",
+      "Work": "Trabajo",
+      "Today": "Hoy",
+      "Scheduled": "Programado",
+      "All": "Todo",
+      "Flagged": "Con indicador"
+    },
+    "AddReminder": "Nuevo recordatorio",
+    "Actions": {
+      "Add": "Añadir",
+      "Cancel": "Cancelar",
+      "Delete": "Eliminar recordatorio",
+      "MarkComplete": "Marcar como completado",
+      "MarkIncomplete": "Marcar como no completado",
+      "Flag": "Poner indicador",
+      "Unflag": "Quitar indicador"
+    },
+    "Inputs": {
+      "Title": "Título",
+      "Date": "Fecha",
+      "Time": "Hora"
+    }
+  },
+  "Calendar": {
+    "Sidebar": {
+      "iCloud": "iCloud",
+      "Other": "OTROS",
+      "NoInvitations": "Sin invitaciones"
+    },
+    "Toolbar": {
+      "Today": "Hoy",
+      "SearchPlaceholder": "Buscar eventos...",
+      "View": {
+        "day": "día",
+        "week": "semana",
+        "month": "mes",
+        "year": "año"
+      }
+    },
+    "EventModal": {
+      "Title": "Nuevo evento",
+      "EventTitlePlaceholder": "Título del evento",
+      "CalendarLabel": "Calendario",
+      "Cancel": "Cancelar",
+      "AddEvent": "Añadir evento"
+    },
+    "SearchResults": {
+      "Title": "Resultados de búsqueda",
+      "NoEvents": "No se encontraron eventos"
+    },
+    "Event": {
+      "NoLocation": "Sin ubicación",
+      "EventLabel": "Evento: {title} en {location}"
+    },
+    "Weekdays": {
+      "Sun": "Dom",
+      "Mon": "Lun",
+      "Tue": "Mar",
+      "Wed": "Mié",
+      "Thu": "Jue",
+      "Fri": "Vie",
+      "Sat": "Sáb"
+    },
+    "WeekdaysShort": {
+      "Sun": "D",
+      "Mon": "L",
+      "Tue": "M",
+      "Wed": "X",
+      "Thu": "J",
+      "Fri": "V",
+      "Sat": "Sáb"
+    }
+  },
+  "Maps": {
+    "SearchPlaceholder": "Buscar en Mapas",
+    "Sidebar": {
+      "Favorites": "FAVORITOS",
+      "Recent": "RECIENTES",
+      "NoRecentSearches": "Sin búsquedas recientes",
+      "RecentLabel": "Reciente"
+    },
+    "Locations": {
+      "Home": "Casa",
+      "Work": "Trabajo"
+    },
+    "Controls": {
+      "SwitchToSatellite": "Cambiar a satélite",
+      "SwitchToSatelliteLabel": "Cambiar a vista de satélite",
+      "SwitchToMap": "Cambiar a mapa",
+      "SwitchToMapLabel": "Cambiar a vista de mapa",
+      "CurrentLocation": "Ubicación actual",
+      "ShowCurrentLocation": "Mostrar ubicación actual",
+      "MapInfo": "Información del mapa"
+    },
+    "Permission": {
+      "AppName": "Mapas",
+      "Title": "Ubicación",
+      "Reason": "Mapas necesita acceso a tu ubicación para mostrar dónde estás.",
+      "Error": "No se pudo obtener tu ubicación. Por favor, asegúrate de que los servicios de ubicación estén habilitados.",
+      "NotSupported": "La geolocalización no es compatible con tu navegador."
+    }
+  },
+  "FaceTime": {
+    "Title": "FaceTime",
+    "ConnectingAs": "Conectando como {name}...",
+    "IncomingCall": "{name} está llamando...",
+    "Accept": "Aceptar",
+    "Decline": "Rechazar",
+    "End": "Finalizar",
+    "Contacts": "Contactos",
+    "NoContacts": "Nadie más está en línea.",
+    "Video": "Vídeo",
+    "SelectContact": "Selecciona un contacto para llamar",
+    "Aria": {
+      "RemoteVideo": "Video remoto",
+      "LocalVideo": "Vista previa de video local",
+      "EndCall": "Finalizar llamada",
+      "CallContact": "Llamar a {name}",
+      "VideoCallContact": "Videollamada a {name}",
+      "LocalPreview": "Vista previa de cámara local"
+    },
+    "Permission": {
+      "AppName": "FaceTime",
+      "Title": "Cámara y micrófono",
+      "Reason": "FaceTime necesita acceso a tu cámara y micrófono para realizar llamadas."
+    }
+  },
+  "Contacts": {
+    "SearchPlaceholder": "Buscar",
+    "SearchAria": "Buscar contactos",
+    "Count": "{count} Contactos",
+    "EditContact": "Editar contacto",
+    "NewContact": "Nuevo contacto",
+    "Preview": "Vista previa",
+    "Edit": "Editar",
+    "DeleteContact": "Eliminar contacto",
+    "Cancel": "Cancelar",
+    "Done": "Hecho",
+    "NoNotes": "Sin notas",
+    "NoSelection": "Ningún contacto seleccionado",
+    "Labels": {
+      "FirstName": "Nombre",
+      "LastName": "Apellidos",
+      "Company": "Empresa",
+      "Phone": "Teléfono",
+      "Email": "Correo",
+      "Notes": "Notas",
+      "Mobile": "móvil",
+      "Home": "casa",
+      "Message": "mensaje",
+      "Video": "vídeo",
+      "Mail": "correo"
+    },
+    "Alerts": {
+      "DeleteConfirm": "¿Seguro que quieres eliminar este contacto?",
+      "NameRequired": "Por favor, introduce un nombre o empresa."
+    },
+    "Aria": {
+      "AddContact": "Añadir nuevo contacto",
+      "Contact": "Contacto: {name}",
+      "Action": "Acción para {contact}"
+    }
+  },
+  "Calculator": {
+    "AC": "AC",
+    "AllClear": "Borrar todo",
+    "ToggleSign": "Cambiar signo",
+    "Percentage": "Porcentaje",
+    "Divide": "Dividir",
+    "Multiply": "Multiplicar",
+    "Subtract": "Restar",
+    "Add": "Sumar",
+    "Calculate": "Calcular resultado"
+  },
+  "Clock": {
+    "Tabs": {
+      "WorldClock": "Reloj mundial",
+      "Alarms": "Alarmas",
+      "Stopwatch": "Cronómetro",
+      "Timers": "Temporizadores"
+    },
+    "AddClock": "Añadir reloj",
+    "Locations": {
+      "NewDelhi": "Nueva Delhi"
+    },
+    "Today": "Hoy",
+    "HRS": "H"
+  },
+  "Weather": {
+    "Loading": "Cargando clima...",
+    "Error": "No se pudo cargar el clima",
+    "Retry": "Reintentar",
+    "SearchPlaceholder": "Buscar ciudad",
+    "Searching": "Buscando...",
+    "NoResults": "Sin resultados",
+    "Recent": "Reciente",
+    "Popular": "Populares",
+    "Sidebar": {
+      "Open": "Abrir barra lateral",
+      "Close": "Cerrar barra lateral"
+    },
+    "Aria": {
+      "SelectLocation": "Seleccionar {name}, {country}"
+    },
+    "Forecast": {
+      "Hourly": "Pronóstico por hora",
+      "TenDay": "Pronóstico 10 días",
+      "Now": "Ahora",
+      "Today": "Hoy"
+    },
+    "Details": {
+      "AirQuality": "Calidad del aire",
+      "UVIndex": "Índice UV",
+      "Wind": "Viento",
+      "Sunset": "Puesta de sol",
+      "Sunrise": "Amanecer:",
+      "FeelsLike": "Sensación",
+      "Humidity": "Humedad",
+      "Visibility": "Visibilidad",
+      "Pressure": "Presión",
+      "hPa": "hPa"
+    },
+    "Descriptions": {
+      "AirQualityDesc": "El índice de calidad del aire es 130, similar a ayer a esta hora.",
+      "UVIndexDesc": "Usa protección solar hasta las 16:00.",
+      "FeelsLikeDesc": "Similar a la temperatura actual.",
+      "DewPointDesc": "El punto de rocío es {temp}° ahora.",
+      "VisibilityDesc": "Visibilidad perfectamente clara.",
+      "Footer": "Tiempo en {location} • Datos de Open-Meteo",
+      "PollutionLevel": "Moderadamente contaminado",
+      "UVLevel": "Moderado"
+    }
+  },
+  "Stocks": {
+    "Loading": "Cargando datos de mercado...",
+    "Error": "Error al cargar acciones.",
+    "Title": "Bolsa",
+    "Search": "Buscar",
+    "Searching": "Buscando...",
+    "Watchlist": "Lista de seguimiento",
+    "KeyStatistics": "Estadísticas clave",
+    "BusinessNews": "Noticias de negocios",
+    "ShowMore": "Mostrar más",
+    "Aria": {
+      "Search": "Buscar acciones",
+      "Select": "Seleccionar acción {symbol}",
+      "ReadNews": "Leer noticia: {title}"
+    },
+    "Stats": {
+      "Open": "Apertura",
+      "High": "Máx",
+      "Low": "Mín",
+      "Vol": "Vol",
+      "PE": "PER",
+      "MktCap": "Cap. bursátil",
+      "52WH": "Máx 52 sem",
+      "52WL": "Mín 52 sem"
+    }
+  },
+  "News": {
+    "Title": "Noticias",
+    "Categories": {
+      "TopStories": "Titulares",
+      "Technology": "Tecnología",
+      "Business": "Negocios",
+      "Science": "Ciencia",
+      "Health": "Salud",
+      "Entertainment": "Entretenimiento",
+      "Sports": "Deportes"
+    },
+    "SearchPlaceholder": "Buscar historias...",
+    "SearchLabel": "Buscar",
+    "SearchTitle": "Buscar: \"{query}\"",
+    "Loading": "Cargando titulares...",
+    "Error": "Error al cargar noticias. Por favor, inténtalo de nuevo más tarde.",
+    "TryAgain": "Intentar de nuevo",
+    "NoResults": "No se encontraron historias para \"{query}\"",
+    "ClearSearch": "Borrar búsqueda",
+    "TopStory": "Noticia destacada",
+    "Refresh": "Actualizar",
+    "Aria": {
+      "Category": "Categoría: {label}",
+      "Search": "Buscar historias",
+      "Refresh": "Actualizar noticias",
+      "ReadTopStory": "Leer noticia destacada: {title}",
+      "ReadArticle": "Leer artículo: {title}",
+      "Share": "Compartir artículo",
+      "Like": "Me gusta el artículo"
+    }
+  },
+  "Music": {
+    "AppleMusic": "Apple Music",
+    "Library": "Biblioteca",
+    "ListenNow": "Escuchar",
+    "Browse": "Explorar",
+    "Radio": "Radio",
+    "RecentlyAdded": "Añadido recientemente",
+    "Artists": "Artistas",
+    "Albums": "Álbumes",
+    "Songs": "Canciones",
+    "Search": "Buscar",
+    "SearchTitle": "Buscar: {query}",
+    "Aria": {
+      "Search": "Buscar música",
+      "GoBack": "Ir atrás",
+      "GoForward": "Ir adelante",
+      "Prev": "Canción anterior",
+      "Next": "Siguiente canción",
+      "Play": "Reproducir",
+      "Pause": "Pausar",
+      "PlaySong": "Reproducir {track} de {artist}",
+      "PauseSong": "Pausar {track}",
+      "Lyrics": "Alternar letras",
+      "Queue": "Alternar cola",
+      "Mute": "Alternar silencio",
+      "VolSlider": "Control de volumen",
+      "SeekSlider": "Barra de progreso"
+    },
+    "Queue": {
+      "Title": "A continuación",
+      "Empty": "La cola está vacía"
+    },
+    "Lyrics": {
+      "NotAvailable": "Las letras no están disponibles para esta canción en modo vista previa.",
+      "Imagine": "Pero imagina las letras apareciendo aquí, perfectamente sincronizadas con la música...",
+      "Lalala": "La la la...",
+      "Placeholder": "Reproduce una canción para ver la letra"
+    }
+  },
+  "TV": {
+    "WatchNow": "Ver ahora",
+    "Movies": "Películas",
+    "TVShows": "Programas de TV",
+    "Kids": "Niños",
+    "Library": "Biblioteca",
+    "SearchResults": "Resultados de búsqueda",
+    "NoShows": "No se encontraron programas.",
+    "SearchPlaceholder": "Buscar",
+    "SearchLabel": "Buscar programas de TV",
+    "Series": "Series",
+    "PlayEpisode": "Reproducir Episodio 1",
+    "AddToUpNext": "Añadir a A continuación",
+    "Added": "Añadido",
+    "OpenYouTube": "Abrir en YouTube",
+    "ViewAccount": "Ver cuenta",
+    "Aria": {
+      "Play": "Reproducir {name}",
+      "CloseVideo": "Cerrar vídeo",
+      "AddLibrary": "Añadir a biblioteca",
+      "RemoveLibrary": "Eliminar de biblioteca"
+    },
+    "Genres": {
+      "Drama": "Drama",
+      "Action": "Acción",
+      "Comedy": "Comedia",
+      "ScienceFiction": "Ciencia Ficción",
+      "Thriller": "Suspenso"
+    }
+  },
+  "Terminal": {
+    "Guest": "Invitado",
+    "Welcome": "Bienvenido a Terminal",
+    "HelpPrompt": "Escribe 'help' para una lista de comandos.",
+    "AvailableCommands": "Comandos disponibles: ls, cd, pwd, mkdir, touch, echo, cat, clear, whoami, ping, man, rm, rmdir, vi",
+    "CommandNotFound": "comando no encontrado: {command}",
+    "Error": "Error",
+    "AriaInput": "Entrada de Terminal",
+    "Usage": {
+      "Ping": "uso: ping host",
+      "Mkdir": "uso: mkdir nombre_directorio",
+      "Rmdir": "uso: rmdir nombre_directorio",
+      "Rm": "uso: rm [-rf] nombre_archivo",
+      "Touch": "uso: touch nombre_archivo",
+      "Cat": "uso: cat nombre_archivo",
+      "Vi": "uso: vi nombre_archivo",
+      "Man": "¿Qué página de manual quieres?"
+    },
+    "Errors": {
+      "PingResolve": "ping: no se puede resolver {host}: Host desconocido",
+      "NoManual": "No hay entrada de manual para {command}",
+      "NoSuchFile": "{cmd}: {path}: No existe el archivo o directorio",
+      "NotADirectory": "{cmd}: {path}: No es un directorio",
+      "DirectoryNotEmpty": "{cmd}: {path}: El directorio no está vacío",
+      "IsADirectory": "{cmd}: {path}: es un directorio"
+    },
+    "Messages": {
+      "PingStats": "PING {host} (127.0.0.1): 56 bytes de datos\n64 bytes de 127.0.0.1: icmp_seq=0 ttl=64 time=0.045 ms\n64 bytes de 127.0.0.1: icmp_seq=1 ttl=64 time=0.082 ms\n64 bytes de 127.0.0.1: icmp_seq=2 ttl=64 time=0.067 ms\n\n--- {host} estadísticas de ping ---\n3 paquetes transmitidos, 3 paquetes recibidos, 0.0% pérdida de paquetes",
+      "OpeningTextEdit": "Abriendo {file} en Editor de Texto..."
+    },
+    "ManPages": {
+      "ls": "ls - listar contenido del directorio\n\nUso: ls [opciones] [archivo|dir]\n\nOpciones:\n  -a, --all      no ignorar entradas que empiezan por .\n  -l             usar formato de lista larga",
+      "cd": "cd - cambiar el directorio de trabajo del shell\n\nUso: cd [dir]\n\nCambia el directorio actual a DIR. El DIR por defecto es el valor de la variable SHELL HOME.",
+      "pwd": "pwd - imprimir nombre del directorio actual/trabajo\n\nUso: pwd\n\nImprime el nombre completo del directorio de trabajo actual.",
+      "mkdir": "mkdir - crear directorios\n\nUso: mkdir [DIRECTORIO]\n\nCrea el/los DIRECTORIO(s), si no existen ya.",
+      "touch": "touch - cambiar marcas de tiempo de archivo\n\nUso: touch [ARCHIVO]\n\nActualiza las horas de acceso y modificación de cada ARCHIVO a la hora actual. Si el ARCHIVO no existe, se crea vacío.",
+      "echo": "echo - mostrar una línea de texto\n\nUso: echo [CADENA]...\n\nMuestra la(s) CADENA(s) en la salida estándar.",
+      "cat": "cat - concatenar archivos e imprimir en la salida estándar\n\nUso: cat [ARCHIVO]...\n\nConcatena ARCHIVO(s) a la salida estándar.",
+      "clear": "clear - limpiar la pantalla del terminal\n\nUso: clear",
+      "whoami": "whoami - imprimir userid efectivo\n\nUso: whoami\n\nImprime el nombre de usuario asociado con el ID de usuario efectivo actual.",
+      "ping": "ping - enviar ICMP ECHO_REQUEST a hosts de red\n\nUso: ping [HOST]\n\nEnvía ICMP ECHO_REQUEST a hosts de red.",
+      "man": "man - una interfaz para los manuales de referencia del sistema\n\nUso: man [COMANDO]\n\nMuestra la página del manual para COMANDO.",
+      "rm": "rm - eliminar archivos o directorios\n\nUso: rm [OPCIÓN]... [ARCHIVO]...\n\nElimina (desenlaza) el/los ARCHIVO(s).\n\nOpciones:\n  -r, -R, --recursive   eliminar directorios y sus contenidos recursivamente\n  -f, --force           ignorar archivos inexistentes y argumentos, nunca preguntar",
+      "rmdir": "rmdir - eliminar directorios vacíos\n\nUso: rmdir [DIRECTORIO]...\n\nElimina el/los DIRECTORIO(s), si están vacíos.",
+      "vi": "vi - editor de pantalla orientado (visual)\n\nUso: vi [ARCHIVO]\n\nEdita ARCHIVO."
+    }
+  },
+  "TextEdit": {
+    "Guest": "Invitado",
+    "Untitled": "Sin_titulo.txt",
+    "Save": "Guardar",
+    "Loading": "Cargando...",
+    "Placeholder": "Escribe tus notas aquí...",
+    "SavedAlert": "Guardado en {path}/{filename}"
+  },
+  "PDFViewer": {
+    "Document": "Documento.pdf",
+    "PageInfo": "Página {current} de {total}",
+    "View": "Ver",
+    "ZoomIn": "Acercar",
+    "ZoomOut": "Alejar",
+    "LoadingThumbnails": "Cargando miniaturas...",
+    "Loading": "Cargando...",
+    "NoPDF": "Sin PDF",
+    "FailedToLoad": "Error al cargar PDF",
+    "NoPDFLoaded": "Ningún PDF cargado"
+  },
+  "Spotlight": {
+    "Placeholder": "Búsqueda Spotlight",
+    "SearchWebFor": "Buscar en la web \"{query}\"",
+    "NoResults": "Sin resultados",
+    "Open": "Abrir",
+    "Kinds": {
+      "Web": "Búsqueda web",
+      "App": "Aplicación",
+      "Directory": "Directorio",
+      "File": "Archivo"
+    },
+    "Aria": {
+      "Open": "Abrir {name}"
+    }
+  },
+  "Desktop": {
+    "Guest": "Invitado",
+    "UntitledFolder": "carpeta sin título",
+    "NoAppAvailable": "Ninguna aplicación disponible para abrir archivos .{ext}.",
+    "MoveToBin": {
+      "Failed": "Error al mover a la papelera",
+      "NotSupported": "Error al mover a la papelera. Mover carpetas aún no está totalmente soportado."
+    },
+    "ContextMenu": {
+      "NewFolder": "Nueva carpeta",
+      "GetInfo": "Obtener información",
+      "ChangeWallpaper": "Cambiar fondo de pantalla...",
+      "EditWidgets": "Editar widgets...",
+      "UseStacks": "Usar pilas",
+      "SortBy": "Ordenar por",
+      "CleanUp": "Limpiar",
+      "CleanUpBy": "Limpiar por",
+      "ShowViewOptions": "Mostrar opciones de visualización",
+      "Tags": "Etiquetas",
+      "None": "Ninguno",
+      "SnapToGrid": "Alinear a la cuadrícula",
+      "Name": "Nombre",
+      "Kind": "Clase",
+      "DateLastOpened": "Fecha de última apertura",
+      "DateAdded": "Fecha de inclusión",
+      "DateModified": "Fecha de modificación",
+      "DateCreated": "Fecha de creación",
+      "Size": "Tamaño"
+    }
+  },
+  "MenuBar": {
+    "Apple": {
+      "AboutThisMac": "Acerca de este Mac",
+      "SystemSettings": "Ajustes del Sistema...",
+      "AppStore": "App Store...",
+      "RecentItems": "Items recientes",
+      "ForceQuit": "Forzar salida...",
+      "Sleep": "Reposo",
+      "Restart": "Reiniciar...",
+      "ShutDown": "Apagar equipo...",
+      "LockScreen": "Bloquear pantalla"
+    },
+    "App": {
+      "About": "Acerca de {app}",
+      "Quit": "Salir de {app}"
+    },
+    "File": {
+      "Title": "Archivo",
+      "New": "Nuevo",
+      "Open": "Abrir...",
+      "Save": "Guardar",
+      "Duplicate": "Duplicar",
+      "NewFinderWindow": "Nueva ventana del Finder",
+      "NewFolder": "Nueva carpeta",
+      "GetInfo": "Obtener información"
+    },
+    "Edit": {
+      "Title": "Edición",
+      "Undo": "Deshacer",
+      "Redo": "Rehacer",
+      "Cut": "Cortar",
+      "Copy": "Copiar",
+      "Paste": "Pegar"
+    },
+    "View": {
+      "Title": "Visualización",
+      "AsIcons": "Como iconos",
+      "AsList": "Como lista",
+      "AsColumns": "Como columnas"
+    },
+    "Window": {
+      "Title": "Ventana",
+      "Minimize": "Minimizar",
+      "Zoom": "Zoom"
+    },
+    "Help": {
+      "Title": "Ayuda",
+      "MacOSHelp": "Ayuda de macOS"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "KnownNetworks": "Redes conocidas",
+      "OtherNetworks": "Otras redes",
+      "Settings": "Ajustes de Wi-Fi..."
+    },
+    "Battery": {
+      "Title": "Batería",
+      "PowerSource": "Fuente de alimentación: {source}",
+      "PowerAdapter": "Adaptador de corriente",
+      "Battery": "Batería",
+      "EnergyMode": "Modo de energía",
+      "Automatic": "Automático",
+      "LowPower": "Bajo consumo",
+      "HighPower": "Alto consumo",
+      "SignificantEnergy": "Uso significativo de energía",
+      "Settings": "Ajustes de batería..."
+    },
+    "Aria": {
+      "Clipboard": "Portapapeles",
+      "MediaPlayer": "Reproductor Multimedia",
+      "Spotlight": "Búsqueda Spotlight",
+      "ControlCenter": "Centro de Control",
+      "Siri": "Siri",
+      "Clock": "Reloj y Centro de notificaciones"
+    }
+  },
+  "ControlCenter": {
+    "WiFi": "Wi-Fi",
+    "HomeNetwork": "Red doméstica",
+    "Off": "No",
+    "On": "Sí",
+    "Bluetooth": "Bluetooth",
+    "AirDrop": "AirDrop",
+    "ContactsOnly": "Solo contactos",
+    "DoNotDisturb": "No molestar",
+    "ScreenMirroring": "Duplicar pantalla",
+    "Display": "Pantalla",
+    "Sound": "Sonido",
+    "NotPlaying": "No se está reproduciendo",
+    "Music": "Música"
+  },
+  "WeatherDropdown": {
+    "Searching": "Buscando...",
+    "SearchCity": "Buscar ciudad...",
+    "Now": "Ahora",
+    "Today": "Hoy",
+    "OpenWeather": "Abrir clima"
+  },
+  "LockScreen": {
+    "IncorrectPassword": "Contraseña incorrecta",
+    "Guest": "Invitado",
+    "EnterPassword": "Introduce contraseña",
+    "Hint": "Touch ID o introduce contraseña (pista: {hint})",
+    "Login": "Entrar",
+    "Cancel": "Cancelar",
+    "Aria": {
+      "UserAvatar": "Avatar de usuario, clic para entrar",
+      "User": "Usuario {name}, clic para entrar",
+      "Password": "Contraseña",
+      "Submit": "Enviar contraseña"
+    }
+  },
+  "NotificationCenter": {
+    "Title": "Notificaciones",
+    "Widgets": "Widgets",
+    "Done": "OK",
+    "Edit": "Editar",
+    "AddWidget": "Añadir Widgets"
+  },
+  "Widgets": {
+    "Loading": "Cargando...",
+    "Calendar": {
+      "Title": "Calendario"
+    },
+    "Weather": {
+      "Title": "Clima"
+    },
+    "Stocks": {
+      "Title": "Bolsa"
+    },
+    "Reminders": {
+      "Title": "Recordatorios",
+      "NoReminders": "Sin recordatorios"
+    },
+    "Notes": {
+      "Title": "Notas",
+      "Content": "Comprar leche, huevos y pan.<br />Llamar a mamá a las 5pm.<br />Reunión con el equipo mañana."
+    }
+  },
+  "Window": {
+    "Minimize": "Minimizar",
+    "Maximize": "Maximizar",
+    "Restore": "Restaurar",
+    "Close": "Cerrar",
+    "MoveTo": "Mover ventana a...",
+    "LeftSide": "Lado izquierdo de la pantalla",
+    "RightSide": "Lado derecho de la pantalla",
+    "EnterFullScreen": "Usar pantalla completa"
+  },
+  "Dock": {
+    "AriaLabel": "Dock de aplicaciones",
+    "Trash": "Papelera"
+  },
+  "Apps": {
+    "Finder": "Finder",
+    "Launchpad": "Launchpad",
+    "Safari": "Safari",
+    "Messages": "Mensajes",
+    "Mail": "Mail",
+    "Maps": "Mapas",
+    "Photos": "Fotos",
+    "FaceTime": "FaceTime",
+    "Calendar": "Calendario",
+    "Contacts": "Contactos",
+    "Reminders": "Recordatorios",
+    "Notes": "Notas",
+    "Freeform": "Freeform",
+    "TV": "TV",
+    "Music": "Música",
+    "News": "Noticias",
+    "AppStore": "App Store",
+    "SystemSettings": "Ajustes del Sistema",
+    "Terminal": "Terminal",
+    "Calculator": "Calculadora",
+    "Trash": "Papelera",
+    "TextEdit": "Editor de Texto",
+    "MediaPlayer": "Reproductor Multimedia",
+    "Preview": "Vista Previa",
+    "VirtualMachine": "Máquina Virtual",
+    "VSCode": {
+      "Title": "Visual Studio Code"
+    },
+    "LeetCode": {
+      "Common": {
+        "Loading": "Cargando perfil...",
+        "NoData": "Sin datos",
+        "Retry": "Reintentar",
+        "ShowMore": "Mostrar más",
+        "GoToLeetCode": "Ir a LeetCode"
+      },
+      "Badges": {
+        "Title": "Insignias",
+        "MostRecent": "Insignia más reciente"
+      },
+      "Stats": {
+        "Title": "Estadísticas de comunidad",
+        "Views": "Vistas",
+        "Solution": "Solución",
+        "Discuss": "Debate",
+        "Reputation": "Reputación"
+      },
+      "Languages": {
+        "Title": "Lenguajes",
+        "ProblemsSolved": "problemas resueltos"
+      },
+      "Profile": {
+        "Rank": "Rango"
+      },
+      "Submissions": {
+        "RecentAC": "Aceptados recientes",
+        "List": "Lista",
+        "Solutions": "Soluciones",
+        "Discuss": "Debate",
+        "TimeAgo": "hace 2 meses"
+      },
+      "Skills": {
+        "Title": "Habilidades",
+        "Advanced": "Avanzado",
+        "Intermediate": "Intermedio"
+      },
+      "Solved": {
+        "Solved": "Resuelto",
+        "Easy": "Fácil",
+        "Medium": "Medio",
+        "Hard": "Difícil"
+      },
+      "Calendar": {
+        "SubmissionsLastYear": "envíos en el último año",
+        "TotalActiveDays": "Días activos totales:",
+        "MaxStreak": "Racha máx:",
+        "Current": "Actual",
+        "Months": {
+          "Jan": "Ene",
+          "Feb": "Feb",
+          "Mar": "Mar",
+          "Apr": "Abr",
+          "May": "May",
+          "Jun": "Jun",
+          "Jul": "Jul",
+          "Aug": "Ago",
+          "Sep": "Sep",
+          "Oct": "Oct",
+          "Nov": "Nov",
+          "Dec": "Dic"
+        }
+      }
+    },
+    "V86": {
+      "NoFileSelected": "Ningún archivo seleccionado",
+      "ScriptLoadError": "Error al cargar el script V86",
+      "FileReadError": "Error al leer archivo",
+      "StartError": "Error al iniciar emulador",
+      "Booting": "Arrancando {filename}...",
+      "ErrorPrefix": "Error: {error}",
+      "ClickToCapture": "Haz clic para capturar el ratón (Esc para liberar)"
+    }
+  },
+  "Common": {
+    "OK": "OK",
+    "Cancel": "Cancelar",
+    "Yes": "Sí",
+    "No": "No",
+    "Back": "Atrás",
+    "Continue": "Continuar",
+    "Done": "Hecho",
+    "Edit": "Editar",
+    "Delete": "Eliminar",
+    "Save": "Guardar",
+    "Close": "Cerrar",
+    "Error": "Error",
+    "Success": "Éxito"
+  }
 }

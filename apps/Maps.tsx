@@ -8,8 +8,10 @@ import {
   Clock,
 } from "lucide-react";
 import { usePermission } from "../context/PermissionContext";
+import { useTranslations } from "next-intl";
 
 export const Maps: React.FC = () => {
+  const t = useTranslations("Maps");
   const { requestPermission } = usePermission();
   const [searchQuery, setSearchQuery] = React.useState("");
   const [currentLocation, setCurrentLocation] = React.useState(
@@ -36,10 +38,10 @@ export const Maps: React.FC = () => {
   const handleCurrentLocation = async () => {
     if ("geolocation" in navigator) {
       const allowed = await requestPermission(
-        "Maps",
+        t("Permission.AppName"),
         <Navigation size={24} className="text-blue-500" />,
-        "Location",
-        "Maps needs access to your location to show where you are.",
+        t("Permission.Title"),
+        t("Permission.Reason"),
         "geolocation"
       );
 
@@ -57,13 +59,11 @@ export const Maps: React.FC = () => {
         },
         (error) => {
           console.error("Error getting location:", error);
-          alert(
-            "Could not get your location. Please ensure location services are enabled."
-          );
+          alert(t("Permission.Error"));
         }
       );
     } else {
-      alert("Geolocation is not supported by your browser.");
+      alert(t("Permission.NotSupported"));
     }
   };
 
@@ -96,8 +96,8 @@ export const Maps: React.FC = () => {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search Maps"
-              aria-label="Search Maps"
+              placeholder={t("SearchPlaceholder")}
+              aria-label={t("SearchPlaceholder")}
               className="w-full bg-gray-100 dark:bg-black/20 border-none rounded-lg pl-10 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50"
             />
           </form>
@@ -105,7 +105,7 @@ export const Maps: React.FC = () => {
 
         <div className="flex-1 overflow-y-auto p-2">
           <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 px-2 mb-2 mt-2">
-            FAVORITES
+            {t("Sidebar.Favorites")}
           </h3>
           <div className="space-y-1">
             <div
@@ -124,7 +124,9 @@ export const Maps: React.FC = () => {
                 <Navigation size={16} fill="currentColor" />
               </div>
               <div className="flex flex-col">
-                <span className="text-sm font-medium">Home</span>
+                <span className="text-sm font-medium">
+                  {t("Locations.Home")}
+                </span>
                 <span className="text-xs text-gray-500">Lucknow</span>
               </div>
             </div>
@@ -144,19 +146,21 @@ export const Maps: React.FC = () => {
                 <MapIcon size={16} />
               </div>
               <div className="flex flex-col">
-                <span className="text-sm font-medium">Work</span>
+                <span className="text-sm font-medium">
+                  {t("Locations.Work")}
+                </span>
                 <span className="text-xs text-gray-500">Florida</span>
               </div>
             </div>
           </div>
 
           <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 px-2 mb-2 mt-4">
-            RECENT
+            {t("Sidebar.Recent")}
           </h3>
           <div className="space-y-1">
             {recents.length === 0 && (
               <div className="px-4 py-8 text-center text-sm text-gray-400">
-                No recent searches
+                {t("Sidebar.NoRecentSearches")}
               </div>
             )}
             {recents.map((loc) => (
@@ -180,7 +184,9 @@ export const Maps: React.FC = () => {
                   <span className="text-sm font-medium truncate w-48">
                     {loc}
                   </span>
-                  <span className="text-xs text-gray-500">Recent</span>
+                  <span className="text-xs text-gray-500">
+                    {t("Sidebar.RecentLabel")}
+                  </span>
                 </div>
               </div>
             ))}
@@ -202,11 +208,15 @@ export const Maps: React.FC = () => {
           <button
             onClick={() => setMapType(mapType === "m" ? "k" : "m")}
             className="w-10 h-10 bg-white dark:bg-[#2b2b2b] rounded-lg shadow-md flex items-center justify-center text-blue-500 hover:bg-gray-50"
-            title={mapType === "m" ? "Switch to Satellite" : "Switch to Map"}
+            title={
+              mapType === "m"
+                ? t("Controls.SwitchToSatellite")
+                : t("Controls.SwitchToMap")
+            }
             aria-label={
               mapType === "m"
-                ? "Switch to Satellite view"
-                : "Switch to Map view"
+                ? t("Controls.SwitchToSatelliteLabel")
+                : t("Controls.SwitchToMapLabel")
             }
           >
             {mapType === "m" ? <MapIcon size={20} /> : <Navigation size={20} />}
@@ -214,14 +224,14 @@ export const Maps: React.FC = () => {
           <button
             onClick={handleCurrentLocation}
             className="w-10 h-10 bg-white dark:bg-[#2b2b2b] rounded-lg shadow-md flex items-center justify-center text-gray-500 hover:bg-gray-50"
-            title="Current Location"
-            aria-label="Show current location"
+            title={t("Controls.CurrentLocation")}
+            aria-label={t("Controls.ShowCurrentLocation")}
           >
             <Locate size={20} />
           </button>
           <button
             className="w-10 h-10 bg-white dark:bg-[#2b2b2b] rounded-lg shadow-md flex items-center justify-center text-gray-500 hover:bg-gray-50"
-            aria-label="Map information"
+            aria-label={t("Controls.MapInfo")}
           >
             <Info size={20} />
           </button>

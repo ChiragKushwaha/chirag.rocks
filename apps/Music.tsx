@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import {
   Play,
   Pause,
@@ -36,6 +37,7 @@ interface HistoryItem {
 }
 
 export const Music: React.FC = () => {
+  const t = useTranslations("Music");
   const [activeTab, setActiveTab] = useState("listen-now");
   const [searchQuery, setSearchQuery] = useState("");
   const [songs, setSongs] = useState<Song[]>([]); // Songs displayed in grid
@@ -226,7 +228,21 @@ export const Music: React.FC = () => {
       <div className="p-8 pb-32">
         <h1 className="text-3xl font-bold mb-6 capitalize text-gray-900 dark:text-white">
           {activeTab === "search"
-            ? `Search: ${searchQuery}`
+            ? t("SearchTitle", { query: searchQuery })
+            : activeTab === "listen-now"
+            ? t("ListenNow")
+            : activeTab === "browse"
+            ? t("Browse")
+            : activeTab === "radio"
+            ? t("Radio")
+            : activeTab === "recently-added"
+            ? t("RecentlyAdded")
+            : activeTab === "artists"
+            ? t("Artists")
+            : activeTab === "albums"
+            ? t("Albums")
+            : activeTab === "songs"
+            ? t("Songs")
             : activeTab.replace("-", " ")}
         </h1>
 
@@ -243,7 +259,10 @@ export const Music: React.FC = () => {
                   handlePlaySong(song);
                 }
               }}
-              aria-label={`Play ${song.trackName} by ${song.artistName}`}
+              aria-label={t("Aria.PlaySong", {
+                track: song.trackName,
+                artist: song.artistName,
+              })}
             >
               <div className="aspect-square rounded-lg shadow-md bg-gray-200 dark:bg-gray-800 relative overflow-hidden mb-3 group-hover:shadow-xl transition-all duration-300">
                 <Image
@@ -262,8 +281,11 @@ export const Music: React.FC = () => {
                   role="button"
                   aria-label={
                     currentSong?.trackId === song.trackId && isPlaying
-                      ? `Pause ${song.trackName}`
-                      : `Play ${song.trackName}`
+                      ? t("Aria.PauseSong", { track: song.trackName })
+                      : t("Aria.PlaySong", {
+                          track: song.trackName,
+                          artist: song.artistName,
+                        })
                   }
                 >
                   <div className="w-12 h-12 rounded-full bg-red-500 text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
@@ -306,36 +328,36 @@ export const Music: React.FC = () => {
           <Search size={14} className="absolute left-5 top-2.5 text-gray-400" />
           <input
             type="text"
-            placeholder="Search"
+            placeholder={t("Search")}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-white dark:bg-black/20 border-none rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/50 shadow-sm text-gray-900 dark:text-white placeholder-gray-500"
-            aria-label="Search music"
+            aria-label={t("Aria.Search")}
           />
         </form>
 
         <div className="space-y-6 px-2 overflow-y-auto scrollbar-hide">
           <div>
             <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2 px-2 uppercase tracking-wider">
-              Apple Music
+              {t("AppleMusic")}
             </h3>
             <div className="space-y-0.5">
               {[
                 {
                   id: "listen-now",
-                  label: "Listen Now",
+                  label: t("ListenNow"),
                   icon: Play,
                   query: "top hits 2024",
                 },
                 {
                   id: "browse",
-                  label: "Browse",
+                  label: t("Browse"),
                   icon: ListMusic,
                   query: "pop music",
                 },
                 {
                   id: "radio",
-                  label: "Radio",
+                  label: t("Radio"),
                   icon: Radio,
                   query: "radio hits",
                 },
@@ -364,31 +386,31 @@ export const Music: React.FC = () => {
 
           <div>
             <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2 px-2 uppercase tracking-wider">
-              Library
+              {t("Library")}
             </h3>
             <div className="space-y-0.5">
               {[
                 {
                   id: "recently-added",
-                  label: "Recently Added",
+                  label: t("RecentlyAdded"),
                   icon: Clock,
                   query: "new music",
                 },
                 {
                   id: "artists",
-                  label: "Artists",
+                  label: t("Artists"),
                   icon: Mic2,
                   query: "top artists",
                 },
                 {
                   id: "albums",
-                  label: "Albums",
+                  label: t("Albums"),
                   icon: Disc,
                   query: "top albums",
                 },
                 {
                   id: "songs",
-                  label: "Songs",
+                  label: t("Songs"),
                   icon: MusicIcon,
                   query: "essential hits",
                 },
@@ -427,7 +449,7 @@ export const Music: React.FC = () => {
                 onClick={handleBack}
                 disabled={historyIndex <= 0}
                 className="p-1 hover:bg-gray-200 dark:hover:bg-white/10 rounded-md disabled:opacity-30 transition-opacity"
-                aria-label="Go back"
+                aria-label={t("Aria.GoBack")}
               >
                 <ChevronLeft size={20} />
               </button>
@@ -435,7 +457,7 @@ export const Music: React.FC = () => {
                 onClick={handleForward}
                 disabled={historyIndex >= history.length - 1}
                 className="p-1 hover:bg-gray-200 dark:hover:bg-white/10 rounded-md disabled:opacity-30 transition-opacity"
-                aria-label="Go forward"
+                aria-label={t("Aria.GoForward")}
               >
                 <ChevronRight size={20} />
               </button>
@@ -450,7 +472,7 @@ export const Music: React.FC = () => {
                 onClick={playPrev}
                 disabled={!currentSong}
                 className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors disabled:opacity-30"
-                aria-label="Previous song"
+                aria-label={t("Aria.Prev")}
               >
                 <SkipBack size={20} fill="currentColor" />
               </button>
@@ -462,7 +484,7 @@ export const Music: React.FC = () => {
                     : "bg-gray-100 dark:bg-white/5 text-gray-400 cursor-not-allowed"
                 }`}
                 disabled={!currentSong}
-                aria-label={isPlaying ? "Pause" : "Play"}
+                aria-label={isPlaying ? t("Aria.Pause") : t("Aria.Play")}
               >
                 {isPlaying ? (
                   <Pause size={16} fill="currentColor" />
@@ -474,7 +496,7 @@ export const Music: React.FC = () => {
                 onClick={playNext}
                 disabled={!currentSong}
                 className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors disabled:opacity-30"
-                aria-label="Next song"
+                aria-label={t("Aria.Next")}
               >
                 <SkipForward size={20} fill="currentColor" />
               </button>
@@ -525,13 +547,13 @@ export const Music: React.FC = () => {
                     onChange={handleSeek}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20"
                     disabled={!currentSong}
-                    aria-label="Seek slider"
+                    aria-label={t("Aria.SeekSlider")}
                   />
                 </>
               ) : (
                 <div className="flex items-center justify-center w-full text-xs text-gray-400">
                   <MusicIcon size={14} className="mr-2" />
-                  Apple Music
+                  {t("AppleMusic")}
                 </div>
               )}
             </div>
@@ -549,7 +571,7 @@ export const Music: React.FC = () => {
                   ? "bg-gray-200 dark:bg-white/10 text-red-500 shadow-sm"
                   : "text-gray-400 hover:text-gray-600 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5"
               }`}
-              aria-label="Toggle lyrics"
+              aria-label={t("Aria.Lyrics")}
             >
               <Quote size={18} fill={showLyrics ? "currentColor" : "none"} />
             </button>
@@ -563,14 +585,14 @@ export const Music: React.FC = () => {
                   ? "bg-gray-200 dark:bg-white/10 text-red-500 shadow-sm"
                   : "text-gray-400 hover:text-gray-600 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5"
               }`}
-              aria-label="Toggle queue"
+              aria-label={t("Aria.Queue")}
             >
               <Menu size={18} />
             </button>
             <div className="flex items-center gap-2 w-24">
               <button
                 onClick={() => setVolume(volume === 0 ? 0.5 : 0)}
-                aria-label="Toggle mute"
+                aria-label={t("Aria.Mute")}
               >
                 {volume === 0 ? (
                   <VolumeX size={16} className="text-gray-500" />
@@ -588,7 +610,7 @@ export const Music: React.FC = () => {
                 value={volume}
                 onChange={(e) => setVolume(parseFloat(e.target.value))}
                 className="w-full h-1 bg-gray-300 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer accent-gray-500 dark:accent-gray-400"
-                aria-label="Volume slider"
+                aria-label={t("Aria.VolSlider")}
               />
             </div>
           </div>
@@ -612,22 +634,16 @@ export const Music: React.FC = () => {
                     </p>
                   </div>
                   <div className="space-y-4 text-lg font-medium text-gray-600 dark:text-gray-300 leading-relaxed">
-                    <p>
-                      Lyrics are not available for this song in the preview
-                      mode.
-                    </p>
-                    <p className="opacity-50">
-                      But imagine the lyrics appearing here, perfectly synced
-                      with the music...
-                    </p>
-                    <p className="opacity-30">La la la...</p>
+                    <p>{t("Lyrics.NotAvailable")}</p>
+                    <p className="opacity-50">{t("Lyrics.Imagine")}</p>
+                    <p className="opacity-30">{t("Lyrics.Lalala")}</p>
                   </div>
                 </>
               ) : (
                 <div className="flex-1 flex items-center justify-center text-gray-400 text-center">
                   <div>
                     <Quote size={48} className="mx-auto mb-4 opacity-20" />
-                    <p>Play a song to see lyrics</p>
+                    <p>{t("Lyrics.Placeholder")}</p>
                   </div>
                 </div>
               )}
@@ -638,7 +654,7 @@ export const Music: React.FC = () => {
           {showQueue && (
             <div className="w-80 bg-[#f5f5f7]/95 dark:bg-[#2b2b2b]/95 backdrop-blur-xl border-l border-gray-200 dark:border-white/10 p-4 overflow-y-auto animate-in slide-in-from-right duration-300 absolute right-0 top-0 bottom-0 z-20 shadow-xl">
               <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-4 uppercase tracking-wider">
-                Playing Next
+                {t("Queue.Title")}
               </h3>
               <div className="space-y-2">
                 {queue.length > 0 ? (
@@ -662,7 +678,10 @@ export const Music: React.FC = () => {
                           setIsPlaying(true);
                         }
                       }}
-                      aria-label={`Play ${song.trackName} by ${song.artistName}`}
+                      aria-label={t("Aria.PlaySong", {
+                        track: song.trackName,
+                        artist: song.artistName,
+                      })}
                     >
                       <div className="w-10 h-10 rounded bg-gray-300 dark:bg-gray-700 relative overflow-hidden shrink-0">
                         <Image
@@ -696,7 +715,7 @@ export const Music: React.FC = () => {
                   ))
                 ) : (
                   <p className="text-sm text-gray-500 text-center py-4">
-                    Queue is empty
+                    {t("Queue.Empty")}
                   </p>
                 )}
               </div>

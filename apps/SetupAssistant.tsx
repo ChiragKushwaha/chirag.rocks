@@ -17,7 +17,7 @@ import { SetupContext } from "./SetupAssistant/SetupContext";
 export const SetupAssistant: React.FC = () => {
   const { setSetupComplete, setupStep: step, setSetupStep } = useSystemStore();
 
-  const [selectedCountry, setSelectedCountry] = useState("Germany");
+  const [selectedCountry, setSelectedCountry] = useState("DE");
   const [selectedLanguages] = useState(["English (UK)", "German"]);
   const [accountTitle, setAccountTitle] = useState(
     "Create Your Computer Account"

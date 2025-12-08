@@ -6,9 +6,18 @@ interface SubmissionCalendarProps {
   matchedUser: LeetCodeData["matchedUser"];
 }
 
+import { useTranslations, useLocale } from "next-intl";
+
+interface SubmissionCalendarProps {
+  matchedUser: LeetCodeData["matchedUser"];
+}
+
 export const SubmissionCalendar: React.FC<SubmissionCalendarProps> = ({
   matchedUser,
 }) => {
+  const t = useTranslations("LeetCode.Calendar");
+  const locale = useLocale();
+
   const renderHeatmap = (calendarJson: string) => {
     const calendar = JSON.parse(calendarJson);
     const today = new Date();
@@ -55,13 +64,25 @@ export const SubmissionCalendar: React.FC<SubmissionCalendarProps> = ({
                     ? "bg-[#00833e]" // Medium green
                     : "bg-[#00b254]" // Bright green
                 }`}
-                title={`${day.date.toDateString()}: ${day.count} submissions`}
+                title={`${day.date.toLocaleDateString(locale)}: ${
+                  day.count
+                } submissions`}
               />
             ))}
           </div>
         ))}
       </div>
     );
+  };
+
+  const getMonthLabels = () => {
+    const today = new Date();
+    const labels = [];
+    for (let i = 11; i >= 0; i--) {
+      const d = new Date(today.getFullYear(), today.getMonth() - i, 1);
+      labels.push(d.toLocaleString(locale, { month: "short" }));
+    }
+    return labels;
   };
 
   return (
@@ -79,23 +100,23 @@ export const SubmissionCalendar: React.FC<SubmissionCalendarProps> = ({
               : 0}
           </span>
           <span className="text-gray-400 text-sm">
-            submissions in the past one year
+            {t("SubmissionsLastYear")}
           </span>
           <div className="text-gray-500 cursor-help">ⓘ</div>
         </div>
 
         <div className="flex items-center gap-4 text-xs text-gray-400">
           <span>
-            Total active days:{" "}
+            {t("TotalActiveDays")}{" "}
             <span className="text-white font-medium">
               {Object.keys(JSON.parse(matchedUser.submissionCalendar)).length}
             </span>
           </span>
           <span>
-            Max streak: <span className="text-white font-medium">64</span>
+            {t("MaxStreak")} <span className="text-white font-medium">64</span>
           </span>
           <div className="bg-[#3c3c3c] px-3 py-1.5 rounded text-white flex items-center gap-2 cursor-pointer hover:bg-[#4c4c4c]">
-            Current <ChevronRight size={12} className="rotate-90" />
+            {t("Current")} <ChevronRight size={12} className="rotate-90" />
           </div>
         </div>
       </div>
@@ -105,18 +126,9 @@ export const SubmissionCalendar: React.FC<SubmissionCalendarProps> = ({
       </div>
 
       <div className="flex justify-between mt-2 text-xs text-gray-500 px-1">
-        <span>Dec</span>
-        <span>Jan</span>
-        <span>Feb</span>
-        <span>Mar</span>
-        <span>Apr</span>
-        <span>May</span>
-        <span>Jun</span>
-        <span>Jul</span>
-        <span>Aug</span>
-        <span>Sep</span>
-        <span>Oct</span>
-        <span>Nov</span>
+        {getMonthLabels().map((month, i) => (
+          <span key={i}>{month}</span>
+        ))}
       </div>
     </div>
   );

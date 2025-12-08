@@ -1,4 +1,1741 @@
 {
-  "Hello": "Hello world!",
-  "Welcome": "Welcome to the multi-language app"
+  "Hello": {
+    "world": "Hello Dunia",
+    "GetStarted": "Mulakan"
+  },
+  "Common": {
+    "OK": "OK",
+    "Cancel": "Batal",
+    "Yes": "Ya",
+    "No": "Tidak",
+    "Back": "Kembali",
+    "Continue": "Teruskan",
+    "Done": "Selesai",
+    "Edit": "Edit",
+    "Delete": "Padam",
+    "Save": "Simpan",
+    "Close": "Tutup",
+    "Error": "Ralat",
+    "Success": "Berjaya"
+  },
+  "Setup": {
+    "Common": {
+      "Continue": "Teruskan",
+      "Back": "Kembali",
+      "NotNow": "Bukan Sekarang",
+      "Cancel": "Batal",
+      "LearnMore": "Ketahui Lebih Lanjut"
+    },
+    "Language": {
+      "Title": "Pilih Bahasa Anda",
+      "Description": "Pilih bahasa yang ingin anda gunakan pada Mac ini.",
+      "TableLabel": "Bahasa",
+      "Primary": "Utama"
+    },
+    "Region": {
+      "Title": "Pilih Negara atau Rantau Anda"
+    },
+    "DataPrivacy": {
+      "Title": "Data & Privasi",
+      "IconText": "Ikon ini muncul apabila ciri Apple meminta untuk menggunakan maklumat peribadi anda.",
+      "FeatureText": "Anda tidak akan melihat ini dengan setiap ciri. Apple mengumpul maklumat ini hanya apabila diperlukan untuk mengayakan ciri, melindungi perkhidmatan kami, atau memperibadikan pengalaman anda.",
+      "PrivacyText": "Apple percaya privasi adalah hak asasi manusia yang asas, jadi setiap produk Apple direka untuk meminimumkan pengumpulan dan penggunaan data anda, menggunakan pemprosesan pada peranti apabila mungkin, dan menyediakan ketelusan dan kawalan ke atas maklumat anda."
+    },
+    "TouchID": {
+      "Title": "Touch ID",
+      "SetupLater": "Sediakan Touch ID Kemudian",
+      "Description": "Gunakan cap jari anda untuk membuka kunci Mac anda dan membuat pembelian dengan Apple Pay. Letakkan jari anda pada Touch ID untuk bermula."
+    },
+    "Fingerprint": {
+      "Title": "Letakkan Jari Anda",
+      "Instruction": "Angkat dan rehatkan jari anda pada Touch ID berulang kali",
+      "Success": "✓ Touch ID Kini Sedia"
+    },
+    "Languages": {
+      "Title": "Bahasa Bertulis dan Pertuturan",
+      "Description": "Bahasa berikut biasanya digunakan di kawasan anda. Anda boleh menggunakan Mac dengan tetapan ini atau menyesuaikannya secara individu.",
+      "Preferred": "Bahasa Pilihan",
+      "InputSources": "Sumber Input",
+      "Dictation": "Penyimlakkan",
+      "Customize": "Sesuaikan Tetapan"
+    },
+    "Accessibility": {
+      "Title": "Kebolehaksesan",
+      "Description": "Ciri kebolehaksesan menyesuaikan Mac untuk keperluan penglihatan, pendengaran, dan fizikal motor anda. Anda boleh menghidupkannya sekarang dan menyelesaikan persediaan anda, atau menyesuaikannya kemudian dalam Tetapan Sistem. Terokai setiap kategori di bawah untuk melihat ciri yang tersedia.",
+      "Vision": "Penglihatan",
+      "Motor": "Motor",
+      "Hearing": "Pendengaran",
+      "Cognitive": "Kognitif"
+    },
+    "Migration": {
+      "Title": "Pembantu Migrasi",
+      "Description": "Jika anda mempunyai maklumat pada Mac lain atau PC Windows, anda boleh memindahkannya ke Mac ini. Anda juga boleh memindahkan maklumat daripada sandaran Time Machine atau cakera permulaan lain.",
+      "Question": "Bagaimana anda ingin memindahkan maklumat anda?",
+      "FromMac": "Daripada Mac, sandaran Time Machine atau cakera permulaan",
+      "FromPC": "Daripada PC Windows"
+    },
+    "AppleID": {
+      "Title": "Log Masuk dengan Apple ID",
+      "Description": "Log masuk untuk menggunakan iCloud, App Store, dan perkhidmatan Apple lain.",
+      "Label": "Apple ID",
+      "CreateNew": "Cipta Apple ID Baharu",
+      "Forgot": "Lupa Apple ID atau kata laluan?",
+      "UseDifferent": "Gunakan Apple ID berbeza untuk iCloud dan Pembelian Media?",
+      "Info": "Mac ini akan dipautkan ke Apple ID anda, dan data anda seperti foto, kenalan, dan dokumen akan disimpan dalam iCloud supaya anda boleh mengaksesnya daripada peranti lain.",
+      "SeeData": "Lihat bagaimana data anda diuruskan",
+      "SetupLater": "Sediakan Kemudian",
+      "ErrorRequired": "Sila masukkan Apple ID."
+    },
+    "Account": {
+      "Title": "Cipta Akaun Komputer",
+      "CreateAppleID": "Cipta Apple ID",
+      "Description": "Masukkan nama dan butiran akaun anda untuk menyediakan komputer.",
+      "Name": "Nama Penuh",
+      "Email": "Alamat E-mel",
+      "Age": "Umur",
+      "Phone": "Nombor Telefon Bimbit",
+      "Password": "Kata Laluan",
+      "Errors": {
+        "NameRequired": "Nama penuh diperlukan.",
+        "EmailRequired": "E-mel diperlukan.",
+        "EmailInvalid": "Sila masukkan alamat e-mel yang sah.",
+        "AgeRequired": "Umur diperlukan.",
+        "AgeInvalid": "Sila masukkan umur yang sah.",
+        "PhoneRequired": "Nombor telefon diperlukan.",
+        "PasswordRequired": "Kata laluan diperlukan.",
+        "PasswordLength": "Kata laluan mesti sekurang-kurangnya 6 aksara."
+      }
+    },
+    "Theme": {
+      "Title": "Pilih Rupa Anda",
+      "Description": "Pilih Rupa Cerah atau Gelap. Sistem dan aplikasi akan menyesuaikan secara automatik.",
+      "Light": "Cerah",
+      "Dark": "Gelap"
+    }
+  },
+  "SystemSettings": {
+    "General": {
+      "Title": "Umum",
+      "Description": "Urus tetapan keseluruhan dan keutamaan untuk Mac anda, termasuk kemas kini perisian, bahasa peranti, AirDrop dan banyak lagi.",
+      "About": "Mengenai",
+      "SoftwareUpdate": "Kemas Kini Perisian",
+      "Storage": "Storan",
+      "AppleCare": "AppleCare & Waranti",
+      "AirDrop": "AirDrop & Handoff",
+      "AutoFill": "Isi Automatik & Kata Laluan",
+      "DateTime": "Tarikh & Masa",
+      "LanguageRegion": "Bahasa & Wilayah",
+      "LoginItems": "Item Log Masuk",
+      "Sharing": "Perkongsian",
+      "StartupDisk": "Cakera Permulaan",
+      "TimeMachine": "Time Machine",
+      "DeviceManagement": "Pengurusan Peranti",
+      "TransferReset": "Pindah atau Set Semula"
+    },
+    "AppleAccount": {
+      "Edit": "Edit",
+      "PersonalInformation": "Maklumat Peribadi",
+      "SignInSecurity": "Log Masuk & Keselamatan",
+      "PaymentShipping": "Pembayaran & Penghantaran",
+      "iCloud": "iCloud",
+      "MediaPurchases": "Media & Pembelian",
+      "Family": "Keluarga",
+      "SetUp": "Sediakan",
+      "Devices": "Peranti",
+      "ThisMac": "MacBook Pro 14\" ini",
+      "SignOut": "Log Keluar..."
+    },
+    "LanguageRegion": {
+      "Title": "Bahasa & Wilayah",
+      "PreferredLanguages": "Bahasa Pilihan",
+      "Region": "Wilayah",
+      "Calendar": "Kalendar",
+      "Temperature": "Suhu",
+      "Celsius": "Celsius (°C)",
+      "Fahrenheit": "Fahrenheit (°F)",
+      "MeasurementSystem": "Sistem Pengukuran",
+      "Metric": "Metrik",
+      "US": "AS",
+      "UK": "UK",
+      "FirstDayOfWeek": "Hari Pertama Minggu",
+      "DateFormat": "Format Tarikh",
+      "NumberFormat": "Format Nombor",
+      "LiveText": "Teks Langsung",
+      "LiveTextDesc": "Pilih teks dalam imej untuk menyalin atau mengambil tindakan.",
+      "Applications": "Aplikasi",
+      "ApplicationsDesc": "Suaikan tetapan bahasa untuk aplikasi berikut:",
+      "TranslationLanguages": "Bahasa Terjemahan..."
+    },
+    "Sidebar": {
+      "Search": "Cari",
+      "NotImplemented": "Bahagian ini belum dilaksanakan.",
+      "AppleAccount": "Akaun Apple",
+      "WiFi": "Wi-Fi",
+      "Bluetooth": "Bluetooth",
+      "Network": "Rangkaian",
+      "General": "Umum",
+      "Appearance": "Rupa",
+      "Accessibility": "Kebolehaksesan",
+      "MenuBar": "Pusat Kawalan",
+      "DesktopDock": "Desktop & Dock",
+      "Displays": "Paparan",
+      "Spotlight": "Spotlight",
+      "Wallpaper": "Hiasan Dinding",
+      "ScreenSaver": "Penyelamat Skrin",
+      "Battery": "Bateri",
+      "Sound": "Bunyi",
+      "Notifications": "Pemberitahuan",
+      "Focus": "Fokus",
+      "ScreenTime": "Masa Skrin",
+      "PrivacySecurity": "Privasi & Keselamatan",
+      "LockScreen": "Skrin Kunci",
+      "TouchIDPassword": "Touch ID & Kata Laluan",
+      "UsersGroups": "Pengguna & Kumpulan",
+      "Keyboard": "Papan Kekunci",
+      "Trackpad": "Pad Jejak",
+      "PrintersScanners": "Pencetak & Pengimbas",
+      "Storage": "Storan"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "Description": "Sediakan Wi-Fi untuk menyambung ke Internet dan peranti nirkabel.",
+      "Connected": "Disambungkan",
+      "Details": "Butiran...",
+      "KnownNetworks": "Rangkaian Diketahui",
+      "OtherNetworks": "Rangkaian Lain",
+      "Connect": "Sambung",
+      "Other": "Lain...",
+      "AskToJoin": "Minta untuk Menyertai Rangkaian",
+      "AskToJoinDesc": "Sambung ke rangkaian diketahui secara automatik.",
+      "Notify": "Beritahu",
+      "AskToJoinHotspots": "Minta untuk Menyertai Hotspot",
+      "AskToJoinHotspotsDesc": "Benarkan penyambungan automatik ke hotspot peribadi.",
+      "AskToJoinAction": "Minta",
+      "Advanced": "Lanjutan..."
+    },
+    "Bluetooth": {
+      "Title": "Bluetooth",
+      "Description": "Sambung ke aksesori nirkabel seperti fon kepala, tetikus, dan papan kekunci.",
+      "Discoverable": "Kini boleh ditemui sebagai \"MacBook Pro\" semasa tetapan Bluetooth dibuka.",
+      "MyDevices": "Peranti Saya",
+      "NotConnected": "Tidak Disambungkan",
+      "NearbyDevices": "Peranti Berdekatan",
+      "Searching": "Mencari..."
+    },
+    "Network": {
+      "Title": "Rangkaian",
+      "WiFi": "Wi-Fi",
+      "Connected": "Disambungkan",
+      "Firewall": "Tembok Api",
+      "Inactive": "Tidak Aktif",
+      "OtherServices": "Perkhidmatan Lain",
+      "NotConnected": "Tidak Disambungkan"
+    },
+    "Appearance": {
+      "Title": "Rupa",
+      "Description": "Pilih rupa pilihan anda.",
+      "Light": "Cerah",
+      "Dark": "Gelap",
+      "Auto": "Auto",
+      "AccentColor": "Warna Loghat",
+      "HighlightColor": "Warna Sorotan",
+      "Automatic": "Automatik",
+      "SidebarIconSize": "Saiz ikon bar sisi",
+      "Medium": "Sederhana",
+      "WallpaperTinting": "Benarkan penintan hiasan dinding dalam tetingkap",
+      "ShowScrollBars": "Tunjukkan bar tatal",
+      "ScrollAuto": "Secara automatik berdasarkan tetikus atau pad jejak",
+      "ScrollWhenScrolling": "Semasa menatal",
+      "ScrollAlways": "Sentiasa",
+      "ClickScrollBar": "Klik dalam bar tatal untuk",
+      "JumpNextPage": "Lompat ke halaman seterusnya",
+      "JumpSpotClicked": "Lompat ke tempat yang diklik"
+    },
+    "Accessibility": {
+      "Title": "Kebolehaksesan",
+      "Description": "Sesuaikan Mac untuk keperluan penglihatan, pendengaran, dan fizikal anda.",
+      "LearnMore": "Ketahui Lebih Lanjut...",
+      "Vision": "Penglihatan",
+      "VoiceOver": "VoiceOver",
+      "Zoom": "Zum",
+      "HoverText": "Teks Tuding",
+      "Display": "Paparan",
+      "Motion": "Gerakan",
+      "ReadSpeak": "Kandungan Pertuturan",
+      "AudioDescriptions": "Keterangan Audio",
+      "Hearing": "Pendengaran",
+      "HearingDevices": "Peranti Pendengaran",
+      "Audio": "Audio",
+      "Captions": "Kapsyen",
+      "LiveCaptions": "Kapsyen Langsung",
+      "NameRecognition": "Pengecaman Nama",
+      "Motor": "Motor",
+      "VoiceControl": "Kawalan Suara",
+      "Keyboard": "Papan Kekunci",
+      "PointerControl": "Kawalan Penunjuk",
+      "SwitchControl": "Kawalan Suis",
+      "General": "Umum",
+      "Siri": "Siri",
+      "Shortcut": "Pintasan"
+    },
+    "MenuBar": {
+      "Title": "Pusat Kawalan",
+      "Description": "Tukar item yang ditunjukkan dalam bar menu dan Pusat Kawalan.",
+      "AutoHide": "Sembunyikan dan tunjukkan bar menu secara automatik",
+      "Never": "Tidak Pernah",
+      "RecentDocs": "Dokumen, aplikasi, dan pelayan terkini",
+      "None": "Tiada",
+      "Controls": "Modul Pusat Kawalan",
+      "ControlCenter": "Pusat Kawalan",
+      "ShowInMenuBar": "Tunjukkan dalam Bar Menu",
+      "DontShowInMenuBar": "Jangan Tunjukkan dalam Bar Menu",
+      "Siri": "Siri",
+      "Spotlight": "Spotlight",
+      "VolumeFeedback": "Mainkan maklum balas semasa kelantangan diubah"
+    },
+    "DesktopDock": {
+      "Title": "Desktop & Dock",
+      "Description": "Tukar rupa Dock dan Desktop.",
+      "Dock": "Dock",
+      "Size": "Saiz",
+      "Magnification": "Pembesaran",
+      "Small": "Kecil",
+      "Large": "Besar",
+      "Position": "Kedudukan pada skrin",
+      "Bottom": "Bawah",
+      "MinimiseUsing": "Minimumkan tetingkap menggunakan",
+      "GenieEffect": "Kesan Genie",
+      "DoubleClickTitle": "Dwiklik bar tajuk tetingkap untuk",
+      "Zoom": "Zum",
+      "MinimiseToIcon": "Minimumkan tetingkap ke dalam ikon aplikasi",
+      "AutoHideDock": "Sembunyikan dan tunjukkan Dock secara automatik",
+      "AnimateOpening": "Animasikan aplikasi pembukaan",
+      "ShowIndicators": "Tunjukkan penunjuk untuk aplikasi terbuka",
+      "ShowRecent": "Tunjukkan aplikasi terkini dalam Dock",
+      "DesktopStageManager": "Desktop & Pengurus Pentas",
+      "ShowItems": "Tunjukkan Item",
+      "OnDesktop": "Pada Desktop",
+      "ClickWallpaper": "Klik hiasan dinding untuk mendedahkan desktop",
+      "Always": "Sentiasa",
+      "StageManager": "Pengurus Pentas",
+      "Widgets": "Widget",
+      "ShowWidgets": "Tunjukkan Widget",
+      "WidgetStyle": "Gaya widget",
+      "Automatic": "Automatik",
+      "UseIPhoneWidgets": "Gunakan widget iPhone"
+    },
+    "Displays": {
+      "Title": "Paparan",
+      "Description": "Pilih paparan untuk menukar tetapan.",
+      "BuiltInDisplay": "Paparan Terbina Dalam",
+      "UseAs": "Gunakan sebagai",
+      "MainDisplay": "Paparan Utama",
+      "Resolution": "Resolusi",
+      "Default": "Lalai",
+      "MoreSpace": "Lebih Ruang",
+      "LargerText": "Teks Lebih Besar",
+      "Brightness": "Kecerahan",
+      "TrueTone": "True Tone",
+      "Preset": "Pratetap",
+      "RefreshRate": "Kadar Segar Semula",
+      "ProMotion": "ProMotion",
+      "Advanced": "Lanjutan..."
+    },
+    "Spotlight": {
+      "Title": "Spotlight",
+      "Description": "Cari pada Mac anda.",
+      "SearchPlaceholder": "Carian Spotlight",
+      "SearchResults": "Hasil Carian",
+      "Privacy": "Privasi Spotlight...",
+      "Categories": {
+        "Applications": "Aplikasi",
+        "Calculator": "Kalkulator",
+        "Contacts": "Kenalan",
+        "Conversion": "Penukaran",
+        "Definition": "Definisi",
+        "Developer": "Pembangun",
+        "Documents": "Dokumen",
+        "Events & Reminders": "Acara & Peringatan",
+        "Folders": "Folder",
+        "Fonts": "Fon",
+        "Images": "Imej",
+        "Mail & Messages": "Mel & Mesej",
+        "Movies": "Filem",
+        "Music": "Muzik",
+        "Other": "Lain",
+        "PDF Documents": "Dokumen PDF",
+        "Presentations": "Persembahan",
+        "Siri Suggestions": "Cadangan Siri",
+        "Spreadsheets": "Hamparan",
+        "System Preferences": "Keutamaan Sistem",
+        "Tips": "Petua",
+        "Bookmarks & History": "Penanda Buku & Sejarah"
+      }
+    },
+    "Notifications": {
+      "Title": "Pemberitahuan",
+      "Description": "Kawal cara pemberitahuan dipaparkan.",
+      "Preview": "Tunjukkan Pratonton",
+      "ShowPreviews": "Tunjukkan pratonton",
+      "Always": "Sentiasa",
+      "ApplicationNotifications": "Pemberitahuan Aplikasi",
+      "Apps": {
+        "AppStore": "App Store",
+        "Calendar": "Kalendar",
+        "FaceTime": "FaceTime",
+        "Mail": "Mel",
+        "Messages": "Mesej",
+        "Photos": "Foto",
+        "Reminders": "Peringatan",
+        "Safari": "Safari"
+      }
+    },
+    "Sound": {
+      "Title": "Bunyi",
+      "Description": "Tukar tetapan bunyi.",
+      "OutputInput": "Output & Input",
+      "Output": "Output",
+      "Input": "Input",
+      "SelectOutput": "Pilih peranti untuk output bunyi:",
+      "Speakers": "Pembesar Suara MacBook Pro",
+      "BuiltIn": "Terbina Dalam",
+      "OutputVolume": "Kelantangan output",
+      "Mute": "Senyap",
+      "ShowInMenuBar": "Tunjukkan Bunyi dalam Bar Menu",
+      "Always": "Sentiasa",
+      "AlertSoundGroup": "Bunyi Isyarat",
+      "AlertSound": "Bunyi isyarat",
+      "Boop": "Boop",
+      "AlertVolume": "Kelantangan isyarat",
+      "PlayUIEffects": "Mainkan kesan bunyi antara muka pengguna"
+    },
+    "Focus": {
+      "Title": "Fokus",
+      "Description": "Pilih Fokus untuk menyesuaikan tetapan.",
+      "DoNotDisturb": "Jangan Ganggu",
+      "ShareAcrossDevices": "Kongsi Merentas Peranti",
+      "FocusStatus": "Status Fokus",
+      "On": "Hidup",
+      "Off": "Mati",
+      "SetUp": "Sediakan",
+      "FocusModes": "Mod Fokus",
+      "Personal": "Peribadi",
+      "Sleep": "Tidur",
+      "Work": "Kerja",
+      "AddFocus": "Tambah Fokus"
+    },
+    "ScreenTime": {
+      "Title": "Masa Skrin",
+      "Description": "Pantau penggunaan anda dan tetapkan had.",
+      "DailyAverage": "Purata Harian",
+      "FromLastWeek": "Dari minggu lepas",
+      "Downtime": "Masa Rehat",
+      "AppLimits": "Had Aplikasi",
+      "LimitsCount": "{count} Had",
+      "AlwaysAllowed": "Sentiasa Dibenarkan",
+      "AllowedApps": "Telefon, Peta, Mesej",
+      "ContentPrivacy": "Kandungan & Privasi",
+      "On": "Hidup",
+      "Off": "Mati",
+      "ShareAcrossDevices": "Kongsi Merentas Peranti",
+      "LockSettings": "Kunci Tetapan Masa Skrin"
+    },
+    "Battery": {
+      "Title": "Bateri",
+      "Description": "Lihat kesihatan dan penggunaan bateri.",
+      "BatteryLevel": "Paras Bateri",
+      "LastCharged": "Terakhir dicas ke 100% pada 8:00 PG Jumaat",
+      "LowPowerMode": "Mod Kuasa Rendah",
+      "Never": "Tidak Pernah",
+      "BatteryHealth": "Kesihatan Bateri",
+      "Normal": "Normal",
+      "OptimisedCharging": "Pengecasan bateri dioptimumkan",
+      "Options": "Pilihan..."
+    },
+    "Keyboard": {
+      "Title": "Papan Kekunci",
+      "Description": "Tukar tetapan papan kekunci.",
+      "KeyRepeat": "Ulang Kekunci",
+      "Slow": "Perlahan",
+      "Fast": "Cepat",
+      "DelayUntilRepeat": "Lengah Sehingga Ulang",
+      "Long": "Panjang",
+      "Short": "Pendek",
+      "AdjustBrightness": "Laraskan kecerahan papan kekunci dalam cahaya malap",
+      "KeyboardNavigation": "Navigasi Papan Kekunci",
+      "Shortcuts": "Pintasan Papan Kekunci...",
+      "TextInput": "Input Teks",
+      "InputSources": "Sumber Input",
+      "Edit": "Edit...",
+      "Dictation": "Penyimlakkan"
+    },
+    "LockScreen": {
+      "Title": "Skrin Kunci",
+      "Description": "Tukar tetapan skrin kunci.",
+      "TurnOffDisplayBattery": "Matikan paparan pada bateri apabila tidak aktif",
+      "TurnOffDisplayAdapter": "Matikan paparan pada penyesuai kuasa apabila tidak aktif",
+      "TwoMinutes": "2 minit",
+      "TenMinutes": "10 minit",
+      "RequirePassword": "Perlukan kata laluan selepas penyelamat skrin bermula atau paparan dimatikan",
+      "Immediately": "Serta-merta",
+      "ShowMessage": "Tunjukkan mesej apabila dikunci",
+      "Set": "Tetapkan...",
+      "LoginWindowShows": "Tetingkap log masuk menunjukkan",
+      "ListOfUsers": "Senarai pengguna",
+      "ShowLargeClock": "Tunjukkan jam besar",
+      "OnLockScreen": "Pada Skrin Kunci"
+    },
+    "PrivacySecurity": {
+      "Title": "Privasi & Keselamatan",
+      "Description": "Kawal aplikasi yang boleh mengakses maklumat anda.",
+      "Privacy": "Privasi",
+      "LocationServices": "Perkhidmatan Lokasi",
+      "On": "Hidup",
+      "Off": "Mati",
+      "Camera": "Kamera",
+      "Microphone": "Mikrofon",
+      "FilesFolders": "Fail dan Folder",
+      "ScreenRecording": "Rakaman Skrin",
+      "AppsCount": "{count, plural, =0 {0 Aplikasi} other {# Aplikasi}}",
+      "Security": "Keselamatan",
+      "FileVault": "FileVault",
+      "LockdownMode": "Mod Kunci",
+      "Others": "Lain",
+      "Extensions": "Sambungan",
+      "Profiles": "Profil"
+    },
+    "PrintersScanners": {
+      "Title": "Pencetak & Pengimbas",
+      "Description": "Sediakan pencetak dan pengimbas.",
+      "Printers": "Pencetak",
+      "IdleLastUsed": "Melahu, Terakhir Digunakan",
+      "Offline": "Di luar talian",
+      "AddPrinter": "Tambah Pencetak, Pengimbas atau Faks..."
+    },
+    "ScreenSaver": {
+      "Title": "Penyelamat Skrin",
+      "Description": "Pilih penyelamat skrin.",
+      "Preview": "Pratonton",
+      "ShowOnAllSpaces": "Tunjukkan pada semua Ruang",
+      "ScreenSavers": "Penyelamat Skrin",
+      "StartAfter": "Mula selepas",
+      "FiveMinutes": "5 minit",
+      "ShowWithClock": "Tunjukkan dengan jam",
+      "ScreensaverNames": {
+        "Ventura": "Ventura",
+        "Monterey": "Monterey",
+        "BigSur": "Big Sur",
+        "Catalina": "Catalina",
+        "Hello": "Hello",
+        "Drift": "Drift",
+        "Flurry": "Flurry",
+        "Shell": "Shell"
+      }
+    },
+    "Storage": {
+      "Title": "Storan",
+      "Description": "Urus cakera dan data.",
+      "MacintoshHD": "Macintosh HD",
+      "AvailableSpace": "{available} GB tersedia daripada {total} GB",
+      "Apps": "Aplikasi",
+      "Documents": "Dokumen",
+      "SystemData": "Data Sistem",
+      "macOS": "macOS",
+      "OtherUsers": "Pengguna Lain",
+      "Recommendations": "Cadangan",
+      "StoreInICloud": "Simpan dalam iCloud",
+      "StoreInICloudDesc": "Simpan semua fail, foto, dan mesej anda dalam iCloud dan jimatkan ruang pada Mac ini.",
+      "StoreInICloudButton": "Simpan dalam iCloud...",
+      "Categories": "Kategori",
+      "Applications": "Aplikasi"
+    },
+    "TouchIDPassword": {
+      "Title": "Touch ID & Kata Laluan",
+      "Description": "Tambah cap jari untuk membuka kunci Mac anda.",
+      "TouchID": "Touch ID",
+      "Finger1": "Jari 1",
+      "AddFingerprint": "Tambah Cap Jari",
+      "UseTouchIDFor": "Gunakan Touch ID untuk",
+      "UnlockingMac": "Buka kunci Mac anda",
+      "ApplePay": "Apple Pay",
+      "iTunesAppStore": "iTunes Store & App Store",
+      "AutoFillPasswords": "Isi automatik kata laluan",
+      "Password": "Kata Laluan",
+      "LastChanged": "Terakhir diubah: 24/11/2024",
+      "Change": "Ubah...",
+      "RequirePasswordScreenSaver": "Perlukan kata laluan selepas penyelamat skrin bermula atau paparan dimatikan",
+      "Immediately": "Serta-merta",
+      "RequirePasswordIdle": "Perlukan kata laluan selepas komputer melahu",
+      "Never": "Tidak Pernah",
+      "Seconds": "{count} saat",
+      "Minute": "{count} minit",
+      "Minutes": "{count} minit",
+      "AppleWatch": "Apple Watch",
+      "AppleWatchUnlock": "Gunakan Apple Watch anda untuk membuka kunci aplikasi dan Mac anda"
+    },
+    "Trackpad": {
+      "Title": "Pad Jejak",
+      "Description": "Tukar tetapan pad jejak.",
+      "PointClick": "Tuding & Klik",
+      "ScrollZoom": "Tatal & Zum",
+      "MoreGestures": "Lagi Isyarat",
+      "TrackingSpeed": "Kelajuan Penjejakan",
+      "Slow": "Perlahan",
+      "Fast": "Cepat",
+      "Click": "Klik",
+      "Medium": "Sederhana",
+      "ForceClick": "Klik Paksa dan maklum balas haptik",
+      "LookUp": "Cari & pengesan data",
+      "SecondaryClick": "Klik Sekunder",
+      "ClickTwoFingers": "Klik atau ketik dengan dua jari",
+      "TapToClick": "Ketik untuk klik",
+      "VideoPreview": "Pratonton video"
+    },
+    "UsersGroups": {
+      "Title": "Pengguna & Kumpulan",
+      "Description": "Urus akaun pengguna dan kumpulan.",
+      "CurrentUser": "Pengguna Semasa",
+      "Admin": "Pentadbir",
+      "OtherUsers": "Pengguna Lain",
+      "GuestUser": "Pengguna Tamu",
+      "Off": "Mati",
+      "AddAccount": "Tambah Akaun...",
+      "AutoLogin": "Log masuk automatik",
+      "AllowNetworkUsers": "Benarkan pengguna rangkaian log masuk pada tetingkap log masuk"
+    },
+    "Wallpaper": {
+      "Title": "Hiasan Dinding",
+      "Description": "Pilih gambar latar belakang desktop anda.",
+      "ShowOnAllSpaces": "Tunjukkan pada semua Ruang",
+      "DynamicWallpapers": "Hiasan Dinding Dinamik",
+      "Pictures": "Gambar",
+      "AddPhoto": "Tambah Foto"
+    },
+    "LanguageSelector": {
+      "Title": "Pilih bahasa pilihan untuk ditambah",
+      "Search": "Cari",
+      "Cancel": "Batal",
+      "Add": "Tambah"
+    }
+  },
+  "Languages": {
+    "English": "Inggeris",
+    "Spanish": "Sepanyol",
+    "French": "Perancis",
+    "German": "Jerman",
+    "Italian": "Itali",
+    "Japanese": "Jepun",
+    "Chinese": "Cina",
+    "Portuguese": "Portugis",
+    "Russian": "Rusia",
+    "Korean": "Korea",
+    "Dutch": "Belanda",
+    "Swedish": "Sweden",
+    "Danish": "Denmark",
+    "Norwegian": "Norway",
+    "Finnish": "Finland",
+    "Polish": "Poland",
+    "Turkish": "Turki",
+    "Arabic": "Arab",
+    "Hindi": "Hindi",
+    "Bengali": "Benggali",
+    "Vietnamese": "Vietnam",
+    "Thai": "Thai",
+    "Greek": "Greek",
+    "Czech": "Czech",
+    "Hungarian": "Hungary",
+    "Romanian": "Romania",
+    "Ukrainian": "Ukraine",
+    "Indonesian": "Indonesia",
+    "Malay": "Melayu",
+    "Croatian": "Croatia",
+    "Slovak": "Slovak",
+    "Slovenian": "Slovenia",
+    "Bulgarian": "Bulgaria",
+    "Serbian": "Serbia",
+    "Hebrew": "Ibrani"
+  },
+  "Finder": {
+    "Search": "Cari",
+    "Sidebar": {
+      "Favorites": "Kegemaran",
+      "Locations": "Lokasi",
+      "AirDrop": "AirDrop",
+      "Recents": "Terkini",
+      "Applications": "Aplikasi",
+      "Desktop": "Desktop",
+      "Documents": "Dokumen",
+      "Downloads": "Muat Turun",
+      "Pictures": "Gambar",
+      "Home": "Laman Utama",
+      "MacintoshHD": "Macintosh HD",
+      "iCloudDrive": "iCloud Drive"
+    },
+    "Menu": {
+      "NewFolder": "Folder Baharu",
+      "GetInfo": "Dapatkan Maklumat",
+      "ChangeBackground": "Tukar Latar Belakang...",
+      "Open": "Buka",
+      "MoveToBin": "Pindah ke Tong Sampah",
+      "Rename": "Namakan Semula",
+      "OpenItems": "Buka {count} Item",
+      "MoveItemsToBin": "Pindah {count} Item ke Tong Sampah"
+    },
+    "Status": {
+      "Loading": "Memuatkan...",
+      "EmptyFolder": "Folder Kosong",
+      "ItemCount": "{count, plural, =1 {1 item} other {# item}}",
+      "SpaceAvailable": "{amount} GB tersedia"
+    },
+    "Errors": {
+      "NoApp": "Tiada aplikasi untuk membuka fail .{ext}.",
+      "CreateFolderFailed": "Gagal mencipta folder",
+      "MoveToBinFailed": "Gagal memindah ke Tong Sampah"
+    }
+  },
+  "Safari": {
+    "Title": "Safari",
+    "StartPage": "Halaman Mula",
+    "Loading": "Memuatkan...",
+    "SearchPlaceholder": "Cari atau masukkan nama laman web",
+    "NoInternet": "Tiada Sambungan Internet",
+    "NoInternetDesc": "Komputer anda di luar talian, jadi halaman ini tidak dapat dipaparkan.",
+    "Favorites": {
+      "Apple": "Apple",
+      "Google": "Google",
+      "Wikipedia": "Wikipedia",
+      "GitHub": "GitHub"
+    }
+  },
+  "Mail": {
+    "Inbox": "Peti Masuk",
+    "MessagesCount": "{count, plural, =1 {1 mesej} other {# mesej}}",
+    "Favorites": "Kegemaran",
+    "AllInboxes": "Semua Peti Masuk",
+    "VIP": "VIP",
+    "Sent": "Dihantar",
+    "Search": "Cari",
+    "NoMessageSelected": "Tiada Mesej Dipilih",
+    "To": "Kepada: {name}"
+  },
+  "Messages": {
+    "AppTitle": "Mesej",
+    "SigningIn": "Melog masuk sebagai {name}...",
+    "SidebarTitle": "Mesej",
+    "NoOnlineUsers": "Tiada pengguna dalam talian.",
+    "NoMessages": "Tiada mesej",
+    "To": "Kepada: {name}",
+    "InputPlaceholder": "iMessage",
+    "NoContactSelected": "Pilih kenalan untuk menghantar mesej"
+  },
+  "Photos": {
+    "Sidebar": {
+      "Library": "Perpustakaan",
+      "Collections": "Koleksi",
+      "Pinned": "Terpasak",
+      "Albums": "Album",
+      "Utilities": "Utiliti",
+      "Projects": "Projek",
+      "Favourites": "Kegemaran",
+      "RecentlySaved": "Terkini Disimpan",
+      "Videos": "Video",
+      "Screenshots": "Tangkapan Skrin",
+      "PeoplePets": "Orang & Haiwan Peliharaan",
+      "SharedAlbums": "Album Dikongsi",
+      "Activity": "Aktiviti",
+      "RecentlyDeleted": "Terkini Dipadam",
+      "Duplicates": "Pendua",
+      "Map": "Peta",
+      "AllProjects": "Semua Projek"
+    },
+    "Tabs": {
+      "Years": "Tahun",
+      "Months": "Bulan",
+      "AllPhotos": "Semua Foto"
+    },
+    "Search": "Cari",
+    "Collections": {
+      "Title": "Koleksi",
+      "Memories": "Kenangan",
+      "NoMemories": "Tiada Kenangan",
+      "NoMemoriesDesc": "Kenangan akan muncul di sini apabila tersedia.",
+      "Albums": "Album",
+      "NoAlbums": "Tiada Album"
+    },
+    "EmptyState": {
+      "NoItems": "Tiada item dalam {title}"
+    },
+    "Locked": {
+      "Title": "{title} Dikunci",
+      "Desc": "Sahkan untuk melihat."
+    }
+  },
+  "Notes": {
+    "Sidebar": {
+      "iCloud": "iCloud",
+      "Notes": "Nota",
+      "RecentlyDeleted": "Terkini Dipadam"
+    },
+    "Search": "Cari",
+    "NewNote": "Nota Baharu",
+    "NoAdditionalText": "Tiada teks tambahan",
+    "Editor": {
+      "TitlePlaceholder": "Tajuk",
+      "ContentPlaceholder": "Mula menaip...",
+      "AddToDesktop": "Tambah ke Desktop",
+      "Restore": "Pulihkan",
+      "Delete": "Padam Nota",
+      "DeletePermanently": "Padam Secara Kekal",
+      "EmptyState": "Pilih atau cipta nota",
+      "Date": "Hari ini pada {time}"
+    }
+  },
+  "Reminders": {
+    "Search": "Cari",
+    "Sidebar": {
+      "MyLists": "Senarai Saya",
+      "Reminders": "Peringatan",
+      "Work": "Kerja",
+      "Today": "Hari Ini",
+      "Scheduled": "Dijadualkan",
+      "All": "Semua",
+      "Flagged": "Diberi Bendera"
+    },
+    "AddReminder": "Peringatan Baharu",
+    "Actions": {
+      "Add": "Tambah",
+      "Cancel": "Batal",
+      "Delete": "Padam Peringatan",
+      "MarkComplete": "Tanda Selesai",
+      "MarkIncomplete": "Tanda Belum Selesai",
+      "Flag": "Beri Bendera",
+      "Unflag": "Nyahbendera"
+    },
+    "Inputs": {
+      "Title": "Tajuk",
+      "Notes": "Nota",
+      "Date": "Tarikh",
+      "Time": "Masa",
+      "Tags": "Tag"
+    },
+    "EmptyState": {
+      "NoReminders": "Tiada Peringatan",
+      "CreateOne": "Cipta peringatan baharu"
+    }
+  },
+  "Calendar": {
+    "Search": "Cari",
+    "Today": "Hari Ini",
+    "Day": "Hari",
+    "Week": "Minggu",
+    "Month": "Bulan",
+    "Year": "Tahun",
+    "AddEvent": "Acara Baharu",
+    "NoEvents": "Tiada Acara",
+    "NewEvent": "Acara Baharu",
+    "TitlePlaceholder": "Nama acara",
+    "Location": "Lokasi",
+    "AllDay": "Sepanjang Hari",
+    "From": "Dari",
+    "To": "Ke",
+    "Repeat": "Ulang",
+    "Never": "Tidak Pernah",
+    "Daily": "Setiap Hari",
+    "Weekly": "Setiap Minggu",
+    "Monthly": "Setiap Bulan",
+    "Yearly": "Setiap Tahun",
+    "Alert": "Isyarat",
+    "AtTime": "Pada masa acara",
+    "5MinBefore": "5 minit sebelum",
+    "10MinBefore": "10 minit sebelum",
+    "15MinBefore": "15 minit sebelum",
+    "30MinBefore": "30 minit sebelum",
+    "1HourBefore": "1 jam sebelum",
+    "2HoursBefore": "2 jam sebelum",
+    "1DayBefore": "1 hari sebelum",
+    "2DaysBefore": "2 hari sebelum",
+    "Notes": "Nota",
+    "DeleteEvent": "Padam Acara",
+    "ShortDays": {
+      "Sun": "Ahd",
+      "Mon": "Isn",
+      "Tue": "Sel",
+      "Wed": "Rab",
+      "Thu": "Kha",
+      "Fri": "Jum",
+      "Sat": "Sab"
+    },
+    "Months": {
+      "January": "Januari",
+      "February": "Februari",
+      "March": "Mac",
+      "April": "April",
+      "May": "Mei",
+      "June": "Jun",
+      "July": "Julai",
+      "August": "Ogos",
+      "September": "September",
+      "October": "Oktober",
+      "November": "November",
+      "December": "Disember"
+    },
+    "Sidebar": {
+      "iCloud": "ICLOUD",
+      "Other": "OTHER",
+      "NoInvitations": "No invitations"
+    },
+    "Toolbar": {
+      "Today": "Today",
+      "SearchPlaceholder": "Search events...",
+      "View": {
+        "day": "day",
+        "week": "week",
+        "month": "month",
+        "year": "year"
+      }
+    },
+    "EventModal": {
+      "Title": "New Event",
+      "EventTitlePlaceholder": "Event Title",
+      "CalendarLabel": "Calendar",
+      "Cancel": "Cancel",
+      "AddEvent": "Add Event"
+    },
+    "SearchResults": {
+      "Title": "Search Results",
+      "NoEvents": "No events found"
+    },
+    "Event": {
+      "NoLocation": "No location",
+      "EventLabel": "Event: {title} at {location}"
+    },
+    "Weekdays": {
+      "Sun": "Sun",
+      "Mon": "Mon",
+      "Tue": "Tue",
+      "Wed": "Wed",
+      "Thu": "Thu",
+      "Fri": "Fri",
+      "Sat": "Sat"
+    },
+    "WeekdaysShort": {
+      "Sun": "S",
+      "Mon": "M",
+      "Tue": "T",
+      "Wed": "W",
+      "Thu": "T",
+      "Fri": "F",
+      "Sat": "S"
+    }
+  },
+  "Maps": {
+    "Search": "Cari",
+    "SearchPlaceholder": "Cari tempat atau alamat",
+    "Directions": "Arah",
+    "From": "Dari",
+    "To": "Ke",
+    "Transport": {
+      "Drive": "Pandu",
+      "Walk": "Jalan",
+      "Transit": "Transit",
+      "Cycle": "Kitar"
+    },
+    "LocateMe": "Cari Saya",
+    "ZoomIn": "Zum Masuk",
+    "ZoomOut": "Zum Keluar",
+    "MapType": {
+      "Standard": "Standard",
+      "Hybrid": "Hibrid",
+      "Satellite": "Satelit"
+    },
+    "Sidebar": {
+      "Favorites": "FAVORITES",
+      "Recent": "RECENT",
+      "NoRecentSearches": "No recent searches",
+      "RecentLabel": "Recent"
+    },
+    "Locations": {
+      "Home": "Home",
+      "Work": "Work"
+    },
+    "Controls": {
+      "SwitchToSatellite": "Switch to Satellite",
+      "SwitchToSatelliteLabel": "Switch to Satellite view",
+      "SwitchToMap": "Switch to Map",
+      "SwitchToMapLabel": "Switch to Map view",
+      "CurrentLocation": "Current Location",
+      "ShowCurrentLocation": "Show current location",
+      "MapInfo": "Map information"
+    },
+    "Permission": {
+      "AppName": "Maps",
+      "Title": "Location",
+      "Reason": "Maps needs access to your location to show where you are.",
+      "Error": "Could not get your location. Please ensure location services are enabled.",
+      "NotSupported": "Geolocation is not supported by your browser."
+    }
+  },
+  "FaceTime": {
+    "AppName": "FaceTime",
+    "NewFaceTime": "FaceTime Baharu",
+    "CreateLink": "Cipta Pautan",
+    "EnterNameOrEmail": "Masukkan nama, e-mel atau nombor",
+    "Suggested": "Dicadangkan",
+    "NoRecents": "Tiada Terkini",
+    "FaceTimeVideo": "Video FaceTime",
+    "FaceTimeAudio": "Audio FaceTime",
+    "JoinCall": "Sertai",
+    "Waiting": "Menunggu...",
+    "Connected": "Disambungkan",
+    "Reconnecting": "Menyambung semula...",
+    "CallEnded": "Panggilan Tamat",
+    "Mute": "Senyap",
+    "Unmute": "Nyahsenyap",
+    "VideoOff": "Video Mati",
+    "VideoOn": "Video Hidup",
+    "End": "Tamat",
+    "FullScreen": "Skrin Penuh",
+    "ExitFullScreen": "Keluar Skrin Penuh",
+    "Effects": "Kesan",
+    "ShareScreen": "Kongsi Skrin",
+    "Connecting": "Menyambung...",
+    "Unavailable": "Tidak Tersedia",
+    "Title": "FaceTime",
+    "ConnectingAs": "Connecting as {name}...",
+    "IncomingCall": "{name} is calling...",
+    "Accept": "Accept",
+    "Decline": "Decline",
+    "Contacts": "Contacts",
+    "NoContacts": "No one else is online.",
+    "Video": "Video",
+    "SelectContact": "Select a contact to call",
+    "Aria": {
+      "RemoteVideo": "Remote video feed",
+      "LocalVideo": "Local video preview",
+      "EndCall": "End Call",
+      "CallContact": "Call {name}",
+      "VideoCallContact": "Video call {name}",
+      "LocalPreview": "Local camera preview"
+    },
+    "Permission": {
+      "AppName": "FaceTime",
+      "Title": "Camera and Microphone",
+      "Reason": "FaceTime needs access to your camera and microphone to make calls."
+    }
+  },
+  "Contacts": {
+    "Search": "Cari",
+    "AllContacts": "Semua Kenalan",
+    "MyCard": "Kad Saya",
+    "AddContact": "Tambah Kenalan",
+    "Edit": "Edit",
+    "Done": "Selesai",
+    "FirstName": "Nama Pertama",
+    "LastName": "Nama Keluarga",
+    "Company": "Syarikat",
+    "Phone": "Telefon",
+    "Email": "E-mel",
+    "Notes": "Nota",
+    "Message": "Mesej",
+    "Call": "Panggilan",
+    "Video": "Video",
+    "Mail": "Mel",
+    "Pay": "Bayar",
+    "NoContacts": "Tiada Kenalan",
+    "DeleteContact": "Padam Kenalan",
+    "SearchPlaceholder": "Search",
+    "SearchAria": "Search contacts",
+    "Count": "{count} Contacts",
+    "EditContact": "Edit Contact",
+    "NewContact": "New Contact",
+    "Preview": "Preview",
+    "Cancel": "Cancel",
+    "NoNotes": "No notes",
+    "NoSelection": "No Contact Selected",
+    "Labels": {
+      "FirstName": "First Name",
+      "LastName": "Last Name",
+      "Company": "Company",
+      "Phone": "Phone",
+      "Email": "Email",
+      "Notes": "Notes",
+      "Mobile": "mobile",
+      "Home": "home",
+      "Message": "message",
+      "Video": "video",
+      "Mail": "mail"
+    },
+    "Alerts": {
+      "DeleteConfirm": "Are you sure you want to delete this contact?",
+      "NameRequired": "Please enter a name or company."
+    },
+    "Aria": {
+      "AddContact": "Add new contact",
+      "Contact": "Contact: {name}",
+      "Action": "{action} {name}"
+    }
+  },
+  "Calculator": {
+    "Clear": "C",
+    "AllClear": "AC",
+    "Negate": "+/-",
+    "Percent": "%",
+    "Divide": "÷",
+    "Multiply": "×",
+    "Subtract": "-",
+    "Add": "+",
+    "Equals": "=",
+    "Decimal": ".",
+    "AC": "AC",
+    "ToggleSign": "Toggle sign",
+    "Percentage": "Percentage",
+    "Calculate": "Calculate result"
+  },
+  "Clock": {
+    "WorldClock": "Jam Dunia",
+    "Alarm": "Penggera",
+    "Stopwatch": "Jam Randik",
+    "Timer": "Pemasa",
+    "Add": "Tambah",
+    "Edit": "Edit",
+    "Start": "Mula",
+    "Stop": "Berhenti",
+    "Reset": "Set Semula",
+    "Lap": "Pusingan",
+    "Resume": "Sambung",
+    "Pause": "Jeda",
+    "Cancel": "Batal",
+    "Save": "Simpan",
+    "Label": "Label",
+    "Sound": "Bunyi",
+    "Snooze": "Tunda",
+    "WhenTimerEnds": "Apabila pemasa tamat",
+    "StopPlaying": "Berhenti Main",
+    "Tabs": {
+      "WorldClock": "World Clock",
+      "Alarms": "Alarms",
+      "Stopwatch": "Stopwatch",
+      "Timers": "Timers"
+    },
+    "AddClock": "Add clock",
+    "Locations": {
+      "NewDelhi": "New Delhi"
+    },
+    "Today": "Today",
+    "HRS": "HRS"
+  },
+  "Weather": {
+    "Loading": "Memuatkan...",
+    "Error": "Gagal memuatkan cuaca",
+    "SearchPlaceholder": "Cari bandar",
+    "MyLocation": "Lokasi Saya",
+    "Humidity": "Kelembapan",
+    "Wind": "Angin",
+    "Rain": "Hujan",
+    "FeelsLike": "Terasa Seperti",
+    "UVIndex": "Indeks UV",
+    "Pressure": "Tekanan",
+    "Visibility": "Jarak Penglihatan",
+    "Sunrise": "Matahari Terbit",
+    "Sunset": "Matahari Terbenam",
+    "Forecast": {
+      "Hourly": "Hourly Forecast",
+      "TenDay": "10-Day Forecast",
+      "Now": "Now",
+      "Today": "Today"
+    },
+    "Hourly": "Setiap Jam",
+    "Daily": "Setiap Hari",
+    "High": "T",
+    "Low": "R",
+    "Conditions": {
+      "Clear": "Cerah",
+      "Cloudy": "Mendung",
+      "Rain": "Hujan",
+      "Snow": "Salji",
+      "Thunderstorm": "Ribut Petir",
+      "Drizzle": "Gerimis",
+      "Mist": "Kabus"
+    },
+    "Retry": "Retry",
+    "Searching": "Searching...",
+    "NoResults": "No results found",
+    "Recent": "Recent",
+    "Popular": "Popular",
+    "Sidebar": {
+      "Open": "Open sidebar",
+      "Close": "Close sidebar"
+    },
+    "Aria": {
+      "SelectLocation": "Select {name}, {country}"
+    },
+    "Details": {
+      "AirQuality": "Air Quality",
+      "UVIndex": "UV Index",
+      "Wind": "Wind",
+      "Sunset": "Sunset",
+      "Sunrise": "Sunrise:",
+      "FeelsLike": "Feels Like",
+      "Humidity": "Humidity",
+      "Visibility": "Visibility",
+      "Pressure": "Pressure",
+      "hPa": "hPa"
+    },
+    "Descriptions": {
+      "AirQualityDesc": "Air quality index is 130, similar to yesterday at about this time.",
+      "UVIndexDesc": "Use sun protection until 4PM.",
+      "FeelsLikeDesc": "Similar to the actual temperature.",
+      "DewPointDesc": "The dew point is {temp}° right now.",
+      "VisibilityDesc": "Perfectly clear view.",
+      "Footer": "Weather for {location} • Open-Meteo Data",
+      "PollutionLevel": "Moderately Polluted",
+      "UVLevel": "Moderate"
+    }
+  },
+  "Stocks": {
+    "Search": "Cari",
+    "Watchlist": "Senarai Pantau",
+    "MarketOpen": "Pasaran Dibuka",
+    "MarketClosed": "Pasaran Ditutup",
+    "PreMarket": "Pra-Pasaran",
+    "AfterHours": "Selepas Waktu",
+    "Loading": "Memuatkan...",
+    "Error": "Gagal memuatkan data",
+    "AddSymbol": "Tambah Simbol",
+    "Remove": "Keluarkan",
+    "Chart": "Carta",
+    "News": "Berita",
+    "Summary": "Ringkasan",
+    "Open": "Buka",
+    "High": "Tinggi",
+    "Low": "Rendah",
+    "Vol": "Vol",
+    "PE": "P/E",
+    "MktCap": "Permodalan Pasaran",
+    "52WHigh": "Tinggi 52M",
+    "52WLow": "Rendah 52M",
+    "AvgVol": "Purata Vol",
+    "Yield": "Hasil",
+    "Beta": "Beta",
+    "EPS": "EPS",
+    "Title": "Stocks",
+    "Searching": "Searching...",
+    "KeyStatistics": "Key Statistics",
+    "BusinessNews": "Business News",
+    "ShowMore": "Show More",
+    "Aria": {
+      "Search": "Search stocks",
+      "Select": "Select stock {symbol}",
+      "ReadNews": "Read news: {title}"
+    },
+    "Stats": {
+      "Open": "Open",
+      "High": "High",
+      "Low": "Low",
+      "Vol": "Vol",
+      "PE": "P/E",
+      "MktCap": "Mkt Cap",
+      "52WH": "52W H",
+      "52WL": "52W L"
+    }
+  },
+  "Desktop": {
+    "ContextMenu": {
+      "NewFolder": "Folder Baharu",
+      "GetInfo": "Dapatkan Maklumat",
+      "ChangeDesktopBackground": "Tukar Latar Belakang Desktop...",
+      "UseStacks": "Gunakan Timbunan",
+      "SortBy": "Isih Mengikut",
+      "CleanUp": "Bersihkan",
+      "CleanUpBy": "Bersihkan Mengikut",
+      "ShowViewOptions": "Tunjukkan Pilihan Paparan",
+      "ChangeWallpaper": "Change Wallpaper...",
+      "EditWidgets": "Edit Widgets...",
+      "Tags": "Tags",
+      "None": "None",
+      "SnapToGrid": "Snap to Grid",
+      "Name": "Name",
+      "Kind": "Kind",
+      "DateLastOpened": "Date Last Opened",
+      "DateAdded": "Date Added",
+      "DateModified": "Date Modified",
+      "DateCreated": "Date Created",
+      "Size": "Size"
+    },
+    "SortOptions": {
+      "Name": "Nama",
+      "Kind": "Jenis",
+      "DateLastOpened": "Tarikh Terakhir Dibuka",
+      "DateAdded": "Tarikh Ditambah",
+      "DateModified": "Tarikh Diubah Suai",
+      "DateCreated": "Tarikh Dicipta",
+      "Size": "Saiz",
+      "Tags": "Tag"
+    },
+    "Guest": "Guest",
+    "UntitledFolder": "untitled folder",
+    "NoAppAvailable": "No application available to open .{ext} files.",
+    "MoveToBin": {
+      "Failed": "Failed to move to bin",
+      "NotSupported": "Failed to move to bin. Folder moves not fully supported yet."
+    }
+  },
+  "ControlCenter": {
+    "Title": "Pusat Kawalan",
+    "WiFi": "Wi-Fi",
+    "Bluetooth": "Bluetooth",
+    "AirDrop": "AirDrop",
+    "DoNotDisturb": "Jangan Ganggu",
+    "KeyboardBrightness": "Kecerahan Papan Kekunci",
+    "ScreenMirroring": "Pencerminan Skrin",
+    "Display": "Paparan",
+    "Sound": "Bunyi",
+    "Playing": "Memainkan",
+    "On": "Hidup",
+    "Off": "Mati",
+    "NotConnected": "Tidak Disambungkan",
+    "Connect": "Sambung",
+    "HomeNetwork": "Home Network",
+    "ContactsOnly": "Contacts Only",
+    "NotPlaying": "Not Playing",
+    "Music": "Music"
+  },
+  "LockScreenApp": {
+    "EnterPassword": "Masukkan Kata Laluan",
+    "ClickToUnlock": "Klik untuk Membuka Kunci",
+    "TouchID": "Touch ID",
+    "Cancel": "Batal",
+    "SwitchUser": "Tukar Pengguna"
+  },
+  "NotificationCenter": {
+    "Title": "Pusat Pemberitahuan",
+    "NoNotifications": "Tiada Pemberitahuan",
+    "ClearAll": "Kosongkan Semua",
+    "Widgets": "Widgets",
+    "Done": "Done",
+    "Edit": "Edit",
+    "AddWidget": "Add Widget"
+  },
+  "Widgets": {
+    "AllWidgets": "Semua Widget",
+    "Search": "Cari",
+    "AddWidget": "Tambah Widget",
+    "Loading": "Loading...",
+    "Calendar": {
+      "Title": "Calendar"
+    },
+    "Weather": {
+      "Title": "Weather"
+    },
+    "Stocks": {
+      "Title": "Stocks"
+    },
+    "Reminders": {
+      "Title": "Reminders",
+      "NoReminders": "No reminders"
+    },
+    "Notes": {
+      "Title": "Notes",
+      "Content": "Buy milk, eggs, and bread.<br />Call mom at 5pm.<br />Meeting with team tomorrow."
+    }
+  },
+  "Window": {
+    "Minimize": "Minimumkan",
+    "Maximize": "Maksimumkan",
+    "Close": "Tutup",
+    "Restore": "Restore",
+    "MoveTo": "Move Window to...",
+    "LeftSide": "Left Side of Screen",
+    "RightSide": "Right Side of Screen",
+    "EnterFullScreen": "Enter Full Screen"
+  },
+  "Dock": {
+    "Trash": "Tong Sampah",
+    "AriaLabel": "Application dock"
+  },
+  "Apps": {
+    "VSCode": {
+      "Title": "Visual Studio Code"
+    },
+    "LeetCode": {
+      "Title": "LeetCode",
+      "Common": {
+        "Loading": "Loading Profile...",
+        "NoData": "No data",
+        "Retry": "Retry",
+        "ShowMore": "Show more",
+        "GoToLeetCode": "Go to LeetCode"
+      },
+      "Badges": {
+        "Title": "Badges",
+        "MostRecent": "Most Recent Badge"
+      },
+      "Stats": {
+        "Title": "Community Stats",
+        "Views": "Views",
+        "Solution": "Solution",
+        "Discuss": "Discuss",
+        "Reputation": "Reputation"
+      },
+      "Languages": {
+        "Title": "Languages",
+        "ProblemsSolved": "problems solved"
+      },
+      "Profile": {
+        "Rank": "Rank"
+      },
+      "Submissions": {
+        "RecentAC": "Recent AC",
+        "List": "List",
+        "Solutions": "Solutions",
+        "Discuss": "Discuss",
+        "TimeAgo": "2 months ago"
+      },
+      "Skills": {
+        "Title": "Skills",
+        "Advanced": "Advanced",
+        "Intermediate": "Intermediate"
+      },
+      "Solved": {
+        "Solved": "Solved",
+        "Easy": "Easy",
+        "Medium": "Med.",
+        "Hard": "Hard"
+      },
+      "Calendar": {
+        "SubmissionsLastYear": "submissions in the past one year",
+        "TotalActiveDays": "Total active days:",
+        "MaxStreak": "Max streak:",
+        "Current": "Current",
+        "Months": {
+          "Jan": "Jan",
+          "Feb": "Feb",
+          "Mar": "Mar",
+          "Apr": "Apr",
+          "May": "May",
+          "Jun": "Jun",
+          "Jul": "Jul",
+          "Aug": "Aug",
+          "Sep": "Sep",
+          "Oct": "Oct",
+          "Nov": "Nov",
+          "Dec": "Dec"
+        }
+      }
+    },
+    "V86": {
+      "Title": "Mesin Maya",
+      "NoFileSelected": "No file selected",
+      "ScriptLoadError": "Failed to load V86 script",
+      "FileReadError": "Failed to read file",
+      "StartError": "Failed to start emulator",
+      "Booting": "Booting {filename}...",
+      "ErrorPrefix": "Error: {error}",
+      "ClickToCapture": "Click to capture mouse (Esc to release)"
+    },
+    "Finder": "Finder",
+    "Launchpad": "Launchpad",
+    "Safari": "Safari",
+    "Messages": "Mesej",
+    "Mail": "Mel",
+    "Maps": "Peta",
+    "Photos": "Foto",
+    "FaceTime": "FaceTime",
+    "Calendar": "Kalendar",
+    "Contacts": "Kenalan",
+    "Reminders": "Peringatan",
+    "Notes": "Nota",
+    "TV": "TV",
+    "Music": "Muzik",
+    "News": "Berita",
+    "SystemSettings": "Tetapan Sistem",
+    "AppStore": "App Store",
+    "Trash": "Tong Sampah",
+    "Freeform": "Freeform",
+    "Terminal": "Terminal",
+    "Calculator": "Calculator",
+    "TextEdit": "TextEdit",
+    "MediaPlayer": "Media Player",
+    "Preview": "Preview",
+    "VirtualMachine": "Virtual Machine"
+  },
+  "News": {
+    "Title": "News",
+    "Categories": {
+      "TopStories": "Top Stories",
+      "Technology": "Technology",
+      "Business": "Business",
+      "Science": "Science",
+      "Health": "Health",
+      "Entertainment": "Entertainment",
+      "Sports": "Sports"
+    },
+    "SearchPlaceholder": "Search stories...",
+    "SearchLabel": "Search",
+    "SearchTitle": "Search: \"{query}\"",
+    "Loading": "Loading top stories...",
+    "Error": "Failed to load news. Please try again later.",
+    "TryAgain": "Try Again",
+    "NoResults": "No stories found matching \"{query}\"",
+    "ClearSearch": "Clear Search",
+    "TopStory": "Top Story",
+    "Refresh": "Refresh",
+    "Aria": {
+      "Category": "Category: {label}",
+      "Search": "Search stories",
+      "Refresh": "Refresh news",
+      "ReadTopStory": "Read top story: {title}",
+      "ReadArticle": "Read article: {title}",
+      "Share": "Share article",
+      "Like": "Like article"
+    }
+  },
+  "Music": {
+    "AppleMusic": "Apple Music",
+    "Library": "Library",
+    "ListenNow": "Listen Now",
+    "Browse": "Browse",
+    "Radio": "Radio",
+    "RecentlyAdded": "Recently Added",
+    "Artists": "Artists",
+    "Albums": "Albums",
+    "Songs": "Songs",
+    "Search": "Search",
+    "SearchTitle": "Search: {query}",
+    "Aria": {
+      "Search": "Search music",
+      "GoBack": "Go back",
+      "GoForward": "Go forward",
+      "Prev": "Previous song",
+      "Next": "Next song",
+      "Play": "Play",
+      "Pause": "Pause",
+      "PlaySong": "Play {track} by {artist}",
+      "PauseSong": "Pause {track}",
+      "Lyrics": "Toggle lyrics",
+      "Queue": "Toggle queue",
+      "Mute": "Toggle mute",
+      "VolSlider": "Volume slider",
+      "SeekSlider": "Seek slider"
+    },
+    "Queue": {
+      "Title": "Playing Next",
+      "Empty": "Queue is empty"
+    },
+    "Lyrics": {
+      "NotAvailable": "Lyrics are not available for this song in the preview mode.",
+      "Imagine": "But imagine the lyrics appearing here, perfectly synced with the music...",
+      "Lalala": "La la la...",
+      "Placeholder": "Play a song to see lyrics"
+    }
+  },
+  "TV": {
+    "WatchNow": "Watch Now",
+    "Movies": "Movies",
+    "TVShows": "TV Shows",
+    "Kids": "Kids",
+    "Library": "Library",
+    "SearchResults": "Search Results",
+    "NoShows": "No shows found.",
+    "SearchPlaceholder": "Search",
+    "SearchLabel": "Search TV Shows",
+    "Series": "Series",
+    "PlayEpisode": "Play Episode 1",
+    "AddToUpNext": "Add to Up Next",
+    "Added": "Added",
+    "OpenYouTube": "Open in YouTube",
+    "ViewAccount": "View Account",
+    "Aria": {
+      "Play": "Play {name}",
+      "CloseVideo": "Close video",
+      "AddLibrary": "Add to Library",
+      "RemoveLibrary": "Remove from Library"
+    },
+    "Genres": {
+      "Drama": "Drama",
+      "Action": "Action",
+      "Comedy": "Comedy",
+      "ScienceFiction": "Science-Fiction",
+      "Thriller": "Thriller"
+    }
+  },
+  "Terminal": {
+    "Guest": "Guest",
+    "Welcome": "Welcome to Terminal",
+    "HelpPrompt": "Type 'help' for a list of commands.",
+    "AvailableCommands": "Available commands: ls, cd, pwd, mkdir, touch, echo, cat, clear, whoami, ping, man, rm, rmdir, vi",
+    "CommandNotFound": "command not found: {command}",
+    "Error": "Error: {message}",
+    "AriaInput": "Terminal Input",
+    "Usage": {
+      "Ping": "usage: ping host",
+      "Mkdir": "usage: mkdir directory_name",
+      "Rmdir": "usage: rmdir directory_name",
+      "Rm": "usage: rm [-rf] file_name",
+      "Touch": "usage: touch file_name",
+      "Cat": "usage: cat file_name",
+      "Vi": "usage: vi file_name",
+      "Man": "What manual page do you want?"
+    },
+    "Errors": {
+      "PingResolve": "ping: cannot resolve {host}: Unknown host",
+      "NoManual": "No manual entry for {command}",
+      "NoSuchFile": "{cmd}: {path}: No such file or directory",
+      "NotADirectory": "{cmd}: {path}: Not a directory",
+      "DirectoryNotEmpty": "{cmd}: {path}: Directory not empty",
+      "IsADirectory": "{cmd}: {path}: is a directory"
+    },
+    "Messages": {
+      "PingStats": "PING {host} (127.0.0.1): 56 data bytes\n64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.045 ms\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.082 ms\n64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.067 ms\n\n--- {host} ping statistics ---\n3 packets transmitted, 3 packets received, 0.0% packet loss",
+      "OpeningTextEdit": "Opening {file} in TextEdit..."
+    },
+    "ManPages": {
+      "ls": "ls - list directory contents\n\nUsage: ls [options] [file|dir]\n\nOptions:\n  -a, --all      do not ignore entries starting with .\n  -l             use a long listing format",
+      "cd": "cd - change the shell working directory\n\nUsage: cd [dir]\n\nChange the current directory to DIR. The default DIR is the value of the HOME shell variable.",
+      "pwd": "pwd - print name of current/working directory\n\nUsage: pwd\n\nPrint the full filename of the current working directory.",
+      "mkdir": "mkdir - make directories\n\nUsage: mkdir [DIRECTORY]\n\nCreate the DIRECTORY(ies), if they do not already exist.",
+      "touch": "touch - change file timestamps\n\nUsage: touch [FILE]\n\nUpdate the access and modification times of each FILE to the current time. If FILE does not exist it is created empty.",
+      "echo": "echo - display a line of text\n\nUsage: echo [STRING]...\n\nEcho the STRING(s) to standard output.",
+      "cat": "cat - concatenate files and print on the standard output\n\nUsage: cat [FILE]...\n\nConcatenate FILE(s) to standard output.",
+      "clear": "clear - clear the terminal screen\n\nUsage: clear",
+      "whoami": "whoami - print effective userid\n\nUsage: whoami\n\nPrint the user name associated with the current effective user ID.",
+      "ping": "ping - send ICMP ECHO_REQUEST to network hosts\n\nUsage: ping [HOST]\n\nSend ICMP ECHO_REQUEST to network hosts.",
+      "man": "man - an interface to the system reference manuals\n\nUsage: man [COMMAND]\n\nDisplay the manual page for COMMAND.",
+      "rm": "rm - remove files or directories\n\nUsage: rm [OPTION]... [FILE]...\n\nRemove (unlink) the FILE(s).\n\nOptions:\n  -r, -R, --recursive   remove directories and their contents recursively\n  -f, --force           ignore nonexistent files and arguments, never prompt",
+      "rmdir": "rmdir - remove empty directories\n\nUsage: rmdir [DIRECTORY]...\n\nRemove the DIRECTORY(ies), if they are empty.",
+      "vi": "vi - screen-oriented (visual) display editor\n\nUsage: vi [FILE]\n\nEdit FILE."
+    }
+  },
+  "TextEdit": {
+    "Guest": "Guest",
+    "Untitled": "Untitled.txt",
+    "Save": "Save",
+    "Loading": "Loading...",
+    "Placeholder": "Type your notes here...",
+    "SavedAlert": "Saved to {path}/{filename}"
+  },
+  "PDFViewer": {
+    "Document": "Document.pdf",
+    "PageInfo": "Page {current} of {total}",
+    "View": "View",
+    "ZoomIn": "Zoom In",
+    "ZoomOut": "Zoom Out",
+    "LoadingThumbnails": "Loading thumbnails...",
+    "Loading": "Loading...",
+    "NoPDF": "No PDF",
+    "FailedToLoad": "Failed to load PDF",
+    "NoPDFLoaded": "No PDF loaded"
+  },
+  "Spotlight": {
+    "Placeholder": "Spotlight Search",
+    "SearchWebFor": "Search Web for \"{query}\"",
+    "NoResults": "No results found",
+    "Open": "Open",
+    "Kinds": {
+      "Web": "Web Search",
+      "App": "Application",
+      "Directory": "Directory",
+      "File": "File"
+    },
+    "Aria": {
+      "Open": "Open {name}"
+    }
+  },
+  "MenuBar": {
+    "Apple": {
+      "AboutThisMac": "About This Mac",
+      "SystemSettings": "System Settings...",
+      "AppStore": "App Store...",
+      "RecentItems": "Recent Items",
+      "ForceQuit": "Force Quit...",
+      "Sleep": "Sleep",
+      "Restart": "Restart...",
+      "ShutDown": "Shut Down...",
+      "LockScreen": "Lock Screen"
+    },
+    "App": {
+      "About": "About {app}",
+      "Quit": "Quit {app}"
+    },
+    "File": {
+      "Title": "File",
+      "New": "New",
+      "Open": "Open...",
+      "Save": "Save",
+      "Duplicate": "Duplicate",
+      "NewFinderWindow": "New Finder Window",
+      "NewFolder": "New Folder",
+      "GetInfo": "Get Info"
+    },
+    "Edit": {
+      "Title": "Edit",
+      "Undo": "Undo",
+      "Redo": "Redo",
+      "Cut": "Cut",
+      "Copy": "Copy",
+      "Paste": "Paste"
+    },
+    "View": {
+      "Title": "View",
+      "AsIcons": "As Icons",
+      "AsList": "As List",
+      "AsColumns": "As Columns"
+    },
+    "Window": {
+      "Title": "Window",
+      "Minimize": "Minimize",
+      "Zoom": "Zoom"
+    },
+    "Help": {
+      "Title": "Help",
+      "MacOSHelp": "macOS Help"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "KnownNetworks": "Known Networks",
+      "OtherNetworks": "Other Networks",
+      "Settings": "Wi-Fi Settings..."
+    },
+    "Battery": {
+      "Title": "Battery",
+      "PowerSource": "Power Source: {source}",
+      "PowerAdapter": "Power Adapter",
+      "Battery": "Battery",
+      "EnergyMode": "Energy Mode",
+      "Automatic": "Automatic",
+      "LowPower": "Low Power",
+      "HighPower": "High Power",
+      "SignificantEnergy": "Using Significant Energy",
+      "Settings": "Battery Settings..."
+    },
+    "Aria": {
+      "Clipboard": "Clipboard",
+      "MediaPlayer": "Media Player",
+      "Spotlight": "Spotlight Search",
+      "ControlCenter": "Control Center",
+      "Siri": "Siri",
+      "Clock": "Clock and Notification Center"
+    }
+  },
+  "WeatherDropdown": {
+    "Searching": "Searching...",
+    "SearchCity": "Search city...",
+    "Now": "Now",
+    "Today": "Today",
+    "OpenWeather": "Open Weather"
+  },
+  "LockScreen": {
+    "IncorrectPassword": "Incorrect password",
+    "Guest": "Guest",
+    "EnterPassword": "Enter Password",
+    "Hint": "Touch ID or enter password (hint: {hint})",
+    "Login": "Login",
+    "Cancel": "Cancel",
+    "Aria": {
+      "UserAvatar": "User avatar, click to login",
+      "User": "User {name}, click to login",
+      "Password": "Password",
+      "Submit": "Submit password"
+    }
+  }
 }

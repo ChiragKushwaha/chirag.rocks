@@ -2,16 +2,22 @@ import React from "react";
 import { ArrowRight } from "lucide-react";
 import { LeetCodeData } from "../types";
 
+import { useTranslations } from "next-intl";
+
 interface BadgesProps {
   matchedUser: LeetCodeData["matchedUser"];
 }
 
 export const Badges: React.FC<BadgesProps> = ({ matchedUser }) => {
+  const t = useTranslations("LeetCode.Badges");
+
   return (
     <div className="bg-[#282828] rounded-lg p-4 relative">
       <div className="flex justify-between items-start mb-6">
         <div>
-          <div className="text-xs font-medium text-gray-400 mb-1">Badges</div>
+          <div className="text-xs font-medium text-gray-400 mb-1">
+            {t("Title")}
+          </div>
           <div className="text-2xl font-bold text-white">
             {matchedUser.badges.length}
           </div>
@@ -42,7 +48,7 @@ export const Badges: React.FC<BadgesProps> = ({ matchedUser }) => {
 
       {matchedUser.badges.length > 0 && (
         <div className="mt-6">
-          <div className="text-xs text-gray-400 mb-1">Most Recent Badge</div>
+          <div className="text-xs text-gray-400 mb-1">{t("MostRecent")}</div>
           <div className="text-sm font-medium text-white">
             {matchedUser.badges[0].displayName}
           </div>

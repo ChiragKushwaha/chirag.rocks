@@ -1,6 +1,7 @@
 import React from "react";
 import { ChevronLeft, ChevronRight, Plus, Search, X } from "lucide-react";
 import { ViewMode } from "../types";
+import { useTranslations } from "next-intl";
 
 interface ToolbarProps {
   currentDate: Date;
@@ -27,6 +28,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
   setIsSearching,
   setShowEventModal,
 }) => {
+  const t = useTranslations("Calendar.Toolbar");
   return (
     <div className="h-14 border-b border-gray-200 dark:border-black/20 flex items-center justify-between px-4 bg-white dark:bg-[#1e1e1e] shrink-0">
       <div className="flex items-center gap-4">
@@ -49,7 +51,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
             className="px-3 text-sm font-medium hover:bg-white dark:hover:bg-gray-600 rounded mx-0.5 transition-all"
             aria-label="Go to today"
           >
-            Today
+            {t("Today")}
           </button>
           <button
             onClick={() => navigate("next")}
@@ -73,7 +75,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                   : "hover:bg-white/50 dark:hover:bg-gray-600/50"
               }`}
             >
-              {v}
+              {t(`View.${v}`)}
             </button>
           ))}
         </div>
@@ -85,11 +87,11 @@ export const Toolbar: React.FC<ToolbarProps> = ({
             <input
               type="text"
               autoFocus
-              placeholder="Search events..."
+              placeholder={t("SearchPlaceholder")}
               className="bg-transparent border-none outline-none text-sm w-32 dark:text-white"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              aria-label="Search events"
+              aria-label={t("SearchPlaceholder")}
             />
             <button
               onClick={() => {

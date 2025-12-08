@@ -9,6 +9,7 @@ import {
   WifiOff,
 } from "lucide-react";
 import React from "react";
+import { useTranslations } from "next-intl";
 import { AboutMac } from "../apps/AboutMac";
 import { useBattery } from "../hooks/useBattery";
 import { useWeather } from "../hooks/useWeather";
@@ -20,6 +21,7 @@ import { TopDropdown } from "./Menus";
 import { WeatherDropdown } from "./WeatherDropdown";
 
 const WifiDisplay = () => {
+  const t = useTranslations("MenuBar.Wifi");
   const { wifiEnabled, toggleWifi } = useSystemStore();
 
   const wifiIcon = (
@@ -39,7 +41,7 @@ const WifiDisplay = () => {
           className="flex items-center justify-between"
           style={{ width: 200 }}
         >
-          <div className="font-semibold">Wi-Fi</div>
+          <div className="font-semibold">{t("Title")}</div>
           <div
             className={`w-9 h-5 rounded-full p-0.5 transition-colors duration-200 ease-in-out ${
               wifiEnabled ? "bg-blue-500" : "bg-gray-300 dark:bg-gray-600"
@@ -60,7 +62,7 @@ const WifiDisplay = () => {
     {
       label: (
         <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 ml-1">
-          Known Networks
+          {t("KnownNetworks")}
         </span>
       ),
       disabled: true,
@@ -78,9 +80,9 @@ const WifiDisplay = () => {
       disabled: !wifiEnabled,
     },
     { separator: true },
-    { label: "Other Networks", disabled: !wifiEnabled },
+    { label: t("OtherNetworks"), disabled: !wifiEnabled },
     { separator: true },
-    { label: "Wi-Fi Settings..." },
+    { label: t("Settings") },
   ];
 
   return <MenuButton id="wifi" label={wifiIcon} items={wifiItems} />;
@@ -160,6 +162,7 @@ const ControlCenterIcon = () => (
 );
 
 const BatteryDisplay = () => {
+  const t = useTranslations("MenuBar.Battery");
   const { level, charging, loading, supported } = useBattery();
 
   // Fallback for SSR or unsupported browsers
@@ -218,21 +221,23 @@ const BatteryDisplay = () => {
   );
 
   const batteryItems: MenuItem[] = [
-    { label: "Battery", shortcut: `${percentage}%`, disabled: true },
+    { label: t("Battery"), shortcut: `${percentage}%`, disabled: true },
     {
-      label: `Power Source: ${charging ? "Power Adapter" : "Battery"}`,
+      label: t("PowerSource", {
+        source: charging ? t("PowerAdapter") : t("Battery"),
+      }),
       disabled: true,
     },
     { separator: true },
-    { label: "Energy Mode", disabled: true },
-    { label: "Automatic", disabled: true }, // Simplified for UI demo
-    { label: "Low Power", disabled: true },
-    { label: "High Power", disabled: true },
+    { label: t("EnergyMode"), disabled: true },
+    { label: t("Automatic"), disabled: true }, // Simplified for UI demo
+    { label: t("LowPower"), disabled: true },
+    { label: t("HighPower"), disabled: true },
     { separator: true },
-    { label: "Using Significant Energy", disabled: true },
+    { label: t("SignificantEnergy"), disabled: true },
     { label: "Antigravity", icon: "🅰️" }, // Example app
     { separator: true },
-    { label: "Battery Settings..." },
+    { label: t("Settings") },
   ];
 
   return <MenuButton id="battery" label={batteryIcon} items={batteryItems} />;
@@ -279,6 +284,7 @@ import { ControlCenter } from "./ControlCenter";
 export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
   lockScreenMode = false,
 }) => {
+  const t = useTranslations("MenuBar");
   const { activeApp, toggleNotificationCenter } = useSystemStore();
   const { launchProcess } = useProcessStore();
   const [isControlCenterOpen, setIsControlCenterOpen] = React.useState(false);
@@ -288,9 +294,9 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
 
   const appleItems: MenuItem[] = [
     {
-      label: "About This Mac",
+      label: t("Apple.AboutThisMac"),
       action: () =>
-        launchProcess("about", "About This Mac", "🍎", <AboutMac />, {
+        launchProcess("about", t("Apple.AboutThisMac"), "🍎", <AboutMac />, {
           width: 320,
           height: 420,
           x: 300,
@@ -298,19 +304,19 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
         }),
     },
     { separator: true },
-    { label: "System Settings...", disabled: true },
-    { label: "App Store...", disabled: true },
+    { label: t("Apple.SystemSettings"), disabled: true },
+    { label: t("Apple.AppStore"), disabled: true },
     { separator: true },
-    { label: "Recent Items", submenu: [] }, // Submenus can be expanded later
+    { label: t("Apple.RecentItems"), submenu: [] }, // Submenus can be expanded later
     { separator: true },
-    { label: "Force Quit...", shortcut: "⌥⌘Esc", danger: true },
+    { label: t("Apple.ForceQuit"), shortcut: "⌥⌘Esc", danger: true },
     { separator: true },
-    { label: "Sleep" },
-    { label: "Restart..." },
-    { label: "Shut Down..." },
+    { label: t("Apple.Sleep") },
+    { label: t("Apple.Restart") },
+    { label: t("Apple.ShutDown") },
     { separator: true },
     {
-      label: "Lock Screen",
+      label: t("Apple.LockScreen"),
       shortcut: "⌃⌘Q",
       action: () => window.lockScreen?.(),
     },
@@ -319,19 +325,19 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
   const getFileItems = (): MenuItem[] => {
     if (activeApp === "TextEdit") {
       return [
-        { label: "New", shortcut: "⌘N" },
-        { label: "Open...", shortcut: "⌘O" },
+        { label: t("File.New"), shortcut: "⌘N" },
+        { label: t("File.Open"), shortcut: "⌘O" },
         { separator: true },
-        { label: "Save", shortcut: "⌘S" },
-        { label: "Duplicate", shortcut: "⇧⌘S" },
+        { label: t("File.Save"), shortcut: "⌘S" },
+        { label: t("File.Duplicate"), shortcut: "⇧⌘S" },
       ];
     }
     // Default Finder Items
     return [
-      { label: "New Finder Window", shortcut: "⌘N" },
-      { label: "New Folder", shortcut: "⇧⌘N" },
+      { label: t("File.NewFinderWindow"), shortcut: "⌘N" },
+      { label: t("File.NewFolder"), shortcut: "⇧⌘N" },
       { separator: true },
-      { label: "Get Info", shortcut: "⌘I" },
+      { label: t("File.GetInfo"), shortcut: "⌘I" },
     ];
   };
 
@@ -344,7 +350,7 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
         lockScreenMode
           ? "bg-transparent"
           : "bg-white/30 dark:bg-black/30 backdrop-blur-[50px] saturate-150"
-      } flex items-center justify-between px-4 text-black dark:text-white shadow-sm fixed top-0 w-full z-[8000] select-none transition-colors duration-300 border-none`}
+      } flex items-center justify-between px-4 text-black dark:text-white shadow-sm fixed top-0 w-full z-8000 select-none transition-colors duration-300 border-none`}
       onClick={(e) => e.stopPropagation()} // Prevent clicking bar from closing menus
     >
       <div className="flex items-center h-full gap-1">
@@ -362,45 +368,52 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
               id="app"
               label={activeApp}
               items={[
-                { label: `About ${activeApp}` },
+                { label: t("App.About", { app: activeApp }) },
                 { separator: true },
-                { label: `Quit ${activeApp}`, shortcut: "⌘Q" },
+                { label: t("App.Quit", { app: activeApp }), shortcut: "⌘Q" },
               ]}
               bold
             />
 
             {/* Standard Menus */}
-            <MenuButton id="file" label="File" items={getFileItems()} />
+            <MenuButton
+              id="file"
+              label={t("File.Title")}
+              items={getFileItems()}
+            />
             <MenuButton
               id="edit"
-              label="Edit"
+              label={t("Edit.Title")}
               items={[
-                { label: "Undo", shortcut: "⌘Z" },
-                { label: "Redo", shortcut: "⇧⌘Z" },
+                { label: t("Edit.Undo"), shortcut: "⌘Z" },
+                { label: t("Edit.Redo"), shortcut: "⇧⌘Z" },
                 { separator: true },
-                { label: "Cut", shortcut: "⌘X" },
-                { label: "Copy", shortcut: "⌘C" },
-                { label: "Paste", shortcut: "⌘V" },
+                { label: t("Edit.Cut"), shortcut: "⌘X" },
+                { label: t("Edit.Copy"), shortcut: "⌘C" },
+                { label: t("Edit.Paste"), shortcut: "⌘V" },
               ]}
             />
             <MenuButton
               id="view"
-              label="View"
+              label={t("View.Title")}
               items={[
-                { label: "As Icons" },
-                { label: "As List" },
-                { label: "As Columns" },
+                { label: t("View.AsIcons") },
+                { label: t("View.AsList") },
+                { label: t("View.AsColumns") },
               ]}
             />
             <MenuButton
               id="window"
-              label="Window"
-              items={[{ label: "Minimize", shortcut: "⌘M" }, { label: "Zoom" }]}
+              label={t("Window.Title")}
+              items={[
+                { label: t("Window.Minimize"), shortcut: "⌘M" },
+                { label: t("Window.Zoom") },
+              ]}
             />
             <MenuButton
               id="help"
-              label="Help"
-              items={[{ label: "macOS Help" }]}
+              label={t("Help.Title")}
+              items={[{ label: t("Help.MacOSHelp") }]}
             />
           </>
         )}
@@ -414,7 +427,7 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
             <div
               role="button"
               tabIndex={0}
-              aria-label="Clipboard"
+              aria-label={t("Aria.Clipboard")}
               className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
             >
               <Clipboard size={16} strokeWidth={2} />
@@ -427,7 +440,7 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
             <div
               role="button"
               tabIndex={0}
-              aria-label="Media Player"
+              aria-label={t("Aria.MediaPlayer")}
               className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
             >
               <PlayCircle size={16} strokeWidth={2} />
@@ -447,7 +460,7 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
             <div
               role="button"
               tabIndex={0}
-              aria-label="Spotlight Search"
+              aria-label={t("Aria.Spotlight")}
               className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default active:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
               onClick={() => useSystemStore.getState().toggleSpotlight()}
               onKeyDown={(e) => {
@@ -465,7 +478,7 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
               ref={controlCenterRef}
               role="button"
               tabIndex={0}
-              aria-label="Control Center"
+              aria-label={t("Aria.ControlCenter")}
               className={`opacity-90 hover:bg-white/10 p-1 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${
                 isControlCenterOpen ? "bg-white/20" : ""
               }`}
@@ -484,7 +497,7 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
             <div
               role="button"
               tabIndex={0}
-              aria-label="Siri"
+              aria-label={t("Aria.Siri")}
               className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
             >
               <SiriIcon />
@@ -497,7 +510,7 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
           id="menu-bar-clock"
           role="button"
           tabIndex={!lockScreenMode ? 0 : -1}
-          aria-label="Clock and Notification Center"
+          aria-label={t("Aria.Clock")}
           className="opacity-90 hover:bg-white/10 px-2 py-0.5 rounded cursor-default active:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
           onClick={!lockScreenMode ? toggleNotificationCenter : undefined}
           onKeyDown={(e) => {

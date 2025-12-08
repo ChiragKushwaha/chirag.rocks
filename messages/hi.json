@@ -1,4 +1,1525 @@
 {
-  "Hello": "नमस्ते",
-  "Welcome": "नमस्ते दुनिया! बहुभाषी ऐप में आपका स्वागत है।"
+  "Hello": {
+    "world": "नमस्ते दुनिया!",
+    "GetStarted": "शुरू करें"
+  },
+  "Setup": {
+    "Common": {
+      "Continue": "जारी रखें",
+      "Back": "पीछे",
+      "NotNow": "अभी नहीं",
+      "Cancel": "रद्द करें",
+      "LearnMore": "और जानें"
+    },
+    "Language": {
+      "Title": "अपनी भाषा चुनें",
+      "Description": "वह भाषा चुनें जिसे आप अपने Mac के लिए उपयोग करना चाहते हैं।",
+      "TableLabel": "भाषा",
+      "Primary": "प्राथमिक"
+    },
+    "Region": {
+      "Title": "अपना देश या क्षेत्र चुनें"
+    },
+    "DataPrivacy": {
+      "Title": "डेटा और गोपनीयता",
+      "IconText": "यह आइकन तब दिखाई देता है जब कोई Apple फीचर आपकी व्यक्तिगत जानकारी का उपयोग करने के लिए कहता है।",
+      "FeatureText": "आप इसे हर फीचर के साथ नहीं देखेंगे क्योंकि Apple यह जानकारी केवल तब एकत्र करता है जब सुविधाओं को सक्षम करने, हमारी सेवाओं को सुरक्षित करने या आपके अनुभव को निजीकृत करने के लिए आवश्यकता होती है।",
+      "PrivacyText": "Apple का मानना है कि गोपनीयता एक मौलिक मानव अधिकार है, इसलिए प्रत्येक Apple उत्पाद आपके डेटा के संग्रह और उपयोग को कम करने, जब भी संभव हो ऑन-डिवाइस प्रोसेसिंग का उपयोग करने, और आपकी जानकारी पर पारदर्शिता और नियंत्रण प्रदान करने के लिए डिज़ाइन किया गया है।"
+    },
+    "TouchID": {
+      "Title": "टच आईडी",
+      "SetupLater": "बाद में टच आईडी सेट करें",
+      "Description": "अपने Mac को अनलॉक करने और Apple Pay के साथ खरीदारी करने के लिए अपने फिंगरप्रिंट का उपयोग करें। टच आईडी पर अपनी उंगली या अंगूठा रखकर शुरुआत करें।"
+    },
+    "Fingerprint": {
+      "Title": "अपनी उंगली रखें",
+      "Instruction": "टच आईडी पर अपनी उंगली उठाएं और रखें",
+      "Success": "✓ टच आईडी सफलतापूर्वक कॉन्फ़िगर किया गया"
+    },
+    "Languages": {
+      "Title": "लिखित और बोली जाने वाली भाषाएं",
+      "Description": "निम्नलिखित भाषाएं आपके क्षेत्र में आमतौर पर उपयोग की जाती हैं। आप इन सेटिंग्स का उपयोग करने के लिए अपना Mac सेट कर सकते हैं या उन्हें व्यक्तिगत रूप से अनुकूलित कर सकते हैं।",
+      "Preferred": "पसंदीदा भाषाएं",
+      "InputSources": "इनपुट स्रोत",
+      "Dictation": "श्रुतलेख",
+      "Customize": "सेटिंग्स अनुकूलित करें"
+    },
+    "Accessibility": {
+      "Title": "अभिगम्यता",
+      "Description": "अभिगम्यता विशेषताएं आपके Mac को आपकी व्यक्तिगत आवश्यकताओं के अनुकूल बनाती हैं। आप सेटअप पूरा करने में मदद के लिए उन्हें अभी चालू कर सकते हैं, और बाद में सिस्टम प्राथमिकताएं में उन्हें और अनुकूलित कर सकते हैं। नीचे दी गई प्रत्येक श्रेणी में क्या उपलब्ध है, देखें।",
+      "Vision": "दृष्टि",
+      "Motor": "मोटर",
+      "Hearing": "सुनना",
+      "Cognitive": "संज्ञानात्मक"
+    },
+    "Migration": {
+      "Title": "माइग्रेशन असिस्टेंट",
+      "Description": "यदि आपके पास किसी अन्य Mac या Windows PC पर जानकारी है, तो आप इसे इस Mac पर स्थानांतरित कर सकते हैं। आप Time Machine बैकअप या किसी अन्य स्टार्टअप डिस्क से भी जानकारी स्थानांतरित कर सकते हैं।",
+      "Question": "आप अपनी जानकारी कैसे स्थानांतरित करना चाहते हैं?",
+      "FromMac": "Mac, Time Machine बैकअप या स्टार्टअप डिस्क से",
+      "FromPC": "Windows PC से"
+    },
+    "AppleID": {
+      "Title": "अपने Apple ID के साथ साइन इन करें",
+      "Description": "iCloud, App Store और अन्य Apple सेवाओं का उपयोग करने के लिए साइन इन करें।",
+      "Label": "Apple ID",
+      "CreateNew": "नया Apple ID बनाएँ",
+      "Forgot": "Apple ID या पासवर्ड भूल गए?",
+      "UseDifferent": "iCloud और मीडिया खरीदारी के लिए अलग Apple ID का उपयोग करें?",
+      "Info": "यह Mac आपके Apple ID से जुड़ा होगा, और फोटो, संपर्क और दस्तावेज़ जैसे डेटा iCloud में संग्रहीत किए जाएंगे ताकि आप उन्हें अन्य उपकरणों पर एक्सेस कर सकें।",
+      "SeeData": "देखें कि आपका डेटा कैसे प्रबंधित किया जाता है",
+      "SetupLater": "बाद में सेट करें",
+      "ErrorRequired": "कृपया अपना Apple ID दर्ज करें।"
+    },
+    "Account": {
+      "Title": "अपना कंप्यूटर खाता बनाएँ",
+      "CreateAppleID": "Apple ID बनाएँ",
+      "Description": "अपना कंप्यूटर सेट करने के लिए अपना नाम और खाता विवरण दर्ज करें।",
+      "Name": "पूरा नाम",
+      "Email": "ईमेल पता",
+      "Age": "आयु",
+      "Phone": "मोबाइल नंबर",
+      "Password": "पासवर्ड",
+      "Errors": {
+        "NameRequired": "पूरा नाम आवश्यक है।",
+        "EmailRequired": "ईमेल आवश्यक है।",
+        "EmailInvalid": "एक मान्य ईमेल पता दर्ज करें।",
+        "AgeRequired": "आयु आवश्यक है।",
+        "AgeInvalid": "एक मान्य आयु दर्ज करें।",
+        "PhoneRequired": "फ़ोन नंबर आवश्यक है।",
+        "PasswordRequired": "पासवर्ड आवश्यक है।",
+        "PasswordLength": "पासवर्ड कम से कम 6 वर्णों का होना चाहिए।"
+      }
+    },
+    "Theme": {
+      "Title": "अपनी उपस्थिति चुनें",
+      "Description": "हल्का या गहरा रूप चुनें। सिस्टम इंटरफ़ेस और ऐप्स स्वचालित रूप से अनुकूलित हो जाएंगे।",
+      "Light": "हल्का",
+      "Dark": "गहरा"
+    }
+  },
+  "SystemSettings": {
+    "General": {
+      "Title": "सामान्य",
+      "Description": "Mac के लिए अपनी समग्र सेटअप और प्राथमिकताओं को प्रबंधित करें, जैसे सॉफ़्टवेयर अपडेट, डिवाइस भाषा, AirDrop और अधिक।",
+      "About": "के बारे में",
+      "SoftwareUpdate": "सॉफ़्टवेयर अपडेट",
+      "Storage": "भंडारण",
+      "AppleCare": "AppleCare और वारंटी",
+      "AirDrop": "AirDrop और Handoff",
+      "AutoFill": "ऑटोफिल और पासवर्ड",
+      "DateTime": "दिनांक और समय",
+      "LanguageRegion": "भाषा और क्षेत्र",
+      "LoginItems": "लॉगिन आइटम और एक्सटेंशन",
+      "Sharing": "शेयरिंग",
+      "StartupDisk": "स्टार्टअप डिस्क",
+      "TimeMachine": "Time Machine",
+      "DeviceManagement": "डिवाइस प्रबंधन",
+      "TransferReset": "स्थानांतरण या रीसेट"
+    },
+    "AppleAccount": {
+      "Edit": "संपादित करें",
+      "PersonalInformation": "व्यक्तिगत जानकारी",
+      "SignInSecurity": "साइन-इन और सुरक्षा",
+      "PaymentShipping": "भुगतान और शिपिंग",
+      "iCloud": "iCloud",
+      "MediaPurchases": "मीडिया और खरीदारी",
+      "Family": "परिवार",
+      "SetUp": "सेट अप",
+      "Devices": "उपकरण",
+      "ThisMac": "यह MacBook Pro 14″",
+      "SignOut": "साइन आउट..."
+    },
+    "LanguageRegion": {
+      "Title": "भाषा और क्षेत्र",
+      "PreferredLanguages": "पसंदीदा भाषाएं",
+      "Region": "क्षेत्र",
+      "Calendar": "कैलेंडर",
+      "Temperature": "तापमान",
+      "Celsius": "सेल्सियस (°C)",
+      "Fahrenheit": "फारेनहाइट (°F)",
+      "MeasurementSystem": "मापन प्रणाली",
+      "Metric": "मेट्रिक",
+      "US": "यूएस",
+      "UK": "यूके",
+      "FirstDayOfWeek": "सप्ताह का पहला दिन",
+      "DateFormat": "दिनांक प्रारूप",
+      "NumberFormat": "संख्या प्रारूप",
+      "LiveText": "लाइव टेक्स्ट",
+      "LiveTextDesc": "छवि में टेक्स्ट चुनने के लिए कॉपी करें या कार्रवाई करें।",
+      "Applications": "एप्लिकेशन",
+      "ApplicationsDesc": "निम्नलिखित एप्लिकेशन के लिए भाषा सेटिंग्स को अनुकूलित करें:",
+      "TranslationLanguages": "अनुवाद भाषाएं..."
+    },
+    "Sidebar": {
+      "Search": "खोजें",
+      "NotImplemented": "यह अनुभाग अभी तक लागू नहीं किया गया है।",
+      "AppleAccount": "Apple खाता",
+      "WiFi": "Wi-Fi",
+      "Bluetooth": "Bluetooth",
+      "Network": "नेटवर्क",
+      "General": "सामान्य",
+      "Appearance": "उपस्थिति",
+      "Accessibility": "अभिगम्यता",
+      "MenuBar": "मेनू बार",
+      "DesktopDock": "डेस्कटॉप और डॉक",
+      "Displays": "डिस्प्ले",
+      "Spotlight": "Spotlight",
+      "Wallpaper": "वॉलपेपर",
+      "ScreenSaver": "स्क्रीन सेवर",
+      "Battery": "बैटरी",
+      "Sound": "ध्वनि",
+      "Notifications": "सूचनाएं",
+      "Focus": "फोकस",
+      "ScreenTime": "स्क्रीन टाइम",
+      "PrivacySecurity": "गोपनीयता और सुरक्षा",
+      "LockScreen": "लॉक स्क्रीन",
+      "TouchIDPassword": "टच आईडी और पासवर्ड",
+      "UsersGroups": "उपयोगकर्ता और समूह",
+      "Keyboard": "कीबोर्ड",
+      "Trackpad": "ट्रैकपैड",
+      "PrintersScanners": "प्रिंटर और स्कैनर",
+      "Storage": "भंडारण"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "Description": "अपने Mac को इंटरनेट से वायरलेस तरीके से कनेक्ट करने के लिए Wi-Fi सेट करें।",
+      "Connected": "जुड़ा हुआ",
+      "Details": "विवरण...",
+      "KnownNetworks": "ज्ञात नेटवर्क",
+      "OtherNetworks": "अन्य नेटवर्क",
+      "Connect": "कनेक्ट करें",
+      "Other": "अन्य...",
+      "AskToJoin": "नेटवर्क से जुड़ने के लिए पूछें",
+      "AskToJoinDesc": "ज्ञात नेटवर्क स्वचालित रूप से जुड़ जाएंगे।",
+      "Notify": "सूचित करें",
+      "AskToJoinHotspots": "हॉटस्पॉट से जुड़ने के लिए पूछें",
+      "AskToJoinHotspotsDesc": "इस Mac को आस-पास के व्यक्तिगत हॉटस्पॉट को स्वचालित रूप से खोजने की अनुमति दें।",
+      "AskToJoinAction": "जुड़ने के लिए पूछें",
+      "Advanced": "उन्नत..."
+    },
+    "Bluetooth": {
+      "Title": "Bluetooth",
+      "Description": "संगीत स्ट्रीम करने, टाइप करने और गेम खेलने जैसी गतिविधियों के लिए उपयोग किए जो सकने वाले सहायक उपकरण कनेक्ट करें।",
+      "Discoverable": "जब ब्लूटूथ सेटिंग्स खुली होती हैं तो यह Mac 'MacBook Pro' के रूप में खोजा जा सकता है।",
+      "MyDevices": "मेरे उपकरण",
+      "NotConnected": "जुड़ा हुआ नहीं है",
+      "NearbyDevices": "आस-पास के उपकरण",
+      "Searching": "खोज रहा है..."
+    },
+    "Network": {
+      "Title": "नेटवर्क",
+      "WiFi": "Wi-Fi",
+      "Connected": "जुड़ा हुआ",
+      "Firewall": "फ़ायरवॉल",
+      "Inactive": "निष्क्रिय",
+      "OtherServices": "अन्य सेवाएं",
+      "NotConnected": "जुड़ा हुआ नहीं है"
+    },
+    "Appearance": {
+      "Title": "उपस्थिति",
+      "Description": "अपनी पसंदीदा उपस्थिति चुनें।",
+      "Light": "हल्का",
+      "Dark": "गहरा",
+      "Auto": "ऑटो",
+      "AccentColor": "एक्सेंट रंग",
+      "HighlightColor": "हाइलाइट रंग",
+      "Automatic": "स्वचालित",
+      "SidebarIconSize": "साइडबार आइकन आकार",
+      "Medium": "मध्यम",
+      "WallpaperTinting": "विंडो में वॉलपेपर टिनटिंग की अनुमति दें",
+      "ShowScrollBars": "स्क्रॉल बार दिखाएं",
+      "ScrollAuto": "माउस या ट्रैकपैड के आधार पर स्वचालित रूप से",
+      "ScrollWhenScrolling": "स्क्रॉल करते समय",
+      "ScrollAlways": "हमेशा",
+      "ClickScrollBar": "स्क्रॉल बार में क्लिक करें",
+      "JumpNextPage": "अगले पृष्ठ पर जाएं",
+      "JumpSpotClicked": "क्लिक किए गए स्थान पर जाएं"
+    },
+    "Accessibility": {
+      "Title": "अभिगम्यता",
+      "Description": "दृष्टि, श्रवण, मोटर, भाषण और संज्ञान के लिए अभिगम्यता सुविधाओं के साथ अपने Mac को उन तरीकों से निजीकृत करें जो आपके लिए सबसे अच्छा काम करते हैं।",
+      "LearnMore": "और जानें...",
+      "Vision": "दृष्टि",
+      "VoiceOver": "वाइसओवर",
+      "Zoom": "ज़ूम",
+      "HoverText": "होवर टेक्स्ट",
+      "Display": "डिस्प्ले",
+      "Motion": "गति",
+      "ReadSpeak": "पढ़ें और बोलें",
+      "AudioDescriptions": "ऑडियो विवरण",
+      "Hearing": "सुनना",
+      "HearingDevices": "श्रवण यंत्र",
+      "Audio": "ऑडियो",
+      "Captions": "कैप्शन",
+      "LiveCaptions": "लाइव कैप्शन",
+      "NameRecognition": "नाम पहचान",
+      "Motor": "मोटर",
+      "VoiceControl": "वॉयस कंट्रोल",
+      "Keyboard": "कीबोर्ड",
+      "PointerControl": "पॉइंटर कंट्रोल",
+      "SwitchControl": "स्विच कंट्रोल",
+      "General": "सामान्य",
+      "Siri": "Siri",
+      "Shortcut": "शॉर्टकट"
+    },
+    "MenuBar": {
+      "Title": "मेनू बार",
+      "Description": "मेनू बार सेटिंग्स बदलें।",
+      "AutoHide": "मेनू बार को स्वचालित रूप से छिपाएं और दिखाएं",
+      "Never": "कभी नहीं",
+      "RecentDocs": "हाल के दस्तावेज़, एप्लिकेशन और सर्वर",
+      "None": "कोई नहीं",
+      "Controls": "मेनू बार नियंत्रण",
+      "ControlCenter": "नियंत्रण केंद्र",
+      "ShowInMenuBar": "मेनू बार में दिखाएं",
+      "DontShowInMenuBar": "मेनू बार में न दिखाएं",
+      "Siri": "Siri",
+      "Spotlight": "Spotlight",
+      "VolumeFeedback": "वॉल्यूम बदलने पर फीडबैक चलाएं"
+    },
+    "DesktopDock": {
+      "Title": "डेस्कटॉप और डॉक",
+      "Description": "डॉक और डेस्कटॉप की उपस्थिति बदलें।",
+      "Dock": "डॉक",
+      "Size": "आकार",
+      "Magnification": "आवर्धन",
+      "Small": "छोटा",
+      "Large": "बड़ा",
+      "Position": "स्क्रीन पर स्थिति",
+      "Bottom": "नीचे",
+      "MinimiseUsing": "विंडो को छोटा करने के लिए उपयोग करें",
+      "GenieEffect": "जीनी प्रभाव",
+      "DoubleClickTitle": "विंडो के शीर्षक बार पर डबल-क्लिक करें",
+      "Zoom": "ज़ूम",
+      "MinimiseToIcon": "विंडो को एप्लिकेशन आइकन में छोटा करें",
+      "AutoHideDock": "डॉक को स्वचालित रूप से छिपाएं और दिखाएं",
+      "AnimateOpening": "एप्लिकेशन खोलते समय एनिमेट करें",
+      "ShowIndicators": "खुले एप्लिकेशनों के लिए संकेतक दिखाएं",
+      "ShowRecent": "डॉक में हाल के एप्लिकेशन दिखाएं",
+      "DesktopStageManager": "डेस्कटॉप और स्टेज मैनेजर",
+      "ShowItems": "आइटम दिखाएं",
+      "OnDesktop": "डेस्कटॉप पर",
+      "ClickWallpaper": "डेस्कटॉप प्रकट करने के लिए वॉलपेपर पर क्लिक करें",
+      "Always": "हमेशा",
+      "StageManager": "स्टेज मैनेजर",
+      "Widgets": "विजेट्स",
+      "ShowWidgets": "विजेट्स दिखाएं",
+      "WidgetStyle": "विजेट शैली",
+      "Automatic": "स्वचालित",
+      "UseIPhoneWidgets": "iPhone विजेट्स का उपयोग करें"
+    },
+    "Displays": {
+      "Title": "डिस्प्ले",
+      "Description": "सेटिंग्स बदलने के लिए एक डिस्प्ले चुनें।",
+      "BuiltInDisplay": "अंतर्निहित डिस्प्ले",
+      "UseAs": "के रूप में उपयोग करें",
+      "MainDisplay": "मुख्य डिस्प्ले",
+      "Resolution": "रिज़ॉल्यूशन",
+      "Default": "डिफ़ॉल्ट",
+      "MoreSpace": "अधिक जगह",
+      "LargerText": "बड़ा टेक्स्ट",
+      "Brightness": "चमक",
+      "TrueTone": "True Tone",
+      "Preset": "प्रीसेट",
+      "RefreshRate": "ताज़ा दर",
+      "ProMotion": "ProMotion",
+      "Advanced": "उन्नत..."
+    },
+    "Spotlight": {
+      "Title": "Spotlight",
+      "Description": "अपने Mac पर खोजें।",
+      "SearchPlaceholder": "Spotlight खोज",
+      "SearchResults": "खोज परिणाम",
+      "Privacy": "Spotlight गोपनीयता...",
+      "Categories": {
+        "Applications": "एप्लिकेशन",
+        "Calculator": "कैलकुलेटर",
+        "Contacts": "संपर्क",
+        "Conversion": "रूपांतरण",
+        "Definition": "परिभाषा",
+        "Developer": "डेवलपर",
+        "Documents": "दस्तावेज़",
+        "Events & Reminders": "इवेंट और अनुस्मारक",
+        "Folders": "फ़ोल्डर",
+        "Fonts": "फ़ॉन्ट्स",
+        "Images": "छवियां",
+        "Mail & Messages": "मेल और संदेश",
+        "Movies": "फ़िल्में",
+        "Music": "संगीत",
+        "Other": "अन्य",
+        "PDF Documents": "PDF दस्तावेज़",
+        "Presentations": "प्रस्तुतियाँ",
+        "Siri Suggestions": "Siri सुझाव",
+        "Spreadsheets": "स्प्रेडशीट",
+        "System Preferences": "सिस्टम प्राथमिकताएं",
+        "Tips": "सुझाव",
+        "Bookmarks & History": "बुकमार्क और इतिहास"
+      }
+    },
+    "Notifications": {
+      "Title": "सूचनाएं",
+      "Description": "नियंत्रित करें कि सूचनाएं कैसे प्रदर्शित होती हैं।",
+      "Preview": "पूर्वावलोकन",
+      "ShowPreviews": "पूर्वावलोकन दिखाएं",
+      "Always": "हमेशा",
+      "ApplicationNotifications": "एप्लिकेशन सूचनाएं",
+      "Apps": {
+        "AppStore": "App Store",
+        "Calendar": "कैलेंडर",
+        "FaceTime": "FaceTime",
+        "Mail": "मेल",
+        "Messages": "संदेश",
+        "Photos": "फ़ोटो",
+        "Reminders": "रिमाइंडर",
+        "Safari": "Safari"
+      }
+    },
+    "Sound": {
+      "Title": "ध्वनि",
+      "Description": "ध्वनि सेटिंग्स बदलें।",
+      "OutputInput": "आउटपुट और इनपुट",
+      "Output": "आउटपुट",
+      "Input": "इनपुट",
+      "SelectOutput": "एक आउटपुट डिवाइस चुनें:",
+      "Speakers": "MacBook Pro स्पीकर",
+      "BuiltIn": "अंतर्निहित",
+      "OutputVolume": "आउटपुट वॉल्यूम",
+      "Mute": "म्यूट",
+      "ShowInMenuBar": "मेनू बार में ध्वनि दिखाएं",
+      "Always": "हमेशा",
+      "AlertSoundGroup": "चेतावनी ध्वनि",
+      "AlertSound": "चेतावनी ध्वनि",
+      "Boop": "Boop",
+      "AlertVolume": "चेतावनी वॉल्यूम",
+      "PlayUIEffects": "यूजर इंटरफेस ध्वनि प्रभाव चलाएं"
+    },
+    "Focus": {
+      "Title": "फोकस",
+      "Description": "उसकी सेटिंग्स को अनुकूलित करने के लिए एक फोकस चुनें।",
+      "DoNotDisturb": "परेशान न करें",
+      "ShareAcrossDevices": "उपकरणों के बीच साझा करें",
+      "FocusStatus": "फोकस स्थिति",
+      "On": "चालू",
+      "Off": "बंद",
+      "SetUp": "सेट अप",
+      "FocusModes": "फोकस मोड",
+      "Personal": "व्यक्तिगत",
+      "Sleep": "नींद",
+      "Work": "काम",
+      "AddFocus": "फोकस जोड़ें"
+    },
+    "ScreenTime": {
+      "Title": "स्क्रीन टाइम",
+      "Description": "उपयोग की निगरानी करें और सीमाएं निर्धारित करें।",
+      "DailyAverage": "दैनिक औसत",
+      "FromLastWeek": "पिछले सप्ताह से",
+      "Downtime": "डाउनटाइम",
+      "AppLimits": "ऐप सीमाएं",
+      "LimitsCount": "{count} सीमाएं",
+      "AlwaysAllowed": "हमेशा अनुमति",
+      "AllowedApps": "फ़ोन, मैप्स, संदेश",
+      "ContentPrivacy": "सामग्री और गोपनीयता",
+      "On": "चालू",
+      "Off": "बंद",
+      "ShareAcrossDevices": "उपकरणों के बीच साझा करें",
+      "LockSettings": "स्क्रीन टाइम सेटिंग्स लॉक करें"
+    },
+    "Battery": {
+      "Title": "बैटरी",
+      "Description": "बैटरी स्वास्थ्य और उपयोग की जाँच करें।",
+      "BatteryLevel": "बैटरी स्तर",
+      "LastCharged": "आखरी बार 100% चार्ज आज सुबह 8:00 बजे",
+      "LowPowerMode": "कम पावर मोड",
+      "Never": "कभी नहीं",
+      "BatteryHealth": "बैटरी स्वास्थ्य",
+      "Normal": "सामान्य",
+      "OptimisedCharging": "अनुकूलित बैटरी चार्जिंग",
+      "Options": "विकल्प..."
+    },
+    "Keyboard": {
+      "Title": "कीबोर्ड",
+      "Description": "कीबोर्ड सेटिंग्स बदलें।",
+      "KeyRepeat": "कुंजी दोहराव",
+      "Slow": "धीमा",
+      "Fast": "तेज़",
+      "DelayUntilRepeat": "दोहराव तक देरी",
+      "Long": "लंबा",
+      "Short": "छोटा",
+      "AdjustBrightness": "कम रोशनी में कीबोर्ड की चमक समायोजित करें",
+      "KeyboardNavigation": "कीबोर्ड नेविगेशन",
+      "Shortcuts": "कीबोर्ड शॉर्टकट...",
+      "TextInput": "टेक्स्ट इनपुट",
+      "InputSources": "इनपुट स्रोत",
+      "Edit": "संपादित करें...",
+      "Dictation": "श्रुतलेख"
+    },
+    "LockScreen": {
+      "Title": "लॉक स्क्रीन",
+      "Description": "लॉक स्क्रीन सेटिंग्स बदलें।",
+      "TurnOffDisplayBattery": "निष्क्रिय होने पर बैटरी पर डिस्प्ले बंद करें",
+      "TurnOffDisplayAdapter": "निष्क्रिय होने पर पावर एडाप्टर पर डिस्प्ले बंद करें",
+      "TwoMinutes": "2 मिनट",
+      "TenMinutes": "10 मिनट",
+      "RequirePassword": "स्क्रीन सेवर शुरू होने या डिस्प्ले बंद होने के बाद पासवर्ड आवश्यक है",
+      "Immediately": "तुरंत",
+      "ShowMessage": "लॉक होने पर संदेश दिखाएं",
+      "Set": "सेट करें...",
+      "LoginWindowShows": "लॉगिन विंडो दिखाती है",
+      "ListOfUsers": "उपयोगकर्ताओं की सूची",
+      "ShowLargeClock": "बड़ी घड़ी दिखाएं",
+      "OnLockScreen": "लॉक स्क्रीन पर"
+    },
+    "PrivacySecurity": {
+      "Title": "गोपनीयता और सुरक्षा",
+      "Description": "नियंत्रित करें कि कौन से एप्लिकेशन आपकी जानकारी तक पहुंच सकते हैं।",
+      "Privacy": "गोपनीयता",
+      "LocationServices": "स्थान सेवाएं",
+      "On": "चालू",
+      "Off": "बंद",
+      "Camera": "कैमरा",
+      "Microphone": "माइक्रोफ़ोन",
+      "FilesFolders": "फ़ाइलें और फ़ोल्डर",
+      "ScreenRecording": "स्क्रीन रिकॉर्डिंग",
+      "AppsCount": "{count, plural, =0 {0 ऐप्स} one {1 ऐप} other {# ऐप्स}}",
+      "Security": "सुरक्षा",
+      "FileVault": "FileVault",
+      "LockdownMode": "लॉकडाउन मोड",
+      "Others": "अन्य",
+      "Extensions": "एक्सटेंशन",
+      "Profiles": "प्रोफ़ाइल"
+    },
+    "PrintersScanners": {
+      "Title": "प्रिंटर और स्कैनर",
+      "Description": "प्रिंटर और स्कैनर सेट अप करें।",
+      "Printers": "प्रिंटर",
+      "IdleLastUsed": "निष्क्रिय, अंतिम उपयोग",
+      "Offline": "ऑफ़लाइन",
+      "AddPrinter": "प्रिंटर, स्कैनर या फैक्स जोड़ें..."
+    },
+    "ScreenSaver": {
+      "Title": "स्क्रीन सेवर",
+      "Description": "एक स्क्रीन सेवर चुनें।",
+      "Preview": "पूर्वावलोकन",
+      "ShowOnAllSpaces": "सभी स्पेस पर दिखाएं",
+      "ScreenSavers": "स्क्रीन सेवर",
+      "StartAfter": "इसके बाद शुरू करें",
+      "FiveMinutes": "5 मिनट",
+      "ShowWithClock": "घड़ी के साथ दिखाएं",
+      "ScreensaverNames": {
+        "Ventura": "Ventura",
+        "Monterey": "Monterey",
+        "BigSur": "Big Sur",
+        "Catalina": "Catalina",
+        "Hello": "Hello",
+        "Drift": "Drift",
+        "Flurry": "Flurry",
+        "Shell": "Shell"
+      }
+    },
+    "Storage": {
+      "Title": "भंडारण",
+      "Description": "डिस्क स्थान प्रबंधित करें।",
+      "MacintoshHD": "Macintosh HD",
+      "AvailableSpace": "{available} GB में से {total} GB उपलब्ध",
+      "Apps": "ऐप्स",
+      "Documents": "दस्तावेज़",
+      "SystemData": "सिस्टम डेटा",
+      "macOS": "macOS",
+      "OtherUsers": "अन्य उपयोगकर्ता",
+      "Recommendations": "सिफारिशें",
+      "StoreInICloud": "iCloud में स्टोर करें",
+      "StoreInICloudDesc": "अपनी सभी फ़ाइलों, फ़ोटो और संदेशों को iCloud में स्टोर करें और इस Mac पर जगह बचाएं।",
+      "StoreInICloudButton": "iCloud में स्टोर करें...",
+      "Categories": "श्रेणियाँ",
+      "Applications": "एप्लिकेशन"
+    },
+    "TouchIDPassword": {
+      "Title": "टच आईडी और पासवर्ड",
+      "Description": "अपने Mac को अनलॉक करने के लिए एक फिंगरप्रिंट जोड़ें।",
+      "TouchID": "टच आईडी",
+      "Finger1": "उंगली 1",
+      "AddFingerprint": "फिंगरप्रिंट जोड़ें",
+      "UseTouchIDFor": "टच आईडी का उपयोग करें",
+      "UnlockingMac": "अपने Mac को अनलॉक करना",
+      "ApplePay": "Apple Pay",
+      "iTunesAppStore": "iTunes Store, App Store और Apple Books",
+      "AutoFillPasswords": "पासवर्ड ऑटोफिल करें",
+      "Password": "पासवर्ड",
+      "LastChanged": "अंतिम बार बदला गया: 24/11/2024",
+      "Change": "बदलें...",
+      "RequirePasswordScreenSaver": "स्क्रीन सेवर शुरू होने या डिस्प्ले बंद होने के बाद पासवर्ड आवश्यक है",
+      "Immediately": "तुरंत",
+      "RequirePasswordIdle": "निष्क्रियता के बाद पासवर्ड आवश्यक है",
+      "Never": "कभी नहीं",
+      "Seconds": "{count} सेकंड",
+      "Minute": "{count} मिनट",
+      "Minutes": "{count} मिनट",
+      "AppleWatch": "Apple Watch",
+      "AppleWatchUnlock": "अपने एप्लिकेशन और Mac को अनलॉक करने के लिए अपने Apple Watch का उपयोग करें"
+    },
+    "Trackpad": {
+      "Title": "ट्रैकपैड",
+      "Description": "ट्रैकपैड सेटिंग्स बदलें।",
+      "PointClick": "पॉइंट और क्लिक",
+      "ScrollZoom": "स्क्रॉल और ज़ूम",
+      "MoreGestures": "अधिक जेस्चर",
+      "TrackingSpeed": "ट्रैकिंग गति",
+      "Slow": "धीमा",
+      "Fast": "तेज़",
+      "Click": "क्लिक",
+      "Medium": "मध्यम",
+      "ForceClick": "Force Click और हैप्टिक फीडबैक",
+      "LookUp": "लुक अप और डेटा डिटेक्टर",
+      "SecondaryClick": "सेकेंडरी क्लिक",
+      "ClickTwoFingers": "दो उंगलियों से क्लिक करें",
+      "TapToClick": "क्लिक करने के लिए टैप करें",
+      "VideoPreview": "वीडियो पूर्वावलोकन"
+    },
+    "UsersGroups": {
+      "Title": "उपयोगकर्ता और समूह",
+      "Description": "उपयोगकर्ता खातों और समूहों को प्रबंधित करें।",
+      "CurrentUser": "वर्तमान उपयोगकर्ता",
+      "Admin": "व्यवस्थापक",
+      "OtherUsers": "अन्य उपयोगकर्ता",
+      "GuestUser": "अतिथि उपयोगकर्ता",
+      "Off": "बंद",
+      "AddAccount": "खाता जोड़ें...",
+      "AutoLogin": "स्वचालित रूप से लॉगिन करें",
+      "AllowNetworkUsers": "नेटवर्क उपयोगकर्ताओं को लॉगिन विंडो पर लॉग इन करने की अनुमति दें"
+    },
+    "Wallpaper": {
+      "Title": "वॉलपेपर",
+      "Description": "एक डेस्कटॉप तस्वीर चुनें।",
+      "ShowOnAllSpaces": "सभी स्पेस पर दिखाएं",
+      "DynamicWallpapers": "डायनामिक वॉलपेपर",
+      "Pictures": "तस्वीरें",
+      "AddPhoto": "फ़ोटो जोड़ें"
+    },
+    "LanguageSelector": {
+      "Title": "जोड़ने के लिए एक पसंदीदा भाषा चुनें",
+      "Search": "खोजें",
+      "Cancel": "रद्द करें",
+      "Add": "जोड़ें"
+    }
+  },
+  "Languages": {
+    "English": "अंग्रेज़ी",
+    "Spanish": "स्पेनिश",
+    "French": "फ्रेंच",
+    "German": "जर्मन",
+    "Italian": "इतालवी",
+    "Japanese": "जापानी",
+    "Chinese": "चीनी",
+    "Portuguese": "पुर्तगाली",
+    "Russian": "रूसी",
+    "Korean": "कोरियाई",
+    "Dutch": "डच",
+    "Swedish": "स्वीडिश",
+    "Danish": "डैनिश",
+    "Norwegian": "नर्वेजियाई",
+    "Finnish": "फिनिश",
+    "Polish": "पोलिश",
+    "Turkish": "तुर्की",
+    "Arabic": "अरबी",
+    "Hindi": "हिन्दी",
+    "Bengali": "बंगाली",
+    "Vietnamese": "वियतनामी",
+    "Thai": "थाई",
+    "Greek": "ग्रीक",
+    "Czech": "चेक",
+    "Hungarian": "हंगेरियन",
+    "Romanian": "रोमानियाई",
+    "Ukrainian": "यूक्रेनी",
+    "Indonesian": "इंडोनेशियन",
+    "Malay": "मलय",
+    "Croatian": "क्रोएशियाई",
+    "Slovak": "स्लोवाक",
+    "Slovenian": "स्लोवेनियाई",
+    "Bulgarian": "बुल्गेरियन",
+    "Serbian": "सर्बियाई",
+    "Hebrew": "हिब्रू"
+  },
+  "Finder": {
+    "Search": "खोजें",
+    "Sidebar": {
+      "Favorites": "पसंदीदा",
+      "Locations": "स्थान",
+      "AirDrop": "AirDrop",
+      "Recents": "हालिया",
+      "Applications": "एप्लिकेशन",
+      "Desktop": "डेस्कटॉप",
+      "Documents": "दस्तावेज़",
+      "Downloads": "डाउनलोड",
+      "Pictures": "तस्वीरें",
+      "Home": "होम",
+      "MacintoshHD": "मैकिंटोश एचडी",
+      "iCloudDrive": "iCloud ड्राइव"
+    },
+    "Menu": {
+      "NewFolder": "नया फ़ोल्डर",
+      "GetInfo": "जानकारी प्राप्त करें",
+      "ChangeBackground": "पृष्ठभूमि बदलें...",
+      "Open": "खोलें",
+      "MoveToBin": "कचरे में डालें",
+      "Rename": "नाम बदलें",
+      "OpenItems": "{count} आइटम खोलें",
+      "MoveItemsToBin": "{count} आइटम कचरे में डालें"
+    },
+    "Status": {
+      "Loading": "लोड हो रहा है...",
+      "EmptyFolder": "फ़ोल्डर खाली है",
+      "ItemCount": "{count, plural, =1 {1 आइटम} other {# आइटम}}",
+      "SpaceAvailable": "{amount} GB उपलब्ध"
+    },
+    "Errors": {
+      "NoApp": ".{ext} फ़ाइलें खोलने के लिए कोई एप्लिकेशन उपलब्ध नहीं है।",
+      "CreateFolderFailed": "फ़ोल्डर बनाने में विफल",
+      "MoveToBinFailed": "आइटम कचरे में डालने में विफल"
+    }
+  },
+  "Safari": {
+    "Title": "Safari",
+    "StartPage": "प्रारंभिक पृष्ठ",
+    "Loading": "लोड हो रहा है...",
+    "SearchPlaceholder": "खोजें या वेबसाइट का नाम दर्ज करें",
+    "NoInternet": "आप इंटरनेट से कनेक्ट नहीं हैं",
+    "NoInternetDesc": "यह पृष्ठ प्रदर्शित नहीं किया जा सकता क्योंकि आपका कंप्यूटर वर्तमान में ऑफ़लाइन है।",
+    "Favorites": {
+      "Apple": "Apple",
+      "Google": "Google",
+      "Wikipedia": "Wikipedia",
+      "GitHub": "GitHub"
+    }
+  },
+  "Mail": {
+    "Inbox": "इनबॉक्स",
+    "MessagesCount": "{count, plural, =1 {1 संदेश} other {# संदेश}}",
+    "Favorites": "पसंदीदा",
+    "AllInboxes": "सभी इनबॉक्स",
+    "VIP": "VIP",
+    "Sent": "भेजे गए",
+    "Search": "खोजें",
+    "NoMessageSelected": "एक ईमेल चुनें",
+    "To": "प्रति: {name}"
+  },
+  "Messages": {
+    "AppTitle": "संदेश",
+    "SigningIn": "{name} के रूप में साइन इन हो रहा है...",
+    "SidebarTitle": "संदेश",
+    "NoOnlineUsers": "कोई और ऑनलाइन नहीं है।",
+    "NoMessages": "कोई संदेश नहीं",
+    "To": "प्रति: {name}",
+    "InputPlaceholder": "iMessage",
+    "NoContactSelected": "मैसेजिंग शुरू करने के लिए एक संपर्क चुनें"
+  },
+  "Photos": {
+    "Sidebar": {
+      "Library": "लाइब्रेरी",
+      "Collections": "संग्रह",
+      "Pinned": "पिन किया गया",
+      "Albums": "एल्बम",
+      "Utilities": "उपयोगिताएँ",
+      "Projects": "परियोजनाएं",
+      "Favourites": "पसंदीदा",
+      "RecentlySaved": "हाल ही में सहेजा गया",
+      "Videos": "वीडियो",
+      "Screenshots": "स्क्रीनशॉट",
+      "PeoplePets": "लोग और पालतू जानवर",
+      "SharedAlbums": "साझा एल्बम",
+      "Activity": "गतिविधि",
+      "RecentlyDeleted": "हाल ही में हटाया गया",
+      "Duplicates": "डुप्लिकेट",
+      "Map": "मानचित्र",
+      "AllProjects": "सभी परियोजनाएं"
+    },
+    "Tabs": {
+      "Years": "वर्ष",
+      "Months": "महीने",
+      "AllPhotos": "सभी तस्वीरें"
+    },
+    "Search": "खोजें",
+    "Collections": {
+      "Title": "संग्रह",
+      "Memories": "यादें",
+      "NoMemories": "कोई यादें उपलब्ध नहीं हैं",
+      "NoMemoriesDesc": "यादें उपलब्ध होने पर यहां दिखाई देंगी।",
+      "Albums": "एल्बम",
+      "NoAlbums": "कोई एल्बम उपलब्ध नहीं है"
+    },
+    "EmptyState": {
+      "NoItems": "{title} में कोई आइटम नहीं मिला"
+    },
+    "Locked": {
+      "Title": "{title} लॉक है",
+      "Desc": "इन आइटम को देखने के लिए प्रमाणित करें।"
+    }
+  },
+  "Notes": {
+    "Sidebar": {
+      "iCloud": "ICLOUD",
+      "Notes": "नोट्स",
+      "RecentlyDeleted": "हाल ही में हटाया गया"
+    },
+    "Search": "खोजें",
+    "NewNote": "नया नोट",
+    "NoAdditionalText": "कोई अतिरिक्त पाठ नहीं",
+    "Editor": {
+      "TitlePlaceholder": "शीर्षक",
+      "ContentPlaceholder": "अपना नोट यहाँ लिखें...",
+      "AddToDesktop": "डेस्कटॉप में जोड़ें",
+      "Restore": "पुनर्स्थापित करें",
+      "Delete": "नोट हटाएं",
+      "DeletePermanently": "स्थायी रूप से हटाएं",
+      "EmptyState": "एक नोट चुनें या एक नया बनाएं",
+      "Date": "आज {time} बजे"
+    }
+  },
+  "Reminders": {
+    "Search": "खोजें",
+    "Sidebar": {
+      "MyLists": "मेरी सूचियाँ",
+      "Reminders": "रिमाइंडर",
+      "Work": "काम",
+      "Today": "आज",
+      "Scheduled": "अनुसूचित",
+      "All": "सभी",
+      "Flagged": "चि चिह्नित"
+    },
+    "AddReminder": "नया रिमाइंडर",
+    "Actions": {
+      "Add": "जोड़ें",
+      "Cancel": "रद्द करें",
+      "Delete": "रिमाइंडर हटाएं",
+      "MarkComplete": "पूर्ण के रूप में चिह्नित करें",
+      "MarkIncomplete": "अपूर्ण के रूप में चिह्नित करें",
+      "Flag": "रिमाइंडर चिह्नित करें",
+      "Unflag": "चिह्नitario हटाएं"
+    },
+    "Inputs": {
+      "Title": "शीर्षक",
+      "Date": "दिनांक",
+      "Time": "समय"
+    }
+  },
+  "Calendar": {
+    "Sidebar": {
+      "iCloud": "ICLOUD",
+      "Other": "अन्य",
+      "NoInvitations": "कोई निमंत्रण नहीं"
+    },
+    "Toolbar": {
+      "Today": "आज",
+      "SearchPlaceholder": "इवेंट खोजें...",
+      "View": {
+        "day": "दिन",
+        "week": "सप्ताह",
+        "month": "महीना",
+        "year": "वर्ष"
+      }
+    },
+    "EventModal": {
+      "Title": "नया इवेंट",
+      "EventTitlePlaceholder": "इवेंट शीर्षक",
+      "CalendarLabel": "कैलेंडर",
+      "Cancel": "रद्द करें",
+      "AddEvent": "इवेंट जोड़ें"
+    },
+    "SearchResults": {
+      "Title": "खोज परिणाम",
+      "NoEvents": "कोई इवेंट नहीं मिला"
+    },
+    "Event": {
+      "NoLocation": "कोई स्थान नहीं",
+      "EventLabel": "इवेंट: {title}, {location} पर"
+    },
+    "Weekdays": {
+      "Sun": "रवि",
+      "Mon": "सोम",
+      "Tue": "मंगल",
+      "Wed": "बुध",
+      "Thu": "गुरु",
+      "Fri": "शुक्र",
+      "Sat": "शनि"
+    },
+    "WeekdaysShort": {
+      "Sun": "र",
+      "Mon": "स",
+      "Tue": "म",
+      "Wed": "ब",
+      "Thu": "ग",
+      "Fri": "श",
+      "Sat": "श"
+    }
+  },
+  "Maps": {
+    "SearchPlaceholder": "मैप्स खोजें",
+    "Sidebar": {
+      "Favorites": "पसंदीदा",
+      "Recent": "हालिया",
+      "NoRecentSearches": "कोई हालिया खोज नहीं",
+      "RecentLabel": "हालिया"
+    },
+    "Locations": {
+      "Home": "घर",
+      "Work": "काम"
+    },
+    "Controls": {
+      "SwitchToSatellite": "सैटेलाइट पर स्विच करें",
+      "SwitchToSatelliteLabel": "सैटेलाइट दृश्य पर स्विच करें",
+      "SwitchToMap": "मैप पर स्विच करें",
+      "SwitchToMapLabel": "मैप दृश्य पर स्विच करें",
+      "CurrentLocation": "वर्तमान स्थान",
+      "ShowCurrentLocation": "वर्तमान स्थान दिखाएं",
+      "MapInfo": "मैप की जानकारी"
+    },
+    "Permission": {
+      "AppName": "मैप्स",
+      "Title": "स्थान",
+      "Reason": "मैप्स को यह दिखाने के लिए आपके स्थान तक पहुंच की आवश्यकता है कि आप कहां हैं।",
+      "Error": "आपका स्थान प्राप्त नहीं किया जा सका। कृपया सुनिश्चित करें कि स्थान सेवाएं सक्षम हैं।",
+      "NotSupported": "आपका ब्राउज़र भू-स्थान का समर्थन नहीं करता है।"
+    }
+  },
+  "FaceTime": {
+    "Title": "FaceTime",
+    "ConnectingAs": "{name} के रूप में कनेक्ट हो रहा है...",
+    "IncomingCall": "{name} कॉल कर रहा है...",
+    "Accept": "स्वीकार करें",
+    "Decline": "अस्वीकार करें",
+    "End": "समाप्त करें",
+    "Contacts": "संपर्क",
+    "NoContacts": "कोई और ऑनलाइन नहीं है।",
+    "Video": "वीडियो",
+    "SelectContact": "कॉल करने के लिए एक संपर्क चुनें",
+    "Aria": {
+      "RemoteVideo": "रिमोट वीडियो फीड",
+      "LocalVideo": "स्थानीय वीडियो पूर्वावलोकन",
+      "EndCall": "कॉल समाप्त करें",
+      "CallContact": "{name} को कॉल करें",
+      "VideoCallContact": "{name} को वीडियो कॉल करें",
+      "LocalPreview": "स्थानीय कैमरा पूर्वावलोकन"
+    },
+    "Permission": {
+      "AppName": "FaceTime",
+      "Title": "कैमरा और माइक्रोफ़ोन",
+      "Reason": "कॉल करने के लिए FaceTime को आपके कैमरे और माइक्रोफ़ोन तक पहुंच की आवश्यकता है।"
+    }
+  },
+  "Contacts": {
+    "SearchPlaceholder": "खोजें",
+    "SearchAria": "संपर्क खोजें",
+    "Count": "{count} संपर्क",
+    "EditContact": "संपर्क संपादित करें",
+    "NewContact": "नया संपर्क",
+    "Preview": "पूर्वावलोकन",
+    "Edit": "संपादित करें",
+    "DeleteContact": "संपर्क हटाएं",
+    "Cancel": "रद्द करें",
+    "Done": "पूर्ण",
+    "NoNotes": "कोई नोट नहीं",
+    "NoSelection": "कोई संपर्क नहीं चुना गया",
+    "Labels": {
+      "FirstName": "प्रथम नाम",
+      "LastName": "अंतिम नाम",
+      "Company": "कंपनी",
+      "Phone": "फ़ोन",
+      "Email": "ईमेल",
+      "Notes": "नोट्स",
+      "Mobile": "मोबाइल",
+      "Home": "घर",
+      "Message": "संदेश",
+      "Video": "वीडियो",
+      "Mail": "मेल"
+    },
+    "Alerts": {
+      "DeleteConfirm": "क्या आप वाकई इस संपर्क को हटाना चाहते हैं?",
+      "NameRequired": "कृपया नाम या कंपनी दर्ज करें।"
+    },
+    "Aria": {
+      "AddContact": "नया संपर्क जोड़ें",
+      "Contact": "संपर्क: {name}",
+      "Action": "{action} {name}"
+    }
+  },
+  "Calculator": {
+    "AC": "AC",
+    "AllClear": "सब साफ़",
+    "ToggleSign": "साइन टॉगल करें",
+    "Percentage": "प्रतिशत",
+    "Divide": "भाग",
+    "Multiply": "गुणा",
+    "Subtract": "घटाना",
+    "Add": "जोड़ें",
+    "Calculate": "परिणाम की गणना करें"
+  },
+  "Clock": {
+    "Tabs": {
+      "WorldClock": "विश्व घड़ी",
+      "Alarms": "अलार्म",
+      "Stopwatch": "स्टॉपवॉच",
+      "Timers": "टाइमर"
+    },
+    "AddClock": "घड़ी जोड़ें",
+    "Locations": {
+      "NewDelhi": "नई दिल्ली"
+    },
+    "Today": "आज",
+    "HRS": "घंटे"
+  },
+  "Weather": {
+    "Loading": "मौसम लोड हो रहा है...",
+    "Error": "मौसम लोड करने में असमर्थ",
+    "Retry": "पुनः प्रयास करें",
+    "SearchPlaceholder": "शहर खोजें",
+    "Searching": "खोज रहा है...",
+    "NoResults": "कोई परिणाम नहीं मिला",
+    "Recent": "हालिया",
+    "Popular": "लोकप्रिय",
+    "Sidebar": {
+      "Open": "साइडबार खोलें",
+      "Close": "साइडबार बंद करें"
+    },
+    "Aria": {
+      "SelectLocation": "{name}, {country} चुनें"
+    },
+    "Forecast": {
+      "Hourly": "प्रति घंटा पूर्वानुमान",
+      "TenDay": "10-दिन का पूर्वानुमान",
+      "Now": "अब",
+      "Today": "आज"
+    },
+    "Details": {
+      "AirQuality": "वायु गुणवत्ता",
+      "UVIndex": "UV सूचकांक",
+      "Wind": "हवा",
+      "Sunset": "सूर्यास्त",
+      "Sunrise": "सूर्योदय:",
+      "FeelsLike": "जैसा लगता है",
+      "Humidity": "नमी",
+      "Visibility": "दृश्यता",
+      "Pressure": "दबाव",
+      "hPa": "hPa"
+    },
+    "Descriptions": {
+      "AirQualityDesc": "वायु गुणवत्ता सूचकांक 130 है, जो कल इस समय के समान है।",
+      "UVIndexDesc": "शाम 4 बजे तक धूप से सुरक्षा का प्रयोग करें।",
+      "FeelsLikeDesc": "वास्तविक तापमान के समान।",
+      "DewPointDesc": "अभी ओस बिंदु {temp}° है।",
+      "VisibilityDesc": "पूरी तरह से स्पष्ट दृश्य।",
+      "Footer": "{location} के लिए मौसम • Open-Meteo डेटा",
+      "PollutionLevel": "मध्यम प्रदूषित",
+      "UVLevel": "मध्यम"
+    }
+  },
+  "Stocks": {
+    "Loading": "बाजार डेटा लोड हो रहा है...",
+    "Error": "स्टॉक लोड करने में विफल।",
+    "Title": "स्टॉक",
+    "Search": "खोजें",
+    "Searching": "खोज रहा है...",
+    "Watchlist": "वॉचलिस्ट",
+    "KeyStatistics": "प्रमुख आँकड़े",
+    "BusinessNews": "व्यापार समाचार",
+    "ShowMore": "अधिक दिखाएं",
+    "Aria": {
+      "Search": "स्टॉक खोजें",
+      "Select": "स्टॉक {symbol} चुनें",
+      "ReadNews": "समाचार पढ़ें: {title}"
+    },
+    "Stats": {
+      "Open": "खुला",
+      "High": "उच्च",
+      "Low": "कम",
+      "Vol": "वॉल्यूम",
+      "PE": "P/E",
+      "MktCap": "बाजार पूंजी",
+      "52WH": "52-सप्ताह उच्च",
+      "52WL": "52-सप्ताह कम"
+    }
+  },
+  "News": {
+    "Title": "समाचार",
+    "Categories": {
+      "TopStories": "शीर्ष लेख",
+      "Technology": "प्रौद्योगिकी",
+      "Business": "व्यापार",
+      "Science": "विज्ञान",
+      "Health": "स्वास्थ्य",
+      "Entertainment": "मनोरंजन",
+      "Sports": "खेल"
+    },
+    "SearchPlaceholder": "कहानियां खोजें...",
+    "SearchLabel": "खोजें",
+    "SearchTitle": "खोजें: \"{query}\"",
+    "Loading": "शीर्ष लेख लोड हो रहे हैं...",
+    "Error": "समाचार लोड करने में विफल। कृपया बाद में पुनः प्रयास करें।",
+    "TryAgain": "पुनः प्रयास करें",
+    "NoResults": "\"{query}\" से मेल खाने वाली कोई कहानी नहीं मिली",
+    "ClearSearch": "खोज साफ़ करें",
+    "TopStory": "शीर्ष कहानी",
+    "Refresh": "ताज़ा करें",
+    "Aria": {
+      "Category": "श्रेणी: {label}",
+      "Search": "कहानियां खोजें",
+      "Refresh": "समाचार ताज़ा करें",
+      "ReadTopStory": "शीर्ष कहानी पढ़ें: {title}",
+      "ReadArticle": "लेख पढ़ें: {title}",
+      "Share": "लेख साझा करें",
+      "Like": "लेख पसंद करें"
+    }
+  },
+  "Music": {
+    "AppleMusic": "Apple Music",
+    "Library": "लाइब्रेरी",
+    "ListenNow": "अभी सुनें",
+    "Browse": "ब्राउज़",
+    "Radio": "रेडियो",
+    "RecentlyAdded": "हाल ही में जोड़ा गया",
+    "Artists": "कलाकार",
+    "Albums": "एल्बम",
+    "Songs": "गाने",
+    "Search": "खोजें",
+    "SearchTitle": "खोजें: {query}",
+    "Aria": {
+      "Search": "संगीत खोजें",
+      "GoBack": "पीछे जाएं",
+      "GoForward": "आगे जाएं",
+      "Prev": "पिछला गाना",
+      "Next": "अगला गाना",
+      "Play": "चलाएं",
+      "Pause": "रोकें",
+      "PlaySong": "{artist} द्वारा {track} चलाएं",
+      "PauseSong": "{track} रोकें",
+      "Lyrics": "गीत टॉगल करें",
+      "Queue": "कतार टॉगल करें",
+      "Mute": "म्यूट टॉगल करें",
+      "VolSlider": "वॉल्यूम स्लाइडर",
+      "SeekSlider": "सीक स्लाइडर"
+    },
+    "Queue": {
+      "Title": "अगला चल रहा है",
+      "Empty": "कतार खाली है"
+    },
+    "Lyrics": {
+      "NotAvailable": "पूर्वावलोकन मोड में इस गीत के लिए बोल उपलब्ध नहीं हैं।",
+      "Imagine": "लेकिन कल्पना करें कि गीत यहाँ दिखाई दे रहे हैं, संगीत के साथ पूरी तरह से समन्वित...",
+      "Lalala": "ला ला ला...",
+      "Placeholder": "गीत देखने के लिए कोई गाना चलाएं"
+    }
+  },
+  "TV": {
+    "WatchNow": "अभी देखें",
+    "Movies": "फ़िल्में",
+    "TVShows": "टीवी शो",
+    "Kids": "बच्चे",
+    "Library": "लाइब्रेरी",
+    "SearchResults": "खोज परिणाम",
+    "NoShows": "कोई शो नहीं मिला।",
+    "SearchPlaceholder": "खोजें",
+    "SearchLabel": "टीवी शो खोजें",
+    "Series": "शृंखला",
+    "PlayEpisode": "एपिसोड 1 चलाएं",
+    "AddToUpNext": "अगला में जोड़ें",
+    "Added": "जोड़ा गया",
+    "OpenYouTube": "YouTube में खोलें",
+    "ViewAccount": "खाता देखें",
+    "Aria": {
+      "Play": "{name} चलाएं",
+      "CloseVideo": "वीडियो बंद करें",
+      "AddLibrary": "लाइब्रेरी में जोड़ें",
+      "RemoveLibrary": "लाइब्रेरी से हटाएं"
+    },
+    "Genres": {
+      "Drama": "नाटक",
+      "Action": "एक्शन",
+      "Comedy": "कॉमेडी",
+      "ScienceFiction": "विज्ञान-कथा",
+      "Thriller": "थ्रिलर"
+    }
+  },
+  "Terminal": {
+    "Guest": "अतिथि",
+    "Welcome": "टर्मिनल में आपका स्वागत है",
+    "HelpPrompt": "कमांड की सूची के लिए 'help' टाइप करें।",
+    "AvailableCommands": "उपलब्ध कमांड: ls, cd, pwd, mkdir, touch, echo, cat, clear, whoami, ping, man, rm, rmdir, vi",
+    "CommandNotFound": "कमांड नहीं मिला: {command}",
+    "Error": "त्रुटि: {message}",
+    "AriaInput": "टर्मिनल इनपुट",
+    "Usage": {
+      "Ping": "उपयोग: ping host",
+      "Mkdir": "उपयोग: mkdir directory_name",
+      "Rmdir": "उपयोग: rmdir directory_name",
+      "Rm": "उपयोग: rm [-rf] file_name",
+      "Touch": "उपयोग: touch file_name",
+      "Cat": "उपयोग: cat file_name",
+      "Vi": "उपयोग: vi file_name",
+      "Man": "आप कौन सा मैनुअल पेज चाहते हैं?"
+    },
+    "Errors": {
+      "PingResolve": "ping: {host} को हल नहीं कर सकता: अज्ञात होस्ट",
+      "NoManual": "{command} के लिए कोई मैनुअल प्रविष्टि नहीं",
+      "NoSuchFile": "{cmd}: {path}: ऐसी कोई फ़ाइल या निर्देशिका नहीं",
+      "NotADirectory": "{cmd}: {path}: निर्देशिका नहीं है",
+      "DirectoryNotEmpty": "{cmd}: {path}: निर्देशिका खाली नहीं है",
+      "IsADirectory": "{cmd}: {path}: एक निर्देशिका है"
+    },
+    "Messages": {
+      "PingStats": "PING {host} (127.0.0.1): 56 data bytes\n64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.045 ms\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.082 ms\n64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.067 ms\n\n--- {host} ping statistics ---\n3 packets transmitted, 3 packets received, 0.0% packet loss",
+      "OpeningTextEdit": "TextEdit में {file} खोला जा रहा है..."
+    },
+    "ManPages": {
+      "ls": "ls - निर्देशिका सामग्री सूचीबद्ध करें\n\nउपयोग: ls [options] [file|dir]\n\nविकल्प:\n  -a, --all      . से शुरू होने वाली प्रविष्टियों को अनदेखा न करें\n  -l             एक लंबा सूची प्रारूप का उपयोग करें",
+      "cd": "cd - शेल कार्यशील निर्देशिका बदलें\n\nउपयोग: cd [dir]\n\nवर्तमान निर्देशिका को DIR में बदलें। डिफ़ॉल्ट DIR HOME शेल वैरिएबल का मान है।",
+      "pwd": "pwd - वर्तमान/कार्यशील निर्देशिका का नाम प्रिंट करें\n\nउपयोग: pwd\n\nवर्तमान निर्देशिका का पूरा फ़ाइल नाम प्रिंट करें।",
+      "mkdir": "mkdir - निर्देशिकाएँ बनाएँ\n\nउपयोग: mkdir [DIRECTORY]\n\nनिर्देशिका(एँ) बनाएँ, यदि वे पहले से मौजूद नहीं हैं।",
+      "touch": "touch - फ़ाइल टाइमस्टैम्प बदलें\n\nउपयोग: touch [FILE]\n\nप्रत्येक फ़ाइल के एक्सेस और संशोधन समय को वर्तमान समय में अपडेट करें। यदि फ़ाइल मौजूद नहीं है तो इसे खाली बनाया जाता है।",
+      "echo": "echo - पाठ की एक पंक्ति प्रदर्शित करें\n\nउपयोग: echo [STRING]...\n\nSTRING(s) को मानक आउटपुट पर गूंजें।",
+      "cat": "cat - फ़ाइलों को संयोजित करें और मानक आउटपुट पर प्रिंट करें\n\nउपयोग: cat [FILE]...\n\nFILE(s) को मानक आउटपुट में संयोजित करें।",
+      "clear": "clear - टर्मिनल स्क्रीन साफ़ करें\n\nउपयोग: clear",
+      "whoami": "whoami - प्रभावी userid प्रिंट करें\n\nउपयोग: whoami\n\nवर्तमान प्रभावी उपयोगकर्ता ID से जुड़े उपयोगकर्ता का नाम प्रिंट करें।",
+      "ping": "ping - नेटवर्क होस्ट को ICMP ECHO_REQUEST भेजें\n\nउपयोग: ping [HOST]\n\nनेटवर्क होस्ट को ICMP ECHO_REQUEST भेजें।",
+      "man": "man - सिस्टम संदर्भ मैनुअल के लिए एक इंटरफ़ेस\n\nउपयोग: man [COMMAND]\n\nCOMMAND के लिए मैनुअल पेज प्रदर्शित करें।",
+      "rm": "rm - फ़ाइलें या निर्देशिकाएँ हटाएँ\n\nउपयोग: rm [OPTION]... [FILE]...\n\nFILE(s) हटाएँ (unlink)।\n\nविकल्प:\n  -r, -R, --recursive   निर्देशिकाओं और उनकी सामग्री को पुनरावर्ती रूप से हटाएँ\n  -f, --force           गैर-मौजूद फ़ाइलों और तर्कों को अनदेखा करें, कभी संकेत न दें",
+      "rmdir": "rmdir - खाली निर्देशिकाएँ हटाएँ\n\nउपयोग: rmdir [DIRECTORY]...\n\nनिर्देशिका(एँ) हटाएँ, यदि वे खाली हैं।",
+      "vi": "vi - स्क्रीन-ओरिएंटेड (विजुअल) डिस्प्ले एडिटर\n\nउपयोग: vi [FILE]\n\nFILE संपादित करें।"
+    }
+  },
+  "TextEdit": {
+    "Guest": "अतिथि",
+    "Untitled": "बिना शीर्षक.txt",
+    "Save": "सहेजें",
+    "Loading": "लोड हो रहा है...",
+    "Placeholder": "अपने नोट्स यहाँ टाइप करें...",
+    "SavedAlert": "{path}/{filename} में सहेजा गया"
+  },
+  "PDFViewer": {
+    "Document": "दस्तावेज़.pdf",
+    "PageInfo": "पृष्ठ {total} में से {current}",
+    "View": "देखें",
+    "ZoomIn": "ज़ूम इन",
+    "ZoomOut": "ज़ूम आउट",
+    "LoadingThumbnails": "थंबनेल लोड हो रहे हैं...",
+    "Loading": "लोड हो रहा है...",
+    "NoPDF": "कोई PDF नहीं",
+    "FailedToLoad": "PDF लोड करने में विफल",
+    "NoPDFLoaded": "कोई PDF लोड नहीं हुआ"
+  },
+  "Spotlight": {
+    "Placeholder": "Spotlight खोज",
+    "SearchWebFor": "\"{query}\" के लिए वेब खोजें",
+    "NoResults": "कोई परिणाम नहीं मिला",
+    "Open": "खोलें",
+    "Kinds": {
+      "Web": "वेब खोज",
+      "App": "एप्लिकेशन",
+      "Directory": "निर्देशिका",
+      "File": "फ़ाइल"
+    },
+    "Aria": {
+      "Open": "{name} खोलें"
+    }
+  },
+  "Desktop": {
+    "Guest": "अतिथि",
+    "UntitledFolder": "अनाम फ़ोल्डर",
+    "NoAppAvailable": ".{ext} फ़ाइलें खोलने के लिए कोई एप्लिकेशन उपलब्ध नहीं है।",
+    "MoveToBin": {
+      "Failed": "कचरे में डालने में विफल",
+      "NotSupported": "कचरे में डालने में विफल। फ़ोल्डर चालें अभी पूरी तरह से समर्थित नहीं हैं।"
+    },
+    "ContextMenu": {
+      "NewFolder": "नया फ़ोल्डर",
+      "GetInfo": "जानकारी प्राप्त करें",
+      "ChangeWallpaper": "वॉलपेपर बदलें...",
+      "EditWidgets": "विजेट्स संपादित करें...",
+      "UseStacks": "स्टैक का उपयोग करें",
+      "SortBy": "द्वारा क्रमबद्ध करें",
+      "CleanUp": "साफ़ करें",
+      "CleanUpBy": "द्वारा साफ़ करें",
+      "ShowViewOptions": "दृश्य विकल्प दिखाएं",
+      "Tags": "टैग",
+      "None": "कोई नहीं",
+      "SnapToGrid": "ग्रिड पर स्नैप करें",
+      "Name": "नाम",
+      "Kind": "प्रकार",
+      "DateLastOpened": "अंतिम बार खोला गया",
+      "DateAdded": "जोड़ी गई तारीख",
+      "DateModified": "संशोधन की तारीख",
+      "DateCreated": "बनाने की तारीख",
+      "Size": "आकार"
+    }
+  },
+  "MenuBar": {
+    "Apple": {
+      "AboutThisMac": "इस Mac के बारे में",
+      "SystemSettings": "सिस्टम सेटिंग्स...",
+      "AppStore": "App Store...",
+      "RecentItems": "हालिया आइटम",
+      "ForceQuit": "बलपूर्वक छोड़ें...",
+      "Sleep": "नींद",
+      "Restart": "पुनः आरंभ करें...",
+      "ShutDown": "बंद करें...",
+      "LockScreen": "स्क्रीन लॉक करें"
+    },
+    "App": {
+      "About": "{app} के बारे में",
+      "Quit": "{app} छोड़ें"
+    },
+    "File": {
+      "Title": "फ़ाइल",
+      "New": "नया",
+      "Open": "खोलें...",
+      "Save": "सहेजें",
+      "Duplicate": "डुप्लिकेट",
+      "NewFinderWindow": "नई Finder विंडो",
+      "NewFolder": "नया फ़ोल्डर",
+      "GetInfo": "जानकारी प्राप्त करें"
+    },
+    "Edit": {
+      "Title": "संपादित करें",
+      "Undo": "पूर्ववत करें",
+      "Redo": "पुनः करें",
+      "Cut": "कट",
+      "Copy": "कॉपी",
+      "Paste": "पेस्ट"
+    },
+    "View": {
+      "Title": "दृश्य",
+      "AsIcons": "आइकन के रूप में",
+      "AsList": "सूची के रूप में",
+      "AsColumns": "रॉलम के रूप में"
+    },
+    "Window": {
+      "Title": "विंडो",
+      "Minimize": "न्यूनतम करें",
+      "Zoom": "ज़ूम"
+    },
+    "Help": {
+      "Title": "मदद",
+      "MacOSHelp": "macOS मदद"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "KnownNetworks": "ज्ञात नेटवर्क",
+      "OtherNetworks": "अन्य नेटवर्क",
+      "Settings": "Wi-Fi सेटिंग्स..."
+    },
+    "Battery": {
+      "Title": "बैटरी",
+      "PowerSource": "पावर स्रोत: {source}",
+      "PowerAdapter": "पावर एडाप्टर",
+      "Battery": "बैटरी",
+      "EnergyMode": "ऊर्जा मोड",
+      "Automatic": "स्वचालित",
+      "LowPower": "कम पावर",
+      "HighPower": "उच्च पावर",
+      "SignificantEnergy": "महत्वपूर्ण ऊर्जा का उपयोग",
+      "Settings": "बैटरी सेटिंग्स..."
+    },
+    "Aria": {
+      "Clipboard": "क्लिपबोर्ड",
+      "MediaPlayer": "मीडिया प्लेयर",
+      "Spotlight": "Spotlight खोज",
+      "ControlCenter": "नियंत्रण केंद्र",
+      "Siri": "Siri",
+      "Clock": "घड़ी और अधिसूचना केंद्र"
+    }
+  },
+  "ControlCenter": {
+    "WiFi": "Wi-Fi",
+    "HomeNetwork": "होम नेटवर्क",
+    "Off": "बंद",
+    "On": "चालू",
+    "Bluetooth": "Bluetooth",
+    "AirDrop": "AirDrop",
+    "ContactsOnly": "केवल संपर्क",
+    "DoNotDisturb": "परेशान न करें",
+    "ScreenMirroring": "स्क्रीन मिररिंग",
+    "Display": "डिस्प्ले",
+    "Sound": "ध्वनि",
+    "NotPlaying": "नहीं चल रहा",
+    "Music": "संगीत"
+  },
+  "WeatherDropdown": {
+    "Searching": "खोज रहा है...",
+    "SearchCity": "शहर खोजें...",
+    "Now": "अब",
+    "Today": "आज",
+    "OpenWeather": "मौसम खोलें"
+  },
+  "LockScreen": {
+    "IncorrectPassword": "गलत पासवर्ड",
+    "Guest": "अतिथि",
+    "EnterPassword": "पासवर्ड दर्ज करें",
+    "Hint": "टच आईडी या पासवर्ड दर्ज करें (संकेत: {hint})",
+    "Login": "लॉगिन",
+    "Cancel": "रद्द करें",
+    "Aria": {
+      "UserAvatar": "उपयोगकर्ता अवतार, लॉगिन करने के लिए क्लिक करें",
+      "User": "उपयोगकर्ता {name}, लॉगिन करने के लिए क्लिक करें",
+      "Password": "पासवर्ड",
+      "Submit": "पासवर्ड जमा करें"
+    }
+  },
+  "NotificationCenter": {
+    "Title": "सूचनाएं",
+    "Widgets": "विजेट्स",
+    "Done": "हो गया",
+    "Edit": "संपादित करें",
+    "AddWidget": "विजेट जोड़ें"
+  },
+  "Widgets": {
+    "Loading": "लोड हो रहा है...",
+    "Calendar": {
+      "Title": "कैलेंडर"
+    },
+    "Weather": {
+      "Title": "मौसम"
+    },
+    "Stocks": {
+      "Title": "स्टॉक"
+    },
+    "Reminders": {
+      "Title": "रिमाइंडर",
+      "NoReminders": "कोई रिमाइंडर नहीं"
+    },
+    "Notes": {
+      "Title": "नोट्स",
+      "Content": "दूध, अंडे और ब्रेड खरीदें।<br />शाम 5 बजे माँ को कॉल करें।<br />कल टीम के साथ बैठक।"
+    }
+  },
+  "Window": {
+    "Minimize": "न्यूनतम करें",
+    "Maximize": "अधिकतम करें",
+    "Restore": "पुनर्स्थापित करें",
+    "Close": "बंद करें",
+    "MoveTo": "विंडो को यहां ले जाएं...",
+    "LeftSide": "स्क्रीन के बाईं ओर",
+    "RightSide": "स्क्रीन के दाईं ओर",
+    "EnterFullScreen": "पूर्ण स्क्रीन दर्ज करें"
+  },
+  "Dock": {
+    "AriaLabel": "एप्लिकेशन डॉक",
+    "Trash": "कचरा"
+  },
+  "Apps": {
+    "Finder": "Finder",
+    "Launchpad": "लॉन्चपैड",
+    "Safari": "Safari",
+    "Messages": "संदेश",
+    "Mail": "मेल",
+    "Maps": "मैप्स",
+    "Photos": "तस्वीरें",
+    "FaceTime": "FaceTime",
+    "Calendar": "कैलेंडर",
+    "Contacts": "संपर्क",
+    "Reminders": "रिमाइंडर",
+    "Notes": "नोट्स",
+    "Freeform": "फ्रीफॉर्म",
+    "TV": "TV",
+    "Music": "संगीत",
+    "News": "समाचार",
+    "AppStore": "App Store",
+    "SystemSettings": "सिस्टम सेटिंग्स",
+    "Terminal": "टर्मिनल",
+    "Calculator": "कैलकुलेटर",
+    "Trash": "कचरा",
+    "TextEdit": "TextEdit",
+    "MediaPlayer": "मीडिया प्लेयर",
+    "Preview": "पूर्वावलोकन",
+    "VirtualMachine": "वर्चुअल मशीन",
+    "VSCode": {
+      "Title": "VS कोड एडिटर"
+    },
+    "LeetCode": {
+      "Common": {
+        "Loading": "प्रोफ़ाइल लोड हो रही है...",
+        "NoData": "कोई डेटा नहीं",
+        "Retry": "पुनः प्रयास करें",
+        "ShowMore": "अधिक दिखाएं",
+        "GoToLeetCode": "LeetCode पर जाएं"
+      },
+      "Badges": {
+        "Title": "बैज",
+        "MostRecent": "सबसे हालिया बैज"
+      },
+      "Stats": {
+        "Title": "समुदाय आँकड़े",
+        "Views": "दृश्य",
+        "Solution": "समाधान",
+        "Discuss": "चर्चा",
+        "Reputation": "प्रतिष्ठा"
+      },
+      "Languages": {
+        "Title": "भाषाएँ",
+        "ProblemsSolved": "समस्याएं हल कीं"
+      },
+      "Profile": {
+        "Rank": "रैंक"
+      },
+      "Submissions": {
+        "RecentAC": "हालिया AC",
+        "List": "सूची",
+        "Solutions": "समाधान",
+        "Discuss": "चर्चा",
+        "TimeAgo": "2 महीने पहले"
+      },
+      "Skills": {
+        "Title": "कौशल",
+        "Advanced": "उन्नत",
+        "Intermediate": "मध्यवर्ती"
+      },
+      "Solved": {
+        "Solved": "हल किया गया",
+        "Easy": "आसान",
+        "Medium": "मध्यम",
+        "Hard": "कठिन"
+      },
+      "Calendar": {
+        "SubmissionsLastYear": "पिछले एक वर्ष में सबमिशन",
+        "TotalActiveDays": "कुल सक्रिय दिन:",
+        "MaxStreak": "अधिकतम लकीर:",
+        "Current": "वर्तमान",
+        "Months": {
+          "Jan": "जन",
+          "Feb": "फर",
+          "Mar": "मार्च",
+          "Apr": "अप्रैल",
+          "May": "मई",
+          "Jun": "जून",
+          "Jul": "जुलाई",
+          "Aug": "अगस्त",
+          "Sep": "सितंबर",
+          "Oct": "अक्टू",
+          "Nov": "नव",
+          "Dec": "दिसं"
+        }
+      }
+    },
+    "V86": {
+      "NoFileSelected": "कोई फ़ाइल नहीं चुनी गई",
+      "ScriptLoadError": "V86 स्क्रिप्ट लोड करने में विफल",
+      "FileReadError": "फ़ाइल पढ़ने में विफल",
+      "StartError": "एमुलेटर प्रारंभ करने में विफल",
+      "Booting": "{filename} बूट हो रहा है...",
+      "ErrorPrefix": "त्रुटि: {error}",
+      "ClickToCapture": "माउस कैप्चर करने के लिए क्लिक करें (रिलीज करने के लिए Esc)"
+    }
+  },
+  "Common": {
+    "OK": "OK",
+    "Cancel": "Cancel",
+    "Yes": "Yes",
+    "No": "No",
+    "Back": "Back",
+    "Continue": "Continue",
+    "Done": "Done",
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "Save": "Save",
+    "Close": "Close",
+    "Error": "Error",
+    "Success": "Success"
+  }
 }

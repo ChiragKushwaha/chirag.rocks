@@ -1,4 +1,1742 @@
 {
-  "Hello": "Hello world!",
-  "Welcome": "Welcome to the multi-language app"
+  "Hello": {
+    "world": "Salut Lume",
+    "GetStarted": "Începe"
+  },
+  "Common": {
+    "OK": "OK",
+    "Cancel": "Anulează",
+    "Yes": "Da",
+    "No": "Nu",
+    "Back": "Înapoi",
+    "Continue": "Continuă",
+    "Done": "Gata",
+    "Edit": "Editează",
+    "Delete": "Șterge",
+    "Save": "Salvează",
+    "Close": "Închide",
+    "Error": "Eroare",
+    "Success": "Succes"
+  },
+  "Setup": {
+    "Common": {
+      "Continue": "Continuă",
+      "Back": "Înapoi",
+      "NotNow": "Nu acum",
+      "Cancel": "Anulează",
+      "LearnMore": "Află mai multe"
+    },
+    "Language": {
+      "Title": "Selectează limba",
+      "Description": "Selectați limba pe care doriți să o utilizați pe acest Mac.",
+      "TableLabel": "Limbă",
+      "Primary": "Principală"
+    },
+    "Region": {
+      "Title": "Selectează țara sau regiunea"
+    },
+    "DataPrivacy": {
+      "Title": "Date și intimitate",
+      "IconText": "Această pictogramă apare atunci când o funcție Apple solicită utilizarea informațiilor dvs. personale.",
+      "FeatureText": "Nu veți vedea acest lucru la fiecare caracteristică. Apple colectează aceste informații numai atunci când este necesar pentru a activa caracteristicile, a securiza serviciile noastre sau a personaliza experiența dvs.",
+      "PrivacyText": "Apple consideră că intimitatea este un drept fundamental al omului, așa că fiecare produs Apple este conceput pentru a minimiza colectarea și utilizarea datelor dvs., pentru a le procesa pe dispozitiv ori de câte ori este posibil și pentru a oferi transparență și control asupra informațiilor dvs."
+    },
+    "TouchID": {
+      "Title": "Touch ID",
+      "SetupLater": "Configurați Touch ID mai târziu",
+      "Description": "Utilizați amprenta pentru a debloca Mac-ul și pentru a face achiziții cu Apple Pay. Așezați degetul pe Touch ID pentru a începe."
+    },
+    "Fingerprint": {
+      "Title": "Așezați degetul",
+      "Instruction": "Ridicați și așezați degetul pe Touch ID în mod repetat",
+      "Success": "✓ Touch ID este gata"
+    },
+    "Languages": {
+      "Title": "Limbi scrise și vorbite",
+      "Description": "Limbile listate mai jos sunt utilizate în mod obișnuit în regiunea dvs. Puteți utiliza Mac-ul cu aceste setări sau le puteți personaliza individual.",
+      "Preferred": "Limbi preferate",
+      "InputSources": "Surse de intrare",
+      "Dictation": "Dictare",
+      "Customize": "Personalizează setările"
+    },
+    "Accessibility": {
+      "Title": "Accesibilitate",
+      "Description": "Caracteristicile de accesibilitate adaptează Mac-ul la nevoile dvs. vizuale, auditive și motorii. Puteți să le activați acum și să finalizați configurarea sau să le personalizați mai târziu în Setări de sistem. Explorați fiecare categorie de mai jos pentru a vedea caracteristicile disponibile.",
+      "Vision": "Vedere",
+      "Motor": "Motricitate",
+      "Hearing": "Auz",
+      "Cognitive": "Cognitiv"
+    },
+    "Migration": {
+      "Title": "Asistent de migrare",
+      "Description": "Dacă aveți informații pe un alt Mac sau pe un PC cu Windows, le puteți transfera pe acest Mac. De asemenea, puteți transfera date dintr-o copie de rezervă Time Machine sau de pe un alt disc de pornire.",
+      "Question": "Cum doriți să transferați informațiile?",
+      "FromMac": "De pe un Mac, copie de rezervă Time Machine sau disc de pornire",
+      "FromPC": "De pe un PC cu Windows"
+    },
+    "AppleID": {
+      "Title": "Autentificare cu Apple ID",
+      "Description": "Conectați-vă pentru a utiliza iCloud, App Store și alte servicii Apple.",
+      "Label": "Apple ID",
+      "CreateNew": "Creați un Apple ID nou",
+      "Forgot": "Ați uitat Apple ID-ul sau parola?",
+      "UseDifferent": "Utilizați Apple ID-uri diferite pentru iCloud și achiziții?",
+      "Info": "Acest Mac va fi asociat cu Apple ID-ul dvs., iar datele dvs., cum ar fi fotografiile, contactele și documentele, vor fi stocate în iCloud, astfel încât să le puteți accesa de pe alte dispozitive.",
+      "SeeData": "Vedeți cum sunt gestionate datele",
+      "SetupLater": "Configurați mai târziu",
+      "ErrorRequired": "Introduceți un Apple ID."
+    },
+    "Account": {
+      "Title": "Creați un cont de computer",
+      "CreateAppleID": "Creați Apple ID",
+      "Description": "Introduceți numele și detaliile contului pentru a configura computerul.",
+      "Name": "Numele complet",
+      "Email": "Adresa de e-mail",
+      "Age": "Vârsta",
+      "Phone": "Numărul de telefon mobil",
+      "Password": "Parolă",
+      "Errors": {
+        "NameRequired": "Numele complet este obligatoriu.",
+        "EmailRequired": "E-mailul este obligatoriu.",
+        "EmailInvalid": "Introduceți o adresă de e-mail validă.",
+        "AgeRequired": "Vârsta este obligatorie.",
+        "AgeInvalid": "Introduceți o vârstă validă.",
+        "PhoneRequired": "Numărul de telefon este obligatoriu.",
+        "PasswordRequired": "Parola este obligatorie.",
+        "PasswordLength": "Parola trebuie să aibă cel puțin 6 caractere."
+      }
+    },
+    "Theme": {
+      "Title": "Selectați aspectul",
+      "Description": "Selectați Luminos sau Întunecat pentru a schimba aspectul sistemului și al aplicațiilor.",
+      "Light": "Luminos",
+      "Dark": "Întunecat"
+    }
+  },
+  "SystemSettings": {
+    "General": {
+      "Title": "General",
+      "Description": "Gestionați setările generale și preferințele Mac-ului dvs., inclusiv actualizarea software-ului, limba dispozitivului, AirDrop și multe altele.",
+      "About": "Despre",
+      "SoftwareUpdate": "Actualizare software",
+      "Storage": "Stocare",
+      "AppleCare": "AppleCare și garanție",
+      "AirDrop": "AirDrop și Handoff",
+      "AutoFill": "Completare automată și parole",
+      "DateTime": "Dată și oră",
+      "LanguageRegion": "Limbă și regiune",
+      "LoginItems": "Elemente de autentificare",
+      "Sharing": "Partajare",
+      "StartupDisk": "Disc de pornire",
+      "TimeMachine": "Time Machine",
+      "DeviceManagement": "Gestionare dispozitive",
+      "TransferReset": "Transfer sau resetare"
+    },
+    "AppleAccount": {
+      "Edit": "Editează",
+      "PersonalInformation": "Informații personale",
+      "SignInSecurity": "Autentificare și securitate",
+      "PaymentShipping": "Plată și livrare",
+      "iCloud": "iCloud",
+      "MediaPurchases": "Media și achiziții",
+      "Family": "Familie",
+      "SetUp": "Configurează",
+      "Devices": "Dispozitive",
+      "ThisMac": "Acest MacBook Pro 14\"",
+      "SignOut": "Deconectare..."
+    },
+    "LanguageRegion": {
+      "Title": "Limbă și regiune",
+      "PreferredLanguages": "Limbi preferate",
+      "Region": "Regiune",
+      "Calendar": "Calendar",
+      "Temperature": "Temperatură",
+      "Celsius": "Celsius (°C)",
+      "Fahrenheit": "Fahrenheit (°F)",
+      "MeasurementSystem": "Sistem de măsurare",
+      "Metric": "Metric",
+      "US": "SUA",
+      "UK": "Marea Britanie",
+      "FirstDayOfWeek": "Prima zi a săptămânii",
+      "DateFormat": "Format dată",
+      "NumberFormat": "Format număr",
+      "LiveText": "Text live",
+      "LiveTextDesc": "Selectați text în imagini pentru a copia sau a efectua acțiuni.",
+      "Applications": "Aplicații",
+      "ApplicationsDesc": "Personalizați setările de limbă pentru următoarele aplicații:",
+      "TranslationLanguages": "Limbi de traducere..."
+    },
+    "Sidebar": {
+      "Search": "Căutare",
+      "NotImplemented": "Această secțiune nu este încă implementată.",
+      "AppleAccount": "Cont Apple",
+      "WiFi": "Wi-Fi",
+      "Bluetooth": "Bluetooth",
+      "Network": "Rețea",
+      "General": "General",
+      "Appearance": "Aspect",
+      "Accessibility": "Accesibilitate",
+      "MenuBar": "Centru de control",
+      "DesktopDock": "Desktop și Dock",
+      "Displays": "Ecrane",
+      "Spotlight": "Spotlight",
+      "Wallpaper": "Imagine de fundal",
+      "ScreenSaver": "Economizor ecran",
+      "Battery": "Baterie",
+      "Sound": "Sunet",
+      "Notifications": "Notificări",
+      "Focus": "Focalizare",
+      "ScreenTime": "Timp de utilizare",
+      "PrivacySecurity": "Intimitate și securitate",
+      "LockScreen": "Ecran de blocare",
+      "TouchIDPassword": "Touch ID și parolă",
+      "UsersGroups": "Utilizatori și grupuri",
+      "Keyboard": "Tastatură",
+      "Trackpad": "Trackpad",
+      "PrintersScanners": "Imprimante și scanere",
+      "Storage": "Stocare"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "Description": "Configurați Wi-Fi pentru a vă conecta la internet și la dispozitive wireless.",
+      "Connected": "Conectat",
+      "Details": "Detalii...",
+      "KnownNetworks": "Rețele cunoscute",
+      "OtherNetworks": "Alte rețele",
+      "Connect": "Conectare",
+      "Other": "Altele...",
+      "AskToJoin": "Întreabă pentru conectare la rețele",
+      "AskToJoinDesc": "Conectare automată la rețele cunoscute.",
+      "Notify": "Notificare",
+      "AskToJoinHotspots": "Întreabă pentru conectare la hotspoturi",
+      "AskToJoinHotspotsDesc": "Permite conectarea automată la hotspoturi personale.",
+      "AskToJoinAction": "Întreabă",
+      "Advanced": "Avansat..."
+    },
+    "Bluetooth": {
+      "Title": "Bluetooth",
+      "Description": "Conectați accesorii wireless, cum ar fi căști, mouse-uri și tastaturi.",
+      "Discoverable": "Vizibil acum ca „MacBook Pro” în timp ce setările Bluetooth sunt deschise.",
+      "MyDevices": "Dispozitivele mele",
+      "NotConnected": "Neconectat",
+      "NearbyDevices": "Dispozitive din apropiere",
+      "Searching": "Căutare..."
+    },
+    "Network": {
+      "Title": "Rețea",
+      "WiFi": "Wi-Fi",
+      "Connected": "Conectat",
+      "Firewall": "Firewall",
+      "Inactive": "Inactiv",
+      "OtherServices": "Alte servicii",
+      "NotConnected": "Neconectat"
+    },
+    "Appearance": {
+      "Title": "Aspect",
+      "Description": "Selectați aspectul preferat.",
+      "Light": "Luminos",
+      "Dark": "Întunecat",
+      "Auto": "Auto",
+      "AccentColor": "Culoare accent",
+      "HighlightColor": "Culoare evidențiere",
+      "Automatic": "Automat",
+      "SidebarIconSize": "Dimensiune pictograme bară laterală",
+      "Medium": "Mediu",
+      "WallpaperTinting": "Permite nuanțarea imaginii de fundal în ferestre",
+      "ShowScrollBars": "Afișează barele de derulare",
+      "ScrollAuto": "Automat în funcție de mouse sau trackpad",
+      "ScrollWhenScrolling": "La derulare",
+      "ScrollAlways": "Întotdeauna",
+      "ClickScrollBar": "Clic în bara de derulare pentru a",
+      "JumpNextPage": "sări la pagina următoare",
+      "JumpSpotClicked": "sări la locul unde se face clic"
+    },
+    "Accessibility": {
+      "Title": "Accesibilitate",
+      "Description": "Adaptați Mac-ul la nevoile dvs. vizuale, auditive și motorii.",
+      "LearnMore": "Află mai multe...",
+      "Vision": "Vedere",
+      "VoiceOver": "VoiceOver",
+      "Zoom": "Zoom",
+      "HoverText": "Text la trecerea cursorului",
+      "Display": "Ecran",
+      "Motion": "Mișcare",
+      "ReadSpeak": "Conținut vorbit",
+      "AudioDescriptions": "Descrieri audio",
+      "Hearing": "Auz",
+      "HearingDevices": "Dispozitive auditive",
+      "Audio": "Audio",
+      "Captions": "Subtitrări",
+      "LiveCaptions": "Subtitrări live",
+      "NameRecognition": "Recunoaștere nume",
+      "Motor": "Motricitate",
+      "VoiceControl": "Control vocal",
+      "Keyboard": "Tastatură",
+      "PointerControl": "Control indicator",
+      "SwitchControl": "Control comutator",
+      "General": "General",
+      "Siri": "Siri",
+      "Shortcut": "Scurtătură"
+    },
+    "MenuBar": {
+      "Title": "Centru de control",
+      "Description": "Schimbați elementele afișate în bara de meniu și în Centrul de control.",
+      "AutoHide": "Ascunde și afișează automat bara de meniu",
+      "Never": "Niciodată",
+      "RecentDocs": "Documente, aplicații și servere recente",
+      "None": "Niciunul",
+      "Controls": "Module Centru de control",
+      "ControlCenter": "Centru de control",
+      "ShowInMenuBar": "Afișează în bara de meniu",
+      "DontShowInMenuBar": "Nu afișa în bara de meniu",
+      "Siri": "Siri",
+      "Spotlight": "Spotlight",
+      "VolumeFeedback": "Redă feedback la schimbarea volumului",
+      "Clock": "Ceas"
+    },
+    "DesktopDock": {
+      "Title": "Desktop și Dock",
+      "Description": "Schimbați aspectul Dock-ului și al desktopului.",
+      "Dock": "Dock",
+      "Size": "Mărime",
+      "Magnification": "Mărire",
+      "Small": "Mic",
+      "Large": "Mare",
+      "Position": "Poziție pe ecran",
+      "Bottom": "Jos",
+      "MinimiseUsing": "Minimizează ferestrele folosind",
+      "GenieEffect": "Efect Geniu",
+      "DoubleClickTitle": "Dublu clic pe bara de titlu a ferestrei pentru a",
+      "Zoom": "zoom",
+      "MinimiseToIcon": "Minimizează ferestrele în pictograma aplicației",
+      "AutoHideDock": "Ascunde și afișează automat Dock-ul",
+      "AnimateOpening": "Animează deschiderea aplicațiilor",
+      "ShowIndicators": "Afișează indicatori pentru aplicațiile deschise",
+      "ShowRecent": "Afișează aplicațiile recente în Dock",
+      "DesktopStageManager": "Desktop și Stage Manager",
+      "ShowItems": "Afișează elemente",
+      "OnDesktop": "Pe desktop",
+      "ClickWallpaper": "Clic pe imaginea de fundal pentru a dezvălui desktopul",
+      "Always": "Întotdeauna",
+      "StageManager": "Stage Manager",
+      "Widgets": "Widgeturi",
+      "ShowWidgets": "Afișează widgeturi",
+      "WidgetStyle": "Stil widget",
+      "Automatic": "Automat",
+      "UseIPhoneWidgets": "Folosește widgeturi iPhone"
+    },
+    "Displays": {
+      "Title": "Ecrane",
+      "Description": "Selectați un ecran pentru a schimba setările.",
+      "BuiltInDisplay": "Ecran integrat",
+      "UseAs": "Folosește ca",
+      "MainDisplay": "Ecran principal",
+      "Resolution": "Rezoluție",
+      "Default": "Implicit",
+      "MoreSpace": "Mai mult spațiu",
+      "LargerText": "Text mai mare",
+      "Brightness": "Luminozitate",
+      "TrueTone": "True Tone",
+      "Preset": "Presetare",
+      "RefreshRate": "Rată de reîmprospătare",
+      "ProMotion": "ProMotion",
+      "Advanced": "Avansat..."
+    },
+    "Spotlight": {
+      "Title": "Spotlight",
+      "Description": "Căutați pe Mac.",
+      "SearchPlaceholder": "Căutare Spotlight",
+      "SearchResults": "Rezultate căutare",
+      "Privacy": "Intimitate Spotlight...",
+      "Categories": {
+        "Applications": "Aplicații",
+        "Calculator": "Calculator",
+        "Contacts": "Contacte",
+        "Conversion": "Conversie",
+        "Definition": "Definiție",
+        "Developer": "Dezvoltator",
+        "Documents": "Documente",
+        "Events & Reminders": "Evenimente și mementouri",
+        "Folders": "Dosare",
+        "Fonts": "Fonturi",
+        "Images": "Imagini",
+        "Mail & Messages": "Mail și mesaje",
+        "Movies": "Filme",
+        "Music": "Muzică",
+        "Other": "Altele",
+        "PDF Documents": "Documente PDF",
+        "Presentations": "Prezentări",
+        "Siri Suggestions": "Sugestii Siri",
+        "Spreadsheets": "Foi de calcul",
+        "System Preferences": "Preferințe sistem",
+        "Tips": "Sfaturi",
+        "Bookmarks & History": "Marcaje și istoric"
+      }
+    },
+    "Notifications": {
+      "Title": "Notificări",
+      "Description": "Controlați modul în care sunt afișate notificările.",
+      "Preview": "Afișează previzualizare",
+      "ShowPreviews": "Afișează previzualizări",
+      "Always": "Întotdeauna",
+      "ApplicationNotifications": "Notificări aplicații",
+      "Apps": {
+        "AppStore": "App Store",
+        "Calendar": "Calendar",
+        "FaceTime": "FaceTime",
+        "Mail": "Mail",
+        "Messages": "Mesaje",
+        "Photos": "Poze",
+        "Reminders": "Mementouri",
+        "Safari": "Safari"
+      }
+    },
+    "Sound": {
+      "Title": "Sunet",
+      "Description": "Schimbați setările de sunet.",
+      "OutputInput": "Ieșire și Intrare",
+      "Output": "Ieșire",
+      "Input": "Intrare",
+      "SelectOutput": "Selectați un dispozitiv pentru ieșirea sunetului:",
+      "Speakers": "Difuzoare MacBook Pro",
+      "BuiltIn": "Integrat",
+      "OutputVolume": "Volum ieșire",
+      "Mute": "Mut",
+      "ShowInMenuBar": "Afișează sunetul în bara de meniu",
+      "Always": "Întotdeauna",
+      "AlertSoundGroup": "Sunet de alertă",
+      "AlertSound": "Sunet de alertă",
+      "Boop": "Boop",
+      "AlertVolume": "Volum alertă",
+      "PlayUIEffects": "Redă efecte sonore pentru interfață"
+    },
+    "Focus": {
+      "Title": "Focalizare",
+      "Description": "Selectați o focalizare pentru a personaliza setările.",
+      "DoNotDisturb": "Nu deranjați",
+      "ShareAcrossDevices": "Partajează pe toate dispozitivele",
+      "FocusStatus": "Stare focalizare",
+      "On": "Pornit",
+      "Off": "Oprit",
+      "SetUp": "Configurează",
+      "FocusModes": "Moduri de focalizare",
+      "Personal": "Personal",
+      "Sleep": "Somn",
+      "Work": "Muncă",
+      "AddFocus": "Adaugă focalizare"
+    },
+    "ScreenTime": {
+      "Title": "Timp de utilizare",
+      "Description": "Monitorizați utilizarea și setați limite.",
+      "DailyAverage": "Medie zilnică",
+      "FromLastWeek": "din ultima săptămână",
+      "Downtime": "Timp de repaus",
+      "AppLimits": "Limite aplicații",
+      "LimitsCount": "{count} limite",
+      "AlwaysAllowed": "Întotdeauna permis",
+      "AllowedApps": "Telefon, Hărți, Mesaje",
+      "ContentPrivacy": "Conținut și intimitate",
+      "On": "Pornit",
+      "Off": "Oprit",
+      "ShareAcrossDevices": "Partajează pe toate dispozitivele",
+      "LockSettings": "Blochează setările Timp de utilizare"
+    },
+    "Battery": {
+      "Title": "Baterie",
+      "Description": "Vizualizați starea și utilizarea bateriei.",
+      "BatteryLevel": "Nivel baterie",
+      "LastCharged": "Încărcat ultima dată la 100% la 8:00",
+      "LowPowerMode": "Mod consum redus",
+      "Never": "Niciodată",
+      "BatteryHealth": "Sănătate baterie",
+      "Normal": "Normal",
+      "OptimisedCharging": "Încărcare optimizată a bateriei",
+      "Options": "Opțiuni..."
+    },
+    "Keyboard": {
+      "Title": "Tastatură",
+      "Description": "Schimbați setările tastaturii.",
+      "KeyRepeat": "Repetare tastă",
+      "Slow": "Lent",
+      "Fast": "Rapid",
+      "DelayUntilRepeat": "Întârziere până la repetare",
+      "Long": "Lung",
+      "Short": "Scurt",
+      "AdjustBrightness": "Ajustează luminozitatea tastaturii în lumină slabă",
+      "KeyboardNavigation": "Navigare tastatură",
+      "Shortcuts": "Scurtături tastatură...",
+      "TextInput": "Introducere text",
+      "InputSources": "Surse de intrare",
+      "Edit": "Editează...",
+      "Dictation": "Dictare"
+    },
+    "LockScreen": {
+      "Title": "Ecran de blocare",
+      "Description": "Schimbați setările ecranului de blocare.",
+      "TurnOffDisplayBattery": "Oprește ecranul pe baterie când este inactiv",
+      "TurnOffDisplayAdapter": "Oprește ecranul pe adaptor când este inactiv",
+      "TwoMinutes": "2 minute",
+      "TenMinutes": "10 minute",
+      "RequirePassword": "Solicită parolă după începerea economizorului de ecran sau oprirea ecranului",
+      "Immediately": "Imediat",
+      "ShowMessage": "Afișează mesaj când este blocat",
+      "Set": "Setează...",
+      "LoginWindowShows": "Fereastra de autentificare afișează",
+      "ListOfUsers": "Lista de utilizatori",
+      "ShowLargeClock": "Afișează ceas mare",
+      "OnLockScreen": "Pe ecranul de blocare"
+    },
+    "PrivacySecurity": {
+      "Title": "Intimitate și securitate",
+      "Description": "Controlați ce aplicații au acces la informațiile dvs.",
+      "Privacy": "Intimitate",
+      "LocationServices": "Servicii de localizare",
+      "On": "Pornit",
+      "Off": "Oprit",
+      "Camera": "Cameră",
+      "Microphone": "Microfon",
+      "FilesFolders": "Fișiere și dosare",
+      "ScreenRecording": "Înregistrare ecran",
+      "AppsCount": "{count, plural, =0 {Nicio aplicație} =1 {1 aplicație} other {# aplicații}}",
+      "Security": "Securitate",
+      "FileVault": "FileVault",
+      "LockdownMode": "Mod Izolare",
+      "Others": "Altele",
+      "Extensions": "Extensii",
+      "Profiles": "Profiluri"
+    },
+    "PrintersScanners": {
+      "Title": "Imprimante și scanere",
+      "Description": "Gestionați imprimantele și scanerele.",
+      "Printers": "Imprimante",
+      "IdleLastUsed": "Inactiv, utilizat ultima dată",
+      "Offline": "Offline",
+      "AddPrinter": "Adaugă imprimantă, scaner sau fax..."
+    },
+    "ScreenSaver": {
+      "Title": "Economizor ecran",
+      "Description": "Selectați un economizor de ecran.",
+      "Preview": "Previzualizare",
+      "ShowOnAllSpaces": "Afișează pe toate spațiile",
+      "ScreenSavers": "Economizoare de ecran",
+      "StartAfter": "Începe după",
+      "FiveMinutes": "5 minute",
+      "ShowWithClock": "Afișează cu ceas",
+      "ScreensaverNames": {
+        "Ventura": "Ventura",
+        "Monterey": "Monterey",
+        "BigSur": "Big Sur",
+        "Catalina": "Catalina",
+        "Hello": "Hello",
+        "Drift": "Drift",
+        "Flurry": "Flurry",
+        "Shell": "Shell"
+      }
+    },
+    "Storage": {
+      "Title": "Stocare",
+      "Description": "Gestionați unitățile de disc și datele.",
+      "MacintoshHD": "Macintosh HD",
+      "AvailableSpace": "{available} GB disponibili din {total} GB",
+      "Apps": "Aplicații",
+      "Documents": "Documente",
+      "SystemData": "Date de sistem",
+      "macOS": "macOS",
+      "OtherUsers": "Alți utilizatori",
+      "Recommendations": "Recomandări",
+      "StoreInICloud": "Stochează în iCloud",
+      "StoreInICloudDesc": "Stocați toate fișierele, fotografiile și mesajele în iCloud și economisiți spațiu pe acest Mac.",
+      "StoreInICloudButton": "Stochează în iCloud...",
+      "Categories": "Categorii",
+      "Applications": "Aplicații"
+    },
+    "TouchIDPassword": {
+      "Title": "Touch ID și parolă",
+      "Description": "Adăugați o amprentă pentru a debloca Mac-ul.",
+      "TouchID": "Touch ID",
+      "Finger1": "Deget 1",
+      "AddFingerprint": "Adaugă amprentă",
+      "UseTouchIDFor": "Folosește Touch ID pentru",
+      "UnlockingMac": "Deblocarea Mac-ului",
+      "ApplePay": "Apple Pay",
+      "iTunesAppStore": "iTunes Store și App Store",
+      "AutoFillPasswords": "Completare automată parole",
+      "Password": "Parolă",
+      "LastChanged": "Ultima modificare: 24.11.2024",
+      "Change": "Schimbă...",
+      "RequirePasswordScreenSaver": "Solicită parolă după începerea economizorului de ecran sau oprirea ecranului",
+      "Immediately": "Imediat",
+      "RequirePasswordIdle": "Solicită parolă după inactivitatea computerului",
+      "Never": "Niciodată",
+      "Seconds": "{count} secunde",
+      "Minute": "{count} minut",
+      "Minutes": "{count} minute",
+      "AppleWatch": "Apple Watch",
+      "AppleWatchUnlock": "Utilizează Apple Watch pentru a debloca aplicații și Mac-ul"
+    },
+    "Trackpad": {
+      "Title": "Trackpad",
+      "Description": "Schimbați setările trackpad-ului.",
+      "PointClick": "Indicare și clic",
+      "ScrollZoom": "Derulare și zoom",
+      "MoreGestures": "Mai multe gesturi",
+      "TrackingSpeed": "Viteză de urmărire",
+      "Slow": "Lent",
+      "Fast": "Rapid",
+      "Click": "Clic",
+      "Medium": "Mediu",
+      "ForceClick": "Clic forțat și feedback haptic",
+      "LookUp": "Căutare și detectoare de date",
+      "SecondaryClick": "Clic secundar",
+      "ClickTwoFingers": "Clic sau atingere cu două degete",
+      "TapToClick": "Atinge pentru clic",
+      "VideoPreview": "Previzualizare video"
+    },
+    "UsersGroups": {
+      "Title": "Utilizatori și grupuri",
+      "Description": "Gestionați conturile de utilizator și grupurile.",
+      "CurrentUser": "Utilizator curent",
+      "Admin": "Administrator",
+      "OtherUsers": "Alți utilizatori",
+      "GuestUser": "Utilizator oaspete",
+      "Off": "Oprit",
+      "AddAccount": "Adaugă cont...",
+      "AutoLogin": "Autentificare automată",
+      "AllowNetworkUsers": "Permite utilizatorilor de rețea să se autentifice în fereastra de autentificare"
+    },
+    "Wallpaper": {
+      "Title": "Imagine de fundal",
+      "Description": "Selectați imaginea de fundal a desktopului.",
+      "ShowOnAllSpaces": "Afișează pe toate spațiile",
+      "DynamicWallpapers": "Imagini de fundal dinamice",
+      "Pictures": "Imagini",
+      "AddPhoto": "Adaugă fotografie"
+    },
+    "LanguageSelector": {
+      "Title": "Selectați o limbă preferată pentru adăugare",
+      "Search": "Căutare",
+      "Cancel": "Anulează",
+      "Add": "Adaugă"
+    }
+  },
+  "Languages": {
+    "English": "Engleză",
+    "Spanish": "Spaniolă",
+    "French": "Franceză",
+    "German": "Germană",
+    "Italian": "Italiană",
+    "Japanese": "Japoneză",
+    "Chinese": "Chineză",
+    "Portuguese": "Portugheză",
+    "Russian": "Rusă",
+    "Korean": "Coreeană",
+    "Dutch": "Olandeză",
+    "Swedish": "Suedeză",
+    "Danish": "Daneză",
+    "Norwegian": "Norvegiană",
+    "Finnish": "Finlandeză",
+    "Polish": "Poloneză",
+    "Turkish": "Turcă",
+    "Arabic": "Arabă",
+    "Hindi": "Hindi",
+    "Bengali": "Bengaleză",
+    "Vietnamese": "Vietnameză",
+    "Thai": "Thailandeză",
+    "Greek": "Greacă",
+    "Czech": "Cehă",
+    "Hungarian": "Maghiară",
+    "Romanian": "Română",
+    "Ukrainian": "Ucraineană",
+    "Indonesian": "Indoneziană",
+    "Malay": "Malaieziană",
+    "Croatian": "Croată",
+    "Slovak": "Slovacă",
+    "Slovenian": "Slovenă",
+    "Bulgarian": "Bulgară",
+    "Serbian": "Sârbă",
+    "Hebrew": "Ebraică"
+  },
+  "Finder": {
+    "Search": "Căutare",
+    "Sidebar": {
+      "Favorites": "Favorite",
+      "Locations": "Aplicații",
+      "AirDrop": "AirDrop",
+      "Recents": "Recente",
+      "Applications": "Aplicații",
+      "Desktop": "Desktop",
+      "Documents": "Documente",
+      "Downloads": "Descărcări",
+      "Pictures": "Imagini",
+      "Home": "Acasă",
+      "MacintoshHD": "Macintosh HD",
+      "iCloudDrive": "iCloud Drive"
+    },
+    "Menu": {
+      "NewFolder": "Dosar nou",
+      "GetInfo": "Obține informații",
+      "ChangeBackground": "Schimbă fundal...",
+      "Open": "Deschide",
+      "MoveToBin": "Mută la coș",
+      "Rename": "Redenumește",
+      "OpenItems": "Deschide {count} elemente",
+      "MoveItemsToBin": "Mută {count} elemente la coș"
+    },
+    "Status": {
+      "Loading": "Se încarcă...",
+      "EmptyFolder": "Dosar gol",
+      "ItemCount": "{count, plural, =1 {1 element} other {# elemente}}",
+      "SpaceAvailable": "{amount} GB disponibili"
+    },
+    "Errors": {
+      "NoApp": "Nu există nicio aplicație pentru a deschide fișierul „.{ext}”.",
+      "CreateFolderFailed": "Crearea dosarului a eșuat",
+      "MoveToBinFailed": "Mutarea la coș a eșuat"
+    }
+  },
+  "Safari": {
+    "Title": "Safari",
+    "StartPage": "Pagina de pornire",
+    "Loading": "Se încarcă...",
+    "SearchPlaceholder": "Căutați sau introduceți site-ul web",
+    "NoInternet": "Fără conexiune la internet",
+    "NoInternetDesc": "Computerul dvs. este offline. Această pagină nu poate fi afișată.",
+    "Favorites": {
+      "Apple": "Apple",
+      "Google": "Google",
+      "Wikipedia": "Wikipedia",
+      "GitHub": "GitHub"
+    }
+  },
+  "Mail": {
+    "Inbox": "Mesaje primite",
+    "MessagesCount": "{count, plural, =1 {1 mesaj} other {# mesaje}}",
+    "Favorites": "Favorite",
+    "AllInboxes": "Toate cutiile poștale",
+    "VIP": "VIP",
+    "Sent": "Trimise",
+    "Search": "Căutare",
+    "NoMessageSelected": "Niciun mesaj selectat",
+    "To": "Către: {name}"
+  },
+  "Messages": {
+    "AppTitle": "Mesaje",
+    "SigningIn": "Autentificare ca {name}...",
+    "SidebarTitle": "Mesaje",
+    "NoOnlineUsers": "Niciun utilizator online.",
+    "NoMessages": "Niciun mesaj",
+    "To": "Către: {name}",
+    "InputPlaceholder": "iMessage",
+    "NoContactSelected": "Selectați un contact pentru a trimite un mesaj"
+  },
+  "Photos": {
+    "Sidebar": {
+      "Library": "Bibliotecă",
+      "Collections": "Colecții",
+      "Pinned": "Fixate",
+      "Albums": "Albume",
+      "Utilities": "Utilitare",
+      "Projects": "Proiecte",
+      "Favourites": "Favorite",
+      "RecentlySaved": "Salvate recent",
+      "Videos": "Videoclipuri",
+      "Screenshots": "Capturi de ecran",
+      "PeoplePets": "Oameni și animale",
+      "SharedAlbums": "Albume partajate",
+      "Activity": "Activitate",
+      "RecentlyDeleted": "Șterse recent",
+      "Duplicates": "Duplicate",
+      "Map": "Hartă",
+      "AllProjects": "Toate proiectele"
+    },
+    "Tabs": {
+      "Years": "Ani",
+      "Months": "Luni",
+      "AllPhotos": "Toate fotografiile"
+    },
+    "Search": "Căutare",
+    "Collections": {
+      "Title": "Colecții",
+      "Memories": "Amintiri",
+      "NoMemories": "Nicio amintire",
+      "NoMemoriesDesc": "Amintirile vor apărea aici când vor fi disponibile.",
+      "Albums": "Albume",
+      "NoAlbums": "Niciun album"
+    },
+    "EmptyState": {
+      "NoItems": "Niciun element în {title}"
+    },
+    "Locked": {
+      "Title": "{title} blocat",
+      "Desc": "Autentificați-vă pentru a vedea."
+    }
+  },
+  "Notes": {
+    "Sidebar": {
+      "iCloud": "iCloud",
+      "Notes": "Notițe",
+      "RecentlyDeleted": "Șterse recent"
+    },
+    "Search": "Căutare",
+    "NewNote": "Notiță nouă",
+    "NoAdditionalText": "Fără text suplimentar",
+    "Editor": {
+      "TitlePlaceholder": "Titlu",
+      "ContentPlaceholder": "Începeți să tastați...",
+      "AddToDesktop": "Adaugă pe desktop",
+      "Restore": "Restaurează",
+      "Delete": "Șterge notița",
+      "DeletePermanently": "Șterge definitiv",
+      "EmptyState": "Selectați sau creați o notiță",
+      "Date": "Astăzi la {time}"
+    }
+  },
+  "Reminders": {
+    "Search": "Căutare",
+    "Sidebar": {
+      "MyLists": "Listele mele",
+      "Reminders": "Mementouri",
+      "Work": "Muncă",
+      "Today": "Astăzi",
+      "Scheduled": "Programate",
+      "All": "Toate",
+      "Flagged": "Marcate"
+    },
+    "AddReminder": "Memento nou",
+    "Actions": {
+      "Add": "Adaugă",
+      "Cancel": "Anulează",
+      "Delete": "Șterge memento",
+      "MarkComplete": "Marchează ca finalizat",
+      "MarkIncomplete": "Marchează ca nefinalizat",
+      "Flag": "Marchează",
+      "Unflag": "Demarchează"
+    },
+    "Inputs": {
+      "Title": "Titlu",
+      "Notes": "Notițe",
+      "Date": "Dată",
+      "Time": "Oră",
+      "Tags": "Etichete"
+    },
+    "EmptyState": {
+      "NoReminders": "Niciun memento",
+      "CreateOne": "Creați unul nou"
+    }
+  },
+  "Calendar": {
+    "Search": "Căutare",
+    "Today": "Astăzi",
+    "Day": "Zi",
+    "Week": "Săptămână",
+    "Month": "Lună",
+    "Year": "An",
+    "AddEvent": "Eveniment nou",
+    "NoEvents": "Niciun eveniment",
+    "NewEvent": "Eveniment nou",
+    "TitlePlaceholder": "Nume eveniment",
+    "Location": "Locație",
+    "AllDay": "Toată ziua",
+    "From": "De la",
+    "To": "Până la",
+    "Repeat": "Repetă",
+    "Never": "Niciodată",
+    "Daily": "Zilnic",
+    "Weekly": "Săptămânal",
+    "Monthly": "Lunar",
+    "Yearly": "Anual",
+    "Alert": "Alertă",
+    "AtTime": "La ora evenimentului",
+    "5MinBefore": "cu 5 minute înainte",
+    "10MinBefore": "cu 10 minute înainte",
+    "15MinBefore": "cu 15 minute înainte",
+    "30MinBefore": "cu 30 minute înainte",
+    "1HourBefore": "cu 1 oră înainte",
+    "2HoursBefore": "cu 2 ore înainte",
+    "1DayBefore": "cu 1 zi înainte",
+    "2DaysBefore": "cu 2 zile înainte",
+    "Notes": "Notițe",
+    "DeleteEvent": "Șterge eveniment",
+    "ShortDays": {
+      "Sun": "Dum",
+      "Mon": "Lun",
+      "Tue": "Mar",
+      "Wed": "Mie",
+      "Thu": "Joi",
+      "Fri": "Vin",
+      "Sat": "Sâm"
+    },
+    "Months": {
+      "January": "Ianuarie",
+      "February": "Februarie",
+      "March": "Martie",
+      "April": "Aprilie",
+      "May": "Mai",
+      "June": "Iunie",
+      "July": "Iulie",
+      "August": "August",
+      "September": "Septembrie",
+      "October": "Octombrie",
+      "November": "Noiembrie",
+      "December": "Decembrie"
+    },
+    "Sidebar": {
+      "iCloud": "ICLOUD",
+      "Other": "OTHER",
+      "NoInvitations": "No invitations"
+    },
+    "Toolbar": {
+      "Today": "Today",
+      "SearchPlaceholder": "Search events...",
+      "View": {
+        "day": "day",
+        "week": "week",
+        "month": "month",
+        "year": "year"
+      }
+    },
+    "EventModal": {
+      "Title": "New Event",
+      "EventTitlePlaceholder": "Event Title",
+      "CalendarLabel": "Calendar",
+      "Cancel": "Cancel",
+      "AddEvent": "Add Event"
+    },
+    "SearchResults": {
+      "Title": "Search Results",
+      "NoEvents": "No events found"
+    },
+    "Event": {
+      "NoLocation": "No location",
+      "EventLabel": "Event: {title} at {location}"
+    },
+    "Weekdays": {
+      "Sun": "Sun",
+      "Mon": "Mon",
+      "Tue": "Tue",
+      "Wed": "Wed",
+      "Thu": "Thu",
+      "Fri": "Fri",
+      "Sat": "Sat"
+    },
+    "WeekdaysShort": {
+      "Sun": "S",
+      "Mon": "M",
+      "Tue": "T",
+      "Wed": "W",
+      "Thu": "T",
+      "Fri": "F",
+      "Sat": "S"
+    }
+  },
+  "Maps": {
+    "Search": "Căutare",
+    "SearchPlaceholder": "Căutați un loc sau o adresă",
+    "Directions": "Indicații",
+    "From": "De la",
+    "To": "Către",
+    "Transport": {
+      "Drive": "Mașină",
+      "Walk": "Mers pe jos",
+      "Transit": "Transport public",
+      "Cycle": "Bicicletă"
+    },
+    "LocateMe": "Localizează-mă",
+    "ZoomIn": "Zoom in",
+    "ZoomOut": "Zoom out",
+    "MapType": {
+      "Standard": "Standard",
+      "Hybrid": "Hibrid",
+      "Satellite": "Satelit"
+    },
+    "Sidebar": {
+      "Favorites": "FAVORITES",
+      "Recent": "RECENT",
+      "NoRecentSearches": "No recent searches",
+      "RecentLabel": "Recent"
+    },
+    "Locations": {
+      "Home": "Home",
+      "Work": "Work"
+    },
+    "Controls": {
+      "SwitchToSatellite": "Switch to Satellite",
+      "SwitchToSatelliteLabel": "Switch to Satellite view",
+      "SwitchToMap": "Switch to Map",
+      "SwitchToMapLabel": "Switch to Map view",
+      "CurrentLocation": "Current Location",
+      "ShowCurrentLocation": "Show current location",
+      "MapInfo": "Map information"
+    },
+    "Permission": {
+      "AppName": "Maps",
+      "Title": "Location",
+      "Reason": "Maps needs access to your location to show where you are.",
+      "Error": "Could not get your location. Please ensure location services are enabled.",
+      "NotSupported": "Geolocation is not supported by your browser."
+    }
+  },
+  "FaceTime": {
+    "AppName": "FaceTime",
+    "NewFaceTime": "FaceTime Nou",
+    "CreateLink": "Creează link",
+    "EnterNameOrEmail": "Nume, e-mail sau număr",
+    "Suggested": "Sugerate",
+    "NoRecents": "Nicio activitate recentă",
+    "FaceTimeVideo": "FaceTime Video",
+    "FaceTimeAudio": "FaceTime Audio",
+    "JoinCall": "Participă",
+    "Waiting": "În așteptare...",
+    "Connected": "Conectat",
+    "Reconnecting": "Se reconectează...",
+    "CallEnded": "Apel încheiat",
+    "Mute": "Mut",
+    "Unmute": "Activare sunet",
+    "VideoOff": "Video oprit",
+    "VideoOn": "Video pornit",
+    "End": "Încheie",
+    "FullScreen": "Ecran complet",
+    "ExitFullScreen": "Ieșire ecran complet",
+    "Effects": "Efecte",
+    "ShareScreen": "Partajare ecran",
+    "Connecting": "Se conectează...",
+    "Unavailable": "Indisponibil",
+    "Title": "FaceTime",
+    "ConnectingAs": "Connecting as {name}...",
+    "IncomingCall": "{name} is calling...",
+    "Accept": "Accept",
+    "Decline": "Decline",
+    "Contacts": "Contacts",
+    "NoContacts": "No one else is online.",
+    "Video": "Video",
+    "SelectContact": "Select a contact to call",
+    "Aria": {
+      "RemoteVideo": "Remote video feed",
+      "LocalVideo": "Local video preview",
+      "EndCall": "End Call",
+      "CallContact": "Call {name}",
+      "VideoCallContact": "Video call {name}",
+      "LocalPreview": "Local camera preview"
+    },
+    "Permission": {
+      "AppName": "FaceTime",
+      "Title": "Camera and Microphone",
+      "Reason": "FaceTime needs access to your camera and microphone to make calls."
+    }
+  },
+  "Contacts": {
+    "Search": "Căutare",
+    "AllContacts": "Toate contactele",
+    "MyCard": "Fișa mea",
+    "AddContact": "Adaugă contact",
+    "Edit": "Editează",
+    "Done": "Gata",
+    "FirstName": "Prenume",
+    "LastName": "Nume",
+    "Company": "Companie",
+    "Phone": "Telefon",
+    "Email": "E-mail",
+    "Notes": "Notițe",
+    "Message": "Mesaj",
+    "Call": "Apelează",
+    "Video": "Video",
+    "Mail": "Mail",
+    "Pay": "Plătește",
+    "NoContacts": "Niciun contact",
+    "DeleteContact": "Șterge contactul",
+    "SearchPlaceholder": "Search",
+    "SearchAria": "Search contacts",
+    "Count": "{count} Contacts",
+    "EditContact": "Edit Contact",
+    "NewContact": "New Contact",
+    "Preview": "Preview",
+    "Cancel": "Cancel",
+    "NoNotes": "No notes",
+    "NoSelection": "No Contact Selected",
+    "Labels": {
+      "FirstName": "First Name",
+      "LastName": "Last Name",
+      "Company": "Company",
+      "Phone": "Phone",
+      "Email": "Email",
+      "Notes": "Notes",
+      "Mobile": "mobile",
+      "Home": "home",
+      "Message": "message",
+      "Video": "video",
+      "Mail": "mail"
+    },
+    "Alerts": {
+      "DeleteConfirm": "Are you sure you want to delete this contact?",
+      "NameRequired": "Please enter a name or company."
+    },
+    "Aria": {
+      "AddContact": "Add new contact",
+      "Contact": "Contact: {name}",
+      "Action": "{action} {name}"
+    }
+  },
+  "Calculator": {
+    "Clear": "C",
+    "AllClear": "AC",
+    "Negate": "+/-",
+    "Percent": "%",
+    "Divide": "÷",
+    "Multiply": "×",
+    "Subtract": "-",
+    "Add": "+",
+    "Equals": "=",
+    "Decimal": ",",
+    "AC": "AC",
+    "ToggleSign": "Toggle sign",
+    "Percentage": "Percentage",
+    "Calculate": "Calculate result"
+  },
+  "Clock": {
+    "WorldClock": "Ceas global",
+    "Alarm": "Alarmă",
+    "Stopwatch": "Cronometru",
+    "Timer": "Temporizator",
+    "Add": "Adaugă",
+    "Edit": "Editează",
+    "Start": "Start",
+    "Stop": "Stop",
+    "Reset": "Resetează",
+    "Lap": "Tură",
+    "Resume": "Reluare",
+    "Pause": "Pauză",
+    "Cancel": "Anulează",
+    "Save": "Salvează",
+    "Label": "Etichetă",
+    "Sound": "Sunet",
+    "Snooze": "Amână",
+    "WhenTimerEnds": "Când temporizatorul se termină",
+    "StopPlaying": "Oprește redarea",
+    "Tabs": {
+      "WorldClock": "World Clock",
+      "Alarms": "Alarms",
+      "Stopwatch": "Stopwatch",
+      "Timers": "Timers"
+    },
+    "AddClock": "Add clock",
+    "Locations": {
+      "NewDelhi": "New Delhi"
+    },
+    "Today": "Today",
+    "HRS": "HRS"
+  },
+  "Weather": {
+    "Loading": "Se încarcă...",
+    "Error": "Eroare la încărcarea vremii",
+    "SearchPlaceholder": "Căutați orașul",
+    "MyLocation": "Locația mea",
+    "Humidity": "Umiditate",
+    "Wind": "Vânt",
+    "Rain": "Ploaie",
+    "FeelsLike": "Se simte ca",
+    "UVIndex": "Indice UV",
+    "Pressure": "Presiune",
+    "Visibility": "Vizibilitate",
+    "Sunrise": "Răsărit",
+    "Sunset": "Apus",
+    "Forecast": {
+      "Hourly": "Hourly Forecast",
+      "TenDay": "10-Day Forecast",
+      "Now": "Now",
+      "Today": "Today"
+    },
+    "Hourly": "Orar",
+    "Daily": "Zilnic",
+    "High": "Max",
+    "Low": "Min",
+    "Conditions": {
+      "Clear": "Senin",
+      "Cloudy": "Înnorat",
+      "Rain": "Ploaie",
+      "Snow": "Zăpadă",
+      "Thunderstorm": "Furtună",
+      "Drizzle": "Burniță",
+      "Mist": "Ceață"
+    },
+    "Retry": "Retry",
+    "Searching": "Searching...",
+    "NoResults": "No results found",
+    "Recent": "Recent",
+    "Popular": "Popular",
+    "Sidebar": {
+      "Open": "Open sidebar",
+      "Close": "Close sidebar"
+    },
+    "Aria": {
+      "SelectLocation": "Select {name}, {country}"
+    },
+    "Details": {
+      "AirQuality": "Air Quality",
+      "UVIndex": "UV Index",
+      "Wind": "Wind",
+      "Sunset": "Sunset",
+      "Sunrise": "Sunrise:",
+      "FeelsLike": "Feels Like",
+      "Humidity": "Humidity",
+      "Visibility": "Visibility",
+      "Pressure": "Pressure",
+      "hPa": "hPa"
+    },
+    "Descriptions": {
+      "AirQualityDesc": "Air quality index is 130, similar to yesterday at about this time.",
+      "UVIndexDesc": "Use sun protection until 4PM.",
+      "FeelsLikeDesc": "Similar to the actual temperature.",
+      "DewPointDesc": "The dew point is {temp}° right now.",
+      "VisibilityDesc": "Perfectly clear view.",
+      "Footer": "Weather for {location} • Open-Meteo Data",
+      "PollutionLevel": "Moderately Polluted",
+      "UVLevel": "Moderate"
+    }
+  },
+  "Stocks": {
+    "Search": "Căutare",
+    "Watchlist": "Listă de urmărire",
+    "MarketOpen": "Piață deschisă",
+    "MarketClosed": "Piață închisă",
+    "PreMarket": "Pre-piață",
+    "AfterHours": "După ore",
+    "Loading": "Se încarcă...",
+    "Error": "Eroare la încărcarea datelor",
+    "AddSymbol": "Adaugă simbol",
+    "Remove": "Elimină",
+    "Chart": "Grafic",
+    "News": "Știri",
+    "Summary": "Rezumat",
+    "Open": "Deschidere",
+    "High": "Maxim",
+    "Low": "Minim",
+    "Vol": "Vol",
+    "PE": "P/E",
+    "MktCap": "Cap. piață",
+    "52WHigh": "Maxim 52 săpt.",
+    "52WLow": "Minim 52 săpt.",
+    "AvgVol": "Vol. mediu",
+    "Yield": "Randament",
+    "Beta": "Beta",
+    "EPS": "EPS",
+    "Title": "Stocks",
+    "Searching": "Searching...",
+    "KeyStatistics": "Key Statistics",
+    "BusinessNews": "Business News",
+    "ShowMore": "Show More",
+    "Aria": {
+      "Search": "Search stocks",
+      "Select": "Select stock {symbol}",
+      "ReadNews": "Read news: {title}"
+    },
+    "Stats": {
+      "Open": "Open",
+      "High": "High",
+      "Low": "Low",
+      "Vol": "Vol",
+      "PE": "P/E",
+      "MktCap": "Mkt Cap",
+      "52WH": "52W H",
+      "52WL": "52W L"
+    }
+  },
+  "Desktop": {
+    "ContextMenu": {
+      "NewFolder": "Dosar nou",
+      "GetInfo": "Informații",
+      "ChangeDesktopBackground": "Schimbă fundal desktop...",
+      "UseStacks": "Utilizează stive",
+      "SortBy": "Sortează după",
+      "CleanUp": "Curăță",
+      "CleanUpBy": "Curăță după",
+      "ShowViewOptions": "Arată opțiuni vizualizare",
+      "ChangeWallpaper": "Change Wallpaper...",
+      "EditWidgets": "Edit Widgets...",
+      "Tags": "Tags",
+      "None": "None",
+      "SnapToGrid": "Snap to Grid",
+      "Name": "Name",
+      "Kind": "Kind",
+      "DateLastOpened": "Date Last Opened",
+      "DateAdded": "Date Added",
+      "DateModified": "Date Modified",
+      "DateCreated": "Date Created",
+      "Size": "Size"
+    },
+    "SortOptions": {
+      "Name": "Nume",
+      "Kind": "Tip",
+      "DateLastOpened": "Data ultimei deschideri",
+      "DateAdded": "Data adăugării",
+      "DateModified": "Data modificării",
+      "DateCreated": "Data creării",
+      "Size": "Mărime",
+      "Tags": "Etichete"
+    },
+    "Guest": "Guest",
+    "UntitledFolder": "untitled folder",
+    "NoAppAvailable": "No application available to open .{ext} files.",
+    "MoveToBin": {
+      "Failed": "Failed to move to bin",
+      "NotSupported": "Failed to move to bin. Folder moves not fully supported yet."
+    }
+  },
+  "ControlCenter": {
+    "Title": "Centru de control",
+    "WiFi": "Wi-Fi",
+    "Bluetooth": "Bluetooth",
+    "AirDrop": "AirDrop",
+    "DoNotDisturb": "Nu deranjați",
+    "KeyboardBrightness": "Luminozitate tastatură",
+    "ScreenMirroring": "Oglindire ecran",
+    "Display": "Ecran",
+    "Sound": "Sunet",
+    "Playing": "Se redă acum",
+    "On": "Pornit",
+    "Off": "Oprit",
+    "NotConnected": "Neconectat",
+    "Connect": "Conectare",
+    "HomeNetwork": "Home Network",
+    "ContactsOnly": "Contacts Only",
+    "NotPlaying": "Not Playing",
+    "Music": "Music"
+  },
+  "LockScreenApp": {
+    "EnterPassword": "Introduceți parola",
+    "ClickToUnlock": "Clic pentru deblocare",
+    "TouchID": "Touch ID",
+    "Cancel": "Anulează",
+    "SwitchUser": "Schimbă utilizator"
+  },
+  "NotificationCenter": {
+    "Title": "Centru de notificări",
+    "NoNotifications": "Fără notificări",
+    "ClearAll": "Șterge tot",
+    "Widgets": "Widgets",
+    "Done": "Done",
+    "Edit": "Edit",
+    "AddWidget": "Add Widget"
+  },
+  "Widgets": {
+    "AllWidgets": "Toate widgeturile",
+    "Search": "Căutare",
+    "AddWidget": "Adaugă widget",
+    "Loading": "Loading...",
+    "Calendar": {
+      "Title": "Calendar"
+    },
+    "Weather": {
+      "Title": "Weather"
+    },
+    "Stocks": {
+      "Title": "Stocks"
+    },
+    "Reminders": {
+      "Title": "Reminders",
+      "NoReminders": "No reminders"
+    },
+    "Notes": {
+      "Title": "Notes",
+      "Content": "Buy milk, eggs, and bread.<br />Call mom at 5pm.<br />Meeting with team tomorrow."
+    }
+  },
+  "Window": {
+    "Minimize": "Minimizează",
+    "Maximize": "Maximizează",
+    "Close": "Închide",
+    "Restore": "Restore",
+    "MoveTo": "Move Window to...",
+    "LeftSide": "Left Side of Screen",
+    "RightSide": "Right Side of Screen",
+    "EnterFullScreen": "Enter Full Screen"
+  },
+  "Dock": {
+    "Trash": "Coș",
+    "AriaLabel": "Application dock"
+  },
+  "Apps": {
+    "VSCode": {
+      "Title": "Visual Studio Code"
+    },
+    "LeetCode": {
+      "Title": "LeetCode",
+      "Common": {
+        "Loading": "Loading Profile...",
+        "NoData": "No data",
+        "Retry": "Retry",
+        "ShowMore": "Show more",
+        "GoToLeetCode": "Go to LeetCode"
+      },
+      "Badges": {
+        "Title": "Badges",
+        "MostRecent": "Most Recent Badge"
+      },
+      "Stats": {
+        "Title": "Community Stats",
+        "Views": "Views",
+        "Solution": "Solution",
+        "Discuss": "Discuss",
+        "Reputation": "Reputation"
+      },
+      "Languages": {
+        "Title": "Languages",
+        "ProblemsSolved": "problems solved"
+      },
+      "Profile": {
+        "Rank": "Rank"
+      },
+      "Submissions": {
+        "RecentAC": "Recent AC",
+        "List": "List",
+        "Solutions": "Solutions",
+        "Discuss": "Discuss",
+        "TimeAgo": "2 months ago"
+      },
+      "Skills": {
+        "Title": "Skills",
+        "Advanced": "Advanced",
+        "Intermediate": "Intermediate"
+      },
+      "Solved": {
+        "Solved": "Solved",
+        "Easy": "Easy",
+        "Medium": "Med.",
+        "Hard": "Hard"
+      },
+      "Calendar": {
+        "SubmissionsLastYear": "submissions in the past one year",
+        "TotalActiveDays": "Total active days:",
+        "MaxStreak": "Max streak:",
+        "Current": "Current",
+        "Months": {
+          "Jan": "Jan",
+          "Feb": "Feb",
+          "Mar": "Mar",
+          "Apr": "Apr",
+          "May": "May",
+          "Jun": "Jun",
+          "Jul": "Jul",
+          "Aug": "Aug",
+          "Sep": "Sep",
+          "Oct": "Oct",
+          "Nov": "Nov",
+          "Dec": "Dec"
+        }
+      }
+    },
+    "V86": {
+      "Title": "Mașină Virtuală",
+      "NoFileSelected": "No file selected",
+      "ScriptLoadError": "Failed to load V86 script",
+      "FileReadError": "Failed to read file",
+      "StartError": "Failed to start emulator",
+      "Booting": "Booting {filename}...",
+      "ErrorPrefix": "Error: {error}",
+      "ClickToCapture": "Click to capture mouse (Esc to release)"
+    },
+    "Finder": "Finder",
+    "Launchpad": "Launchpad",
+    "Safari": "Safari",
+    "Messages": "Mesaje",
+    "Mail": "Mail",
+    "Maps": "Hărți",
+    "Photos": "Poze",
+    "FaceTime": "FaceTime",
+    "Calendar": "Calendar",
+    "Contacts": "Contacte",
+    "Reminders": "Mementouri",
+    "Notes": "Notițe",
+    "TV": "TV",
+    "Music": "Muzică",
+    "News": "Știri",
+    "SystemSettings": "Setări sistem",
+    "AppStore": "App Store",
+    "Trash": "Coș",
+    "Freeform": "Freeform",
+    "Terminal": "Terminal",
+    "Calculator": "Calculator",
+    "TextEdit": "TextEdit",
+    "MediaPlayer": "Media Player",
+    "Preview": "Preview",
+    "VirtualMachine": "Virtual Machine"
+  },
+  "News": {
+    "Title": "News",
+    "Categories": {
+      "TopStories": "Top Stories",
+      "Technology": "Technology",
+      "Business": "Business",
+      "Science": "Science",
+      "Health": "Health",
+      "Entertainment": "Entertainment",
+      "Sports": "Sports"
+    },
+    "SearchPlaceholder": "Search stories...",
+    "SearchLabel": "Search",
+    "SearchTitle": "Search: \"{query}\"",
+    "Loading": "Loading top stories...",
+    "Error": "Failed to load news. Please try again later.",
+    "TryAgain": "Try Again",
+    "NoResults": "No stories found matching \"{query}\"",
+    "ClearSearch": "Clear Search",
+    "TopStory": "Top Story",
+    "Refresh": "Refresh",
+    "Aria": {
+      "Category": "Category: {label}",
+      "Search": "Search stories",
+      "Refresh": "Refresh news",
+      "ReadTopStory": "Read top story: {title}",
+      "ReadArticle": "Read article: {title}",
+      "Share": "Share article",
+      "Like": "Like article"
+    }
+  },
+  "Music": {
+    "AppleMusic": "Apple Music",
+    "Library": "Library",
+    "ListenNow": "Listen Now",
+    "Browse": "Browse",
+    "Radio": "Radio",
+    "RecentlyAdded": "Recently Added",
+    "Artists": "Artists",
+    "Albums": "Albums",
+    "Songs": "Songs",
+    "Search": "Search",
+    "SearchTitle": "Search: {query}",
+    "Aria": {
+      "Search": "Search music",
+      "GoBack": "Go back",
+      "GoForward": "Go forward",
+      "Prev": "Previous song",
+      "Next": "Next song",
+      "Play": "Play",
+      "Pause": "Pause",
+      "PlaySong": "Play {track} by {artist}",
+      "PauseSong": "Pause {track}",
+      "Lyrics": "Toggle lyrics",
+      "Queue": "Toggle queue",
+      "Mute": "Toggle mute",
+      "VolSlider": "Volume slider",
+      "SeekSlider": "Seek slider"
+    },
+    "Queue": {
+      "Title": "Playing Next",
+      "Empty": "Queue is empty"
+    },
+    "Lyrics": {
+      "NotAvailable": "Lyrics are not available for this song in the preview mode.",
+      "Imagine": "But imagine the lyrics appearing here, perfectly synced with the music...",
+      "Lalala": "La la la...",
+      "Placeholder": "Play a song to see lyrics"
+    }
+  },
+  "TV": {
+    "WatchNow": "Watch Now",
+    "Movies": "Movies",
+    "TVShows": "TV Shows",
+    "Kids": "Kids",
+    "Library": "Library",
+    "SearchResults": "Search Results",
+    "NoShows": "No shows found.",
+    "SearchPlaceholder": "Search",
+    "SearchLabel": "Search TV Shows",
+    "Series": "Series",
+    "PlayEpisode": "Play Episode 1",
+    "AddToUpNext": "Add to Up Next",
+    "Added": "Added",
+    "OpenYouTube": "Open in YouTube",
+    "ViewAccount": "View Account",
+    "Aria": {
+      "Play": "Play {name}",
+      "CloseVideo": "Close video",
+      "AddLibrary": "Add to Library",
+      "RemoveLibrary": "Remove from Library"
+    },
+    "Genres": {
+      "Drama": "Drama",
+      "Action": "Action",
+      "Comedy": "Comedy",
+      "ScienceFiction": "Science-Fiction",
+      "Thriller": "Thriller"
+    }
+  },
+  "Terminal": {
+    "Guest": "Guest",
+    "Welcome": "Welcome to Terminal",
+    "HelpPrompt": "Type 'help' for a list of commands.",
+    "AvailableCommands": "Available commands: ls, cd, pwd, mkdir, touch, echo, cat, clear, whoami, ping, man, rm, rmdir, vi",
+    "CommandNotFound": "command not found: {command}",
+    "Error": "Error: {message}",
+    "AriaInput": "Terminal Input",
+    "Usage": {
+      "Ping": "usage: ping host",
+      "Mkdir": "usage: mkdir directory_name",
+      "Rmdir": "usage: rmdir directory_name",
+      "Rm": "usage: rm [-rf] file_name",
+      "Touch": "usage: touch file_name",
+      "Cat": "usage: cat file_name",
+      "Vi": "usage: vi file_name",
+      "Man": "What manual page do you want?"
+    },
+    "Errors": {
+      "PingResolve": "ping: cannot resolve {host}: Unknown host",
+      "NoManual": "No manual entry for {command}",
+      "NoSuchFile": "{cmd}: {path}: No such file or directory",
+      "NotADirectory": "{cmd}: {path}: Not a directory",
+      "DirectoryNotEmpty": "{cmd}: {path}: Directory not empty",
+      "IsADirectory": "{cmd}: {path}: is a directory"
+    },
+    "Messages": {
+      "PingStats": "PING {host} (127.0.0.1): 56 data bytes\n64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.045 ms\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.082 ms\n64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.067 ms\n\n--- {host} ping statistics ---\n3 packets transmitted, 3 packets received, 0.0% packet loss",
+      "OpeningTextEdit": "Opening {file} in TextEdit..."
+    },
+    "ManPages": {
+      "ls": "ls - list directory contents\n\nUsage: ls [options] [file|dir]\n\nOptions:\n  -a, --all      do not ignore entries starting with .\n  -l             use a long listing format",
+      "cd": "cd - change the shell working directory\n\nUsage: cd [dir]\n\nChange the current directory to DIR. The default DIR is the value of the HOME shell variable.",
+      "pwd": "pwd - print name of current/working directory\n\nUsage: pwd\n\nPrint the full filename of the current working directory.",
+      "mkdir": "mkdir - make directories\n\nUsage: mkdir [DIRECTORY]\n\nCreate the DIRECTORY(ies), if they do not already exist.",
+      "touch": "touch - change file timestamps\n\nUsage: touch [FILE]\n\nUpdate the access and modification times of each FILE to the current time. If FILE does not exist it is created empty.",
+      "echo": "echo - display a line of text\n\nUsage: echo [STRING]...\n\nEcho the STRING(s) to standard output.",
+      "cat": "cat - concatenate files and print on the standard output\n\nUsage: cat [FILE]...\n\nConcatenate FILE(s) to standard output.",
+      "clear": "clear - clear the terminal screen\n\nUsage: clear",
+      "whoami": "whoami - print effective userid\n\nUsage: whoami\n\nPrint the user name associated with the current effective user ID.",
+      "ping": "ping - send ICMP ECHO_REQUEST to network hosts\n\nUsage: ping [HOST]\n\nSend ICMP ECHO_REQUEST to network hosts.",
+      "man": "man - an interface to the system reference manuals\n\nUsage: man [COMMAND]\n\nDisplay the manual page for COMMAND.",
+      "rm": "rm - remove files or directories\n\nUsage: rm [OPTION]... [FILE]...\n\nRemove (unlink) the FILE(s).\n\nOptions:\n  -r, -R, --recursive   remove directories and their contents recursively\n  -f, --force           ignore nonexistent files and arguments, never prompt",
+      "rmdir": "rmdir - remove empty directories\n\nUsage: rmdir [DIRECTORY]...\n\nRemove the DIRECTORY(ies), if they are empty.",
+      "vi": "vi - screen-oriented (visual) display editor\n\nUsage: vi [FILE]\n\nEdit FILE."
+    }
+  },
+  "TextEdit": {
+    "Guest": "Guest",
+    "Untitled": "Untitled.txt",
+    "Save": "Save",
+    "Loading": "Loading...",
+    "Placeholder": "Type your notes here...",
+    "SavedAlert": "Saved to {path}/{filename}"
+  },
+  "PDFViewer": {
+    "Document": "Document.pdf",
+    "PageInfo": "Page {current} of {total}",
+    "View": "View",
+    "ZoomIn": "Zoom In",
+    "ZoomOut": "Zoom Out",
+    "LoadingThumbnails": "Loading thumbnails...",
+    "Loading": "Loading...",
+    "NoPDF": "No PDF",
+    "FailedToLoad": "Failed to load PDF",
+    "NoPDFLoaded": "No PDF loaded"
+  },
+  "Spotlight": {
+    "Placeholder": "Spotlight Search",
+    "SearchWebFor": "Search Web for \"{query}\"",
+    "NoResults": "No results found",
+    "Open": "Open",
+    "Kinds": {
+      "Web": "Web Search",
+      "App": "Application",
+      "Directory": "Directory",
+      "File": "File"
+    },
+    "Aria": {
+      "Open": "Open {name}"
+    }
+  },
+  "MenuBar": {
+    "Apple": {
+      "AboutThisMac": "About This Mac",
+      "SystemSettings": "System Settings...",
+      "AppStore": "App Store...",
+      "RecentItems": "Recent Items",
+      "ForceQuit": "Force Quit...",
+      "Sleep": "Sleep",
+      "Restart": "Restart...",
+      "ShutDown": "Shut Down...",
+      "LockScreen": "Lock Screen"
+    },
+    "App": {
+      "About": "About {app}",
+      "Quit": "Quit {app}"
+    },
+    "File": {
+      "Title": "File",
+      "New": "New",
+      "Open": "Open...",
+      "Save": "Save",
+      "Duplicate": "Duplicate",
+      "NewFinderWindow": "New Finder Window",
+      "NewFolder": "New Folder",
+      "GetInfo": "Get Info"
+    },
+    "Edit": {
+      "Title": "Edit",
+      "Undo": "Undo",
+      "Redo": "Redo",
+      "Cut": "Cut",
+      "Copy": "Copy",
+      "Paste": "Paste"
+    },
+    "View": {
+      "Title": "View",
+      "AsIcons": "As Icons",
+      "AsList": "As List",
+      "AsColumns": "As Columns"
+    },
+    "Window": {
+      "Title": "Window",
+      "Minimize": "Minimize",
+      "Zoom": "Zoom"
+    },
+    "Help": {
+      "Title": "Help",
+      "MacOSHelp": "macOS Help"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "KnownNetworks": "Known Networks",
+      "OtherNetworks": "Other Networks",
+      "Settings": "Wi-Fi Settings..."
+    },
+    "Battery": {
+      "Title": "Battery",
+      "PowerSource": "Power Source: {source}",
+      "PowerAdapter": "Power Adapter",
+      "Battery": "Battery",
+      "EnergyMode": "Energy Mode",
+      "Automatic": "Automatic",
+      "LowPower": "Low Power",
+      "HighPower": "High Power",
+      "SignificantEnergy": "Using Significant Energy",
+      "Settings": "Battery Settings..."
+    },
+    "Aria": {
+      "Clipboard": "Clipboard",
+      "MediaPlayer": "Media Player",
+      "Spotlight": "Spotlight Search",
+      "ControlCenter": "Control Center",
+      "Siri": "Siri",
+      "Clock": "Clock and Notification Center"
+    }
+  },
+  "WeatherDropdown": {
+    "Searching": "Searching...",
+    "SearchCity": "Search city...",
+    "Now": "Now",
+    "Today": "Today",
+    "OpenWeather": "Open Weather"
+  },
+  "LockScreen": {
+    "IncorrectPassword": "Incorrect password",
+    "Guest": "Guest",
+    "EnterPassword": "Enter Password",
+    "Hint": "Touch ID or enter password (hint: {hint})",
+    "Login": "Login",
+    "Cancel": "Cancel",
+    "Aria": {
+      "UserAvatar": "User avatar, click to login",
+      "User": "User {name}, click to login",
+      "Password": "Password",
+      "Submit": "Submit password"
+    }
+  }
 }

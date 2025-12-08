@@ -1,4 +1,1742 @@
 {
-  "Hello": "Hello world!",
-  "Welcome": "Welcome to the multi-language app"
+  "Hello": {
+    "world": "Chào thế giới",
+    "GetStarted": "Bắt đầu"
+  },
+  "Common": {
+    "OK": "OK",
+    "Cancel": "Hủy",
+    "Yes": "Có",
+    "No": "Không",
+    "Back": "Quay lại",
+    "Continue": "Tiếp tục",
+    "Done": "Xong",
+    "Edit": "Sửa",
+    "Delete": "Xóa",
+    "Save": "Lưu",
+    "Close": "Đóng",
+    "Error": "Lỗi",
+    "Success": "Thành công"
+  },
+  "Setup": {
+    "Common": {
+      "Continue": "Tiếp tục",
+      "Back": "Quay lại",
+      "NotNow": "Để sau",
+      "Cancel": "Hủy",
+      "LearnMore": "Tìm hiểu thêm"
+    },
+    "Language": {
+      "Title": "Chọn Ngôn Ngữ",
+      "Description": "Chọn ngôn ngữ bạn muốn sử dụng trên máy Mac này.",
+      "TableLabel": "Ngôn ngữ",
+      "Primary": "Chính"
+    },
+    "Region": {
+      "Title": "Chọn Quốc Gia hoặc Khu Vực Của Bạn"
+    },
+    "DataPrivacy": {
+      "Title": "Dữ liệu & Quyền riêng tư",
+      "IconText": "Biểu tượng này xuất hiện khi tính năng Apple hỏi sử dụng thông tin cá nhân của bạn.",
+      "FeatureText": "Bạn sẽ không thấy biểu tượng này với mọi tính năng. Apple chỉ thu thập thông tin này khi cần thiết, để bảo mật dịch vụ, hoặc cá nhân hóa trải nghiệm của bạn.",
+      "PrivacyText": "Apple tin rằng quyền riêng tư là quyền cơ bản của con người, vì vậy mọi sản phẩm Apple đều được thiết kế để giảm thiểu việc thu thập và sử dụng dữ liệu của bạn, sử dụng xử lý trên thiết bị bất cứ khi nào có thể, và cung cấp sự minh bạch và kiểm soát đối với thông tin của bạn."
+    },
+    "TouchID": {
+      "Title": "Touch ID",
+      "SetupLater": "Thiết lập Touch ID sau",
+      "Description": "Sử dụng dấu vân tay để mở khóa máy Mac và mua hàng với Apple Pay. Đặt ngón tay lên Touch ID để bắt đầu."
+    },
+    "Fingerprint": {
+      "Title": "Đặt Ngón Tay Của Bạn",
+      "Instruction": "Nhấc và đặt ngón tay của bạn lên Touch ID nhiều lần",
+      "Success": "✓ Touch ID đã sẵn sàng"
+    },
+    "Languages": {
+      "Title": "Ngôn Ngữ Viết và Nói",
+      "Description": "Các ngôn ngữ được liệt kê dưới đây thường được sử dụng trong khu vực của bạn. Bạn có thể sử dụng các cài đặt này hoặc tùy chỉnh riêng lẻ.",
+      "Preferred": "Ngôn Ngữ Ưa Thích",
+      "InputSources": "Nguồn Đầu Vào",
+      "Dictation": "Đọc Chính Tả",
+      "Customize": "Tùy Chỉnh Cài Đặt"
+    },
+    "Accessibility": {
+      "Title": "Trợ năng",
+      "Description": "Các tính năng trợ năng điều chỉnh máy Mac theo nhu cầu thị giác, thính giác và vận động của bạn. Bạn có thể bật chúng ngay bây giờ và hoàn tất thiết lập, hoặc tùy chỉnh sau trong Cài Đặt Hệ Thống. Xem các danh mục bên dưới để biết các tính năng khả dụng.",
+      "Vision": "Thị giác",
+      "Motor": "Vận động",
+      "Hearing": "Thính giác",
+      "Cognitive": "Nhận thức"
+    },
+    "Migration": {
+      "Title": "Trợ Lý Di Chuyển",
+      "Description": "Nếu bạn có thông tin trên máy Mac hoặc PC Windows khác, bạn có thể chuyển nó sang máy Mac này. Bạn cũng có thể chuyển dữ liệu từ bản sao lưu Time Machine hoặc đĩa khởi động khác.",
+      "Question": "Bạn muốn chuyển thông tin của mình như thế nào?",
+      "FromMac": "Từ máy Mac, bản sao lưu Time Machine hoặc đĩa khởi động",
+      "FromPC": "Từ PC Windows"
+    },
+    "AppleID": {
+      "Title": "Đăng nhập bằng Apple ID",
+      "Description": "Đăng nhập để sử dụng iCloud, App Store và các dịch vụ khác của Apple.",
+      "Label": "Apple ID",
+      "CreateNew": "Tạo Apple ID Mới",
+      "Forgot": "Quên Apple ID hoặc mật khẩu?",
+      "UseDifferent": "Sử dụng các Apple ID khác nhau cho iCloud và Mua hàng?",
+      "Info": "Máy Mac này sẽ được liên kết với Apple ID của bạn, và dữ liệu của bạn như ảnh, danh bạ và tài liệu sẽ được lưu trữ trong iCloud để bạn có thể truy cập chúng trên các thiết bị khác.",
+      "SeeData": "Xem cách dữ liệu được quản lý",
+      "SetupLater": "Thiết lập sau",
+      "ErrorRequired": "Vui lòng nhập Apple ID."
+    },
+    "Account": {
+      "Title": "Tạo Tài Khoản Máy Tính",
+      "CreateAppleID": "Tạo Apple ID",
+      "Description": "Nhập tên và thông tin tài khoản của bạn để thiết lập máy tính.",
+      "Name": "Họ và Tên",
+      "Email": "Địa chỉ Email",
+      "Age": "Tuổi",
+      "Phone": "Số Điện Thoại Di Động",
+      "Password": "Mật khẩu",
+      "Errors": {
+        "NameRequired": "Bắt buộc phải có Họ và Tên.",
+        "EmailRequired": "Bắt buộc phải có Email.",
+        "EmailInvalid": "Vui lòng nhập địa chỉ email hợp lệ.",
+        "AgeRequired": "Bắt buộc phải có Tuổi.",
+        "AgeInvalid": "Vui lòng nhập tuổi hợp lệ.",
+        "PhoneRequired": "Bắt buộc phải có Số điện thoại.",
+        "PasswordRequired": "Bắt buộc phải có Mật khẩu.",
+        "PasswordLength": "Mật khẩu phải có ít nhất 6 ký tự."
+      }
+    },
+    "Theme": {
+      "Title": "Chọn Giao Diện Của Bạn",
+      "Description": "Chọn Sáng hoặc Tối để thay đổi giao diện của hệ thống và ứng dụng.",
+      "Light": "Sáng",
+      "Dark": "Tối"
+    }
+  },
+  "SystemSettings": {
+    "General": {
+      "Title": "Cài đặt chung",
+      "Description": "Quản lý cài đặt chung và tùy chọn cho máy Mac của bạn, bao gồm cập nhật phần mềm, ngôn ngữ thiết bị, AirDrop, v.v.",
+      "About": "Giới thiệu",
+      "SoftwareUpdate": "Cập nhật phần mềm",
+      "Storage": "Dung lượng",
+      "AppleCare": "AppleCare & Bảo hành",
+      "AirDrop": "AirDrop & Handoff",
+      "AutoFill": "Tự động điền & Mật khẩu",
+      "DateTime": "Ngày & Giờ",
+      "LanguageRegion": "Ngôn ngữ & Vùng",
+      "LoginItems": "Mục đăng nhập",
+      "Sharing": "Chia sẻ",
+      "StartupDisk": "Đĩa khởi động",
+      "TimeMachine": "Time Machine",
+      "DeviceManagement": "Quản lý thiết bị",
+      "TransferReset": "Chuyển hoặc Đặt lại"
+    },
+    "AppleAccount": {
+      "Edit": "Sửa",
+      "PersonalInformation": "Thông tin cá nhân",
+      "SignInSecurity": "Đăng nhập & Bảo mật",
+      "PaymentShipping": "Thanh toán & Giao hàng",
+      "iCloud": "iCloud",
+      "MediaPurchases": "Phương tiện & Mục mua",
+      "Family": "Chia sẻ trong gia đình",
+      "SetUp": "Thiết lập",
+      "Devices": "Thiết bị",
+      "ThisMac": "MacBook Pro 14\" này",
+      "SignOut": "Đăng xuất..."
+    },
+    "LanguageRegion": {
+      "Title": "Ngôn ngữ & Vùng",
+      "PreferredLanguages": "Ngôn ngữ ưu thích",
+      "Region": "Vùng",
+      "Calendar": "Lịch",
+      "Temperature": "Nhiệt độ",
+      "Celsius": "Độ C (°C)",
+      "Fahrenheit": "Độ F (°F)",
+      "MeasurementSystem": "Hệ thống đo lường",
+      "Metric": "Hệ mét",
+      "US": "Hệ Mỹ",
+      "UK": "Hệ Anh",
+      "FirstDayOfWeek": "Ngày đầu tuần",
+      "DateFormat": "Định dạng ngày",
+      "NumberFormat": "Định dạng số",
+      "LiveText": "Văn bản trực tiếp",
+      "LiveTextDesc": "Chọn văn bản trong hình ảnh để sao chép hoặc thực hiện hành động.",
+      "Applications": "Ứng dụng",
+      "ApplicationsDesc": "Tự động cài đặt ngôn ngữ cho các ứng dụng sau:",
+      "TranslationLanguages": "Ngôn ngữ dịch..."
+    },
+    "Sidebar": {
+      "Search": "Tìm kiếm",
+      "NotImplemented": "Phần này chưa được thực hiện.",
+      "AppleAccount": "Tài khoản Apple",
+      "WiFi": "Wi-Fi",
+      "Bluetooth": "Bluetooth",
+      "Network": "Mạng",
+      "General": "Cài đặt chung",
+      "Appearance": "Giao diện",
+      "Accessibility": "Trợ năng",
+      "MenuBar": "Trung tâm điều khiển",
+      "DesktopDock": "Màn hình nền & Dock",
+      "Displays": "Màn hình",
+      "Spotlight": "Spotlight",
+      "Wallpaper": "Hình nền",
+      "ScreenSaver": "Trình bảo vệ màn hình",
+      "Battery": "Pin",
+      "Sound": "Âm thanh",
+      "Notifications": "Thông báo",
+      "Focus": "Tập trung",
+      "ScreenTime": "Thời gian sử dụng",
+      "PrivacySecurity": "Quyền riêng tư & Bảo mật",
+      "LockScreen": "Màn hình khóa",
+      "TouchIDPassword": "Touch ID & Mật khẩu",
+      "UsersGroups": "Người dùng & Nhóm",
+      "Keyboard": "Bàn phím",
+      "Trackpad": "Bàn di chuột",
+      "PrintersScanners": "Máy in & Máy quét",
+      "Storage": "Dung lượng"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "Description": "Thiết lập Wi-Fi để kết nối Internet và các thiết bị không dây.",
+      "Connected": "Đã kết nối",
+      "Details": "Chi tiết...",
+      "KnownNetworks": "Mạng đã biết",
+      "OtherNetworks": "Mạng khác",
+      "Connect": "Kết nối",
+      "Other": "Khác...",
+      "AskToJoin": "Hỏi để kết nối mạng",
+      "AskToJoinDesc": "Tự động kết nối với các mạng đã biết.",
+      "Notify": "Thông báo",
+      "AskToJoinHotspots": "Hỏi để kết nối Điểm truy cập cá nhân",
+      "AskToJoinHotspotsDesc": "Cho phép tự động kết nối với điểm truy cập cá nhân.",
+      "AskToJoinAction": "Hỏi",
+      "Advanced": "Nâng cao..."
+    },
+    "Bluetooth": {
+      "Title": "Bluetooth",
+      "Description": "Kết nối các phụ kiện không dây như tai nghe, chuột và bàn phím.",
+      "Discoverable": "Hiển thị là \"MacBook Pro\" khi Cài đặt Bluetooth đang mở.",
+      "MyDevices": "Thiết bị của tôi",
+      "NotConnected": "Chưa kết nối",
+      "NearbyDevices": "Thiết bị lân cận",
+      "Searching": "Đang tìm kiếm..."
+    },
+    "Network": {
+      "Title": "Mạng",
+      "WiFi": "Wi-Fi",
+      "Connected": "Đã kết nối",
+      "Firewall": "Tường lửa",
+      "Inactive": "Không hoạt động",
+      "OtherServices": "Dịch vụ khác",
+      "NotConnected": "Chưa kết nối"
+    },
+    "Appearance": {
+      "Title": "Giao diện",
+      "Description": "Chọn giao diện bạn thích.",
+      "Light": "Sáng",
+      "Dark": "Tối",
+      "Auto": "Tự động",
+      "AccentColor": "Màu nhấn",
+      "HighlightColor": "Màu đánh dấu",
+      "Automatic": "Tự động",
+      "SidebarIconSize": "Kích thước biểu tượng thanh bên",
+      "Medium": "Trung bình",
+      "WallpaperTinting": "Cho phép tô màu hình nền trong cửa sổ",
+      "ShowScrollBars": "Hiển thị thanh cuộn",
+      "ScrollAuto": "Tự động dựa trên chuột hoặc bàn di chuột",
+      "ScrollWhenScrolling": "Khi cuộn",
+      "ScrollAlways": "Luôn luôn",
+      "ClickScrollBar": "Nhấp vào thanh cuộn để",
+      "JumpNextPage": "Chuyển đến trang tiếp theo",
+      "JumpSpotClicked": "Chuyển đến vị trí nhấp chuột"
+    },
+    "Accessibility": {
+      "Title": "Trợ năng",
+      "Description": "Điều chỉnh máy Mac theo nhu cầu thị giác, thính giác và vận động của bạn.",
+      "LearnMore": "Tìm hiểu thêm...",
+      "Vision": "Thị giác",
+      "VoiceOver": "VoiceOver",
+      "Zoom": "Thu phóng",
+      "HoverText": "Văn bản di chuột",
+      "Display": "Màn hình",
+      "Motion": "Chuyển động",
+      "ReadSpeak": "Nội dung được đọc",
+      "AudioDescriptions": "Mô tả âm thanh",
+      "Hearing": "Thính giác",
+      "HearingDevices": "Thiết bị thính giác",
+      "Audio": "Âm thanh",
+      "Captions": "Phụ đề",
+      "LiveCaptions": "Phụ đề trực tiếp",
+      "NameRecognition": "Điều khiển bằng giọng nói",
+      "Motor": "Vận động",
+      "VoiceControl": "Khẩu lệnh",
+      "Keyboard": "Bàn phím",
+      "PointerControl": "Điều khiển con trỏ",
+      "SwitchControl": "Điều khiển công tắc",
+      "General": "Cài đặt chung",
+      "Siri": "Siri",
+      "Shortcut": "Phím tắt"
+    },
+    "MenuBar": {
+      "Title": "Trung tâm điều khiển",
+      "Description": "Thay đổi những gì hiển thị trên thanh menu và trong Trung tâm điều khiển.",
+      "AutoHide": "Tự động ẩn và hiển thị thanh menu",
+      "Never": "Không bao giờ",
+      "RecentDocs": "Tài liệu, ứng dụng và máy chủ gần đây",
+      "None": "Không",
+      "Controls": "Mô-đun Trung tâm điều khiển",
+      "ControlCenter": "Trung tâm điều khiển",
+      "ShowInMenuBar": "Hiển thị trong Thanh menu",
+      "DontShowInMenuBar": "Không hiển thị trong Thanh menu",
+      "Siri": "Siri",
+      "Spotlight": "Spotlight",
+      "VolumeFeedback": "Phát âm thanh phản hồi khi thay đổi âm lượng",
+      "Clock": "Đồng hồ"
+    },
+    "DesktopDock": {
+      "Title": "Màn hình nền & Dock",
+      "Description": "Thay đổi giao diện của Dock và màn hình nền.",
+      "Dock": "Dock",
+      "Size": "Kích cỡ",
+      "Magnification": "Phóng to",
+      "Small": "Nhỏ",
+      "Large": "Lớn",
+      "Position": "Vị trí trên màn hình",
+      "Bottom": "Dưới cùng",
+      "MinimiseUsing": "Thu nhỏ cửa sổ bằng",
+      "GenieEffect": "Hiệu ứng Genie",
+      "DoubleClickTitle": "Bấm đúp vào thanh tiêu đề cửa sổ để",
+      "Zoom": "Thu phóng",
+      "MinimiseToIcon": "Thu nhỏ cửa sổ thành biểu tượng ứng dụng",
+      "AutoHideDock": "Tự động ẩn và hiển thị Dock",
+      "AnimateOpening": "Hiệu ứng động khi mở ứng dụng",
+      "ShowIndicators": "Hiển thị chỉ báo cho các ứng dụng đang mở",
+      "ShowRecent": "Hiển thị các ứng dụng gần đây trong Dock",
+      "DesktopStageManager": "Màn hình nền & Quản lý màn hình",
+      "ShowItems": "Hiển thị các mục",
+      "OnDesktop": "Trên Màn hình nền",
+      "ClickWallpaper": "Nhấp vào hình nền để hiển thị màn hình nền",
+      "Always": "Luôn luôn",
+      "StageManager": "Quản lý màn hình",
+      "Widgets": "Tiện ích",
+      "ShowWidgets": "Hiển thị tiện ích",
+      "WidgetStyle": "Kiểu tiện ích",
+      "Automatic": "Tự động",
+      "UseIPhoneWidgets": "Sử dụng tiện ích iPhone"
+    },
+    "Displays": {
+      "Title": "Màn hình",
+      "Description": "Chọn màn hình để thay đổi cài đặt.",
+      "BuiltInDisplay": "Màn hình tích hợp",
+      "UseAs": "Sử dụng làm",
+      "MainDisplay": "Màn hình chính",
+      "Resolution": "Độ phân giải",
+      "Default": "Mặc định",
+      "MoreSpace": "Thêm không gian",
+      "LargerText": "Văn bản lớn hơn",
+      "Brightness": "Độ sáng",
+      "TrueTone": "True Tone",
+      "Preset": "Cài đặt sẵn",
+      "RefreshRate": "Tốc độ làm mới",
+      "ProMotion": "ProMotion",
+      "Advanced": "Nâng cao..."
+    },
+    "Spotlight": {
+      "Title": "Spotlight",
+      "Description": "Tìm kiếm trên máy Mac của bạn.",
+      "SearchPlaceholder": "Tìm kiếm Spotlight",
+      "SearchResults": "Kết quả tìm kiếm",
+      "Privacy": "Quyền riêng tư Spotlight...",
+      "Categories": {
+        "Applications": "Ứng dụng",
+        "Calculator": "Máy tính",
+        "Contacts": "Danh bạ",
+        "Conversion": "Chuyển đổi",
+        "Definition": "Định nghĩa",
+        "Developer": "Nhà phát triển",
+        "Documents": "Tài liệu",
+        "Events & Reminders": "Sự kiện & Lời nhắc",
+        "Folders": "Thư mục",
+        "Fonts": "Phông chữ",
+        "Images": "Hình ảnh",
+        "Mail & Messages": "Mail & Tin nhắn",
+        "Movies": "Phim",
+        "Music": "Nhạc",
+        "Other": "Khác",
+        "PDF Documents": "Tài liệu PDF",
+        "Presentations": "Bản trình bày",
+        "Siri Suggestions": "Gợi ý của Siri",
+        "Spreadsheets": "Bảng tính",
+        "System Preferences": "Tùy chọn hệ thống",
+        "Tips": "Mẹo",
+        "Bookmarks & History": "Dấu trang & Lịch sử"
+      }
+    },
+    "Notifications": {
+      "Title": "Thông báo",
+      "Description": "Kiểm soát cách hiển thị thông báo.",
+      "Preview": "Hiển thị bản xem trước",
+      "ShowPreviews": "Hiển thị bản xem trước",
+      "Always": "Luôn luôn",
+      "ApplicationNotifications": "Thông báo ứng dụng",
+      "Apps": {
+        "AppStore": "App Store",
+        "Calendar": "Lịch",
+        "FaceTime": "FaceTime",
+        "Mail": "Mail",
+        "Messages": "Tin nhắn",
+        "Photos": "Ảnh",
+        "Reminders": "Lời nhắc",
+        "Safari": "Safari"
+      }
+    },
+    "Sound": {
+      "Title": "Âm thanh",
+      "Description": "Thay đổi cài đặt âm thanh.",
+      "OutputInput": "Đầu ra & Đầu vào",
+      "Output": "Đầu ra",
+      "Input": "Đầu vào",
+      "SelectOutput": "Chọn thiết bị đầu ra âm thanh:",
+      "Speakers": "Loa MacBook Pro",
+      "BuiltIn": "Tích hợp",
+      "OutputVolume": "Âm lượng đầu ra",
+      "Mute": "Tắt tiếng",
+      "ShowInMenuBar": "Hiển thị Âm thanh trong thanh menu",
+      "Always": "Luôn luôn",
+      "AlertSoundGroup": "Âm thanh cảnh báo",
+      "AlertSound": "Âm thanh cảnh báo",
+      "Boop": "Boop",
+      "AlertVolume": "Âm lượng cảnh báo",
+      "PlayUIEffects": "Phát hiệu ứng âm thanh giao diện người dùng"
+    },
+    "Focus": {
+      "Title": "Tập trung",
+      "Description": "Chọn chế độ Tập trung để tùy chỉnh cài đặt.",
+      "DoNotDisturb": "Không làm phiền",
+      "ShareAcrossDevices": "Chia sẻ trên các thiết bị",
+      "FocusStatus": "Trạng thái Tập trung",
+      "On": "Bật",
+      "Off": "Tắt",
+      "SetUp": "Thiết lập",
+      "FocusModes": "Chế độ Tập trung",
+      "Personal": "Cá nhân",
+      "Sleep": "Ngủ",
+      "Work": "Làm việc",
+      "AddFocus": "Thêm chế độ Tập trung"
+    },
+    "ScreenTime": {
+      "Title": "Thời gian sử dụng",
+      "Description": "Theo dõi việc sử dụng và đặt giới hạn.",
+      "DailyAverage": "Trung bình hàng ngày",
+      "FromLastWeek": "so với tuần trước",
+      "Downtime": "Giờ nghỉ",
+      "AppLimits": "Giới hạn ứng dụng",
+      "LimitsCount": "{count} giới hạn",
+      "AlwaysAllowed": "Luôn cho phép",
+      "AllowedApps": "Điện thoại, Bản đồ, Tin nhắn",
+      "ContentPrivacy": "Nội dung & Quyền riêng tư",
+      "On": "Bật",
+      "Off": "Tắt",
+      "ShareAcrossDevices": "Chia sẻ trên các thiết bị",
+      "LockSettings": "Khóa cài đặt Thời gian sử dụng"
+    },
+    "Battery": {
+      "Title": "Pin",
+      "Description": "Xem tình trạng pin và mức sử dụng.",
+      "BatteryLevel": "Mức pin",
+      "LastCharged": "Sạc lần cuối đến 100% lúc 8:00",
+      "LowPowerMode": "Chế độ Nguồn điện thấp",
+      "Never": "Không bao giờ",
+      "BatteryHealth": "Tình trạng pin",
+      "Normal": "Bình thường",
+      "OptimisedCharging": "Sạc pin được tối ưu hóa",
+      "Options": "Tùy chọn..."
+    },
+    "Keyboard": {
+      "Title": "Bàn phím",
+      "Description": "Thay đổi cài đặt bàn phím.",
+      "KeyRepeat": "Tốc độ lặp phím",
+      "Slow": "Chậm",
+      "Fast": "Nhanh",
+      "DelayUntilRepeat": "Độ trễ đến khi lặp",
+      "Long": "Dài",
+      "Short": "Ngắn",
+      "AdjustBrightness": "Điều chỉnh độ sáng bàn phím trong điều kiện ánh sáng yếu",
+      "KeyboardNavigation": "Điều hướng bàn phím",
+      "Shortcuts": "Phím tắt...",
+      "TextInput": "Nhập văn bản",
+      "InputSources": "Nguồn đầu vào",
+      "Edit": "Sửa...",
+      "Dictation": "Đọc chính tả"
+    },
+    "LockScreen": {
+      "Title": "Màn hình khóa",
+      "Description": "Thay đổi cài đặt màn hình khóa.",
+      "TurnOffDisplayBattery": "Tắt màn hình khi dùng pin khi không hoạt động",
+      "TurnOffDisplayAdapter": "Tắt màn hình khi dùng bộ chuyển đổi nguồn khi không hoạt động",
+      "TwoMinutes": "2 phút",
+      "TenMinutes": "10 phút",
+      "RequirePassword": "Yêu cầu mật khẩu sau khi trình bảo vệ màn hình bắt đầu hoặc màn hình tắt",
+      "Immediately": "Ngay lập tức",
+      "ShowMessage": "Hiển thị thông báo khi bị khóa",
+      "Set": "Thiết lập...",
+      "LoginWindowShows": "Cửa sổ đăng nhập hiển thị",
+      "ListOfUsers": "Danh sách người dùng",
+      "ShowLargeClock": "Hiển thị đồng hồ lớn",
+      "OnLockScreen": "Trên màn hình khóa"
+    },
+    "PrivacySecurity": {
+      "Title": "Quyền riêng tư & Bảo mật",
+      "Description": "Kiểm soát ứng dụng nào có thể truy cập thông tin của bạn.",
+      "Privacy": "Quyền riêng tư",
+      "LocationServices": "Dịch vụ định vị",
+      "On": "Bật",
+      "Off": "Tắt",
+      "Camera": "Camera",
+      "Microphone": "Micrô",
+      "FilesFolders": "Tệp và Thư mục",
+      "ScreenRecording": "Ghi màn hình",
+      "AppsCount": "{count, plural, =0 {Không có ứng dụng} other {# ứng dụng}}",
+      "Security": "Bảo mật",
+      "FileVault": "FileVault",
+      "LockdownMode": "Chế độ phong tỏa",
+      "Others": "Khác",
+      "Extensions": "Phần mở rộng",
+      "Profiles": "Hồ sơ"
+    },
+    "PrintersScanners": {
+      "Title": "Máy in & Máy quét",
+      "Description": "Quản lý máy in và máy quét.",
+      "Printers": "Máy in",
+      "IdleLastUsed": "Nhàn rỗi, Lần cuối sử dụng",
+      "Offline": "Ngoại tuyến",
+      "AddPrinter": "Thêm Máy in, Máy quét hoặc Máy fax..."
+    },
+    "ScreenSaver": {
+      "Title": "Trình bảo vệ màn hình",
+      "Description": "Chọn trình bảo vệ màn hình.",
+      "Preview": "Xem trước",
+      "ShowOnAllSpaces": "Hiển thị trên tất cả các không gian",
+      "ScreenSavers": "Trình bảo vệ màn hình",
+      "StartAfter": "Bắt đầu sau",
+      "FiveMinutes": "5 phút",
+      "ShowWithClock": "Hiển thị với đồng hồ",
+      "ScreensaverNames": {
+        "Ventura": "Ventura",
+        "Monterey": "Monterey",
+        "BigSur": "Big Sur",
+        "Catalina": "Catalina",
+        "Hello": "Hello",
+        "Drift": "Trôi dạt",
+        "Flurry": "Gió giật",
+        "Shell": "Vỏ sò"
+      }
+    },
+    "Storage": {
+      "Title": "Dung lượng",
+      "Description": "Quản lý ổ đĩa và dữ liệu.",
+      "MacintoshHD": "Macintosh HD",
+      "AvailableSpace": "{available} GB / {total} GB khả dụng",
+      "Apps": "Ứng dụng",
+      "Documents": "Tài liệu",
+      "SystemData": "Dữ liệu hệ thống",
+      "macOS": "macOS",
+      "OtherUsers": "Người dùng khác",
+      "Recommendations": "Khuyến nghị",
+      "StoreInICloud": "Lưu trữ trên iCloud",
+      "StoreInICloudDesc": "Lưu trữ tất cả các tệp, ảnh và tin nhắn của bạn trên iCloud và tiết kiệm dung lượng trên máy Mac này.",
+      "StoreInICloudButton": "Lưu trữ trên iCloud...",
+      "Categories": "Danh mục",
+      "Applications": "Ứng dụng"
+    },
+    "TouchIDPassword": {
+      "Title": "Touch ID & Mật khẩu",
+      "Description": "Thêm dấu vân tay để mở khóa máy Mac.",
+      "TouchID": "Touch ID",
+      "Finger1": "Ngón tay 1",
+      "AddFingerprint": "Thêm dấu vân tay",
+      "UseTouchIDFor": "Sử dụng Touch ID cho:",
+      "UnlockingMac": "Mở khóa máy Mac của bạn",
+      "ApplePay": "Apple Pay",
+      "iTunesAppStore": "iTunes Store & App Store",
+      "AutoFillPasswords": "Tự động điền mật khẩu",
+      "Password": "Mật khẩu",
+      "LastChanged": "Thay đổi lần cuối: 24.11.2024",
+      "Change": "Thay đổi...",
+      "RequirePasswordScreenSaver": "Yêu cầu mật khẩu sau khi trình bảo vệ màn hình bắt đầu hoặc màn hình tắt",
+      "Immediately": "Ngay lập tức",
+      "RequirePasswordIdle": "Yêu cầu mật khẩu sau khi máy tính không hoạt động",
+      "Never": "Không bao giờ",
+      "Seconds": "{count} giây",
+      "Minute": "{count} phút",
+      "Minutes": "{count} phút",
+      "AppleWatch": "Apple Watch",
+      "AppleWatchUnlock": "Sử dụng Apple Watch để mở khóa ứng dụng và máy Mac của bạn"
+    },
+    "Trackpad": {
+      "Title": "Bàn di chuột",
+      "Description": "Thay đổi cài đặt bàn di chuột.",
+      "PointClick": "Trỏ & Nhấp",
+      "ScrollZoom": "Cuộn & Thu phóng",
+      "MoreGestures": "Cử chỉ khác",
+      "TrackingSpeed": "Tốc độ theo dõi",
+      "Slow": "Chậm",
+      "Fast": "Nhanh",
+      "Click": "Nhấp",
+      "Medium": "Trung bình",
+      "ForceClick": "Bấm mạnh và phản hồi xúc giác",
+      "LookUp": "Tra cứu & bộ dò tìm dữ liệu",
+      "SecondaryClick": "Bấm phụ",
+      "ClickTwoFingers": "Nhấp hoặc chạm bằng hai ngón tay",
+      "TapToClick": "Chạm để nhấp",
+      "VideoPreview": "Xem trước video"
+    },
+    "UsersGroups": {
+      "Title": "Người dùng & Nhóm",
+      "Description": "Quản lý tài khoản người dùng và nhóm.",
+      "CurrentUser": "Người dùng hiện tại",
+      "Admin": "Quản trị viên",
+      "OtherUsers": "Người dùng khác",
+      "GuestUser": "Người dùng khách",
+      "Off": "Tắt",
+      "AddAccount": "Thêm tài khoản...",
+      "AutoLogin": "Tự động đăng nhập",
+      "AllowNetworkUsers": "Cho phép người dùng mạng đăng nhập tại cửa sổ đăng nhập"
+    },
+    "Wallpaper": {
+      "Title": "Hình nền",
+      "Description": "Chọn hình nền máy tính.",
+      "ShowOnAllSpaces": "Hiển thị trên tất cả không gian",
+      "DynamicWallpapers": "Hình nền động",
+      "Pictures": "Hình ảnh",
+      "AddPhoto": "Thêm ảnh"
+    },
+    "LanguageSelector": {
+      "Title": "Chọn ngôn ngữ ưu tiên để thêm",
+      "Search": "Tìm kiếm",
+      "Cancel": "Hủy",
+      "Add": "Thêm"
+    }
+  },
+  "Languages": {
+    "English": "Tiếng Anh",
+    "Spanish": "Tiếng Tây Ban Nha",
+    "French": "Tiếng Pháp",
+    "German": "Tiếng Đức",
+    "Italian": "Tiếng Ý",
+    "Japanese": "Tiếng Nhật",
+    "Chinese": "Tiếng Trung",
+    "Portuguese": "Tiếng Bồ Đào Nha",
+    "Russian": "Tiếng Nga",
+    "Korean": "Tiếng Hàn",
+    "Dutch": "Tiếng Hà Lan",
+    "Swedish": "Tiếng Thụy Điển",
+    "Danish": "Tiếng Đan Mạch",
+    "Norwegian": "Tiếng Na Uy",
+    "Finnish": "Tiếng Phần Lan",
+    "Polish": "Tiếng Ba Lan",
+    "Turkish": "Tiếng Thổ Nhĩ Kỳ",
+    "Arabic": "Tiếng Ả Rập",
+    "Hindi": "Tiếng Hindi",
+    "Bengali": "Tiếng Bengal",
+    "Vietnamese": "Tiếng Việt",
+    "Thai": "Tiếng Thái",
+    "Greek": "Tiếng Hy Lạp",
+    "Czech": "Tiếng Séc",
+    "Hungarian": "Tiếng Hungary",
+    "Romanian": "Tiếng Rumani",
+    "Ukrainian": "Tiếng Ukraina",
+    "Indonesian": "Tiếng Indonesia",
+    "Malay": "Tiếng Mã Lai",
+    "Croatian": "Tiếng Croatia",
+    "Slovak": "Tiếng Slovak",
+    "Slovenian": "Tiếng Slovenia",
+    "Bulgarian": "Tiếng Bungari",
+    "Serbian": "Tiếng Serbia",
+    "Hebrew": "Tiếng Do Thái"
+  },
+  "Finder": {
+    "Search": "Tìm kiếm",
+    "Sidebar": {
+      "Favorites": "Mục ưa thích",
+      "Locations": "Vị trí",
+      "AirDrop": "AirDrop",
+      "Recents": "Gần đây",
+      "Applications": "Ứng dụng",
+      "Desktop": "Màn hình nền",
+      "Documents": "Tài liệu",
+      "Downloads": "Tải xuống",
+      "Pictures": "Hình ảnh",
+      "Home": "Trang chủ",
+      "MacintoshHD": "Macintosh HD",
+      "iCloudDrive": "iCloud Drive"
+    },
+    "Menu": {
+      "NewFolder": "Thư mục mới",
+      "GetInfo": "Lấy thông tin",
+      "ChangeBackground": "Thay đổi hình nền...",
+      "Open": "Mở",
+      "MoveToBin": "Chuyển vào thùng rác",
+      "Rename": "Đổi tên",
+      "OpenItems": "Mở {count} mục",
+      "MoveItemsToBin": "Chuyển {count} mục vào thùng rác"
+    },
+    "Status": {
+      "Loading": "Đang tải...",
+      "EmptyFolder": "Thư mục trống",
+      "ItemCount": "{count, plural, =1 {1 mục} other {# mục}}",
+      "SpaceAvailable": "{amount} GB khả dụng"
+    },
+    "Errors": {
+      "NoApp": "Không có ứng dụng nào được thiết lập để mở tài liệu \"{ext}\".",
+      "CreateFolderFailed": "Tạo thư mục thất bại",
+      "MoveToBinFailed": "Chuyển vào thùng rác thất bại"
+    }
+  },
+  "Safari": {
+    "Title": "Safari",
+    "StartPage": "Trang bắt đầu",
+    "Loading": "Đang tải...",
+    "SearchPlaceholder": "Tìm kiếm hoặc nhập tên trang web",
+    "NoInternet": "Không có kết nối Internet",
+    "NoInternetDesc": "Máy tính của bạn không được kết nối Internet. Trang này không thể hiển thị.",
+    "Favorites": {
+      "Apple": "Apple",
+      "Google": "Google",
+      "Wikipedia": "Wikipedia",
+      "GitHub": "GitHub"
+    }
+  },
+  "Mail": {
+    "Inbox": "Hộp thư đến",
+    "MessagesCount": "{count, plural, =1 {1 Tin nhắn} other {# Tin nhắn}}",
+    "Favorites": "Mục ưa thích",
+    "AllInboxes": "Tất cả hộp thư đến",
+    "VIP": "VIP",
+    "Sent": "Đã gửi",
+    "Search": "Tìm kiếm",
+    "NoMessageSelected": "Chưa chọn tin nhắn nào",
+    "To": "Tới: {name}"
+  },
+  "Messages": {
+    "AppTitle": "Tin nhắn",
+    "SigningIn": "Đang đăng nhập với tên {name}...",
+    "SidebarTitle": "Tin nhắn",
+    "NoOnlineUsers": "Không có người dùng trực tuyến.",
+    "NoMessages": "Không có tin nhắn",
+    "To": "Tới: {name}",
+    "InputPlaceholder": "iMessage",
+    "NoContactSelected": "Chọn một liên hệ để gửi tin nhắn"
+  },
+  "Photos": {
+    "Sidebar": {
+      "Library": "Thư viện",
+      "Collections": "Bộ sưu tập",
+      "Pinned": "Đã ghim",
+      "Albums": "Album",
+      "Utilities": "Tiện ích",
+      "Projects": "Dự án",
+      "Favourites": "Ưa thích",
+      "RecentlySaved": "Đã lưu gần đây",
+      "Videos": "Video",
+      "Screenshots": "Ảnh chụp màn hình",
+      "PeoplePets": "Mọi người & Thú cưng",
+      "SharedAlbums": "Album được chia sẻ",
+      "Activity": "Hoạt động",
+      "RecentlyDeleted": "Đã xóa gần đây",
+      "Duplicates": "Mục trùng lặp",
+      "Map": "Bản đồ",
+      "AllProjects": "Tất cả dự án"
+    },
+    "Tabs": {
+      "Years": "Năm",
+      "Months": "Tháng",
+      "AllPhotos": "Tất cả ảnh"
+    },
+    "Search": "Tìm kiếm",
+    "Collections": {
+      "Title": "Bộ sưu tập",
+      "Memories": "Kỷ niệm",
+      "NoMemories": "Không có kỷ niệm",
+      "NoMemoriesDesc": "Kỷ niệm sẽ xuất hiện ở đây khi được tạo.",
+      "Albums": "Album",
+      "NoAlbums": "Không có album"
+    },
+    "EmptyState": {
+      "NoItems": "Không có mục trong {title}"
+    },
+    "Locked": {
+      "Title": "{title} Bị khóa",
+      "Desc": "Xác thực để xem."
+    }
+  },
+  "Notes": {
+    "Sidebar": {
+      "iCloud": "iCloud",
+      "Notes": "Ghi chú",
+      "RecentlyDeleted": "Đã xóa gần đây"
+    },
+    "Search": "Tìm kiếm",
+    "NewNote": "Ghi chú mới",
+    "NoAdditionalText": "Không có văn bản bổ sung",
+    "Editor": {
+      "TitlePlaceholder": "Tiêu đề",
+      "ContentPlaceholder": "Bắt đầu nhập...",
+      "AddToDesktop": "Thêm vào màn hình nền",
+      "Restore": "Khôi phục",
+      "Delete": "Xóa ghi chú",
+      "DeletePermanently": "Xóa vĩnh viễn",
+      "EmptyState": "Chọn hoặc tạo ghi chú",
+      "Date": "Hôm nay {time}"
+    }
+  },
+  "Reminders": {
+    "Search": "Tìm kiếm",
+    "Sidebar": {
+      "MyLists": "Danh sách của tôi",
+      "Reminders": "Lời nhắc",
+      "Work": "Công việc",
+      "Today": "Hôm nay",
+      "Scheduled": "Đã lên lịch",
+      "All": "Tất cả",
+      "Flagged": "Đã gắn cờ"
+    },
+    "AddReminder": "Lời nhắc mới",
+    "Actions": {
+      "Add": "Thêm",
+      "Cancel": "Hủy",
+      "Delete": "Xóa lời nhắc",
+      "MarkComplete": "Đánh dấu là đã hoàn thành",
+      "MarkIncomplete": "Đánh dấu là chưa hoàn thành",
+      "Flag": "Gắn cờ",
+      "Unflag": "Bỏ gắn cờ"
+    },
+    "Inputs": {
+      "Title": "Tiêu đề",
+      "Notes": "Ghi chú",
+      "Date": "Ngày",
+      "Time": "Thời gian",
+      "Tags": "Thẻ"
+    },
+    "EmptyState": {
+      "NoReminders": "Không có lời nhắc",
+      "CreateOne": "Tạo lời nhắc"
+    }
+  },
+  "Calendar": {
+    "Search": "Tìm kiếm",
+    "Today": "Hôm nay",
+    "Day": "Ngày",
+    "Week": "Tuần",
+    "Month": "Tháng",
+    "Year": "Năm",
+    "AddEvent": "Thêm sự kiện",
+    "NoEvents": "Không có sự kiện",
+    "NewEvent": "Sự kiện mới",
+    "TitlePlaceholder": "Tiêu đề sự kiện",
+    "Location": "Vị trí",
+    "AllDay": "Cả ngày",
+    "From": "Từ",
+    "To": "Đến",
+    "Repeat": "Lặp lại",
+    "Never": "Không bao giờ",
+    "Daily": "Hàng ngày",
+    "Weekly": "Hàng tuần",
+    "Monthly": "Hàng tháng",
+    "Yearly": "Hàng năm",
+    "Alert": "Cảnh báo",
+    "AtTime": "Tại thời điểm sự kiện",
+    "5MinBefore": "5 phút trước",
+    "10MinBefore": "10 phút trước",
+    "15MinBefore": "15 phút trước",
+    "30MinBefore": "30 phút trước",
+    "1HourBefore": "1 giờ trước",
+    "2HoursBefore": "2 giờ trước",
+    "1DayBefore": "1 ngày trước",
+    "2DaysBefore": "2 ngày trước",
+    "Notes": "Ghi chú",
+    "DeleteEvent": "Xóa sự kiện",
+    "ShortDays": {
+      "Sun": "CN",
+      "Mon": "T2",
+      "Tue": "T3",
+      "Wed": "T4",
+      "Thu": "T5",
+      "Fri": "T6",
+      "Sat": "T7"
+    },
+    "Months": {
+      "January": "Tháng 1",
+      "February": "Tháng 2",
+      "March": "Tháng 3",
+      "April": "Tháng 4",
+      "May": "Tháng 5",
+      "June": "Tháng 6",
+      "July": "Tháng 7",
+      "August": "Tháng 8",
+      "September": "Tháng 9",
+      "October": "Tháng 10",
+      "November": "Tháng 11",
+      "December": "Tháng 12"
+    },
+    "Sidebar": {
+      "iCloud": "ICLOUD",
+      "Other": "OTHER",
+      "NoInvitations": "No invitations"
+    },
+    "Toolbar": {
+      "Today": "Today",
+      "SearchPlaceholder": "Search events...",
+      "View": {
+        "day": "day",
+        "week": "week",
+        "month": "month",
+        "year": "year"
+      }
+    },
+    "EventModal": {
+      "Title": "New Event",
+      "EventTitlePlaceholder": "Event Title",
+      "CalendarLabel": "Calendar",
+      "Cancel": "Cancel",
+      "AddEvent": "Add Event"
+    },
+    "SearchResults": {
+      "Title": "Search Results",
+      "NoEvents": "No events found"
+    },
+    "Event": {
+      "NoLocation": "No location",
+      "EventLabel": "Event: {title} at {location}"
+    },
+    "Weekdays": {
+      "Sun": "Sun",
+      "Mon": "Mon",
+      "Tue": "Tue",
+      "Wed": "Wed",
+      "Thu": "Thu",
+      "Fri": "Fri",
+      "Sat": "Sat"
+    },
+    "WeekdaysShort": {
+      "Sun": "S",
+      "Mon": "M",
+      "Tue": "T",
+      "Wed": "W",
+      "Thu": "T",
+      "Fri": "F",
+      "Sat": "S"
+    }
+  },
+  "Maps": {
+    "Search": "Tìm kiếm",
+    "SearchPlaceholder": "Tìm kiếm địa điểm hoặc địa chỉ",
+    "Directions": "Chỉ đường",
+    "From": "Từ",
+    "To": "Đến",
+    "Transport": {
+      "Drive": "Lái xe",
+      "Walk": "Đi bộ",
+      "Transit": "Phương tiện công cộng",
+      "Cycle": "Xe đạp"
+    },
+    "LocateMe": "Định vị tôi",
+    "ZoomIn": "Phóng to",
+    "ZoomOut": "Thu nhỏ",
+    "MapType": {
+      "Standard": "Tiêu chuẩn",
+      "Hybrid": "Lai",
+      "Satellite": "Vệ tinh"
+    },
+    "Sidebar": {
+      "Favorites": "FAVORITES",
+      "Recent": "RECENT",
+      "NoRecentSearches": "No recent searches",
+      "RecentLabel": "Recent"
+    },
+    "Locations": {
+      "Home": "Home",
+      "Work": "Work"
+    },
+    "Controls": {
+      "SwitchToSatellite": "Switch to Satellite",
+      "SwitchToSatelliteLabel": "Switch to Satellite view",
+      "SwitchToMap": "Switch to Map",
+      "SwitchToMapLabel": "Switch to Map view",
+      "CurrentLocation": "Current Location",
+      "ShowCurrentLocation": "Show current location",
+      "MapInfo": "Map information"
+    },
+    "Permission": {
+      "AppName": "Maps",
+      "Title": "Location",
+      "Reason": "Maps needs access to your location to show where you are.",
+      "Error": "Could not get your location. Please ensure location services are enabled.",
+      "NotSupported": "Geolocation is not supported by your browser."
+    }
+  },
+  "FaceTime": {
+    "AppName": "FaceTime",
+    "NewFaceTime": "FaceTime mới",
+    "CreateLink": "Tạo liên kết",
+    "EnterNameOrEmail": "Tên, email hoặc số",
+    "Suggested": "Gợi ý",
+    "NoRecents": "Không có cuộc gọi gần đây",
+    "FaceTimeVideo": "FaceTime Video",
+    "FaceTimeAudio": "FaceTime Âm thanh",
+    "JoinCall": "Tham gia",
+    "Waiting": "Đang chờ...",
+    "Connected": "Đã kết nối",
+    "Reconnecting": "Đang kết nối lại...",
+    "CallEnded": "Cuộc gọi đã kết thúc",
+    "Mute": "Tắt tiếng",
+    "Unmute": "Bật tiếng",
+    "VideoOff": "Tắt video",
+    "VideoOn": "Bật video",
+    "End": "Kết thúc",
+    "FullScreen": "Toàn màn hình",
+    "ExitFullScreen": "Thoát toàn màn hình",
+    "Effects": "Hiệu ứng",
+    "ShareScreen": "Chia sẻ màn hình",
+    "Connecting": "Đang kết nối...",
+    "Unavailable": "Không khả dụng",
+    "Title": "FaceTime",
+    "ConnectingAs": "Connecting as {name}...",
+    "IncomingCall": "{name} is calling...",
+    "Accept": "Accept",
+    "Decline": "Decline",
+    "Contacts": "Contacts",
+    "NoContacts": "No one else is online.",
+    "Video": "Video",
+    "SelectContact": "Select a contact to call",
+    "Aria": {
+      "RemoteVideo": "Remote video feed",
+      "LocalVideo": "Local video preview",
+      "EndCall": "End Call",
+      "CallContact": "Call {name}",
+      "VideoCallContact": "Video call {name}",
+      "LocalPreview": "Local camera preview"
+    },
+    "Permission": {
+      "AppName": "FaceTime",
+      "Title": "Camera and Microphone",
+      "Reason": "FaceTime needs access to your camera and microphone to make calls."
+    }
+  },
+  "Contacts": {
+    "Search": "Tìm kiếm",
+    "AllContacts": "Tất cả liên hệ",
+    "MyCard": "Thẻ của tôi",
+    "AddContact": "Thêm liên hệ",
+    "Edit": "Sửa",
+    "Done": "Xong",
+    "FirstName": "Tên",
+    "LastName": "Họ",
+    "Company": "Công ty",
+    "Phone": "Điện thoại",
+    "Email": "Email",
+    "Notes": "Ghi chú",
+    "Message": "Tin nhắn",
+    "Call": "Gọi",
+    "Video": "Video",
+    "Mail": "Mail",
+    "Pay": "Thanh toán",
+    "NoContacts": "Không có liên hệ",
+    "DeleteContact": "Xóa liên hệ",
+    "SearchPlaceholder": "Search",
+    "SearchAria": "Search contacts",
+    "Count": "{count} Contacts",
+    "EditContact": "Edit Contact",
+    "NewContact": "New Contact",
+    "Preview": "Preview",
+    "Cancel": "Cancel",
+    "NoNotes": "No notes",
+    "NoSelection": "No Contact Selected",
+    "Labels": {
+      "FirstName": "First Name",
+      "LastName": "Last Name",
+      "Company": "Company",
+      "Phone": "Phone",
+      "Email": "Email",
+      "Notes": "Notes",
+      "Mobile": "mobile",
+      "Home": "home",
+      "Message": "message",
+      "Video": "video",
+      "Mail": "mail"
+    },
+    "Alerts": {
+      "DeleteConfirm": "Are you sure you want to delete this contact?",
+      "NameRequired": "Please enter a name or company."
+    },
+    "Aria": {
+      "AddContact": "Add new contact",
+      "Contact": "Contact: {name}",
+      "Action": "{action} {name}"
+    }
+  },
+  "Calculator": {
+    "Clear": "C",
+    "AllClear": "AC",
+    "Negate": "+/-",
+    "Percent": "%",
+    "Divide": "÷",
+    "Multiply": "×",
+    "Subtract": "-",
+    "Add": "+",
+    "Equals": "=",
+    "Decimal": ".",
+    "AC": "AC",
+    "ToggleSign": "Toggle sign",
+    "Percentage": "Percentage",
+    "Calculate": "Calculate result"
+  },
+  "Clock": {
+    "WorldClock": "Đồng hồ thế giới",
+    "Alarm": "Báo thức",
+    "Stopwatch": "Đồng hồ bấm giờ",
+    "Timer": "Hẹn giờ",
+    "Add": "Thêm",
+    "Edit": "Sửa",
+    "Start": "Bắt đầu",
+    "Stop": "Dừng",
+    "Reset": "Đặt lại",
+    "Lap": "Vòng",
+    "Resume": "Tiếp tục",
+    "Pause": "Tạm dừng",
+    "Cancel": "Hủy",
+    "Save": "Lưu",
+    "Label": "Nhãn",
+    "Sound": "Âm thanh",
+    "Snooze": "Báo lại",
+    "WhenTimerEnds": "Khi hẹn giờ kết thúc",
+    "StopPlaying": "Dừng phát",
+    "Tabs": {
+      "WorldClock": "World Clock",
+      "Alarms": "Alarms",
+      "Stopwatch": "Stopwatch",
+      "Timers": "Timers"
+    },
+    "AddClock": "Add clock",
+    "Locations": {
+      "NewDelhi": "New Delhi"
+    },
+    "Today": "Today",
+    "HRS": "HRS"
+  },
+  "Weather": {
+    "Loading": "Đang tải...",
+    "Error": "Không thể tải thời tiết",
+    "SearchPlaceholder": "Tìm kiếm thành phố",
+    "MyLocation": "Vị trí của tôi",
+    "Humidity": "Độ ẩm",
+    "Wind": "Gió",
+    "Rain": "Mưa",
+    "FeelsLike": "Cảm giác như",
+    "UVIndex": "Chỉ số UV",
+    "Pressure": "Áp suất",
+    "Visibility": "Tầm nhìn",
+    "Sunrise": "Mặt trời mọc",
+    "Sunset": "Mặt trời lặn",
+    "Forecast": {
+      "Hourly": "Hourly Forecast",
+      "TenDay": "10-Day Forecast",
+      "Now": "Now",
+      "Today": "Today"
+    },
+    "Hourly": "Hàng giờ",
+    "Daily": "Hàng ngày",
+    "High": "Cao",
+    "Low": "Thấp",
+    "Conditions": {
+      "Clear": "Quang đãng",
+      "Cloudy": "Nhiều mây",
+      "Rain": "Mưa",
+      "Snow": "Tuyết",
+      "Thunderstorm": "Dông",
+      "Drizzle": "Mưa phùn",
+      "Mist": "Sương mù"
+    },
+    "Retry": "Retry",
+    "Searching": "Searching...",
+    "NoResults": "No results found",
+    "Recent": "Recent",
+    "Popular": "Popular",
+    "Sidebar": {
+      "Open": "Open sidebar",
+      "Close": "Close sidebar"
+    },
+    "Aria": {
+      "SelectLocation": "Select {name}, {country}"
+    },
+    "Details": {
+      "AirQuality": "Air Quality",
+      "UVIndex": "UV Index",
+      "Wind": "Wind",
+      "Sunset": "Sunset",
+      "Sunrise": "Sunrise:",
+      "FeelsLike": "Feels Like",
+      "Humidity": "Humidity",
+      "Visibility": "Visibility",
+      "Pressure": "Pressure",
+      "hPa": "hPa"
+    },
+    "Descriptions": {
+      "AirQualityDesc": "Air quality index is 130, similar to yesterday at about this time.",
+      "UVIndexDesc": "Use sun protection until 4PM.",
+      "FeelsLikeDesc": "Similar to the actual temperature.",
+      "DewPointDesc": "The dew point is {temp}° right now.",
+      "VisibilityDesc": "Perfectly clear view.",
+      "Footer": "Weather for {location} • Open-Meteo Data",
+      "PollutionLevel": "Moderately Polluted",
+      "UVLevel": "Moderate"
+    }
+  },
+  "Stocks": {
+    "Search": "Tìm kiếm",
+    "Watchlist": "Danh sách theo dõi",
+    "MarketOpen": "Thị trường mở cửa",
+    "MarketClosed": "Thị trường đóng cửa",
+    "PreMarket": "Trước giờ mở cửa",
+    "AfterHours": "Sau giờ đóng cửa",
+    "Loading": "Đang tải...",
+    "Error": "Lỗi khi tải dữ liệu",
+    "AddSymbol": "Thêm mã",
+    "Remove": "Xóa",
+    "Chart": "Biểu đồ",
+    "News": "Tin tức",
+    "Summary": "Tóm tắt",
+    "Open": "Mở cửa",
+    "High": "Cao",
+    "Low": "Thấp",
+    "Vol": "Khối lượng",
+    "PE": "P/E",
+    "MktCap": "Vốn hóa",
+    "52WHigh": "Cao nhất 52 tuần",
+    "52WLow": "Thấp nhất 52 tuần",
+    "AvgVol": "KL trung bình",
+    "Yield": "Lợi tức",
+    "Beta": "Beta",
+    "EPS": "EPS",
+    "Title": "Stocks",
+    "Searching": "Searching...",
+    "KeyStatistics": "Key Statistics",
+    "BusinessNews": "Business News",
+    "ShowMore": "Show More",
+    "Aria": {
+      "Search": "Search stocks",
+      "Select": "Select stock {symbol}",
+      "ReadNews": "Read news: {title}"
+    },
+    "Stats": {
+      "Open": "Open",
+      "High": "High",
+      "Low": "Low",
+      "Vol": "Vol",
+      "PE": "P/E",
+      "MktCap": "Mkt Cap",
+      "52WH": "52W H",
+      "52WL": "52W L"
+    }
+  },
+  "Desktop": {
+    "ContextMenu": {
+      "NewFolder": "Thư mục mới",
+      "GetInfo": "Lấy thông tin",
+      "ChangeDesktopBackground": "Thay đổi hình nền máy tính...",
+      "UseStacks": "Sử dụng ngăn xếp",
+      "SortBy": "Sắp xếp theo",
+      "CleanUp": "Dọn dẹp",
+      "CleanUpBy": "Dọn dẹp theo",
+      "ShowViewOptions": "Hiển thị tùy chọn xem",
+      "ChangeWallpaper": "Change Wallpaper...",
+      "EditWidgets": "Edit Widgets...",
+      "Tags": "Tags",
+      "None": "None",
+      "SnapToGrid": "Snap to Grid",
+      "Name": "Name",
+      "Kind": "Kind",
+      "DateLastOpened": "Date Last Opened",
+      "DateAdded": "Date Added",
+      "DateModified": "Date Modified",
+      "DateCreated": "Date Created",
+      "Size": "Size"
+    },
+    "SortOptions": {
+      "Name": "Tên",
+      "Kind": "Loại",
+      "DateLastOpened": "Ngày mở lần cuối",
+      "DateAdded": "Ngày thêm",
+      "DateModified": "Ngày sửa đổi",
+      "DateCreated": "Ngày tạo",
+      "Size": "Kích thước",
+      "Tags": "Thẻ"
+    },
+    "Guest": "Guest",
+    "UntitledFolder": "untitled folder",
+    "NoAppAvailable": "No application available to open .{ext} files.",
+    "MoveToBin": {
+      "Failed": "Failed to move to bin",
+      "NotSupported": "Failed to move to bin. Folder moves not fully supported yet."
+    }
+  },
+  "ControlCenter": {
+    "Title": "Trung tâm điều khiển",
+    "WiFi": "Wi-Fi",
+    "Bluetooth": "Bluetooth",
+    "AirDrop": "AirDrop",
+    "DoNotDisturb": "Không làm phiền",
+    "KeyboardBrightness": "Độ sáng bàn phím",
+    "ScreenMirroring": "Phản chiếu màn hình",
+    "Display": "Màn hình",
+    "Sound": "Âm thanh",
+    "Playing": "Đang phát",
+    "On": "Bật",
+    "Off": "Tắt",
+    "NotConnected": "Chưa kết nối",
+    "Connect": "Kết nối",
+    "HomeNetwork": "Home Network",
+    "ContactsOnly": "Contacts Only",
+    "NotPlaying": "Not Playing",
+    "Music": "Music"
+  },
+  "LockScreenApp": {
+    "EnterPassword": "Nhập mật khẩu",
+    "ClickToUnlock": "Nhấp để mở khóa",
+    "TouchID": "Touch ID",
+    "Cancel": "Hủy",
+    "SwitchUser": "Chuyển đổi người dùng"
+  },
+  "NotificationCenter": {
+    "Title": "Trung tâm thông báo",
+    "NoNotifications": "Không có thông báo",
+    "ClearAll": "Xóa tất cả",
+    "Widgets": "Widgets",
+    "Done": "Done",
+    "Edit": "Edit",
+    "AddWidget": "Add Widget"
+  },
+  "Widgets": {
+    "AllWidgets": "Tất cả tiện ích",
+    "Search": "Tìm kiếm",
+    "AddWidget": "Thêm tiện ích",
+    "Loading": "Loading...",
+    "Calendar": {
+      "Title": "Calendar"
+    },
+    "Weather": {
+      "Title": "Weather"
+    },
+    "Stocks": {
+      "Title": "Stocks"
+    },
+    "Reminders": {
+      "Title": "Reminders",
+      "NoReminders": "No reminders"
+    },
+    "Notes": {
+      "Title": "Notes",
+      "Content": "Buy milk, eggs, and bread.<br />Call mom at 5pm.<br />Meeting with team tomorrow."
+    }
+  },
+  "Window": {
+    "Minimize": "Thu nhỏ",
+    "Maximize": "Phóng to",
+    "Close": "Đóng",
+    "Restore": "Restore",
+    "MoveTo": "Move Window to...",
+    "LeftSide": "Left Side of Screen",
+    "RightSide": "Right Side of Screen",
+    "EnterFullScreen": "Enter Full Screen"
+  },
+  "Dock": {
+    "Trash": "Thùng rác",
+    "AriaLabel": "Application dock"
+  },
+  "Apps": {
+    "VSCode": {
+      "Title": "Visual Studio Code"
+    },
+    "LeetCode": {
+      "Title": "LeetCode",
+      "Common": {
+        "Loading": "Loading Profile...",
+        "NoData": "No data",
+        "Retry": "Retry",
+        "ShowMore": "Show more",
+        "GoToLeetCode": "Go to LeetCode"
+      },
+      "Badges": {
+        "Title": "Badges",
+        "MostRecent": "Most Recent Badge"
+      },
+      "Stats": {
+        "Title": "Community Stats",
+        "Views": "Views",
+        "Solution": "Solution",
+        "Discuss": "Discuss",
+        "Reputation": "Reputation"
+      },
+      "Languages": {
+        "Title": "Languages",
+        "ProblemsSolved": "problems solved"
+      },
+      "Profile": {
+        "Rank": "Rank"
+      },
+      "Submissions": {
+        "RecentAC": "Recent AC",
+        "List": "List",
+        "Solutions": "Solutions",
+        "Discuss": "Discuss",
+        "TimeAgo": "2 months ago"
+      },
+      "Skills": {
+        "Title": "Skills",
+        "Advanced": "Advanced",
+        "Intermediate": "Intermediate"
+      },
+      "Solved": {
+        "Solved": "Solved",
+        "Easy": "Easy",
+        "Medium": "Med.",
+        "Hard": "Hard"
+      },
+      "Calendar": {
+        "SubmissionsLastYear": "submissions in the past one year",
+        "TotalActiveDays": "Total active days:",
+        "MaxStreak": "Max streak:",
+        "Current": "Current",
+        "Months": {
+          "Jan": "Jan",
+          "Feb": "Feb",
+          "Mar": "Mar",
+          "Apr": "Apr",
+          "May": "May",
+          "Jun": "Jun",
+          "Jul": "Jul",
+          "Aug": "Aug",
+          "Sep": "Sep",
+          "Oct": "Oct",
+          "Nov": "Nov",
+          "Dec": "Dec"
+        }
+      }
+    },
+    "V86": {
+      "Title": "Máy ảo",
+      "NoFileSelected": "No file selected",
+      "ScriptLoadError": "Failed to load V86 script",
+      "FileReadError": "Failed to read file",
+      "StartError": "Failed to start emulator",
+      "Booting": "Booting {filename}...",
+      "ErrorPrefix": "Error: {error}",
+      "ClickToCapture": "Click to capture mouse (Esc to release)"
+    },
+    "Finder": "Finder",
+    "Launchpad": "Launchpad",
+    "Safari": "Safari",
+    "Messages": "Tin nhắn",
+    "Mail": "Mail",
+    "Maps": "Bản đồ",
+    "Photos": "Ảnh",
+    "FaceTime": "FaceTime",
+    "Calendar": "Lịch",
+    "Contacts": "Danh bạ",
+    "Reminders": "Lời nhắc",
+    "Notes": "Ghi chú",
+    "TV": "TV",
+    "Music": "Nhạc",
+    "News": "Tin tức",
+    "SystemSettings": "Cài đặt hệ thống",
+    "AppStore": "App Store",
+    "Trash": "Thùng rác",
+    "Freeform": "Freeform",
+    "Terminal": "Terminal",
+    "Calculator": "Calculator",
+    "TextEdit": "TextEdit",
+    "MediaPlayer": "Media Player",
+    "Preview": "Preview",
+    "VirtualMachine": "Virtual Machine"
+  },
+  "News": {
+    "Title": "News",
+    "Categories": {
+      "TopStories": "Top Stories",
+      "Technology": "Technology",
+      "Business": "Business",
+      "Science": "Science",
+      "Health": "Health",
+      "Entertainment": "Entertainment",
+      "Sports": "Sports"
+    },
+    "SearchPlaceholder": "Search stories...",
+    "SearchLabel": "Search",
+    "SearchTitle": "Search: \"{query}\"",
+    "Loading": "Loading top stories...",
+    "Error": "Failed to load news. Please try again later.",
+    "TryAgain": "Try Again",
+    "NoResults": "No stories found matching \"{query}\"",
+    "ClearSearch": "Clear Search",
+    "TopStory": "Top Story",
+    "Refresh": "Refresh",
+    "Aria": {
+      "Category": "Category: {label}",
+      "Search": "Search stories",
+      "Refresh": "Refresh news",
+      "ReadTopStory": "Read top story: {title}",
+      "ReadArticle": "Read article: {title}",
+      "Share": "Share article",
+      "Like": "Like article"
+    }
+  },
+  "Music": {
+    "AppleMusic": "Apple Music",
+    "Library": "Library",
+    "ListenNow": "Listen Now",
+    "Browse": "Browse",
+    "Radio": "Radio",
+    "RecentlyAdded": "Recently Added",
+    "Artists": "Artists",
+    "Albums": "Albums",
+    "Songs": "Songs",
+    "Search": "Search",
+    "SearchTitle": "Search: {query}",
+    "Aria": {
+      "Search": "Search music",
+      "GoBack": "Go back",
+      "GoForward": "Go forward",
+      "Prev": "Previous song",
+      "Next": "Next song",
+      "Play": "Play",
+      "Pause": "Pause",
+      "PlaySong": "Play {track} by {artist}",
+      "PauseSong": "Pause {track}",
+      "Lyrics": "Toggle lyrics",
+      "Queue": "Toggle queue",
+      "Mute": "Toggle mute",
+      "VolSlider": "Volume slider",
+      "SeekSlider": "Seek slider"
+    },
+    "Queue": {
+      "Title": "Playing Next",
+      "Empty": "Queue is empty"
+    },
+    "Lyrics": {
+      "NotAvailable": "Lyrics are not available for this song in the preview mode.",
+      "Imagine": "But imagine the lyrics appearing here, perfectly synced with the music...",
+      "Lalala": "La la la...",
+      "Placeholder": "Play a song to see lyrics"
+    }
+  },
+  "TV": {
+    "WatchNow": "Watch Now",
+    "Movies": "Movies",
+    "TVShows": "TV Shows",
+    "Kids": "Kids",
+    "Library": "Library",
+    "SearchResults": "Search Results",
+    "NoShows": "No shows found.",
+    "SearchPlaceholder": "Search",
+    "SearchLabel": "Search TV Shows",
+    "Series": "Series",
+    "PlayEpisode": "Play Episode 1",
+    "AddToUpNext": "Add to Up Next",
+    "Added": "Added",
+    "OpenYouTube": "Open in YouTube",
+    "ViewAccount": "View Account",
+    "Aria": {
+      "Play": "Play {name}",
+      "CloseVideo": "Close video",
+      "AddLibrary": "Add to Library",
+      "RemoveLibrary": "Remove from Library"
+    },
+    "Genres": {
+      "Drama": "Drama",
+      "Action": "Action",
+      "Comedy": "Comedy",
+      "ScienceFiction": "Science-Fiction",
+      "Thriller": "Thriller"
+    }
+  },
+  "Terminal": {
+    "Guest": "Guest",
+    "Welcome": "Welcome to Terminal",
+    "HelpPrompt": "Type 'help' for a list of commands.",
+    "AvailableCommands": "Available commands: ls, cd, pwd, mkdir, touch, echo, cat, clear, whoami, ping, man, rm, rmdir, vi",
+    "CommandNotFound": "command not found: {command}",
+    "Error": "Error: {message}",
+    "AriaInput": "Terminal Input",
+    "Usage": {
+      "Ping": "usage: ping host",
+      "Mkdir": "usage: mkdir directory_name",
+      "Rmdir": "usage: rmdir directory_name",
+      "Rm": "usage: rm [-rf] file_name",
+      "Touch": "usage: touch file_name",
+      "Cat": "usage: cat file_name",
+      "Vi": "usage: vi file_name",
+      "Man": "What manual page do you want?"
+    },
+    "Errors": {
+      "PingResolve": "ping: cannot resolve {host}: Unknown host",
+      "NoManual": "No manual entry for {command}",
+      "NoSuchFile": "{cmd}: {path}: No such file or directory",
+      "NotADirectory": "{cmd}: {path}: Not a directory",
+      "DirectoryNotEmpty": "{cmd}: {path}: Directory not empty",
+      "IsADirectory": "{cmd}: {path}: is a directory"
+    },
+    "Messages": {
+      "PingStats": "PING {host} (127.0.0.1): 56 data bytes\n64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.045 ms\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.082 ms\n64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.067 ms\n\n--- {host} ping statistics ---\n3 packets transmitted, 3 packets received, 0.0% packet loss",
+      "OpeningTextEdit": "Opening {file} in TextEdit..."
+    },
+    "ManPages": {
+      "ls": "ls - list directory contents\n\nUsage: ls [options] [file|dir]\n\nOptions:\n  -a, --all      do not ignore entries starting with .\n  -l             use a long listing format",
+      "cd": "cd - change the shell working directory\n\nUsage: cd [dir]\n\nChange the current directory to DIR. The default DIR is the value of the HOME shell variable.",
+      "pwd": "pwd - print name of current/working directory\n\nUsage: pwd\n\nPrint the full filename of the current working directory.",
+      "mkdir": "mkdir - make directories\n\nUsage: mkdir [DIRECTORY]\n\nCreate the DIRECTORY(ies), if they do not already exist.",
+      "touch": "touch - change file timestamps\n\nUsage: touch [FILE]\n\nUpdate the access and modification times of each FILE to the current time. If FILE does not exist it is created empty.",
+      "echo": "echo - display a line of text\n\nUsage: echo [STRING]...\n\nEcho the STRING(s) to standard output.",
+      "cat": "cat - concatenate files and print on the standard output\n\nUsage: cat [FILE]...\n\nConcatenate FILE(s) to standard output.",
+      "clear": "clear - clear the terminal screen\n\nUsage: clear",
+      "whoami": "whoami - print effective userid\n\nUsage: whoami\n\nPrint the user name associated with the current effective user ID.",
+      "ping": "ping - send ICMP ECHO_REQUEST to network hosts\n\nUsage: ping [HOST]\n\nSend ICMP ECHO_REQUEST to network hosts.",
+      "man": "man - an interface to the system reference manuals\n\nUsage: man [COMMAND]\n\nDisplay the manual page for COMMAND.",
+      "rm": "rm - remove files or directories\n\nUsage: rm [OPTION]... [FILE]...\n\nRemove (unlink) the FILE(s).\n\nOptions:\n  -r, -R, --recursive   remove directories and their contents recursively\n  -f, --force           ignore nonexistent files and arguments, never prompt",
+      "rmdir": "rmdir - remove empty directories\n\nUsage: rmdir [DIRECTORY]...\n\nRemove the DIRECTORY(ies), if they are empty.",
+      "vi": "vi - screen-oriented (visual) display editor\n\nUsage: vi [FILE]\n\nEdit FILE."
+    }
+  },
+  "TextEdit": {
+    "Guest": "Guest",
+    "Untitled": "Untitled.txt",
+    "Save": "Save",
+    "Loading": "Loading...",
+    "Placeholder": "Type your notes here...",
+    "SavedAlert": "Saved to {path}/{filename}"
+  },
+  "PDFViewer": {
+    "Document": "Document.pdf",
+    "PageInfo": "Page {current} of {total}",
+    "View": "View",
+    "ZoomIn": "Zoom In",
+    "ZoomOut": "Zoom Out",
+    "LoadingThumbnails": "Loading thumbnails...",
+    "Loading": "Loading...",
+    "NoPDF": "No PDF",
+    "FailedToLoad": "Failed to load PDF",
+    "NoPDFLoaded": "No PDF loaded"
+  },
+  "Spotlight": {
+    "Placeholder": "Spotlight Search",
+    "SearchWebFor": "Search Web for \"{query}\"",
+    "NoResults": "No results found",
+    "Open": "Open",
+    "Kinds": {
+      "Web": "Web Search",
+      "App": "Application",
+      "Directory": "Directory",
+      "File": "File"
+    },
+    "Aria": {
+      "Open": "Open {name}"
+    }
+  },
+  "MenuBar": {
+    "Apple": {
+      "AboutThisMac": "About This Mac",
+      "SystemSettings": "System Settings...",
+      "AppStore": "App Store...",
+      "RecentItems": "Recent Items",
+      "ForceQuit": "Force Quit...",
+      "Sleep": "Sleep",
+      "Restart": "Restart...",
+      "ShutDown": "Shut Down...",
+      "LockScreen": "Lock Screen"
+    },
+    "App": {
+      "About": "About {app}",
+      "Quit": "Quit {app}"
+    },
+    "File": {
+      "Title": "File",
+      "New": "New",
+      "Open": "Open...",
+      "Save": "Save",
+      "Duplicate": "Duplicate",
+      "NewFinderWindow": "New Finder Window",
+      "NewFolder": "New Folder",
+      "GetInfo": "Get Info"
+    },
+    "Edit": {
+      "Title": "Edit",
+      "Undo": "Undo",
+      "Redo": "Redo",
+      "Cut": "Cut",
+      "Copy": "Copy",
+      "Paste": "Paste"
+    },
+    "View": {
+      "Title": "View",
+      "AsIcons": "As Icons",
+      "AsList": "As List",
+      "AsColumns": "As Columns"
+    },
+    "Window": {
+      "Title": "Window",
+      "Minimize": "Minimize",
+      "Zoom": "Zoom"
+    },
+    "Help": {
+      "Title": "Help",
+      "MacOSHelp": "macOS Help"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "KnownNetworks": "Known Networks",
+      "OtherNetworks": "Other Networks",
+      "Settings": "Wi-Fi Settings..."
+    },
+    "Battery": {
+      "Title": "Battery",
+      "PowerSource": "Power Source: {source}",
+      "PowerAdapter": "Power Adapter",
+      "Battery": "Battery",
+      "EnergyMode": "Energy Mode",
+      "Automatic": "Automatic",
+      "LowPower": "Low Power",
+      "HighPower": "High Power",
+      "SignificantEnergy": "Using Significant Energy",
+      "Settings": "Battery Settings..."
+    },
+    "Aria": {
+      "Clipboard": "Clipboard",
+      "MediaPlayer": "Media Player",
+      "Spotlight": "Spotlight Search",
+      "ControlCenter": "Control Center",
+      "Siri": "Siri",
+      "Clock": "Clock and Notification Center"
+    }
+  },
+  "WeatherDropdown": {
+    "Searching": "Searching...",
+    "SearchCity": "Search city...",
+    "Now": "Now",
+    "Today": "Today",
+    "OpenWeather": "Open Weather"
+  },
+  "LockScreen": {
+    "IncorrectPassword": "Incorrect password",
+    "Guest": "Guest",
+    "EnterPassword": "Enter Password",
+    "Hint": "Touch ID or enter password (hint: {hint})",
+    "Login": "Login",
+    "Cancel": "Cancel",
+    "Aria": {
+      "UserAvatar": "User avatar, click to login",
+      "User": "User {name}, click to login",
+      "Password": "Password",
+      "Submit": "Submit password"
+    }
+  }
 }

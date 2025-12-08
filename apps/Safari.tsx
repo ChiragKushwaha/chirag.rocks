@@ -54,9 +54,10 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
   const activeTab = tabs.find((t) => t.id === activeTabId) || tabs[0];
   const currentUrl = activeTab.history[activeTab.currentIndex];
 
+  // Sync urlInput with currentUrl when it changes
   useEffect(() => {
     setUrlInput(currentUrl);
-  }, [currentUrl, activeTabId]);
+  }, [currentUrl]);
 
   // Listen for metadata messages from proxy
   useEffect(() => {
@@ -343,7 +344,7 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
                 unoptimized
               />
             ) : (
-              <div className="w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 flex-shrink-0" />
+              <div className="w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 shrink-0" />
             )}
             <span className="truncate flex-1 text-center">
               {tab.title || "Start Page"}
@@ -367,9 +368,7 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
         {currentUrl ? (
           <iframe
             ref={iframeRef}
-            src={`http://localhost:3002/proxy?url=${encodeURIComponent(
-              currentUrl
-            )}`}
+            src={`/api/proxy?url=${encodeURIComponent(currentUrl)}`}
             className="w-full h-full border-none"
             title="Browser Content"
             sandbox="allow-scripts allow-same-origin allow-forms allow-popups"

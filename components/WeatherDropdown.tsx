@@ -10,6 +10,7 @@ import { MapPin, Search } from "lucide-react";
 import { useProcessStore } from "../store/processStore";
 import { Weather } from "../apps/Weather";
 import { WeatherIcon } from "./icons/WeatherIcon";
+import { useTranslations } from "next-intl";
 
 interface WeatherDropdownProps {
   weather: WeatherData;
@@ -27,6 +28,7 @@ export const WeatherDropdown: React.FC<WeatherDropdownProps> = ({
   const [mounted, setMounted] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const { launchProcess } = useProcessStore();
+  const t = useTranslations("WeatherDropdown");
 
   // Search State
   const [searchQuery, setSearchQuery] = useState("");
@@ -120,7 +122,7 @@ export const WeatherDropdown: React.FC<WeatherDropdownProps> = ({
           />
           <input
             type="text"
-            placeholder={isSearching ? "Searching..." : "Search city..."}
+            placeholder={isSearching ? t("Searching") : t("SearchCity")}
             value={searchQuery}
             onChange={handleSearch}
             className="w-full bg-black/20 border border-white/10 rounded-lg pl-8 pr-3 py-1 text-sm text-white placeholder-white/40 focus:outline-none focus:bg-black/40 focus:border-white/30 transition-all"
@@ -179,7 +181,7 @@ export const WeatherDropdown: React.FC<WeatherDropdownProps> = ({
             return (
               <span key={time}>
                 {isNow
-                  ? "Now"
+                  ? t("Now")
                   : `${hour % 12 || 12}${hour >= 12 ? "PM" : "AM"}`}
               </span>
             );
@@ -207,7 +209,7 @@ export const WeatherDropdown: React.FC<WeatherDropdownProps> = ({
           const date = new Date(time);
           const dayName =
             i === 0
-              ? "Today"
+              ? t("Today")
               : date.toLocaleDateString("en-US", { weekday: "long" });
           const info = getWeatherInfo(currentWeather.daily.code[i]);
           const Icon = info.icon;
@@ -242,7 +244,7 @@ export const WeatherDropdown: React.FC<WeatherDropdownProps> = ({
         className="px-4 py-2 border-t border-white/10 text-xs opacity-50 hover:bg-white/5 cursor-pointer transition-colors"
         onClick={openWeatherApp}
       >
-        Open Weather
+        {t("OpenWeather")}
       </div>
     </div>,
     document.body

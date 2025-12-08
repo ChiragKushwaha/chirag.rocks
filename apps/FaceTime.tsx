@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { usePermission } from "../context/PermissionContext";
 import { useSocketStore } from "../store/socketStore";
 import { useSystemStore } from "../store/systemStore";
+import { useTranslations } from "next-intl";
 
 export const FaceTime: React.FC = () => {
   const {
@@ -19,6 +20,7 @@ export const FaceTime: React.FC = () => {
   } = useSocketStore();
   const { user } = useSystemStore();
   const { requestPermission } = usePermission();
+  const t = useTranslations("FaceTime");
 
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const previewVideoRef = useRef<HTMLVideoElement>(null);
@@ -52,10 +54,10 @@ export const FaceTime: React.FC = () => {
       if (!localStreamRef.current) {
         try {
           const allowed = await requestPermission(
-            "FaceTime",
+            t("Permission.AppName"),
             "📷",
-            "Camera and Microphone",
-            "FaceTime needs access to your camera and microphone to make calls.",
+            t("Permission.Title"),
+            t("Permission.Reason"),
             "camera"
           );
 
@@ -85,7 +87,7 @@ export const FaceTime: React.FC = () => {
     if (!isCallActive) {
       initStream();
     }
-  }, [isCallActive, requestPermission]);
+  }, [isCallActive, requestPermission, t]);
 
   // Attach stream to active call video when it becomes active
   useEffect(() => {
@@ -131,10 +133,10 @@ export const FaceTime: React.FC = () => {
 
     try {
       const allowed = await requestPermission(
-        "FaceTime",
+        t("Permission.AppName"),
         "📷",
-        "Camera and Microphone",
-        "FaceTime needs access to your camera and microphone to make calls.",
+        t("Permission.Title"),
+        t("Permission.Reason"),
         "camera"
       );
 
@@ -241,9 +243,9 @@ export const FaceTime: React.FC = () => {
   if (!isConnected) {
     return (
       <div className="flex flex-col items-center justify-center h-full bg-gray-900 text-white p-4">
-        <div className="text-3xl font-bold mb-4">FaceTime</div>
+        <div className="text-3xl font-bold mb-4">{t("Title")}</div>
         <div className="animate-pulse text-gray-400">
-          Connecting as {user.name}...
+          {t("ConnectingAs", { name: user.name })}
         </div>
       </div>
     );
@@ -254,19 +256,21 @@ export const FaceTime: React.FC = () => {
       {/* Incoming Call Overlay */}
       {incomingCall && !isCallActive && (
         <div className="absolute inset-0 bg-black/80 z-50 flex flex-col items-center justify-center">
-          <div className="text-2xl mb-4">{incomingCall.name} is calling...</div>
+          <div className="text-2xl mb-4">
+            {t("IncomingCall", { name: incomingCall.name })}
+          </div>
           <div className="flex gap-4">
             <button
               className="bg-green-500 px-6 py-3 rounded-full font-bold"
               onClick={acceptCall}
             >
-              Accept
+              {t("Accept")}
             </button>
             <button
               className="bg-red-500 px-6 py-3 rounded-full font-bold"
               onClick={() => setIncomingCall(null)}
             >
-              Decline
+              {t("Decline")}
             </button>
           </div>
         </div>
@@ -280,7 +284,7 @@ export const FaceTime: React.FC = () => {
             autoPlay
             playsInline
             className="w-full h-full object-cover"
-            aria-label="Remote video feed"
+            aria-label={t("Aria.RemoteVideo")}
           />
           {/* Local Video (PIP) */}
           <div className="absolute top-4 right-4 w-32 h-48 bg-black rounded-lg overflow-hidden border-2 border-white/20 shadow-lg">
@@ -290,7 +294,7 @@ export const FaceTime: React.FC = () => {
               playsInline
               muted
               className="w-full h-full object-cover"
-              aria-label="Local video preview"
+              aria-label={t("Aria.LocalVideo")}
             />
           </div>
           {/* Controls */}
@@ -311,10 +315,10 @@ export const FaceTime: React.FC = () => {
                     .forEach((track) => track.stop());
                 }
               }}
-              aria-label="End Call"
+              aria-label={t("Aria.EndCall")}
             >
               <PhoneOff size={24} />
-              <span>End</span>
+              <span>{t("End")}</span>
             </button>
           </div>
         </div>
@@ -322,9 +326,9 @@ export const FaceTime: React.FC = () => {
         <div className="flex-1 flex">
           {/* Sidebar */}
           <div className="w-1/3 border-r border-gray-700 bg-gray-800 p-4">
-            <div className="text-xl font-bold mb-4">Contacts</div>
+            <div className="text-xl font-bold mb-4">{t("Contacts")}</div>
             {users.length === 0 && (
-              <div className="text-gray-400">No one else is online.</div>
+              <div className="text-gray-400">{t("NoContacts")}</div>
             )}
             {users.map((user) => (
               <div
@@ -337,7 +341,7 @@ export const FaceTime: React.FC = () => {
                     callUser(user.id);
                   }
                 }}
-                aria-label={`Call ${user.name}`}
+                aria-label={t("Aria.CallContact", { name: user.name })}
               >
                 <span>{user.name}</span>
                 <button
@@ -346,9 +350,9 @@ export const FaceTime: React.FC = () => {
                     e.stopPropagation();
                     callUser(user.id);
                   }}
-                  aria-label={`Video call ${user.name}`}
+                  aria-label={t("Aria.VideoCallContact", { name: user.name })}
                 >
-                  Video
+                  {t("Video")}
                 </button>
               </div>
             ))}
@@ -357,9 +361,7 @@ export const FaceTime: React.FC = () => {
           <div className="flex-1 flex items-center justify-center bg-gray-900">
             <div className="text-center">
               <div className="text-6xl mb-4">📹</div>
-              <div className="text-xl text-gray-400">
-                Select a contact to call
-              </div>
+              <div className="text-xl text-gray-400">{t("SelectContact")}</div>
               <div className="mt-4 w-64 h-48 bg-black rounded-lg overflow-hidden mx-auto border border-gray-700">
                 {/* Preview Local Video */}
                 <video
@@ -368,7 +370,7 @@ export const FaceTime: React.FC = () => {
                   playsInline
                   muted
                   className="w-full h-full object-cover"
-                  aria-label="Local camera preview"
+                  aria-label={t("Aria.LocalPreview")}
                 />
               </div>
             </div>

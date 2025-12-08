@@ -5,8 +5,10 @@ import { useSystemStore } from "../store/systemStore";
 import { MenuBar } from "./MenuBar";
 import { WallpaperManager } from "../lib/WallpaperManager";
 import { useAsset } from "./hooks/useIconManager";
+import { useTranslations } from "next-intl";
 
 export const LockScreen: React.FC = () => {
+  const t = useTranslations("LockScreen");
   const { isLocked, isInitialized, unlock } = useAuth();
   const { wallpaperName, theme, user, isDark } = useSystemStore();
   const [password, setPassword] = useState("");
@@ -27,7 +29,7 @@ export const LockScreen: React.FC = () => {
       setError("");
       setShowPasswordField(true);
     } else {
-      setError("Incorrect password");
+      setError(t("IncorrectPassword"));
       setPassword("");
     }
   };
@@ -89,7 +91,7 @@ export const LockScreen: React.FC = () => {
               handleUserClick();
             }
           }}
-          aria-label="User avatar, click to login"
+          aria-label={t("Aria.UserAvatar")}
         >
           {/* Fingerprint icon */}
           <svg
@@ -114,9 +116,9 @@ export const LockScreen: React.FC = () => {
               handleUserClick();
             }
           }}
-          aria-label={`User ${user.name || "Guest"}, click to login`}
+          aria-label={t("Aria.User", { name: user.name || t("Guest") })}
         >
-          {user.name || "Guest"}
+          {user.name || t("Guest")}
         </div>
 
         {/* Password Input - Big Sur Style - Show only if showPasswordField is true */}
@@ -131,8 +133,8 @@ export const LockScreen: React.FC = () => {
                   setError("");
                 }}
                 onKeyDown={(e) => e.key === "Enter" && handleUnlock()}
-                placeholder="Enter Password"
-                aria-label="Password"
+                placeholder={t("EnterPassword")}
+                aria-label={t("Aria.Password")}
                 className={`w-[320px] bg-white/90 dark:bg-[#1e1e1e]/90 backdrop-blur-xl border ${
                   error
                     ? "border-red-500"
@@ -146,7 +148,7 @@ export const LockScreen: React.FC = () => {
                 <button
                   onClick={handleUnlock}
                   className="absolute right-3 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center transition-colors shadow-lg"
-                  aria-label="Submit password"
+                  aria-label={t("Aria.Submit")}
                 >
                   <svg
                     className="w-4 h-4 text-white"
@@ -170,7 +172,7 @@ export const LockScreen: React.FC = () => {
 
             {/* Hint Text */}
             <p className="text-white/80 dark:text-white/70 text-xs drop-shadow text-center">
-              Touch ID or enter password (hint: {user.password || "Dumas"})
+              {t("Hint", { hint: user.password || "Dumas" })}
             </p>
           </div>
         )}
@@ -194,7 +196,9 @@ export const LockScreen: React.FC = () => {
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </div>
-            <span className="text-xs font-medium drop-shadow">Login</span>
+            <span className="text-xs font-medium drop-shadow">
+              {t("Login")}
+            </span>
           </button>
         </div>
       ) : (
@@ -206,7 +210,9 @@ export const LockScreen: React.FC = () => {
             <div className="w-11 h-11 rounded-full bg-white/15 dark:bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 dark:hover:bg-white/15 flex items-center justify-center transition-all shadow-lg">
               <X size={22} strokeWidth={2.5} />
             </div>
-            <span className="text-xs font-medium drop-shadow">Cancel</span>
+            <span className="text-xs font-medium drop-shadow">
+              {t("Cancel")}
+            </span>
           </button>
         </div>
       )}

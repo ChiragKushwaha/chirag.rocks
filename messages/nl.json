@@ -1,4 +1,1741 @@
 {
-  "Hello": "Hello world!",
-  "Welcome": "Welcome to the multi-language app"
+  "Hello": {
+    "world": "Hallo Wereld",
+    "GetStarted": "Aan de slag"
+  },
+  "Common": {
+    "OK": "OK",
+    "Cancel": "Annuleer",
+    "Yes": "Ja",
+    "No": "Nee",
+    "Back": "Terug",
+    "Continue": "Ga door",
+    "Done": "Gereed",
+    "Edit": "Bewerk",
+    "Delete": "Verwijder",
+    "Save": "Bewaar",
+    "Close": "Sluit",
+    "Error": "Fout",
+    "Success": "Succes"
+  },
+  "Setup": {
+    "Common": {
+      "Continue": "Ga door",
+      "Back": "Terug",
+      "NotNow": "Niet nu",
+      "Cancel": "Annuleer",
+      "LearnMore": "Meer info"
+    },
+    "Language": {
+      "Title": "Kies uw taal",
+      "Description": "Kies de taal die u op deze Mac wilt gebruiken.",
+      "TableLabel": "Taal",
+      "Primary": "Primair"
+    },
+    "Region": {
+      "Title": "Kies uw land of regio"
+    },
+    "DataPrivacy": {
+      "Title": "Gegevens en privacy",
+      "IconText": "Dit symbool verschijnt wanneer een Apple functie uw persoonlijke gegevens wil gebruiken.",
+      "FeatureText": "U ziet dit niet bij elke functie. Apple verzamelt deze informatie alleen wanneer dit nodig is om functies in te schakelen, onze voorzieningen te beveiligen of uw ervaring te personaliseren.",
+      "PrivacyText": "Apple gelooft dat privacy een fundamenteel mensenrecht is. Daarom is elk Apple product zo ontworpen dat de verzameling en het gebruik van uw gegevens tot een minimum worden beperkt, dat gegevens zoveel mogelijk op het apparaat zelf worden verwerkt en dat u transparantie en zicht op uw gegevens hebt."
+    },
+    "TouchID": {
+      "Title": "Touch ID",
+      "SetupLater": "Configureer Touch ID later",
+      "Description": "Gebruik uw vingerafdruk om uw Mac te ontgrendelen en aankopen te doen met Apple Pay. Plaats uw vinger op Touch ID om te beginnen."
+    },
+    "Fingerprint": {
+      "Title": "Plaats uw vinger",
+      "Instruction": "Til uw vinger op en plaats deze herhaaldelijk op Touch ID",
+      "Success": "✓ Touch ID is gereed"
+    },
+    "Languages": {
+      "Title": "Geschreven en gesproken talen",
+      "Description": "De volgende talen worden in uw regio veel gebruikt. U kunt uw Mac met deze instellingen gebruiken of ze afzonderlijk aanpassen.",
+      "Preferred": "Voorkeurstalen",
+      "InputSources": "Invoerbronnen",
+      "Dictation": "Dicteren",
+      "Customize": "Pas instellingen aan"
+    },
+    "Accessibility": {
+      "Title": "Toegankelijkheid",
+      "Description": "Toegankelijkheidsfuncties passen de Mac aan uw visuele, auditieve en motorische behoeften aan. U kunt deze nu inschakelen om de configuratie te voltooien, of ze later aanpassen in Systeeminstellingen. Verken elke categorie hieronder om de beschikbare functies te zien.",
+      "Vision": "Zien",
+      "Motor": "Motoriek",
+      "Hearing": "Horen",
+      "Cognitive": "Cognitief"
+    },
+    "Migration": {
+      "Title": "Migratie-assistent",
+      "Description": "Als u gegevens op een andere Mac of Windows-pc hebt, kunt u deze naar deze Mac kopiëren. U kunt ook gegevens kopiëren van een Time Machine-reservekopie of een andere opstartschijf.",
+      "Question": "Hoe wilt u uw gegevens overzetten?",
+      "FromMac": "Vanaf een Mac, Time Machine-reservekopie of opstartschijf",
+      "FromPC": "Vanaf een Windows-pc"
+    },
+    "AppleID": {
+      "Title": "Log in met uw Apple ID",
+      "Description": "Log in om iCloud, de App Store en andere Apple voorzieningen te gebruiken.",
+      "Label": "Apple ID",
+      "CreateNew": "Maak nieuwe Apple ID aan",
+      "Forgot": "Apple ID of wachtwoord vergeten?",
+      "UseDifferent": "Andere Apple ID voor iCloud en 'Media en aankopen'?",
+      "Info": "Deze Mac wordt gekoppeld aan uw Apple ID en uw gegevens zoals foto's, contacten en documenten worden bewaard in iCloud, zodat u er op andere apparaten toegang toe hebt.",
+      "SeeData": "Zie hoe uw gegevens worden beheerd",
+      "SetupLater": "Configureer later",
+      "ErrorRequired": "Voer een Apple ID in."
+    },
+    "Account": {
+      "Title": "Maak een computeraccount aan",
+      "CreateAppleID": "Maak Apple ID aan",
+      "Description": "Voer uw naam en accountgegevens in om de computer te configureren.",
+      "Name": "Volledige naam",
+      "Email": "E-mailadres",
+      "Age": "Leeftijd",
+      "Phone": "Mobiel nummer",
+      "Password": "Wachtwoord",
+      "Errors": {
+        "NameRequired": "Volledige naam is vereist.",
+        "EmailRequired": "E-mail is vereist.",
+        "EmailInvalid": "Voer een geldig e-mailadres in.",
+        "AgeRequired": "Leeftijd is vereist.",
+        "AgeInvalid": "Voer een geldige leeftijd in.",
+        "PhoneRequired": "Telefoonnummer is vereist.",
+        "PasswordRequired": "Wachtwoord is vereist.",
+        "PasswordLength": "Wachtwoord moet minimaal 6 tekens bevatten."
+      }
+    },
+    "Theme": {
+      "Title": "Kies uw weergave",
+      "Description": "Selecteer de lichte of donkere weergave. Het systeem en apps passen zich automatisch aan.",
+      "Light": "Licht",
+      "Dark": "Donker"
+    }
+  },
+  "SystemSettings": {
+    "General": {
+      "Title": "Algemeen",
+      "Description": "Beheer algemene instellingen en voorkeuren voor uw Mac, inclusief software-updates, apparaattaal, AirDrop en meer.",
+      "About": "Info",
+      "SoftwareUpdate": "Software-update",
+      "Storage": "Opslag",
+      "AppleCare": "AppleCare en garantie",
+      "AirDrop": "AirDrop en Handoff",
+      "AutoFill": "Vul automatisch in en wachtwoorden",
+      "DateTime": "Datum en tijd",
+      "LanguageRegion": "Taal en regio",
+      "LoginItems": "Inlogonderdelen",
+      "Sharing": "Delen",
+      "StartupDisk": "Opstartschijf",
+      "TimeMachine": "Time Machine",
+      "DeviceManagement": "Apparaatbeheer",
+      "TransferReset": "Zet over of stel opnieuw in"
+    },
+    "AppleAccount": {
+      "Edit": "Bewerk",
+      "PersonalInformation": "Persoonlijke gegevens",
+      "SignInSecurity": "Inloggen en beveiliging",
+      "PaymentShipping": "Betaling en verzending",
+      "iCloud": "iCloud",
+      "MediaPurchases": "Media en aankopen",
+      "Family": "Gezin",
+      "SetUp": "Configureer",
+      "Devices": "Apparaten",
+      "ThisMac": "Deze MacBook Pro 14\"",
+      "SignOut": "Log uit..."
+    },
+    "LanguageRegion": {
+      "Title": "Taal en regio",
+      "PreferredLanguages": "Voorkeurstalen",
+      "Region": "Regio",
+      "Calendar": "Agenda",
+      "Temperature": "Temperatuur",
+      "Celsius": "Celsius (°C)",
+      "Fahrenheit": "Fahrenheit (°F)",
+      "MeasurementSystem": "Maatstelsel",
+      "Metric": "Metrisch",
+      "US": "VS",
+      "UK": "VK",
+      "FirstDayOfWeek": "Eerste dag van week",
+      "DateFormat": "Datumnotatie",
+      "NumberFormat": "Getalsnotatie",
+      "LiveText": "Livetekst",
+      "LiveTextDesc": "Selecteer tekst in afbeeldingen om deze te kopiëren of er iets mee te doen.",
+      "Applications": "Applicaties",
+      "ApplicationsDesc": "Pas de taalinstellingen aan voor de volgende apps:",
+      "TranslationLanguages": "Vertaaltalen..."
+    },
+    "Sidebar": {
+      "Search": "Zoek",
+      "NotImplemented": "Dit gedeelte is nog niet geïmplementeerd.",
+      "AppleAccount": "Apple-account",
+      "WiFi": "Wifi",
+      "Bluetooth": "Bluetooth",
+      "Network": "Netwerk",
+      "General": "Algemeen",
+      "Appearance": "Weergave",
+      "Accessibility": "Toegankelijkheid",
+      "MenuBar": "Bedieningspaneel",
+      "DesktopDock": "Bureaublad en Dock",
+      "Displays": "Beeldschermen",
+      "Spotlight": "Spotlight",
+      "Wallpaper": "Bureaubladachtergrond",
+      "ScreenSaver": "Schermbeveiliging",
+      "Battery": "Batterij",
+      "Sound": "Geluid",
+      "Notifications": "Meldingen",
+      "Focus": "Focus",
+      "ScreenTime": "Schermtijd",
+      "PrivacySecurity": "Privacy en beveiliging",
+      "LockScreen": "Toegangsscherm",
+      "TouchIDPassword": "Touch ID en wachtwoord",
+      "UsersGroups": "Gebruikers en groepen",
+      "Keyboard": "Toetsenbord",
+      "Trackpad": "Trackpad",
+      "PrintersScanners": "Printers en scanners",
+      "Storage": "Opslag"
+    },
+    "Wifi": {
+      "Title": "Wifi",
+      "Description": "Configureer wifi om verbinding te maken met internet en draadloze apparaten.",
+      "Connected": "Verbonden",
+      "Details": "Details...",
+      "KnownNetworks": "Bekende netwerken",
+      "OtherNetworks": "Andere netwerken",
+      "Connect": "Verbind",
+      "Other": "Andere...",
+      "AskToJoin": "Vraag om verbinding te maken met netwerken",
+      "AskToJoinDesc": "Maak automatisch verbinding met bekende netwerken.",
+      "Notify": "Melding",
+      "AskToJoinHotspots": "Vraag om verbinding te maken met hotspots",
+      "AskToJoinHotspotsDesc": "Sta automatische verbinding met persoonlijke hotspots toe.",
+      "AskToJoinAction": "Vraag",
+      "Advanced": "Geavanceerd..."
+    },
+    "Bluetooth": {
+      "Title": "Bluetooth",
+      "Description": "Verbind draadloze accessoires zoals koptelefoons, muizen en toetsenborden.",
+      "Discoverable": "Nu vindbaar als \"MacBook Pro\" wanneer Bluetooth-instellingen geopend zijn.",
+      "MyDevices": "Mijn apparaten",
+      "NotConnected": "Niet verbonden",
+      "NearbyDevices": "Apparaten in de buurt",
+      "Searching": "Zoeken..."
+    },
+    "Network": {
+      "Title": "Netwerk",
+      "WiFi": "Wifi",
+      "Connected": "Verbonden",
+      "Firewall": "Firewall",
+      "Inactive": "Inactief",
+      "OtherServices": "Andere voorzieningen",
+      "NotConnected": "Niet verbonden"
+    },
+    "Appearance": {
+      "Title": "Weergave",
+      "Description": "Kies de weergave van uw voorkeur.",
+      "Light": "Licht",
+      "Dark": "Donker",
+      "Auto": "Auto",
+      "AccentColor": "Accentkleur",
+      "HighlightColor": "Markeringskleur",
+      "Automatic": "Automatisch",
+      "SidebarIconSize": "Grootte navigatiekolomsymbolen",
+      "Medium": "Normaal",
+      "WallpaperTinting": "Sta kleuring van achtergrond in vensters toe",
+      "ShowScrollBars": "Toon schuifbalken",
+      "ScrollAuto": "Automatisch op basis van muis of trackpad",
+      "ScrollWhenScrolling": "Tijdens scrollen",
+      "ScrollAlways": "Altijd",
+      "ClickScrollBar": "Klik in de schuifbalk om",
+      "JumpNextPage": "naar de volgende pagina te gaan",
+      "JumpSpotClicked": "naar de aangeklikte plek te gaan"
+    },
+    "Accessibility": {
+      "Title": "Toegankelijkheid",
+      "Description": "Pas de Mac aan uw visuele, auditieve en motorische behoeften aan.",
+      "LearnMore": "Meer info...",
+      "Vision": "Zien",
+      "VoiceOver": "VoiceOver",
+      "Zoom": "Zoomen",
+      "HoverText": "Tekst onder aanwijzer",
+      "Display": "Beeldscherm",
+      "Motion": "Beweging",
+      "ReadSpeak": "Gesproken materiaal",
+      "AudioDescriptions": "Audiobeschrijvingen",
+      "Hearing": "Horen",
+      "HearingDevices": "Hoortoestellen",
+      "Audio": "Audio",
+      "Captions": "Ondertiteling",
+      "LiveCaptions": "Live bijschriften",
+      "NameRecognition": "Naamherkenning",
+      "Motor": "Motoriek",
+      "VoiceControl": "Stembesturing",
+      "Keyboard": "Toetsenbord",
+      "PointerControl": "Aanwijzerbediening",
+      "SwitchControl": "Schakelbediening",
+      "General": "Algemeen",
+      "Siri": "Siri",
+      "Shortcut": "Activeringsknop"
+    },
+    "MenuBar": {
+      "Title": "Bedieningspaneel",
+      "Description": "Wijzig onderdelen die in de menubalk en het Bedieningspaneel worden getoond.",
+      "AutoHide": "Toon en verberg de menubalk automatisch",
+      "Never": "Nooit",
+      "RecentDocs": "Recente documenten, apps en servers",
+      "None": "Geen",
+      "Controls": "Bedieningspaneelmodules",
+      "ControlCenter": "Bedieningspaneel",
+      "ShowInMenuBar": "Toon in menubalk",
+      "DontShowInMenuBar": "Toon niet in menubalk",
+      "Siri": "Siri",
+      "Spotlight": "Spotlight",
+      "VolumeFeedback": "Speel feedback af wanneer volume wordt gewijzigd"
+    },
+    "DesktopDock": {
+      "Title": "Bureaublad en Dock",
+      "Description": "Wijzig het uiterlijk van het Dock en het bureaublad.",
+      "Dock": "Dock",
+      "Size": "Grootte",
+      "Magnification": "Vergroting",
+      "Small": "Klein",
+      "Large": "Groot",
+      "Position": "Positie op scherm",
+      "Bottom": "Onder",
+      "MinimiseUsing": "Minimaliseer vensters met effect",
+      "GenieEffect": "Geest",
+      "DoubleClickTitle": "Dubbelklik op titelbalk van venster om",
+      "Zoom": "te zoomen",
+      "MinimiseToIcon": "Minimaliseer vensters in appsymbool",
+      "AutoHideDock": "Toon en verberg het Dock automatisch",
+      "AnimateOpening": "Bewegend symbool bij openen apps",
+      "ShowIndicators": "Toon indicators voor geopende apps",
+      "ShowRecent": "Toon recente apps in Dock",
+      "DesktopStageManager": "Bureaublad en Stage Manager",
+      "ShowItems": "Toon onderdelen",
+      "OnDesktop": "Op bureaublad",
+      "ClickWallpaper": "Klik op achtergrond om bureaublad te tonen",
+      "Always": "Altijd",
+      "StageManager": "Stage Manager",
+      "Widgets": "Widgets",
+      "ShowWidgets": "Toon widgets",
+      "WidgetStyle": "Widgetstijl",
+      "Automatic": "Automatisch",
+      "UseIPhoneWidgets": "Gebruik iPhone-widgets"
+    },
+    "Displays": {
+      "Title": "Beeldschermen",
+      "Description": "Selecteer een beeldscherm om instellingen te wijzigen.",
+      "BuiltInDisplay": "Ingebouwd beeldscherm",
+      "UseAs": "Gebruik als",
+      "MainDisplay": "Hoofdbeeldscherm",
+      "Resolution": "Resolutie",
+      "Default": "Standaard",
+      "MoreSpace": "Meer ruimte",
+      "LargerText": "Grotere tekst",
+      "Brightness": "Helderheid",
+      "TrueTone": "True Tone",
+      "Preset": "Voorinstelling",
+      "RefreshRate": "Verversingsfrequentie",
+      "ProMotion": "ProMotion",
+      "Advanced": "Geavanceerd..."
+    },
+    "Spotlight": {
+      "Title": "Spotlight",
+      "Description": "Zoek op uw Mac.",
+      "SearchPlaceholder": "Zoek in Spotlight",
+      "SearchResults": "Zoekresultaten",
+      "Privacy": "Spotlight-privacy...",
+      "Categories": {
+        "Applications": "Applicaties",
+        "Calculator": "Rekenmachine",
+        "Contacts": "Contacten",
+        "Conversion": "Conversie",
+        "Definition": "Definitie",
+        "Developer": "Ontwikkelaar",
+        "Documents": "Documenten",
+        "Events & Reminders": "Activiteiten en herinneringen",
+        "Folders": "Mappen",
+        "Fonts": "Lettertypen",
+        "Images": "Afbeeldingen",
+        "Mail & Messages": "Mail en berichten",
+        "Movies": "Films",
+        "Music": "Muziek",
+        "Other": "Overige",
+        "PDF Documents": "PDF-documenten",
+        "Presentations": "Presentaties",
+        "Siri Suggestions": "Siri-suggesties",
+        "Spreadsheets": "Spreadsheets",
+        "System Preferences": "Systeemvoorkeuren",
+        "Tips": "Tips",
+        "Bookmarks & History": "Bladwijzers en geschiedenis"
+      }
+    },
+    "Notifications": {
+      "Title": "Meldingen",
+      "Description": "Beheer hoe meldingen worden weergegeven.",
+      "Preview": "Toon voorvertoning",
+      "ShowPreviews": "Toon voorvertoning",
+      "Always": "Altijd",
+      "ApplicationNotifications": "Appmeldingen",
+      "Apps": {
+        "AppStore": "App Store",
+        "Calendar": "Agenda",
+        "FaceTime": "FaceTime",
+        "Mail": "Mail",
+        "Messages": "Berichten",
+        "Photos": "Foto's",
+        "Reminders": "Herinneringen",
+        "Safari": "Safari"
+      }
+    },
+    "Sound": {
+      "Title": "Geluid",
+      "Description": "Wijzig geluidsinstellingen.",
+      "OutputInput": "Uitvoer en invoer",
+      "Output": "Uitvoer",
+      "Input": "Invoer",
+      "SelectOutput": "Kies een apparaat voor geluidsuitvoer:",
+      "Speakers": "MacBook Pro-luidsprekers",
+      "BuiltIn": "Ingebouwd",
+      "OutputVolume": "Uitvoervolume",
+      "Mute": "Geluid uit",
+      "ShowInMenuBar": "Toon geluid in menubalk",
+      "Always": "Altijd",
+      "AlertSoundGroup": "Waarschuwingsgeluid",
+      "AlertSound": "Waarschuwingsgeluid",
+      "Boop": "Boop",
+      "AlertVolume": "Waarschuwingsvolume",
+      "PlayUIEffects": "Speel geluidseffecten van interface af"
+    },
+    "Focus": {
+      "Title": "Focus",
+      "Description": "Selecteer een focus om instellingen aan te passen.",
+      "DoNotDisturb": "Niet storen",
+      "ShareAcrossDevices": "Deel op alle apparaten",
+      "FocusStatus": "Focusstatus",
+      "On": "Aan",
+      "Off": "Uit",
+      "SetUp": "Configureer",
+      "FocusModes": "Focusmodi",
+      "Personal": "Persoonlijk",
+      "Sleep": "Slapen",
+      "Work": "Werk",
+      "AddFocus": "Voeg focus toe"
+    },
+    "ScreenTime": {
+      "Title": "Schermtijd",
+      "Description": "Houd uw gebruik bij en stel limieten in.",
+      "DailyAverage": "Dagelijks gemiddelde",
+      "FromLastWeek": "vanaf vorige week",
+      "Downtime": "Apparaatvrije tijd",
+      "AppLimits": "Applimieten",
+      "LimitsCount": "{count} limieten",
+      "AlwaysAllowed": "Altijd toegestaan",
+      "AllowedApps": "Telefoon, Kaarten, Berichten",
+      "ContentPrivacy": "Materiaal en privacy",
+      "On": "Aan",
+      "Off": "Uit",
+      "ShareAcrossDevices": "Deel op alle apparaten",
+      "LockSettings": "Vergrendel instellingen voor schermtijd"
+    },
+    "Battery": {
+      "Title": "Batterij",
+      "Description": "Bekijk de conditie en het gebruik van de batterij.",
+      "BatteryLevel": "Batterijniveau",
+      "LastCharged": "Laatst opgeladen tot 100% om 8:00",
+      "LowPowerMode": "Energiebesparingsmodus",
+      "Never": "Nooit",
+      "BatteryHealth": "Batterijconditie",
+      "Normal": "Normaal",
+      "OptimisedCharging": "Geoptimaliseerd opladen",
+      "Options": "Opties..."
+    },
+    "Keyboard": {
+      "Title": "Toetsenbord",
+      "Description": "Wijzig toetsenbordinstellingen.",
+      "KeyRepeat": "Toetsrepeteertempo",
+      "Slow": "Langzaam",
+      "Fast": "Snel",
+      "DelayUntilRepeat": "Repeteerwachttijd",
+      "Long": "Lang",
+      "Short": "Kort",
+      "AdjustBrightness": "Pas toetsenbordhelderheid aan bij weinig licht",
+      "KeyboardNavigation": "Toetsenbordnavigatie",
+      "Shortcuts": "Toetscombinaties...",
+      "TextInput": "Tekstinvoer",
+      "InputSources": "Invoerbronnen",
+      "Edit": "Bewerk...",
+      "Dictation": "Dicteren"
+    },
+    "LockScreen": {
+      "Title": "Toegangsscherm",
+      "Description": "Wijzig instellingen voor het toegangsscherm.",
+      "TurnOffDisplayBattery": "Schakel beeldscherm uit bij gebruik van batterij indien inactief",
+      "TurnOffDisplayAdapter": "Schakel beeldscherm uit bij gebruik van lichtnetadapter indien inactief",
+      "TwoMinutes": "2 minuten",
+      "TenMinutes": "10 minuten",
+      "RequirePassword": "Vraag om wachtwoord na begin schermbeveiliging of uitschakelen scherm",
+      "Immediately": "Onmiddellijk",
+      "ShowMessage": "Toon bericht bij vergrendeling",
+      "Set": "Stel in...",
+      "LoginWindowShows": "Inlogvenster toont",
+      "ListOfUsers": "Lijst met gebruikers",
+      "ShowLargeClock": "Toon grote klok",
+      "OnLockScreen": "Op toegangsscherm"
+    },
+    "PrivacySecurity": {
+      "Title": "Privacy en beveiliging",
+      "Description": "Beheer welke apps toegang hebben tot uw gegevens.",
+      "Privacy": "Privacy",
+      "LocationServices": "Locatievoorzieningen",
+      "On": "Aan",
+      "Off": "Uit",
+      "Camera": "Camera",
+      "Microphone": "Microfoon",
+      "FilesFolders": "Bestanden en mappen",
+      "ScreenRecording": "Schermopname",
+      "AppsCount": "{count, plural, =0 {Geen apps} =1 {1 app} other {# apps}}",
+      "Security": "Beveiliging",
+      "FileVault": "FileVault",
+      "LockdownMode": "Isolatiemodus",
+      "Others": "Overige",
+      "Extensions": "Extensies",
+      "Profiles": "Profielen"
+    },
+    "PrintersScanners": {
+      "Title": "Printers en scanners",
+      "Description": "Beheer printers en scanners.",
+      "Printers": "Printers",
+      "IdleLastUsed": "Inactief, laatst gebruikt",
+      "Offline": "Offline",
+      "AddPrinter": "Voeg printer, scanner of fax toe..."
+    },
+    "ScreenSaver": {
+      "Title": "Schermbeveiliging",
+      "Description": "Kies een schermbeveiliging.",
+      "Preview": "Voorvertoning",
+      "ShowOnAllSpaces": "Toon op alle spaces",
+      "ScreenSavers": "Schermbeveiligingen",
+      "StartAfter": "Start na",
+      "FiveMinutes": "5 minuten",
+      "ShowWithClock": "Toon met klok",
+      "ScreensaverNames": {
+        "Ventura": "Ventura",
+        "Monterey": "Monterey",
+        "BigSur": "Big Sur",
+        "Catalina": "Catalina",
+        "Hello": "Hello",
+        "Drift": "Drift",
+        "Flurry": "Flurry",
+        "Shell": "Shell"
+      }
+    },
+    "Storage": {
+      "Title": "Opslag",
+      "Description": "Beheer schijven en gegevens.",
+      "MacintoshHD": "Macintosh HD",
+      "AvailableSpace": "{available} GB beschikbaar van {total} GB",
+      "Apps": "Apps",
+      "Documents": "Documenten",
+      "SystemData": "Systeemgegevens",
+      "macOS": "macOS",
+      "OtherUsers": "Andere gebruikers",
+      "Recommendations": "Aanbevelingen",
+      "StoreInICloud": "Bewaar in iCloud",
+      "StoreInICloudDesc": "Bewaar al uw bestanden, foto's en berichten in iCloud en bespaar ruimte op deze Mac.",
+      "StoreInICloudButton": "Bewaar in iCloud...",
+      "Categories": "Categorieën",
+      "Applications": "Applicaties"
+    },
+    "TouchIDPassword": {
+      "Title": "Touch ID en wachtwoord",
+      "Description": "Voeg een vingerafdruk toe om uw Mac te ontgrendelen.",
+      "TouchID": "Touch ID",
+      "Finger1": "Vinger 1",
+      "AddFingerprint": "Voeg vingerafdruk toe",
+      "UseTouchIDFor": "Gebruik Touch ID voor",
+      "UnlockingMac": "Ontgrendelen van uw Mac",
+      "ApplePay": "Apple Pay",
+      "iTunesAppStore": "iTunes Store en App Store",
+      "AutoFillPasswords": "Vul wachtwoorden automatisch in",
+      "Password": "Wachtwoord",
+      "LastChanged": "Laatst gewijzigd: 24-11-2024",
+      "Change": "Wijzig...",
+      "RequirePasswordScreenSaver": "Vraag om wachtwoord na begin schermbeveiliging of uitschakelen scherm",
+      "Immediately": "Onmiddellijk",
+      "RequirePasswordIdle": "Vraag om wachtwoord na inactiviteit computer",
+      "Never": "Nooit",
+      "Seconds": "{count} seconden",
+      "Minute": "{count} minuut",
+      "Minutes": "{count} minuten",
+      "AppleWatch": "Apple Watch",
+      "AppleWatchUnlock": "Gebruik uw Apple Watch om apps en uw Mac te ontgrendelen"
+    },
+    "Trackpad": {
+      "Title": "Trackpad",
+      "Description": "Wijzig trackpadinstellingen.",
+      "PointClick": "Aanwijzen en klikken",
+      "ScrollZoom": "Scrollen en zoomen",
+      "MoreGestures": "Meer gebaren",
+      "TrackingSpeed": "Aanwijzersnelheid",
+      "Slow": "Langzaam",
+      "Fast": "Snel",
+      "Click": "Klik",
+      "Medium": "Normaal",
+      "ForceClick": "Force Click en haptische feedback",
+      "LookUp": "Opzoeken en gegevensdetectie",
+      "SecondaryClick": "Secundair klikken",
+      "ClickTwoFingers": "Klik of tik met twee vingers",
+      "TapToClick": "Tikken om te klikken",
+      "VideoPreview": "Videovoorvertoning"
+    },
+    "UsersGroups": {
+      "Title": "Gebruikers en groepen",
+      "Description": "Beheer gebruikersaccounts en groepen.",
+      "CurrentUser": "Huidige gebruiker",
+      "Admin": "Beheerder",
+      "OtherUsers": "Andere gebruikers",
+      "GuestUser": "Gastgebruiker",
+      "Off": "Uit",
+      "AddAccount": "Voeg account toe...",
+      "AutoLogin": "Log automatisch in",
+      "AllowNetworkUsers": "Sta netwerkgebruikers toe in te loggen in inlogvenster"
+    },
+    "Wallpaper": {
+      "Title": "Bureaubladachtergrond",
+      "Description": "Selecteer uw bureaubladachtergrond.",
+      "ShowOnAllSpaces": "Toon op alle spaces",
+      "DynamicWallpapers": "Dynamische achtergronden",
+      "Pictures": "Afbeeldingen",
+      "AddPhoto": "Voeg foto toe"
+    },
+    "LanguageSelector": {
+      "Title": "Selecteer een taal om toe te voegen",
+      "Search": "Zoek",
+      "Cancel": "Annuleer",
+      "Add": "Voeg toe"
+    }
+  },
+  "Languages": {
+    "English": "Engels",
+    "Spanish": "Spaans",
+    "French": "Frans",
+    "German": "Duits",
+    "Italian": "Italiaans",
+    "Japanese": "Japans",
+    "Chinese": "Chinees",
+    "Portuguese": "Portugees",
+    "Russian": "Russisch",
+    "Korean": "Koreaans",
+    "Dutch": "Nederlands",
+    "Swedish": "Zweeds",
+    "Danish": "Deens",
+    "Norwegian": "Noors",
+    "Finnish": "Fins",
+    "Polish": "ools",
+    "Turkish": "Turks",
+    "Arabic": "Arabisch",
+    "Hindi": "Hindi",
+    "Bengali": "Bengaals",
+    "Vietnamese": "Vietnamees",
+    "Thai": "Thais",
+    "Greek": "Grieks",
+    "Czech": "Tsjechisch",
+    "Hungarian": "Hongaars",
+    "Romanian": "Roemeens",
+    "Ukrainian": "Oekraïens",
+    "Indonesian": "Indonesisch",
+    "Malay": "Maleis",
+    "Croatian": "Kroatisch",
+    "Slovak": "Slowaaks",
+    "Slovenian": "Sloveens",
+    "Bulgarian": "Bulgaars",
+    "Serbian": "Servisch",
+    "Hebrew": "Hebreeuws"
+  },
+  "Finder": {
+    "Search": "Zoek",
+    "Sidebar": {
+      "Favorites": "Favorieten",
+      "Locations": "Locaties",
+      "AirDrop": "AirDrop",
+      "Recents": "Recent",
+      "Applications": "Applicaties",
+      "Desktop": "Bureaublad",
+      "Documents": "Documenten",
+      "Downloads": "Downloads",
+      "Pictures": "Afbeeldingen",
+      "Home": "Thuis",
+      "MacintoshHD": "Macintosh HD",
+      "iCloudDrive": "iCloud Drive"
+    },
+    "Menu": {
+      "NewFolder": "Nieuwe map",
+      "GetInfo": "Toon info",
+      "ChangeBackground": "Wijzig achtergrond...",
+      "Open": "Open",
+      "MoveToBin": "Verplaats naar Prullenmand",
+      "Rename": "Hernoem",
+      "OpenItems": "Open {count} onderdelen",
+      "MoveItemsToBin": "Verplaats {count} onderdelen naar Prullenmand"
+    },
+    "Status": {
+      "Loading": "Laden...",
+      "EmptyFolder": "Lege map",
+      "ItemCount": "{count, plural, =1 {1 onderdeel} other {# onderdelen}}",
+      "SpaceAvailable": "{amount} GB beschikbaar"
+    },
+    "Errors": {
+      "NoApp": "Er is geen toepassing om het bestand '{ext}' te openen.",
+      "CreateFolderFailed": "Aanmaken map mislukt",
+      "MoveToBinFailed": "Verplaatsen naar Prullenmand mislukt"
+    }
+  },
+  "Safari": {
+    "Title": "Safari",
+    "StartPage": "Beginpagina",
+    "Loading": "Laden...",
+    "SearchPlaceholder": "Zoek of typ een website",
+    "NoInternet": "Geen internetverbinding",
+    "NoInternetDesc": "Uw computer is offline. Deze pagina kan niet worden weergegeven.",
+    "Favorites": {
+      "Apple": "Apple",
+      "Google": "Google",
+      "Wikipedia": "Wikipedia",
+      "GitHub": "GitHub"
+    }
+  },
+  "Mail": {
+    "Inbox": "Inkomend",
+    "MessagesCount": "{count, plural, =1 {1 bericht} other {# berichten}}",
+    "Favorites": "Favorieten",
+    "AllInboxes": "Alle inkomende",
+    "VIP": "VIP",
+    "Sent": "Verstuurd",
+    "Search": "Zoek",
+    "NoMessageSelected": "Geen bericht geselecteerd",
+    "To": "Aan: {name}"
+  },
+  "Messages": {
+    "AppTitle": "Berichten",
+    "SigningIn": "Inloggen als {name}...",
+    "SidebarTitle": "Berichten",
+    "NoOnlineUsers": "Geen gebruikers online.",
+    "NoMessages": "Geen berichten",
+    "To": "Aan: {name}",
+    "InputPlaceholder": "iMessage",
+    "NoContactSelected": "Selecteer een contact om een bericht te sturen"
+  },
+  "Photos": {
+    "Sidebar": {
+      "Library": "Bibliotheek",
+      "Collections": "Verzamelingen",
+      "Pinned": "Vastgemaakt",
+      "Albums": "Albums",
+      "Utilities": "Hulpprogramma's",
+      "Projects": "Projecten",
+      "Favourites": "Favorieten",
+      "RecentlySaved": "Recent bewaard",
+      "Videos": "Video's",
+      "Screenshots": "Schermafbeeldingen",
+      "PeoplePets": "Personen en huisdieren",
+      "SharedAlbums": "Gedeelde albums",
+      "Activity": "Activiteit",
+      "RecentlyDeleted": "Recent verwijderd",
+      "Duplicates": "Dubbele",
+      "Map": "Kaart",
+      "AllProjects": "Alle projecten"
+    },
+    "Tabs": {
+      "Years": "Jaar",
+      "Months": "Maand",
+      "AllPhotos": "Alle foto's"
+    },
+    "Search": "Zoek",
+    "Collections": {
+      "Title": "Verzamelingen",
+      "Memories": "Terugblikken",
+      "NoMemories": "Geen terugblikken",
+      "NoMemoriesDesc": "Terugblikken verschijnen hier zodra ze beschikbaar zijn.",
+      "Albums": "Albums",
+      "NoAlbums": "Geen albums"
+    },
+    "EmptyState": {
+      "NoItems": "Geen onderdelen in {title}"
+    },
+    "Locked": {
+      "Title": "{title} vergrendeld",
+      "Desc": "Authenticeer om te bekijken."
+    }
+  },
+  "Notes": {
+    "Sidebar": {
+      "iCloud": "iCloud",
+      "Notes": "Notities",
+      "RecentlyDeleted": "Recent verwijderd"
+    },
+    "Search": "Zoek",
+    "NewNote": "Nieuwe notitie",
+    "NoAdditionalText": "Geen extra tekst",
+    "Editor": {
+      "TitlePlaceholder": "Titel",
+      "ContentPlaceholder": "Typ hier...",
+      "AddToDesktop": "Zet op bureaublad",
+      "Restore": "Zet terug",
+      "Delete": "Verwijder notitie",
+      "DeletePermanently": "Verwijder definitief",
+      "EmptyState": "Selecteer of maak notitie",
+      "Date": "Vandaag om {time}"
+    }
+  },
+  "Reminders": {
+    "Search": "Zoek",
+    "Sidebar": {
+      "MyLists": "Mijn lijsten",
+      "Reminders": "Herinneringen",
+      "Work": "Werk",
+      "Today": "Vandaag",
+      "Scheduled": "Gepland",
+      "All": "Alles",
+      "Flagged": "Gemarkeerd"
+    },
+    "AddReminder": "Nieuwe herinnering",
+    "Actions": {
+      "Add": "Voeg toe",
+      "Cancel": "Annuleer",
+      "Delete": "Verwijder herinnering",
+      "MarkComplete": "Markeer als voltooid",
+      "MarkIncomplete": "Markeer als onvoltooid",
+      "Flag": "Markeer",
+      "Unflag": "Demarkeer"
+    },
+    "Inputs": {
+      "Title": "Titel",
+      "Notes": "Notities",
+      "Date": "Datum",
+      "Time": "Tijd",
+      "Tags": "Tags"
+    },
+    "EmptyState": {
+      "NoReminders": "Geen herinneringen",
+      "CreateOne": "Maak aan"
+    }
+  },
+  "Calendar": {
+    "Search": "Zoek",
+    "Today": "Vandaag",
+    "Day": "Dag",
+    "Week": "Week",
+    "Month": "Maand",
+    "Year": "Jaar",
+    "AddEvent": "Nieuwe activiteit",
+    "NoEvents": "Geen activiteiten",
+    "NewEvent": "Nieuwe activiteit",
+    "TitlePlaceholder": "Naam activiteit",
+    "Location": "Locatie",
+    "AllDay": "Hele dag",
+    "From": "Van",
+    "To": "Tot",
+    "Repeat": "Herhaal",
+    "Never": "Nooit",
+    "Daily": "Elke dag",
+    "Weekly": "Elke week",
+    "Monthly": "Elke maand",
+    "Yearly": "Elk jaar",
+    "Alert": "Melding",
+    "AtTime": "Op tijdstip van activiteit",
+    "5MinBefore": "5 minuten ervoor",
+    "10MinBefore": "10 minuten ervoor",
+    "15MinBefore": "15 minuten ervoor",
+    "30MinBefore": "30 minuten ervoor",
+    "1HourBefore": "1 uur ervoor",
+    "2HoursBefore": "2 uur ervoor",
+    "1DayBefore": "1 dag ervoor",
+    "2DaysBefore": "2 dagen ervoor",
+    "Notes": "Notities",
+    "DeleteEvent": "Verwijder activiteit",
+    "ShortDays": {
+      "Sun": "Zo",
+      "Mon": "Ma",
+      "Tue": "Di",
+      "Wed": "Wo",
+      "Thu": "Do",
+      "Fri": "Vr",
+      "Sat": "Za"
+    },
+    "Months": {
+      "January": "januari",
+      "February": "februari",
+      "March": "maart",
+      "April": "april",
+      "May": "mei",
+      "June": "juni",
+      "July": "juli",
+      "August": "augustus",
+      "September": "september",
+      "October": "oktober",
+      "November": "november",
+      "December": "december"
+    },
+    "Sidebar": {
+      "iCloud": "ICLOUD",
+      "Other": "OTHER",
+      "NoInvitations": "No invitations"
+    },
+    "Toolbar": {
+      "Today": "Today",
+      "SearchPlaceholder": "Search events...",
+      "View": {
+        "day": "day",
+        "week": "week",
+        "month": "month",
+        "year": "year"
+      }
+    },
+    "EventModal": {
+      "Title": "New Event",
+      "EventTitlePlaceholder": "Event Title",
+      "CalendarLabel": "Calendar",
+      "Cancel": "Cancel",
+      "AddEvent": "Add Event"
+    },
+    "SearchResults": {
+      "Title": "Search Results",
+      "NoEvents": "No events found"
+    },
+    "Event": {
+      "NoLocation": "No location",
+      "EventLabel": "Event: {title} at {location}"
+    },
+    "Weekdays": {
+      "Sun": "Sun",
+      "Mon": "Mon",
+      "Tue": "Tue",
+      "Wed": "Wed",
+      "Thu": "Thu",
+      "Fri": "Fri",
+      "Sat": "Sat"
+    },
+    "WeekdaysShort": {
+      "Sun": "S",
+      "Mon": "M",
+      "Tue": "T",
+      "Wed": "W",
+      "Thu": "T",
+      "Fri": "F",
+      "Sat": "S"
+    }
+  },
+  "Maps": {
+    "Search": "Zoek",
+    "SearchPlaceholder": "Zoek plaats of adres",
+    "Directions": "Route",
+    "From": "Van",
+    "To": "Naar",
+    "Transport": {
+      "Drive": "Auto",
+      "Walk": "Lopen",
+      "Transit": "OV",
+      "Cycle": "Fiets"
+    },
+    "LocateMe": "Mijn locatie",
+    "ZoomIn": "Zoom in",
+    "ZoomOut": "Zoom uit",
+    "MapType": {
+      "Standard": "Standaard",
+      "Hybrid": "Hybride",
+      "Satellite": "Satelliet"
+    },
+    "Sidebar": {
+      "Favorites": "FAVORITES",
+      "Recent": "RECENT",
+      "NoRecentSearches": "No recent searches",
+      "RecentLabel": "Recent"
+    },
+    "Locations": {
+      "Home": "Home",
+      "Work": "Work"
+    },
+    "Controls": {
+      "SwitchToSatellite": "Switch to Satellite",
+      "SwitchToSatelliteLabel": "Switch to Satellite view",
+      "SwitchToMap": "Switch to Map",
+      "SwitchToMapLabel": "Switch to Map view",
+      "CurrentLocation": "Current Location",
+      "ShowCurrentLocation": "Show current location",
+      "MapInfo": "Map information"
+    },
+    "Permission": {
+      "AppName": "Maps",
+      "Title": "Location",
+      "Reason": "Maps needs access to your location to show where you are.",
+      "Error": "Could not get your location. Please ensure location services are enabled.",
+      "NotSupported": "Geolocation is not supported by your browser."
+    }
+  },
+  "FaceTime": {
+    "AppName": "FaceTime",
+    "NewFaceTime": "Nieuwe FaceTime",
+    "CreateLink": "Maak link aan",
+    "EnterNameOrEmail": "Naam, e-mail of nummer",
+    "Suggested": "Suggesties",
+    "NoRecents": "Geen recente oproepen",
+    "FaceTimeVideo": "FaceTime-video",
+    "FaceTimeAudio": "FaceTime-audio",
+    "JoinCall": "Neem deel",
+    "Waiting": "Wachten...",
+    "Connected": "Verbonden",
+    "Reconnecting": "Opnieuw verbinden...",
+    "CallEnded": "Oproep beëindigd",
+    "Mute": "Geluid uit",
+    "Unmute": "Geluid aan",
+    "VideoOff": "Video uit",
+    "VideoOn": "Video aan",
+    "End": "Stop",
+    "FullScreen": "Schermvullend",
+    "ExitFullScreen": "Sluit schermvullend",
+    "Effects": "Effecten",
+    "ShareScreen": "Deel scherm",
+    "Connecting": "Verbinden...",
+    "Unavailable": "Niet beschikbaar",
+    "Title": "FaceTime",
+    "ConnectingAs": "Connecting as {name}...",
+    "IncomingCall": "{name} is calling...",
+    "Accept": "Accept",
+    "Decline": "Decline",
+    "Contacts": "Contacts",
+    "NoContacts": "No one else is online.",
+    "Video": "Video",
+    "SelectContact": "Select a contact to call",
+    "Aria": {
+      "RemoteVideo": "Remote video feed",
+      "LocalVideo": "Local video preview",
+      "EndCall": "End Call",
+      "CallContact": "Call {name}",
+      "VideoCallContact": "Video call {name}",
+      "LocalPreview": "Local camera preview"
+    },
+    "Permission": {
+      "AppName": "FaceTime",
+      "Title": "Camera and Microphone",
+      "Reason": "FaceTime needs access to your camera and microphone to make calls."
+    }
+  },
+  "Contacts": {
+    "Search": "Zoek",
+    "AllContacts": "Alle contacten",
+    "MyCard": "Mijn kaart",
+    "AddContact": "Voeg contact toe",
+    "Edit": "Bewerk",
+    "Done": "Gereed",
+    "FirstName": "Voornaam",
+    "LastName": "Achternaam",
+    "Company": "Bedrijf",
+    "Phone": "Telefoon",
+    "Email": "E-mail",
+    "Notes": "Notities",
+    "Message": "Bericht",
+    "Call": "Bel",
+    "Video": "Video",
+    "Mail": "Mail",
+    "Pay": "Pay",
+    "NoContacts": "Geen contacten",
+    "DeleteContact": "Verwijder contact",
+    "SearchPlaceholder": "Search",
+    "SearchAria": "Search contacts",
+    "Count": "{count} Contacts",
+    "EditContact": "Edit Contact",
+    "NewContact": "New Contact",
+    "Preview": "Preview",
+    "Cancel": "Cancel",
+    "NoNotes": "No notes",
+    "NoSelection": "No Contact Selected",
+    "Labels": {
+      "FirstName": "First Name",
+      "LastName": "Last Name",
+      "Company": "Company",
+      "Phone": "Phone",
+      "Email": "Email",
+      "Notes": "Notes",
+      "Mobile": "mobile",
+      "Home": "home",
+      "Message": "message",
+      "Video": "video",
+      "Mail": "mail"
+    },
+    "Alerts": {
+      "DeleteConfirm": "Are you sure you want to delete this contact?",
+      "NameRequired": "Please enter a name or company."
+    },
+    "Aria": {
+      "AddContact": "Add new contact",
+      "Contact": "Contact: {name}",
+      "Action": "{action} {name}"
+    }
+  },
+  "Calculator": {
+    "Clear": "C",
+    "AllClear": "AC",
+    "Negate": "+/-",
+    "Percent": "%",
+    "Divide": "÷",
+    "Multiply": "×",
+    "Subtract": "-",
+    "Add": "+",
+    "Equals": "=",
+    "Decimal": ",",
+    "AC": "AC",
+    "ToggleSign": "Toggle sign",
+    "Percentage": "Percentage",
+    "Calculate": "Calculate result"
+  },
+  "Clock": {
+    "WorldClock": "Wereldklok",
+    "Alarm": "Wekker",
+    "Stopwatch": "Stopwatch",
+    "Timer": "Timer",
+    "Add": "Voeg toe",
+    "Edit": "Bewerk",
+    "Start": "Start",
+    "Stop": "Stop",
+    "Reset": "Stel opnieuw in",
+    "Lap": "Ronde",
+    "Resume": "Hervat",
+    "Pause": "Pauze",
+    "Cancel": "Annuleer",
+    "Save": "Bewaar",
+    "Label": "Label",
+    "Sound": "Geluid",
+    "Snooze": "Snooze",
+    "WhenTimerEnds": "Als timer eindigt",
+    "StopPlaying": "Stop met afspelen",
+    "Tabs": {
+      "WorldClock": "World Clock",
+      "Alarms": "Alarms",
+      "Stopwatch": "Stopwatch",
+      "Timers": "Timers"
+    },
+    "AddClock": "Add clock",
+    "Locations": {
+      "NewDelhi": "New Delhi"
+    },
+    "Today": "Today",
+    "HRS": "HRS"
+  },
+  "Weather": {
+    "Loading": "Laden...",
+    "Error": "Laden weer mislukt",
+    "SearchPlaceholder": "Zoek naar stad",
+    "MyLocation": "Mijn locatie",
+    "Humidity": "Vochtigheid",
+    "Wind": "Wind",
+    "Rain": "Neerslag",
+    "FeelsLike": "Voelt als",
+    "UVIndex": "UV-index",
+    "Pressure": "Druk",
+    "Visibility": "Zicht",
+    "Sunrise": "Zonsopgang",
+    "Sunset": "Zonsondergang",
+    "Forecast": {
+      "Hourly": "Hourly Forecast",
+      "TenDay": "10-Day Forecast",
+      "Now": "Now",
+      "Today": "Today"
+    },
+    "Hourly": "Per uur",
+    "Daily": "Dagelijks",
+    "High": "H",
+    "Low": "L",
+    "Conditions": {
+      "Clear": "Helder",
+      "Cloudy": "Bewolkt",
+      "Rain": "Regen",
+      "Snow": "Sneeuw",
+      "Thunderstorm": "Onweer",
+      "Drizzle": "Motregen",
+      "Mist": "Mist"
+    },
+    "Retry": "Retry",
+    "Searching": "Searching...",
+    "NoResults": "No results found",
+    "Recent": "Recent",
+    "Popular": "Popular",
+    "Sidebar": {
+      "Open": "Open sidebar",
+      "Close": "Close sidebar"
+    },
+    "Aria": {
+      "SelectLocation": "Select {name}, {country}"
+    },
+    "Details": {
+      "AirQuality": "Air Quality",
+      "UVIndex": "UV Index",
+      "Wind": "Wind",
+      "Sunset": "Sunset",
+      "Sunrise": "Sunrise:",
+      "FeelsLike": "Feels Like",
+      "Humidity": "Humidity",
+      "Visibility": "Visibility",
+      "Pressure": "Pressure",
+      "hPa": "hPa"
+    },
+    "Descriptions": {
+      "AirQualityDesc": "Air quality index is 130, similar to yesterday at about this time.",
+      "UVIndexDesc": "Use sun protection until 4PM.",
+      "FeelsLikeDesc": "Similar to the actual temperature.",
+      "DewPointDesc": "The dew point is {temp}° right now.",
+      "VisibilityDesc": "Perfectly clear view.",
+      "Footer": "Weather for {location} • Open-Meteo Data",
+      "PollutionLevel": "Moderately Polluted",
+      "UVLevel": "Moderate"
+    }
+  },
+  "Stocks": {
+    "Search": "Zoek",
+    "Watchlist": "Volglijst",
+    "MarketOpen": "Markt open",
+    "MarketClosed": "Markt gesloten",
+    "PreMarket": "Voorbeurs",
+    "AfterHours": "Nabeurs",
+    "Loading": "Laden...",
+    "Error": "Laden gegevens mislukt",
+    "AddSymbol": "Voeg symbool toe",
+    "Remove": "Verwijder",
+    "Chart": "Grafiek",
+    "News": "Nieuws",
+    "Summary": "Samenvatting",
+    "Open": "Open",
+    "High": "Hoog",
+    "Low": "Laag",
+    "Vol": "Vol",
+    "PE": "K/W",
+    "MktCap": "Marktkap",
+    "52WHigh": "52w hoog",
+    "52WLow": "52w laag",
+    "AvgVol": "Gem. vol",
+    "Yield": "Rendement",
+    "Beta": "Bèta",
+    "EPS": "WPA",
+    "Title": "Stocks",
+    "Searching": "Searching...",
+    "KeyStatistics": "Key Statistics",
+    "BusinessNews": "Business News",
+    "ShowMore": "Show More",
+    "Aria": {
+      "Search": "Search stocks",
+      "Select": "Select stock {symbol}",
+      "ReadNews": "Read news: {title}"
+    },
+    "Stats": {
+      "Open": "Open",
+      "High": "High",
+      "Low": "Low",
+      "Vol": "Vol",
+      "PE": "P/E",
+      "MktCap": "Mkt Cap",
+      "52WH": "52W H",
+      "52WL": "52W L"
+    }
+  },
+  "Desktop": {
+    "ContextMenu": {
+      "NewFolder": "Nieuwe map",
+      "GetInfo": "Toon info",
+      "ChangeDesktopBackground": "Wijzig bureaubladachtergrond...",
+      "UseStacks": "Gebruik stapels",
+      "SortBy": "Sorteer op",
+      "CleanUp": "Ruim op",
+      "CleanUpBy": "Ruim op via",
+      "ShowViewOptions": "Toon weergaveopties",
+      "ChangeWallpaper": "Change Wallpaper...",
+      "EditWidgets": "Edit Widgets...",
+      "Tags": "Tags",
+      "None": "None",
+      "SnapToGrid": "Snap to Grid",
+      "Name": "Name",
+      "Kind": "Kind",
+      "DateLastOpened": "Date Last Opened",
+      "DateAdded": "Date Added",
+      "DateModified": "Date Modified",
+      "DateCreated": "Date Created",
+      "Size": "Size"
+    },
+    "SortOptions": {
+      "Name": "Naam",
+      "Kind": "Soort",
+      "DateLastOpened": "Datum laatst geopend",
+      "DateAdded": "Datum toegevoegd",
+      "DateModified": "Datum gewijzigd",
+      "DateCreated": "Datum aangemaakt",
+      "Size": "Grootte",
+      "Tags": "Tags"
+    },
+    "Guest": "Guest",
+    "UntitledFolder": "untitled folder",
+    "NoAppAvailable": "No application available to open .{ext} files.",
+    "MoveToBin": {
+      "Failed": "Failed to move to bin",
+      "NotSupported": "Failed to move to bin. Folder moves not fully supported yet."
+    }
+  },
+  "ControlCenter": {
+    "Title": "Bedieningspaneel",
+    "WiFi": "Wifi",
+    "Bluetooth": "Bluetooth",
+    "AirDrop": "AirDrop",
+    "DoNotDisturb": "Niet storen",
+    "KeyboardBrightness": "Toetsenbordhelderheid",
+    "ScreenMirroring": "Synchrone weergave",
+    "Display": "Beeldscherm",
+    "Sound": "Geluid",
+    "Playing": "Speelt af",
+    "On": "Aan",
+    "Off": "Uit",
+    "NotConnected": "Niet verbonden",
+    "Connect": "Verbind",
+    "HomeNetwork": "Home Network",
+    "ContactsOnly": "Contacts Only",
+    "NotPlaying": "Not Playing",
+    "Music": "Music"
+  },
+  "LockScreenApp": {
+    "EnterPassword": "Voer wachtwoord in",
+    "ClickToUnlock": "Klik om te ontgrendelen",
+    "TouchID": "Touch ID",
+    "Cancel": "Annuleer",
+    "SwitchUser": "Wissel gebruiker"
+  },
+  "NotificationCenter": {
+    "Title": "Meldingencentrum",
+    "NoNotifications": "Geen meldingen",
+    "ClearAll": "Wis alles",
+    "Widgets": "Widgets",
+    "Done": "Done",
+    "Edit": "Edit",
+    "AddWidget": "Add Widget"
+  },
+  "Widgets": {
+    "AllWidgets": "Alle widgets",
+    "Search": "Zoek",
+    "AddWidget": "Voeg widget toe",
+    "Loading": "Loading...",
+    "Calendar": {
+      "Title": "Calendar"
+    },
+    "Weather": {
+      "Title": "Weather"
+    },
+    "Stocks": {
+      "Title": "Stocks"
+    },
+    "Reminders": {
+      "Title": "Reminders",
+      "NoReminders": "No reminders"
+    },
+    "Notes": {
+      "Title": "Notes",
+      "Content": "Buy milk, eggs, and bread.<br />Call mom at 5pm.<br />Meeting with team tomorrow."
+    }
+  },
+  "Window": {
+    "Minimize": "Minimaliseer",
+    "Maximize": "Maximaliseer",
+    "Close": "Sluit",
+    "Restore": "Restore",
+    "MoveTo": "Move Window to...",
+    "LeftSide": "Left Side of Screen",
+    "RightSide": "Right Side of Screen",
+    "EnterFullScreen": "Enter Full Screen"
+  },
+  "Dock": {
+    "Trash": "Prullenmand",
+    "AriaLabel": "Application dock"
+  },
+  "Apps": {
+    "VSCode": {
+      "Title": "Visual Studio Code"
+    },
+    "LeetCode": {
+      "Title": "LeetCode",
+      "Common": {
+        "Loading": "Loading Profile...",
+        "NoData": "No data",
+        "Retry": "Retry",
+        "ShowMore": "Show more",
+        "GoToLeetCode": "Go to LeetCode"
+      },
+      "Badges": {
+        "Title": "Badges",
+        "MostRecent": "Most Recent Badge"
+      },
+      "Stats": {
+        "Title": "Community Stats",
+        "Views": "Views",
+        "Solution": "Solution",
+        "Discuss": "Discuss",
+        "Reputation": "Reputation"
+      },
+      "Languages": {
+        "Title": "Languages",
+        "ProblemsSolved": "problems solved"
+      },
+      "Profile": {
+        "Rank": "Rank"
+      },
+      "Submissions": {
+        "RecentAC": "Recent AC",
+        "List": "List",
+        "Solutions": "Solutions",
+        "Discuss": "Discuss",
+        "TimeAgo": "2 months ago"
+      },
+      "Skills": {
+        "Title": "Skills",
+        "Advanced": "Advanced",
+        "Intermediate": "Intermediate"
+      },
+      "Solved": {
+        "Solved": "Solved",
+        "Easy": "Easy",
+        "Medium": "Med.",
+        "Hard": "Hard"
+      },
+      "Calendar": {
+        "SubmissionsLastYear": "submissions in the past one year",
+        "TotalActiveDays": "Total active days:",
+        "MaxStreak": "Max streak:",
+        "Current": "Current",
+        "Months": {
+          "Jan": "Jan",
+          "Feb": "Feb",
+          "Mar": "Mar",
+          "Apr": "Apr",
+          "May": "May",
+          "Jun": "Jun",
+          "Jul": "Jul",
+          "Aug": "Aug",
+          "Sep": "Sep",
+          "Oct": "Oct",
+          "Nov": "Nov",
+          "Dec": "Dec"
+        }
+      }
+    },
+    "V86": {
+      "Title": "Virtuele Machine",
+      "NoFileSelected": "No file selected",
+      "ScriptLoadError": "Failed to load V86 script",
+      "FileReadError": "Failed to read file",
+      "StartError": "Failed to start emulator",
+      "Booting": "Booting {filename}...",
+      "ErrorPrefix": "Error: {error}",
+      "ClickToCapture": "Click to capture mouse (Esc to release)"
+    },
+    "Finder": "Finder",
+    "Launchpad": "Launchpad",
+    "Safari": "Safari",
+    "Messages": "Berichten",
+    "Mail": "Mail",
+    "Maps": "Kaarten",
+    "Photos": "Foto's",
+    "FaceTime": "FaceTime",
+    "Calendar": "Agenda",
+    "Contacts": "Contacten",
+    "Reminders": "Herinneringen",
+    "Notes": "Notities",
+    "TV": "TV",
+    "Music": "Muziek",
+    "News": "Nieuws",
+    "SystemSettings": "Systeeminstellingen",
+    "AppStore": "App Store",
+    "Trash": "Prullenmand",
+    "Freeform": "Freeform",
+    "Terminal": "Terminal",
+    "Calculator": "Calculator",
+    "TextEdit": "TextEdit",
+    "MediaPlayer": "Media Player",
+    "Preview": "Preview",
+    "VirtualMachine": "Virtual Machine"
+  },
+  "News": {
+    "Title": "News",
+    "Categories": {
+      "TopStories": "Top Stories",
+      "Technology": "Technology",
+      "Business": "Business",
+      "Science": "Science",
+      "Health": "Health",
+      "Entertainment": "Entertainment",
+      "Sports": "Sports"
+    },
+    "SearchPlaceholder": "Search stories...",
+    "SearchLabel": "Search",
+    "SearchTitle": "Search: \"{query}\"",
+    "Loading": "Loading top stories...",
+    "Error": "Failed to load news. Please try again later.",
+    "TryAgain": "Try Again",
+    "NoResults": "No stories found matching \"{query}\"",
+    "ClearSearch": "Clear Search",
+    "TopStory": "Top Story",
+    "Refresh": "Refresh",
+    "Aria": {
+      "Category": "Category: {label}",
+      "Search": "Search stories",
+      "Refresh": "Refresh news",
+      "ReadTopStory": "Read top story: {title}",
+      "ReadArticle": "Read article: {title}",
+      "Share": "Share article",
+      "Like": "Like article"
+    }
+  },
+  "Music": {
+    "AppleMusic": "Apple Music",
+    "Library": "Library",
+    "ListenNow": "Listen Now",
+    "Browse": "Browse",
+    "Radio": "Radio",
+    "RecentlyAdded": "Recently Added",
+    "Artists": "Artists",
+    "Albums": "Albums",
+    "Songs": "Songs",
+    "Search": "Search",
+    "SearchTitle": "Search: {query}",
+    "Aria": {
+      "Search": "Search music",
+      "GoBack": "Go back",
+      "GoForward": "Go forward",
+      "Prev": "Previous song",
+      "Next": "Next song",
+      "Play": "Play",
+      "Pause": "Pause",
+      "PlaySong": "Play {track} by {artist}",
+      "PauseSong": "Pause {track}",
+      "Lyrics": "Toggle lyrics",
+      "Queue": "Toggle queue",
+      "Mute": "Toggle mute",
+      "VolSlider": "Volume slider",
+      "SeekSlider": "Seek slider"
+    },
+    "Queue": {
+      "Title": "Playing Next",
+      "Empty": "Queue is empty"
+    },
+    "Lyrics": {
+      "NotAvailable": "Lyrics are not available for this song in the preview mode.",
+      "Imagine": "But imagine the lyrics appearing here, perfectly synced with the music...",
+      "Lalala": "La la la...",
+      "Placeholder": "Play a song to see lyrics"
+    }
+  },
+  "TV": {
+    "WatchNow": "Watch Now",
+    "Movies": "Movies",
+    "TVShows": "TV Shows",
+    "Kids": "Kids",
+    "Library": "Library",
+    "SearchResults": "Search Results",
+    "NoShows": "No shows found.",
+    "SearchPlaceholder": "Search",
+    "SearchLabel": "Search TV Shows",
+    "Series": "Series",
+    "PlayEpisode": "Play Episode 1",
+    "AddToUpNext": "Add to Up Next",
+    "Added": "Added",
+    "OpenYouTube": "Open in YouTube",
+    "ViewAccount": "View Account",
+    "Aria": {
+      "Play": "Play {name}",
+      "CloseVideo": "Close video",
+      "AddLibrary": "Add to Library",
+      "RemoveLibrary": "Remove from Library"
+    },
+    "Genres": {
+      "Drama": "Drama",
+      "Action": "Action",
+      "Comedy": "Comedy",
+      "ScienceFiction": "Science-Fiction",
+      "Thriller": "Thriller"
+    }
+  },
+  "Terminal": {
+    "Guest": "Guest",
+    "Welcome": "Welcome to Terminal",
+    "HelpPrompt": "Type 'help' for a list of commands.",
+    "AvailableCommands": "Available commands: ls, cd, pwd, mkdir, touch, echo, cat, clear, whoami, ping, man, rm, rmdir, vi",
+    "CommandNotFound": "command not found: {command}",
+    "Error": "Error: {message}",
+    "AriaInput": "Terminal Input",
+    "Usage": {
+      "Ping": "usage: ping host",
+      "Mkdir": "usage: mkdir directory_name",
+      "Rmdir": "usage: rmdir directory_name",
+      "Rm": "usage: rm [-rf] file_name",
+      "Touch": "usage: touch file_name",
+      "Cat": "usage: cat file_name",
+      "Vi": "usage: vi file_name",
+      "Man": "What manual page do you want?"
+    },
+    "Errors": {
+      "PingResolve": "ping: cannot resolve {host}: Unknown host",
+      "NoManual": "No manual entry for {command}",
+      "NoSuchFile": "{cmd}: {path}: No such file or directory",
+      "NotADirectory": "{cmd}: {path}: Not a directory",
+      "DirectoryNotEmpty": "{cmd}: {path}: Directory not empty",
+      "IsADirectory": "{cmd}: {path}: is a directory"
+    },
+    "Messages": {
+      "PingStats": "PING {host} (127.0.0.1): 56 data bytes\n64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.045 ms\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.082 ms\n64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.067 ms\n\n--- {host} ping statistics ---\n3 packets transmitted, 3 packets received, 0.0% packet loss",
+      "OpeningTextEdit": "Opening {file} in TextEdit..."
+    },
+    "ManPages": {
+      "ls": "ls - list directory contents\n\nUsage: ls [options] [file|dir]\n\nOptions:\n  -a, --all      do not ignore entries starting with .\n  -l             use a long listing format",
+      "cd": "cd - change the shell working directory\n\nUsage: cd [dir]\n\nChange the current directory to DIR. The default DIR is the value of the HOME shell variable.",
+      "pwd": "pwd - print name of current/working directory\n\nUsage: pwd\n\nPrint the full filename of the current working directory.",
+      "mkdir": "mkdir - make directories\n\nUsage: mkdir [DIRECTORY]\n\nCreate the DIRECTORY(ies), if they do not already exist.",
+      "touch": "touch - change file timestamps\n\nUsage: touch [FILE]\n\nUpdate the access and modification times of each FILE to the current time. If FILE does not exist it is created empty.",
+      "echo": "echo - display a line of text\n\nUsage: echo [STRING]...\n\nEcho the STRING(s) to standard output.",
+      "cat": "cat - concatenate files and print on the standard output\n\nUsage: cat [FILE]...\n\nConcatenate FILE(s) to standard output.",
+      "clear": "clear - clear the terminal screen\n\nUsage: clear",
+      "whoami": "whoami - print effective userid\n\nUsage: whoami\n\nPrint the user name associated with the current effective user ID.",
+      "ping": "ping - send ICMP ECHO_REQUEST to network hosts\n\nUsage: ping [HOST]\n\nSend ICMP ECHO_REQUEST to network hosts.",
+      "man": "man - an interface to the system reference manuals\n\nUsage: man [COMMAND]\n\nDisplay the manual page for COMMAND.",
+      "rm": "rm - remove files or directories\n\nUsage: rm [OPTION]... [FILE]...\n\nRemove (unlink) the FILE(s).\n\nOptions:\n  -r, -R, --recursive   remove directories and their contents recursively\n  -f, --force           ignore nonexistent files and arguments, never prompt",
+      "rmdir": "rmdir - remove empty directories\n\nUsage: rmdir [DIRECTORY]...\n\nRemove the DIRECTORY(ies), if they are empty.",
+      "vi": "vi - screen-oriented (visual) display editor\n\nUsage: vi [FILE]\n\nEdit FILE."
+    }
+  },
+  "TextEdit": {
+    "Guest": "Guest",
+    "Untitled": "Untitled.txt",
+    "Save": "Save",
+    "Loading": "Loading...",
+    "Placeholder": "Type your notes here...",
+    "SavedAlert": "Saved to {path}/{filename}"
+  },
+  "PDFViewer": {
+    "Document": "Document.pdf",
+    "PageInfo": "Page {current} of {total}",
+    "View": "View",
+    "ZoomIn": "Zoom In",
+    "ZoomOut": "Zoom Out",
+    "LoadingThumbnails": "Loading thumbnails...",
+    "Loading": "Loading...",
+    "NoPDF": "No PDF",
+    "FailedToLoad": "Failed to load PDF",
+    "NoPDFLoaded": "No PDF loaded"
+  },
+  "Spotlight": {
+    "Placeholder": "Spotlight Search",
+    "SearchWebFor": "Search Web for \"{query}\"",
+    "NoResults": "No results found",
+    "Open": "Open",
+    "Kinds": {
+      "Web": "Web Search",
+      "App": "Application",
+      "Directory": "Directory",
+      "File": "File"
+    },
+    "Aria": {
+      "Open": "Open {name}"
+    }
+  },
+  "MenuBar": {
+    "Apple": {
+      "AboutThisMac": "About This Mac",
+      "SystemSettings": "System Settings...",
+      "AppStore": "App Store...",
+      "RecentItems": "Recent Items",
+      "ForceQuit": "Force Quit...",
+      "Sleep": "Sleep",
+      "Restart": "Restart...",
+      "ShutDown": "Shut Down...",
+      "LockScreen": "Lock Screen"
+    },
+    "App": {
+      "About": "About {app}",
+      "Quit": "Quit {app}"
+    },
+    "File": {
+      "Title": "File",
+      "New": "New",
+      "Open": "Open...",
+      "Save": "Save",
+      "Duplicate": "Duplicate",
+      "NewFinderWindow": "New Finder Window",
+      "NewFolder": "New Folder",
+      "GetInfo": "Get Info"
+    },
+    "Edit": {
+      "Title": "Edit",
+      "Undo": "Undo",
+      "Redo": "Redo",
+      "Cut": "Cut",
+      "Copy": "Copy",
+      "Paste": "Paste"
+    },
+    "View": {
+      "Title": "View",
+      "AsIcons": "As Icons",
+      "AsList": "As List",
+      "AsColumns": "As Columns"
+    },
+    "Window": {
+      "Title": "Window",
+      "Minimize": "Minimize",
+      "Zoom": "Zoom"
+    },
+    "Help": {
+      "Title": "Help",
+      "MacOSHelp": "macOS Help"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "KnownNetworks": "Known Networks",
+      "OtherNetworks": "Other Networks",
+      "Settings": "Wi-Fi Settings..."
+    },
+    "Battery": {
+      "Title": "Battery",
+      "PowerSource": "Power Source: {source}",
+      "PowerAdapter": "Power Adapter",
+      "Battery": "Battery",
+      "EnergyMode": "Energy Mode",
+      "Automatic": "Automatic",
+      "LowPower": "Low Power",
+      "HighPower": "High Power",
+      "SignificantEnergy": "Using Significant Energy",
+      "Settings": "Battery Settings..."
+    },
+    "Aria": {
+      "Clipboard": "Clipboard",
+      "MediaPlayer": "Media Player",
+      "Spotlight": "Spotlight Search",
+      "ControlCenter": "Control Center",
+      "Siri": "Siri",
+      "Clock": "Clock and Notification Center"
+    }
+  },
+  "WeatherDropdown": {
+    "Searching": "Searching...",
+    "SearchCity": "Search city...",
+    "Now": "Now",
+    "Today": "Today",
+    "OpenWeather": "Open Weather"
+  },
+  "LockScreen": {
+    "IncorrectPassword": "Incorrect password",
+    "Guest": "Guest",
+    "EnterPassword": "Enter Password",
+    "Hint": "Touch ID or enter password (hint: {hint})",
+    "Login": "Login",
+    "Cancel": "Cancel",
+    "Aria": {
+      "UserAvatar": "User avatar, click to login",
+      "User": "User {name}, click to login",
+      "Password": "Password",
+      "Submit": "Submit password"
+    }
+  }
 }

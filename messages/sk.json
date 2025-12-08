@@ -1,4 +1,1742 @@
 {
-  "Hello": "Hello world!",
-  "Welcome": "Welcome to the multi-language app"
+  "Hello": {
+    "world": "Ahoj svet",
+    "GetStarted": "Začať"
+  },
+  "Common": {
+    "OK": "OK",
+    "Cancel": "Zrušiť",
+    "Yes": "Áno",
+    "No": "Nie",
+    "Back": "Späť",
+    "Continue": "Pokračovať",
+    "Done": "Hotovo",
+    "Edit": "Upraviť",
+    "Delete": "Vymazať",
+    "Save": "Uložiť",
+    "Close": "Zavrieť",
+    "Error": "Chyba",
+    "Success": "Úspech"
+  },
+  "Setup": {
+    "Common": {
+      "Continue": "Pokračovať",
+      "Back": "Späť",
+      "NotNow": "Teraz nie",
+      "Cancel": "Zrušiť",
+      "LearnMore": "Zistiť viac"
+    },
+    "Language": {
+      "Title": "Vyberte Jazyk",
+      "Description": "Vyberte jazyk, ktorý chcete používať na tomto Macu.",
+      "TableLabel": "Jazyk",
+      "Primary": "Primárny"
+    },
+    "Region": {
+      "Title": "Vyberte Vašu Krajinu alebo Región"
+    },
+    "DataPrivacy": {
+      "Title": "Dáta a Súkromie",
+      "IconText": "Táto ikona sa zobrazí, keď funkcia Apple žiada o použitie vašich osobných údajov.",
+      "FeatureText": "Túto ikonu neuvidíte pri každej funkcii. Apple zhromažďuje tieto informácie iba vtedy, keď je to potrebné na zapnutie funkcií, zabezpečenie služieb alebo prispôsobenie vášho zážitku.",
+      "PrivacyText": "Apple verí, že súkromie je základné ľudské právo, preto je každý produkt Apple navrhnutý tak, aby minimalizoval zhromažďovanie a používanie vašich údajov, využíval spracovanie priamo v zariadení, kedykoľvek je to možné, a poskytoval transparentnosť a kontrolu nad vašimi informáciami."
+    },
+    "TouchID": {
+      "Title": "Touch ID",
+      "SetupLater": "Nastaviť Touch ID neskôr",
+      "Description": "Použite svoj odtlačok prsta na odomknutie Macu a nakupovanie pomocou Apple Pay. Položte prst na Touch ID pre začatie."
+    },
+    "Fingerprint": {
+      "Title": "Položte Svoj Prst",
+      "Instruction": "Opakovane zdvihnite a položte prst na Touch ID",
+      "Success": "✓ Touch ID je pripravené"
+    },
+    "Languages": {
+      "Title": "Písaný a Hovorený Jazyk",
+      "Description": "Jazyky uvedené nižšie sa bežne používajú vo vašom regióne. Môžete použiť tieto nastavenia alebo ich prispôsobiť jednotlivo.",
+      "Preferred": "Preferované Jazyky",
+      "InputSources": "Zdroje Vstupu",
+      "Dictation": "Diktovanie",
+      "Customize": "Prispôsobiť Nastavenia"
+    },
+    "Accessibility": {
+      "Title": "Prístupnosť",
+      "Description": "Funkcie prístupnosti prispôsobujú Mac vašim zrakovým, sluchovým a motorickým potrebám. Môžete ich zapnúť teraz a dokončiť nastavenie, alebo ich prispôsobiť neskôr v Systémových Nastaveniach. Pozrite si kategórie nižšie pre dostupné funkcie.",
+      "Vision": "Zrak",
+      "Motor": "Motorika",
+      "Hearing": "Sluch",
+      "Cognitive": "Kognitívne"
+    },
+    "Migration": {
+      "Title": "Asistent Migrácie",
+      "Description": "Ak máte informácie na inom Macu alebo PC s Windows, môžete ich preniesť do tohto Macu. Môžete tiež preniesť dáta zo zálohy Time Machine alebo iného štartovacieho disku.",
+      "Question": "Ako chcete preniesť svoje informácie?",
+      "FromMac": "Z Macu, zálohy Time Machine alebo štartovacieho disku",
+      "FromPC": "Z PC s Windows"
+    },
+    "AppleID": {
+      "Title": "Prihláste sa pomocou Apple ID",
+      "Description": "Prihláste sa pre používanie iCloud, App Store a ďalších služieb Apple.",
+      "Label": "Apple ID",
+      "CreateNew": "Vytvoriť nové Apple ID",
+      "Forgot": "Zabudli ste Apple ID alebo heslo?",
+      "UseDifferent": "Použiť rôzne Apple ID pre iCloud a Médiá?",
+      "Info": "Tento Mac bude prepojený s vaším Apple ID a vaše dáta ako fotky, kontakty a dokumenty budú uložené v iCloude, aby ste k nim mali prístup na iných zariadeniach.",
+      "SeeData": "Zobraziť ako sú spravované dáta",
+      "SetupLater": "Nastaviť neskôr",
+      "ErrorRequired": "Zadajte Apple ID."
+    },
+    "Account": {
+      "Title": "Vytvoriť Počítačový Účet",
+      "CreateAppleID": "Vytvoriť Apple ID",
+      "Description": "Zadajte svoje meno a informácie o účte pre nastavenie počítača.",
+      "Name": "Celé Meno",
+      "Email": "E-mailová Adresa",
+      "Age": "Vek",
+      "Phone": "Mobilné Číslo",
+      "Password": "Heslo",
+      "Errors": {
+        "NameRequired": "Celé meno je povinné.",
+        "EmailRequired": "E-mail je povinný.",
+        "EmailInvalid": "Zadajte platnú e-mailovú adresu.",
+        "AgeRequired": "Vek je povinný.",
+        "AgeInvalid": "Zadajte platný vek.",
+        "PhoneRequired": "Telefónne číslo je povinné.",
+        "PasswordRequired": "Heslo je povinné.",
+        "PasswordLength": "Heslo musí mať aspoň 6 znakov."
+      }
+    },
+    "Theme": {
+      "Title": "Vyberte Svoj Vzhľad",
+      "Description": "Vyberte Svetlý alebo Tmavý na zmenu vzhľadu systému a aplikácií.",
+      "Light": "Svetlý",
+      "Dark": "Tmavý"
+    }
+  },
+  "SystemSettings": {
+    "General": {
+      "Title": "Všeobecné",
+      "Description": "Spravujte všeobecné nastavenia a predvoľby pre váš Mac, vrátane aktualizácie softvéru, jazyka zariadenia, AirDrop a ďalších.",
+      "About": "O tomto Macu",
+      "SoftwareUpdate": "Aktualizácia softvéru",
+      "Storage": "Úložisko",
+      "AppleCare": "AppleCare a záruka",
+      "AirDrop": "AirDrop a Handoff",
+      "AutoFill": "Automatické vypĺňanie a heslá",
+      "DateTime": "Dátum a čas",
+      "LanguageRegion": "Jazyk a región",
+      "LoginItems": "Otváranie pri prihlásení",
+      "Sharing": "Zdieľanie",
+      "StartupDisk": "Štartovací disk",
+      "TimeMachine": "Time Machine",
+      "DeviceManagement": "Správa zariadení",
+      "TransferReset": "Prenos alebo resetovanie"
+    },
+    "AppleAccount": {
+      "Edit": "Upraviť",
+      "PersonalInformation": "Osobné informácie",
+      "SignInSecurity": "Prihlásenie a zabezpečenie",
+      "PaymentShipping": "Platba a doručenie",
+      "iCloud": "iCloud",
+      "MediaPurchases": "Médiá a nákupy",
+      "Family": "Rodinné zdieľanie",
+      "SetUp": "Nastaviť",
+      "Devices": "Zariadenia",
+      "ThisMac": "Tento MacBook Pro 14\"",
+      "SignOut": "Odhlásiť sa..."
+    },
+    "LanguageRegion": {
+      "Title": "Jazyk a región",
+      "PreferredLanguages": "Preferované jazyky",
+      "Region": "Región",
+      "Calendar": "Kalendár",
+      "Temperature": "Teplota",
+      "Celsius": "Stupne Celzia (°C)",
+      "Fahrenheit": "Stupne Fahrenheita (°F)",
+      "MeasurementSystem": "Merný systém",
+      "Metric": "Metrický",
+      "US": "Americký",
+      "UK": "Britský",
+      "FirstDayOfWeek": "Prvý deň v týždni",
+      "DateFormat": "Formát dátumu",
+      "NumberFormat": "Formát čísla",
+      "LiveText": "Živý text",
+      "LiveTextDesc": "Vyberte text na obrázkoch na kopírovanie alebo vykonanie akcie.",
+      "Applications": "Aplikácie",
+      "ApplicationsDesc": "Prispôsobte nastavenia jazyka pre určité aplikácie nižšie:",
+      "TranslationLanguages": "Prekladové jazyky..."
+    },
+    "Sidebar": {
+      "Search": "Hľadať",
+      "NotImplemented": "Táto sekcia ešte nie je implementovaná.",
+      "AppleAccount": "Účet Apple",
+      "WiFi": "Wi-Fi",
+      "Bluetooth": "Bluetooth",
+      "Network": "Sieť",
+      "General": "Všeobecné",
+      "Appearance": "Vzhľad",
+      "Accessibility": "Prístupnosť",
+      "MenuBar": "Ovládacie centrum",
+      "DesktopDock": "Plocha a Dock",
+      "Displays": "Displeje",
+      "Spotlight": "Spotlight",
+      "Wallpaper": "Tapeta",
+      "ScreenSaver": "Šetrič obrazovky",
+      "Battery": "Batéria",
+      "Sound": "Zvuk",
+      "Notifications": "Hlásenia",
+      "Focus": "Môj čas",
+      "ScreenTime": "Čas pred obrazovkou",
+      "PrivacySecurity": "Súkromie a bezpečnosť",
+      "LockScreen": "Uzamknutá obrazovka",
+      "TouchIDPassword": "Touch ID a heslo",
+      "UsersGroups": "Používatelia a skupiny",
+      "Keyboard": "Klávesnica",
+      "Trackpad": "Trackpad",
+      "PrintersScanners": "Tlačiarne a skenery",
+      "Storage": "Úložisko"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "Description": "Nastavte Wi-Fi na pripojenie k internetu a bezdrôtovým zariadeniam.",
+      "Connected": "Pripojené",
+      "Details": "Podrobnosti...",
+      "KnownNetworks": "Známe siete",
+      "OtherNetworks": "Iné siete",
+      "Connect": "Pripojiť",
+      "Other": "Iné...",
+      "AskToJoin": "Výzva na pripojenie k sieťam",
+      "AskToJoinDesc": "Známe siete budú pripojené automaticky. Ak nie sú dostupné žiadne známe siete, budete musieť manuálne vybrať sieť.",
+      "Notify": "Oznámiť",
+      "AskToJoinHotspots": "Výzva na pripojenie k hotspotom",
+      "AskToJoinHotspotsDesc": "Povoliť automatické objavenie osobných hotspotov, keď nie sú dostupné žiadne Wi-Fi siete.",
+      "AskToJoinAction": "Opýtať sa na pripojenie",
+      "Advanced": "Rozšírené..."
+    },
+    "Bluetooth": {
+      "Title": "Bluetooth",
+      "Description": "Spravujte pripojenia Bluetooth s bezdrôtovými zariadeniami.",
+      "Discoverable": "Teraz viditeľný ako \"MacBook Pro\"",
+      "MyDevices": "Moje zariadenia",
+      "NotConnected": "Nepripojené",
+      "NearbyDevices": "Zariadenia v okolí",
+      "Searching": "Hľadanie..."
+    },
+    "Network": {
+      "Title": "Sieť",
+      "WiFi": "Wi-Fi",
+      "Connected": "Pripojené",
+      "Firewall": "Firewall",
+      "Inactive": "Neaktívny",
+      "OtherServices": "Iné služby",
+      "NotConnected": "Nepripojené"
+    },
+    "Appearance": {
+      "Title": "Vzhľad",
+      "Description": "Nastavenie vzhľadu systému.",
+      "Light": "Svetlý",
+      "Dark": "Tmavý",
+      "Auto": "Automaticky",
+      "AccentColor": "Akcentná farba",
+      "HighlightColor": "Farba zvýraznenia",
+      "Automatic": "Automaticky",
+      "SidebarIconSize": "Veľkosť ikon v bočnom paneli",
+      "Medium": "Stredná",
+      "WallpaperTinting": "Povoliť tónovanie tapety v oknách",
+      "ShowScrollBars": "Zobraziť posuvníky",
+      "ScrollAuto": "Automaticky podľa myši alebo trackpadu",
+      "ScrollWhenScrolling": "Pri posúvaní",
+      "ScrollAlways": "Vždy",
+      "ClickScrollBar": "Kliknutie na posuvník",
+      "JumpNextPage": "Ísť na ďalšiu stranu",
+      "JumpSpotClicked": "Ísť na miesto kliknutia"
+    },
+    "Accessibility": {
+      "Title": "Prístupnosť",
+      "Description": "Možnosti prístupnosti pre zrak, sluch a motoriku.",
+      "LearnMore": "Ďalšie informácie...",
+      "Vision": "Zrak",
+      "VoiceOver": "VoiceOver",
+      "Zoom": "Zväčšenie",
+      "HoverText": "Text pod kurzorom",
+      "Display": "Displej",
+      "Motion": "Pohyb",
+      "ReadSpeak": "Predčítanie obsahu",
+      "AudioDescriptions": "Zvukové popisy",
+      "Hearing": "Sluch",
+      "HearingDevices": "Načúvacie prístroje",
+      "Audio": "Zvuk",
+      "Captions": "Titulky",
+      "LiveCaptions": "Živé titulky",
+      "NameRecognition": "Rozpoznávanie mien",
+      "Motor": "Motorika",
+      "VoiceControl": "Hlasové ovládanie",
+      "Keyboard": "Klávesnica",
+      "PointerControl": "Ovládanie kurzora",
+      "SwitchControl": "Ovládanie prepínačmi",
+      "General": "Všeobecné",
+      "Siri": "Siri",
+      "Shortcut": "Skratka"
+    },
+    "MenuBar": {
+      "Title": "Ovládacie centrum",
+      "Description": "Prispôsobte Ovládacie centrum, Ovládacie prvky páska alebo menu.",
+      "AutoHide": "Automaticky skryť a zobraziť lištu s ponukami",
+      "Never": "Nikdy",
+      "RecentDocs": "Posledné dokumenty, aplikácie a servery",
+      "None": "Žiadne",
+      "Controls": "Moduly ovládacieho centra",
+      "ControlCenter": "Ovládacie centrum",
+      "ShowInMenuBar": "Zobraziť v lište s ponukami",
+      "DontShowInMenuBar": "Nezobrazovať v lište s ponukami",
+      "Siri": "Siri",
+      "Spotlight": "Spotlight",
+      "VolumeFeedback": "Prehrať zvuk pri zmene hlasitosti",
+      "Clock": "Hodiny"
+    },
+    "DesktopDock": {
+      "Title": "Plocha a Dock",
+      "Description": "Možnosti pre Dock a plochu.",
+      "Dock": "Dock",
+      "Size": "Veľkosť",
+      "Magnification": "Zväčšenie",
+      "Small": "Malá",
+      "Large": "Veľká",
+      "Position": "Umiestnenie na obrazovke",
+      "Bottom": "Dole",
+      "MinimiseUsing": "Minimalizovať okná pomocou",
+      "GenieEffect": "Efekt džina",
+      "DoubleClickTitle": "Dvojklik na titulok okna",
+      "Zoom": "Zväčšiť",
+      "MinimiseToIcon": "Minimalizovať okná do ikony aplikácie",
+      "AutoHideDock": "Automaticky skrývať a zobrazovať Dock",
+      "AnimateOpening": "Animovať otváranie aplikácií",
+      "ShowIndicators": "Zobraziť indikátory pre otvorené aplikácie",
+      "ShowRecent": "Zobraziť nedávne aplikácie v Docku",
+      "DesktopStageManager": "Plocha a Stage Manager",
+      "ShowItems": "Zobraziť položky",
+      "OnDesktop": "Na ploche",
+      "ClickWallpaper": "Kliknutím na tapetu zobraziť plochu",
+      "Always": "Vždy",
+      "StageManager": "Stage Manager",
+      "Widgets": "Widgety",
+      "ShowWidgets": "Zobraziť widgety",
+      "WidgetStyle": "Štýl widgetov",
+      "Automatic": "Automaticky",
+      "UseIPhoneWidgets": "Použiť widgety z iPhonu"
+    },
+    "Displays": {
+      "Title": "Displeje",
+      "Description": "Nastavenie displejov.",
+      "BuiltInDisplay": "Vstavaný displej",
+      "UseAs": "Použiť ako",
+      "MainDisplay": "Hlavný displej",
+      "Resolution": "Rozlíšenie",
+      "Default": "Predvolené",
+      "MoreSpace": "Viac miesta",
+      "LargerText": "Väčší text",
+      "Brightness": "Jas",
+      "TrueTone": "True Tone",
+      "Preset": "Predvoľba",
+      "RefreshRate": "Obnovovacia frekvencia",
+      "ProMotion": "ProMotion",
+      "Advanced": "Rozšírené..."
+    },
+    "Spotlight": {
+      "Title": "Spotlight",
+      "Description": "Nastavenia vyhľadávania.",
+      "SearchPlaceholder": "Hľadanie v Spotlighte",
+      "SearchResults": "Výsledky hľadania",
+      "Privacy": "Súkromie Spotlightu...",
+      "Categories": {
+        "Applications": "Aplikácie",
+        "Calculator": "Kalkulačka",
+        "Contacts": "Kontakty",
+        "Conversion": "Konverzia",
+        "Definition": "Definícia",
+        "Developer": "Vývojár",
+        "Documents": "Dokumenty",
+        "Events & Reminders": "Udalosti a pripomienky",
+        "Folders": "Priečinky",
+        "Fonts": "Písma",
+        "Images": "Obrázky",
+        "Mail & Messages": "Mail a správy",
+        "Movies": "Filmy",
+        "Music": "Hudba",
+        "Other": "Iné",
+        "PDF Documents": "PDF dokumenty",
+        "Presentations": "Prezentácie",
+        "Siri Suggestions": "Návrhy Siri",
+        "Spreadsheets": "Tabuľky",
+        "System Preferences": "Systémové nastavenia",
+        "Tips": "Tipy",
+        "Bookmarks & History": "Záložky a história"
+      }
+    },
+    "Notifications": {
+      "Title": "Hlásenia",
+      "Description": "Nastavenia hlásení aplikácií.",
+      "Preview": "Zobraziť náhľady",
+      "ShowPreviews": "Zobraziť náhľady",
+      "Always": "Vždy",
+      "ApplicationNotifications": "Hlásenia aplikácií",
+      "Apps": {
+        "AppStore": "App Store",
+        "Calendar": "Kalendár",
+        "FaceTime": "FaceTime",
+        "Mail": "Mail",
+        "Messages": "Správy",
+        "Photos": "Fotky",
+        "Reminders": "Pripomienky",
+        "Safari": "Safari"
+      }
+    },
+    "Sound": {
+      "Title": "Zvuk",
+      "Description": "Nastavenia zvuku.",
+      "OutputInput": "Výstup a vstup",
+      "Output": "Výstup",
+      "Input": "Vstup",
+      "SelectOutput": "Vyberte zariadenie pre zvukový výstup:",
+      "Speakers": "Reproduktory MacBooku Pro",
+      "BuiltIn": "Vstavané",
+      "OutputVolume": "Hlasitosť výstupu",
+      "Mute": "Stlmiť",
+      "ShowInMenuBar": "Zobraziť Zvuk v lište s ponukami",
+      "Always": "Vždy",
+      "AlertSoundGroup": "Výstražný zvuk",
+      "AlertSound": "Výstražný zvuk",
+      "Boop": "Bum",
+      "AlertVolume": "Hlasitosť výstrah",
+      "PlayUIEffects": "Prehrávať zvukové efekty používateľského rozhrania"
+    },
+    "Focus": {
+      "Title": "Môj čas",
+      "Description": "Nastavte režimy Môj čas pre prácu a odpočinok.",
+      "DoNotDisturb": "Nerušiť",
+      "ShareAcrossDevices": "Zdieľať medzi zariadeniami",
+      "FocusStatus": "Stav Môj čas",
+      "On": "Zapnuté",
+      "Off": "Vypnuté",
+      "SetUp": "Nastaviť",
+      "FocusModes": "Režimy Môj čas",
+      "Personal": "Osobné",
+      "Sleep": "Spánok",
+      "Work": "Práca",
+      "AddFocus": "Pridať režim Môj čas"
+    },
+    "ScreenTime": {
+      "Title": "Čas pred obrazovkou",
+      "Description": "Monitorujte používanie aplikácií a nastavte limity.",
+      "DailyAverage": "Denný priemer",
+      "FromLastWeek": "od minulého týždňa",
+      "Downtime": "Pokojový čas",
+      "AppLimits": "Limity pre apky",
+      "LimitsCount": "{count} limitov",
+      "AlwaysAllowed": "Vždy povolené",
+      "AllowedApps": "Telefón, Mapy, Správy",
+      "ContentPrivacy": "Obsah a súkromie",
+      "On": "Zapnuté",
+      "Off": "Vypnuté",
+      "ShareAcrossDevices": "Zdieľať medzi zariadeniami",
+      "LockSettings": "Uzamknúť nastavenia Času pred obrazovkou"
+    },
+    "Battery": {
+      "Title": "Batéria",
+      "Description": "Skupiny nastavení batérie.",
+      "BatteryLevel": "Úroveň batérie",
+      "LastCharged": "Naposledy nabité na 100% o 8:00",
+      "LowPowerMode": "Režim nízkej spotreby",
+      "Never": "Nikdy",
+      "BatteryHealth": "Zdravie batérie",
+      "Normal": "Normálne",
+      "OptimisedCharging": "Optimalizované nabíjanie batérie",
+      "Options": "Voľby..."
+    },
+    "Keyboard": {
+      "Title": "Klávesnica",
+      "Description": "Nastavenia klávesnice.",
+      "KeyRepeat": "Opakovanie klávesov",
+      "Slow": "Pomalé",
+      "Fast": "Rýchle",
+      "DelayUntilRepeat": "Oneskorenie do opakovania",
+      "Long": "Dlhé",
+      "Short": "Krátke",
+      "AdjustBrightness": "Upraviť jas klávesnice pri slabom osvetlení",
+      "KeyboardNavigation": "Navigácia klávesnicou",
+      "Shortcuts": "Klávesové skratky...",
+      "TextInput": "Zadávanie textu",
+      "InputSources": "Zdroje vstupu",
+      "Edit": "Upraviť...",
+      "Dictation": "Diktovanie"
+    },
+    "LockScreen": {
+      "Title": "Uzamknutá obrazovka",
+      "Description": "Nastavenia uzamknutej obrazovky.",
+      "TurnOffDisplayBattery": "Vypnúť displej pri nečinnosti (batéria)",
+      "TurnOffDisplayAdapter": "Vypnúť displej pri nečinnosti (adaptér)",
+      "TwoMinutes": "2 minút",
+      "TenMinutes": "10 minút",
+      "RequirePassword": "Požadovať heslo po spustení šetriča obrazovky alebo vypnutí displeja",
+      "Immediately": "Okamžite",
+      "ShowMessage": "Zobraziť správu pri uzamknutí",
+      "Set": "Nastaviť...",
+      "LoginWindowShows": "Prihlasovacie okno zobrazuje",
+      "ListOfUsers": "Zoznam používateľov",
+      "ShowLargeClock": "Zobraziť veľké hodiny",
+      "OnLockScreen": "Na uzamknutej obrazovke"
+    },
+    "PrivacySecurity": {
+      "Title": "Súkromie a bezpečnosť",
+      "Description": "Nastavenia súkromia a bezpečnosti.",
+      "Privacy": "Súkromie",
+      "LocationServices": "Lokalizačné služby",
+      "On": "Zapnuté",
+      "Off": "Vypnuté",
+      "Camera": "Kamera",
+      "Microphone": "Mikrofón",
+      "FilesFolders": "Súbory a priečinky",
+      "ScreenRecording": "Záznam obrazovky",
+      "AppsCount": "{count, plural, =0 {Žiadne aplikácie} one {# aplikácia} few {# aplikácie} many {# aplikácií} other {# aplikácií}}",
+      "Security": "Bezpečnosť",
+      "FileVault": "FileVault",
+      "LockdownMode": "Režim blokovania",
+      "Others": "Ostatné",
+      "Extensions": "Rozšírenia",
+      "Profiles": "Profily"
+    },
+    "PrintersScanners": {
+      "Title": "Tlačiarne a skenery",
+      "Description": "Nastavenia tlačiarní a skenerov.",
+      "Printers": "Tlačiarne",
+      "IdleLastUsed": "Nečinná, Naposledy použitá",
+      "Offline": "Offline",
+      "AddPrinter": "Pridať tláčiareň, skener alebo fax..."
+    },
+    "ScreenSaver": {
+      "Title": "Šetrič obrazovky",
+      "Description": "Nastavenia šetriča obrazovky.",
+      "Preview": "Náhľad",
+      "ShowOnAllSpaces": "Zobraziť na všetkých plochách",
+      "ScreenSavers": "Šetriče obrazovky",
+      "StartAfter": "Spustiť po",
+      "FiveMinutes": "5 minút",
+      "ShowWithClock": "Zobraziť s hodinami",
+      "ScreensaverNames": {
+        "Ventura": "Ventura",
+        "Monterey": "Monterey",
+        "BigSur": "Big Sur",
+        "Catalina": "Catalina",
+        "Hello": "Hello",
+        "Drift": "Unášanie",
+        "Flurry": "Vločky",
+        "Shell": "Mušľa"
+      }
+    },
+    "Storage": {
+      "Title": "Úložisko",
+      "Description": "Správa úložiska.",
+      "MacintoshHD": "Macintosh HD",
+      "AvailableSpace": "{available} GB / {total} GB k dispozícii",
+      "Apps": "Aplikácie",
+      "Documents": "Dokumenty",
+      "SystemData": "Systémové dáta",
+      "macOS": "macOS",
+      "OtherUsers": "Iní používatelia",
+      "Recommendations": "Odporúčania",
+      "StoreInICloud": "Uložiť v iCloude",
+      "StoreInICloudDesc": "Uložte všetky svoje súbory, fotky a správy v iCloude a ušetrite miesto na tomto Macu.",
+      "StoreInICloudButton": "Uložiť v iCloude...",
+      "Categories": "Kategórie",
+      "Applications": "Aplikácie"
+    },
+    "TouchIDPassword": {
+      "Title": "Touch ID a heslo",
+      "Description": "Pridať odtlačok prsta na odomknutie Macu.",
+      "TouchID": "Touch ID",
+      "Finger1": "Prst 1",
+      "AddFingerprint": "Pridať odtlačok",
+      "UseTouchIDFor": "Použiť Touch ID s:",
+      "UnlockingMac": "Odomykanie Macu",
+      "ApplePay": "Apple Pay",
+      "iTunesAppStore": "iTunes Store a App Store",
+      "AutoFillPasswords": "Automatické vypĺňanie hesiel",
+      "Password": "Heslo",
+      "LastChanged": "Naposledy zmenené: 24.11.2024",
+      "Change": "Zmeniť...",
+      "RequirePasswordScreenSaver": "Požadovať heslo po spustení šetriča obrazovky alebo vypnutí displeja",
+      "Immediately": "Okamžite",
+      "RequirePasswordIdle": "Požadovať heslo po nečinnosti",
+      "Never": "Nikdy",
+      "Seconds": "{count} sekúnd",
+      "Minute": "{count} minúta",
+      "Minutes": "{count} minút",
+      "AppleWatch": "Apple Watch",
+      "AppleWatchUnlock": "Použiť Apple Watch na odomykanie aplikácií a Macu"
+    },
+    "Trackpad": {
+      "Title": "Trackpad",
+      "Description": "Nastavenia trackpadu.",
+      "PointClick": "Ukazovanie a klikanie",
+      "ScrollZoom": "Posúvanie a zväčšovanie",
+      "MoreGestures": "Ďalšie gestá",
+      "TrackingSpeed": "Rýchlosť pohybu",
+      "Slow": "Pomalá",
+      "Fast": "Rýchla",
+      "Click": "Kliknutie",
+      "Medium": "Stredná",
+      "ForceClick": "Silné kliknutie a haptická odozva",
+      "LookUp": "Vyhľadať a detektory údajov",
+      "SecondaryClick": "Sekundárne kliknutie",
+      "ClickTwoFingers": "Kliknutie dvoma prstami",
+      "TapToClick": "Kliknutie klepnutím",
+      "VideoPreview": "Náhľad videa"
+    },
+    "UsersGroups": {
+      "Title": "Používatelia a skupiny",
+      "Description": "Spravujte používateľov.",
+      "CurrentUser": "Aktuálny používateľ",
+      "Admin": "Správca",
+      "OtherUsers": "Iní používatelia",
+      "GuestUser": "Hosť",
+      "Off": "Vypnuté",
+      "AddAccount": "Pridať účet...",
+      "AutoLogin": "Automatické prihlásenie",
+      "AllowNetworkUsers": "Povoliť sieťovým používateľom prihlásiť sa v prihlasovacom okne"
+    },
+    "Wallpaper": {
+      "Title": "Tapeta",
+      "Description": "Zvoľte tapetu.",
+      "ShowOnAllSpaces": "Zobraziť na všetkých plochách",
+      "DynamicWallpapers": "Dynamické tapety",
+      "Pictures": "Obrázky",
+      "AddPhoto": "Pridať fotku"
+    },
+    "LanguageSelector": {
+      "Title": "Vyberte preferovaný jazyk na pridanie",
+      "Search": "Hľadať",
+      "Cancel": "Zrušiť",
+      "Add": "Pridať"
+    }
+  },
+  "Languages": {
+    "English": "Angličtina",
+    "Spanish": "Španielčina",
+    "French": "Francúzština",
+    "German": "Nemčina",
+    "Italian": "Taliančina",
+    "Japanese": "Japončina",
+    "Chinese": "Čínština",
+    "Portuguese": "Portugalčina",
+    "Russian": "Ruština",
+    "Korean": "Kórejčina",
+    "Dutch": "Holandčina",
+    "Swedish": "Švédčina",
+    "Danish": "Dánčina",
+    "Norwegian": "Nórčina",
+    "Finnish": "Fínčina",
+    "Polish": "Poľština",
+    "Turkish": "Turečtina",
+    "Arabic": "Arabčina",
+    "Hindi": "Hindčina",
+    "Bengali": "Bengálčina",
+    "Vietnamese": "Vietnamčina",
+    "Thai": "Thajčina",
+    "Greek": "Gréčtina",
+    "Czech": "Čeština",
+    "Hungarian": "Maďarčina",
+    "Romanian": "Rumunčina",
+    "Ukrainian": "Ukrajinčina",
+    "Indonesian": "Indonézština",
+    "Malay": "Malajčina",
+    "Croatian": "Chorvátčina",
+    "Slovak": "Slovenčina",
+    "Slovenian": "Slovinčina",
+    "Bulgarian": "Bulharčina",
+    "Serbian": "Srbčina",
+    "Hebrew": "Hebrejčina"
+  },
+  "Finder": {
+    "Search": "Hľadať",
+    "Sidebar": {
+      "Favorites": "Obľúbené",
+      "Locations": "Miesta",
+      "AirDrop": "AirDrop",
+      "Recents": "Posledné",
+      "Applications": "Aplikácie",
+      "Desktop": "Plocha",
+      "Documents": "Dokumenty",
+      "Downloads": "Sťahovanie",
+      "Pictures": "Obrázky",
+      "Home": "Domov",
+      "MacintoshHD": "Macintosh HD",
+      "iCloudDrive": "iCloud Drive"
+    },
+    "Menu": {
+      "NewFolder": "Nový priečinok",
+      "GetInfo": "Získať informácie",
+      "ChangeBackground": "Zmeniť pozadie...",
+      "Open": "Otvoriť",
+      "MoveToBin": "Presunúť do koša",
+      "Rename": "Premenovať",
+      "OpenItems": "Otvoriť {count, plural, one {1 položku} few {položky} many {položiek} other {položiek}}",
+      "MoveItemsToBin": "Presunúť {count, plural, one {1 položku} few {položky} many {položiek} other {položiek}} do poša"
+    },
+    "Status": {
+      "Loading": "Načítava sa...",
+      "EmptyFolder": "Prázdny priečinok",
+      "ItemCount": "{count, plural, =1 {1 položka} one {# položka} few {# položky} many {# položiek} other {# položiek}}",
+      "SpaceAvailable": "{amount} GB k dispozícii"
+    },
+    "Errors": {
+      "NoApp": "Žiadna aplikácia nie je nastavená na otvorenie dokumentu \"{ext}\".",
+      "CreateFolderFailed": "Vytvorenie priečinka zlyhalo",
+      "MoveToBinFailed": "Presun do koša zlyhal"
+    }
+  },
+  "Safari": {
+    "Title": "Safari",
+    "StartPage": "Úvodná stránka",
+    "Loading": "Načítava sa...",
+    "SearchPlaceholder": "Hľadať alebo zadať názov webovej stránky",
+    "NoInternet": "Žiadne pripojenie na internet",
+    "NoInternetDesc": "Váš počítač nie je pripojený na internet. Túto stránku nie je možné zobraziť.",
+    "Favorites": {
+      "Apple": "Apple",
+      "Google": "Google",
+      "Wikipedia": "Wikipedia",
+      "GitHub": "GitHub"
+    }
+  },
+  "Mail": {
+    "Inbox": "Doručené",
+    "MessagesCount": "{count, plural, =1 {1 správa} one {# správa} few {# správy} many {# správ} other {# správ}}",
+    "Favorites": "Obľúbené",
+    "AllInboxes": "Všetky schránky",
+    "VIP": "VIP",
+    "Sent": "Odoslané",
+    "Search": "Hľadať",
+    "NoMessageSelected": "Žiadna vybraná správa",
+    "To": "Komu: {name}"
+  },
+  "Messages": {
+    "AppTitle": "Správy",
+    "SigningIn": "Prihlasovanie ako {name}...",
+    "SidebarTitle": "Správy",
+    "NoOnlineUsers": "Žiadny používatelia online.",
+    "NoMessages": "Žiadne správy",
+    "To": "Komu: {name}",
+    "InputPlaceholder": "iMessage",
+    "NoContactSelected": "Vyberte kontakt pre zobrazenie správ"
+  },
+  "Photos": {
+    "Sidebar": {
+      "Library": "Knižnica",
+      "Collections": "Zbierky",
+      "Pinned": "Pripnuté",
+      "Albums": "Albumy",
+      "Utilities": "Pomôcky",
+      "Projects": "Projekty",
+      "Favourites": "Obľúbené",
+      "RecentlySaved": "Naposledy uložené",
+      "Videos": "Videá",
+      "Screenshots": "Snímky obrazovky",
+      "PeoplePets": "Ľudia a zvieratá",
+      "SharedAlbums": "Zdieľané albumy",
+      "Activity": "Aktivita",
+      "RecentlyDeleted": "Naposledy vymazané",
+      "Duplicates": "Duplikáty",
+      "Map": "Mapa",
+      "AllProjects": "Všetky projekty"
+    },
+    "Tabs": {
+      "Years": "Roky",
+      "Months": "Mesiace",
+      "AllPhotos": "Všetky fotky"
+    },
+    "Search": "Hľadať",
+    "Collections": {
+      "Title": "Zbierky",
+      "Memories": "Spomienky",
+      "NoMemories": "Žiadne spomienky",
+      "NoMemoriesDesc": "Spomienky sa tu objavia po vytvorení.",
+      "Albums": "Albumy",
+      "NoAlbums": "Žiadne albumy"
+    },
+    "EmptyState": {
+      "NoItems": "Žiadne položky v {title}"
+    },
+    "Locked": {
+      "Title": "{title} Uzamknuté",
+      "Desc": "Overiť pre zobrazenie."
+    }
+  },
+  "Notes": {
+    "Sidebar": {
+      "iCloud": "iCloud",
+      "Notes": "Poznámky",
+      "RecentlyDeleted": "Naposledy vymazané"
+    },
+    "Search": "Hľadať",
+    "NewNote": "Nová poznámka",
+    "NoAdditionalText": "Žiadny ďalší text",
+    "Editor": {
+      "TitlePlaceholder": "Názov",
+      "ContentPlaceholder": "Začnite písať...",
+      "AddToDesktop": "Pridať na plochu",
+      "Restore": "Obnoviť",
+      "Delete": "Vymazať poznámku",
+      "DeletePermanently": "Vymazať natrvalo",
+      "EmptyState": "Vyberte alebo vytvorte poznámku",
+      "Date": "Dnes {time}"
+    }
+  },
+  "Reminders": {
+    "Search": "Hľadať",
+    "Sidebar": {
+      "MyLists": "Moje zoznamy",
+      "Reminders": "Pripomienky",
+      "Work": "Práca",
+      "Today": "Dnes",
+      "Scheduled": "Naplánované",
+      "All": "Všetky",
+      "Flagged": "Označené"
+    },
+    "AddReminder": "Nová pripomienka",
+    "Actions": {
+      "Add": "Pridať",
+      "Cancel": "Zrušiť",
+      "Delete": "Vymazať pripomienku",
+      "MarkComplete": "Označiť ako vybavené",
+      "MarkIncomplete": "Označiť ako nevybavené",
+      "Flag": "Označiť",
+      "Unflag": "Zrušiť označenie"
+    },
+    "Inputs": {
+      "Title": "Názov",
+      "Notes": "Poznámky",
+      "Date": "Dátum",
+      "Time": "Čas",
+      "Tags": "Značky"
+    },
+    "EmptyState": {
+      "NoReminders": "Žiadne pripomienky",
+      "CreateOne": "Vytvoriť pripomienku"
+    }
+  },
+  "Calendar": {
+    "Search": "Hľadať",
+    "Today": "Dnes",
+    "Day": "Deň",
+    "Week": "Týždeň",
+    "Month": "Mesiac",
+    "Year": "Rok",
+    "AddEvent": "Pridať udalosť",
+    "NoEvents": "Žiadne udalosti",
+    "NewEvent": "Nová udalosť",
+    "TitlePlaceholder": "Názov udalosti",
+    "Location": "Miesto",
+    "AllDay": "Celý deň",
+    "From": "Od",
+    "To": "Do",
+    "Repeat": "Opakovanie",
+    "Never": "Nikdy",
+    "Daily": "Denne",
+    "Weekly": "Týždenne",
+    "Monthly": "Mesačne",
+    "Yearly": "Ročne",
+    "Alert": "Upozornenie",
+    "AtTime": "V čase udalosti",
+    "5MinBefore": "5 minút pred",
+    "10MinBefore": "10 minút pred",
+    "15MinBefore": "15 minút pred",
+    "30MinBefore": "30 minút pred",
+    "1HourBefore": "1 hodinu pred",
+    "2HoursBefore": "2 hodiny pred",
+    "1DayBefore": "1 deň pred",
+    "2DaysBefore": "2 dni pred",
+    "Notes": "Poznámky",
+    "DeleteEvent": "Vymazať udalosť",
+    "ShortDays": {
+      "Sun": "Ne",
+      "Mon": "Po",
+      "Tue": "Ut",
+      "Wed": "St",
+      "Thu": "Št",
+      "Fri": "Pi",
+      "Sat": "So"
+    },
+    "Months": {
+      "January": "Január",
+      "February": "Február",
+      "March": "Marec",
+      "April": "Apríl",
+      "May": "Máj",
+      "June": "Jún",
+      "July": "Júl",
+      "August": "August",
+      "September": "September",
+      "October": "Október",
+      "November": "November",
+      "December": "December"
+    },
+    "Sidebar": {
+      "iCloud": "ICLOUD",
+      "Other": "OTHER",
+      "NoInvitations": "No invitations"
+    },
+    "Toolbar": {
+      "Today": "Today",
+      "SearchPlaceholder": "Search events...",
+      "View": {
+        "day": "day",
+        "week": "week",
+        "month": "month",
+        "year": "year"
+      }
+    },
+    "EventModal": {
+      "Title": "New Event",
+      "EventTitlePlaceholder": "Event Title",
+      "CalendarLabel": "Calendar",
+      "Cancel": "Cancel",
+      "AddEvent": "Add Event"
+    },
+    "SearchResults": {
+      "Title": "Search Results",
+      "NoEvents": "No events found"
+    },
+    "Event": {
+      "NoLocation": "No location",
+      "EventLabel": "Event: {title} at {location}"
+    },
+    "Weekdays": {
+      "Sun": "Sun",
+      "Mon": "Mon",
+      "Tue": "Tue",
+      "Wed": "Wed",
+      "Thu": "Thu",
+      "Fri": "Fri",
+      "Sat": "Sat"
+    },
+    "WeekdaysShort": {
+      "Sun": "S",
+      "Mon": "M",
+      "Tue": "T",
+      "Wed": "W",
+      "Thu": "T",
+      "Fri": "F",
+      "Sat": "S"
+    }
+  },
+  "Maps": {
+    "Search": "Hľadať",
+    "SearchPlaceholder": "Hľadať miesto alebo adresu",
+    "Directions": "Trasa",
+    "From": "Z",
+    "To": "Do",
+    "Transport": {
+      "Drive": "Autom",
+      "Walk": "Pešo",
+      "Transit": "Verejná doprava",
+      "Cycle": "Bicyklom"
+    },
+    "LocateMe": "Nájsť ma",
+    "ZoomIn": "Priblížiť",
+    "ZoomOut": "Oddialiť",
+    "MapType": {
+      "Standard": "Štandardná",
+      "Hybrid": "Hybridná",
+      "Satellite": "Satelitná"
+    },
+    "Sidebar": {
+      "Favorites": "FAVORITES",
+      "Recent": "RECENT",
+      "NoRecentSearches": "No recent searches",
+      "RecentLabel": "Recent"
+    },
+    "Locations": {
+      "Home": "Home",
+      "Work": "Work"
+    },
+    "Controls": {
+      "SwitchToSatellite": "Switch to Satellite",
+      "SwitchToSatelliteLabel": "Switch to Satellite view",
+      "SwitchToMap": "Switch to Map",
+      "SwitchToMapLabel": "Switch to Map view",
+      "CurrentLocation": "Current Location",
+      "ShowCurrentLocation": "Show current location",
+      "MapInfo": "Map information"
+    },
+    "Permission": {
+      "AppName": "Maps",
+      "Title": "Location",
+      "Reason": "Maps needs access to your location to show where you are.",
+      "Error": "Could not get your location. Please ensure location services are enabled.",
+      "NotSupported": "Geolocation is not supported by your browser."
+    }
+  },
+  "FaceTime": {
+    "AppName": "FaceTime",
+    "NewFaceTime": "Nový FaceTime",
+    "CreateLink": "Vytvoriť odkaz",
+    "EnterNameOrEmail": "Meno, email alebo číslo",
+    "Suggested": "Navrhované",
+    "NoRecents": "Žiadne nedávne hovory",
+    "FaceTimeVideo": "FaceTime Video",
+    "FaceTimeAudio": "FaceTime Audio",
+    "JoinCall": "Pripojiť sa",
+    "Waiting": "Čakám...",
+    "Connected": "Pripojené",
+    "Reconnecting": "Pripájam sa...",
+    "CallEnded": "Hovor ukončený",
+    "Mute": "Stlmiť",
+    "Unmute": "Zrušiť stlmenie",
+    "VideoOff": "Vypnúť video",
+    "VideoOn": "Zapnúť video",
+    "End": "Ukončiť",
+    "FullScreen": "Na celú obrazovku",
+    "ExitFullScreen": "Ukončiť celú obrazovku",
+    "Effects": "Efekty",
+    "ShareScreen": "Zdieľať obrazovku",
+    "Connecting": "Pripájam sa...",
+    "Unavailable": "Nedostupné",
+    "Title": "FaceTime",
+    "ConnectingAs": "Connecting as {name}...",
+    "IncomingCall": "{name} is calling...",
+    "Accept": "Accept",
+    "Decline": "Decline",
+    "Contacts": "Contacts",
+    "NoContacts": "No one else is online.",
+    "Video": "Video",
+    "SelectContact": "Select a contact to call",
+    "Aria": {
+      "RemoteVideo": "Remote video feed",
+      "LocalVideo": "Local video preview",
+      "EndCall": "End Call",
+      "CallContact": "Call {name}",
+      "VideoCallContact": "Video call {name}",
+      "LocalPreview": "Local camera preview"
+    },
+    "Permission": {
+      "AppName": "FaceTime",
+      "Title": "Camera and Microphone",
+      "Reason": "FaceTime needs access to your camera and microphone to make calls."
+    }
+  },
+  "Contacts": {
+    "Search": "Hľadať",
+    "AllContacts": "Všetky kontakty",
+    "MyCard": "Moja vizitka",
+    "AddContact": "Pridať kontakt",
+    "Edit": "Upraviť",
+    "Done": "Hotovo",
+    "FirstName": "Meno",
+    "LastName": "Priezvisko",
+    "Company": "Spoločnosť",
+    "Phone": "Telefón",
+    "Email": "E-mail",
+    "Notes": "Poznámky",
+    "Message": "Správa",
+    "Call": "Volať",
+    "Video": "Video",
+    "Mail": "Mail",
+    "Pay": "Platba",
+    "NoContacts": "Žiadne kontakty",
+    "DeleteContact": "Vymazať kontakt",
+    "SearchPlaceholder": "Search",
+    "SearchAria": "Search contacts",
+    "Count": "{count} Contacts",
+    "EditContact": "Edit Contact",
+    "NewContact": "New Contact",
+    "Preview": "Preview",
+    "Cancel": "Cancel",
+    "NoNotes": "No notes",
+    "NoSelection": "No Contact Selected",
+    "Labels": {
+      "FirstName": "First Name",
+      "LastName": "Last Name",
+      "Company": "Company",
+      "Phone": "Phone",
+      "Email": "Email",
+      "Notes": "Notes",
+      "Mobile": "mobile",
+      "Home": "home",
+      "Message": "message",
+      "Video": "video",
+      "Mail": "mail"
+    },
+    "Alerts": {
+      "DeleteConfirm": "Are you sure you want to delete this contact?",
+      "NameRequired": "Please enter a name or company."
+    },
+    "Aria": {
+      "AddContact": "Add new contact",
+      "Contact": "Contact: {name}",
+      "Action": "{action} {name}"
+    }
+  },
+  "Calculator": {
+    "Clear": "C",
+    "AllClear": "AC",
+    "Negate": "+/-",
+    "Percent": "%",
+    "Divide": "÷",
+    "Multiply": "×",
+    "Subtract": "-",
+    "Add": "+",
+    "Equals": "=",
+    "Decimal": ",",
+    "AC": "AC",
+    "ToggleSign": "Toggle sign",
+    "Percentage": "Percentage",
+    "Calculate": "Calculate result"
+  },
+  "Clock": {
+    "WorldClock": "Svetové hodiny",
+    "Alarm": "Budík",
+    "Stopwatch": "Stopky",
+    "Timer": "Časovač",
+    "Add": "Pridať",
+    "Edit": "Upraviť",
+    "Start": "Štart",
+    "Stop": "Stop",
+    "Reset": "Vynulovať",
+    "Lap": "Kolo",
+    "Resume": "Pokračovať",
+    "Pause": "Pauza",
+    "Cancel": "Zrušiť",
+    "Save": "Uložiť",
+    "Label": "Popis",
+    "Sound": "Zvuk",
+    "Snooze": "Odložiť",
+    "WhenTimerEnds": "Po skončení",
+    "StopPlaying": "Zastaviť prehrávanie",
+    "Tabs": {
+      "WorldClock": "World Clock",
+      "Alarms": "Alarms",
+      "Stopwatch": "Stopwatch",
+      "Timers": "Timers"
+    },
+    "AddClock": "Add clock",
+    "Locations": {
+      "NewDelhi": "New Delhi"
+    },
+    "Today": "Today",
+    "HRS": "HRS"
+  },
+  "Weather": {
+    "Loading": "Načítava sa...",
+    "Error": "Nepodarilo sa načítať počasie",
+    "SearchPlaceholder": "Hľadať mesto",
+    "MyLocation": "Moja poloha",
+    "Humidity": "Vlhkosť",
+    "Wind": "Vietor",
+    "Rain": "Dážď",
+    "FeelsLike": "Pocitová teplota",
+    "UVIndex": "UV index",
+    "Pressure": "Tlak",
+    "Visibility": "Viditeľnosť",
+    "Sunrise": "Východ",
+    "Sunset": "Západ",
+    "Forecast": {
+      "Hourly": "Hourly Forecast",
+      "TenDay": "10-Day Forecast",
+      "Now": "Now",
+      "Today": "Today"
+    },
+    "Hourly": "Hodinová",
+    "Daily": "Denná",
+    "High": "Max",
+    "Low": "Min",
+    "Conditions": {
+      "Clear": "Jasno",
+      "Cloudy": "Zamračené",
+      "Rain": "Dážď",
+      "Snow": "Sneženie",
+      "Thunderstorm": "Búrka",
+      "Drizzle": "Mrholenie",
+      "Mist": "Hmla"
+    },
+    "Retry": "Retry",
+    "Searching": "Searching...",
+    "NoResults": "No results found",
+    "Recent": "Recent",
+    "Popular": "Popular",
+    "Sidebar": {
+      "Open": "Open sidebar",
+      "Close": "Close sidebar"
+    },
+    "Aria": {
+      "SelectLocation": "Select {name}, {country}"
+    },
+    "Details": {
+      "AirQuality": "Air Quality",
+      "UVIndex": "UV Index",
+      "Wind": "Wind",
+      "Sunset": "Sunset",
+      "Sunrise": "Sunrise:",
+      "FeelsLike": "Feels Like",
+      "Humidity": "Humidity",
+      "Visibility": "Visibility",
+      "Pressure": "Pressure",
+      "hPa": "hPa"
+    },
+    "Descriptions": {
+      "AirQualityDesc": "Air quality index is 130, similar to yesterday at about this time.",
+      "UVIndexDesc": "Use sun protection until 4PM.",
+      "FeelsLikeDesc": "Similar to the actual temperature.",
+      "DewPointDesc": "The dew point is {temp}° right now.",
+      "VisibilityDesc": "Perfectly clear view.",
+      "Footer": "Weather for {location} • Open-Meteo Data",
+      "PollutionLevel": "Moderately Polluted",
+      "UVLevel": "Moderate"
+    }
+  },
+  "Stocks": {
+    "Search": "Hľadať",
+    "Watchlist": "Sledované",
+    "MarketOpen": "Otvorený trh",
+    "MarketClosed": "Zatvorený trh",
+    "PreMarket": "Pred otvorením",
+    "AfterHours": "Po zatvorení",
+    "Loading": "Načítava sa...",
+    "Error": "Chyba pri načítaní",
+    "AddSymbol": "Pridať symbol",
+    "Remove": "Odstrániť",
+    "Chart": "Graf",
+    "News": "Správy",
+    "Summary": "Súhrn",
+    "Open": "Otvorenie",
+    "High": "Max",
+    "Low": "Min",
+    "Vol": "Objem",
+    "PE": "P/E",
+    "MktCap": "Trž. kap.",
+    "52WHigh": "52t Max",
+    "52WLow": "52t Min",
+    "AvgVol": "Priem. objem",
+    "Yield": "Výnos",
+    "Beta": "Beta",
+    "EPS": "EPS",
+    "Title": "Stocks",
+    "Searching": "Searching...",
+    "KeyStatistics": "Key Statistics",
+    "BusinessNews": "Business News",
+    "ShowMore": "Show More",
+    "Aria": {
+      "Search": "Search stocks",
+      "Select": "Select stock {symbol}",
+      "ReadNews": "Read news: {title}"
+    },
+    "Stats": {
+      "Open": "Open",
+      "High": "High",
+      "Low": "Low",
+      "Vol": "Vol",
+      "PE": "P/E",
+      "MktCap": "Mkt Cap",
+      "52WH": "52W H",
+      "52WL": "52W L"
+    }
+  },
+  "Desktop": {
+    "ContextMenu": {
+      "NewFolder": "Nový priečinok",
+      "GetInfo": "Získať informácie",
+      "ChangeDesktopBackground": "Zmeniť pozadie plochy...",
+      "UseStacks": "Použiť sady",
+      "SortBy": "Zoradiť podľa",
+      "CleanUp": "Upratať",
+      "CleanUpBy": "Upratať podľa",
+      "ShowViewOptions": "Zobraziť možnosti zobrazenia",
+      "ChangeWallpaper": "Change Wallpaper...",
+      "EditWidgets": "Edit Widgets...",
+      "Tags": "Tags",
+      "None": "None",
+      "SnapToGrid": "Snap to Grid",
+      "Name": "Name",
+      "Kind": "Kind",
+      "DateLastOpened": "Date Last Opened",
+      "DateAdded": "Date Added",
+      "DateModified": "Date Modified",
+      "DateCreated": "Date Created",
+      "Size": "Size"
+    },
+    "SortOptions": {
+      "Name": "Názov",
+      "Kind": "Druh",
+      "DateLastOpened": "Dátum posledného otvorenia",
+      "DateAdded": "Dátum pridania",
+      "DateModified": "Dátum úpravy",
+      "DateCreated": "Dátum vytvorenia",
+      "Size": "Veľkosť",
+      "Tags": "Značky"
+    },
+    "Guest": "Guest",
+    "UntitledFolder": "untitled folder",
+    "NoAppAvailable": "No application available to open .{ext} files.",
+    "MoveToBin": {
+      "Failed": "Failed to move to bin",
+      "NotSupported": "Failed to move to bin. Folder moves not fully supported yet."
+    }
+  },
+  "ControlCenter": {
+    "Title": "Ovládacie centrum",
+    "WiFi": "Wi-Fi",
+    "Bluetooth": "Bluetooth",
+    "AirDrop": "AirDrop",
+    "DoNotDisturb": "Nerušiť",
+    "KeyboardBrightness": "Jas klávesnice",
+    "ScreenMirroring": "Zrkadlenie obrazovky",
+    "Display": "Displej",
+    "Sound": "Zvuk",
+    "Playing": "Prehráva sa",
+    "On": "Zap.",
+    "Off": "Vyp.",
+    "NotConnected": "Nepripojené",
+    "Connect": "Pripojiť",
+    "HomeNetwork": "Home Network",
+    "ContactsOnly": "Contacts Only",
+    "NotPlaying": "Not Playing",
+    "Music": "Music"
+  },
+  "LockScreenApp": {
+    "EnterPassword": "Zadajte heslo",
+    "ClickToUnlock": "Kliknite pre odomknutie",
+    "TouchID": "Touch ID",
+    "Cancel": "Zrušiť",
+    "SwitchUser": "Prepnúť používateľa"
+  },
+  "NotificationCenter": {
+    "Title": "Centrum hlásení",
+    "NoNotifications": "Žiadne hlásenia",
+    "ClearAll": "Vymazať všetky",
+    "Widgets": "Widgets",
+    "Done": "Done",
+    "Edit": "Edit",
+    "AddWidget": "Add Widget"
+  },
+  "Widgets": {
+    "AllWidgets": "Všetky widgety",
+    "Search": "Hľadať",
+    "AddWidget": "Pridať widget",
+    "Loading": "Loading...",
+    "Calendar": {
+      "Title": "Calendar"
+    },
+    "Weather": {
+      "Title": "Weather"
+    },
+    "Stocks": {
+      "Title": "Stocks"
+    },
+    "Reminders": {
+      "Title": "Reminders",
+      "NoReminders": "No reminders"
+    },
+    "Notes": {
+      "Title": "Notes",
+      "Content": "Buy milk, eggs, and bread.<br />Call mom at 5pm.<br />Meeting with team tomorrow."
+    }
+  },
+  "Window": {
+    "Minimize": "Minimalizovať",
+    "Maximize": "Maximalizovať",
+    "Close": "Zavrieť",
+    "Restore": "Restore",
+    "MoveTo": "Move Window to...",
+    "LeftSide": "Left Side of Screen",
+    "RightSide": "Right Side of Screen",
+    "EnterFullScreen": "Enter Full Screen"
+  },
+  "Dock": {
+    "Trash": "Kôš",
+    "AriaLabel": "Application dock"
+  },
+  "Apps": {
+    "VSCode": {
+      "Title": "Visual Studio Code"
+    },
+    "LeetCode": {
+      "Title": "LeetCode",
+      "Common": {
+        "Loading": "Loading Profile...",
+        "NoData": "No data",
+        "Retry": "Retry",
+        "ShowMore": "Show more",
+        "GoToLeetCode": "Go to LeetCode"
+      },
+      "Badges": {
+        "Title": "Badges",
+        "MostRecent": "Most Recent Badge"
+      },
+      "Stats": {
+        "Title": "Community Stats",
+        "Views": "Views",
+        "Solution": "Solution",
+        "Discuss": "Discuss",
+        "Reputation": "Reputation"
+      },
+      "Languages": {
+        "Title": "Languages",
+        "ProblemsSolved": "problems solved"
+      },
+      "Profile": {
+        "Rank": "Rank"
+      },
+      "Submissions": {
+        "RecentAC": "Recent AC",
+        "List": "List",
+        "Solutions": "Solutions",
+        "Discuss": "Discuss",
+        "TimeAgo": "2 months ago"
+      },
+      "Skills": {
+        "Title": "Skills",
+        "Advanced": "Advanced",
+        "Intermediate": "Intermediate"
+      },
+      "Solved": {
+        "Solved": "Solved",
+        "Easy": "Easy",
+        "Medium": "Med.",
+        "Hard": "Hard"
+      },
+      "Calendar": {
+        "SubmissionsLastYear": "submissions in the past one year",
+        "TotalActiveDays": "Total active days:",
+        "MaxStreak": "Max streak:",
+        "Current": "Current",
+        "Months": {
+          "Jan": "Jan",
+          "Feb": "Feb",
+          "Mar": "Mar",
+          "Apr": "Apr",
+          "May": "May",
+          "Jun": "Jun",
+          "Jul": "Jul",
+          "Aug": "Aug",
+          "Sep": "Sep",
+          "Oct": "Oct",
+          "Nov": "Nov",
+          "Dec": "Dec"
+        }
+      }
+    },
+    "V86": {
+      "Title": "Virutálny stroj",
+      "NoFileSelected": "No file selected",
+      "ScriptLoadError": "Failed to load V86 script",
+      "FileReadError": "Failed to read file",
+      "StartError": "Failed to start emulator",
+      "Booting": "Booting {filename}...",
+      "ErrorPrefix": "Error: {error}",
+      "ClickToCapture": "Click to capture mouse (Esc to release)"
+    },
+    "Finder": "Finder",
+    "Launchpad": "Launchpad",
+    "Safari": "Safari",
+    "Messages": "Správy",
+    "Mail": "Mail",
+    "Maps": "Mapy",
+    "Photos": "Fotky",
+    "FaceTime": "FaceTime",
+    "Calendar": "Kalendár",
+    "Contacts": "Kontakty",
+    "Reminders": "Pripomienky",
+    "Notes": "Poznámky",
+    "TV": "TV",
+    "Music": "Hudba",
+    "News": "Správy",
+    "SystemSettings": "Systémové nastavenia",
+    "AppStore": "App Store",
+    "Trash": "Kôš",
+    "Freeform": "Freeform",
+    "Terminal": "Terminal",
+    "Calculator": "Calculator",
+    "TextEdit": "TextEdit",
+    "MediaPlayer": "Media Player",
+    "Preview": "Preview",
+    "VirtualMachine": "Virtual Machine"
+  },
+  "News": {
+    "Title": "News",
+    "Categories": {
+      "TopStories": "Top Stories",
+      "Technology": "Technology",
+      "Business": "Business",
+      "Science": "Science",
+      "Health": "Health",
+      "Entertainment": "Entertainment",
+      "Sports": "Sports"
+    },
+    "SearchPlaceholder": "Search stories...",
+    "SearchLabel": "Search",
+    "SearchTitle": "Search: \"{query}\"",
+    "Loading": "Loading top stories...",
+    "Error": "Failed to load news. Please try again later.",
+    "TryAgain": "Try Again",
+    "NoResults": "No stories found matching \"{query}\"",
+    "ClearSearch": "Clear Search",
+    "TopStory": "Top Story",
+    "Refresh": "Refresh",
+    "Aria": {
+      "Category": "Category: {label}",
+      "Search": "Search stories",
+      "Refresh": "Refresh news",
+      "ReadTopStory": "Read top story: {title}",
+      "ReadArticle": "Read article: {title}",
+      "Share": "Share article",
+      "Like": "Like article"
+    }
+  },
+  "Music": {
+    "AppleMusic": "Apple Music",
+    "Library": "Library",
+    "ListenNow": "Listen Now",
+    "Browse": "Browse",
+    "Radio": "Radio",
+    "RecentlyAdded": "Recently Added",
+    "Artists": "Artists",
+    "Albums": "Albums",
+    "Songs": "Songs",
+    "Search": "Search",
+    "SearchTitle": "Search: {query}",
+    "Aria": {
+      "Search": "Search music",
+      "GoBack": "Go back",
+      "GoForward": "Go forward",
+      "Prev": "Previous song",
+      "Next": "Next song",
+      "Play": "Play",
+      "Pause": "Pause",
+      "PlaySong": "Play {track} by {artist}",
+      "PauseSong": "Pause {track}",
+      "Lyrics": "Toggle lyrics",
+      "Queue": "Toggle queue",
+      "Mute": "Toggle mute",
+      "VolSlider": "Volume slider",
+      "SeekSlider": "Seek slider"
+    },
+    "Queue": {
+      "Title": "Playing Next",
+      "Empty": "Queue is empty"
+    },
+    "Lyrics": {
+      "NotAvailable": "Lyrics are not available for this song in the preview mode.",
+      "Imagine": "But imagine the lyrics appearing here, perfectly synced with the music...",
+      "Lalala": "La la la...",
+      "Placeholder": "Play a song to see lyrics"
+    }
+  },
+  "TV": {
+    "WatchNow": "Watch Now",
+    "Movies": "Movies",
+    "TVShows": "TV Shows",
+    "Kids": "Kids",
+    "Library": "Library",
+    "SearchResults": "Search Results",
+    "NoShows": "No shows found.",
+    "SearchPlaceholder": "Search",
+    "SearchLabel": "Search TV Shows",
+    "Series": "Series",
+    "PlayEpisode": "Play Episode 1",
+    "AddToUpNext": "Add to Up Next",
+    "Added": "Added",
+    "OpenYouTube": "Open in YouTube",
+    "ViewAccount": "View Account",
+    "Aria": {
+      "Play": "Play {name}",
+      "CloseVideo": "Close video",
+      "AddLibrary": "Add to Library",
+      "RemoveLibrary": "Remove from Library"
+    },
+    "Genres": {
+      "Drama": "Drama",
+      "Action": "Action",
+      "Comedy": "Comedy",
+      "ScienceFiction": "Science-Fiction",
+      "Thriller": "Thriller"
+    }
+  },
+  "Terminal": {
+    "Guest": "Guest",
+    "Welcome": "Welcome to Terminal",
+    "HelpPrompt": "Type 'help' for a list of commands.",
+    "AvailableCommands": "Available commands: ls, cd, pwd, mkdir, touch, echo, cat, clear, whoami, ping, man, rm, rmdir, vi",
+    "CommandNotFound": "command not found: {command}",
+    "Error": "Error: {message}",
+    "AriaInput": "Terminal Input",
+    "Usage": {
+      "Ping": "usage: ping host",
+      "Mkdir": "usage: mkdir directory_name",
+      "Rmdir": "usage: rmdir directory_name",
+      "Rm": "usage: rm [-rf] file_name",
+      "Touch": "usage: touch file_name",
+      "Cat": "usage: cat file_name",
+      "Vi": "usage: vi file_name",
+      "Man": "What manual page do you want?"
+    },
+    "Errors": {
+      "PingResolve": "ping: cannot resolve {host}: Unknown host",
+      "NoManual": "No manual entry for {command}",
+      "NoSuchFile": "{cmd}: {path}: No such file or directory",
+      "NotADirectory": "{cmd}: {path}: Not a directory",
+      "DirectoryNotEmpty": "{cmd}: {path}: Directory not empty",
+      "IsADirectory": "{cmd}: {path}: is a directory"
+    },
+    "Messages": {
+      "PingStats": "PING {host} (127.0.0.1): 56 data bytes\n64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.045 ms\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.082 ms\n64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.067 ms\n\n--- {host} ping statistics ---\n3 packets transmitted, 3 packets received, 0.0% packet loss",
+      "OpeningTextEdit": "Opening {file} in TextEdit..."
+    },
+    "ManPages": {
+      "ls": "ls - list directory contents\n\nUsage: ls [options] [file|dir]\n\nOptions:\n  -a, --all      do not ignore entries starting with .\n  -l             use a long listing format",
+      "cd": "cd - change the shell working directory\n\nUsage: cd [dir]\n\nChange the current directory to DIR. The default DIR is the value of the HOME shell variable.",
+      "pwd": "pwd - print name of current/working directory\n\nUsage: pwd\n\nPrint the full filename of the current working directory.",
+      "mkdir": "mkdir - make directories\n\nUsage: mkdir [DIRECTORY]\n\nCreate the DIRECTORY(ies), if they do not already exist.",
+      "touch": "touch - change file timestamps\n\nUsage: touch [FILE]\n\nUpdate the access and modification times of each FILE to the current time. If FILE does not exist it is created empty.",
+      "echo": "echo - display a line of text\n\nUsage: echo [STRING]...\n\nEcho the STRING(s) to standard output.",
+      "cat": "cat - concatenate files and print on the standard output\n\nUsage: cat [FILE]...\n\nConcatenate FILE(s) to standard output.",
+      "clear": "clear - clear the terminal screen\n\nUsage: clear",
+      "whoami": "whoami - print effective userid\n\nUsage: whoami\n\nPrint the user name associated with the current effective user ID.",
+      "ping": "ping - send ICMP ECHO_REQUEST to network hosts\n\nUsage: ping [HOST]\n\nSend ICMP ECHO_REQUEST to network hosts.",
+      "man": "man - an interface to the system reference manuals\n\nUsage: man [COMMAND]\n\nDisplay the manual page for COMMAND.",
+      "rm": "rm - remove files or directories\n\nUsage: rm [OPTION]... [FILE]...\n\nRemove (unlink) the FILE(s).\n\nOptions:\n  -r, -R, --recursive   remove directories and their contents recursively\n  -f, --force           ignore nonexistent files and arguments, never prompt",
+      "rmdir": "rmdir - remove empty directories\n\nUsage: rmdir [DIRECTORY]...\n\nRemove the DIRECTORY(ies), if they are empty.",
+      "vi": "vi - screen-oriented (visual) display editor\n\nUsage: vi [FILE]\n\nEdit FILE."
+    }
+  },
+  "TextEdit": {
+    "Guest": "Guest",
+    "Untitled": "Untitled.txt",
+    "Save": "Save",
+    "Loading": "Loading...",
+    "Placeholder": "Type your notes here...",
+    "SavedAlert": "Saved to {path}/{filename}"
+  },
+  "PDFViewer": {
+    "Document": "Document.pdf",
+    "PageInfo": "Page {current} of {total}",
+    "View": "View",
+    "ZoomIn": "Zoom In",
+    "ZoomOut": "Zoom Out",
+    "LoadingThumbnails": "Loading thumbnails...",
+    "Loading": "Loading...",
+    "NoPDF": "No PDF",
+    "FailedToLoad": "Failed to load PDF",
+    "NoPDFLoaded": "No PDF loaded"
+  },
+  "Spotlight": {
+    "Placeholder": "Spotlight Search",
+    "SearchWebFor": "Search Web for \"{query}\"",
+    "NoResults": "No results found",
+    "Open": "Open",
+    "Kinds": {
+      "Web": "Web Search",
+      "App": "Application",
+      "Directory": "Directory",
+      "File": "File"
+    },
+    "Aria": {
+      "Open": "Open {name}"
+    }
+  },
+  "MenuBar": {
+    "Apple": {
+      "AboutThisMac": "About This Mac",
+      "SystemSettings": "System Settings...",
+      "AppStore": "App Store...",
+      "RecentItems": "Recent Items",
+      "ForceQuit": "Force Quit...",
+      "Sleep": "Sleep",
+      "Restart": "Restart...",
+      "ShutDown": "Shut Down...",
+      "LockScreen": "Lock Screen"
+    },
+    "App": {
+      "About": "About {app}",
+      "Quit": "Quit {app}"
+    },
+    "File": {
+      "Title": "File",
+      "New": "New",
+      "Open": "Open...",
+      "Save": "Save",
+      "Duplicate": "Duplicate",
+      "NewFinderWindow": "New Finder Window",
+      "NewFolder": "New Folder",
+      "GetInfo": "Get Info"
+    },
+    "Edit": {
+      "Title": "Edit",
+      "Undo": "Undo",
+      "Redo": "Redo",
+      "Cut": "Cut",
+      "Copy": "Copy",
+      "Paste": "Paste"
+    },
+    "View": {
+      "Title": "View",
+      "AsIcons": "As Icons",
+      "AsList": "As List",
+      "AsColumns": "As Columns"
+    },
+    "Window": {
+      "Title": "Window",
+      "Minimize": "Minimize",
+      "Zoom": "Zoom"
+    },
+    "Help": {
+      "Title": "Help",
+      "MacOSHelp": "macOS Help"
+    },
+    "Wifi": {
+      "Title": "Wi-Fi",
+      "KnownNetworks": "Known Networks",
+      "OtherNetworks": "Other Networks",
+      "Settings": "Wi-Fi Settings..."
+    },
+    "Battery": {
+      "Title": "Battery",
+      "PowerSource": "Power Source: {source}",
+      "PowerAdapter": "Power Adapter",
+      "Battery": "Battery",
+      "EnergyMode": "Energy Mode",
+      "Automatic": "Automatic",
+      "LowPower": "Low Power",
+      "HighPower": "High Power",
+      "SignificantEnergy": "Using Significant Energy",
+      "Settings": "Battery Settings..."
+    },
+    "Aria": {
+      "Clipboard": "Clipboard",
+      "MediaPlayer": "Media Player",
+      "Spotlight": "Spotlight Search",
+      "ControlCenter": "Control Center",
+      "Siri": "Siri",
+      "Clock": "Clock and Notification Center"
+    }
+  },
+  "WeatherDropdown": {
+    "Searching": "Searching...",
+    "SearchCity": "Search city...",
+    "Now": "Now",
+    "Today": "Today",
+    "OpenWeather": "Open Weather"
+  },
+  "LockScreen": {
+    "IncorrectPassword": "Incorrect password",
+    "Guest": "Guest",
+    "EnterPassword": "Enter Password",
+    "Hint": "Touch ID or enter password (hint: {hint})",
+    "Login": "Login",
+    "Cancel": "Cancel",
+    "Aria": {
+      "UserAvatar": "User avatar, click to login",
+      "User": "User {name}, click to login",
+      "Password": "Password",
+      "Submit": "Submit password"
+    }
+  }
 }

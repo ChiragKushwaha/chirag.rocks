@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { fs } from "../lib/FileSystem";
+import { useTranslations } from "next-intl";
 
 interface V86Props {
   initialFilename?: string;
@@ -16,6 +17,7 @@ declare global {
 }
 
 export const V86: React.FC<V86Props> = ({ initialFilename, initialPath }) => {
+  const t = useTranslations("V86");
   const containerRef = useRef<HTMLDivElement>(null);
   const emulatorRef = useRef<any>(null);
   const [loading, setLoading] = useState(true);
@@ -27,7 +29,7 @@ export const V86: React.FC<V86Props> = ({ initialFilename, initialPath }) => {
     const init = async () => {
       try {
         if (!initialFilename || !initialPath) {
-          throw new Error("No file selected");
+          throw new Error(t("NoFileSelected"));
         }
 
         // 1. Load V86 Script if not present
@@ -36,8 +38,7 @@ export const V86: React.FC<V86Props> = ({ initialFilename, initialPath }) => {
             const script = document.createElement("script");
             script.src = "/lib/v86/libv86.js";
             script.onload = resolve;
-            script.onerror = () =>
-              reject(new Error("Failed to load V86 script"));
+            script.onerror = () => reject(new Error(t("ScriptLoadError")));
             document.head.appendChild(script);
           });
         }
@@ -56,7 +57,7 @@ export const V86: React.FC<V86Props> = ({ initialFilename, initialPath }) => {
 
         // 2. Load File Data
         const blob = await fs.readFileBlob(initialPath, initialFilename);
-        if (!blob) throw new Error("Failed to read file");
+        if (!blob) throw new Error(t("FileReadError"));
         const buffer = await blob.arrayBuffer();
 
         // 3. Determine config based on extension and size
@@ -105,7 +106,7 @@ export const V86: React.FC<V86Props> = ({ initialFilename, initialPath }) => {
         setLoading(false);
       } catch (err: any) {
         console.error("V86 Init Error:", err);
-        setError(err.message || "Failed to start emulator");
+        setError(err.message || t("StartError"));
         setLoading(false);
       }
     };
@@ -122,7 +123,7 @@ export const V86: React.FC<V86Props> = ({ initialFilename, initialPath }) => {
         }
       }
     };
-  }, [initialFilename, initialPath]);
+  }, [initialFilename, initialPath, t]);
 
   return (
     <div className="w-full h-full bg-black flex flex-col items-center justify-center relative overflow-hidden">
@@ -130,14 +131,14 @@ export const V86: React.FC<V86Props> = ({ initialFilename, initialPath }) => {
         <div className="absolute inset-0 flex items-center justify-center text-white z-10 bg-black/50">
           <div className="flex flex-col items-center gap-2">
             <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white"></div>
-            <span>Booting {initialFilename}...</span>
+            <span>{t("Booting", { filename: initialFilename })}</span>
           </div>
         </div>
       )}
 
       {error && (
         <div className="absolute inset-0 flex items-center justify-center text-red-400 z-10 bg-black/90 p-4 text-center">
-          <p>Error: {error}</p>
+          <p>{t("ErrorPrefix", { error })}</p>
         </div>
       )}
 
@@ -151,7 +152,7 @@ export const V86: React.FC<V86Props> = ({ initialFilename, initialPath }) => {
           }
         }}
         className="w-full h-full flex items-center justify-center relative bg-black cursor-pointer"
-        title="Click to capture mouse (Esc to release)"
+        title={t("ClickToCapture")}
         style={{
           // Force white text for text mode
           color: "white",

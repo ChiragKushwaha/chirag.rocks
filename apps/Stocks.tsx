@@ -3,6 +3,7 @@ import { Search } from "lucide-react";
 
 import { StockData } from "../lib/stockApi";
 import { useStockStore } from "../store/stockStore";
+import { useTranslations, useFormatter } from "next-intl";
 
 const NEWS = [
   {
@@ -108,6 +109,8 @@ const MainChart = ({ data, color }: { data: number[]; color: string }) => {
 };
 
 export const Stocks: React.FC = () => {
+  const t = useTranslations("Stocks");
+  const format = useFormatter();
   const { stocks, loading, fetchStocks, addStock } = useStockStore();
   const [selectedStock, setSelectedStock] = useState<StockData | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -140,7 +143,7 @@ export const Stocks: React.FC = () => {
   if (loading && stocks.length === 0) {
     return (
       <div className="flex items-center justify-center h-full bg-[#1e1e1e] text-white">
-        Loading Market Data...
+        {t("Loading")}
       </div>
     );
   }
@@ -148,7 +151,7 @@ export const Stocks: React.FC = () => {
   if (stocks.length === 0) {
     return (
       <div className="flex items-center justify-center h-full bg-[#1e1e1e] text-white">
-        Failed to load stocks.
+        {t("Error")}
       </div>
     );
   }
@@ -161,8 +164,10 @@ export const Stocks: React.FC = () => {
       {/* Sidebar */}
       <div className="w-80 bg-[#2C2C2E]/90 backdrop-blur-xl border-r border-white/10 flex flex-col z-20">
         <div className="p-4 border-b border-white/10">
-          <div className="text-2xl font-bold mb-1">Stocks</div>
-          <div className="text-xs opacity-50 font-medium">September 12</div>
+          <div className="text-2xl font-bold mb-1">{t("Title")}</div>
+          <div className="text-xs opacity-50 font-medium">
+            {format.dateTime(new Date(), { month: "long", day: "numeric" })}
+          </div>
           <div className="mt-4 relative">
             <Search
               className="absolute left-2.5 top-1.5 text-white/40"
@@ -170,24 +175,22 @@ export const Stocks: React.FC = () => {
             />
             <input
               type="text"
-              placeholder={isSearching ? "Searching..." : "Search"}
+              placeholder={isSearching ? t("Searching") : t("Search")}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={handleSearch}
               disabled={isSearching}
               className="w-full bg-white/10 rounded-lg pl-8 pr-3 py-1 text-sm text-white placeholder-white/30 focus:outline-none focus:bg-white/20 transition-colors disabled:opacity-50"
-              aria-label="Search stocks"
+              aria-label={t("Aria.Search")}
             />
           </div>
         </div>
 
         <div className="flex-1 overflow-y-auto">
           <div className="px-4 py-2 text-xs font-semibold opacity-50 uppercase tracking-wider">
-            Watchlist
+            {t("Watchlist")}
           </div>
-          <div className="px-4 py-2 text-xs font-semibold opacity-50 uppercase tracking-wider">
-            Watchlist
-          </div>
+
           {stocks.map((stock) => {
             const isPositive = stock.change >= 0;
             const color = isPositive ? "#34C759" : "#FF3B30";
@@ -206,7 +209,7 @@ export const Stocks: React.FC = () => {
                     setSelectedStock(stock);
                   }
                 }}
-                aria-label={`Select stock ${stock.symbol}`}
+                aria-label={t("Aria.Select", { symbol: stock.symbol })}
               >
                 <div className="flex justify-between items-center mb-1">
                   <span className="font-bold">{stock.symbol}</span>
@@ -288,30 +291,32 @@ export const Stocks: React.FC = () => {
 
           {/* Stats Grid */}
           <div className="px-8 pb-8">
-            <div className="text-lg font-semibold mb-4">Key Statistics</div>
+            <div className="text-lg font-semibold mb-4">
+              {t("KeyStatistics")}
+            </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
                 {
-                  label: "Open",
+                  label: t("Stats.Open"),
                   value: (currentStock.price - currentStock.change).toFixed(2),
                 },
                 {
-                  label: "High",
+                  label: t("Stats.High"),
                   value: (currentStock.price * 1.02).toFixed(2),
                 },
                 {
-                  label: "Low",
+                  label: t("Stats.Low"),
                   value: (currentStock.price * 0.98).toFixed(2),
                 },
-                { label: "Vol", value: "45.2M" },
-                { label: "P/E", value: "28.5" },
-                { label: "Mkt Cap", value: "2.4T" },
+                { label: t("Stats.Vol"), value: "45.2M" },
+                { label: t("Stats.PE"), value: "28.5" },
+                { label: t("Stats.MktCap"), value: "2.4T" },
                 {
-                  label: "52W H",
+                  label: t("Stats.52WH"),
                   value: (currentStock.price * 1.1).toFixed(2),
                 },
                 {
-                  label: "52W L",
+                  label: t("Stats.52WL"),
                   value: (currentStock.price * 0.8).toFixed(2),
                 },
               ].map((stat) => (
@@ -329,9 +334,9 @@ export const Stocks: React.FC = () => {
           {/* News Section */}
           <div className="bg-[#2C2C2E] px-8 py-6">
             <div className="flex items-center justify-between mb-4">
-              <div className="text-lg font-semibold">Business News</div>
+              <div className="text-lg font-semibold">{t("BusinessNews")}</div>
               <button className="text-blue-400 text-sm hover:underline">
-                Show More
+                {t("ShowMore")}
               </button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -346,7 +351,7 @@ export const Stocks: React.FC = () => {
                       // Handle news click (e.g., open link)
                     }
                   }}
-                  aria-label={`Read news: ${item.title}`}
+                  aria-label={t("Aria.ReadNews", { title: item.title })}
                 >
                   <div className="flex justify-between items-start mb-2">
                     <span className="text-xs font-bold text-blue-400 uppercase">

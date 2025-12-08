@@ -6,9 +6,16 @@ interface SolvedProblemsProps {
   matchedUser: LeetCodeData["matchedUser"];
 }
 
+import { useTranslations } from "next-intl";
+
+interface SolvedProblemsProps {
+  matchedUser: LeetCodeData["matchedUser"];
+}
+
 export const SolvedProblems: React.FC<SolvedProblemsProps> = ({
   matchedUser,
 }) => {
+  const t = useTranslations("LeetCode.Solved");
   const totalSolved = matchedUser.submitStats.acSubmissionNum[0].count;
   const totalQuestions = matchedUser.submitStats.acSubmissionNum[0].submissions;
 
@@ -42,7 +49,9 @@ export const SolvedProblems: React.FC<SolvedProblemsProps> = ({
             </div>
             <div className="flex items-center gap-1 mt-0.5">
               <CheckCircle2 size={12} className="text-[#00b8a3]" />
-              <span className="text-xs text-gray-400 font-medium">Solved</span>
+              <span className="text-xs text-gray-400 font-medium">
+                {t("Solved")}
+              </span>
             </div>
           </div>
         </div>
@@ -51,7 +60,7 @@ export const SolvedProblems: React.FC<SolvedProblemsProps> = ({
         <div className="flex-1 flex flex-col gap-3 pr-4">
           <div className="flex flex-col gap-1">
             <div className="flex justify-between text-xs mb-1">
-              <span className="text-gray-400 font-medium">Easy</span>
+              <span className="text-gray-400 font-medium">{t("Easy")}</span>
               <span className="font-bold text-white">
                 {matchedUser.submitStats.acSubmissionNum[1].count}
                 <span className="text-gray-500 font-normal">
@@ -69,7 +78,7 @@ export const SolvedProblems: React.FC<SolvedProblemsProps> = ({
 
           <div className="flex flex-col gap-1">
             <div className="flex justify-between text-xs mb-1">
-              <span className="text-gray-400 font-medium">Med.</span>
+              <span className="text-gray-400 font-medium">{t("Medium")}</span>
               <span className="font-bold text-white">
                 {matchedUser.submitStats.acSubmissionNum[2].count}
                 <span className="text-gray-500 font-normal">
@@ -87,7 +96,7 @@ export const SolvedProblems: React.FC<SolvedProblemsProps> = ({
 
           <div className="flex flex-col gap-1">
             <div className="flex justify-between text-xs mb-1">
-              <span className="text-gray-400 font-medium">Hard</span>
+              <span className="text-gray-400 font-medium">{t("Hard")}</span>
               <span className="font-bold text-white">
                 {matchedUser.submitStats.acSubmissionNum[3].count}
                 <span className="text-gray-500 font-normal">

@@ -1,6 +1,7 @@
 import { File, Folder, Search } from "lucide-react";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { useIcon } from "../components/hooks/useIconManager";
 import { fs } from "../lib/FileSystem";
 import { MacFileEntry } from "../lib/types";
@@ -71,6 +72,7 @@ type SearchResult =
     };
 
 export const Spotlight: React.FC = () => {
+  const t = useTranslations("Spotlight");
   const { isSpotlightOpen, toggleSpotlight } = useSystemStore();
   const { launchProcess } = useProcessStore();
 
@@ -155,7 +157,7 @@ export const Spotlight: React.FC = () => {
 
       // 3. Add "Search Web" Option
       combined.push({
-        name: `Search Web for "${query}"`,
+        name: t("SearchWebFor", { query }),
         kind: "web",
         path: `https://www.google.com/search?q=${encodeURIComponent(query)}`,
       } as SearchResult);
@@ -242,14 +244,14 @@ export const Spotlight: React.FC = () => {
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex justify-center pt-[25vh] font-sans"
+      className="fixed inset-0 z-9999 flex justify-center pt-[25vh] font-sans"
       onClick={() => toggleSpotlight(false)}
     >
       {/* Spotlight Window */}
       <div
         className="
           w-[680px] flex flex-col overflow-hidden
-          bg-[#F6F6F6]/80 dark:bg-[#1E1E1E]/80 backdrop-blur-[40px] saturate-150
+          bg-[#F6F6F6]/80 dark:bg-[#1E1E1E]/80 backdrop-blur-2xl saturate-150
           rounded-[12px] shadow-[0_20px_40px_rgba(0,0,0,0.4)] border border-white/20 dark:border-white/10
           animate-in fade-in zoom-in-95 duration-150
         "
@@ -266,8 +268,8 @@ export const Spotlight: React.FC = () => {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Spotlight Search"
-            aria-label="Spotlight Search"
+            placeholder={t("Placeholder")}
+            aria-label={t("Placeholder")}
             className="
               flex-1 bg-transparent text-[22px] font-light tracking-tight
               text-black dark:text-white placeholder:text-gray-400 
@@ -298,7 +300,7 @@ export const Spotlight: React.FC = () => {
                 onMouseEnter={() => setSelectedIndex(idx)}
                 role="option"
                 aria-selected={idx === selectedIndex}
-                aria-label={`Open ${item.name}`}
+                aria-label={t("Aria.Open", { name: item.name })}
                 className={`
                   mx-2 px-4 py-2 rounded-[6px] flex items-center gap-3 cursor-default transition-colors duration-75
                   ${
@@ -348,7 +350,13 @@ export const Spotlight: React.FC = () => {
                   </span>
                   <div className="flex items-center gap-2 text-[11px] opacity-80 truncate leading-tight mt-0.5">
                     <span className="font-semibold opacity-70 capitalize">
-                      {item.kind === "web" ? "Web Search" : item.kind}
+                      {item.kind === "web"
+                        ? t("Kinds.Web")
+                        : item.kind === "app"
+                        ? t("Kinds.App")
+                        : item.kind === "directory"
+                        ? t("Kinds.Directory")
+                        : item.kind}
                     </span>
                     {item.kind !== "web" && (
                       <>
@@ -362,7 +370,7 @@ export const Spotlight: React.FC = () => {
                 {/* Return Key Hint (Only on selection) */}
                 {idx === selectedIndex && (
                   <span className="text-[11px] opacity-70 font-medium tracking-wide pr-1">
-                    Open
+                    {t("Open")}
                   </span>
                 )}
               </div>
@@ -374,7 +382,7 @@ export const Spotlight: React.FC = () => {
         {query && results.length === 0 && (
           <div className="px-16 py-12 text-center">
             <p className="text-gray-500 dark:text-gray-400 text-lg font-medium">
-              No results found
+              {t("NoResults")}
             </p>
           </div>
         )}

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export const Calculator: React.FC = () => {
+  const t = useTranslations("Calculator");
   const [display, setDisplay] = useState("0");
   const [prevValue, setPrevValue] = useState<number | null>(null);
   const [operator, setOperator] = useState<string | null>(null);
@@ -67,14 +69,14 @@ export const Calculator: React.FC = () => {
         {display}
       </div>
       <div className="grid grid-cols-4 gap-1">
-        <Button label="AC" onClick={clear} ariaLabel="All Clear" />
-        <Button label="+/-" onClick={toggleSign} ariaLabel="Toggle sign" />
-        <Button label="%" onClick={inputPercent} ariaLabel="Percentage" />
+        <Button label={t("AC")} onClick={clear} ariaLabel={t("AllClear")} />
+        <Button label="+/-" onClick={toggleSign} ariaLabel={t("ToggleSign")} />
+        <Button label="%" onClick={inputPercent} ariaLabel={t("Percentage")} />
         <Button
           label="÷"
           onClick={() => performOperation("/")}
           orange
-          ariaLabel="Divide"
+          ariaLabel={t("Divide")}
         />
 
         <Button label="7" onClick={() => inputDigit("7")} />
@@ -84,7 +86,7 @@ export const Calculator: React.FC = () => {
           label="×"
           onClick={() => performOperation("*")}
           orange
-          ariaLabel="Multiply"
+          ariaLabel={t("Multiply")}
         />
 
         <Button label="4" onClick={() => inputDigit("4")} />
@@ -94,7 +96,7 @@ export const Calculator: React.FC = () => {
           label="-"
           onClick={() => performOperation("-")}
           orange
-          ariaLabel="Subtract"
+          ariaLabel={t("Subtract")}
         />
 
         <Button label="1" onClick={() => inputDigit("1")} />
@@ -104,7 +106,7 @@ export const Calculator: React.FC = () => {
           label="+"
           onClick={() => performOperation("+")}
           orange
-          ariaLabel="Add"
+          ariaLabel={t("Add")}
         />
 
         <Button label="0" onClick={() => inputDigit("0")} wide />
@@ -113,7 +115,7 @@ export const Calculator: React.FC = () => {
           label="="
           onClick={() => performOperation("=")}
           orange
-          ariaLabel="Calculate result"
+          ariaLabel={t("Calculate")}
         />
       </div>
     </div>
