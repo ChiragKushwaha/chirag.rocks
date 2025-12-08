@@ -271,13 +271,14 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} dir="ltr">
+    <html lang={locale} dir="ltr" translate="no">
       <head>
         {/* Schema.org JSON-LD */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
+        <meta name="google" content="notranslate" />
         <meta
           name="google-site-verification"
           content="OIk6sJu3nmgUIb9c-yV6DvU_P4KyXctrKxF8ZukWjQE"
