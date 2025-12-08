@@ -1806,5 +1806,15 @@
       "Password": "Mot de passe",
       "Submit": "Valider le mot de passe"
     }
+  },
+  "SEO": {
+    "Title": "Chirag Kushwaha - Full Stack Engineer | macOS Big Sur Portfolio",
+    "Description": "Portfolio of Chirag Kushwaha, a Full Stack Engineer based in Bengaluru/Lucknow. Experience with IPD Analytics, Eka Care. Expert in React, Next.js, and macOS Big Sur web clones.",
+    "Keywords": "Chirag, Chirag Kushwaha, Full Stack Developer, Full Stack Engineer, Software Engineer, Developer, Bengaluru, Lucknow, IPD Analytics, Eka Care, macOS Big Sur, macOS, Web OS, React Developer, Next.js Developer, Portfolio, Clone, Web Application",
+    "StructuredData": {
+      "AlternateName": "macOS Big Sur Portfolio Experience",
+      "Description": "An interactive portfolio showcasing Chirag Kushwaha's skills through a fully-functional macOS Big Sur clone running entirely in the web browser. Features offline support, file system management, and native applications demonstrating full-stack development expertise.",
+      "JobTitle": "Full Stack Engineer"
+    }
   }
 }
