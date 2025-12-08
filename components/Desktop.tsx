@@ -634,7 +634,7 @@ export const Desktop: React.FC = () => {
         windowConfig
       );
     } else {
-      alert(t("NoAppAvailable", { ext }));
+      alert(t("NoAppAvailable", { ext: ext || "unknown" }));
     }
   };
 
