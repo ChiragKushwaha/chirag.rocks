@@ -72,7 +72,13 @@
       "Description": "Dacă aveți informații pe un alt Mac sau pe un PC cu Windows, le puteți transfera pe acest Mac. De asemenea, puteți transfera date dintr-o copie de rezervă Time Machine sau de pe un alt disc de pornire.",
       "Question": "Cum doriți să transferați informațiile?",
       "FromMac": "De pe un Mac, copie de rezervă Time Machine sau disc de pornire",
-      "FromPC": "De pe un PC cu Windows"
+      "FromPC": "De pe un PC cu Windows",
+      "FromMacPC": "From a Mac, Time Machine backup or Startup disk",
+      "FromMacPCDesc": "Transfer information from another Mac, Time Machine backup, or startup disk to this Mac.",
+      "FromTimeMachine": "From a Time Machine backup",
+      "FromTimeMachineDesc": "Transfer information from a Time Machine backup to this Mac.",
+      "FromWindows": "From a Windows PC",
+      "FromWindowsDesc": "Transfer information from a Windows PC to this Mac."
     },
     "AppleID": {
       "Title": "Autentificare cu Apple ID",
@@ -1348,7 +1354,10 @@
     "MoveTo": "Move Window to...",
     "LeftSide": "Left Side of Screen",
     "RightSide": "Right Side of Screen",
-    "EnterFullScreen": "Enter Full Screen"
+    "EnterFullScreen": "Enter Full Screen",
+    "Reset": "Reset",
+    "ResetConfirmTitle": "Reset Application?",
+    "ResetConfirmMessage": "Are you sure you want to reset? This will clear all data, caches, and files."
   },
   "Dock": {
     "Trash": "Coș",
@@ -1737,7 +1746,10 @@
       "User": "User {name}, click to login",
       "Password": "Password",
       "Submit": "Submit password"
-    }
+    },
+    "Reset": "Reset",
+    "ResetConfirmTitle": "Reset Application?",
+    "ResetConfirmMessage": "Are you sure you want to reset? This will clear all data, caches, and files."
   },
   "SEO": {
     "Title": "Chirag Kushwaha - Full Stack Engineer | macOS Big Sur Portfolio",

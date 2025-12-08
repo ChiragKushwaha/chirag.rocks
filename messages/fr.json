@@ -72,7 +72,13 @@
       "Description": "Si vous avez des informations sur un autre Mac ou un PC Windows, vous pouvez les transférer vers ce Mac. Vous pouvez également transférer des données depuis une sauvegarde Time Machine ou un autre disque de démarrage.",
       "Question": "Comment souhaitez-vous transférer vos informations ?",
       "FromMac": "À partir d’un Mac, d'une sauvegarde Time Machine ou d'un disque de démarrage",
-      "FromPC": "À partir d'un PC Windows"
+      "FromPC": "À partir d'un PC Windows",
+      "FromMacPC": "From a Mac, Time Machine backup or Startup disk",
+      "FromMacPCDesc": "Transfer information from another Mac, Time Machine backup, or startup disk to this Mac.",
+      "FromTimeMachine": "From a Time Machine backup",
+      "FromTimeMachineDesc": "Transfer information from a Time Machine backup to this Mac.",
+      "FromWindows": "From a Windows PC",
+      "FromWindowsDesc": "Transfer information from a Windows PC to this Mac."
     },
     "AppleID": {
       "Title": "Connectez-vous avec votre identifiant Apple",
@@ -1583,7 +1589,10 @@
     "MoveTo": "Move Window to...",
     "LeftSide": "Left Side of Screen",
     "RightSide": "Right Side of Screen",
-    "EnterFullScreen": "Enter Full Screen"
+    "EnterFullScreen": "Enter Full Screen",
+    "Reset": "Reset",
+    "ResetConfirmTitle": "Reset Application?",
+    "ResetConfirmMessage": "Are you sure you want to reset? This will clear all data, caches, and files."
   },
   "Dock": {
     "Trash": "Corbeille",
@@ -1805,7 +1814,10 @@
       "User": "Utilisateur {name}",
       "Password": "Mot de passe",
       "Submit": "Valider le mot de passe"
-    }
+    },
+    "Reset": "Reset",
+    "ResetConfirmTitle": "Reset Application?",
+    "ResetConfirmMessage": "Are you sure you want to reset? This will clear all data, caches, and files."
   },
   "SEO": {
     "Title": "Chirag Kushwaha - Full Stack Engineer | macOS Big Sur Portfolio",

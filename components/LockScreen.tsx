@@ -178,7 +178,7 @@ export const LockScreen: React.FC = () => {
         )}
       </div>
 
-      {/* Cancel Button at Bottom */}
+      {/* Cancel Button at Bottom - Centered */}
       {!showPasswordField ? (
         <div className="pb-12 flex justify-center">
           <button
@@ -216,6 +216,79 @@ export const LockScreen: React.FC = () => {
           </button>
         </div>
       )}
+
+      {/* Reset Button - Bottom Right */}
+      <div className="absolute bottom-8 right-8 z-50">
+        <button
+          onClick={() => {
+            const confirmed = window.confirm(
+              t("ResetConfirmMessage") ||
+                "Are you sure you want to reset? This will clear all data, caches, and files."
+            );
+            if (confirmed) {
+              console.log("Resetting application...");
+              // Clear Local Storage
+              localStorage.clear();
+              // Clear Session Storage
+              sessionStorage.clear();
+
+              // Clear Cookies
+              document.cookie.split(";").forEach((c) => {
+                document.cookie = c
+                  .replace(/^ +/, "")
+                  .replace(
+                    /=.*/,
+                    "=;expires=" + new Date().toUTCString() + ";path=/"
+                  );
+              });
+
+              // Clear Cache Storage
+              if ("caches" in window) {
+                caches.keys().then((names) => {
+                  names.forEach((name) => {
+                    caches.delete(name);
+                  });
+                });
+              }
+
+              // Clear OPFS - Needs to be recursive if there are subdirectories, but root iteration is a good start.
+              // Note: Full directory removal in OPFS isn't one-liner standard yet without knowing paths,
+              // but we can iterate the root.
+              const clearOpfs = async () => {
+                try {
+                  const root = await navigator.storage.getDirectory();
+                  // @ts-expect-error - iterate is valid in modern browsers but TS might not know it
+                  for await (const [name] of root.entries()) {
+                    await root
+                      .removeEntry(name, { recursive: true })
+                      .catch(console.error);
+                  }
+                } catch (e) {
+                  console.error("Error clearing OPFS:", e);
+                }
+              };
+
+              // Unregister Service Workers
+              if ("serviceWorker" in navigator) {
+                navigator.serviceWorker
+                  .getRegistrations()
+                  .then((registrations) => {
+                    for (const registration of registrations) {
+                      registration.unregister();
+                    }
+                  });
+              }
+
+              clearOpfs().then(() => {
+                window.location.reload();
+              });
+            }
+          }}
+          className="text-white/50 hover:text-white/80 transition-colors text-xs font-medium"
+        >
+          {t("Reset")}
+        </button>
+      </div>
 
       {/* Shake animation CSS */}
       <style jsx>{`

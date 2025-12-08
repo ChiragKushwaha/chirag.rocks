@@ -57,7 +57,13 @@
       "Description": "Ha vannak adatai egy másik Macen vagy Windows PC-n, átviheti azokat erre a Macre. Átvihet adatokat Time Machine biztonsági mentésből vagy más indítólemezről is.",
       "Question": "Hogyan szeretné átvinni az adatait?",
       "FromMac": "Macről, Time Machine mentésből vagy indítólemezről",
-      "FromPC": "Windows PC-ről"
+      "FromPC": "Windows PC-ről",
+      "FromMacPC": "From a Mac, Time Machine backup or Startup disk",
+      "FromMacPCDesc": "Transfer information from another Mac, Time Machine backup, or startup disk to this Mac.",
+      "FromTimeMachine": "From a Time Machine backup",
+      "FromTimeMachineDesc": "Transfer information from a Time Machine backup to this Mac.",
+      "FromWindows": "From a Windows PC",
+      "FromWindowsDesc": "Transfer information from a Windows PC to this Mac."
     },
     "AppleID": {
       "Title": "Jelentkezzen be Apple ID-val",
@@ -1430,7 +1436,10 @@
       "User": "{name} felhasználó, kattintson a bejelentkezéshez",
       "Password": "Jelszó",
       "Submit": "Jelszó elküldése"
-    }
+    },
+    "Reset": "Reset",
+    "ResetConfirmTitle": "Reset Application?",
+    "ResetConfirmMessage": "Are you sure you want to reset? This will clear all data, caches, and files."
   },
   "NotificationCenter": {
     "Title": "Értesítések",
@@ -1467,7 +1476,10 @@
     "MoveTo": "Ablak áthelyezése...",
     "LeftSide": "A képernyő bal oldalára",
     "RightSide": "A képernyő jobb oldalára",
-    "EnterFullScreen": "Belépés teljes képernyőre"
+    "EnterFullScreen": "Belépés teljes képernyőre",
+    "Reset": "Reset",
+    "ResetConfirmTitle": "Reset Application?",
+    "ResetConfirmMessage": "Are you sure you want to reset? This will clear all data, caches, and files."
   },
   "Dock": {
     "AriaLabel": "Alkalmazás dock",

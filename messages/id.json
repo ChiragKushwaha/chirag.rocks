@@ -72,7 +72,13 @@
       "Description": "Jika Anda memiliki informasi di Mac lain atau PC Windows, Anda dapat mentransfernya ke Mac ini. Anda juga dapat mentransfer data dari cadangan Time Machine atau disk mulai lainnya.",
       "Question": "Bagaimana Anda ingin mentransfer informasi Anda?",
       "FromMac": "Dari Mac, cadangan Time Machine, atau disk mulai",
-      "FromPC": "Dari PC Windows"
+      "FromPC": "Dari PC Windows",
+      "FromMacPC": "From a Mac, Time Machine backup or Startup disk",
+      "FromMacPCDesc": "Transfer information from another Mac, Time Machine backup, or startup disk to this Mac.",
+      "FromTimeMachine": "From a Time Machine backup",
+      "FromTimeMachineDesc": "Transfer information from a Time Machine backup to this Mac.",
+      "FromWindows": "From a Windows PC",
+      "FromWindowsDesc": "Transfer information from a Windows PC to this Mac."
     },
     "AppleID": {
       "Title": "Masuk dengan ID Apple Anda",
@@ -1583,7 +1589,10 @@
     "MoveTo": "Move Window to...",
     "LeftSide": "Left Side of Screen",
     "RightSide": "Right Side of Screen",
-    "EnterFullScreen": "Enter Full Screen"
+    "EnterFullScreen": "Enter Full Screen",
+    "Reset": "Reset",
+    "ResetConfirmTitle": "Reset Application?",
+    "ResetConfirmMessage": "Are you sure you want to reset? This will clear all data, caches, and files."
   },
   "Dock": {
     "Trash": "Tong Sampah",
@@ -1805,7 +1814,10 @@
       "User": "User {name}, click to login",
       "Password": "Password",
       "Submit": "Submit password"
-    }
+    },
+    "Reset": "Reset",
+    "ResetConfirmTitle": "Reset Application?",
+    "ResetConfirmMessage": "Are you sure you want to reset? This will clear all data, caches, and files."
   },
   "SEO": {
     "Title": "Chirag Kushwaha - Full Stack Engineer | macOS Big Sur Portfolio",

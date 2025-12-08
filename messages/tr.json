@@ -72,7 +72,13 @@
       "Description": "Başka bir Mac veya Windows PC'de bilgileriniz varsa, bunları bu Mac'e aktarabilirsiniz. Ayrıca bir Time Machine yedeklemesinden veya başka bir başlangıç diskinden de veri aktarabilirsiniz.",
       "Question": "Bilgilerinizi nasıl aktarmak istersiniz?",
       "FromMac": "Mac, Time Machine yedeklemesi veya başlangıç diskinden",
-      "FromPC": "Windows PC'den"
+      "FromPC": "Windows PC'den",
+      "FromMacPC": "From a Mac, Time Machine backup or Startup disk",
+      "FromMacPCDesc": "Transfer information from another Mac, Time Machine backup, or startup disk to this Mac.",
+      "FromTimeMachine": "From a Time Machine backup",
+      "FromTimeMachineDesc": "Transfer information from a Time Machine backup to this Mac.",
+      "FromWindows": "From a Windows PC",
+      "FromWindowsDesc": "Transfer information from a Windows PC to this Mac."
     },
     "AppleID": {
       "Title": "Apple ID ile Giriş Yapın",
@@ -1348,7 +1354,10 @@
     "MoveTo": "Move Window to...",
     "LeftSide": "Left Side of Screen",
     "RightSide": "Right Side of Screen",
-    "EnterFullScreen": "Enter Full Screen"
+    "EnterFullScreen": "Enter Full Screen",
+    "Reset": "Reset",
+    "ResetConfirmTitle": "Reset Application?",
+    "ResetConfirmMessage": "Are you sure you want to reset? This will clear all data, caches, and files."
   },
   "Dock": {
     "AriaLabel": "Uygulama Dock'u",
@@ -1737,7 +1746,10 @@
       "User": "User {name}, click to login",
       "Password": "Password",
       "Submit": "Submit password"
-    }
+    },
+    "Reset": "Reset",
+    "ResetConfirmTitle": "Reset Application?",
+    "ResetConfirmMessage": "Are you sure you want to reset? This will clear all data, caches, and files."
   },
   "SEO": {
     "Title": "Chirag Kushwaha - Full Stack Engineer | macOS Big Sur Portfolio",

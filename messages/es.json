@@ -57,7 +57,13 @@
       "Description": "Si tienes información en otro Mac o PC con Windows, puedes transferirla a este Mac. También puedes transferir información desde una copia de seguridad de Time Machine u otro disco de arranque.",
       "Question": "¿Cómo quieres transferir tu información?",
       "FromMac": "Desde un Mac, copia de seguridad de Time Machine o disco de arranque",
-      "FromPC": "Desde un PC con Windows"
+      "FromPC": "Desde un PC con Windows",
+      "FromMacPC": "From a Mac, Time Machine backup or Startup disk",
+      "FromMacPCDesc": "Transfer information from another Mac, Time Machine backup, or startup disk to this Mac.",
+      "FromTimeMachine": "From a Time Machine backup",
+      "FromTimeMachineDesc": "Transfer information from a Time Machine backup to this Mac.",
+      "FromWindows": "From a Windows PC",
+      "FromWindowsDesc": "Transfer information from a Windows PC to this Mac."
     },
     "AppleID": {
       "Title": "Inicia sesión con tu ID de Apple",
@@ -1360,7 +1366,10 @@
       "User": "Usuario {name}, clic para entrar",
       "Password": "Contraseña",
       "Submit": "Enviar contraseña"
-    }
+    },
+    "Reset": "Reset",
+    "ResetConfirmTitle": "Reset Application?",
+    "ResetConfirmMessage": "Are you sure you want to reset? This will clear all data, caches, and files."
   },
   "NotificationCenter": {
     "Title": "Notificaciones",
@@ -1397,7 +1406,10 @@
     "MoveTo": "Mover ventana a...",
     "LeftSide": "Lado izquierdo de la pantalla",
     "RightSide": "Lado derecho de la pantalla",
-    "EnterFullScreen": "Usar pantalla completa"
+    "EnterFullScreen": "Usar pantalla completa",
+    "Reset": "Reset",
+    "ResetConfirmTitle": "Reset Application?",
+    "ResetConfirmMessage": "Are you sure you want to reset? This will clear all data, caches, and files."
   },
   "Dock": {
     "AriaLabel": "Dock de aplicaciones",

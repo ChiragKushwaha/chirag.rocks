@@ -57,7 +57,13 @@
       "Description": "यदि आपके पास किसी अन्य Mac या Windows PC पर जानकारी है, तो आप इसे इस Mac पर स्थानांतरित कर सकते हैं। आप Time Machine बैकअप या किसी अन्य स्टार्टअप डिस्क से भी जानकारी स्थानांतरित कर सकते हैं।",
       "Question": "आप अपनी जानकारी कैसे स्थानांतरित करना चाहते हैं?",
       "FromMac": "Mac, Time Machine बैकअप या स्टार्टअप डिस्क से",
-      "FromPC": "Windows PC से"
+      "FromPC": "Windows PC से",
+      "FromMacPC": "From a Mac, Time Machine backup or Startup disk",
+      "FromMacPCDesc": "Transfer information from another Mac, Time Machine backup, or startup disk to this Mac.",
+      "FromTimeMachine": "From a Time Machine backup",
+      "FromTimeMachineDesc": "Transfer information from a Time Machine backup to this Mac.",
+      "FromWindows": "From a Windows PC",
+      "FromWindowsDesc": "Transfer information from a Windows PC to this Mac."
     },
     "AppleID": {
       "Title": "अपने Apple ID के साथ साइन इन करें",
@@ -1360,7 +1366,10 @@
       "User": "उपयोगकर्ता {name}, लॉगिन करने के लिए क्लिक करें",
       "Password": "पासवर्ड",
       "Submit": "पासवर्ड जमा करें"
-    }
+    },
+    "Reset": "Reset",
+    "ResetConfirmTitle": "Reset Application?",
+    "ResetConfirmMessage": "Are you sure you want to reset? This will clear all data, caches, and files."
   },
   "NotificationCenter": {
     "Title": "सूचनाएं",
@@ -1397,7 +1406,10 @@
     "MoveTo": "विंडो को यहां ले जाएं...",
     "LeftSide": "स्क्रीन के बाईं ओर",
     "RightSide": "स्क्रीन के दाईं ओर",
-    "EnterFullScreen": "पूर्ण स्क्रीन दर्ज करें"
+    "EnterFullScreen": "पूर्ण स्क्रीन दर्ज करें",
+    "Reset": "Reset",
+    "ResetConfirmTitle": "Reset Application?",
+    "ResetConfirmMessage": "Are you sure you want to reset? This will clear all data, caches, and files."
   },
   "Dock": {
     "AriaLabel": "एप्लिकेशन डॉक",
