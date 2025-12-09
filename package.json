@@ -9,6 +9,12 @@
     "server": "tsx server/server.ts",
     "lint": "eslint"
   },
+  "browserslist": [
+    "chrome >= 93",
+    "safari >= 15.4",
+    "firefox >= 92",
+    "edge >= 93"
+  ],
   "dependencies": {
     "@types/express": "^5.0.6",
     "@vercel/analytics": "^1.6.1",

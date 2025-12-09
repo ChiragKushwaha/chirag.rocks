@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { useSystemStore } from "../store/systemStore";
+// import { useSystemStore } from "../store/systemStore";
 
 // Default “Hello” list (add/remove freely)
 const DEFAULT_WORDS = [
