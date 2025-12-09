@@ -7,6 +7,9 @@ const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
   // ... existing config code ...
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
+  },
 
   images: {
     remotePatterns: [
