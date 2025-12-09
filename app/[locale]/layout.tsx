@@ -103,7 +103,7 @@ export async function generateMetadata({
   return {
     metadataBase: new URL("https://chirag-rocks.vercel.app"),
     alternates: {
-      canonical: "/",
+      canonical: `/${locale}`,
     },
     title: t("Title"),
     description: t("Description"),
