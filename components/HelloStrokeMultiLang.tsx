@@ -231,15 +231,11 @@ export default function HelloStrokeMultiLang({
   paddingX = 90, // horizontal padding inside viewBox units
   className = "", // extra Tailwind classes for wrapper
 }) {
-  const { setSetupComplete } = useSystemStore();
+  // const { setSetupComplete } = useSystemStore();
   const svgRef = useRef<SVGSVGElement>(null);
   const textRef = useRef<SVGTextElement>(null);
   const [index, setIndex] = useState(0);
   const current = words[index];
-
-  const handleGetStarted = () => {
-    setSetupComplete(false); // This will show the Setup Assistant
-  };
 
   // Cycle through words (respect reduced motion)
   useEffect(() => {
@@ -361,7 +357,7 @@ export default function HelloStrokeMultiLang({
             fontSize="220"
             fill="url(#textGradient)"
             // Tailwind via arbitrary properties for SVG stroke + dash + vector-effect
-            className="[stroke:#fff] [stroke-linecap:round] [stroke-linejoin:round] [paint-order:stroke] [vector-effect:non-scaling-stroke] [stroke-width:var(--stroke)] [stroke-dasharray:var(--gap)] [stroke-dashoffset:var(--gap)] animate-draw"
+            className="stroke-white [stroke-linecap:round] [stroke-linejoin:round] [paint-order:stroke] [vector-effect:non-scaling-stroke] [stroke-width:var(--stroke)] [stroke-dasharray:var(--gap)] [stroke-dashoffset:var(--gap)] animate-draw"
             // CSS vars for timing; gap/stroke are set in JS on the node
             style={{ "--dur": `${durationMs}ms` } as React.CSSProperties}
           >

@@ -1,14 +1,22 @@
 "use client";
 import { useEffect } from "react";
-import { SetupAssistant } from "@/apps/SetupAssistant";
-import { Desktop } from "@/components/Desktop";
-import { LockScreen } from "@/components/LockScreen";
+import dynamic from "next/dynamic";
 import { PermissionProvider } from "@/context/PermissionContext";
 import { useAuth } from "@/hooks/useAuth";
 import { useTheme } from "@/hooks/useTheme";
 import { fs } from "@/lib/FileSystem";
 import { MacInstaller } from "@/lib/Installer";
 import { useSystemStore } from "@/store/systemStore";
+
+const SetupAssistant = dynamic(() =>
+  import("@/apps/SetupAssistant").then((mod) => mod.SetupAssistant)
+);
+const Desktop = dynamic(() =>
+  import("@/components/Desktop").then((mod) => mod.Desktop)
+);
+const LockScreen = dynamic(() =>
+  import("@/components/LockScreen").then((mod) => mod.LockScreen)
+);
 // Extend Window interface to include lockScreen function
 declare global {
   interface Window {
