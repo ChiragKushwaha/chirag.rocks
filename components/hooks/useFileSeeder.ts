@@ -3,10 +3,7 @@ import { fs } from "../../lib/FileSystem";
 
 import { useSystemStore } from "../../store/systemStore";
 
-const SEED_FILES = [
-  { name: "linux.iso", url: "/linux.iso" },
-  { name: "kolibri.img", url: "/kolibri.img" },
-];
+const SEED_FILES = [{ name: "kolibri.img", url: "/kolibri.img" }];
 
 export const useFileSeeder = () => {
   const [isSeeding, setIsSeeding] = useState(true);

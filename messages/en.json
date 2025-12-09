@@ -40,6 +40,7 @@
       "Title": "Select Your Language",
       "Description": "Select the language you would like to use for your Mac.",
       "TableLabel": "Language",
+      "LanguageColumn": "Language",
       "Primary": "Primary"
     },
     "Region": {

@@ -1,19 +1,3 @@
-import heic2any from "heic2any";
-// @ts-ignore
-import UTIF from "utif";
-// import PSD from "psd";
-// @ts-ignore
-// import * as pdfjsLib from "pdfjs-dist/build/pdf";
-import { readPsd } from "ag-psd";
-
-// Set worker source for PDF.js
-// if (typeof window !== "undefined") {
-//   // @ts-ignore
-//   if (pdfjsLib.GlobalWorkerOptions) {
-//     pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
-//   }
-// }
-
 export const SUPPORTED_EXTENSIONS = [
   "jpg",
   "jpeg",
@@ -61,7 +45,7 @@ export const ImageLoader = {
 
       // TIFF
       if (ext === "tiff" || ext === "tif") {
-        // @ts-ignore
+        // @ts-expect-error
         const UTIF = (await import("utif")).default;
         const buffer = await file.arrayBuffer();
         const ifds = UTIF.decode(buffer);
@@ -95,7 +79,7 @@ export const ImageLoader = {
         const buffer = await file.arrayBuffer();
         const psd = readPsd(buffer);
         if (psd && psd.canvas) {
-          // @ts-ignore
+          // @ts-expect-error
           return psd.canvas.toDataURL();
         }
         return "";
@@ -103,9 +87,9 @@ export const ImageLoader = {
 
       // AI (Adobe Illustrator) - often PDF compatible
       if (ext === "ai") {
-        // @ts-ignore
+        // @ts-expect-error
         const pdfjsLib = await import("pdfjs-dist/build/pdf");
-        // @ts-ignore
+        // @ts-expect-error
         if (
           pdfjsLib.GlobalWorkerOptions &&
           !pdfjsLib.GlobalWorkerOptions.workerSrc
