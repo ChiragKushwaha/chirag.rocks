@@ -45,7 +45,7 @@ export const ImageLoader = {
 
       // TIFF
       if (ext === "tiff" || ext === "tif") {
-        // @ts-expect-error
+        // @ts-expect-error: utif does not have type definitions
         const UTIF = (await import("utif")).default;
         const buffer = await file.arrayBuffer();
         const ifds = UTIF.decode(buffer);
@@ -79,7 +79,6 @@ export const ImageLoader = {
         const buffer = await file.arrayBuffer();
         const psd = readPsd(buffer);
         if (psd && psd.canvas) {
-          // @ts-expect-error
           return psd.canvas.toDataURL();
         }
         return "";
@@ -87,9 +86,9 @@ export const ImageLoader = {
 
       // AI (Adobe Illustrator) - often PDF compatible
       if (ext === "ai") {
-        // @ts-expect-error
+        // @ts-expect-error: pdfjs-dist types mismatch
         const pdfjsLib = await import("pdfjs-dist/build/pdf");
-        // @ts-expect-error
+
         if (
           pdfjsLib.GlobalWorkerOptions &&
           !pdfjsLib.GlobalWorkerOptions.workerSrc
