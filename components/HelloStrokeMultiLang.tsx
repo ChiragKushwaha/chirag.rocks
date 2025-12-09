@@ -358,6 +358,7 @@ export default function HelloStrokeMultiLang({
             dominantBaseline="middle"
             textAnchor="middle"
             fontWeight="700"
+            fontSize="220"
             fill="url(#textGradient)"
             // Tailwind via arbitrary properties for SVG stroke + dash + vector-effect
             className="[stroke:#fff] [stroke-linecap:round] [stroke-linejoin:round] [paint-order:stroke] [vector-effect:non-scaling-stroke] [stroke-width:var(--stroke)] [stroke-dasharray:var(--gap)] [stroke-dashoffset:var(--gap)] animate-draw"
