@@ -89,12 +89,16 @@ const MenuList: React.FC<{ items: MenuItem[]; onClose: () => void }> = ({
                 w-full text-left px-3 py-0.5 text-[13px] flex justify-between items-center rounded-[4px] transition-colors font-medium
                 ${
                   item.disabled
-                    ? "text-white/30 cursor-default"
+                    ? "text-gray-400 dark:text-white/30 cursor-default"
                     : isActive
                     ? "bg-[#007AFF] text-white"
-                    : "hover:bg-[#007AFF] text-white active:bg-[#0062cc]"
+                    : "text-black dark:text-white hover:bg-[#007AFF] hover:text-white active:bg-[#0062cc]"
                 }
-                ${item.danger && !item.disabled ? "text-red-400" : ""}
+                ${
+                  item.danger && !item.disabled
+                    ? "text-red-500 dark:text-red-400"
+                    : ""
+                }
               `}
             >
               <span className="flex items-center gap-2">
@@ -137,7 +141,7 @@ const MenuList: React.FC<{ items: MenuItem[]; onClose: () => void }> = ({
             {/* Submenu */}
             {item.submenu && isActive && (
               <div
-                className="absolute left-full top-0 ml-[-4px] z-50 min-w-[200px] bg-[#1e1e1e]/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-[0_10px_40px_rgba(0,0,0,0.5)] overflow-hidden animate-in fade-in zoom-in-95 duration-75 origin-top-left"
+                className="absolute left-full top-0 ml-[-4px] z-50 min-w-[200px] bg-white/95 dark:bg-[#1e1e1e]/95 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-lg shadow-[0_10px_40px_rgba(0,0,0,0.5)] overflow-hidden animate-in fade-in zoom-in-95 duration-75 origin-top-left"
                 style={{ marginTop: -4 }}
               >
                 <MenuList items={item.submenu} onClose={onClose} />
@@ -178,7 +182,7 @@ export const ContextMenu: React.FC = () => {
     <div
       ref={ref}
       style={{ top: contextMenu.y, left: contextMenu.x }}
-      className="fixed z-[9999] min-w-[240px] bg-[#1e1e1e]/80 backdrop-blur-xl border border-white/10 rounded-lg shadow-[0_10px_40px_rgba(0,0,0,0.5)] animate-in fade-in zoom-in-95 duration-75 origin-top-left"
+      className="fixed z-[9999] min-w-[240px] bg-white/90 dark:bg-[#1e1e1e]/80 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-lg shadow-[0_10px_40px_rgba(0,0,0,0.5)] animate-in fade-in zoom-in-95 duration-75 origin-top-left"
     >
       <MenuList items={contextMenu.items} onClose={closeContextMenu} />
     </div>,
