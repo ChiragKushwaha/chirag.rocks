@@ -50,6 +50,7 @@
     "@types/react-dom": "19.2.3",
     "baseline-browser-mapping": "^2.9.0",
     "concurrently": "^9.2.1",
+    "critters": "^0.0.25",
     "eslint": "^9.39.1",
     "eslint-config-next": "16.0.10",
     "sharp": "^0.34.5",
