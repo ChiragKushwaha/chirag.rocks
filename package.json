@@ -27,7 +27,7 @@
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.2",
     "lucide-react": "^0.555.0",
-    "next": "16.0.7",
+    "next": "16.0.10",
     "next-intl": "^4.5.8",
     "pdfjs-dist": "^5.4.449",
     "react": "19.2.3",
@@ -46,15 +46,21 @@
     "@types/leaflet": "^1.9.21",
     "@types/node": "^24.10.1",
     "@types/pdfjs-dist": "^2.10.378",
-    "@types/react": "^19.2.3",
-    "@types/react-dom": "^19.2.3",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
     "baseline-browser-mapping": "^2.9.0",
     "concurrently": "^9.2.1",
     "eslint": "^9.39.1",
-    "eslint-config-next": "16.0.7",
+    "eslint-config-next": "16.0.10",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.1.17",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "19.2.7",
+      "@types/react-dom": "19.2.3"
+    }
   }
 }
