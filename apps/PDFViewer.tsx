@@ -122,7 +122,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
           ({ className }) => (
             <div className={`${className} relative`}>
               <Image
-                src="/icons/safari.png"
+                src="/icons/safari.webp"
                 alt="Safari"
                 fill
                 className="object-contain drop-shadow-lg"

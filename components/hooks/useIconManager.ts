@@ -12,18 +12,18 @@ export const useIconManager = () => {
       try {
         // 1. Initialize Essential Icons (Legacy / Flat structure)
         const REMOTE_ICONS: Record<string, string> = {
-          finder: "/icons/finder.png",
-          trash: "/icons/trash.png",
-          trash_full: "/icons/trash_full.png",
-          launchpad: "/icons/mission_control.png",
-          folder: "/icons/folder.png",
-          photos: "/icons/photos.png",
+          finder: "/icons/finder.webp",
+          trash: "/icons/trash.webp",
+          trash_full: "/icons/trash_full.webp",
+          launchpad: "/icons/mission_control.webp",
+          folder: "/icons/folder.webp",
+          photos: "/icons/photos.webp",
         };
 
         // Check and fetch remote icons
         await Promise.all(
           Object.entries(REMOTE_ICONS).map(async ([name, url]) => {
-            const filename = `${name}.png`;
+            const filename = `${name}.webp`;
             const exists = await fs.exists(`${ICONS_DIR}/${filename}`);
             if (!exists) {
               try {
@@ -40,7 +40,7 @@ export const useIconManager = () => {
         );
 
         // Ensure key icons exist before proceeding (fallback to manifest if absolutely needed, but we try to avoid it)
-        const hasIcons = await fs.exists(`${ICONS_DIR}/finder.png`);
+        const hasIcons = await fs.exists(`${ICONS_DIR}/finder.webp`);
         if (!hasIcons) {
           await fs.mkdir(ICONS_DIR);
           // We could fetch a minimal manifest here if needed, but the REMOTE_ICONS above covers the basics.
@@ -48,13 +48,13 @@ export const useIconManager = () => {
 
         // 1.5 Initialize Social Assets (GIFs and PNGs)
         const SOCIAL_ASSETS = [
-          "github-v2.png",
-          "twitter-x.png",
-          "linkedin.png",
-          "instagram.png",
-          "facebook.png",
-          "tiktok-v4.png",
-          "snapchat-v2.png",
+          "github-v2.webp",
+          "twitter-x.webp",
+          "linkedin.webp",
+          "instagram.webp",
+          "facebook.webp",
+          "tiktok-v4.webp",
+          "snapchat-v2.webp",
         ];
 
         await Promise.all(
@@ -138,7 +138,7 @@ export const useIconManager = () => {
 };
 
 export const useIcon = (iconName: string) => {
-  return useAsset(`/icons/${iconName}.png`);
+  return useAsset(`/icons/${iconName}.webp`);
 };
 
 export const useAsset = (path: string) => {

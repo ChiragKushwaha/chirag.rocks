@@ -226,7 +226,7 @@ export const Desktop: React.FC = () => {
           ) {
             new Notification("Reminder", {
               body: r.text,
-              icon: "/icons/reminders.png",
+              icon: "/icons/reminders.webp",
             });
           } else if (
             "Notification" in window &&
@@ -236,7 +236,7 @@ export const Desktop: React.FC = () => {
               if (permission === "granted") {
                 new Notification("Reminder", {
                   body: r.text,
-                  icon: "/icons/reminders.png",
+                  icon: "/icons/reminders.webp",
                 });
               } else {
                 alert(`Reminder: ${r.text}`);

@@ -110,7 +110,7 @@ const VSCodeIcon = ({
   className?: string;
   imageClassName?: string;
 }) => {
-  const url = useAsset("/icons/vscode.png");
+  const url = useAsset("/icons/vscode.webp");
   return (
     <div className={`${className} relative`}>
       {url && (
@@ -133,7 +133,7 @@ const XIcon = ({
   className?: string;
   containerClassName?: string;
 }) => {
-  const url = useAsset("/icons/twitter-x.png");
+  const url = useAsset("/icons/twitter-x.webp");
   return (
     <div
       className={`${className} ${containerClassName} flex items-center justify-center bg-black rounded-[22%] overflow-hidden`}
@@ -165,7 +165,7 @@ export const APPS: AppDef[] = [
     id: "finder",
     name: "Finder",
     icon: ({ className }) => (
-      <CachedIcon src="/icons/finder.png" alt="Finder" className={className} />
+      <CachedIcon src="/icons/finder.webp" alt="Finder" className={className} />
     ),
     component: Finder,
   },
@@ -173,7 +173,7 @@ export const APPS: AppDef[] = [
     id: "safari",
     name: "Safari",
     icon: ({ className }) => (
-      <CachedIcon src="/icons/safari.png" alt="Safari" className={className} />
+      <CachedIcon src="/icons/safari.webp" alt="Safari" className={className} />
     ),
     component: Safari,
   },
@@ -182,7 +182,7 @@ export const APPS: AppDef[] = [
     name: "Messages",
     icon: ({ className }) => (
       <CachedIcon
-        src="/icons/messages.png"
+        src="/icons/messages.webp"
         alt="Messages"
         className={className}
       />
@@ -193,7 +193,7 @@ export const APPS: AppDef[] = [
     id: "mail",
     name: "Mail",
     icon: ({ className }) => (
-      <CachedIcon src="/icons/mail.png" alt="Mail" className={className} />
+      <CachedIcon src="/icons/mail.webp" alt="Mail" className={className} />
     ),
     component: Mail,
   },
@@ -201,7 +201,7 @@ export const APPS: AppDef[] = [
     id: "maps",
     name: "Maps",
     icon: ({ className }) => (
-      <CachedIcon src="/icons/maps.png" alt="Maps" className={className} />
+      <CachedIcon src="/icons/maps.webp" alt="Maps" className={className} />
     ),
     component: Maps,
   },
@@ -209,7 +209,7 @@ export const APPS: AppDef[] = [
     id: "photos",
     name: "Photos",
     icon: ({ className }) => (
-      <CachedIcon src="/icons/photos.png" alt="Photos" className={className} />
+      <CachedIcon src="/icons/photos.webp" alt="Photos" className={className} />
     ),
     component: Photos,
   },
@@ -218,7 +218,7 @@ export const APPS: AppDef[] = [
     name: "FaceTime",
     icon: ({ className }) => (
       <CachedIcon
-        src="/icons/facetime.png"
+        src="/icons/facetime.webp"
         alt="FaceTime"
         className={className}
       />
@@ -236,7 +236,7 @@ export const APPS: AppDef[] = [
     name: "Contacts",
     icon: ({ className }) => (
       <CachedIcon
-        src="/icons/contacts.png"
+        src="/icons/contacts.webp"
         alt="Contacts"
         className={className}
       />
@@ -248,7 +248,7 @@ export const APPS: AppDef[] = [
     name: "Reminders",
     icon: ({ className }) => (
       <CachedIcon
-        src="/icons/reminders.png"
+        src="/icons/reminders.webp"
         alt="Reminders"
         className={className}
       />
@@ -259,7 +259,7 @@ export const APPS: AppDef[] = [
     id: "notes",
     name: "Notes",
     icon: ({ className }) => (
-      <CachedIcon src="/icons/notes.png" alt="Notes" className={className} />
+      <CachedIcon src="/icons/notes.webp" alt="Notes" className={className} />
     ),
     component: Notes,
   },
@@ -267,7 +267,7 @@ export const APPS: AppDef[] = [
     id: "music",
     name: "Music",
     icon: ({ className }) => (
-      <CachedIcon src="/icons/music.png" alt="Music" className={className} />
+      <CachedIcon src="/icons/music.webp" alt="Music" className={className} />
     ),
     component: Music,
   },
@@ -276,7 +276,7 @@ export const APPS: AppDef[] = [
     name: "Podcasts",
     icon: ({ className }) => (
       <CachedIcon
-        src="/icons/podcasts.png"
+        src="/icons/podcasts.webp"
         alt="Podcasts"
         className={className}
       />
@@ -287,7 +287,7 @@ export const APPS: AppDef[] = [
     id: "tv",
     name: "TV",
     icon: ({ className }) => (
-      <CachedIcon src="/icons/tv.png" alt="TV" className={className} />
+      <CachedIcon src="/icons/tv.webp" alt="TV" className={className} />
     ),
     component: TV,
   },
@@ -301,7 +301,7 @@ export const APPS: AppDef[] = [
     id: "news",
     name: "News",
     icon: ({ className }) => (
-      <CachedIcon src="/icons/news.png" alt="News" className={className} />
+      <CachedIcon src="/icons/news.webp" alt="News" className={className} />
     ),
     component: News,
   },
@@ -310,7 +310,7 @@ export const APPS: AppDef[] = [
     name: "App Store",
     icon: ({ className }) => (
       <CachedIcon
-        src="/icons/appstore.png"
+        src="/icons/appstore.webp"
         alt="App Store"
         className={className}
       />
@@ -322,7 +322,7 @@ export const APPS: AppDef[] = [
     name: "System Settings",
     icon: ({ className }) => (
       <CachedIcon
-        src="/icons/settings.png"
+        src="/icons/settings.webp"
         alt="System Settings"
         className={className}
       />
@@ -334,7 +334,7 @@ export const APPS: AppDef[] = [
     name: "Freeform",
     icon: ({ className }) => (
       <CachedIcon
-        src="/icons/freeform.png"
+        src="/icons/freeform.webp"
         alt="Freeform"
         className={className}
       />
@@ -346,7 +346,7 @@ export const APPS: AppDef[] = [
     name: "Terminal",
     icon: ({ className }) => (
       <CachedIcon
-        src="/icons/terminal.png"
+        src="/icons/terminal.webp"
         alt="Terminal"
         className={className}
       />
@@ -358,7 +358,7 @@ export const APPS: AppDef[] = [
     name: "Calculator",
     icon: ({ className }) => (
       <CachedIcon
-        src="/icons/calculator.png"
+        src="/icons/calculator.webp"
         alt="Calculator"
         className={className}
       />
@@ -369,7 +369,7 @@ export const APPS: AppDef[] = [
     id: "trash",
     name: "Trash",
     icon: ({ className }) => (
-      <CachedIcon src="/icons/trash.png" alt="Trash" className={className} />
+      <CachedIcon src="/icons/trash.webp" alt="Trash" className={className} />
     ),
     component: Trash,
   },
@@ -378,7 +378,7 @@ export const APPS: AppDef[] = [
     name: "Preview",
     icon: ({ className }) => (
       <CachedIcon
-        src="/icons/preview.png"
+        src="/icons/preview.webp"
         alt="Preview"
         className={className}
       />
@@ -447,7 +447,7 @@ export const APPS: AppDef[] = [
     icon: (props) => (
       <CachedIconWithBackground
         {...props}
-        src="/icons/github-v2.png"
+        src="/icons/github-v2.webp"
         alt="GitHub"
         bgClassName="bg-white"
       />
@@ -461,7 +461,7 @@ export const APPS: AppDef[] = [
     icon: (props) => (
       <CachedIconWithBackground
         {...props}
-        src="/icons/linkedin.png"
+        src="/icons/linkedin.webp"
         alt="LinkedIn"
         bgClassName="bg-[#0077B5]"
       />
@@ -475,7 +475,7 @@ export const APPS: AppDef[] = [
     icon: (props) => (
       <CachedIconWithBackground
         {...props}
-        src="/icons/topmate.png"
+        src="/icons/topmate.webp"
         alt="Topmate"
         bgClassName="bg-white"
       />
@@ -489,7 +489,7 @@ export const APPS: AppDef[] = [
     icon: (props) => (
       <CachedIconWithBackground
         {...props}
-        src="/icons/instagram.png"
+        src="/icons/instagram.webp"
         alt="Instagram"
         bgClassName="bg-linear-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888]"
       />
@@ -502,7 +502,7 @@ export const APPS: AppDef[] = [
     icon: (props) => (
       <CachedIconWithBackground
         {...props}
-        src="/icons/facebook.png"
+        src="/icons/facebook.webp"
         alt="Facebook"
         bgClassName="bg-[#1877F2]"
       />
@@ -515,7 +515,7 @@ export const APPS: AppDef[] = [
     icon: (props) => (
       <CachedIconWithBackground
         {...props}
-        src="/icons/tiktok-v4.png"
+        src="/icons/tiktok-v4.webp"
         alt="TikTok"
         bgClassName="bg-black"
       />
@@ -528,7 +528,7 @@ export const APPS: AppDef[] = [
     icon: (props) => (
       <CachedIconWithBackground
         {...props}
-        src="/icons/snapchat-v2.png"
+        src="/icons/snapchat-v2.webp"
         alt="Snapchat"
         bgClassName="bg-[#FFFC00]"
       />

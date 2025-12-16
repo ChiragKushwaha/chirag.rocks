@@ -1,8 +1,8 @@
-import React from "react";
 import { ArrowRight } from "lucide-react";
-import { LeetCodeData } from "../types";
-
 import { useTranslations } from "next-intl";
+import Image from "next/image";
+import React from "react";
+import { LeetCodeData } from "../types";
 
 interface BadgesProps {
   matchedUser: LeetCodeData["matchedUser"];
@@ -32,7 +32,7 @@ export const Badges: React.FC<BadgesProps> = ({ matchedUser }) => {
         {matchedUser.badges.slice(0, 3).map((badge) => (
           <div key={badge.id} className="flex flex-col items-center gap-2">
             <div className="w-16 h-16 relative">
-              <img
+              <Image
                 src={
                   badge.icon.startsWith("http")
                     ? badge.icon

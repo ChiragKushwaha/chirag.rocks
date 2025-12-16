@@ -81,12 +81,12 @@ export async function generateMetadata({
     },
     icons: {
       icon: [
-        { url: "/apple-icon.png", sizes: "any" },
-        { url: "/apple-icon.png", sizes: "192x192", type: "image/png" },
-        { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+        { url: "/apple-icon.webp", sizes: "any" },
+        { url: "/apple-icon.webp", sizes: "192x192", type: "image/webp" },
+        { url: "/icon-512.webp", sizes: "512x512", type: "image/webp" },
       ],
-      apple: [{ url: "/apple-icon.png", sizes: "192x192" }],
-      shortcut: "/apple-icon.png",
+      apple: [{ url: "/apple-icon.webp", sizes: "192x192" }],
+      shortcut: "/apple-icon.webp",
     },
     manifest: "/manifest.json",
     category: "technology",
