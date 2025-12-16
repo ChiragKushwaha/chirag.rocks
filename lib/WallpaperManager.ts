@@ -38,7 +38,7 @@ export class WallpaperManager {
   private static cache: WallpaperInfo[] | null = null;
 
   /**
-   * Initialize wallpapers by copying them to OPFS
+   * Initialize wallpapers - ensure directory exists but DON'T copy files eagerly
    */
   static async initializeWallpapers(): Promise<void> {
     const desktopPicturesPath = "/System/Library/Desktop Pictures";
@@ -49,39 +49,11 @@ export class WallpaperManager {
       await fs.mkdir("/System/Library/Desktop Pictures");
     }
 
-    // Copy each wallpaper to OPFS
-    for (const wallpaper of WALLPAPERS) {
-      const variantEntries = Object.entries(wallpaper.variants);
-      for (let i = 0; i < variantEntries.length; i++) {
-        const [, publicPath] = variantEntries[i];
-        if (publicPath) {
-          try {
-            const fileName = publicPath.split("/").pop()!;
-            const opfsPath = `${desktopPicturesPath}/${fileName}`;
-
-            // Check if already exists
-            const fileExists = await fs.exists(opfsPath);
-            if (!fileExists) {
-              // Fetch from public folder and write to OPFS
-              const response = await fetch(publicPath);
-              const blob = await response.blob();
-
-              await fs.writeFile(desktopPicturesPath, fileName, blob);
-
-              console.log(`[Wallpaper] Copied ${fileName} to OPFS`);
-            } else {
-              console.log(`[Wallpaper] ${fileName} already exists in OPFS`);
-            }
-          } catch (error) {
-            console.error(`[Wallpaper] Failed to copy ${publicPath}:`, error);
-          }
-        }
-      }
-    }
+    console.log("✅ Desktop Pictures directory ready (lazy loading enabled)");
   }
 
   /**
-   * Get all available wallpapers from OPFS
+   * Get all available wallpapers (Static + OPFS)
    */
   static async getWallpapersFromOPFS(
     forceRefresh = false
@@ -91,13 +63,23 @@ export class WallpaperManager {
     }
 
     const desktopPicturesPath = "/System/Library/Desktop Pictures";
+    const allWallpapers = [...WALLPAPERS]; // Start with built-ins
+
     try {
       if (!(await fs.exists(desktopPicturesPath))) {
-        return WALLPAPERS;
+        return allWallpapers;
       }
 
       const files = await fs.ls(desktopPicturesPath);
-      const wallpaperMap = new Map<string, WallpaperInfo>();
+
+      // Helper to check if a file is a built-in variant
+      const isBuiltIn = (fileName: string) => {
+        return WALLPAPERS.some((w) =>
+          Object.values(w.variants).some((path) => path?.endsWith(fileName))
+        );
+      };
+
+      const customWallpaperMap = new Map<string, WallpaperInfo>();
 
       // Helper to get OPFS URL
       const getUrl = (filename: string) =>
@@ -106,10 +88,10 @@ export class WallpaperManager {
       for (const file of files) {
         if (file.kind !== "file") continue;
 
-        // Parse filename: Name-variant.ext or Name.ext
-        // e.g. Monterey-light.webp -> Base: Monterey, Variant: light
-        // e.g. Monterey.webp -> Base: Monterey, Variant: standard
+        // Skip files that match built-in filenames to avoid duplicates if they were somehow copied
+        if (isBuiltIn(file.name)) continue;
 
+        // Parse filename: Name-variant.ext or Name.ext
         const fileNameWithoutExt = file.name.replace(/\.[^/.]+$/, "");
         let baseName = fileNameWithoutExt;
         let variant = "standard";
@@ -125,15 +107,15 @@ export class WallpaperManager {
           variant = "morning";
         }
 
-        if (!wallpaperMap.has(baseName)) {
-          wallpaperMap.set(baseName, {
+        if (!customWallpaperMap.has(baseName)) {
+          customWallpaperMap.set(baseName, {
             name: baseName,
             baseName: baseName,
             variants: { standard: "" }, // Will be filled
           });
         }
 
-        const info = wallpaperMap.get(baseName)!;
+        const info = customWallpaperMap.get(baseName)!;
         const url = await this.getWallpaperDataURL(getUrl(file.name));
 
         if (variant === "standard") info.variants.standard = url;
@@ -142,15 +124,17 @@ export class WallpaperManager {
         else if (variant === "morning") info.variants.morning = url;
       }
 
-      // Ensure every wallpaper has a standard variant (fallback to any available)
-      for (const wp of wallpaperMap.values()) {
+      // Ensure every custom wallpaper has a standard variant
+      for (const wp of customWallpaperMap.values()) {
         if (!wp.variants.standard) {
           wp.variants.standard =
             wp.variants.light || wp.variants.dark || wp.variants.morning || "";
         }
+        allWallpapers.push(wp);
       }
 
-      return Array.from(wallpaperMap.values());
+      this.cache = allWallpapers;
+      return allWallpapers;
     } catch (e) {
       console.error("Failed to load wallpapers from OPFS", e);
       return WALLPAPERS;
@@ -171,7 +155,10 @@ export class WallpaperManager {
     baseName: string,
     theme: "light" | "dark" | "auto"
   ): string {
-    const wallpaper = WALLPAPERS.find((w) => w.baseName === baseName);
+    // Check cache first if available, otherwise static list (could be custom wallpaper)
+    const available = this.cache || WALLPAPERS;
+    const wallpaper = available.find((w) => w.baseName === baseName);
+
     if (!wallpaper) {
       // Fallback to first wallpaper
       return WALLPAPERS[0].variants.standard;
@@ -207,14 +194,30 @@ export class WallpaperManager {
   }
 
   /**
-   * Read wallpaper from OPFS as data URL
+   * Read wallpaper data URL
+   * If it's an OPFS path, read it. If it's public, return as is.
    */
-  static async getWallpaperDataURL(publicPath: string): Promise<string> {
+  static async getWallpaperDataURL(path: string): Promise<string> {
+    if (path.startsWith("/assets/")) {
+      return path;
+    }
+
     try {
-      const fileName = publicPath.split("/").pop()!;
+      const fileName = path.split("/").pop()!;
       const desktopPicturesPath = "/System/Library/Desktop Pictures";
 
-      console.log(`[Wallpaper] Reading ${fileName} from OPFS...`);
+      // Check if it exists in OPFS first (if passed absolute path like /System/Library...)
+      // But path here often comes from getUrl which constructs /System/Library...
+
+      const exists = await fs.exists(`${desktopPicturesPath}/${fileName}`);
+      if (!exists) {
+        // If path looks like a public asset but was passed as a filename?
+        // No, the caller logic handles that.
+        // If we are here, it's expected to be in OPFS.
+        return path;
+      }
+
+      // console.log(`[Wallpaper] Reading ${fileName} from OPFS...`);
       const blob = await fs.readBlob(desktopPicturesPath, fileName);
 
       if (!blob) {
@@ -223,12 +226,13 @@ export class WallpaperManager {
 
       // Create Object URL from Blob
       const url = URL.createObjectURL(blob);
-      console.log(`[Wallpaper] Successfully read ${fileName} from OPFS`);
+      // console.log(`[Wallpaper] Successfully read ${fileName} from OPFS`);
       return url;
     } catch (error) {
       console.error("[Wallpaper] Failed to read from OPFS:", error);
-      // Fallback to public path
-      return publicPath;
+      // Fallback to return path itself? or fail?
+      // existing logic returned publicPath on error, but here path IS the path.
+      return path;
     }
   }
 }

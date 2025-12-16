@@ -3,83 +3,15 @@ import { DeviceProvider } from "@/components/ui/design-system/DeviceContext";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
-import {
-  Geist,
-  Geist_Mono,
-  Noto_Naskh_Arabic,
-  Noto_Sans,
-  Noto_Sans_JP,
-  Noto_Sans_KR,
-  Noto_Serif_Bengali,
-  Noto_Serif_Devanagari,
-  Pacifico,
-} from "next/font/google";
-import "../globals.css";
+// Google Fonts removed for performance
+
+import { routing } from "@/i18n/routing";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { routing } from "@/i18n/routing";
+import "../globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const notoSans = Noto_Sans({
-  variable: "--font-noto-sans",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
-});
-
-const notoSansJP = Noto_Sans_JP({
-  variable: "--font-noto-sans-jp",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
-});
-
-const notoSansKR = Noto_Sans_KR({
-  variable: "--font-noto-sans-kr",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
-});
-
-const notoNaskhArabic = Noto_Naskh_Arabic({
-  variable: "--font-noto-naskh-arabic",
-  subsets: ["arabic"],
-  weight: ["400", "700"],
-  display: "swap",
-});
-
-const notoSerifDevanagari = Noto_Serif_Devanagari({
-  variable: "--font-noto-serif-devanagari",
-  subsets: ["devanagari"],
-  weight: ["400", "700"],
-  display: "swap",
-});
-
-const notoSerifBengali = Noto_Serif_Bengali({
-  variable: "--font-noto-serif-bengali",
-  subsets: ["bengali"],
-  weight: ["400", "700"],
-  display: "swap",
-});
-
-const pacifico = Pacifico({
-  variable: "--font-pacifico",
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
+// Font definitions removed
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -276,7 +208,7 @@ export default async function RootLayout({
         <meta name="apple-mobile-web-app-title" content="macOS Clone" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${notoSans.variable} ${notoSansJP.variable} ${notoSansKR.variable} ${notoNaskhArabic.variable} ${notoSerifDevanagari.variable} ${notoSerifBengali.variable} ${pacifico.variable} antialiased`}
+        className={`antialiased`}
         itemScope
         itemType="https://schema.org/WebPage"
       >
