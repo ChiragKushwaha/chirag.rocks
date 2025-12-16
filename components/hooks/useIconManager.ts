@@ -73,54 +73,10 @@ export const useIconManager = () => {
           })
         );
 
-        // 2. Initialize Main System Font (SFNS.ttf) ONLY
-        // We ensure SFNS.ttf is in OPFS for future use, and load it.
-        try {
-          const fontPath = "SFNS.ttf";
-          const fontDir = "/System/Library/Fonts";
-
-          // Check OPFS
-          let fontBlob = await fs.readBlob(fontDir, fontPath);
-
-          if (!fontBlob) {
-            // Fetch from network
-            try {
-              const res = await fetch(
-                `/assets/System/Library/Fonts/${fontPath}`
-              );
-              if (res.ok) {
-                fontBlob = await res.blob();
-
-                // Cache to OPFS asynchronously
-                (async () => {
-                  try {
-                    if (!(await fs.exists(fontDir))) {
-                      await fs.mkdir(fontDir);
-                    }
-                    await fs.writeBlob(fontDir, fontPath, fontBlob!);
-                    console.log(`[AssetManager] Cached ${fontPath} to OPFS`);
-                  } catch (err) {
-                    console.error("Failed to cache font to OPFS", err);
-                  }
-                })();
-              }
-            } catch (err) {
-              console.error("Failed to fetch system font from network", err);
-            }
-          }
-
-          if (fontBlob) {
-            const fontData = await fontBlob.arrayBuffer();
-            const font = new FontFace("SF Pro Text", fontData);
-            await font.load();
-            document.fonts.add(font);
-            document.body.style.fontFamily =
-              '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif';
-            console.log("[AssetManager] SF Pro Text loaded");
-          }
-        } catch (e) {
-          console.error("[AssetManager] Failed to load system font", e);
-        }
+        // 2. Initialize Main System Font (SFNS.ttf) REMOVED due to size
+        // The user requested to remove this large file download.
+        // Falls back to system fonts sans-serif.
+        console.log("[AssetManager] SFNS.ttf loading skipped (optimization)");
 
         console.log("[AssetManager] Optimized Assets ready");
         setIsReady(true);

@@ -7,9 +7,11 @@ const SEED_FILES = [{ name: "kolibri.img", url: "/kolibri.img" }];
 
 export const useFileSeeder = () => {
   const [isSeeding, setIsSeeding] = useState(true);
-  const { user } = useSystemStore();
+  const { user, isBooting } = useSystemStore();
 
   useEffect(() => {
+    if (isBooting) return;
+
     const seed = async () => {
       try {
         await fs.init();
@@ -76,7 +78,7 @@ export const useFileSeeder = () => {
     };
 
     seed();
-  }, [user]); // Re-run if user changes (though usually stable on boot)
+  }, [user, isBooting]); // Re-run if user changes (though usually stable on boot)
 
   return isSeeding;
 };
