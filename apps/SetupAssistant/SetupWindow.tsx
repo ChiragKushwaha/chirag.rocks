@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useSetupContext } from "./SetupContext";
 import { useTranslations } from "next-intl";
+import { useAsset } from "../../components/hooks/useIconManager";
 
 interface SetupWindowProps {
   title: string;
@@ -27,6 +28,7 @@ export const SetupWindow: React.FC<SetupWindowProps> = ({
 }) => {
   const { currentStep } = useSetupContext();
   const t = useTranslations("Setup.Common");
+  const bgUrl = useAsset("/hello-gradient-bg.webp");
 
   // Map steps to dots
   const getActiveDot = (step: string) => {
@@ -56,13 +58,15 @@ export const SetupWindow: React.FC<SetupWindowProps> = ({
 
   return (
     <div className="fixed inset-0 bg-[#2b2b2b] flex items-center justify-center z-9999 font-sans selection:bg-[#007AFF] selection:text-white">
-      <Image
-        src="/hello-gradient-bg.webp"
-        alt="Background"
-        fill
-        priority
-        className="object-cover -z-10"
-      />
+      {bgUrl && (
+        <Image
+          src={bgUrl}
+          alt="Background"
+          fill
+          priority
+          className="object-cover -z-10"
+        />
+      )}
       {/* Background Overlay for readability */}
       <div className="absolute inset-0 bg-black/20 pointer-events-none" />
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { fs } from "../../lib/FileSystem";
 
-const ICONS_DIR = "/System/Icons";
+const ICONS_DIR = "/icons";
 
 export const useIconManager = () => {
   const [isReady, setIsReady] = useState(false);
@@ -10,7 +10,7 @@ export const useIconManager = () => {
   useEffect(() => {
     const initAssets = async () => {
       try {
-        // 1. Initialize Icons (Legacy / Flat structure)
+        // 1. Initialize Essential Icons (Legacy / Flat structure)
         const REMOTE_ICONS: Record<string, string> = {
           finder: "/icons/finder.png",
           trash: "/icons/trash.png",
@@ -39,30 +39,11 @@ export const useIconManager = () => {
           })
         );
 
+        // Ensure key icons exist before proceeding (fallback to manifest if absolutely needed, but we try to avoid it)
         const hasIcons = await fs.exists(`${ICONS_DIR}/finder.png`);
-
         if (!hasIcons) {
-          console.log("[AssetManager] Initializing icons in OPFS...");
           await fs.mkdir(ICONS_DIR);
-
-          const response = await fetch("/icons/manifest.json");
-          if (response.ok) {
-            const manifest = await response.json();
-            await Promise.all(
-              manifest.map(async (filename: string) => {
-                try {
-                  // Skip if we already fetched a remote version
-                  if (await fs.exists(`${ICONS_DIR}/${filename}`)) return;
-
-                  const res = await fetch(`/icons/${filename}`);
-                  const blob = await res.blob();
-                  await fs.writeBlob(ICONS_DIR, filename, blob);
-                } catch (e) {
-                  console.error(`Failed to cache icon ${filename}`, e);
-                }
-              })
-            );
-          }
+          // We could fetch a minimal manifest here if needed, but the REMOTE_ICONS above covers the basics.
         }
 
         // 1.5 Initialize Social Assets (GIFs and PNGs)
@@ -92,75 +73,42 @@ export const useIconManager = () => {
           })
         );
 
-        // 2.5 Initialize Wallpaper
-        const WALLPAPER_DIR = "/System/Library/Desktop Pictures";
-        const WALLPAPER_NAME = "Monterey-light.webp";
-        const hasWallpaper = await fs.exists(
-          `${WALLPAPER_DIR}/${WALLPAPER_NAME}`
-        );
-
-        if (!hasWallpaper) {
-          console.log("[AssetManager] Initializing wallpaper in OPFS...");
-          try {
-            const res = await fetch(
-              `/assets/System/Library/Desktop Pictures/${WALLPAPER_NAME}`
-            );
-            if (res.ok) {
-              const blob = await res.blob();
-              await fs.mkdir(WALLPAPER_DIR); // Ensure dir exists
-              await fs.writeBlob(WALLPAPER_DIR, WALLPAPER_NAME, blob);
-              console.log("[AssetManager] Wallpaper cached to OPFS");
-            } else {
-              console.error(
-                "[AssetManager] Failed to fetch wallpaper from public"
-              );
-            }
-          } catch (e) {
-            console.error("[AssetManager] Failed to cache wallpaper", e);
-          }
-        }
-
-        // 2. Initialize System Assets (Recursive structure)
-        // Check for a known asset
-        const hasAssets = await fs.exists("/System/Library/Fonts/SFNS.ttf");
-
-        if (!hasAssets) {
-          console.log("[AssetManager] Initializing system assets in OPFS...");
-          const response = await fetch("/assets/manifest.json");
-          if (response.ok) {
-            const manifest = await response.json(); // Array of paths like "/System/Library/..."
-
-            // Process sequentially or in chunks to avoid overwhelming network/fs
-            for (const path of manifest) {
-              try {
-                // path is like "/System/Library/..."
-                // Fetch from public/assets/System/Library...
-                const fetchUrl = `/assets${path}`;
-                const res = await fetch(fetchUrl);
-                if (!res.ok) continue;
-
-                const blob = await res.blob();
-
-                // Write to OPFS at exact path
-                // We need to split path to get dir and filename
-                const parts = path.split("/");
-                const filename = parts.pop();
-                const dir = parts.join("/") || "/";
-
-                await fs.writeBlob(dir, filename!, blob);
-              } catch (e) {
-                console.error(`Failed to cache asset ${path}`, e);
-              }
-            }
-          }
-        }
-
-        // 3. Load System Fonts from OPFS
+        // 2. Initialize Main System Font (SFNS.ttf) ONLY
+        // We ensure SFNS.ttf is in OPFS for future use, and load it.
         try {
-          const fontBlob = await fs.readBlob(
-            "/System/Library/Fonts",
-            "SFNS.ttf"
-          );
+          const fontPath = "SFNS.ttf";
+          const fontDir = "/System/Library/Fonts";
+
+          // Check OPFS
+          let fontBlob = await fs.readBlob(fontDir, fontPath);
+
+          if (!fontBlob) {
+            // Fetch from network
+            try {
+              const res = await fetch(
+                `/assets/System/Library/Fonts/${fontPath}`
+              );
+              if (res.ok) {
+                fontBlob = await res.blob();
+
+                // Cache to OPFS asynchronously
+                (async () => {
+                  try {
+                    if (!(await fs.exists(fontDir))) {
+                      await fs.mkdir(fontDir);
+                    }
+                    await fs.writeBlob(fontDir, fontPath, fontBlob!);
+                    console.log(`[AssetManager] Cached ${fontPath} to OPFS`);
+                  } catch (err) {
+                    console.error("Failed to cache font to OPFS", err);
+                  }
+                })();
+              }
+            } catch (err) {
+              console.error("Failed to fetch system font from network", err);
+            }
+          }
+
           if (fontBlob) {
             const fontData = await fontBlob.arrayBuffer();
             const font = new FontFace("SF Pro Text", fontData);
@@ -168,16 +116,17 @@ export const useIconManager = () => {
             document.fonts.add(font);
             document.body.style.fontFamily =
               '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif';
-            console.log("[AssetManager] SF Pro Text loaded from OPFS");
+            console.log("[AssetManager] SF Pro Text loaded");
           }
         } catch (e) {
           console.error("[AssetManager] Failed to load system font", e);
         }
 
-        console.log("[AssetManager] Assets ready");
+        console.log("[AssetManager] Optimized Assets ready");
         setIsReady(true);
       } catch (e) {
         console.error("[AssetManager] Initialization failed", e);
+        // Continue even if assets fail, to not block boot
         setIsReady(true);
       }
     };
@@ -189,43 +138,7 @@ export const useIconManager = () => {
 };
 
 export const useIcon = (iconName: string) => {
-  const [iconUrl, setIconUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    let active = true;
-    let objectUrl: string | null = null;
-
-    const loadIcon = async () => {
-      if (!iconName) return;
-
-      // Try OPFS first
-      const filename = `${iconName}.png`;
-      const blob = await fs.readBlob(ICONS_DIR, filename);
-
-      if (!active) return;
-
-      if (blob) {
-        objectUrl = URL.createObjectURL(blob);
-        setIconUrl(objectUrl);
-      } else {
-        // Fallback to public folder if not in OPFS
-        // To avoid 404s for known missing icons, we could check a list,
-        // but for now we'll just let it try.
-        setIconUrl(`/icons/${filename}`);
-      }
-    };
-
-    loadIcon();
-
-    return () => {
-      active = false;
-      if (objectUrl) {
-        URL.revokeObjectURL(objectUrl);
-      }
-    };
-  }, [iconName]);
-
-  return iconUrl;
+  return useAsset(`/icons/${iconName}.png`);
 };
 
 export const useAsset = (path: string) => {
@@ -248,14 +161,11 @@ export const useAsset = (path: string) => {
       if (!active) return;
 
       if (blob) {
-        // Create a memory-backed blob to avoid ERR_UPLOAD_FILE_CHANGED
-        // This ensures the blob URL remains valid even if the underlying OPFS file is modified
         const arrayBuffer = await blob.arrayBuffer();
         const memoryBlob = new Blob([arrayBuffer], { type: blob.type });
 
         if (filename?.toLowerCase().endsWith(".heic")) {
           try {
-            // Load heic2any from public/lib if not already loaded
             if (!(window as any).heic2any) {
               await new Promise((resolve, reject) => {
                 const script = document.createElement("script");
@@ -273,7 +183,6 @@ export const useAsset = (path: string) => {
               quality: 0.9,
             });
 
-            // heic2any can return Blob or Blob[]
             const finalBlob = Array.isArray(convertedBlob)
               ? convertedBlob[0]
               : convertedBlob;
@@ -281,7 +190,6 @@ export const useAsset = (path: string) => {
             setUrl(objectUrl);
           } catch (e) {
             console.error("[AssetManager] Failed to convert HEIC", e);
-            // Fallback to original blob
             objectUrl = URL.createObjectURL(memoryBlob);
             setUrl(objectUrl);
           }
@@ -291,11 +199,32 @@ export const useAsset = (path: string) => {
         }
       } else {
         // Fallback to public/assets
-        if (path.startsWith("/assets")) {
-          setUrl(path);
-        } else {
-          setUrl(`/assets${path}`);
+        // AND CACHE TO OPFS (Lazy Loading)
+        let fetchUrl = path;
+        // If it starts with / or http, use as is. Otherwise prepend /assets/
+        if (!path.startsWith("/") && !path.startsWith("http")) {
+          fetchUrl = `/assets/${path}`;
         }
+
+        // Just set URL to fetchUrl for immediate display
+        setUrl(fetchUrl);
+
+        // Background cache
+        (async () => {
+          try {
+            const res = await fetch(fetchUrl);
+            if (res.ok) {
+              const b = await res.blob();
+              if (!(await fs.exists(dir))) {
+                await fs.mkdir(dir);
+              }
+              await fs.writeBlob(dir, filename!, b);
+              // console.log(`[AssetManager] Lazy cached ${filename}`);
+            }
+          } catch (_err) {
+            // Ignore cache failures
+          }
+        })();
       }
     };
 

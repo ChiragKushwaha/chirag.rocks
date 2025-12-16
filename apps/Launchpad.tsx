@@ -33,7 +33,35 @@ import { Clock } from "./Clock";
 import { CalendarIcon } from "../components/icons/CalendarIcon";
 import { WeatherIcon } from "../components/icons/WeatherIcon";
 import { ClockIcon } from "../components/icons/ClockIcon";
+import { useAsset } from "../components/hooks/useIconManager";
 import dynamic from "next/dynamic";
+
+const CachedIcon = ({
+  src,
+  alt,
+  className,
+  imageClassName = "object-contain drop-shadow-lg",
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  imageClassName?: string;
+}) => {
+  const url = useAsset(src);
+  return (
+    <div className={`${className} relative`}>
+      {url && (
+        <Image
+          src={url}
+          alt={alt}
+          fill
+          className={imageClassName}
+          unoptimized
+        />
+      )}
+    </div>
+  );
+};
 
 const PDFViewer = dynamic(
   () => import("./PDFViewer").then((mod) => mod.PDFViewer),
@@ -49,6 +77,75 @@ import { VSCode } from "./VSCode";
 import { LeetCode } from "./LeetCode";
 import { SocialApp } from "./SocialApp";
 import { ExternalLinkDialog } from "../components/ExternalLinkDialog";
+
+const CachedIconWithBackground = ({
+  src,
+  alt,
+  className,
+  containerClassName,
+  bgClassName = "bg-white",
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  containerClassName?: string;
+  bgClassName?: string;
+}) => {
+  const url = useAsset(src);
+  return (
+    <div
+      className={`${className} ${containerClassName} relative flex items-center justify-center rounded-[22%] overflow-hidden ${bgClassName}`}
+    >
+      {url && (
+        <Image src={url} alt={alt} fill className="object-cover" unoptimized />
+      )}
+    </div>
+  );
+};
+
+const VSCodeIcon = ({
+  className,
+  imageClassName = "p-2 rounded-3xl scale-[0.75]",
+}: {
+  className?: string;
+  imageClassName?: string;
+}) => {
+  const url = useAsset("/icons/vscode.png");
+  return (
+    <div className={`${className} relative`}>
+      {url && (
+        <Image
+          src={url}
+          alt="VS Code"
+          fill
+          className={`object-contain drop-shadow-lg bg-white ${imageClassName}`}
+          unoptimized
+        />
+      )}
+    </div>
+  );
+};
+
+const XIcon = ({
+  className,
+  containerClassName = "p-6 scale-[0.85]",
+}: {
+  className?: string;
+  containerClassName?: string;
+}) => {
+  const url = useAsset("/icons/twitter-x.png");
+  return (
+    <div
+      className={`${className} ${containerClassName} flex items-center justify-center bg-black rounded-[22%] overflow-hidden`}
+    >
+      <div className="relative w-full h-full invert">
+        {url && (
+          <Image src={url} alt="X" fill className="object-cover" unoptimized />
+        )}
+      </div>
+    </div>
+  );
+};
 
 export interface AppDef {
   id: string;
@@ -68,14 +165,7 @@ export const APPS: AppDef[] = [
     id: "finder",
     name: "Finder",
     icon: ({ className }) => (
-      <div className={className}>
-        <Image
-          src="/icons/finder.png"
-          alt="Finder"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon src="/icons/finder.png" alt="Finder" className={className} />
     ),
     component: Finder,
   },
@@ -83,14 +173,7 @@ export const APPS: AppDef[] = [
     id: "safari",
     name: "Safari",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/safari.png"
-          alt="Safari"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon src="/icons/safari.png" alt="Safari" className={className} />
     ),
     component: Safari,
   },
@@ -98,14 +181,11 @@ export const APPS: AppDef[] = [
     id: "messages",
     name: "Messages",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/messages.png"
-          alt="Messages"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon
+        src="/icons/messages.png"
+        alt="Messages"
+        className={className}
+      />
     ),
     component: Messages,
   },
@@ -113,14 +193,7 @@ export const APPS: AppDef[] = [
     id: "mail",
     name: "Mail",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/mail.png"
-          alt="Mail"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon src="/icons/mail.png" alt="Mail" className={className} />
     ),
     component: Mail,
   },
@@ -128,14 +201,7 @@ export const APPS: AppDef[] = [
     id: "maps",
     name: "Maps",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/maps.png"
-          alt="Maps"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon src="/icons/maps.png" alt="Maps" className={className} />
     ),
     component: Maps,
   },
@@ -143,14 +209,7 @@ export const APPS: AppDef[] = [
     id: "photos",
     name: "Photos",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/photos.png"
-          alt="Photos"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon src="/icons/photos.png" alt="Photos" className={className} />
     ),
     component: Photos,
   },
@@ -158,14 +217,11 @@ export const APPS: AppDef[] = [
     id: "facetime",
     name: "FaceTime",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/facetime.png"
-          alt="FaceTime"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon
+        src="/icons/facetime.png"
+        alt="FaceTime"
+        className={className}
+      />
     ),
     component: FaceTime,
   },
@@ -179,14 +235,11 @@ export const APPS: AppDef[] = [
     id: "contacts",
     name: "Contacts",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/contacts.png"
-          alt="Contacts"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon
+        src="/icons/contacts.png"
+        alt="Contacts"
+        className={className}
+      />
     ),
     component: Contacts,
   },
@@ -194,14 +247,11 @@ export const APPS: AppDef[] = [
     id: "reminders",
     name: "Reminders",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/reminders.png"
-          alt="Reminders"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon
+        src="/icons/reminders.png"
+        alt="Reminders"
+        className={className}
+      />
     ),
     component: Reminders,
   },
@@ -209,14 +259,7 @@ export const APPS: AppDef[] = [
     id: "notes",
     name: "Notes",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/notes.png"
-          alt="Notes"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon src="/icons/notes.png" alt="Notes" className={className} />
     ),
     component: Notes,
   },
@@ -224,14 +267,7 @@ export const APPS: AppDef[] = [
     id: "music",
     name: "Music",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/music.png"
-          alt="Music"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon src="/icons/music.png" alt="Music" className={className} />
     ),
     component: Music,
   },
@@ -239,14 +275,11 @@ export const APPS: AppDef[] = [
     id: "podcasts",
     name: "Podcasts",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/podcasts.png"
-          alt="Podcasts"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon
+        src="/icons/podcasts.png"
+        alt="Podcasts"
+        className={className}
+      />
     ),
     component: () => <PlaceholderApp title="Podcasts" />,
   },
@@ -254,14 +287,7 @@ export const APPS: AppDef[] = [
     id: "tv",
     name: "TV",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/tv.png"
-          alt="TV"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon src="/icons/tv.png" alt="TV" className={className} />
     ),
     component: TV,
   },
@@ -275,14 +301,7 @@ export const APPS: AppDef[] = [
     id: "news",
     name: "News",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/news.png"
-          alt="News"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon src="/icons/news.png" alt="News" className={className} />
     ),
     component: News,
   },
@@ -290,14 +309,11 @@ export const APPS: AppDef[] = [
     id: "appstore",
     name: "App Store",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/appstore.png"
-          alt="App Store"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon
+        src="/icons/appstore.png"
+        alt="App Store"
+        className={className}
+      />
     ),
     component: AppStore,
   },
@@ -305,14 +321,11 @@ export const APPS: AppDef[] = [
     id: "settings",
     name: "System Settings",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/settings.png"
-          alt="System Settings"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon
+        src="/icons/settings.png"
+        alt="System Settings"
+        className={className}
+      />
     ),
     component: SystemSettings,
   },
@@ -320,14 +333,11 @@ export const APPS: AppDef[] = [
     id: "freeform",
     name: "Freeform",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/freeform.png"
-          alt="Freeform"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon
+        src="/icons/freeform.png"
+        alt="Freeform"
+        className={className}
+      />
     ),
     component: Freeform,
   },
@@ -335,14 +345,11 @@ export const APPS: AppDef[] = [
     id: "terminal",
     name: "Terminal",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/terminal.png"
-          alt="Terminal"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon
+        src="/icons/terminal.png"
+        alt="Terminal"
+        className={className}
+      />
     ),
     component: Terminal,
   },
@@ -350,14 +357,11 @@ export const APPS: AppDef[] = [
     id: "calculator",
     name: "Calculator",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/calculator.png"
-          alt="Calculator"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon
+        src="/icons/calculator.png"
+        alt="Calculator"
+        className={className}
+      />
     ),
     component: Calculator,
   },
@@ -365,14 +369,7 @@ export const APPS: AppDef[] = [
     id: "trash",
     name: "Trash",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/trash.png"
-          alt="Trash"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon src="/icons/trash.png" alt="Trash" className={className} />
     ),
     component: Trash,
   },
@@ -380,14 +377,11 @@ export const APPS: AppDef[] = [
     id: "preview",
     name: "Preview",
     icon: ({ className }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/preview.png"
-          alt="Preview"
-          fill
-          className="object-contain drop-shadow-lg"
-        />
-      </div>
+      <CachedIcon
+        src="/icons/preview.png"
+        alt="Preview"
+        className={className}
+      />
     ),
     component: PDFViewer,
   },
@@ -418,16 +412,7 @@ export const APPS: AppDef[] = [
   {
     id: "vscode",
     name: "VS Code",
-    icon: ({ className, imageClassName = "p-2 rounded-3xl scale-[0.75]" }) => (
-      <div className={`${className} relative`}>
-        <Image
-          src="/icons/vscode.png"
-          alt="VS Code"
-          fill
-          className={`object-contain drop-shadow-lg bg-white ${imageClassName}`}
-        />
-      </div>
-    ),
+    icon: VSCodeIcon,
     component: VSCode,
   },
   {
@@ -452,37 +437,20 @@ export const APPS: AppDef[] = [
   {
     id: "x",
     name: "X",
-    icon: ({ className, containerClassName = "p-6 scale-[0.85]" }) => (
-      <div
-        className={`${className} ${containerClassName} flex items-center justify-center bg-black rounded-[22%] overflow-hidden`}
-      >
-        <div className="relative w-full h-full invert">
-          <Image
-            src="/icons/twitter-x.png"
-            alt="X"
-            fill
-            className="object-cover"
-          />
-        </div>
-      </div>
-    ),
+    icon: XIcon,
     component: () => <PlaceholderApp title="X" />,
     url: "https://x.com/ChiragKushwaha_",
   },
   {
     id: "github",
     name: "GitHub",
-    icon: ({ className, containerClassName = "scale-[0.85]" }) => (
-      <div
-        className={`${className} ${containerClassName} relative flex items-center justify-center bg-white rounded-[22%] overflow-hidden`}
-      >
-        <Image
-          src="/icons/github-v2.png"
-          alt="GitHub"
-          fill
-          className="object-cover"
-        />
-      </div>
+    icon: (props) => (
+      <CachedIconWithBackground
+        {...props}
+        src="/icons/github-v2.png"
+        alt="GitHub"
+        bgClassName="bg-white"
+      />
     ),
     component: () => <PlaceholderApp title="GitHub" />,
     url: "https://github.com/ChiragKushwaha",
@@ -490,17 +458,13 @@ export const APPS: AppDef[] = [
   {
     id: "linkedin",
     name: "LinkedIn",
-    icon: ({ className, containerClassName = "scale-[0.85]" }) => (
-      <div
-        className={`${className} ${containerClassName} relative flex items-center justify-center bg-[#0077B5] rounded-[22%] overflow-hidden`}
-      >
-        <Image
-          src="/icons/linkedin.png"
-          alt="LinkedIn"
-          fill
-          className="object-cover"
-        />
-      </div>
+    icon: (props) => (
+      <CachedIconWithBackground
+        {...props}
+        src="/icons/linkedin.png"
+        alt="LinkedIn"
+        bgClassName="bg-[#0077B5]"
+      />
     ),
     component: () => <PlaceholderApp title="LinkedIn" />,
     url: "https://www.linkedin.com/in/chirag-kushwaha/",
@@ -508,17 +472,13 @@ export const APPS: AppDef[] = [
   {
     id: "topmate",
     name: "Topmate",
-    icon: ({ className, containerClassName = "scale-[0.85]" }) => (
-      <div
-        className={`${className} ${containerClassName} relative flex items-center justify-center bg-white rounded-[22%] overflow-hidden`}
-      >
-        <Image
-          src="/icons/topmate.png"
-          alt="Topmate"
-          fill
-          className="object-cover"
-        />
-      </div>
+    icon: (props) => (
+      <CachedIconWithBackground
+        {...props}
+        src="/icons/topmate.png"
+        alt="Topmate"
+        bgClassName="bg-white"
+      />
     ),
     component: () => <PlaceholderApp title="Topmate" />,
     url: "https://topmate.io/chirag_kushwaha?utm_campaign=Page_Ready&utm_medium=popup&utm_source=topmate",
@@ -526,68 +486,52 @@ export const APPS: AppDef[] = [
   {
     id: "instagram",
     name: "Instagram",
-    icon: ({ className, containerClassName = "scale-[0.85]" }) => (
-      <div
-        className={`${className} ${containerClassName} relative flex items-center justify-center bg-linear-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] rounded-[22%] overflow-hidden`}
-      >
-        <Image
-          src="/icons/instagram.png"
-          alt="Instagram"
-          fill
-          className="object-cover"
-        />
-      </div>
+    icon: (props) => (
+      <CachedIconWithBackground
+        {...props}
+        src="/icons/instagram.png"
+        alt="Instagram"
+        bgClassName="bg-linear-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888]"
+      />
     ),
     component: () => <SocialApp title="Instagram" />,
   },
   {
     id: "facebook",
     name: "Facebook",
-    icon: ({ className, containerClassName = "scale-[0.85]" }) => (
-      <div
-        className={`${className} ${containerClassName} relative flex items-center justify-center bg-[#1877F2] rounded-[22%] overflow-hidden`}
-      >
-        <Image
-          src="/icons/facebook.png"
-          alt="Facebook"
-          fill
-          className="object-cover"
-        />
-      </div>
+    icon: (props) => (
+      <CachedIconWithBackground
+        {...props}
+        src="/icons/facebook.png"
+        alt="Facebook"
+        bgClassName="bg-[#1877F2]"
+      />
     ),
     component: () => <SocialApp title="Facebook" />,
   },
   {
     id: "tiktok",
     name: "TikTok",
-    icon: ({ className, containerClassName = "scale-[0.85]" }) => (
-      <div
-        className={`${className} ${containerClassName} relative flex items-center justify-center bg-black rounded-[22%] overflow-hidden`}
-      >
-        <Image
-          src="/icons/tiktok-v4.png"
-          alt="TikTok"
-          fill
-          className="object-cover"
-        />
-      </div>
+    icon: (props) => (
+      <CachedIconWithBackground
+        {...props}
+        src="/icons/tiktok-v4.png"
+        alt="TikTok"
+        bgClassName="bg-black"
+      />
     ),
     component: () => <SocialApp title="TikTok" />,
   },
   {
     id: "snapchat",
     name: "Snapchat",
-    icon: ({ className, containerClassName = "scale-[0.85]" }) => (
-      <div
-        className={`${className} ${containerClassName} relative flex items-center justify-center bg-[#FFFC00] rounded-[22%] overflow-hidden`}
-      >
-        <Image
-          src="/icons/snapchat-v2.png"
-          alt="Snapchat"
-          fill
-          className="object-cover"
-        />
-      </div>
+    icon: (props) => (
+      <CachedIconWithBackground
+        {...props}
+        src="/icons/snapchat-v2.png"
+        alt="Snapchat"
+        bgClassName="bg-[#FFFC00]"
+      />
     ),
     component: () => <SocialApp title="Snapchat" />,
   },

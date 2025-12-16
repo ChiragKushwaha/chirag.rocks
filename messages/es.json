@@ -15,6 +15,7 @@
       "Title": "Selecciona tu idioma",
       "Description": "Selecciona el idioma que te gustaría usar para tu Mac.",
       "TableLabel": "Idioma",
+      "LanguageColumn": "Idioma",
       "Primary": "Primario"
     },
     "Region": {

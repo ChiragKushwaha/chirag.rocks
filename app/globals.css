@@ -381,3 +381,19 @@ img {
   -o-user-select: none;
   user-select: none;
 }
+
+@keyframes draw-hello {
+  0% {
+    stroke-dashoffset: 5800;
+  }
+  25% {
+    stroke-dashoffset: 5800;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw-hello {
+  animation: draw-hello 5s linear forwards;
+}
