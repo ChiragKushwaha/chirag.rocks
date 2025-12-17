@@ -1,11 +1,11 @@
 // macOS Clone Service Worker with Full Offline Support
 // Version: 2.0.0
 
-const CACHE_VERSION = 'macos-v3';
-const API_CACHE = 'macos-api-cache-v2';
-const STATIC_CACHE = 'macos-static-v2';
-const IMAGE_CACHE = 'macos-images-v2';
-const FONT_CACHE = 'macos-fonts-v2';
+const CACHE_VERSION = 'macos-v4';
+const API_CACHE = 'macos-api-cache-v3';
+const STATIC_CACHE = 'macos-static-v3';
+const IMAGE_CACHE = 'macos-images-v3';
+const FONT_CACHE = 'macos-fonts-v3';
 
 // Cache duration for API responses (30 minutes)
 const API_CACHE_DURATION = 30 * 60 * 1000;
@@ -161,7 +161,10 @@ self.addEventListener('install', (event) => {
 
     event.waitUntil(
         caches.open(STATIC_CACHE).then(cache => {
-            return cache.addAll(['/'].filter(Boolean));
+            return cache.addAll([
+                '/',
+                '/pdf.worker.min.mjs'
+            ].filter(Boolean));
         }).then(() => self.skipWaiting())
     );
 });
@@ -306,7 +309,7 @@ self.addEventListener('fetch', (event) => {
             }
 
             // 5. Static Assets (Network First, Cache Fallback)
-            if (url.pathname.startsWith('/_next/') || url.pathname.match(/\.(js|css)$/)) {
+            if (url.pathname.startsWith('/_next/') || url.pathname.match(/\.(js|mjs|css)$/)) {
                 try {
                     const response = await fetch(event.request);
                     if (response.ok) {

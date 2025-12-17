@@ -9,7 +9,7 @@ import { Safari } from "./Safari";
 import Image from "next/image";
 
 // Configure worker
-pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 
 interface PDFViewerProps {
   initialPath?: string;
@@ -74,9 +74,17 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
     }
   };
 
+  const [error, setError] = useState<Error | null>(null);
+
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     console.log("[PDFViewer] Document loaded successfully, pages:", numPages);
     setNumPages(numPages);
+    setError(null);
+  };
+
+  const onDocumentLoadError = (err: Error) => {
+    console.error("PDF Load Error:", err);
+    setError(err);
   };
 
   const handleZoomIn = () => {
@@ -273,18 +281,21 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
                   file={pdfUrl}
                   onLoadSuccess={onDocumentLoadSuccess}
                   loading={
-                    <div className="flex items-center justify-center h-[800px] w-[600px] bg-white dark:bg-[#2c2c2e]">
+                    <div className="flex items-center justify-center w-full h-full min-h-[400px] bg-white dark:bg-[#2c2c2e]">
                       <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-400 dark:border-[#9a9a9a]"></div>
                     </div>
                   }
                   error={
-                    <div className="flex items-center justify-center h-[800px] w-[600px] bg-white dark:bg-[#2c2c2e] text-red-500 dark:text-red-400">
-                      {t("FailedToLoad")}
+                    <div className="flex flex-col items-center justify-center w-full h-full min-h-[400px] bg-white dark:bg-[#2c2c2e] text-red-500 dark:text-red-400 gap-2 p-4 text-center">
+                      <p>{t("FailedToLoad")}</p>
+                      {error && (
+                        <p className="text-xs text-gray-500 dark:text-gray-400 max-w-md">
+                          {error.message}
+                        </p>
+                      )}
                     </div>
                   }
-                  onLoadError={(error) =>
-                    console.error("PDF Load Error:", error)
-                  }
+                  onLoadError={onDocumentLoadError}
                 >
                   <Page
                     pageNumber={currentPage}
