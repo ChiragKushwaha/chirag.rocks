@@ -1,307 +1,154 @@
 [
-  "1password_7.webp"
-,
-  "accessibility_reader.webp"
-,
-  "accessibilityuiserver.webp"
-,
-  "activity_monitor.webp"
-,
-  "addprinter.webp"
-,
-  "airport_utility.webp"
-,
-  "android_studio.webp"
-,
-  "antigravity.webp"
-,
-  "app_store.webp"
-,
-  "apple_diagnostics.webp"
-,
-  "applescript_utility.webp"
-,
-  "apps.webp"
-,
-  "appstore.webp"
-,
-  "audio_midi_setup.webp"
-,
-  "automator.webp"
-,
-  "automator_application_stub.webp"
-,
-  "automator_installer.webp"
-,
-  "avb_configuration.webp"
-,
-  "batteries.webp"
-,
-  "bluetooth_file_exchange.webp"
-,
-  "bluetoothsetupassistant.webp"
-,
-  "bluetoothuiserver.webp"
-,
-  "books.webp"
-,
-  "boot_camp_assistant.webp"
-,
-  "calculator.webp"
-,
-  "certificate_assistant.webp"
-,
-  "chess.webp"
-,
-  "chrome.webp"
-,
-  "clipy.webp"
-,
-  "clock.webp"
-,
-  "colorsync_utility.webp"
-,
-  "console.webp"
-,
-  "contacts.webp"
-,
-  "controlcenter.webp"
-,
-  "coverage_details.webp"
-,
-  "cursor.webp"
-,
-  "developer.webp"
-,
-  "diagnostics_reporter.webp"
-,
-  "dictionary.webp"
-,
-  "digital_color_meter.webp"
-,
-  "disk_utility.webp"
-,
-  "dock.webp"
-,
-  "enhanced_logging.webp"
-,
-  "erase_assistant.webp"
-,
-  "facetime.webp"
-,
-  "figma.webp"
-,
-  "fileprovider_feedback.webp"
-,
-  "finder.webp"
-,
-  "findmy.webp"
-,
-  "folder.webp"
-,
-  "folder_applications.webp"
-,
-  "folder_desktop.webp"
-,
-  "folder_documents.webp"
-,
-  "folder_downloads.webp"
-,
-  "folder_music.webp"
-,
-  "folder_open.webp"
-,
-  "folder_pictures.webp"
-,
-  "folder_public.webp"
-,
-  "folderactionsdispatcher.webp"
-,
-  "font_book.webp"
-,
-  "freeform.webp"
-,
-  "game_center.webp"
-,
-  "games.webp"
-,
-  "gametrampoline.webp"
-,
-  "garageband.webp"
-,
-  "google_chrome.webp"
-,
-  "grapher.webp"
-,
-  "home.webp"
-,
-  "icloud_.webp"
-,
-  "image_capture.webp"
-,
-  "image_playground.webp"
-,
-  "imovie.webp"
-,
-  "install_command_line_developer_tools.webp"
-,
-  "install_in_progress.webp"
-,
-  "installer.webp"
-,
-  "iphone_mirroring.webp"
-,
-  "iterm.webp"
-,
-  "javalauncher.webp"
-,
-  "journal.webp"
-,
-  "keyboardsetupassistant.webp"
-,
-  "keynote.webp"
-,
-  "magnifier.webp"
-,
-  "mail.webp"
-,
-  "managedclient.webp"
-,
-  "maps.webp"
-,
-  "messages.webp"
-,
-  "migration_assistant.webp"
-,
-  "mission_control.webp"
-,
-  "music.webp"
-,
-  "musicrecognitionmac.webp"
-,
-  "netauthagent.webp"
-,
-  "news.webp"
-,
-  "notes.webp"
-,
-  "numbers.webp"
-,
-  "obexagent.webp"
-,
-  "odsagent.webp"
-,
-  "pages.webp"
-,
-  "paired_devices.webp"
-,
-  "pass_viewer.webp"
-,
-  "passwords.webp"
-,
-  "peopleviewservice.webp"
-,
-  "phone.webp"
-,
-  "photos.webp"
-,
-  "podcasts.webp"
-,
-  "posterboard.webp"
-,
-  "postman.webp"
-,
-  "preview.webp"
-,
-  "print_center.webp"
-,
-  "pro_display_calibrator.webp"
-,
-  "problem_reporter.webp"
-,
-  "quicktime_player.webp"
-,
-  "rectangle.webp"
-,
-  "reminders.webp"
-,
-  "rosetta_2_updater.webp"
-,
-  "safari.webp"
-,
-  "screen_sharing.webp"
-,
-  "screen_time.webp"
-,
-  "screensaverengine.webp"
-,
-  "screenshot.webp"
-,
-  "script_editor.webp"
-,
-  "script_menu.webp"
-,
-  "settings.webp"
-,
-  "setup_assistant.webp"
-,
-  "shortcuts.webp"
-,
-  "siri.webp"
-,
-  "slack.webp"
-,
-  "spotlight.webp"
-,
-  "stickies.webp"
-,
-  "stocks.webp"
-,
-  "system_information.webp"
-,
-  "system_settings.webp"
-,
-  "terminal.webp"
-,
-  "testflight.webp"
-,
-  "textedit.webp"
-,
-  "time_machine.webp"
-,
-  "tips.webp"
-,
-  "tipsspotlighthandler.webp"
-,
-  "trash.webp"
-,
-  "trash_full.webp"
-,
-  "tv.webp"
-,
-  "universalcontrol.webp"
-,
-  "utorrent_web.webp"
-,
-  "visual_studio_code.webp"
-,
-  "voicememos.webp"
-,
-  "voiceover.webp"
-,
-  "voiceover_utility.webp"
-,
-  "vscode.webp"
-,
-  "warp.webp"
-,
-  "weather.webp"
-,
-  "whatsapp.webp"
-,
-  "widgetkit_simulator.webp"
-,
-  "xcode.webp"
-,
+  "1password_7.webp",
+  "accessibility_reader.webp",
+  "accessibilityuiserver.webp",
+  "activity_monitor.webp",
+  "addprinter.webp",
+  "airport_utility.webp",
+  "android_studio.webp",
+  "app_store.webp",
+  "apple_diagnostics.webp",
+  "applescript_utility.webp",
+  "apps.webp",
+  "appstore.webp",
+  "audio_midi_setup.webp",
+  "automator.webp",
+  "automator_application_stub.webp",
+  "automator_installer.webp",
+  "avb_configuration.webp",
+  "batteries.webp",
+  "bluetooth_file_exchange.webp",
+  "bluetoothsetupassistant.webp",
+  "bluetoothuiserver.webp",
+  "books.webp",
+  "boot_camp_assistant.webp",
+  "calculator.webp",
+  "certificate_assistant.webp",
+  "chess.webp",
+  "chrome.webp",
+  "clipy.webp",
+  "clock.webp",
+  "colorsync_utility.webp",
+  "console.webp",
+  "contacts.webp",
+  "controlcenter.webp",
+  "coverage_details.webp",
+  "cursor.webp",
+  "developer.webp",
+  "diagnostics_reporter.webp",
+  "dictionary.webp",
+  "digital_color_meter.webp",
+  "disk_utility.webp",
+  "dock.webp",
+  "enhanced_logging.webp",
+  "erase_assistant.webp",
+  "facetime.webp",
+  "figma.webp",
+  "fileprovider_feedback.webp",
+  "finder.webp",
+  "findmy.webp",
+  "folder.webp",
+  "folder_applications.webp",
+  "folder_desktop.webp",
+  "folder_documents.webp",
+  "folder_downloads.webp",
+  "folder_music.webp",
+  "folder_open.webp",
+  "folder_pictures.webp",
+  "folder_public.webp",
+  "folderactionsdispatcher.webp",
+  "font_book.webp",
+  "freeform.webp",
+  "game_center.webp",
+  "games.webp",
+  "gametrampoline.webp",
+  "garageband.webp",
+  "google_chrome.webp",
+  "grapher.webp",
+  "home.webp",
+  "icloud_.webp",
+  "image_capture.webp",
+  "image_playground.webp",
+  "imovie.webp",
+  "install_command_line_developer_tools.webp",
+  "install_in_progress.webp",
+  "installer.webp",
+  "iphone_mirroring.webp",
+  "iterm.webp",
+  "javalauncher.webp",
+  "journal.webp",
+  "keyboardsetupassistant.webp",
+  "keynote.webp",
+  "magnifier.webp",
+  "mail.webp",
+  "managedclient.webp",
+  "maps.webp",
+  "messages.webp",
+  "migration_assistant.webp",
+  "mission_control.webp",
+  "music.webp",
+  "musicrecognitionmac.webp",
+  "netauthagent.webp",
+  "news.webp",
+  "notes.webp",
+  "numbers.webp",
+  "obexagent.webp",
+  "odsagent.webp",
+  "pages.webp",
+  "paired_devices.webp",
+  "pass_viewer.webp",
+  "passwords.webp",
+  "peopleviewservice.webp",
+  "phone.webp",
+  "photos.webp",
+  "podcasts.webp",
+  "posterboard.webp",
+  "postman.webp",
+  "preview.webp",
+  "print_center.webp",
+  "pro_display_calibrator.webp",
+  "problem_reporter.webp",
+  "quicktime_player.webp",
+  "rectangle.webp",
+  "reminders.webp",
+  "rosetta_2_updater.webp",
+  "safari.webp",
+  "screen_sharing.webp",
+  "screen_time.webp",
+  "screensaverengine.webp",
+  "screenshot.webp",
+  "script_editor.webp",
+  "script_menu.webp",
+  "settings.webp",
+  "setup_assistant.webp",
+  "shortcuts.webp",
+  "siri.webp",
+  "slack.webp",
+  "spotlight.webp",
+  "stickies.webp",
+  "stocks.webp",
+  "system_information.webp",
+  "system_settings.webp",
+  "terminal.webp",
+  "testflight.webp",
+  "textedit.webp",
+  "time_machine.webp",
+  "tips.webp",
+  "tipsspotlighthandler.webp",
+  "trash.webp",
+  "trash_full.webp",
+  "tv.webp",
+  "universalcontrol.webp",
+  "utorrent_web.webp",
+  "visual_studio_code.webp",
+  "voicememos.webp",
+  "voiceover.webp",
+  "voiceover_utility.webp",
+  "vscode.webp",
+  "warp.webp",
+  "weather.webp",
+  "whatsapp.webp",
+  "widgetkit_simulator.webp",
+  "xcode.webp",
   "zoom_us.webp"
 ]

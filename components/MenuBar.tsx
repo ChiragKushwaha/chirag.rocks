@@ -8,8 +8,8 @@ import {
   Wifi,
   WifiOff,
 } from "lucide-react";
-import React from "react";
 import { useTranslations } from "next-intl";
+import React from "react";
 import { AboutMac } from "../apps/AboutMac";
 import { useBattery } from "../hooks/useBattery";
 import { useWeather } from "../hooks/useWeather";
@@ -235,7 +235,6 @@ const BatteryDisplay = () => {
     { label: t("HighPower"), disabled: true },
     { separator: true },
     { label: t("SignificantEnergy"), disabled: true },
-    { label: "Antigravity", icon: "🅰️" }, // Example app
     { separator: true },
     { label: t("Settings") },
   ];
