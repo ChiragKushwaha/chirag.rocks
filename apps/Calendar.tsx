@@ -37,7 +37,7 @@ export const Calendar: React.FC = () => {
   } = useCalendar();
 
   return (
-    <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans">
+    <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans select-none">
       {/* Sidebar */}
       <Sidebar currentDate={currentDate} />
 

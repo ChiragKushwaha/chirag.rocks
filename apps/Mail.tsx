@@ -61,7 +61,7 @@ export const Mail: React.FC = () => {
   const selectedEmail = emails.find((e) => e.id === selectedEmailId);
 
   return (
-    <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans">
+    <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans select-none">
       {/* Sidebar - Mailboxes */}
       <div className="w-48 bg-[#f5f5f7] dark:bg-[#2b2b2b]/90 border-r border-gray-200 dark:border-black/20 flex flex-col pt-4">
         <div className="px-3 mb-2">

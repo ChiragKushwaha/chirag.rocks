@@ -87,7 +87,7 @@ export const Reminders: React.FC = () => {
   });
 
   return (
-    <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans relative">
+    <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans relative select-none">
       {/* Sidebar */}
       <div className="w-64 bg-[#f5f5f7] dark:bg-[#2b2b2b] border-r border-gray-200 dark:border-black/20 flex flex-col p-4">
         {/* Search */}

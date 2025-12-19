@@ -669,7 +669,7 @@ export const Launchpad: React.FC = () => {
       onClick={handleClose}
       onCancel={handleClose}
     >
-      <div className="flex flex-col items-center w-full h-full pt-[4vh] pb-[2vh] relative">
+      <div className="flex flex-col items-center w-full h-full pt-[4vh] pb-[2vh] relative select-none">
         {/* Search Bar */}
         <div
           className="flex items-center group w-full max-w-[240px] mb-6 shrink-0 sticky top-0 z-10"

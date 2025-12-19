@@ -32,7 +32,7 @@ export const Messages: React.FC = () => {
   const activeMessages = selectedUser ? messages[selectedUser] || [] : [];
 
   return (
-    <div className="flex h-full w-full bg-white">
+    <div className="flex h-full w-full bg-white select-none">
       {/* Sidebar */}
       <div className="w-1/3 border-r border-gray-200 flex flex-col bg-gray-50">
         <div className="p-3 font-bold text-gray-700 border-b">

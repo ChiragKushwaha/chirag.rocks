@@ -63,6 +63,40 @@ export const Music: React.FC = () => {
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  // Update audio source and play when currentSong changes
+  useEffect(() => {
+    if (audioRef.current && currentSong?.previewUrl) {
+      audioRef.current.src = currentSong.previewUrl;
+      audioRef.current.load();
+      if (isPlaying) {
+        audioRef.current.play().catch((err) => {
+          console.error("Playback error:", err);
+        });
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentSong]);
+
+  // Handle play/pause when isPlaying changes
+  useEffect(() => {
+    if (audioRef.current && currentSong) {
+      if (isPlaying) {
+        audioRef.current.play().catch((err) => {
+          console.error("Playback error:", err);
+        });
+      } else {
+        audioRef.current.pause();
+      }
+    }
+  }, [isPlaying, currentSong]);
+
+  // Update volume when volume state changes
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+    }
+  }, [volume]);
+
   // ... inside Music component
 
   // Ensure these states are defined: activeTab, searchQuery
@@ -302,7 +336,7 @@ export const Music: React.FC = () => {
   };
 
   return (
-    <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans overflow-hidden">
+    <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans overflow-hidden select-none">
       <audio
         ref={audioRef}
         onTimeUpdate={handleTimeUpdate}

@@ -238,7 +238,7 @@ export const TV: React.FC = () => {
   }
 
   return (
-    <div className="flex h-full bg-[#1e1e1e] text-white font-sans overflow-hidden relative">
+    <div className="flex h-full bg-[#1e1e1e] text-white font-sans overflow-hidden relative select-none">
       {/* Video Overlay */}
       {playingShow && (
         <div className="absolute inset-0 z-50 bg-black/90 backdrop-blur-xl flex flex-col items-center justify-center animate-in fade-in duration-300 p-8">

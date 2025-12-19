@@ -144,7 +144,7 @@ export const Maps: React.FC = () => {
   };
 
   return (
-    <div className="flex h-full bg-[#f5f5f7] dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans relative overflow-hidden">
+    <div className="flex h-full bg-[#f5f5f7] dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans relative overflow-hidden select-none">
       {/* Sidebar */}
       <div className="absolute top-4 left-4 w-80 bg-white/90 dark:bg-[#2b2b2b]/90 backdrop-blur-xl rounded-xl shadow-lg border border-gray-200 dark:border-black/10 z-50 flex flex-col max-h-[calc(100%-32px)]">
         <div className="p-3 border-b border-gray-200 dark:border-black/10">

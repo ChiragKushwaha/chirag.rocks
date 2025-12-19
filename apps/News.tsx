@@ -81,7 +81,7 @@ export const News: React.FC = () => {
   const listArticles = filteredArticles.slice(1);
 
   return (
-    <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans">
+    <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans select-none">
       {/* Sidebar */}
       <div className="w-60 bg-[#f5f5f7] dark:bg-[#2b2b2b] border-r border-gray-200 dark:border-black/20 flex flex-col p-4">
         <div className="flex items-center gap-2 mb-6 px-2">

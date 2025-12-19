@@ -254,7 +254,7 @@ export const Notes: React.FC<NotesProps> = ({
     .sort((a, b) => b.timestamp - a.timestamp);
 
   return (
-    <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans">
+    <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans select-none">
       {/* Folders Sidebar */}
       <div className="w-56 bg-[#f2f2f7]/90 dark:bg-[#2d2d2d]/90 backdrop-blur-xl border-r border-gray-200 dark:border-black/20 flex flex-col pt-12 px-2">
         <div className="px-3 mb-2 text-xs font-semibold text-gray-500 dark:text-gray-400">

@@ -16,7 +16,7 @@ export const Dock: React.FC = () => {
       <ul
         aria-label={t("AriaLabel")}
         className="
-            dock pointer-events-auto
+            dock pointer-events-auto select-none
             flex items-end gap-2 px-3 pb-3 pt-2.5
             bg-white/30 dark:bg-[rgba(30,30,30,0.35)]
             backdrop-blur-[50px] backdrop-saturate-180
@@ -31,7 +31,7 @@ export const Dock: React.FC = () => {
         onMouseLeave={() => setMouseX(null)}
       >
         {initialDockItems.map((item) => (
-          <li key={item.name} className="flex-shrink-0">
+          <li key={item.name} className="shrink-0">
             <DockItem
               name={item.name}
               label={tApps(item.name.replace(/\s+/g, ""))}
@@ -50,13 +50,13 @@ export const Dock: React.FC = () => {
         {processes
           .filter((p) => p.isMinimized || p.isMinimizing)
           .map((p) => (
-            <li key={p.pid} className="flex-shrink-0">
+            <li key={p.pid} className="shrink-0">
               <DockMinimizedItem process={p} />
             </li>
           ))}
 
         {/* Trash Can */}
-        <li className="flex-shrink-0">
+        <li className="shrink-0">
           <DockItem
             name="Trash"
             label={tApps("Trash")}
