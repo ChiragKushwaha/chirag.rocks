@@ -41,34 +41,45 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
     const [showSnapMenu, setShowSnapMenu] = useState(false);
     const snapTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-    // Start Drag
-    const handleMouseDown = (e: React.MouseEvent) => {
+    // Start Drag (Generic)
+    const startDrag = (
+      e: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent
+    ) => {
+      // Get position
+      const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+      const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+      const target = e.target as HTMLElement;
+
+      // Stop propagation?
       e.stopPropagation();
       closeContextMenu();
       focusProcess(process.pid);
 
-      const target = e.target as HTMLElement;
       if (target.closest(".window-titlebar") && !target.closest(".no-drag")) {
-        e.preventDefault();
+        // e.preventDefault(); // Prevent scrolling on touch
         setIsDragging(true);
-        // Logic: Click Point relative to window
-        // window.left = clientX - offset
         setDragOffset({
-          x: e.clientX - process.dimension.x,
-          y: e.clientY - process.dimension.y,
+          x: clientX - process.dimension.x,
+          y: clientY - process.dimension.y,
         });
       }
     };
 
-    // Resize Start (Unchanged logic, but we need to ensure it doesn't conflict)
-    const handleResizeStart = (e: React.MouseEvent, dir: string) => {
-      e.preventDefault();
+    // Resize Start (Generic)
+    const startResize = (
+      e: React.MouseEvent | React.TouchEvent,
+      dir: string
+    ) => {
+      const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+      const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+
+      // e.preventDefault();
       e.stopPropagation();
       setIsResizing(true);
       setResizeState({
         dir,
-        startX: e.clientX,
-        startY: e.clientY,
+        startX: clientX,
+        startY: clientY,
         startWidth: process.dimension.width,
         startHeight: process.dimension.height,
         startLeft: process.dimension.x,
@@ -77,30 +88,28 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
     };
 
     useEffect(() => {
-      const handleMouseMove = (e: MouseEvent) => {
-        if (isDragging && windowRef.current) {
-          // Direct DOM manipulation for performance (avoids React render cycle)
-          const newX = e.clientX - dragOffset.x;
-          const newY = e.clientY - dragOffset.y;
+      const handleMove = (e: MouseEvent | TouchEvent) => {
+        const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+        const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
 
-          // We use a CSS variable or direct transform.
-          // Since the component style uses `translate(${process.dimension.x}...)`,
-          // we should override the transform property directly.
+        if (isDragging && windowRef.current) {
+          // Prevent scroll on mobile while dragging
+          if (e.cancelable) e.preventDefault();
+
+          const newX = clientX - dragOffset.x;
+          const newY = clientY - dragOffset.y;
           windowRef.current.style.transform = `translate(${newX}px, ${newY}px)`;
         }
 
         if (isResizing && resizeState) {
-          // ... (Keep resize logic, or optimize it similarly)
-          // For now, let's leave resize as store-based or optimize later if needed.
-          // Resizing is heavier anyway.
-          // Actually, let's keep resize logic state-based for now to minimize risk,
-          // as visual glitching is high risk there.
+          if (e.cancelable) e.preventDefault();
+
           let newWidth = resizeState.startWidth;
           let newHeight = resizeState.startHeight;
           let newX = resizeState.startLeft;
           let newY = resizeState.startTop;
-          const deltaX = e.clientX - resizeState.startX;
-          const deltaY = e.clientY - resizeState.startY;
+          const deltaX = clientX - resizeState.startX;
+          const deltaY = clientY - resizeState.startY;
 
           if (resizeState.dir.includes("e")) newWidth += deltaX;
           if (resizeState.dir.includes("w")) {
@@ -120,16 +129,35 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
         }
       };
 
-      const handleMouseUp = (e: MouseEvent) => {
+      const handleEnd = (e: MouseEvent | TouchEvent) => {
+        // Touchend keeps clientX/Y in changedTouches? Or just use last known?
+        // For 'mouseup' we have clientX/Y. For 'touchend', we don't have new coords usually needed for final commit if we used them?
+        // IsDragging relies on dragOffset which is constant.
+        // But updateWindowPosition needs generic "final" coords.
+        // Actually we can just track the LAST move position?
+        // Or just use the current style transform?
+
+        // Easier: For dragging, we calculate final pos based on last known clientX?
+        // Wait, 'touchend' doesn't provide clientX of the lifted finger in touches list. It's in changedTouches.
+
+        let clientX = 0;
+        let clientY = 0;
+
+        if ("changedTouches" in e) {
+          clientX = e.changedTouches[0].clientX;
+          clientY = e.changedTouches[0].clientY;
+        } else {
+          clientX = (e as MouseEvent).clientX;
+          clientY = (e as MouseEvent).clientY;
+        }
+
         if (isDragging) {
           setIsDragging(false);
-          // Sync final position to store
           updateWindowPosition(
             process.pid,
-            e.clientX - dragOffset.x,
-            e.clientY - dragOffset.y
+            clientX - dragOffset.x,
+            clientY - dragOffset.y
           );
-          // Clean up direct style to let React take over
           if (windowRef.current) {
             windowRef.current.style.transform = "";
           }
@@ -138,13 +166,17 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
       };
 
       if (isDragging || isResizing) {
-        window.addEventListener("mousemove", handleMouseMove);
-        window.addEventListener("mouseup", handleMouseUp);
+        window.addEventListener("mousemove", handleMove, { passive: false });
+        window.addEventListener("mouseup", handleEnd);
+        window.addEventListener("touchmove", handleMove, { passive: false });
+        window.addEventListener("touchend", handleEnd);
       }
 
       return () => {
-        window.removeEventListener("mousemove", handleMouseMove);
-        window.removeEventListener("mouseup", handleMouseUp);
+        window.removeEventListener("mousemove", handleMove);
+        window.removeEventListener("mouseup", handleEnd);
+        window.removeEventListener("touchmove", handleMove);
+        window.removeEventListener("touchend", handleEnd);
       };
     }, [
       isDragging,
@@ -219,7 +251,8 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
     return (
       <div
         ref={windowRef}
-        onMouseDown={handleMouseDown}
+        onMouseDown={startDrag}
+        onTouchStart={startDrag}
         onContextMenu={handleContextMenu}
         style={{
           transform: process.isMinimizing
@@ -297,15 +330,18 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
         {!process.isMaximized && process.dimension.resizable !== false && (
           <>
             <div
-              onMouseDown={(e) => handleResizeStart(e, "n")}
+              onMouseDown={(e) => startResize(e, "n")}
+              onTouchStart={(e) => startResize(e, "n")}
               className="no-drag absolute top-0 left-0 w-full h-1 cursor-ns-resize z-50"
             />
             <div
-              onMouseDown={(e) => handleResizeStart(e, "s")}
+              onMouseDown={(e) => startResize(e, "s")}
+              onTouchStart={(e) => startResize(e, "s")}
               className="no-drag absolute bottom-0 left-0 w-full h-1 cursor-ns-resize z-50"
             />
             <div
-              onMouseDown={(e) => handleResizeStart(e, "e")}
+              onMouseDown={(e) => startResize(e, "e")}
+              onTouchStart={(e) => startResize(e, "e")}
               className="no-drag absolute top-0 right-0 w-1 h-full cursor-ew-resize z-50"
             />
             <div

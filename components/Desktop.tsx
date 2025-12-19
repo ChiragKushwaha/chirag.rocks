@@ -117,40 +117,45 @@ export const Desktop: React.FC = () => {
     new Map()
   );
 
-  const handleSelectionStart = (e: React.MouseEvent) => {
-    // Only start if clicking directly on the desktop container or wallpaper
-    // (The main container has the handler, so e.target check might be needed if bubbling)
-    // But we put the handler on main, so if we click an icon, e.target will be the icon (or child).
-    // We should only start if e.target is the main container or wallpaper div.
+  const startSelection = (e: React.MouseEvent | React.TouchEvent) => {
+    // Check for Touch: Require 2 fingers
+    if ("touches" in e) {
+      if (e.touches.length !== 2) return;
+    } else {
+      // Mouse: Only left click
+      if (e.button !== 0) return;
+    }
 
-    // Actually, simpler: if we are here, and it wasn't stopped by an icon, it's a desktop click.
-    // Icons have stopPropagation on click/mousedown usually?
-    // FileIcon has onClick stopPropagation.
-    // We need to ensure FileIcon also stops propagation on MouseDown if we use MouseDown here.
-
-    if (e.button !== 0) return; // Only left click
+    const clientX =
+      "touches" in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
+    const clientY =
+      "touches" in e ? e.touches[0].clientY : (e as React.MouseEvent).clientY;
 
     setSelectionBox({
-      startX: e.clientX,
-      startY: e.clientY,
-      currentX: e.clientX,
-      currentY: e.clientY,
+      startX: clientX,
+      startY: clientY,
+      currentX: clientX,
+      currentY: clientY,
       isVisible: true,
     });
 
-    // Clear selection if not holding Shift/Meta
     if (!e.shiftKey && !e.metaKey) {
       setSelectedFiles([]);
     }
   };
 
-  const handleSelectionMove = (e: React.MouseEvent) => {
+  const moveSelection = (e: React.MouseEvent | React.TouchEvent) => {
     if (!selectionBox?.isVisible) return;
+
+    const clientX =
+      "touches" in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
+    const clientY =
+      "touches" in e ? e.touches[0].clientY : (e as React.MouseEvent).clientY;
 
     const newBox = {
       ...selectionBox,
-      currentX: e.clientX,
-      currentY: e.clientY,
+      currentX: clientX,
+      currentY: clientY,
     };
     setSelectionBox(newBox);
 
@@ -175,14 +180,10 @@ export const Desktop: React.FC = () => {
       }
     });
 
-    // If holding shift/meta, we might want to add to existing?
-    // For now, let's just set selection to what's in the box.
-    // To support "add to selection", we'd need to know what was selected BEFORE drag started.
-    // Let's keep it simple: Drag selects exactly what's in box.
     setSelectedFiles(newSelected);
   };
 
-  const handleSelectionEnd = () => {
+  const endSelection = () => {
     if (selectionBox?.isVisible) {
       setSelectionBox(null);
     }
@@ -819,10 +820,13 @@ export const Desktop: React.FC = () => {
         backgroundPosition: "center",
       }}
       onContextMenu={handleContextMenu}
-      onMouseDown={handleSelectionStart}
-      onMouseMove={handleSelectionMove}
-      onMouseUp={handleSelectionEnd}
-      onMouseLeave={handleSelectionEnd}
+      onMouseDown={startSelection}
+      onTouchStart={startSelection}
+      onMouseMove={moveSelection}
+      onTouchMove={moveSelection}
+      onMouseUp={endSelection}
+      onTouchEnd={endSelection}
+      onMouseLeave={endSelection}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >

@@ -15,8 +15,10 @@ import "../globals.css";
 // Font definitions removed
 
 export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
+  // Force desktop width on mobile devices
+  width: 1280,
+  initialScale: 0.3, // Start zoomed out to fit the width
+  minimumScale: 0.3,
   maximumScale: 5,
   userScalable: true,
   themeColor: [
