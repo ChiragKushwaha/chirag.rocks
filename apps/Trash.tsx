@@ -31,7 +31,7 @@ export const Trash: React.FC = () => {
   const fileRefs = useRef<Map<string, HTMLDivElement>>(new Map());
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const loadFiles = async () => {
+  const loadFiles = React.useCallback(async () => {
     // Ensure trash directory exists
     if (!(await fs.exists(trashPath))) {
       await fs.mkdir(trashPath);
@@ -40,15 +40,17 @@ export const Trash: React.FC = () => {
     const visibleFiles = f.filter((file) => file.name !== ".trash-info.json");
     setFiles(visibleFiles);
     setTrashCount(visibleFiles.length);
-  };
+  }, [trashPath, setTrashCount]);
 
   useEffect(() => {
-    loadFiles();
+    requestAnimationFrame(() => {
+      loadFiles();
+    });
 
     const handleRefresh = () => loadFiles();
     window.addEventListener("trash-updated", handleRefresh);
     return () => window.removeEventListener("trash-updated", handleRefresh);
-  }, []);
+  }, [loadFiles]);
 
   const emptyTrash = async () => {
     const store = useFileCopyStore.getState();
@@ -340,7 +342,7 @@ export const Trash: React.FC = () => {
               />
             </div>
             <span
-              className={`text-xs text-center w-full px-1 rounded break-words line-clamp-2 ${
+              className={`text-xs text-center w-full px-1 rounded wrap-break-word line-clamp-2 ${
                 selectedItems.includes(file.name)
                   ? "bg-blue-600 text-white"
                   : "text-gray-600 group-hover:bg-blue-100"

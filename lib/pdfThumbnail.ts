@@ -45,6 +45,7 @@ export const generatePDFThumbnail = async (blob: Blob): Promise<string> => {
       viewport: viewport,
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await page.render(renderContext as any).promise;
 
     // Convert to data URL

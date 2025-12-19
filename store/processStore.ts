@@ -11,7 +11,7 @@ interface ProcessState {
   launchProcess: (
     id: string,
     title: string,
-    icon: string | React.ComponentType<any>,
+    icon: string | React.ComponentType,
     component: ReactNode,
     initDimension?: WindowSize,
     windowRequired?: boolean

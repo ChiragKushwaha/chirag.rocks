@@ -78,7 +78,6 @@ export const Desktop: React.FC = () => {
 
   const {
     wallpaperName,
-    theme,
     isBooting,
     setBooting,
     setSelectedFile,
@@ -424,8 +423,8 @@ export const Desktop: React.FC = () => {
         {
           width: 900,
           height: 600,
-          x: 50 + Math.random() * 50,
-          y: 50 + Math.random() * 50,
+          x: 75,
+          y: 75,
         }
       );
       return;
@@ -441,7 +440,10 @@ export const Desktop: React.FC = () => {
       id: string;
       name: string;
       icon: string;
-      component: React.ComponentType<any>;
+      component: React.ComponentType<{
+        initialPath?: string;
+        initialFilename?: string;
+      }>;
     }
 
     // App Registry
@@ -775,8 +777,6 @@ export const Desktop: React.FC = () => {
     ]);
   };
 
-  const [loading, setLoading] = useState(false);
-
   // File Drop Handler
   const handleDragOver = (e: React.DragEvent) => {
     // Allow drop if it contains files
@@ -796,7 +796,6 @@ export const Desktop: React.FC = () => {
       // But browsers might add "Files" even for internal image drags?
       // Let's assume if we have DataTransferItems of kind 'file', it's an import.
 
-      setLoading(true);
       try {
         await ImportUtils.importItems(e.dataTransfer.items, desktopPath);
         // Refresh
@@ -805,8 +804,6 @@ export const Desktop: React.FC = () => {
       } catch (err) {
         console.error("Import failed:", err);
         alert("Failed to import files");
-      } finally {
-        setLoading(false);
       }
     }
   };
@@ -978,7 +975,6 @@ export const Desktop: React.FC = () => {
 
                       const el = fileRefs.current.get(name);
                       if (el) {
-                        const isAbsolute = iconPositions[name]?.absolute;
                         const currentX = startPos.x; // Use the captured start position
                         const currentY = startPos.y; // Use the captured start position
 

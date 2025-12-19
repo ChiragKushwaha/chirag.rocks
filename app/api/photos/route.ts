@@ -49,7 +49,8 @@ export async function GET() {
     }
 
     const photos = photoList
-      .map((item: any) => {
+      .map((item: unknown) => {
+        if (!Array.isArray(item)) return null;
         try {
           const id = item[0];
           const urlInfo = item[1];
@@ -97,7 +98,7 @@ export async function GET() {
           return null;
         }
       })
-      .filter((p: any) => p !== null);
+      .filter((p): p is NonNullable<typeof p> => p !== null);
 
     return NextResponse.json({ photos });
   } catch (error) {

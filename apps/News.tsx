@@ -43,28 +43,31 @@ export const News: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchActive, setIsSearchActive] = useState(false);
 
-  const fetchNews = async (category: string) => {
-    setLoading(true);
-    setError(null);
-    try {
-      // Using saurav.tech NewsAPI proxy (Open Source & Free)
-      const response = await fetch(
-        `https://saurav.tech/NewsAPI/top-headlines/category/${category}/us.json`
-      );
-      if (!response.ok) throw new Error("Failed to fetch news");
-      const data: NewsResponse = await response.json();
-      setArticles(data.articles);
-    } catch (err) {
-      setError(t("Error"));
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const fetchNews = React.useCallback(
+    async (category: string) => {
+      setLoading(true);
+      setError(null);
+      try {
+        // Using saurav.tech NewsAPI proxy (Open Source & Free)
+        const response = await fetch(
+          `https://saurav.tech/NewsAPI/top-headlines/category/${category}/us.json`
+        );
+        if (!response.ok) throw new Error("Failed to fetch news");
+        const data: NewsResponse = await response.json();
+        setArticles(data.articles);
+      } catch (err) {
+        setError(t("Error"));
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [t]
+  );
 
   useEffect(() => {
     fetchNews(activeCategory);
-  }, [activeCategory]);
+  }, [activeCategory, fetchNews]);
 
   // Filter articles based on search query
   const filteredArticles = articles.filter((article) => {

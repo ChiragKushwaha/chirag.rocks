@@ -134,7 +134,12 @@ io.on("connection", (socket: Socket) => {
   });
 
   // Legacy chat message handler
-  socket.on("message", (data: any) => {
+  interface MessagePayload {
+    to?: string;
+    from?: string;
+    text: string;
+  }
+  socket.on("message", (data: MessagePayload) => {
     // data: { to, from, text }
     if (data.to) {
       io.to(data.to).emit("message", data);
@@ -145,7 +150,12 @@ io.on("connection", (socket: Socket) => {
   });
 
   // FaceTime - Call Signaling
-  socket.on("call-user", (data: any) => {
+  interface CallUserPayload {
+    userToCall: string;
+    signalData: unknown;
+    from: string;
+  }
+  socket.on("call-user", (data: CallUserPayload) => {
     // data: { userToCall, signalData, from }
     console.log(`Call from ${socket.id} to ${data.userToCall}`);
     io.to(data.userToCall).emit("call-made", {
@@ -155,7 +165,11 @@ io.on("connection", (socket: Socket) => {
     });
   });
 
-  socket.on("make-answer", (data: any) => {
+  interface AnswerPayload {
+    signal: unknown;
+    to: string;
+  }
+  socket.on("make-answer", (data: AnswerPayload) => {
     // data: { signal, to }
     console.log(`Answer from ${socket.id} to ${data.to}`);
     io.to(data.to).emit("answer-made", {
@@ -164,7 +178,11 @@ io.on("connection", (socket: Socket) => {
     });
   });
 
-  socket.on("ice-candidate", (data: any) => {
+  interface IceCandidatePayload {
+    to: string;
+    candidate: unknown;
+  }
+  socket.on("ice-candidate", (data: IceCandidatePayload) => {
     // data: { to, candidate }
     io.to(data.to).emit("ice-candidate", {
       candidate: data.candidate,

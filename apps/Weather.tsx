@@ -19,6 +19,13 @@ import {
 } from "../lib/weatherApi";
 import { useTranslations } from "next-intl";
 
+interface Location {
+  name: string;
+  lat: number;
+  lon: number;
+  country: string;
+}
+
 const POPULAR_LOCATIONS = [
   { name: "New York", lat: 40.7128, lon: -74.006, country: "USA" },
   { name: "London", lat: 51.5074, lon: -0.1278, country: "UK" },
@@ -33,9 +40,9 @@ export const Weather: React.FC = () => {
   const [data, setData] = useState<WeatherData | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [searchResults, setSearchResults] = useState<Location[]>([]);
   const [isSearching, setIsSearching] = useState(false);
-  const [recentLocations, setRecentLocations] = useState<any[]>([]);
+  const [recentLocations, setRecentLocations] = useState<Location[]>([]);
 
   // Load recent locations from localStorage
   React.useEffect(() => {
@@ -49,7 +56,7 @@ export const Weather: React.FC = () => {
     }
   }, []);
 
-  const saveRecentLocation = (loc: any) => {
+  const saveRecentLocation = (loc: Location) => {
     const newRecent = [
       loc,
       ...recentLocations.filter(
@@ -79,7 +86,7 @@ export const Weather: React.FC = () => {
     }
   };
 
-  const selectLocation = async (loc: any) => {
+  const selectLocation = async (loc: Location) => {
     setIsSearching(true);
     try {
       const newWeather = await fetchWeather(loc.lat, loc.lon, loc.name);

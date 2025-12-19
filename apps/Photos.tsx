@@ -288,7 +288,7 @@ export const Photos: React.FC<PhotosProps> = ({
     icon: Icon,
   }: {
     title: string;
-    icon?: any;
+    icon?: React.ElementType;
   }) => {
     const tEmpty = useTranslations("Photos.EmptyState");
     return (
@@ -773,7 +773,7 @@ const SidebarItem = ({
   rightIcon,
   arrow,
 }: {
-  icon: any;
+  icon: React.ElementType;
   label: string;
   active: boolean;
   onClick: () => void;
@@ -795,100 +795,4 @@ const SidebarItem = ({
     {rightIcon && <span className="opacity-70">{rightIcon}</span>}
     {arrow && <ChevronRight size={12} className="opacity-70" />}
   </button>
-);
-
-const CollectionsView = () => (
-  <div className="h-full overflow-y-auto p-6">
-    <div className="flex items-center justify-between mb-4">
-      <h2 className="text-xl font-bold text-black dark:text-white">
-        Collections
-      </h2>
-      <div className="flex gap-2">
-        <button className="p-1 hover:bg-gray-200 dark:hover:bg-white/10 rounded-md">
-          <Plus size={18} />
-        </button>
-        <button className="p-1 hover:bg-gray-200 dark:hover:bg-white/10 rounded-md">
-          <MoreHorizontal size={18} />
-        </button>
-      </div>
-    </div>
-
-    {/* Memories */}
-    <div className="mb-8">
-      <h3 className="text-sm font-semibold text-gray-500 mb-3">Memories</h3>
-      <div className="h-40 bg-gray-100 dark:bg-white/5 rounded-xl flex items-center justify-center text-gray-400">
-        <div className="text-center">
-          <Clock size={32} className="mx-auto mb-2 opacity-50" />
-          <p className="text-sm">No Memories Available</p>
-          <p className="text-xs opacity-70">
-            Memories will appear here when available.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    {/* Pinned */}
-    <div className="mb-8">
-      <h3 className="text-sm font-semibold text-gray-500 mb-3">Pinned</h3>
-      <div className="flex gap-4 overflow-x-auto pb-4">
-        {["Favourites", "Recently Saved", "Map", "Videos", "Screenshots"].map(
-          (item) => (
-            <div
-              key={item}
-              className="w-40 h-40 shrink-0 bg-gray-200 dark:bg-white/10 rounded-xl relative overflow-hidden group cursor-pointer"
-            >
-              <div className="absolute inset-0 flex items-end p-3 bg-linear-to-t from-black/60 to-transparent">
-                <span className="text-white font-medium text-sm">{item}</span>
-              </div>
-            </div>
-          )
-        )}
-      </div>
-    </div>
-
-    {/* Albums */}
-    <div>
-      <h3 className="text-sm font-semibold text-gray-500 mb-3">Albums</h3>
-      <div className="h-32 bg-gray-100 dark:bg-white/5 rounded-xl flex items-center justify-center text-gray-400">
-        <div className="text-center">
-          <Folder size={32} className="mx-auto mb-2 opacity-50" />
-          <p className="text-sm">No Albums Available</p>
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-const EmptyStateView = ({
-  title,
-  icon: Icon,
-}: {
-  title: string;
-  icon?: any;
-}) => (
-  <div className="h-full flex flex-col items-center justify-center text-gray-400">
-    <div className="w-20 h-20 bg-gray-100 dark:bg-white/5 rounded-full flex items-center justify-center mb-4">
-      {Icon ? (
-        <Icon size={40} className="opacity-50" />
-      ) : (
-        <ImageIcon size={40} className="opacity-50" />
-      )}
-    </div>
-    <h3 className="text-lg font-medium text-black dark:text-white capitalize">
-      {title}
-    </h3>
-    <p className="text-sm opacity-70 mt-1">No items found in {title}</p>
-  </div>
-);
-
-const LockedView = ({ title = "Locked" }: { title?: string }) => (
-  <div className="h-full flex flex-col items-center justify-center text-gray-400">
-    <div className="w-20 h-20 bg-gray-100 dark:bg-white/5 rounded-full flex items-center justify-center mb-4">
-      <Lock size={40} className="opacity-50" />
-    </div>
-    <h3 className="text-lg font-medium text-black dark:text-white">
-      {title} is Locked
-    </h3>
-    <p className="text-sm opacity-70 mt-1">Authenticate to view these items.</p>
-  </div>
 );

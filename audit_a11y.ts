@@ -39,7 +39,6 @@ function checkFile(filePath: string) {
 
   // State for uniqueness checks within file
   const accessKeys = new Set<string>();
-  const ariaIds = new Set<string>();
 
   lines.forEach((line, index) => {
     const lineNum = index + 1;

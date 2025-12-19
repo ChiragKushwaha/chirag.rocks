@@ -96,17 +96,15 @@ export const ImportUtils = {
     };
 
     // 4. Calculate total size (Async) - now updates store incrementally via getEntrySize
-    let totalItems = 0;
+    // 4. Calculate total size (Async) - now updates store incrementally via getEntrySize
 
     for (const item of entriesToProcess) {
       if (useFileCopyStore.getState().isCancelled) break;
       if (item.kind === "entry" && item.entry) {
         // getEntrySize will update currentTotalBytes internally
         await getEntrySize(item.entry);
-        totalItems++;
       } else if (item.kind === "file" && item.file) {
         // Already counted in initialBytes
-        totalItems++;
       }
     }
 
@@ -180,8 +178,8 @@ export const ImportUtils = {
       const newPath = `${targetPath}/${handle.name}`;
       await fs.mkdir(newPath);
 
-      // @ts-expect-error
-      for await (const [name, subHandle] of dirHandle.entries()) {
+      // @ts-expect-error - entries iterator missing in types
+      for await (const [, subHandle] of dirHandle.entries()) {
         await this.importHandle(subHandle, newPath, onProgress, () => {});
       }
       onComplete(); // Directory complete

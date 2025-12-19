@@ -19,6 +19,13 @@ interface WeatherDropdownProps {
   toggleRef: React.RefObject<HTMLElement | null>;
 }
 
+interface SearchResult {
+  name: string;
+  country: string;
+  lat: number;
+  lon: number;
+}
+
 export const WeatherDropdown: React.FC<WeatherDropdownProps> = ({
   weather,
   isOpen,
@@ -32,7 +39,7 @@ export const WeatherDropdown: React.FC<WeatherDropdownProps> = ({
 
   // Search State
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [currentWeather, setCurrentWeather] = useState<WeatherData>(weather);
 
@@ -54,7 +61,7 @@ export const WeatherDropdown: React.FC<WeatherDropdownProps> = ({
     }
   };
 
-  const selectLocation = async (loc: any) => {
+  const selectLocation = async (loc: SearchResult) => {
     setIsSearching(true);
     try {
       const newWeather = await fetchWeather(loc.lat, loc.lon, loc.name);

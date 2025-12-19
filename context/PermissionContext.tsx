@@ -40,7 +40,7 @@ export const PermissionProvider: React.FC<{ children: React.ReactNode }> = ({
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    requestAnimationFrame(() => setMounted(true));
   }, []);
 
   const pendingPromises = React.useRef<Map<string, Promise<boolean>>>(

@@ -16,7 +16,7 @@ export interface WeatherData {
     humidity: number;
     isDay: boolean;
     description: string;
-    icon: React.ComponentType<any>;
+    icon: React.ElementType;
   };
   hourly: {
     time: string[];
@@ -38,7 +38,7 @@ export interface WeatherData {
 
 // WMO Weather interpretation codes (WW)
 export const getWeatherInfo = (code: number, isDay: boolean = true) => {
-  const icons: Record<number, React.ComponentType<any>> = {
+  const icons: Record<number, React.ElementType> = {
     0: isDay ? SunIcon : MoonIcon, // Clear sky
     1: isDay ? SunIcon : MoonIcon, // Mainly clear
     2: isDay ? PartlyCloudyIcon : CloudIcon, // Partly cloudy
@@ -122,7 +122,7 @@ export const getUserLocation = (): Promise<{
               lon: longitude,
               name: data.city || data.locality || "Unknown Location",
             });
-          } catch (error) {
+          } catch {
             // Fallback if reverse geocoding fails
             resolve({
               lat: latitude,
@@ -225,12 +225,19 @@ export const searchLocation = async (
 
     if (!data.results) return [];
 
-    return data.results.map((item: any) => ({
-      name: item.name,
-      lat: item.latitude,
-      lon: item.longitude,
-      country: item.country,
-    }));
+    return data.results.map(
+      (item: {
+        name: string;
+        latitude: number;
+        longitude: number;
+        country: string;
+      }) => ({
+        name: item.name,
+        lat: item.latitude,
+        lon: item.longitude,
+        country: item.country,
+      })
+    );
   } catch (error) {
     console.error("Failed to search location:", error);
     return [];

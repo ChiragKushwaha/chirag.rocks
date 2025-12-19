@@ -36,8 +36,12 @@ export const Contacts: React.FC = () => {
     const saved = localStorage.getItem("mac-contacts");
     if (saved) {
       const parsed = JSON.parse(saved);
-      setContacts(parsed);
-      if (parsed.length > 0) setSelectedId(parsed[0].id);
+      requestAnimationFrame(() => {
+        setContacts(parsed);
+        if (parsed.length > 0) {
+          setSelectedId(parsed[0].id);
+        }
+      });
     } else {
       const defaultContacts = [
         {
@@ -49,10 +53,12 @@ export const Contacts: React.FC = () => {
           notes: "Creator",
         },
       ];
-      setContacts(defaultContacts);
-      setSelectedId(defaultContacts[0].id);
+      requestAnimationFrame(() => {
+        setContacts(defaultContacts);
+        setSelectedId(defaultContacts[0].id);
+      });
     }
-    setIsLoaded(true);
+    requestAnimationFrame(() => setIsLoaded(true));
   }, []);
 
   useEffect(() => {
@@ -74,27 +80,34 @@ export const Contacts: React.FC = () => {
   // Load image for selected contact
   useEffect(() => {
     let active = true;
+    let objectUrl: string | null = null;
+
     const loadImage = async () => {
       if (selectedContact?.imagePath) {
-        const blob = await fs.readBlob(
-          "/Images/Contacts",
-          selectedContact.imagePath.split("/").pop()!
-        );
-        if (active && blob) {
-          setDisplayImage(URL.createObjectURL(blob));
-        } else {
-          setDisplayImage(null);
+        try {
+          const blob = await fs.readBlob(
+            "/Images/Contacts",
+            selectedContact.imagePath.split("/").pop()!
+          );
+          if (active && blob) {
+            objectUrl = URL.createObjectURL(blob);
+            setDisplayImage(objectUrl);
+          } else {
+            setDisplayImage(null);
+          }
+        } catch {
+          if (active) setDisplayImage(null);
         }
       } else {
-        setDisplayImage(null);
+        if (active) setDisplayImage(null);
       }
     };
     loadImage();
     return () => {
       active = false;
-      if (displayImage) URL.revokeObjectURL(displayImage);
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
     };
-  }, [selectedId, selectedContact]);
+  }, [selectedContact]);
 
   // Group contacts by first letter
   const groupedContacts = contacts.reduce((acc, contact) => {

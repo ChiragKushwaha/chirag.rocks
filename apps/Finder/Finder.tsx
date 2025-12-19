@@ -118,7 +118,10 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
         id: string;
         name: string;
         icon: string;
-        component: React.ComponentType<any>;
+        component: React.ComponentType<{
+          initialPath?: string;
+          initialFilename?: string;
+        }>;
       }
     > = {
       note: {

@@ -11,12 +11,15 @@ export const AboutMac: React.FC = () => {
     const getSystemInfo = async () => {
       let memory = "Unknown";
       let cores = "Unknown";
-      let platform = navigator.platform;
+      const platform = navigator.platform;
 
-      // @ts-ignore - navigator.deviceMemory is non-standard but supported in Chrome
-      if (navigator.deviceMemory) {
-        // @ts-ignore
-        memory = `${navigator.deviceMemory} GB`;
+      // deviceMemory is non-standard
+      interface NavigatorWithMemory {
+        deviceMemory?: number;
+      }
+      const nav = navigator as unknown as NavigatorWithMemory;
+      if (nav.deviceMemory) {
+        memory = `${nav.deviceMemory} GB`;
       }
 
       if (navigator.hardwareConcurrency) {
@@ -37,7 +40,7 @@ export const AboutMac: React.FC = () => {
     <div className="w-full h-full bg-[#ECECEC] dark:bg-[#2b2b2b] flex flex-col items-center p-8 select-none font-sans text-gray-900 dark:text-gray-100">
       <div className="flex w-full max-w-2xl gap-8 items-start">
         {/* Icon */}
-        <div className="flex-shrink-0">
+        <div className="shrink-0">
           <div className="w-32 h-32 rounded-full bg-linear-to-b from-gray-100 to-gray-300 dark:from-gray-700 dark:to-gray-900 shadow-lg flex items-center justify-center border border-white/20">
             <span className="text-7xl text-gray-500 dark:text-gray-400"></span>
           </div>

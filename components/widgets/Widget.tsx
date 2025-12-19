@@ -7,7 +7,6 @@ import { useReminderStore } from "../../store/reminderStore";
 import { TrendingUp } from "lucide-react";
 import { useWeather } from "../../hooks/useWeather";
 import { Weather } from "../../apps/Weather";
-import { StockData } from "../../lib/stockApi";
 import { Stocks } from "../../apps/Stocks";
 import { useStockStore } from "../../store/stockStore";
 import { useTranslations, useLocale } from "next-intl";
@@ -17,7 +16,7 @@ interface WidgetProps {
   title: string;
 }
 
-export const Widget: React.FC<WidgetProps> = ({ size, type, title }) => {
+export const Widget: React.FC<WidgetProps> = ({ size, type }) => {
   const t = useTranslations("Widgets");
   const locale = useLocale();
   const { launchProcess } = useProcessStore();

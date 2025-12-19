@@ -39,7 +39,7 @@ export const DockItem: React.FC<DockItemProps> = ({
   icon,
   mouseX,
 }) => {
-  const { launchProcess, processes, activePid } = useProcessStore();
+  const { launchProcess, processes } = useProcessStore();
   const { trashCount } = useSystemStore();
 
   // Dynamic Icon Logic
@@ -54,7 +54,6 @@ export const DockItem: React.FC<DockItemProps> = ({
     (p) => p.id === name.toLowerCase() || p.title === name
   );
   const isOpen = !!runningProcess;
-  const isActive = runningProcess?.pid === activePid;
 
   const [isBouncing, setIsBouncing] = React.useState(false);
 
@@ -135,12 +134,9 @@ export const DockItem: React.FC<DockItemProps> = ({
   };
 
   const imgRef = useRef<HTMLButtonElement>(null);
-  const { activeApp, setActiveApp } = useSystemStore();
 
   // CONFIGURATION
   const baseWidth = 50; // Base icon size (px) - Big Sur style
-  const distanceLimit = 150; // How far the magnification reaches (px)
-  const maxScale = 1.5; // Maximum magnification (1.5x)
 
   // 1. CALCULATE WIDTH ON THE FLY (No useEffect)
   const scale = 1;

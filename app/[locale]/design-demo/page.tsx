@@ -7,9 +7,7 @@ import {
   MacOSTabBar,
   MacOSSidebar,
   MacOSTooltip,
-  MacOSContextMenu,
   MacOSTypography,
-  MacOSColors,
   MacOSInput,
   MacOSToggle,
   MacOSSlider,
@@ -79,14 +77,6 @@ export default function DesignDemoPage() {
     { id: "tab2", label: "Search", icon: <Search size={20} /> },
     { id: "tab3", label: "Notifications", icon: <Bell size={20} /> },
     { id: "tab4", label: "Profile", icon: <User size={20} /> },
-  ];
-
-  const contextMenuItems = [
-    { id: "1", label: "New Folder" },
-    { id: "2", label: "Get Info", shortcut: "⌘I" },
-    { id: "3", separator: true, label: "" },
-    { id: "4", label: "Copy", shortcut: "⌘C" },
-    { id: "5", label: "Paste", shortcut: "⌘V", disabled: true },
   ];
 
   return (
@@ -309,7 +299,7 @@ export default function DesignDemoPage() {
               <MacOSTypography variant="title2">Title 2</MacOSTypography>
               <MacOSTypography variant="headline">Headline</MacOSTypography>
               <MacOSTypography variant="body">
-                Body text goes here. It's the standard text style.
+                Body text goes here. It&apos;s the standard text style.
               </MacOSTypography>
               <MacOSTypography variant="caption1">Caption 1</MacOSTypography>
             </div>

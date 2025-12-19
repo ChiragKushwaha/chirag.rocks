@@ -244,7 +244,7 @@ export const FileIcon: React.FC<FileIconProps> = ({
         if (e.key === "Enter") {
           e.preventDefault();
           e.stopPropagation();
-          if (onDoubleClick) onDoubleClick(e as any);
+          if (onDoubleClick) onDoubleClick(e as unknown as React.MouseEvent);
         } else if (e.key === " " || e.key === "Spacebar") {
           e.preventDefault();
           e.stopPropagation();
@@ -274,15 +274,15 @@ export const FileIcon: React.FC<FileIconProps> = ({
       >
         {isNote ? (
           <div className="w-full h-full bg-[#fef9c3] border border-[#fde047] shadow-sm flex flex-col p-3 relative overflow-hidden rounded-[2px]">
-            <div className="text-[10px] leading-snug text-gray-800 font-medium overflow-hidden whitespace-pre-wrap break-words h-full w-full font-serif">
+            <div className="text-[10px] leading-snug text-gray-800 font-medium overflow-hidden whitespace-pre-wrap wrap-break-word h-full w-full font-serif">
               {noteContent}
             </div>
 
             {/* Folded Corner Effect */}
             <div
               className="absolute bottom-0 right-0 w-0 h-0 
-                border-l-[24px] border-l-transparent
-                border-b-[24px] border-b-black/10"
+                border-l-24 border-l-transparent
+                border-b-24 border-b-black/10"
             />
           </div>
         ) : isPdf && pdfUrl ? (

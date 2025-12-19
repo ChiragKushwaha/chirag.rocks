@@ -63,7 +63,7 @@ export class MacFileSystem {
       // Hydrate cache
       this.memoryCache.set(fullPath, text);
       return text;
-    } catch (e) {
+    } catch {
       // console.error(`[FS] Read Error: ${path}/${filename}`, e);
       return "";
     }
@@ -89,7 +89,7 @@ export class MacFileSystem {
       // Hydrate cache
       this.memoryCache.set(fullPath, file);
       return file;
-    } catch (e) {
+    } catch {
       // console.error(`[FS] Read Blob Error: ${path}/${filename}`, e);
       return null;
     }
@@ -172,8 +172,13 @@ export class MacFileSystem {
           create: true,
         });
 
-        const writable = await (fileHandle as any).createWritable();
-        await writable.write(content);
+        const writable = await (
+          fileHandle as FileSystemFileHandle & {
+            createWritable: () => Promise<FileSystemWritableFileStream>;
+          }
+        ).createWritable();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        await writable.write(content as any);
         await writable.close();
 
         console.log(`[FS] Persisted: ${fullPath}`);
@@ -248,13 +253,12 @@ export class MacFileSystem {
       const onDiskNames = new Set<string>();
 
       // 1. Get OPFS entries
-      // @ts-ignore
+      // @ts-expect-error - entries is not in standard types yet
       for await (const [name, handle] of dirHandle.entries()) {
         onDiskNames.add(name);
 
         let isEmpty = false;
         if (handle.kind === "directory") {
-          // @ts-ignore
           const iterator = handle.entries();
           const first = await iterator.next();
           isEmpty = first.done;
@@ -290,7 +294,7 @@ export class MacFileSystem {
         if (a.kind === b.kind) return a.name.localeCompare(b.name);
         return a.kind === "directory" ? -1 : 1;
       });
-    } catch (e) {
+    } catch {
       console.warn(`[FS] Could not list directory: ${path}`);
       return [];
     }
@@ -330,8 +334,14 @@ export class MacFileSystem {
         .catch(() => dirHandle.getFileHandle(oldName));
 
       // Try native move if available (Chrome 111+)
-      if ((oldHandle as any).move) {
-        await (oldHandle as any).move(dirHandle, newName);
+      interface HandleWithMove {
+        move: (
+          parent: FileSystemDirectoryHandle,
+          name: string
+        ) => Promise<void>;
+      }
+      if ((oldHandle as unknown as HandleWithMove).move) {
+        await (oldHandle as unknown as HandleWithMove).move(dirHandle, newName);
         console.log(`[FS] Renamed (native): ${path}/${oldName} -> ${newName}`);
         return;
       }
@@ -379,17 +389,26 @@ export class MacFileSystem {
       let sourceHandle: FileSystemHandle;
       try {
         sourceHandle = await sourceDirHandle.getDirectoryHandle(sourceName);
-      } catch (e) {
+      } catch {
         try {
           sourceHandle = await sourceDirHandle.getFileHandle(sourceName);
-        } catch (e2) {
+        } catch {
           throw new Error(`Entry not found: ${sourcePath}/${sourceName}`);
         }
       }
 
       // Try native move if available (Chrome 111+)
-      if ((sourceHandle as any).move) {
-        await (sourceHandle as any).move(destDirHandle, destName);
+      interface HandleWithMove {
+        move: (
+          parent: FileSystemDirectoryHandle,
+          name: string
+        ) => Promise<void>;
+      }
+      if ((sourceHandle as unknown as HandleWithMove).move) {
+        await (sourceHandle as unknown as HandleWithMove).move(
+          destDirHandle,
+          destName
+        );
         return;
       }
 
@@ -423,13 +442,17 @@ export class MacFileSystem {
     const newDir = await destParent.getDirectoryHandle(newName, {
       create: true,
     });
-    // @ts-ignore
+    // @ts-expect-error - entries is not in standard types yet
     for await (const [name, handle] of source.entries()) {
       if (handle.kind === "file") {
         const file = await handle.getFile();
         const content = await file.arrayBuffer();
         const newFile = await newDir.getFileHandle(name, { create: true });
-        const writable = await (newFile as any).createWritable();
+        const writable = await (
+          newFile as FileSystemFileHandle & {
+            createWritable: () => Promise<FileSystemWritableFileStream>;
+          }
+        ).createWritable();
         await writable.write(content);
         await writable.close();
       } else if (handle.kind === "directory") {
@@ -469,8 +492,8 @@ export class MacFileSystem {
       return file.size;
     } else if (handle.kind === "directory") {
       let size = 0;
-      // @ts-ignore
-      for await (const [name, subHandle] of (handle as any).entries()) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      for await (const [, subHandle] of (handle as any).entries()) {
         size += await this.getHandleSize(subHandle);
       }
       return size;

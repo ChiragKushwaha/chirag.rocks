@@ -5,15 +5,12 @@ import {
   MousePointer2,
   Type,
   Square,
-  Circle,
   Image as ImageIcon,
   StickyNote,
   ZoomIn,
   ZoomOut,
   Hand,
   Trash2,
-  Palette,
-  Upload,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -306,7 +303,11 @@ export const Freeform: React.FC = () => {
         ].map((t) => (
           <button
             key={t.id}
-            onClick={() => setTool(t.id as any)}
+            onClick={() =>
+              setTool(
+                t.id as "select" | "hand" | "note" | "shape" | "text" | "image"
+              )
+            }
             className={`p-2 rounded-md transition-colors ${
               tool === t.id
                 ? "bg-blue-100 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400"
@@ -332,7 +333,7 @@ export const Freeform: React.FC = () => {
               }}
             />
           ))}
-          <div className="w-[1px] bg-gray-200 dark:bg-white/10 mx-1" />
+          <div className="w-px bg-gray-200 dark:bg-white/10 mx-1" />
           <button
             className="text-red-500 hover:bg-red-500/10 p-1 rounded"
             onClick={(e) => {

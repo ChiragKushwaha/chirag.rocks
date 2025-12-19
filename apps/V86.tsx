@@ -12,14 +12,34 @@ interface V86Props {
 
 declare global {
   interface Window {
-    V86: any;
+    V86: new (config: V86Config) => V86Emulator;
   }
+}
+
+interface V86Config {
+  wasm_path: string;
+  memory_size: number;
+  vga_memory_size: number;
+  screen_container: HTMLElement | null;
+  bios: { url: string };
+  vga_bios: { url: string };
+  autostart: boolean;
+  acpi: boolean;
+  cdrom?: { buffer: ArrayBuffer };
+  fda?: { buffer: ArrayBuffer };
+  hda?: { buffer: ArrayBuffer };
+}
+
+interface V86Emulator {
+  destroy: () => void;
+  lock_mouse: () => void;
+  add_listener: (event: string, callback: (...args: unknown[]) => void) => void;
 }
 
 export const V86: React.FC<V86Props> = ({ initialFilename, initialPath }) => {
   const t = useTranslations("V86");
   const containerRef = useRef<HTMLDivElement>(null);
-  const emulatorRef = useRef<any>(null);
+  const emulatorRef = useRef<V86Emulator | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -45,7 +65,6 @@ export const V86: React.FC<V86Props> = ({ initialFilename, initialPath }) => {
 
         console.log("V86 Script loaded.");
         console.log("window.V86:", window.V86);
-        console.log("window.V86:", (window as any).V86);
 
         // Debug globals
         const v86Keys = Object.keys(window).filter((k) =>
@@ -64,7 +83,7 @@ export const V86: React.FC<V86Props> = ({ initialFilename, initialPath }) => {
         const ext = initialFilename.split(".").pop()?.toLowerCase();
         const size = buffer.byteLength;
 
-        const config: any = {
+        const config: V86Config = {
           wasm_path: "/lib/v86/v86.wasm",
           memory_size: 256 * 1024 * 1024,
           vga_memory_size: 8 * 1024 * 1024,
@@ -104,9 +123,9 @@ export const V86: React.FC<V86Props> = ({ initialFilename, initialPath }) => {
         // });
 
         setLoading(false);
-      } catch (err: any) {
+      } catch (err) {
         console.error("V86 Init Error:", err);
-        setError(err.message || t("StartError"));
+        setError((err as Error).message || t("StartError"));
         setLoading(false);
       }
     };

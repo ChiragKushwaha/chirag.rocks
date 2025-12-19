@@ -15,7 +15,7 @@ export const MediaPlayer: React.FC<MediaPlayerProps> = ({
 
   useEffect(() => {
     if (assetUrl) {
-      setUrl(assetUrl);
+      requestAnimationFrame(() => setUrl(assetUrl));
     }
   }, [assetUrl]);
 

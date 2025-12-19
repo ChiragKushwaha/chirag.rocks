@@ -28,7 +28,7 @@ export const MacOSSidebar: React.FC<MacOSSidebarProps> = ({
   className = "",
   ...props
 }) => {
-  const { isMobile, isTablet } = useDevice();
+  const { isMobile } = useDevice();
 
   // Mobile/Tablet: Sidebar acts as a slide-over or is hidden (handled by parent usually, but here we style it)
   // For this implementation, we'll assume it's a permanent sidebar on desktop, and a drawer on mobile.

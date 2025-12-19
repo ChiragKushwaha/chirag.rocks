@@ -100,7 +100,7 @@ export const Maps: React.FC = () => {
             } else {
               setSearchQuery(`${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
             }
-          } catch (e) {
+          } catch {
             setSearchQuery(`${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
           }
         },

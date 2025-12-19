@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('fs');
 const path = require('path');
 
@@ -7,25 +8,25 @@ const enPath = path.join(messagesDir, 'en.json');
 const enContent = JSON.parse(fs.readFileSync(enPath, 'utf8'));
 
 // Helper to deep merge objects
-function mergeDeep(target, source) {
-    const output = Object.assign({}, target);
-    if (isObject(target) && isObject(source)) {
-        Object.keys(source).forEach(key => {
-            if (isObject(source[key])) {
-                if (!(key in target)) {
-                    Object.assign(output, { [key]: source[key] });
-                } else {
-                    output[key] = mergeDeep(target[key], source[key]);
-                }
-            } else {
-                if (!(key in target)) {
-                    Object.assign(output, { [key]: source[key] });
-                }
-            }
-        });
-    }
-    return output;
-}
+// function mergeDeep(target, source) {
+//     const output = Object.assign({}, target);
+//     if (isObject(target) && isObject(source)) {
+//         Object.keys(source).forEach(key => {
+//             if (isObject(source[key])) {
+//                 if (!(key in target)) {
+//                     Object.assign(output, { [key]: source[key] });
+//                 } else {
+//                     output[key] = mergeDeep(target[key], source[key]);
+//                 }
+//             } else {
+//                 if (!(key in target)) {
+//                     Object.assign(output, { [key]: source[key] });
+//                 }
+//             }
+//         });
+//     }
+//     return output;
+// }
 
 function isObject(item) {
     return (item && typeof item === 'object' && !Array.isArray(item));
@@ -39,7 +40,7 @@ files.forEach(file => {
     console.log(`Syncing ${file}...`);
     try {
         const content = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        const newContent = mergeDeep(content, enContent); // Note: this might overwrite if I flip args. I want to keep existing translations.
+        // const newContent = mergeDeep(content, enContent); // Unused
         // Actually, mergeDeep(target, source) as written above:
         // If key in target (existing translation), keep it.
         // If key not in target, take from source (English).

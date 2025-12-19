@@ -1,5 +1,4 @@
 import React from "react";
-import { MacOSTypography } from "./design-system/MacOSTypography";
 
 interface MacOSDatePickerProps {
   value?: Date;
@@ -9,7 +8,6 @@ interface MacOSDatePickerProps {
 
 export const MacOSDatePicker: React.FC<MacOSDatePickerProps> = ({
   value = new Date(),
-  onChange,
   className = "",
 }) => {
   // Simplified visual representation for now

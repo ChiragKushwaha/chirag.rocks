@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import { Chess as ChessGame, Square, Move } from "chess.js";
 import { RotateCcw, History, Trophy, AlertTriangle } from "lucide-react";
 
@@ -54,7 +55,7 @@ export const Chess: React.FC = () => {
           setPossibleMoves([]);
           return true;
         }
-      } catch (error) {
+      } catch {
         return false;
       }
       return false;
@@ -278,10 +279,12 @@ export const Chess: React.FC = () => {
 
                   {/* Piece */}
                   {piece && (
-                    <img
+                    <Image
                       src={PIECE_IMAGES[`${piece.color}${piece.type}`]}
                       alt={`${piece.color} ${piece.type}`}
-                      className="w-[90%] h-[90%] select-none z-20"
+                      fill
+                      className="object-contain select-none z-20 pointer-events-none"
+                      unoptimized
                     />
                   )}
 

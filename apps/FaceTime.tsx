@@ -46,7 +46,7 @@ export const FaceTime: React.FC = () => {
       disconnect();
       setCallActive(false);
     };
-  }, []);
+  }, [disconnect, setCallActive]);
 
   // Initialize Preview Stream
   useEffect(() => {
@@ -101,7 +101,7 @@ export const FaceTime: React.FC = () => {
     if (!socket) return;
 
     const handleAnswerMade = async (data: {
-      signal: any;
+      signal: RTCSessionDescriptionInit;
       answerId: string;
     }) => {
       if (peerRef.current) {
@@ -111,7 +111,9 @@ export const FaceTime: React.FC = () => {
       }
     };
 
-    const handleIceCandidate = async (data: { candidate: any }) => {
+    const handleIceCandidate = async (data: {
+      candidate: RTCIceCandidateInit;
+    }) => {
       if (peerRef.current) {
         await peerRef.current.addIceCandidate(
           new RTCIceCandidate(data.candidate)
@@ -219,7 +221,9 @@ export const FaceTime: React.FC = () => {
     };
 
     await peer.setRemoteDescription(
-      new RTCSessionDescription(incomingCall.signal)
+      new RTCSessionDescription(
+        incomingCall.signal as RTCSessionDescriptionInit
+      )
     );
     const answer = await peer.createAnswer();
     await peer.setLocalDescription(answer);

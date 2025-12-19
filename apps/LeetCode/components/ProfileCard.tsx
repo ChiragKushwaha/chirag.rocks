@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { LeetCodeData } from "../types";
 
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 interface ProfileCardProps {
@@ -29,10 +30,12 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
     <div className="bg-[#282828] rounded-lg p-4 flex flex-col gap-4">
       <div className="flex gap-4 items-start">
         <div className="w-[88px] h-[88px] rounded-lg overflow-hidden bg-black/20 shrink-0 border border-white/5">
-          <img
+          <Image
             src={matchedUser.profile.userAvatar}
             alt={matchedUser.username}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            unoptimized
           />
         </div>
         <div className="flex flex-col pt-1">

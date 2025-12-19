@@ -176,7 +176,9 @@ export const WindowFrame: React.FC<WindowFrameProps> = ({ process }) => {
         const rect = dockItem.getBoundingClientRect();
         const targetX = rect.x + rect.width / 2 - process.dimension.width / 2;
         const targetY = rect.y + rect.height / 2 - process.dimension.height / 2;
-        setMinimizedCoords({ x: targetX, y: targetY });
+        requestAnimationFrame(() => {
+          setMinimizedCoords({ x: targetX, y: targetY });
+        });
       }
     }
   }, [

@@ -54,7 +54,7 @@ app.get("/proxy", async (req, res) => {
       const targetUrl = new URL(url);
       headers["Referer"] = targetUrl.origin + "/";
       headers["Origin"] = targetUrl.origin;
-    } catch (e) {
+    } catch {
       // Ignore invalid URLs
     }
 
@@ -134,7 +134,6 @@ app.get("/proxy", async (req, res) => {
     } else {
       // Stream binary/other content
       if (response.body) {
-        // @ts-ignore
         const reader = response.body.getReader();
         const stream = new ReadableStream({
           start(controller) {
@@ -153,7 +152,6 @@ app.get("/proxy", async (req, res) => {
         });
 
         // Convert web stream to node stream
-        // @ts-ignore
         const nodeStream = Readable.fromWeb(stream);
         nodeStream.pipe(res);
       } else {

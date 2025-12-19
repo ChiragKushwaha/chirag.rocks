@@ -9,7 +9,7 @@ interface User {
 interface IncomingCall {
   from: string;
   name: string;
-  signal: any;
+  signal: unknown;
 }
 
 interface Message {
@@ -73,7 +73,7 @@ export const useSocketStore = create<SocketState>((set, get) => ({
 
     socket.on(
       "call-made",
-      (data: { offer: any; socket: string; name: string }) => {
+      (data: { offer: unknown; socket: string; name: string }) => {
         set({
           incomingCall: {
             from: data.socket,

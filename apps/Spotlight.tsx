@@ -13,7 +13,7 @@ import { Safari } from "./Safari";
 import { TextEdit } from "./TextEdit";
 
 const SpotlightIcon: React.FC<{
-  icon: string | React.ComponentType<any>;
+  icon: string | React.ComponentType;
   name: string;
 }> = ({ icon, name }) => {
   const isComponent = typeof icon === "function" || typeof icon === "object";
@@ -22,7 +22,12 @@ const SpotlightIcon: React.FC<{
   const iconUrl = useIcon(isComponent ? "" : (icon as string));
 
   if (isComponent) {
-    const Icon = icon as React.ComponentType<any>;
+    const Icon = icon as React.ComponentType<{
+      size?: number;
+      imageClassName?: string;
+      containerClassName?: string;
+      className?: string;
+    }>;
     return (
       <div className="w-8 h-8">
         <Icon
@@ -62,8 +67,8 @@ type SearchResult =
       kind: "app";
       path: string;
       appId: string;
-      component: React.ComponentType<any>;
-      icon: string | React.ComponentType<any>;
+      component: React.ComponentType;
+      icon: string | React.ComponentType;
     }
   | {
       name: string;
@@ -84,8 +89,10 @@ export const Spotlight: React.FC = () => {
   // Focus input when opened
   useEffect(() => {
     if (isSpotlightOpen) {
-      setQuery("");
-      setResults([]);
+      requestAnimationFrame(() => {
+        setQuery("");
+        setResults([]);
+      });
       setTimeout(() => inputRef.current?.focus(), 50);
     }
   }, [isSpotlightOpen]);
@@ -93,12 +100,11 @@ export const Spotlight: React.FC = () => {
   // Search Logic
   useEffect(() => {
     if (!query.trim()) {
-      setResults([]);
+      requestAnimationFrame(() => setResults([]));
       return;
     }
 
     const search = async () => {
-      const hits: SearchResult[] = [];
       const lowerQuery = query.toLowerCase();
 
       // 1. Search Apps
@@ -143,7 +149,7 @@ export const Spotlight: React.FC = () => {
               );
             }
           }
-        } catch (e) {
+        } catch {
           // Ignore access errors
         }
       }
@@ -168,7 +174,7 @@ export const Spotlight: React.FC = () => {
 
     const timer = setTimeout(search, 200);
     return () => clearTimeout(timer);
-  }, [query]);
+  }, [query, t]);
 
   // Keyboard Navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -210,14 +216,9 @@ export const Spotlight: React.FC = () => {
       } else {
         // Use the component from the item if available (it should be for apps)
         // We need to cast or ensure type safety, but for now we know it's there
-        const Component = (item as any).component;
+        const Component = item.component;
         if (Component) {
-          launchProcess(
-            (item as any).appId,
-            item.name,
-            (item as any).icon,
-            <Component />
-          );
+          launchProcess(item.appId, item.name, item.icon, <Component />);
         }
       }
     } else if (item.kind === "directory") {

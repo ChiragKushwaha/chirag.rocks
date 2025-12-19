@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useFileCopyStore } from "../store/fileCopyStore";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,7 +12,6 @@ export const FileCopyWindow: React.FC = () => {
     totalBytes,
     completedBytes,
     currentFilename,
-    sourcePath,
     destPath,
     cancelOperation,
   } = useFileCopyStore();

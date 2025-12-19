@@ -122,7 +122,16 @@ export const useAsset = (path: string) => {
 
         if (filename?.toLowerCase().endsWith(".heic")) {
           try {
-            if (!(window as any).heic2any) {
+            interface WindowWithHeic extends Window {
+              heic2any?: (options: {
+                blob: Blob;
+                toType: string;
+                quality: number;
+              }) => Promise<Blob | Blob[]>;
+            }
+            const win = window as unknown as WindowWithHeic;
+
+            if (!win.heic2any) {
               await new Promise((resolve, reject) => {
                 const script = document.createElement("script");
                 script.src = "/lib/heic2any.min.js";
@@ -132,18 +141,19 @@ export const useAsset = (path: string) => {
               });
             }
 
-            const heic2any = (window as any).heic2any;
-            const convertedBlob = await heic2any({
-              blob: memoryBlob,
-              toType: "image/jpeg",
-              quality: 0.9,
-            });
+            if (win.heic2any) {
+              const convertedBlob = await win.heic2any({
+                blob: memoryBlob,
+                toType: "image/jpeg",
+                quality: 0.9,
+              });
 
-            const finalBlob = Array.isArray(convertedBlob)
-              ? convertedBlob[0]
-              : convertedBlob;
-            objectUrl = URL.createObjectURL(finalBlob);
-            setUrl(objectUrl);
+              const finalBlob = Array.isArray(convertedBlob)
+                ? convertedBlob[0]
+                : convertedBlob;
+              objectUrl = URL.createObjectURL(finalBlob);
+              setUrl(objectUrl);
+            }
           } catch (e) {
             console.error("[AssetManager] Failed to convert HEIC", e);
             objectUrl = URL.createObjectURL(memoryBlob);
@@ -177,7 +187,7 @@ export const useAsset = (path: string) => {
               await fs.writeBlob(dir, filename!, b);
               // console.log(`[AssetManager] Lazy cached ${filename}`);
             }
-          } catch (_err) {
+          } catch {
             // Ignore cache failures
           }
         })();

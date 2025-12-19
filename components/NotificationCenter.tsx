@@ -214,8 +214,15 @@ export const NotificationCenter: React.FC = () => {
                   </button>
                 )}
                 <Widget
-                  size={w.size as any}
-                  type={w.type as any}
+                  size={w.size as "small" | "medium" | "large"}
+                  type={
+                    w.type as
+                      | "calendar"
+                      | "weather"
+                      | "reminders"
+                      | "stocks"
+                      | "notes"
+                  }
                   title={w.title}
                 />
               </div>

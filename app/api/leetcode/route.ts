@@ -114,7 +114,7 @@ export async function GET(request: Request) {
     }
 
     return NextResponse.json(data.data);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to fetch data from LeetCode" },
       { status: 500 }

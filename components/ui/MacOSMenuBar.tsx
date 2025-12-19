@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Apple, Wifi, Battery, Search, Sliders } from "lucide-react";
-import { MacOSTypography } from "./design-system/MacOSTypography";
 
 interface MenuItem {
   label: string;
