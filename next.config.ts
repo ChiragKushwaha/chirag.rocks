@@ -60,6 +60,16 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      // Cache static assets (images, fonts, etc.)
+      {
+        source: "/(.*)\\.(jpg|jpeg|png|webp|svg|gif|ico|woff|woff2|ttf|eot)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
       {
         source: "/(.*)",
         headers: [

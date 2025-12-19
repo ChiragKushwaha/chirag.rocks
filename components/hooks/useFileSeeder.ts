@@ -1,18 +1,16 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { fs } from "../../lib/FileSystem";
-
 import { useSystemStore } from "../../store/systemStore";
 
 const SEED_FILES = [{ name: "kolibri.img", url: "/kolibri.img" }];
 
 export const useFileSeeder = () => {
-  const [isSeeding, setIsSeeding] = useState(true);
   const { user, isBooting } = useSystemStore();
 
-  useEffect(() => {
-    if (isBooting) return;
-
-    const seed = async () => {
+  const { isLoading: isSeeding } = useQuery({
+    queryKey: ["seed-files", user?.name],
+    enabled: !isBooting && !!user?.name,
+    queryFn: async () => {
       try {
         await fs.init();
 
@@ -70,15 +68,14 @@ export const useFileSeeder = () => {
             console.error(`[Seeder] Failed to seed ${file.name}:`, err);
           }
         }
+        return true;
       } catch (e) {
         console.error("[Seeder] Error during seeding:", e);
-      } finally {
-        setIsSeeding(false);
+        throw e;
       }
-    };
-
-    seed();
-  }, [user, isBooting]); // Re-run if user changes (though usually stable on boot)
+    },
+    staleTime: Infinity, // Only run once per session/user
+  });
 
   return isSeeding;
 };

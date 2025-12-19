@@ -1,5 +1,6 @@
 import { GlobalExternalLinkHandler } from "@/components/GlobalExternalLinkHandler";
 import { DeviceProvider } from "@/components/ui/design-system/DeviceContext";
+import Providers from "@/components/Providers";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
@@ -214,7 +215,9 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages}>
           <GlobalExternalLinkHandler>
-            <DeviceProvider>{children}</DeviceProvider>
+            <Providers>
+              <DeviceProvider>{children}</DeviceProvider>
+            </Providers>
           </GlobalExternalLinkHandler>
           {process.env.NODE_ENV === "production" &&
             process.env.VERCEL === "1" && (

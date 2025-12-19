@@ -16,6 +16,7 @@
     "edge >= 100"
   ],
   "dependencies": {
+    "@tanstack/react-query": "^5.90.12",
     "@types/express": "^5.0.6",
     "@vercel/analytics": "^1.6.1",
     "@vercel/speed-insights": "^1.3.1",

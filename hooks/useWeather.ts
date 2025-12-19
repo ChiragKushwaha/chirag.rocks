@@ -1,71 +1,51 @@
-import { useState, useEffect } from "react";
-import { fetchWeather, getUserLocation, WeatherData } from "../lib/weatherApi";
+import { useQuery } from "@tanstack/react-query";
+import { fetchWeather, getUserLocation } from "../lib/weatherApi";
 import { usePermission } from "../context/PermissionContext";
 
 export const useWeather = () => {
-  const [weather, setWeather] = useState<WeatherData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
   const { requestPermission } = usePermission();
 
-  useEffect(() => {
-    const loadWeather = async () => {
-      try {
-        setLoading(true);
+  const {
+    data: weather,
+    isLoading: loading,
+    error: queryError,
+  } = useQuery({
+    queryKey: ["weather"],
+    queryFn: async () => {
+      // 1. Ask for permission (or check status)
+      // Note: requestPermission might resolve immediately if already granted.
+      // Ideally we would split this into two steps: check permission -> if granted, fetch user loc.
+      // If not granted or prompt needed -> wait.
+      // But for simplicity in this port:
 
-        // Ask for permission first
-        const allowed = await requestPermission(
-          "Weather",
-          "⛅",
-          "Location",
-          "Weather needs access to your location to show local weather conditions.",
-          "geolocation"
-        );
+      const allowed = await requestPermission(
+        "Weather",
+        "⛅",
+        "Location",
+        "Weather needs access to your location to show local weather conditions.",
+        "geolocation"
+      );
 
-        if (!allowed) {
-          // Fallback to default location (New Delhi) if denied
-          const data = await fetchWeather(28.6139, 77.209, "New Delhi");
-          setWeather(data);
-          setLoading(false);
-          return;
-        }
-
-        const location = await getUserLocation();
-        const data = await fetchWeather(
-          location.lat,
-          location.lon,
-          location.name
-        );
-        setWeather(data);
-      } catch (err: unknown) {
-        console.error(err);
-
-        // If it's a rate limit error, don't try fallback
-        if (err instanceof Error && err.message?.includes("Rate limit")) {
-          setError(err.message);
-          setLoading(false);
-          return;
-        }
-
-        // Fallback to default location (New Delhi)
-        try {
-          const data = await fetchWeather(28.6139, 77.209, "New Delhi");
-          setWeather(data);
-        } catch (fallbackErr: unknown) {
-          setError(
-            fallbackErr instanceof Error
-              ? fallbackErr.message
-              : "Failed to load weather data"
-          );
-        }
-      } finally {
-        setLoading(false);
+      if (!allowed) {
+        // Return default location data
+        return fetchWeather(28.6139, 77.209, "New Delhi");
       }
-    };
 
-    loadWeather();
-  }, [requestPermission]);
+      const location = await getUserLocation();
+      return fetchWeather(location.lat, location.lon, location.name);
+    },
+    staleTime: 30 * 60 * 1000, // 30 minutes
+    refetchOnWindowFocus: false,
+    retry: 1,
+  });
 
-  return { weather, loading, error };
+  // Simplified error handling surface for the component
+  const error =
+    queryError instanceof Error
+      ? queryError.message
+      : queryError
+      ? "Unknown error"
+      : null;
+
+  return { weather: weather || null, loading, error };
 };

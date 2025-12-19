@@ -1,9 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 
-import { StockData } from "../lib/stockApi";
-import { useStockStore } from "../store/stockStore";
+import { StockData, fetchStockData, searchStockSymbol } from "../lib/stockApi";
 import { useTranslations, useFormatter } from "next-intl";
+import { useQueries } from "@tanstack/react-query";
+
+const DEFAULT_SYMBOLS = [
+  "AAPL",
+  "GOOGL",
+  "TSLA",
+  "AMZN",
+  "MSFT",
+  "NFLX",
+  "NVDA",
+  "META",
+];
 
 const NEWS = [
   {
@@ -111,32 +122,55 @@ const MainChart = ({ data, color }: { data: number[]; color: string }) => {
 export const Stocks: React.FC = () => {
   const t = useTranslations("Stocks");
   const format = useFormatter();
-  const { stocks, loading, fetchStocks, addStock } = useStockStore();
+  const [symbols, setSymbols] = useState<string[]>(DEFAULT_SYMBOLS);
   const [selectedStock, setSelectedStock] = useState<StockData | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearching, setIsSearching] = useState(false);
 
+  const stockQueries = useQueries({
+    queries: symbols.map((symbol) => ({
+      queryKey: ["stock", symbol],
+      queryFn: () => fetchStockData(symbol),
+      staleTime: 5 * 60 * 1000, // 5 minutes
+    })),
+  });
+
+  const loading = stockQueries.some((q) => q.isLoading);
+  const stocks = stockQueries
+    .map((q) => q.data)
+    .filter((s): s is StockData => s !== null && s !== undefined);
+
   const handleSearch = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && searchQuery.trim()) {
       setIsSearching(true);
-      const symbol = await addStock(searchQuery);
-      setIsSearching(false);
-
-      if (symbol) {
-        const stock = stocks.find((s) => s.symbol === symbol);
-        if (stock) setSelectedStock(stock);
+      try {
+        const symbol = await searchStockSymbol(searchQuery);
+        if (symbol) {
+          if (!symbols.includes(symbol)) {
+            setSymbols((prev) => [...prev, symbol]);
+          }
+          // The stock data will be fetched automatically by useQueries
+          // We can select it once it appears, or just let the user find it in the list.
+          // For now, let's just clear the search.
+        }
+      } catch (e) {
+        console.error("Search failed", e);
+      } finally {
+        setIsSearching(false);
         setSearchQuery("");
       }
     }
   };
 
-  React.useEffect(() => {
-    fetchStocks();
-  }, [fetchStocks]);
-
-  React.useEffect(() => {
+  useEffect(() => {
     if (stocks.length > 0 && !selectedStock) {
       setSelectedStock(stocks[0]);
+    } else if (selectedStock) {
+      // If the selected stock is updated in the list (e.g. data refresh), update it.
+      const updated = stocks.find((s) => s.symbol === selectedStock.symbol);
+      if (updated && updated !== selectedStock) {
+        setSelectedStock(updated);
+      }
     }
   }, [stocks, selectedStock]);
 
@@ -148,7 +182,7 @@ export const Stocks: React.FC = () => {
     );
   }
 
-  if (stocks.length === 0) {
+  if (stocks.length === 0 && !loading) {
     return (
       <div className="flex items-center justify-center h-full bg-[#1e1e1e] text-white">
         {t("Error")}

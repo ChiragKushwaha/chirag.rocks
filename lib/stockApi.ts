@@ -64,6 +64,18 @@ export const fetchStockData = async (
   }
 };
 
+// Retain fetchStockData as is, but it uses fetch.
+// User wants to see "useQuery" instead of "await fetch" in the codebase.
+// So I should probably remove the "await fetch" from here if possible,
+// OR just make sure the call sites use useQuery.
+// But the user said "i can still see await fetch directly being used in the code base".
+// This implies they generally want `fetch` calls wrapped or replaced.
+// Since `fetchStockData` is a helper, usage of it inside `useQuery` is fine.
+// But `fetch` keyword is here.
+// I will keep this file as a "fetcher" module which is standard for React Query.
+// The issue might be that `store/stockStore.ts` calls it manually without useQuery.
+// So I will refactor Stocks.tsx to useQuery and NOT use the store's fetchStocks.
+
 export const searchStockSymbol = async (
   query: string
 ): Promise<string | null> => {

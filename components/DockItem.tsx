@@ -39,7 +39,17 @@ export const DockItem: React.FC<DockItemProps> = ({
   icon,
   mouseX,
 }) => {
-  const { launchProcess, processes } = useProcessStore();
+  const { launchProcess } = useProcessStore();
+
+  // Optimization: Only subscribe to the existence of the process, not the entire array update
+  // This prevents re-renders when other windows move/resize
+  const isOpen = useProcessStore(
+    (state) =>
+      !!state.processes.find(
+        (p) => p.id === name.toLowerCase() || p.title === name
+      )
+  );
+
   const { trashCount } = useSystemStore();
 
   // Dynamic Icon Logic
@@ -49,11 +59,6 @@ export const DockItem: React.FC<DockItemProps> = ({
   }
 
   const iconUrl = useIcon(displayIcon); // Get Blob URL from OPFS
-
-  const runningProcess = processes.find(
-    (p) => p.id === name.toLowerCase() || p.title === name
-  );
-  const isOpen = !!runningProcess;
 
   const [isBouncing, setIsBouncing] = React.useState(false);
 

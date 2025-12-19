@@ -8,8 +8,10 @@ import { TrendingUp } from "lucide-react";
 import { useWeather } from "../../hooks/useWeather";
 import { Weather } from "../../apps/Weather";
 import { Stocks } from "../../apps/Stocks";
-import { useStockStore } from "../../store/stockStore";
+// import { useStockStore } from "../../store/stockStore";
 import { useTranslations, useLocale } from "next-intl";
+import { useQuery } from "@tanstack/react-query";
+import { fetchStockData } from "../../lib/stockApi";
 interface WidgetProps {
   size: "small" | "medium" | "large";
   type: "calendar" | "weather" | "stocks" | "reminders" | "notes";
@@ -22,14 +24,15 @@ export const Widget: React.FC<WidgetProps> = ({ size, type }) => {
   const { launchProcess } = useProcessStore();
   const { reminders } = useReminderStore();
   const { weather } = useWeather();
-  const { stocks, fetchStocks } = useStockStore();
-  const stockData = stocks.find((s) => s.symbol === "AAPL") || null;
 
-  React.useEffect(() => {
-    if (type === "stocks") {
-      fetchStocks();
-    }
-  }, [type, fetchStocks]);
+  // const { stocks, fetchStocks } = useStockStore(); // Removed in favor of React Query
+
+  const { data: stockData } = useQuery({
+    queryKey: ["stock", "AAPL"],
+    queryFn: () => fetchStockData("AAPL"),
+    enabled: type === "stocks",
+    staleTime: 5 * 60 * 1000,
+  });
 
   const handleClick = () => {
     // Map widget type to app name

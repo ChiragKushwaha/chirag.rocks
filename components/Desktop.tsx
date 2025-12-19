@@ -11,12 +11,11 @@ import dynamic from "next/dynamic";
 import NextImage from "next/image";
 import { MacFileEntry } from "../lib/types";
 import { Dock } from "./Dock";
-import { FileIcon } from "./FileIcon";
+import { DesktopIcon } from "./DesktopIcon";
 import { useFileSeeder } from "./hooks/useFileSeeder"; // Import Seeder
 import { MenuBar } from "./MenuBar";
 import { ContextMenu } from "./Menus";
 import { WindowManager } from "./WindowManager";
-import { motion } from "framer-motion";
 
 // Dynamic Imports for Apps (Code Splitting)
 const Calculator = dynamic(() =>
@@ -99,7 +98,7 @@ export const Desktop: React.FC = () => {
   const { openContextMenu } = useMenuStore();
   const { launchProcess } = useProcessStore();
   const [files, setFiles] = useState<MacFileEntry[]>([]);
-  const constraintsRef = React.useRef(null);
+  const constraintsRef = React.useRef<HTMLDivElement>(null);
   const [lastClickTime, setLastClickTime] = useState(0);
   const [lastClickId, setLastClickId] = useState<string | null>(null);
 
@@ -875,273 +874,29 @@ export const Desktop: React.FC = () => {
         {files.map(
           (file) =>
             !file.isHidden && (
-              <motion.div
+              <DesktopIcon
                 key={file.name}
-                drag
-                dragMomentum={false}
-                dragConstraints={constraintsRef}
-                whileDrag={{ scale: 1.05, zIndex: 100 }}
-                ref={(el) => {
-                  if (el) fileRefs.current.set(file.name, el);
-                  else fileRefs.current.delete(file.name);
-                }}
-                onDragStart={(e) => {
-                  // Ensure the dragged file is selected
-                  if (!selectedFiles.includes(file.name)) {
-                    if (e.metaKey || e.shiftKey) {
-                      setSelectedFiles([...selectedFiles, file.name]);
-                    } else {
-                      setSelectedFiles([file.name]);
-                    }
-                  }
-
-                  // Capture initial positions for all selected files
-                  // We use offsetLeft/Top because they give the position relative to the offsetParent (the grid container)
-                  // and are NOT affected by transforms (like scale)
-                  dragStartPositions.current.clear();
-                  // We need to capture positions for ALL selected files, including the one being dragged
-                  // But wait, selectedFiles might not be updated yet if we just called setSelectedFiles?
-                  // React state updates are batched.
-                  // However, if we just set it, it won't be in `selectedFiles` variable yet.
-                  // So we should use a temporary list.
-
-                  let currentSelection = selectedFiles;
-                  if (!selectedFiles.includes(file.name)) {
-                    if (e.metaKey || e.shiftKey) {
-                      currentSelection = [...selectedFiles, file.name];
-                    } else {
-                      currentSelection = [file.name];
-                    }
-                  }
-
-                  currentSelection.forEach((name) => {
-                    const el = fileRefs.current.get(name);
-                    if (el) {
-                      // For absolute items, offsetLeft/Top will be 0 if left/top are 0.
-                      // We need their actual visual position, which is stored in iconPositions.
-                      // For relative items, offsetLeft/Top is correct.
-                      const isAbsolute = iconPositions[name]?.absolute;
-                      const initialX = isAbsolute
-                        ? iconPositions[name]?.x || 0
-                        : el.offsetLeft;
-                      const initialY = isAbsolute
-                        ? iconPositions[name]?.y || 0
-                        : el.offsetTop;
-
-                      dragStartPositions.current.set(name, {
-                        x: initialX,
-                        y: initialY,
-                      });
-                    }
-                  });
-                }}
-                onDrag={(_, info) => {
-                  // Move other selected files visually
-                  selectedFiles.forEach((name) => {
-                    if (name === file.name) return; // Skip the one being dragged (handled by framer-motion)
-                    const startPos = dragStartPositions.current.get(name);
-                    if (startPos) {
-                      // We need to calculate the NEW transform based on the drag offset.
-                      // But wait, the element is at `startPos` (layout position).
-                      // We want to move it by `info.offset`.
-                      // But `transform` is relative to the element's current layout position.
-                      // So `translate(info.offset.x, info.offset.y)` should work!
-                      // Wait, `iconPositions` might have `x` and `y` set if it was absolute.
-                      // If it was absolute, `left: 0, top: 0`, and `transform: translate(x, y)` (via style x/y props).
-                      // Framer Motion applies `x` and `y` style props as `transform`.
-                      // If we manually set `transform`, we override Framer Motion's style props?
-                      // Yes.
-                      // So if it was absolute at (100, 100), `x=100, y=100`.
-                      // `offsetLeft` would be 0 (because `left:0`).
-                      // Wait, if `position: absolute`, `offsetLeft` is `left` + `margin`?
-                      // If `left: 0`, `offsetLeft` is 0.
-                      // But visual position is `100, 100` due to `transform`.
-
-                      // Ah, for absolute items with Framer Motion `x/y` props, `offsetLeft` is 0.
-                      // But `startPos` should be the VISUAL start position.
-                      // If `absolute`, `startPos` should be `iconPositions[name].x`.
-                      // If `relative`, `startPos` is `offsetLeft`.
-
-                      // Actually, let's simplify.
-                      // We just want to move them by `info.offset`.
-                      // If we set `transform: translate3d(info.offset.x px, info.offset.y px, 0)`,
-                      // it moves relative to its CURRENT position (which includes `x/y` props).
-                      // NO! `transform` overrides the `transform` generated by `x/y` props.
-                      // So if we set `transform`, we lose the initial `x/y` position!
-
-                      // So we must calculate the FULL transform.
-                      // If absolute: `newX = currentX + info.offset.x`.
-                      // If relative: `newX = info.offset.x`. (Because relative starts at 0 transform).
-
-                      const el = fileRefs.current.get(name);
-                      if (el) {
-                        const currentX = startPos.x; // Use the captured start position
-                        const currentY = startPos.y; // Use the captured start position
-
-                        const moveX = currentX + info.offset.x;
-                        const moveY = currentY + info.offset.y;
-
-                        el.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) scale(1.05)`;
-                        el.style.zIndex = "100";
-                      }
-                    }
-                  });
-                }}
-                onDragEnd={(_, info) => {
-                  selectedFiles.forEach((name) => {
-                    // Calculate final position
-                    // If absolute: startX + offset
-                    // If relative: offsetLeft + offset
-
-                    // We need the start position we captured?
-                    // If we captured `offsetLeft`, for absolute items it was 0.
-                    // So we should have captured `x/y` from store for absolute items?
-
-                    // Let's use the logic:
-                    // FinalX = InitialVisualX + OffsetX
-                    // InitialVisualX = Absolute ? Store.x : offsetLeft
-
-                    const startPos = dragStartPositions.current.get(name);
-                    if (!startPos) return; // Should not happen if dragStartPositions was populated correctly
-
-                    const newX = startPos.x + info.offset.x;
-                    const newY = startPos.y + info.offset.y;
-
-                    setIconPosition(name, newX, newY, true);
-
-                    // Reset styles for all selected files that were manually transformed
-                    const el = fileRefs.current.get(name);
-                    if (el) {
-                      el.style.transform = "";
-                      el.style.zIndex = "";
-                    }
-                  });
-                }}
-                className={`pointer-events-auto flex justify-center ${
-                  file.name.endsWith(".note") ? "w-[160px]" : "w-[100px]"
-                }`}
-                style={{
-                  direction: "ltr",
-                  position: iconPositions[file.name]?.absolute
-                    ? "absolute"
-                    : "relative",
-                  left: iconPositions[file.name]?.absolute ? 0 : "auto",
-                  top: iconPositions[file.name]?.absolute ? 0 : "auto",
-                  x: iconPositions[file.name]?.x || 0,
-                  y: iconPositions[file.name]?.y || 0,
-                }} // Reset direction for content
-                onDoubleClick={(e) => {
-                  e.stopPropagation();
-                  openFile(file);
-                }}
-              >
-                <FileIcon
-                  name={file.name}
-                  kind={file.kind}
-                  isRenaming={renamingFile === file.name}
-                  onRename={(newName) => handleRename(file, newName)}
-                  onRenameCancel={() => setRenamingFile(null)}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    const now = Date.now();
-                    if (
-                      lastClickId === file.name &&
-                      now - lastClickTime < 300
-                    ) {
-                      // Double click detected
-                      openFile(file);
-                      setLastClickId(null);
-                      setLastClickTime(0);
-                    } else {
-                      // Single click
-                      setSelectedFile(file.name);
-                      setLastClickId(file.name);
-                      setLastClickTime(now);
-                    }
-                  }}
-                  onContextMenu={(e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-
-                    // If right-clicking an unselected file, select it (and deselect others)
-                    let currentSelection = selectedFiles;
-                    if (!selectedFiles.includes(file.name)) {
-                      setSelectedFiles([file.name]);
-                      currentSelection = [file.name];
-                    }
-
-                    if (currentSelection.length > 1) {
-                      // Multi-select Context Menu
-                      openContextMenu(e.clientX, e.clientY, [
-                        {
-                          label: `Open ${currentSelection.length} items`,
-                          action: () => {
-                            currentSelection.forEach((name) => {
-                              const f = files.find(
-                                (file) => file.name === name
-                              );
-                              if (f) openFile(f);
-                            });
-                          },
-                        },
-                        { separator: true },
-                        {
-                          label: `Move ${currentSelection.length} items to Bin`,
-                          danger: true,
-                          action: async () => {
-                            for (const name of currentSelection) {
-                              const f = files.find(
-                                (file) => file.name === name
-                              );
-                              if (f) await moveToBin(f);
-                            }
-                          },
-                        },
-                      ]);
-                    } else {
-                      // Single-select Context Menu (Updated to match screenshot)
-                      openContextMenu(e.clientX, e.clientY, [
-                        {
-                          label: "Open",
-                          action: () => openFile(file),
-                        },
-                        {
-                          label: "Move to Bin",
-                          icon: "🗑️",
-                          action: () => moveToBin(file),
-                        },
-                        { separator: true },
-                        { label: "Get Info" },
-                        {
-                          label: "Rename",
-                          action: () => setRenamingFile(file.name),
-                        },
-                        { separator: true },
-                        { label: `Compress "${file.name}"` },
-                        { label: "Duplicate" },
-                        { label: "Make Alias" },
-                        { label: "Quick Look" },
-                        { separator: true },
-                        { label: "Copy" },
-                        { label: "Share..." },
-                        { separator: true },
-                        { type: "tags" },
-                        { separator: true },
-                        { label: "Customise Folder..." },
-                        { separator: true },
-                        {
-                          label: "Quick Actions",
-                          submenu: [{ label: "Customize..." }],
-                        },
-                        {
-                          label: "Services",
-                          submenu: [{ label: "No Services Apply" }],
-                        },
-                      ]);
-                    }
-                  }}
-                />
-              </motion.div>
+                file={file}
+                files={files}
+                constraintsRef={constraintsRef}
+                fileRefs={fileRefs}
+                selectedFiles={selectedFiles}
+                setSelectedFiles={setSelectedFiles}
+                dragStartPositions={dragStartPositions}
+                iconPositions={iconPositions}
+                setIconPosition={setIconPosition}
+                renamingFile={renamingFile}
+                setRenamingFile={setRenamingFile}
+                handleRename={handleRename}
+                openFile={openFile}
+                setSelectedFile={setSelectedFile}
+                setLastClickId={setLastClickId}
+                setLastClickTime={setLastClickTime}
+                lastClickId={lastClickId}
+                lastClickTime={lastClickTime}
+                openContextMenu={openContextMenu}
+                moveToBin={moveToBin}
+              />
             )
         )}
       </div>

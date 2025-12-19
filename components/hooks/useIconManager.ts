@@ -1,14 +1,12 @@
-import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { fs } from "../../lib/FileSystem";
 
 const ICONS_DIR = "/icons";
 
 export const useIconManager = () => {
-  const [isReady, setIsReady] = useState(false);
-
-  // Initialize: Check if icons are in OPFS, if not, fetch and save them
-  useEffect(() => {
-    const initAssets = async () => {
+  const { isSuccess: isReady } = useQuery({
+    queryKey: ["init-icons"],
+    queryFn: async () => {
       try {
         // 1. Initialize Essential Icons (Legacy / Flat structure)
         const REMOTE_ICONS: Record<string, string> = {
@@ -79,16 +77,15 @@ export const useIconManager = () => {
         console.log("[AssetManager] SFNS.ttf loading skipped (optimization)");
 
         console.log("[AssetManager] Optimized Assets ready");
-        setIsReady(true);
+        return true;
       } catch (e) {
         console.error("[AssetManager] Initialization failed", e);
-        // Continue even if assets fail, to not block boot
-        setIsReady(true);
+        // Return true to unblock boot even if assets fail
+        return true;
       }
-    };
-
-    initAssets();
-  }, []);
+    },
+    staleTime: Infinity,
+  });
 
   return { isReady };
 };
@@ -98,23 +95,16 @@ export const useIcon = (iconName: string) => {
 };
 
 export const useAsset = (path: string) => {
-  const [url, setUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    let active = true;
-    let objectUrl: string | null = null;
-
-    const load = async () => {
-      if (!path) return;
-
+  const { data: url = null } = useQuery({
+    queryKey: ["asset", path],
+    enabled: !!path,
+    queryFn: async () => {
       // Try OPFS
       const parts = path.split("/");
       const filename = parts.pop();
       const dir = parts.join("/") || "/";
 
       const blob = await fs.readBlob(dir, filename!);
-
-      if (!active) return;
 
       if (blob) {
         const arrayBuffer = await blob.arrayBuffer();
@@ -151,17 +141,14 @@ export const useAsset = (path: string) => {
               const finalBlob = Array.isArray(convertedBlob)
                 ? convertedBlob[0]
                 : convertedBlob;
-              objectUrl = URL.createObjectURL(finalBlob);
-              setUrl(objectUrl);
+              return URL.createObjectURL(finalBlob);
             }
           } catch (e) {
             console.error("[AssetManager] Failed to convert HEIC", e);
-            objectUrl = URL.createObjectURL(memoryBlob);
-            setUrl(objectUrl);
+            return URL.createObjectURL(memoryBlob);
           }
         } else {
-          objectUrl = URL.createObjectURL(memoryBlob);
-          setUrl(objectUrl);
+          return URL.createObjectURL(memoryBlob);
         }
       } else {
         // Fallback to public/assets
@@ -172,37 +159,39 @@ export const useAsset = (path: string) => {
           fetchUrl = `/assets/${path}`;
         }
 
-        // Just set URL to fetchUrl for immediate display
-        setUrl(fetchUrl);
+        // Background cache (fire and forget logic in legacy, but here we can just do it inline or separately)
+        // Since we need to return the URL immediately for display, we return the fetchUrl.
+        // We can spawn the cache process separately.
 
-        // Background cache
-        (async () => {
-          try {
-            const res = await fetch(fetchUrl);
-            if (res.ok) {
-              const b = await res.blob();
-              if (!(await fs.exists(dir))) {
-                await fs.mkdir(dir);
-              }
-              await fs.writeBlob(dir, filename!, b);
-              // console.log(`[AssetManager] Lazy cached ${filename}`);
+        try {
+          const res = await fetch(fetchUrl);
+          if (res.ok) {
+            // We clone logic from before: cache it.
+            // But we can't wait for it if we want immediate return?
+            // Actually, useQuery is async.
+            // If we want immediate display if it's a remote URL, we should return the URL string.
+            // But useQuery expects a promise.
+
+            // Optimistic return: just return the URL?
+            // But we want to cache it.
+
+            const b = await res.blob();
+            if (!(await fs.exists(dir))) {
+              await fs.mkdir(dir);
             }
-          } catch {
-            // Ignore cache failures
+            await fs.writeBlob(dir, filename!, b);
           }
-        })();
-      }
-    };
+        } catch {
+          // Ignore cache failures
+        }
 
-    load();
-
-    return () => {
-      active = false;
-      if (objectUrl) {
-        URL.revokeObjectURL(objectUrl);
+        return fetchUrl;
       }
-    };
-  }, [path]);
+      return null;
+    },
+    staleTime: Infinity,
+    gcTime: 1000 * 60 * 60, // Keep unused URLs in cache for 1 hour
+  });
 
   return url;
 };

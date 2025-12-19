@@ -14,6 +14,7 @@ import {
   Library,
   ExternalLink,
 } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 
 interface Show {
   id: number;
@@ -35,9 +36,8 @@ export const TV: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [playingShow, setPlayingShow] = useState<Show | null>(null);
   const [heroShow, setHeroShow] = useState<Show | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [shows, setShows] = useState<Show[]>([]);
 
+  // Library state remains local
   const [library, setLibrary] = useState<Show[]>(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("mac-tv-library");
@@ -50,22 +50,27 @@ export const TV: React.FC = () => {
     localStorage.setItem("mac-tv-library", JSON.stringify(library));
   }, [library]);
 
-  useEffect(() => {
-    const fetchShows = async () => {
-      try {
-        const response = await fetch("https://api.tvmaze.com/shows");
-        const data = await response.json();
-        setShows(data);
-        setHeroShow(data[Math.floor(Math.random() * data.length)] || null);
-        setLoading(false);
-      } catch (error) {
-        console.error("Failed to fetch shows:", error);
-        setLoading(false);
-      }
-    };
+  const { data: shows = [], isLoading: loading } = useQuery({
+    queryKey: ["tv-shows"],
+    queryFn: async () => {
+      const response = await fetch("https://api.tvmaze.com/shows");
+      if (!response.ok) throw new Error("Network response was not ok");
+      return response.json() as Promise<Show[]>;
+    },
+    staleTime: 24 * 60 * 60 * 1000, // 24 hours
+    refetchOnWindowFocus: false,
+    retry: 1,
+  });
 
-    fetchShows();
-  }, []);
+  // Set hero show once data is loaded
+  useEffect(() => {
+    if (shows.length > 0) {
+      // eslint-disable-next-line
+      setHeroShow(
+        (prev) => prev || shows[Math.floor(Math.random() * shows.length)]
+      );
+    }
+  }, [shows]);
 
   const categories = [
     "Drama",

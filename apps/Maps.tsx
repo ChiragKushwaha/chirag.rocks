@@ -10,6 +10,7 @@ import {
 import { usePermission } from "../context/PermissionContext";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
+import { useQuery } from "@tanstack/react-query";
 
 // Dynamically import Map to avoid SSR issues with Leaflet
 const LeafletMap = dynamic(() => import("../components/ui/Map"), {
@@ -23,13 +24,27 @@ export const Maps: React.FC = () => {
   // Default to Lucknow
   const [coords, setCoords] = useState<[number, number]>([26.8467, 80.9462]);
 
-  const [recents, setRecents] = useState<string[]>([]);
-  const [loading, setLoading] = useState(false);
+  // We use this state to trigger the query
+  const [submittedQuery, setSubmittedQuery] = useState("");
 
-  // Initialize with Lucknow
-  useEffect(() => {
-    // Initial load is already set by default state
-  }, []);
+  const [recents, setRecents] = useState<string[]>([]);
+
+  // Search Query
+  const { data: searchResults, isLoading: isSearching } = useQuery({
+    queryKey: ["maps", "search", submittedQuery],
+    queryFn: async () => {
+      if (!submittedQuery) return null;
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+          submittedQuery
+        )}`
+      );
+      if (!response.ok) throw new Error("Network response was not ok");
+      return response.json();
+    },
+    enabled: !!submittedQuery,
+    staleTime: Infinity, // Locations rarely change
+  });
 
   const addToRecents = (loc: string) => {
     setRecents((prev) => {
@@ -38,39 +53,61 @@ export const Maps: React.FC = () => {
     });
   };
 
-  const geocode = async (query: string) => {
-    if (!query) return;
-    setLoading(true);
-    try {
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-          query
-        )}`
-      );
-      const data = await response.json();
-      if (data && data.length > 0) {
-        const { lat, lon } = data[0];
-        setCoords([parseFloat(lat), parseFloat(lon)]);
-        // Keep the user's query in the search bar, but update our internal name if needed
-        // setCurrentLocationName(display_name);
-        addToRecents(query);
-      } else {
-        alert("Location not found");
-      }
-    } catch (error) {
-      console.error("Geocoding error:", error);
-      alert("Error searching location");
-    } finally {
-      setLoading(false);
+  // Effect to handle search results
+  useEffect(() => {
+    if (searchResults && searchResults.length > 0) {
+      const { lat, lon } = searchResults[0];
+
+      // eslint-disable-next-line
+      setCoords([parseFloat(lat), parseFloat(lon)]);
+      addToRecents(submittedQuery);
+    } else if (searchResults && searchResults.length === 0) {
+      alert("Location not found");
     }
-  };
+  }, [searchResults, submittedQuery]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      geocode(searchQuery);
+      setSubmittedQuery(searchQuery);
     }
   };
+
+  // State for reverse geocoding trigger
+  const [reverseCoords, setReverseCoords] = useState<{
+    lat: number;
+    lon: number;
+  } | null>(null);
+
+  const { data: reverseData } = useQuery({
+    queryKey: ["maps", "reverse", reverseCoords?.lat, reverseCoords?.lon],
+    queryFn: async () => {
+      if (!reverseCoords) return null;
+      const { lat, lon } = reverseCoords;
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
+      );
+      if (!res.ok) throw new Error("Failed to fetch address");
+      return res.json();
+    },
+    enabled: !!reverseCoords,
+    staleTime: Infinity,
+  });
+
+  // Effect to update search query when reverse geocoding succeeds
+  useEffect(() => {
+    if (reverseData) {
+      if (reverseData.display_name) {
+        // eslint-disable-next-line
+        setSearchQuery(reverseData.display_name);
+        addToRecents(reverseData.display_name);
+      } else if (reverseCoords) {
+        setSearchQuery(
+          `${reverseCoords.lat.toFixed(4)}, ${reverseCoords.lon.toFixed(4)}`
+        );
+      }
+    }
+  }, [reverseData, reverseCoords]);
 
   const handleCurrentLocation = async () => {
     if ("geolocation" in navigator) {
@@ -85,24 +122,11 @@ export const Maps: React.FC = () => {
       if (!allowed) return;
 
       navigator.geolocation.getCurrentPosition(
-        async (position) => {
+        (position) => {
           const { latitude, longitude } = position.coords;
           setCoords([latitude, longitude]);
-          // Optional: Reverse geocode to get name
-          try {
-            const res = await fetch(
-              `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
-            );
-            const data = await res.json();
-            if (data && data.display_name) {
-              setSearchQuery(data.display_name);
-              addToRecents(data.display_name);
-            } else {
-              setSearchQuery(`${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
-            }
-          } catch {
-            setSearchQuery(`${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
-          }
+          // Trigger reverse geocoding query
+          setReverseCoords({ lat: latitude, lon: longitude });
         },
         (error) => {
           console.error("Error getting location:", error);
@@ -116,7 +140,7 @@ export const Maps: React.FC = () => {
 
   const loadLocation = (loc: string) => {
     setSearchQuery(loc);
-    geocode(loc);
+    setSubmittedQuery(loc);
   };
 
   return (
@@ -137,7 +161,7 @@ export const Maps: React.FC = () => {
               aria-label={t("SearchPlaceholder")}
               className="w-full bg-gray-100 dark:bg-black/20 border-none rounded-lg pl-10 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50"
             />
-            {loading && (
+            {isSearching && (
               <div className="absolute right-3 top-2.5">
                 <div className="animate-spin h-4 w-4 border-2 border-blue-500 border-t-transparent rounded-full"></div>
               </div>

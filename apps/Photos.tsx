@@ -25,6 +25,7 @@ import {
 import { fs } from "../lib/FileSystem";
 import { ImageLoader } from "../lib/ImageLoader";
 import dynamic from "next/dynamic";
+import { useQuery } from "@tanstack/react-query";
 
 const LeafletMap = dynamic(() => import("../components/ui/Map"), {
   ssr: false,
@@ -114,55 +115,44 @@ export const Photos: React.FC<PhotosProps> = ({
     }
   }, [initialPath, initialFilename]);
 
+  // Load initial file if provided
   useEffect(() => {
-    fetchPhotos();
-    const savedLikes = localStorage.getItem("likedPhotos");
-    if (savedLikes) {
-      setLikedPhotos(new Set(JSON.parse(savedLikes)));
+    if (initialPath && initialFilename) {
+      const loadInitial = async () => {
+        try {
+          const fileBlob = await fs.readFileBlob(initialPath, initialFilename);
+          if (fileBlob) {
+            const file = new File([fileBlob], initialFilename);
+            const url = await ImageLoader.loadImage(file);
+            const photo: Photo = {
+              id: `local-${initialPath}/${initialFilename}`,
+              url: url,
+              thumbnail: url,
+              originalUrl: url,
+              description: initialFilename,
+              creationTime: Date.now(),
+            };
+            // Add to photos list if not already present
+            setPhotos((prev) => {
+              const exists = prev.some((p) => p.id === photo.id);
+              if (exists) return prev;
+              return [photo, ...prev];
+            });
+            setSelectedPhoto(photo);
+          }
+        } catch (e) {
+          console.error("Failed to load initial photo", e);
+        }
+      };
+      loadInitial();
     }
+  }, [initialPath, initialFilename]);
 
-    // Get User Location
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
-        },
-        (error) => {
-          console.error("Error getting location", error);
-        }
-      );
-    }
-  }, []);
+  // ... (inside Photos component)
 
-  // Keyboard Navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!selectedPhoto) return;
-
-      if (e.key === "Escape") {
-        setSelectedPhoto(null);
-      } else if (e.key === "ArrowLeft") {
-        const currentIndex = photos.findIndex((p) => p.id === selectedPhoto.id);
-        if (currentIndex > 0) {
-          setSelectedPhoto(photos[currentIndex - 1]);
-        }
-      } else if (e.key === "ArrowRight") {
-        const currentIndex = photos.findIndex((p) => p.id === selectedPhoto.id);
-        if (currentIndex < photos.length - 1) {
-          setSelectedPhoto(photos[currentIndex + 1]);
-        }
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedPhoto, photos]);
-
-  const fetchPhotos = async () => {
-    try {
+  const { data: fetchedPhotos = [], isLoading: photosLoading } = useQuery({
+    queryKey: ["photos"],
+    queryFn: async () => {
       // 1. Fetch API Photos
       const res = await fetch("/api/photos");
       const data = await res.json();
@@ -183,7 +173,7 @@ export const Photos: React.FC<PhotosProps> = ({
           path.startsWith("/usr") ||
           path.startsWith("/var") ||
           path.startsWith("/tmp") ||
-          path.includes("/.trash") // Exclude trash
+          path.includes("/.trash")
         ) {
           return;
         }
@@ -203,6 +193,8 @@ export const Photos: React.FC<PhotosProps> = ({
                   "usr",
                   "var",
                   "tmp",
+                  "node_modules",
+                  ".git",
                 ].includes(entry.name)
               ) {
                 await scanDir(entry.path);
@@ -210,21 +202,19 @@ export const Photos: React.FC<PhotosProps> = ({
             }
           } else {
             if (ImageLoader.isSupported(entry.name)) {
-              // ... (existing image loading logic)
               try {
                 const fileBlob = await fs.readFileBlob(path, entry.name);
                 if (fileBlob) {
-                  // Create a File object
                   const file = new File([fileBlob], entry.name);
                   const url = await ImageLoader.loadImage(file);
 
                   localPhotos.push({
                     id: `local-${entry.path}`,
                     url: url,
-                    thumbnail: url, // Use same URL for thumb for now
+                    thumbnail: url,
                     originalUrl: url,
                     description: entry.name,
-                    creationTime: Date.now(), // TODO: Get from fs stats if available
+                    creationTime: Date.now(),
                   });
                 }
               } catch (e) {
@@ -235,21 +225,56 @@ export const Photos: React.FC<PhotosProps> = ({
         }
       };
 
-      // Scan User Home Directory (recursively)
-      // This covers Desktop, Documents, Downloads, Pictures, etc.
       await scanDir("/Users/Guest");
-      // Also scan root for any other user folders if needed, but Guest is primary.
-      // If we want to be safe, we can just scan /Users/Guest.
-      // If we scan /, we rely on the blocklist.
-      // Let's scan /Users/Guest to be safe and efficient.
+      return [...localPhotos, ...apiPhotos];
+    },
+    staleTime: 5 * 60 * 1000,
+  });
 
-      setPhotos([...localPhotos, ...apiPhotos]);
-    } catch (error) {
-      console.error("Failed to fetch photos:", error);
-    } finally {
+  // Sync with local state if needed, or just use derived state.
+  // The original code used `photos` state. We can replace `photos` state with `fetchedPhotos`
+  // BUT `initialPath` logic adds to `photos`.
+  // So we might want to useEffect to sync `fetchedPhotos` into `photos` state OR
+  // refactor `photos` variable to be a derived memo: `[...initialLoadedPhotos, ...fetchedPhotos]`.
+  // Given complexity, let's keep `photos` state and update it when query loads.
+
+  useEffect(() => {
+    if (fetchedPhotos.length > 0) {
+      setPhotos((prev) => {
+        // Merge avoiding duplicates
+        const newPhotos = fetchedPhotos.filter(
+          (p) => !prev.some((existing) => existing.id === p.id)
+        );
+        return [...prev, ...newPhotos];
+      });
+      setLoading(false);
+    } else if (!photosLoading) {
       setLoading(false);
     }
-  };
+  }, [fetchedPhotos, photosLoading]);
+
+  // Remove the old useEffect fetchPhotos
+  useEffect(() => {
+    const savedLikes = localStorage.getItem("likedPhotos");
+    if (savedLikes) {
+      setLikedPhotos(new Set(JSON.parse(savedLikes)));
+    }
+
+    // Get User Location
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+        },
+        (error) => {
+          console.error("Error getting location", error);
+        }
+      );
+    }
+  }, []);
 
   const toggleLike = (id: string) => {
     const newLikes = new Set(likedPhotos);

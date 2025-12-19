@@ -22,6 +22,8 @@ import {
   Disc,
 } from "lucide-react";
 
+import { useQuery } from "@tanstack/react-query";
+
 interface Song {
   trackId: number;
   trackName: string;
@@ -40,7 +42,7 @@ export const Music: React.FC = () => {
   const t = useTranslations("Music");
   const [activeTab, setActiveTab] = useState("listen-now");
   const [searchQuery, setSearchQuery] = useState("");
-  const [songs, setSongs] = useState<Song[]>([]); // Songs displayed in grid
+  // songs is now derived from query
   const [queue, setQueue] = useState<Song[]>([]); // Songs in playback queue
   const [currentSong, setCurrentSong] = useState<Song | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -61,52 +63,39 @@ export const Music: React.FC = () => {
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const fetchSongs = async (term: string) => {
-    setLoading(true);
-    try {
+  // ... inside Music component
+
+  // Ensure these states are defined: activeTab, searchQuery
+  // We need a specific "query term" for the API, distinct from the UI search input/tab.
+  // Actually, the app logic is: navigate(tab, query) -> fetchSongs(query).
+  // So a single state `apiQuery` can drive the fetch.
+
+  const [apiQuery, setApiQuery] = useState("top hits 2024");
+
+  const { data: songs = [], isLoading: songsLoading } = useQuery({
+    queryKey: ["music", apiQuery],
+    queryFn: async () => {
       const response = await fetch(
         `https://itunes.apple.com/search?term=${encodeURIComponent(
-          term
+          apiQuery
         )}&media=music&entity=song&limit=50`
       );
+      if (!response.ok) throw new Error("Network response was not ok");
       const data = await response.json();
-      setSongs(data.results);
-    } catch (error) {
-      console.error("Error fetching songs:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+      return data.results as Song[];
+    },
+    staleTime: 1000 * 60 * 60, // 1 hour
+    enabled: !!apiQuery,
+  });
 
+  // Sync loading state if needed, or replace `loading` with `songsLoading` in render.
+  // The original component uses `loading` state.
   useEffect(() => {
-    // Initial load
-    fetchSongs("top hits 2024");
-  }, []);
+    setLoading(songsLoading);
+  }, [songsLoading]);
 
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = volume;
-    }
-  }, [volume]);
-
-  useEffect(() => {
-    if (currentSong && audioRef.current) {
-      audioRef.current.src = currentSong.previewUrl;
-      if (isPlaying) {
-        audioRef.current.play().catch((e) => console.error("Play error:", e));
-      }
-    }
-  }, [currentSong, isPlaying]);
-
-  useEffect(() => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.play().catch((e) => console.error("Play error:", e));
-      } else {
-        audioRef.current.pause();
-      }
-    }
-  }, [isPlaying]);
+  // Remove the simple fetchSongs function.
+  // We update `navigate` to set `apiQuery`.
 
   const navigate = (tab: string, query: string) => {
     const newHistory = history.slice(0, historyIndex + 1);
@@ -120,7 +109,7 @@ export const Music: React.FC = () => {
     } else {
       setSearchQuery("");
     }
-    fetchSongs(query);
+    setApiQuery(query);
   };
 
   const handleBack = () => {
@@ -131,7 +120,7 @@ export const Music: React.FC = () => {
       setActiveTab(item.tab);
       if (item.tab === "search") setSearchQuery(item.query);
       else setSearchQuery("");
-      fetchSongs(item.query);
+      setApiQuery(item.query);
     }
   };
 
@@ -143,7 +132,7 @@ export const Music: React.FC = () => {
       setActiveTab(item.tab);
       if (item.tab === "search") setSearchQuery(item.query);
       else setSearchQuery("");
-      fetchSongs(item.query);
+      setApiQuery(item.query);
     }
   };
 

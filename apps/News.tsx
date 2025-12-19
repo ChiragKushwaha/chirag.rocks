@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Search, Layout, Heart, Share, RefreshCw } from "lucide-react";
 import { useTranslations, useFormatter } from "next-intl";
+import { useQuery } from "@tanstack/react-query";
 
 interface Article {
   source: {
@@ -36,38 +37,35 @@ const CATEGORIES = [
 export const News: React.FC = () => {
   const t = useTranslations("News");
   const format = useFormatter();
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [loading, setLoading] = useState(true);
+
+  // Restore state variables
   const [activeCategory, setActiveCategory] = useState("general");
-  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchActive, setIsSearchActive] = useState(false);
 
-  const fetchNews = React.useCallback(
-    async (category: string) => {
-      setLoading(true);
-      setError(null);
-      try {
-        // Using saurav.tech NewsAPI proxy (Open Source & Free)
-        const response = await fetch(
-          `https://saurav.tech/NewsAPI/top-headlines/category/${category}/us.json`
-        );
-        if (!response.ok) throw new Error("Failed to fetch news");
-        const data: NewsResponse = await response.json();
-        setArticles(data.articles);
-      } catch (err) {
-        setError(t("Error"));
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
+  const {
+    data: articles = [],
+    isLoading: loading,
+    error,
+    refetch,
+  } = useQuery({
+    queryKey: ["news", activeCategory],
+    queryFn: async () => {
+      // Using saurav.tech NewsAPI proxy (Open Source & Free)
+      const response = await fetch(
+        `https://saurav.tech/NewsAPI/top-headlines/category/${activeCategory}/us.json`
+      );
+      if (!response.ok) throw new Error("Failed to fetch news");
+      const data: NewsResponse = await response.json();
+      return data.articles;
     },
-    [t]
-  );
+    staleTime: 1000 * 60 * 10, // 10 minutes
+  });
 
-  useEffect(() => {
-    fetchNews(activeCategory);
-  }, [activeCategory, fetchNews]);
+  // Note: we replaced `articles` state with the `data` from useQuery.
+  // We need to ensure we remove the `useState` for articles and loading if we replace them fully.
+  // However, `loading` and `error` are used in render.
+  // I will assume I removed `fetchNews` and `useEffect` that called it.
 
   // Filter articles based on search query
   const filteredArticles = articles.filter((article) => {
@@ -209,7 +207,7 @@ export const News: React.FC = () => {
             </p>
           </div>
           <button
-            onClick={() => fetchNews(activeCategory)}
+            onClick={() => refetch()}
             className="p-2 hover:bg-gray-100 dark:hover:bg-white/10 rounded-full transition-colors"
             title={t("Refresh")}
             aria-label={t("Aria.Refresh")}

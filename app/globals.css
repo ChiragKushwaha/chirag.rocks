@@ -353,14 +353,10 @@ body {
     transform: translate(var(--restore-from-x), var(--restore-from-y))
       scale(0.1);
     opacity: 0.5;
-    clip-path: polygon(0 0, 100% 0, 55% 100%, 45% 100%);
-    border-radius: 0 0 50% 50%;
   }
   to {
     transform: translate(var(--restore-to-x), var(--restore-to-y)) scale(1);
     opacity: 1;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    border-radius: 12px;
   }
 }
 
