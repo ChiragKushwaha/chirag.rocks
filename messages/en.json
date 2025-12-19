@@ -1533,6 +1533,35 @@
         }
       }
     },
+    "News": {
+      "Title": "Apple News",
+      "SearchLabel": "Search",
+      "SearchPlaceholder": "Search topics, channels, & stories",
+      "SearchTitle": "Results for \"{query}\"",
+      "TopStory": "Top Story",
+      "Loading": "Loading News...",
+      "TryAgain": "Try Again",
+      "NoResults": "No results found for \"{query}\"",
+      "ClearSearch": "Clear Search",
+      "Categories": {
+        "TopStories": "Top Stories",
+        "Technology": "Technology",
+        "Business": "Business",
+        "Science": "Science",
+        "Health": "Health",
+        "Entertainment": "Entertainment",
+        "Sports": "Sports"
+      },
+      "Aria": {
+        "ActivateSearch": "Activate search",
+        "Search": "Search input",
+        "Refresh": "Refresh news feed",
+        "ReadArticle": "Read article: {title}",
+        "Share": "Share article",
+        "Like": "Like article",
+        "Category": "Select category: {label}"
+      }
+    },
     "V86": {
       "NoFileSelected": "No file selected",
       "ScriptLoadError": "Failed to load V86 script",
