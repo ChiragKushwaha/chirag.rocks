@@ -7,7 +7,7 @@ import { MenuItem } from "../store/menuStore";
 interface DesktopIconProps {
   file: MacFileEntry;
   files: MacFileEntry[];
-  constraintsRef: React.RefObject<HTMLDivElement>;
+  constraintsRef: React.RefObject<HTMLDivElement | null>;
   fileRefs: React.MutableRefObject<Map<string, HTMLDivElement>>;
   selectedFiles: string[];
   setSelectedFiles: (files: string[]) => void;

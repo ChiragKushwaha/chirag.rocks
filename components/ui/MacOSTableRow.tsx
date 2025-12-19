@@ -11,8 +11,16 @@ export const MacOSTableRow: React.FC<{
 }> = ({ selected, label, subLabel, onClick, icon }) => (
   <div
     onClick={onClick}
+    onKeyDown={(e) => {
+      if (onClick && (e.key === "Enter" || e.key === " ")) {
+        e.preventDefault();
+        onClick();
+      }
+    }}
+    role="button"
+    tabIndex={0}
     className={`
-      flex items-center justify-between px-2.5 py-[3px] text-[13px] cursor-default rounded-[4px] mx-1
+      flex items-center justify-between px-2.5 py-[3px] text-[13px] cursor-default rounded-[4px] mx-1 focus:outline-none focus:ring-1 focus:ring-blue-500
       ${
         selected
           ? "bg-[#007AFF] text-white"

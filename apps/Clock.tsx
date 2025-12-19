@@ -29,11 +29,7 @@ export const Clock: React.FC = () => {
     <div className="w-full h-full bg-[#1C1C1E] text-white flex flex-col overflow-hidden font-sans select-none">
       {/* Header */}
       <div className="h-14 flex items-center justify-between px-4 bg-[#2C2C2E] border-b border-black/20">
-        <div className="flex gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#FF5F57]" />
-          <div className="w-3 h-3 rounded-full bg-[#FEBC2E]" />
-          <div className="w-3 h-3 rounded-full bg-[#28C840]" />
-        </div>
+        <div className="flex gap-2">{/* Space Holder or empty */}</div>
 
         <div className="flex bg-[#1C1C1E] rounded-lg p-1 gap-1">
           {[

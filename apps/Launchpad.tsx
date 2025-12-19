@@ -689,6 +689,13 @@ export const Launchpad: React.FC = () => {
               setSelectedIndex(0); // Select first result on search
             }}
             aria-label="Search applications"
+            aria-autocomplete="list"
+            aria-controls="launchpad-grid"
+            aria-activedescendant={
+              selectedIndex !== -1 && filteredApps[selectedIndex]
+                ? `launchpad-item-${filteredApps[selectedIndex].id}`
+                : undefined
+            }
             className="w-full bg-white/10 border border-white/20 rounded-[8px] pl-9 pr-3 py-1.5 text-white placeholder-white/50 text-[14px] font-light focus:outline-none focus:bg-white/20 focus:border-white/30 transition-all text-center focus:text-left focus:placeholder-transparent shadow-lg backdrop-blur-md"
             autoFocus
           />
@@ -696,9 +703,17 @@ export const Launchpad: React.FC = () => {
 
         {/* App Grid - Scrollable */}
         <div className="flex-1 w-full px-[4vw] overflow-y-auto overscroll-none scrollbar-hide absolute top-0 left-0 right-0 bottom-0 pt-[100px]">
-          <div className="grid grid-cols-7 gap-y-8 w-full place-items-center pb-20">
+          <ul
+            id="launchpad-grid"
+            role="listbox"
+            aria-label="Applications"
+            className="grid grid-cols-7 gap-y-8 w-full place-items-center pb-20 m-0 p-0 list-none"
+          >
             {filteredApps.map((app, index) => (
-              <div
+              <li
+                id={`launchpad-item-${app.id}`}
+                role="option"
+                aria-selected={index === selectedIndex}
                 onClick={(e) => e.stopPropagation()}
                 key={app.id}
                 className={`relative group rounded-xl transition-all duration-200 ${
@@ -708,9 +723,9 @@ export const Launchpad: React.FC = () => {
                 }`}
               >
                 <LaunchpadItem app={app} onClick={() => handleAppClick(app)} />
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
 

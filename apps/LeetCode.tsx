@@ -29,7 +29,7 @@ export const LeetCode = () => {
       <div className="flex flex-col items-center justify-center h-full gap-4 bg-[#1a1a1a] text-white">
         <div className="text-red-400">{error || t("NoData")}</div>
         <button
-          onClick={fetchData}
+          onClick={() => fetchData()}
           className="px-4 py-2 bg-white/10 rounded hover:bg-white/20 transition-colors"
         >
           {t("Retry")}

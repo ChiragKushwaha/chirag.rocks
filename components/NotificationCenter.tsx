@@ -228,7 +228,17 @@ export const NotificationCenter: React.FC = () => {
               </div>
             ))}
 
-            <div className="col-span-1 h-36 rounded-2xl bg-white/20 dark:bg-white/5 flex items-center justify-center text-xs text-gray-400 border-2 border-dashed border-white/10 hover:bg-white/10 transition-colors cursor-pointer">
+            <div
+              role="button"
+              tabIndex={0}
+              aria-label={t("AddWidget")}
+              className="col-span-1 h-36 rounded-2xl bg-white/20 dark:bg-white/5 flex items-center justify-center text-xs text-gray-400 border-2 border-dashed border-white/10 hover:bg-white/10 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  // Placeholder action
+                }
+              }}
+            >
               {t("AddWidget")}
             </div>
           </div>

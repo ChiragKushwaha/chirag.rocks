@@ -260,10 +260,19 @@ const WeatherDisplay = () => {
     <>
       <div
         ref={ref}
-        className={`flex items-center gap-1.5 opacity-90 hover:bg-white/10 px-1.5 py-0.5 rounded cursor-default ${
+        role="button"
+        tabIndex={0}
+        aria-label="Weather"
+        className={`flex items-center gap-1.5 opacity-90 hover:bg-white/10 px-1.5 py-0.5 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${
           isOpen ? "bg-white/20" : ""
         }`}
         onClick={() => setIsOpen(!isOpen)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setIsOpen(!isOpen);
+          }
+        }}
       >
         <weather.current.icon size={16} className="text-white/90" />
         <span>{weather.current.temp}°</span>
@@ -428,6 +437,11 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
               tabIndex={0}
               aria-label={t("Aria.Clipboard")}
               className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  // Placeholder action
+                }
+              }}
             >
               <Clipboard size={16} strokeWidth={2} />
             </div>
@@ -441,6 +455,11 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
               tabIndex={0}
               aria-label={t("Aria.MediaPlayer")}
               className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  // Placeholder action
+                }
+              }}
             >
               <PlayCircle size={16} strokeWidth={2} />
             </div>
@@ -498,6 +517,10 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
               tabIndex={0}
               aria-label={t("Aria.Siri")}
               className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+              onKeyDown={(e) => {
+                e.preventDefault();
+                // Placeholder for Siri activation
+              }}
             >
               <SiriIcon />
             </div>

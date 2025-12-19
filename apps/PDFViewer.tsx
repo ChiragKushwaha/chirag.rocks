@@ -127,7 +127,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
         launchProcess(
           "safari",
           "Safari",
-          ({ className }) => (
+          ({ className }: { className?: string }) => (
             <div className={`${className} relative`}>
               <Image
                 src="/icons/safari.webp"
@@ -196,8 +196,13 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
 
           <div className="w-2" />
 
-          <button className="p-1.5 hover:bg-gray-200 dark:hover:bg-[#4c4c4e] rounded-md transition-colors text-gray-600 dark:text-[#dfdfdf]">
-            <Download size={18} onClick={handleDownload} />
+          <button
+            onClick={handleDownload}
+            className="p-1.5 hover:bg-gray-200 dark:hover:bg-[#4c4c4e] rounded-md transition-colors text-gray-600 dark:text-[#dfdfdf]"
+            title={t("Download")}
+            aria-label={t("Aria.Download")}
+          >
+            <Download size={18} />
           </button>
         </div>
       </div>

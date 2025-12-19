@@ -24,7 +24,16 @@ export const SettingsRow: React.FC<SettingsRowProps> = ({
 }) => (
   <div
     onClick={onClick}
-    className={`flex items-center gap-3 p-3 min-h-[48px] hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer transition-colors ${
+    onKeyDown={(e) => {
+      if (onClick && (e.key === "Enter" || e.key === " ")) {
+        e.preventDefault();
+        onClick();
+      }
+    }}
+    role={type === "toggle" ? "switch" : onClick ? "button" : undefined}
+    aria-checked={type === "toggle" ? !!value : undefined}
+    tabIndex={onClick ? 0 : -1}
+    className={`flex items-center gap-3 p-3 min-h-[48px] hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer transition-colors focus:outline-none focus:bg-gray-100 dark:focus:bg-white/10 ${
       !isLast ? "border-b border-gray-100 dark:border-gray-700/50" : ""
     }`}
   >
@@ -54,10 +63,12 @@ export const SettingsRow: React.FC<SettingsRowProps> = ({
             />
           </div>
         ) : (
-          value && <span className="text-[13px] text-gray-500">{value}</span>
+          (typeof value === "string" || typeof value === "number") && (
+            <span className="text-[13px] text-gray-500">{value}</span>
+          )
         )}
         {children}
-        {!children && type !== "toggle" && (
+        {!children && type !== "toggle" && onClick && (
           <ChevronRight size={14} className="text-gray-400" />
         )}
       </div>

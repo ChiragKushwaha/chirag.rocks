@@ -345,24 +345,29 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
               className="no-drag absolute top-0 right-0 w-1 h-full cursor-ew-resize z-50"
             />
             <div
-              onMouseDown={(e) => handleResizeStart(e, "w")}
+              onMouseDown={(e) => startResize(e, "w")}
+              onTouchStart={(e) => startResize(e, "w")}
               className="no-drag absolute top-0 left-0 w-1 h-full cursor-ew-resize z-50"
             />
 
             <div
-              onMouseDown={(e) => handleResizeStart(e, "ne")}
+              onMouseDown={(e) => startResize(e, "ne")}
+              onTouchStart={(e) => startResize(e, "ne")}
               className="no-drag absolute top-0 right-0 w-3 h-3 cursor-ne-resize z-50"
             />
             <div
-              onMouseDown={(e) => handleResizeStart(e, "nw")}
+              onMouseDown={(e) => startResize(e, "nw")}
+              onTouchStart={(e) => startResize(e, "nw")}
               className="no-drag absolute top-0 left-0 w-3 h-3 cursor-nw-resize z-50"
             />
             <div
-              onMouseDown={(e) => handleResizeStart(e, "se")}
+              onMouseDown={(e) => startResize(e, "se")}
+              onTouchStart={(e) => startResize(e, "se")}
               className="no-drag absolute bottom-0 right-0 w-3 h-3 cursor-se-resize z-50"
             />
             <div
-              onMouseDown={(e) => handleResizeStart(e, "sw")}
+              onMouseDown={(e) => startResize(e, "sw")}
+              onTouchStart={(e) => startResize(e, "sw")}
               className="no-drag absolute bottom-0 left-0 w-3 h-3 cursor-sw-resize z-50"
             />
           </>

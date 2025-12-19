@@ -150,6 +150,14 @@ export const News: React.FC = () => {
                 : "hover:bg-gray-200 dark:hover:bg-white/5"
             }`}
             onClick={() => setIsSearchActive(true)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                setIsSearchActive(true);
+              }
+            }}
+            aria-label={t("Aria.ActivateSearch")}
           >
             <Search
               size={16}
@@ -223,9 +231,11 @@ export const News: React.FC = () => {
           </div>
         ) : error ? (
           <div className="flex flex-col items-center justify-center h-64 text-center">
-            <p className="text-red-500 mb-2">{error}</p>
+            <p className="text-red-500 mb-2">
+              {(error as Error).message || "An error occurred"}
+            </p>
             <button
-              onClick={() => fetchNews(activeCategory)}
+              onClick={() => refetch()}
               className="text-blue-500 hover:underline"
             >
               {t("TryAgain")}

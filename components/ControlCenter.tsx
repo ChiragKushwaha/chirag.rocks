@@ -151,7 +151,17 @@ export const ControlCenter: React.FC<ControlCenterProps> = ({
 
         {/* Focus & DND */}
         <div className="flex flex-col gap-3">
-          <div className="flex-1 bg-white/50 dark:bg-[#2b2b2b]/50 rounded-xl p-3 flex items-center gap-3 shadow-sm border border-black/5 dark:border-white/5 cursor-pointer hover:bg-white/60 dark:hover:bg-[#2b2b2b]/70 transition-colors">
+          <div
+            role="button"
+            tabIndex={0}
+            aria-label={t("DoNotDisturb")}
+            className="flex-1 bg-white/50 dark:bg-[#2b2b2b]/50 rounded-xl p-3 flex items-center gap-3 shadow-sm border border-black/5 dark:border-white/5 cursor-pointer hover:bg-white/60 dark:hover:bg-[#2b2b2b]/70 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                // Placeholder action
+              }
+            }}
+          >
             <div className="w-8 h-8 rounded-full bg-indigo-500/20 dark:bg-indigo-500/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
               <Moon size={16} fill="currentColor" />
             </div>
@@ -161,7 +171,17 @@ export const ControlCenter: React.FC<ControlCenterProps> = ({
           </div>
 
           {/* Screen Mirroring (Mock) */}
-          <div className="flex-1 bg-white/50 dark:bg-[#2b2b2b]/50 rounded-xl p-3 flex items-center gap-3 shadow-sm border border-black/5 dark:border-white/5 cursor-pointer hover:bg-white/60 dark:hover:bg-[#2b2b2b]/70 transition-colors">
+          <div
+            role="button"
+            tabIndex={0}
+            aria-label={t("ScreenMirroring")}
+            className="flex-1 bg-white/50 dark:bg-[#2b2b2b]/50 rounded-xl p-3 flex items-center gap-3 shadow-sm border border-black/5 dark:border-white/5 cursor-pointer hover:bg-white/60 dark:hover:bg-[#2b2b2b]/70 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                // Placeholder action
+              }
+            }}
+          >
             <div className="w-8 h-8 rounded-full bg-transparent border border-gray-400/50 flex items-center justify-center">
               <Monitor size={16} />
             </div>
