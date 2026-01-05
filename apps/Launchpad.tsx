@@ -8,33 +8,62 @@ import React, {
 import { Search } from "lucide-react";
 import Image from "next/image";
 import { useProcessStore } from "../store/processStore";
-import { Finder } from "./Finder/Finder";
-import { Safari } from "./Safari";
-import { Messages } from "./Messages";
-import { Mail } from "./Mail";
-import { Maps } from "./Maps";
-import { FaceTime } from "./FaceTime";
-import { Calendar } from "./Calendar";
-import { Contacts } from "./Contacts";
-import { Reminders } from "./Reminders";
-import { Notes } from "./Notes";
-import { Music } from "./Music";
-import { TV } from "./TV";
-import { News } from "./News";
-import { AppStore } from "./AppStore";
-import { SystemSettings } from "./SystemSettings";
-import { Freeform } from "./Freeform";
-import { Terminal } from "./Terminal";
-import { Calculator } from "./Calculator";
-import { Trash } from "./Trash";
-import { Photos } from "./Photos";
-import { Weather } from "./Weather";
-import { Clock } from "./Clock";
 import { CalendarIcon } from "../components/icons/CalendarIcon";
 import { WeatherIcon } from "../components/icons/WeatherIcon";
 import { ClockIcon } from "../components/icons/ClockIcon";
 import { useAsset } from "../components/hooks/useIconManager";
 import dynamic from "next/dynamic";
+
+const Finder = dynamic(() =>
+  import("./Finder/Finder").then((mod) => mod.Finder)
+);
+const Safari = dynamic(() => import("./Safari").then((mod) => mod.Safari));
+const Messages = dynamic(() =>
+  import("./Messages").then((mod) => mod.Messages)
+);
+const Mail = dynamic(() => import("./Mail").then((mod) => mod.Mail));
+const Maps = dynamic(() => import("./Maps").then((mod) => mod.Maps));
+const FaceTime = dynamic(() =>
+  import("./FaceTime").then((mod) => mod.FaceTime)
+);
+const Calendar = dynamic(() =>
+  import("./Calendar").then((mod) => mod.Calendar)
+);
+const Contacts = dynamic(() =>
+  import("./Contacts").then((mod) => mod.Contacts)
+);
+const Reminders = dynamic(() =>
+  import("./Reminders").then((mod) => mod.Reminders)
+);
+const Notes = dynamic(() => import("./Notes").then((mod) => mod.Notes));
+const Music = dynamic(() => import("./Music").then((mod) => mod.Music));
+const TV = dynamic(() => import("./TV").then((mod) => mod.TV));
+const News = dynamic(() => import("./News").then((mod) => mod.News));
+const AppStore = dynamic(() =>
+  import("./AppStore").then((mod) => mod.AppStore)
+);
+const SystemSettings = dynamic(() =>
+  import("./SystemSettings").then((mod) => mod.SystemSettings)
+);
+const Freeform = dynamic(() =>
+  import("./Freeform").then((mod) => mod.Freeform)
+);
+const Terminal = dynamic(() =>
+  import("./Terminal").then((mod) => mod.Terminal)
+);
+const Calculator = dynamic(() =>
+  import("./Calculator").then((mod) => mod.Calculator)
+);
+const Trash = dynamic(() => import("./Trash").then((mod) => mod.Trash));
+const Photos = dynamic(() => import("./Photos").then((mod) => mod.Photos));
+const Weather = dynamic(() => import("./Weather").then((mod) => mod.Weather));
+const Clock = dynamic(() => import("./Clock").then((mod) => mod.Clock));
+const Chess = dynamic(() => import("./Chess").then((mod) => mod.Chess));
+const Stocks = dynamic(() => import("./Stocks").then((mod) => mod.Stocks));
+const VSCode = dynamic(() => import("./VSCode").then((mod) => mod.VSCode));
+const LeetCode = dynamic(() =>
+  import("./LeetCode").then((mod) => mod.LeetCode)
+);
 
 const CachedIcon = ({
   src,
@@ -67,14 +96,10 @@ const PDFViewer = dynamic(
   () => import("./PDFViewer").then((mod) => mod.PDFViewer),
   { ssr: false }
 );
-import { Chess } from "./Chess";
 import { ChessIcon } from "../components/icons/ChessIcon";
-import { Stocks } from "./Stocks";
 import { StocksIcon } from "../components/icons/StocksIcon";
 import { BooksIcon } from "../components/icons/BooksIcon";
 import { PlaceholderApp } from "./PlaceholderApp";
-import { VSCode } from "./VSCode";
-import { LeetCode } from "./LeetCode";
 import { SocialApp } from "./SocialApp";
 import { ExternalLinkDialog } from "../components/ExternalLinkDialog";
 

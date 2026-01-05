@@ -1,7 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 // import { useSystemStore } from "../store/systemStore";
-import { useAsset } from "./hooks/useIconManager";
 
 // ... existing code ...
 
@@ -307,21 +306,20 @@ export default function HelloStrokeMultiLang({
     }
   }, [index, current, paddingX, viewBox.w]);
 
-  const bgUrl = useAsset("/hello-gradient-bg.webp");
+  /* Optimization: Use direct path for LCP image to avoid client-side delay */
+  const bgUrl = "/hello-gradient-bg.webp";
 
   return (
     <div
       className={`min-h-screen w-screen flex items-center justify-center relative ${className}`}
     >
-      {bgUrl && (
-        <Image
-          src={bgUrl}
-          alt="Background"
-          fill
-          priority
-          className="object-cover -z-10"
-        />
-      )}
+      <Image
+        src={bgUrl}
+        alt="Background"
+        fill
+        priority
+        className="object-cover -z-10"
+      />
       <div className="w-full max-w-[600px] md:max-w-[700px] px-8 mx-auto text-center flex flex-col gap-2">
         <svg
           ref={svgRef}

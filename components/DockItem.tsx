@@ -2,29 +2,59 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { useSystemStore } from "../store/systemStore";
 import { useProcessStore } from "../store/processStore";
-import { Finder } from "../apps/Finder/Finder";
+import dynamic from "next/dynamic";
 import { useIcon } from "./hooks/useIconManager";
-import { Terminal } from "../apps/Terminal";
-import { Calculator } from "../apps/Calculator";
-import { Trash } from "../apps/Trash";
-import { Messages } from "../apps/Messages";
-import { FaceTime } from "../apps/FaceTime";
 import { CalendarIcon } from "./icons/CalendarIcon";
-import { SystemSettings } from "../apps/SystemSettings";
-import { Calendar } from "../apps/Calendar";
-import { Notes } from "../apps/Notes";
-import { Reminders } from "../apps/Reminders";
-import { Contacts } from "../apps/Contacts";
-import { Safari } from "../apps/Safari";
-import { Mail } from "../apps/Mail";
-import { Maps } from "../apps/Maps";
-import { Music } from "../apps/Music";
-import { TV } from "../apps/TV";
-import { News } from "../apps/News";
-import { AppStore } from "../apps/AppStore";
-import { Launchpad } from "../apps/Launchpad";
-import { Freeform } from "../apps/Freeform";
-import { Photos } from "../apps/Photos";
+
+const Finder = dynamic(() =>
+  import("../apps/Finder/Finder").then((mod) => mod.Finder)
+);
+const Terminal = dynamic(() =>
+  import("../apps/Terminal").then((mod) => mod.Terminal)
+);
+const Calculator = dynamic(() =>
+  import("../apps/Calculator").then((mod) => mod.Calculator)
+);
+const Trash = dynamic(() => import("../apps/Trash").then((mod) => mod.Trash));
+const Messages = dynamic(() =>
+  import("../apps/Messages").then((mod) => mod.Messages)
+);
+const FaceTime = dynamic(() =>
+  import("../apps/FaceTime").then((mod) => mod.FaceTime)
+);
+const SystemSettings = dynamic(() =>
+  import("../apps/SystemSettings").then((mod) => mod.SystemSettings)
+);
+const Calendar = dynamic(() =>
+  import("../apps/Calendar").then((mod) => mod.Calendar)
+);
+const Notes = dynamic(() => import("../apps/Notes").then((mod) => mod.Notes));
+const Reminders = dynamic(() =>
+  import("../apps/Reminders").then((mod) => mod.Reminders)
+);
+const Contacts = dynamic(() =>
+  import("../apps/Contacts").then((mod) => mod.Contacts)
+);
+const Safari = dynamic(() =>
+  import("../apps/Safari").then((mod) => mod.Safari)
+);
+const Mail = dynamic(() => import("../apps/Mail").then((mod) => mod.Mail));
+const Maps = dynamic(() => import("../apps/Maps").then((mod) => mod.Maps));
+const Music = dynamic(() => import("../apps/Music").then((mod) => mod.Music));
+const TV = dynamic(() => import("../apps/TV").then((mod) => mod.TV));
+const News = dynamic(() => import("../apps/News").then((mod) => mod.News));
+const AppStore = dynamic(() =>
+  import("../apps/AppStore").then((mod) => mod.AppStore)
+);
+const Launchpad = dynamic(() =>
+  import("../apps/Launchpad").then((mod) => mod.Launchpad)
+);
+const Freeform = dynamic(() =>
+  import("../apps/Freeform").then((mod) => mod.Freeform)
+);
+const Photos = dynamic(() =>
+  import("../apps/Photos").then((mod) => mod.Photos)
+);
 
 interface DockItemProps {
   name: string;
