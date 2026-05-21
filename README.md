@@ -14,7 +14,7 @@ Welcome to my **macOS Big Sur Clone**! This project is a pixel-perfect recreatio
 
 This isn't just a UI mockup; it's a fully functional operating system simulation with a working file system, installable apps, virtualization, and global internalization.
 
-**[Live Demo](https://chirag-rocks)**
+**[Live Demo](https://chirag.rocks)**
 
 ## ✨ Key Features
 
