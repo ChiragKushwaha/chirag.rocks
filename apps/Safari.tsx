@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useSystemStore } from "../store/systemStore";
 import { useTranslations } from "next-intl";
 import {
@@ -18,6 +18,7 @@ import {
   History as HistoryIcon,
   Bookmark,
   Sparkles,
+  AlertCircle,
 } from "lucide-react";
 
 interface SafariProps {
@@ -30,6 +31,7 @@ interface Tab {
   currentIndex: number;
   title: string;
   loading: boolean;
+  error?: string;
   icon?: string;
 }
 
@@ -41,12 +43,244 @@ const WALLPAPERS = [
   { id: "monterey", name: "Monterey Dusk", css: "bg-gradient-to-r from-purple-800 via-pink-600 to-red-500 text-white dark:text-white" },
 ];
 
+/** Rewrite URL attributes in HTML so all cross-origin assets go through /api/proxy.
+ *  IMPORTANT: srcdoc iframes have null origin, so we must use ABSOLUTE proxy URLs. */
+function patchHtml(html: string, finalUrl: string, origin: string): string {
+  const proxyBase = `${origin}/api/proxy?url=`;
+
+  // Helper: resolve any URL to an absolute proxy URL
+  function toProxy(href: string): string {
+    if (!href) return href;
+    const trimmed = href.trim();
+    if (
+      !trimmed ||
+      trimmed.startsWith("data:") ||
+      trimmed.startsWith("blob:") ||
+      trimmed.startsWith("javascript:") ||
+      trimmed.startsWith("#") ||
+      trimmed.startsWith("//") && false // protocol-relative: keep and resolve below
+    ) {
+      return trimmed;
+    }
+    try {
+      const abs = new URL(trimmed, finalUrl).href;
+      if (abs.startsWith("http://") || abs.startsWith("https://")) {
+        return proxyBase + encodeURIComponent(abs);
+      }
+    } catch {
+      // ignore bad URLs
+    }
+    return href;
+  }
+
+  // Helper: rewrite a srcset string ("url 1x, url2 2x, ...")
+  function proxySrcset(srcset: string): string {
+    return srcset.split(",").map(entry => {
+      const parts = entry.trim().split(/\s+/);
+      if (parts.length === 0) return entry;
+      parts[0] = toProxy(parts[0]);
+      return parts.join(" ");
+    }).join(", ");
+  }
+
+  // Helper: rewrite CSS url(...) references in a CSS string
+  function proxyCssUrls(css: string): string {
+    return css.replace(/url\(\s*(['"]?)([^)'"]+)\1\s*\)/gi, (match, quote, url) => {
+      return `url(${quote}${toProxy(url)}${quote})`;
+    });
+  }
+
+  // --- Rewrite HTML attributes ---
+
+  // <a href="..."> — preserve original in data-proxy-href for interceptor
+  html = html.replace(/<a(\s[^>]*?)href=(["'])([^"']*)\2/gi, (match, attrs, quote, href) => {
+    return `<a${attrs}href=${quote}${toProxy(href)}${quote} data-proxy-href=${quote}${href}${quote}`;
+  });
+
+  // <link href="..."> (stylesheets, icons, preload)
+  html = html.replace(/<link(\s[^>]*?)>/gi, (match, attrs) => {
+    return match.replace(/href=(["'])([^"']*)\1/gi, (_, quote, href) => `href=${quote}${toProxy(href)}${quote}`);
+  });
+
+  // <script src="...">
+  html = html.replace(/<script(\s[^>]*?)>/gi, (match, attrs) => {
+    return match.replace(/src=(["'])([^"']*)\1/gi, (_, quote, src) => `src=${quote}${toProxy(src)}${quote}`);
+  });
+
+  // <img src="..." srcset="..." data-src="..." data-srcset="...">
+  html = html.replace(/<img(\s[^>]*?)>/gi, (match, attrs: string) => {
+    let result = attrs;
+    result = result.replace(/\bsrc=(["'])([^"']*)\1/gi, (_: string, q: string, src: string) => `src=${q}${toProxy(src)}${q}`);
+    result = result.replace(/\bsrcset=(["'])([^"']*)\1/gi, (_: string, q: string, srcset: string) => `srcset=${q}${proxySrcset(srcset)}${q}`);
+    result = result.replace(/\bdata-src=(["'])([^"']*)\1/gi, (_: string, q: string, src: string) => `data-src=${q}${toProxy(src)}${q}`);
+    result = result.replace(/\bdata-srcset=(["'])([^"']*)\1/gi, (_: string, q: string, srcset: string) => `data-srcset=${q}${proxySrcset(srcset)}${q}`);
+    return `<img${result}>`;
+  });
+
+  // <source src="..." srcset="..."> (picture, video, audio)
+  html = html.replace(/<source(\s[^>]*?)>/gi, (match, attrs: string) => {
+    let result = attrs;
+    result = result.replace(/\bsrc=(["'])([^"']*)\1/gi, (_: string, q: string, src: string) => `src=${q}${toProxy(src)}${q}`);
+    result = result.replace(/\bsrcset=(["'])([^"']*)\1/gi, (_: string, q: string, srcset: string) => `srcset=${q}${proxySrcset(srcset)}${q}`);
+    return `<source${result}>`;
+  });
+
+  // <video src="..."> and <audio src="...">
+  html = html.replace(/<(video|audio)(\s[^>]*?)>/gi, (match, tag: string, attrs: string) => {
+    const result = attrs.replace(/\bsrc=(["'])([^"']*)\1/gi, (_: string, q: string, src: string) => `src=${q}${toProxy(src)}${q}`);
+    return `<${tag}${result}>`;
+  });
+
+  // Inline style="background-image: url(...)"
+  html = html.replace(/\bstyle=(["'])([^"']*)\1/gi, (match, quote: string, css: string) => {
+    return `style=${quote}${proxyCssUrls(css)}${quote}`;
+  });
+
+  // <style>...</style> blocks — rewrite url() references
+  html = html.replace(/(<style[^>]*>)([\s\S]*?)(<\/style>)/gi, (match, open: string, css: string, close: string) => {
+    return `${open}${proxyCssUrls(css)}${close}`;
+  });
+
+  // NOTE: No <base> tag is injected here — the server-side proxy already removed any
+  // existing base tags and rewrote all asset URLs to absolute proxy URLs.
+  // Adding a base tag would cause any missed relative paths to bypass the proxy.
+
+  const interceptScript = `
+<script>
+(function() {
+  var PROXY = '${origin}/api/proxy?url=';
+  var FINAL_URL = ${JSON.stringify(finalUrl)};
+
+  // Send metadata to parent
+  function sendMeta() {
+    try {
+      var title = document.title || FINAL_URL;
+      var icon = '';
+      var links = document.querySelectorAll('link[rel*="icon"]');
+      if (links.length) icon = links[0].href;
+      if (!icon) icon = new URL('/favicon.ico', FINAL_URL).href;
+      window.parent.postMessage({ type: 'safari-metadata', title: title, icon: icon, url: FINAL_URL }, '*');
+    } catch(e) {}
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', sendMeta);
+  } else {
+    sendMeta();
+  }
+  window.addEventListener('load', sendMeta);
+
+  // Watch for title changes
+  var titleEl = document.querySelector('title');
+  if (titleEl) {
+    new MutationObserver(sendMeta).observe(titleEl, { childList: true, characterData: true, subtree: true });
+  }
+
+  // Intercept all clicks on <a> tags
+  document.addEventListener('click', function(e) {
+    var el = e.target;
+    while (el && el.tagName !== 'A') el = el.parentElement;
+    if (!el) return;
+
+    var href = el.getAttribute('data-proxy-href') || el.getAttribute('href') || '';
+    if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+
+    try {
+      var abs = new URL(href, FINAL_URL).href;
+      if (abs.startsWith('http://') || abs.startsWith('https://')) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (el.target === '_blank') {
+          window.parent.postMessage({ type: 'safari-new-tab', url: abs }, '*');
+        } else {
+          window.parent.postMessage({ type: 'safari-navigate', url: abs }, '*');
+        }
+      }
+    } catch(err) {}
+  }, true);
+
+  // Intercept form submissions
+  document.addEventListener('submit', function(e) {
+    var form = e.target;
+    if (!form || !form.action) return;
+    try {
+      var action = new URL(form.action, FINAL_URL).href;
+      if (!action.startsWith('http')) return;
+      e.preventDefault();
+      e.stopPropagation();
+      var method = (form.method || 'GET').toUpperCase();
+      var fd = new FormData(form);
+      var params = new URLSearchParams();
+      fd.forEach(function(v, k) { params.append(k, v.toString()); });
+
+      if (method === 'GET') {
+        var sep = action.includes('?') ? '&' : '?';
+        window.parent.postMessage({ type: 'safari-navigate', url: action + sep + params.toString() }, '*');
+      } else {
+        window.parent.postMessage({ type: 'safari-navigate', url: action, method: 'POST', body: params.toString() }, '*');
+      }
+    } catch(err) {}
+  }, true);
+
+  // Override fetch
+  var _fetch = window.fetch;
+  window.fetch = function(input, init) {
+    var url = typeof input === 'string' ? input : (input.url || '');
+    try {
+      var abs = new URL(url, FINAL_URL).href;
+      if (abs.startsWith('http') && !abs.includes(window.location.hostname + '/api/proxy')) {
+        var proxyUrl = PROXY + encodeURIComponent(abs);
+        return _fetch(proxyUrl, init);
+      }
+    } catch(e) {}
+    return _fetch(input, init);
+  };
+
+  // Override XHR
+  var _open = XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open = function(method, url) {
+    try {
+      var abs = new URL(url, FINAL_URL).href;
+      if (abs.startsWith('http') && !abs.includes('/api/proxy')) {
+        var proxyUrl = PROXY + encodeURIComponent(abs);
+        return _open.apply(this, [method, proxyUrl].concat(Array.prototype.slice.call(arguments, 2)));
+      }
+    } catch(e) {}
+    return _open.apply(this, arguments);
+  };
+
+  // Block window.location changes
+  try {
+    var _loc = window.location;
+    Object.defineProperty(window, 'location', {
+      get: function() { return _loc; },
+      set: function(v) {
+        try {
+          var abs = new URL(v.toString(), FINAL_URL).href;
+          window.parent.postMessage({ type: 'safari-navigate', url: abs }, '*');
+        } catch(e) {}
+      }
+    });
+  } catch(e) {}
+})();
+</script>`;
+
+  const bodyClose = /<\/body>/i;
+  if (bodyClose.test(html)) {
+    html = html.replace(bodyClose, interceptScript + "</body>");
+  } else {
+    html += interceptScript;
+  }
+
+  return html;
+}
+
 export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
   const t = useTranslations("Safari");
   const tFav = useTranslations("Safari.Favorites");
 
   const FAVORITES = [
-    { name: tFav("Apple") || "Apple", url: "https://www.apple.com", icon: "", color: "from-zinc-800 to-black text-white" },
+    { name: tFav("Apple") || "Apple", url: "https://www.apple.com", icon: "", color: "from-zinc-800 to-black text-white" },
     { name: tFav("Google") || "Google", url: "https://www.google.com", icon: "G", color: "from-blue-500 via-red-500 to-yellow-500 text-white" },
     { name: tFav("Wikipedia") || "Wikipedia", url: "https://www.wikipedia.org", icon: "W", color: "from-slate-300 to-slate-500 text-white" },
     { name: tFav("GitHub") || "GitHub", url: "https://github.com", icon: "GH", color: "from-zinc-900 to-neutral-800 text-white" },
@@ -68,91 +302,129 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
   const [wallpaper, setWallpaper] = useState("default");
   const [showWallpaperMenu, setShowWallpaperMenu] = useState(false);
   const [historyList, setHistoryList] = useState<{ url: string; title: string; timestamp: Date }[]>([]);
+  const [iframeSrcDoc, setIframeSrcDoc] = useState<string>("");
 
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
-  const activeTab = tabs.find((t) => t.id === activeTabId) || tabs[0];
+  const activeTab = tabs.find((tab) => tab.id === activeTabId) || tabs[0];
   const currentUrl = activeTab.history[activeTab.currentIndex];
-
   const selectedWallpaper = WALLPAPERS.find((w) => w.id === wallpaper) || WALLPAPERS[0];
 
-  // Sync urlInput with currentUrl when it changes
+  // Sync urlInput with currentUrl
   useEffect(() => {
-    setUrlInput(currentUrl);
+    setUrlInput(currentUrl || "");
   }, [currentUrl]);
 
-  // Listen for metadata messages from proxy
+  const updateTab = useCallback((id: number, updates: Partial<Tab>) => {
+    setTabs((prev) => prev.map((tab) => (tab.id === id ? { ...tab, ...updates } : tab)));
+  }, []);
+
+  // Fetch page HTML from proxy and inject into iframe via srcdoc
+  const loadUrl = useCallback(
+    async (url: string, tabId: number) => {
+      if (!url) {
+        setIframeSrcDoc("");
+        updateTab(tabId, { loading: false, error: undefined });
+        return;
+      }
+
+      // Cancel any previous in-flight request
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+      const controller = new AbortController();
+      abortControllerRef.current = controller;
+
+      updateTab(tabId, { loading: true, error: undefined });
+
+      try {
+        const proxyUrl = `/api/proxy?url=${encodeURIComponent(url)}`;
+        const response = await fetch(proxyUrl, { signal: controller.signal });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
+        const contentType = response.headers.get("content-type") || "";
+        if (!contentType.includes("text/html")) {
+          // Open non-HTML directly (PDF, etc.)
+          window.open(proxyUrl, "_blank");
+          updateTab(tabId, { loading: false });
+          return;
+        }
+
+        // Get the final URL after redirects (from response header or fallback)
+        const finalUrl = response.headers.get("x-final-url") || url;
+
+        let html = await response.text();
+        html = patchHtml(html, finalUrl, window.location.origin);
+
+        setIframeSrcDoc(html);
+        updateTab(tabId, { loading: false, error: undefined });
+      } catch (err: unknown) {
+        if ((err as Error)?.name === "AbortError") return;
+        const msg = (err as Error)?.message || "Failed to load page";
+        updateTab(tabId, {
+          loading: false,
+          error: msg,
+        });
+        setIframeSrcDoc("");
+      }
+    },
+    [updateTab]
+  );
+
+  // Trigger load whenever the active tab URL changes
+  useEffect(() => {
+    if (activeTab && currentUrl) {
+      loadUrl(currentUrl, activeTabId);
+    } else {
+      setIframeSrcDoc("");
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUrl, activeTabId]);
+
+  // Listen for navigation/metadata messages from iframe srcdoc
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
-      if (event.data && event.data.type === "safari-metadata") {
+      if (!event.data) return;
+
+      if (event.data.type === "safari-metadata") {
         const { title, icon, url } = event.data;
-
-        let targetUrl = url;
-        try {
-          const parsed = new URL(url);
-          const paramUrl = parsed.searchParams.get("url");
-          if (paramUrl) {
-            targetUrl = paramUrl;
-          }
-        } catch {
-          // Fallback if URL parsing fails
-        }
-
-        // Add to history list for sidebar if valid
-        if (targetUrl) {
+        if (url) {
           setHistoryList((prev) => {
-            const cleanUrl = targetUrl;
-            if (prev.some((h) => h.url === cleanUrl)) return prev;
-            return [{ url: cleanUrl, title: title || cleanUrl, timestamp: new Date() }, ...prev].slice(0, 50);
+            if (prev.some((h) => h.url === url)) return prev;
+            return [{ url, title: title || url, timestamp: new Date() }, ...prev].slice(0, 50);
           });
         }
-
         setTabs((prev) =>
-          prev.map((t) => {
-            if (t.id === activeTabId) {
-              const currentHistoryUrl = t.history[t.currentIndex];
-              let newHistory = [...t.history];
-              let newIndex = t.currentIndex;
-
-              if (targetUrl && targetUrl !== currentHistoryUrl) {
-                const prevUrl = t.history[t.currentIndex - 1];
-                const nextUrl = t.history[t.currentIndex + 1];
-
-                if (prevUrl === targetUrl) {
-                  newIndex = t.currentIndex - 1;
-                } else if (nextUrl === targetUrl) {
-                  newIndex = t.currentIndex + 1;
-                } else {
-                  // Link click inside iframe: prune forward history and append
-                  newHistory = t.history.slice(0, t.currentIndex + 1);
-                  newHistory.push(targetUrl);
-                  newIndex = newHistory.length - 1;
-                }
-              }
-
-              return {
-                ...t,
-                title: title || t.title,
-                icon: icon || t.icon,
-                history: newHistory,
-                currentIndex: newIndex,
-                loading: false,
-              };
-            }
-            return t;
+          prev.map((tab) =>
+            tab.id === activeTabId
+              ? { ...tab, title: title || tab.title, icon: icon || tab.icon }
+              : tab
+          )
+        );
+      } else if (event.data.type === "safari-navigate") {
+        const { url } = event.data;
+        if (!url) return;
+        setTabs((prev) =>
+          prev.map((tab) => {
+            if (tab.id !== activeTabId) return tab;
+            const newHistory = tab.history.slice(0, tab.currentIndex + 1);
+            newHistory.push(url);
+            return { ...tab, history: newHistory, currentIndex: newHistory.length - 1, loading: true };
           })
         );
-      } else if (event.data && event.data.type === "safari-new-tab") {
+        setUrlInput(url);
+      } else if (event.data.type === "safari-new-tab") {
         const { url } = event.data;
-        const newId = Math.max(...tabs.map((t) => t.id), 0) + 1;
-        const newTab: Tab = {
-          id: newId,
-          history: [url],
-          currentIndex: 0,
-          title: "Loading...",
-          loading: true,
-        };
-        setTabs((prev) => [...prev, newTab]);
+        if (!url) return;
+        const newId = Math.max(...tabs.map((tab) => tab.id), 0) + 1;
+        setTabs((prev) => [
+          ...prev,
+          { id: newId, history: [url], currentIndex: 0, title: "Loading...", loading: true },
+        ]);
         setActiveTabId(newId);
       }
     };
@@ -161,29 +433,17 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
     return () => window.removeEventListener("message", handleMessage);
   }, [activeTabId, tabs]);
 
-  const updateTab = (id: number, updates: Partial<Tab>) => {
-    setTabs((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, ...updates } : t))
-    );
-  };
-
   const navigateTo = (input: string) => {
     let targetUrl = input.trim();
-
     if (!targetUrl) return;
 
-    // Intelligent Omnibar Logic
     const hasProtocol = /^https?:\/\//i.test(targetUrl);
-    const hasDomain =
-      /\.[a-z]{2,}$/i.test(targetUrl) || targetUrl.includes("localhost");
+    const hasDomain = /\.[a-z]{2,}$/i.test(targetUrl) || targetUrl.includes("localhost");
     const hasSpaces = targetUrl.includes(" ");
 
     if (!hasProtocol) {
       if (hasSpaces || !hasDomain) {
-        // Treat as Google search
-        targetUrl = `https://www.google.com/search?q=${encodeURIComponent(
-          targetUrl
-        )}`;
+        targetUrl = `https://www.google.com/search?q=${encodeURIComponent(targetUrl)}`;
       } else {
         targetUrl = `https://${targetUrl}`;
       }
@@ -198,31 +458,24 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
       title: "Loading...",
       loading: true,
     });
+    setUrlInput(targetUrl);
   };
 
   const goBack = () => {
     if (activeTab.currentIndex > 0) {
-      updateTab(activeTabId, {
-        currentIndex: activeTab.currentIndex - 1,
-        loading: true,
-      });
+      updateTab(activeTabId, { currentIndex: activeTab.currentIndex - 1, loading: true });
     }
   };
 
   const goForward = () => {
     if (activeTab.currentIndex < activeTab.history.length - 1) {
-      updateTab(activeTabId, {
-        currentIndex: activeTab.currentIndex + 1,
-        loading: true,
-      });
+      updateTab(activeTabId, { currentIndex: activeTab.currentIndex + 1, loading: true });
     }
   };
 
   const reload = () => {
-    if (iframeRef.current) {
-      const currentSrc = iframeRef.current.src;
-      iframeRef.current.src = currentSrc;
-      updateTab(activeTabId, { loading: true });
+    if (currentUrl) {
+      loadUrl(currentUrl, activeTabId);
     }
   };
 
@@ -232,15 +485,11 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
   };
 
   const addTab = () => {
-    const newId = Math.max(...tabs.map((t) => t.id), 0) + 1;
-    const newTab: Tab = {
-      id: newId,
-      history: [""],
-      currentIndex: 0,
-      title: t("StartPage") || "Start Page",
-      loading: false,
-    };
-    setTabs([...tabs, newTab]);
+    const newId = Math.max(...tabs.map((tab) => tab.id), 0) + 1;
+    setTabs([
+      ...tabs,
+      { id: newId, history: [""], currentIndex: 0, title: t("StartPage") || "Start Page", loading: false },
+    ]);
     setActiveTabId(newId);
   };
 
@@ -250,7 +499,7 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
       updateTab(id, { history: [""], currentIndex: 0, title: t("StartPage") || "Start Page" });
       return;
     }
-    const newTabs = tabs.filter((t) => t.id !== id);
+    const newTabs = tabs.filter((tab) => tab.id !== id);
     setTabs(newTabs);
     if (activeTabId === id) {
       setActiveTabId(newTabs[newTabs.length - 1].id);
@@ -277,10 +526,10 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
 
   return (
     <div className="flex flex-col h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans select-none">
-      
+
       {/* --- SEQUOIA STYLED METALLIC/GLASS TOOLBAR --- */}
       <div className="h-14 bg-linear-to-b from-[#f5f5f7] to-[#ebebeb] dark:from-[#2d2d2d] dark:to-[#222222] border-b border-gray-300 dark:border-black/35 flex items-center px-4 gap-3 relative z-30 shadow-xs">
-        
+
         {/* Left Side Controls */}
         <div className="flex items-center gap-2">
           <button
@@ -292,7 +541,7 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
           >
             <SidebarIcon size={16} />
           </button>
-          
+
           <div className="flex items-center gap-1.5 text-gray-500 dark:text-gray-400 ml-1">
             <button
               onClick={goBack}
@@ -323,7 +572,7 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
               ) : (
                 <Search size={11} className="text-gray-400 mr-2 shrink-0" />
               )}
-              
+
               <input
                 type="text"
                 value={urlInput}
@@ -339,13 +588,13 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
                 className="text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 ml-2 cursor-default shrink-0"
                 aria-label="Reload page"
               >
-                <RotateCw size={11} />
+                <RotateCw size={11} className={activeTab.loading ? "animate-spin" : ""} />
               </button>
             </div>
-            
+
             {/* Real macOS loading progress bar */}
             {activeTab.loading && (
-              <div className="absolute bottom-0 left-0 h-[2.5px] bg-blue-500/90 rounded-b-lg animate-pulse" style={{ width: "80%" }} />
+              <div className="absolute bottom-0 left-0 h-[2.5px] bg-blue-500/90 rounded-b-lg animate-[progress_1.5s_ease-in-out_infinite]" style={{ width: "70%" }} />
             )}
           </div>
         </form>
@@ -358,7 +607,7 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
           >
             <Share2 size={15} />
           </button>
-          
+
           <button
             onClick={addTab}
             className="p-1.5 rounded-md hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
@@ -366,7 +615,7 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
           >
             <Plus size={15} />
           </button>
-          
+
           <button
             className="p-1.5 rounded-md hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
             title="Tab Switcher"
@@ -401,6 +650,7 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
             >
               <div className="flex items-center gap-1.5 truncate flex-1 justify-center">
                 {tab.icon ? (
+                  // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={tab.icon}
                     alt=""
@@ -429,7 +679,7 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
 
       {/* --- CORE CONTENT LAYOUT --- */}
       <div className="flex-1 flex flex-row overflow-hidden relative">
-        
+
         {/* --- SIDEBAR --- */}
         {showSidebar && (
           <div className="w-56 bg-[#f5f5f7]/95 dark:bg-[#252525]/95 backdrop-blur-md border-r border-gray-200 dark:border-black/25 flex flex-col gap-6 p-4 overflow-y-auto select-none shrink-0">
@@ -484,7 +734,7 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
               </div>
             </div>
 
-            {/* History stack */}
+            {/* History */}
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-1 text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
                 <HistoryIcon size={10} />
@@ -513,21 +763,48 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
         {/* --- MAIN PAGE VIEWPORT --- */}
         <div className="flex-1 bg-white dark:bg-[#1e1e1e] relative overflow-hidden">
           {currentUrl ? (
-            <iframe
-              ref={iframeRef}
-              src={`/api/proxy?url=${encodeURIComponent(currentUrl)}`}
-              className="w-full h-full border-none select-text"
-              title="Browser Content"
-              sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-              onLoad={() =>
-                updateTab(activeTabId, { loading: false })
-              }
-            />
+            <>
+              {activeTab.error ? (
+                <div className="w-full h-full flex flex-col items-center justify-center gap-4 bg-[#f9f9f9] dark:bg-[#1a1a1a]">
+                  <AlertCircle size={48} className="text-gray-400" />
+                  <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                    Safari Can&apos;t Open the Page
+                  </h2>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md text-center">
+                    {activeTab.error}
+                  </p>
+                  <button
+                    onClick={reload}
+                    className="px-4 py-2 bg-blue-500 text-white text-sm rounded-lg hover:bg-blue-600 transition-colors"
+                  >
+                    Try Again
+                  </button>
+                </div>
+              ) : (
+                <iframe
+                  ref={iframeRef}
+                  srcDoc={iframeSrcDoc}
+                  className="w-full h-full border-none select-text"
+                  title="Browser Content"
+                  sandbox="allow-scripts allow-forms allow-popups allow-modals"
+                  onLoad={() => updateTab(activeTabId, { loading: false })}
+                />
+              )}
+
+              {/* Loading overlay */}
+              {activeTab.loading && (
+                <div className="absolute inset-0 bg-white/60 dark:bg-black/40 flex items-center justify-center pointer-events-none">
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="w-8 h-8 border-2 border-blue-500/30 border-t-blue-500 rounded-full animate-spin" />
+                    <span className="text-xs text-gray-500 dark:text-gray-400">Loading…</span>
+                  </div>
+                </div>
+              )}
+            </>
           ) : (
-            
             /* --- SEQUOIA PREMIUM START PAGE --- */
             <div className={`w-full h-full flex flex-col items-center justify-center p-8 transition-colors duration-500 relative ${selectedWallpaper.css}`}>
-              
+
               {/* Wallpaper Menu Trigger */}
               <div className="absolute bottom-4 right-4 z-20">
                 <button
@@ -567,7 +844,7 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
                 <h1 className="text-5xl font-extrabold tracking-tight mb-8 text-black/25 dark:text-white/20 select-none font-sans">
                   Safari
                 </h1>
-                
+
                 {/* Search Bar */}
                 <form
                   onSubmit={handleUrlSubmit}

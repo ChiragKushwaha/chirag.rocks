@@ -20,7 +20,7 @@ async function handleProxy(request: NextRequest) {
 
   try {
     const targetUrl = new URL(url);
-    const headers = new Headers();
+    const reqHeaders = new Headers();
 
     // Forward standard headers to the destination site
     const reqHeadersToForward = [
@@ -32,16 +32,16 @@ async function handleProxy(request: NextRequest) {
     ];
     reqHeadersToForward.forEach((h) => {
       const val = request.headers.get(h);
-      if (val) headers.set(h, val);
+      if (val) reqHeaders.set(h, val);
     });
 
     // Forward Range header for video/audio streams
     const range = request.headers.get("range");
-    if (range) headers.set("Range", range);
+    if (range) reqHeaders.set("Range", range);
 
     // Spoof referrer and origin to bypass basic hotlink/security restrictions
-    headers.set("Referer", targetUrl.origin + "/");
-    headers.set("Origin", targetUrl.origin);
+    reqHeaders.set("Referer", targetUrl.origin + "/");
+    reqHeaders.set("Origin", targetUrl.origin);
 
     // Read the request body for POST/PUT methods
     let body: ArrayBuffer | undefined = undefined;
@@ -55,205 +55,190 @@ async function handleProxy(request: NextRequest) {
 
     const response = await fetch(url, {
       method: request.method,
-      headers,
+      headers: reqHeaders,
       body,
       redirect: "follow",
     });
 
-    // Create custom response headers
+    // Create custom response headers – strip ALL security headers by not forwarding them
     const resHeaders = new Headers();
     const headersToForward = [
       "content-type",
-      "content-length",
       "content-range",
       "accept-ranges",
-      "set-cookie",
     ];
     headersToForward.forEach((h) => {
       const val = response.headers.get(h);
       if (val) resHeaders.set(h, val);
     });
 
-    // Inject CORS headers so that client-side fetch overrides don't hit pre-flight blocks
+    // CORS + expose final URL
     resHeaders.set("Access-Control-Allow-Origin", "*");
     resHeaders.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     resHeaders.set("Access-Control-Allow-Headers", "*");
+    const finalUrl = response.url || url;
+    resHeaders.set("x-final-url", finalUrl);
+    resHeaders.set("Access-Control-Expose-Headers", "x-final-url");
 
-    // Check if the response is HTML
-    const contentType = response.headers.get("content-type");
-    if (contentType && contentType.includes("text/html")) {
-      let text = await response.text();
+    // ── HTML: rewrite all asset URLs server-side ──────────────────────────────
+    const contentType = response.headers.get("content-type") || "";
+    if (contentType.includes("text/html")) {
+      let html = await response.text();
 
-      // Resolve redirect url to use as the base tag reference
-      const finalUrl = response.url || url;
+      // Derive the proxy origin from the incoming request
+      const host = request.headers.get("host") || "localhost:3000";
+      const isLocalhost = host.startsWith("localhost") || host.startsWith("127.0.0.1");
+      const proxyOrigin = `${isLocalhost ? "http" : "https"}://${host}`;
+      const proxyBase = `${proxyOrigin}/api/proxy?url=`;
 
-      // Inject <base> tag to force relative asset URLs (JS, CSS, images) to load directly from target origin
-      const headRegex = /<head(?:\s[^>]*)?>/i;
-      const htmlRegex = /<html(?:\s[^>]*)?>/i;
-      if (headRegex.test(text)) {
-        text = text.replace(headRegex, (match) => `${match}<base href="${finalUrl}" />`);
-      } else if (htmlRegex.test(text)) {
-        text = text.replace(
-          htmlRegex,
-          (match) => `${match}<head><base href="${finalUrl}" /></head>`
-        );
+      // Helper: resolve a URL and route it through the proxy
+      function toProxy(href: string): string {
+        if (!href) return href;
+        const t = href.trim();
+        if (!t || t.startsWith("data:") || t.startsWith("blob:") || t.startsWith("javascript:") || t.startsWith("#")) return t;
+        try {
+          const abs = new URL(t, finalUrl).href;
+          if (abs.startsWith("http://") || abs.startsWith("https://")) {
+            return proxyBase + encodeURIComponent(abs);
+          }
+        } catch { /* ignore */ }
+        return href;
       }
 
-      // Inject sandbox container hooks (intercepts link clicks, forms, and fetch/XHR AJAX queries)
+      // Helper: rewrite srcset values
+      function proxySrcset(srcset: string): string {
+        return srcset.split(",").map(entry => {
+          const parts = entry.trim().split(/\s+/);
+          if (!parts.length) return entry;
+          parts[0] = toProxy(parts[0]);
+          return parts.join(" ");
+        }).join(", ");
+      }
+
+      // Helper: rewrite CSS url() references
+      function proxyCss(css: string): string {
+        return css.replace(/url\(\s*(['"]?)([^)'"]+)\1\s*\)/gi, (_m, q, u) => `url(${q}${toProxy(u)}${q})`);
+      }
+
+      // Remove any existing <base> tags (they'd bypass proxy for remaining relative URLs)
+      html = html.replace(/<base\s[^>]*>/gi, "");
+
+      // <script src="..."> — must come BEFORE other replacements to avoid double-rewriting
+      html = html.replace(/<script(\s[^>]*?)>/gi, (match: string, attrs: string) =>
+        match.replace(/\bsrc=(["'])([^"']*)\1/gi, (_: string, q: string, s: string) => `src=${q}${toProxy(s)}${q}`)
+      );
+
+      // <link href="...">
+      html = html.replace(/<link(\s[^>]*?)>/gi, (match: string) =>
+        match.replace(/\bhref=(["'])([^"']*)\1/gi, (_: string, q: string, s: string) => `href=${q}${toProxy(s)}${q}`)
+      );
+
+      // <a href="..."> — rewrite to proxy and preserve original in data-proxy-href
+      html = html.replace(/<a(\s[^>]*?)href=(["'])([^"']*)\2/gi, (_: string, attrs: string, q: string, href: string) =>
+        `<a${attrs}href=${q}${toProxy(href)}${q} data-proxy-href=${q}${href}${q}`
+      );
+
+      // <img src srcset data-src data-srcset>
+      html = html.replace(/<img(\s[^>]*?)>/gi, (_: string, attrs: string) => {
+        let a = attrs;
+        a = a.replace(/\bsrc=(["'])([^"']*)\1/gi, (_2: string, q: string, s: string) => `src=${q}${toProxy(s)}${q}`);
+        a = a.replace(/\bsrcset=(["'])([^"']*)\1/gi, (_2: string, q: string, s: string) => `srcset=${q}${proxySrcset(s)}${q}`);
+        a = a.replace(/\bdata-src=(["'])([^"']*)\1/gi, (_2: string, q: string, s: string) => `data-src=${q}${toProxy(s)}${q}`);
+        a = a.replace(/\bdata-srcset=(["'])([^"']*)\1/gi, (_2: string, q: string, s: string) => `data-srcset=${q}${proxySrcset(s)}${q}`);
+        return `<img${a}>`;
+      });
+
+      // <source srcset src>
+      html = html.replace(/<source(\s[^>]*?)>/gi, (_: string, attrs: string) => {
+        let a = attrs;
+        a = a.replace(/\bsrc=(["'])([^"']*)\1/gi, (_2: string, q: string, s: string) => `src=${q}${toProxy(s)}${q}`);
+        a = a.replace(/\bsrcset=(["'])([^"']*)\1/gi, (_2: string, q: string, s: string) => `srcset=${q}${proxySrcset(s)}${q}`);
+        return `<source${a}>`;
+      });
+
+      // <video> <audio>
+      html = html.replace(/<(video|audio)(\s[^>]*?)>/gi, (_: string, tag: string, attrs: string) => {
+        const a = attrs.replace(/\bsrc=(["'])([^"']*)\1/gi, (_2: string, q: string, s: string) => `src=${q}${toProxy(s)}${q}`);
+        return `<${tag}${a}>`;
+      });
+
+      // Inline style="..." attributes
+      html = html.replace(/\bstyle=(["'])([^"']*)\1/gi, (_: string, q: string, css: string) =>
+        `style=${q}${proxyCss(css)}${q}`
+      );
+
+      // <style> blocks
+      html = html.replace(/(<style[^>]*>)([\s\S]*?)(<\/style>)/gi, (_: string, open: string, css: string, close: string) =>
+        `${open}${proxyCss(css)}${close}`
+      );
+
+      // Inject fetch/XHR override + metadata postMessage script
+      const proxyBaseLiteral = proxyBase.replace(/\\/g, "\\\\").replace(/`/g, "\\`");
       const metadataScript = `
-        <script>
-          (function() {
-            window.__PROXY_FINAL_URL__ = "${finalUrl}";
-            // 1. Dispatch page details (title, favicon, current url) back to Safari app UI
-            function sendMetadata() {
-              try {
-                const title = document.title || window.location.href;
-                let icon = "";
-                const links = document.getElementsByTagName("link");
-                for (let i = 0; i < links.length; i++) {
-                  if (links[i].rel.includes("icon")) {
-                    icon = links[i].href;
-                    break;
-                  }
-                }
-                if (!icon) {
-                  icon = new URL("/favicon.ico", window.location.href).href;
-                }
-                const currentUrl = window.__PROXY_FINAL_URL__ || window.location.href;
-                window.parent.postMessage({ type: "safari-metadata", title, icon, url: currentUrl }, "*");
-              } catch (e) {
-                console.error("Metadata extraction failed", e);
-              }
-            }
-            window.addEventListener("load", sendMetadata);
-            if (document.readyState === "complete") sendMetadata();
+<script>
+(function() {
+  var __PURL__ = ${JSON.stringify(finalUrl)};
+  var __PROXY__ = ${JSON.stringify(proxyBase)};
 
-            // Observe dynamic title modifications
-            const titleEl = document.querySelector('title');
-            if (titleEl) {
-              const observer = new MutationObserver(sendMetadata);
-              observer.observe(titleEl, { childList: true, characterData: true });
-            }
+  // Send page metadata to parent Safari UI
+  function sendMeta() {
+    try {
+      var title = document.title || __PURL__;
+      var icon = '';
+      var links = document.querySelectorAll('link[rel*="icon"]');
+      if (links.length) icon = links[0].href;
+      if (!icon) icon = new URL('/favicon.ico', __PURL__).href;
+      window.parent.postMessage({ type: 'safari-metadata', title: title, icon: icon, url: __PURL__ }, '*');
+    } catch(e) {}
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', sendMeta);
+  } else { sendMeta(); }
+  window.addEventListener('load', sendMeta);
+  var _te = document.querySelector('title');
+  if (_te) new MutationObserver(sendMeta).observe(_te, { childList: true, characterData: true, subtree: true });
 
-            // 2. Intercept link navigations to remain within proxy sandbox
-            document.addEventListener('click', function(e) {
-              const link = e.target.closest('a');
-              if (link && link.href) {
-                const targetUrl = link.href;
-                if (targetUrl.startsWith('http://') || targetUrl.startsWith('https://')) {
-                  const targetObj = new URL(targetUrl);
-                  // Allow direct interaction with proxy-specific links
-                  if (targetObj.origin === window.location.origin && targetObj.pathname === '/api/proxy') {
-                    return;
-                  }
-                  // Handle target="_blank" links by sending request to open new tab
-                  if (link.target === '_blank') {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    window.parent.postMessage({ type: 'safari-new-tab', url: targetUrl }, '*');
-                    return;
-                  }
-                  e.preventDefault();
-                  e.stopPropagation();
-                  window.location.href = '/api/proxy?url=' + encodeURIComponent(targetUrl);
-                }
-              }
-            }, true);
+  // Override fetch to route cross-origin requests through proxy
+  var _fetch = window.fetch;
+  window.fetch = function(input, init) {
+    var u = typeof input === 'string' ? input : (input && (input.url || input));
+    try {
+      var abs = new URL(u, __PURL__).href;
+      if ((abs.startsWith('http://') || abs.startsWith('https://')) && abs.indexOf('/api/proxy') === -1) {
+        var pu = __PROXY__ + encodeURIComponent(abs);
+        return _fetch(typeof input === 'string' ? pu : new Request(pu, init), typeof input === 'string' ? init : undefined);
+      }
+    } catch(e) {}
+    return _fetch(input, init);
+  };
 
-            // 3. Intercept GET and POST forms to forward payloads through route handler
-            document.addEventListener('submit', function(e) {
-              const form = e.target;
-              if (form.action) {
-                const targetUrl = form.action;
-                if (targetUrl.startsWith('http://') || targetUrl.startsWith('https://')) {
-                  e.preventDefault();
-                  e.stopPropagation();
-
-                  const method = (form.method || 'GET').toUpperCase();
-                  if (method === 'GET') {
-                    const formData = new FormData(form);
-                    const params = new URLSearchParams();
-                    for (const [key, value] of formData.entries()) {
-                      params.append(key, value.toString());
-                    }
-                    const separator = targetUrl.includes('?') ? '&' : '?';
-                    const finalUrl = targetUrl + separator + params.toString();
-                    window.location.href = '/api/proxy?url=' + encodeURIComponent(finalUrl);
-                  } else {
-                    const proxyForm = document.createElement('form');
-                    proxyForm.method = 'POST';
-                    proxyForm.action = '/api/proxy?url=' + encodeURIComponent(targetUrl);
-
-                    const formData = new FormData(form);
-                    for (const [key, value] of formData.entries()) {
-                      const input = document.createElement('input');
-                      input.type = 'hidden';
-                      input.name = key;
-                      input.value = value.toString();
-                      proxyForm.appendChild(input);
-                    }
-
-                    document.body.appendChild(proxyForm);
-                    proxyForm.submit();
-                    document.body.removeChild(proxyForm);
-                  }
-                }
-              }
-            }, true);
-
-            // 4. Override Fetch API to bypass CORS limitations
-            const originalFetch = window.fetch;
-            window.fetch = function(input, init) {
-              let url = '';
-              if (typeof input === 'string') {
-                url = input;
-              } else if (input instanceof URL) {
-                url = input.href;
-              } else if (input && input.url) {
-                url = input.url;
-              }
-
-              const absoluteUrl = new URL(url, window.location.href).href;
-
-              if (absoluteUrl.startsWith('http') && !absoluteUrl.startsWith(window.location.origin)) {
-                const proxyUrl = '/api/proxy?url=' + encodeURIComponent(absoluteUrl);
-                if (typeof input === 'string') {
-                  return originalFetch(proxyUrl, init);
-                } else {
-                  const newRequest = new Request(proxyUrl, init);
-                  return originalFetch(newRequest);
-                }
-              }
-              return originalFetch(input, init);
-            };
-
-            // 5. Override XMLHttpRequest API to bypass CORS limitations
-            const originalOpen = window.XMLHttpRequest.prototype.open;
-            window.XMLHttpRequest.prototype.open = function(method, url, ...args) {
-              const absoluteUrl = new URL(url, window.location.href).href;
-              if (absoluteUrl.startsWith('http') && !absoluteUrl.startsWith(window.location.origin)) {
-                const proxyUrl = '/api/proxy?url=' + encodeURIComponent(absoluteUrl);
-                return originalOpen.call(this, method, proxyUrl, ...args);
-              }
-              return originalOpen.call(this, method, url, ...args);
-            };
-          })();
-        </script>
-      `;
+  // Override XHR
+  var _open = XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open = function(m, u) {
+    try {
+      var abs = new URL(u, __PURL__).href;
+      if ((abs.startsWith('http://') || abs.startsWith('https://')) && abs.indexOf('/api/proxy') === -1) {
+        return _open.apply(this, [m, __PROXY__ + encodeURIComponent(abs)].concat(Array.prototype.slice.call(arguments, 2)));
+      }
+    } catch(e) {}
+    return _open.apply(this, arguments);
+  };
+})();
+</script>`;
 
       const bodyCloseRegex = /<\/body>/i;
-      if (bodyCloseRegex.test(text)) {
-        text = text.replace(bodyCloseRegex, (match) => `${metadataScript}${match}`);
+      if (bodyCloseRegex.test(html)) {
+        html = html.replace(bodyCloseRegex, metadataScript + "</body>");
       } else {
-        text += metadataScript;
+        html += metadataScript;
       }
 
-      return new NextResponse(text, {
+      return new NextResponse(html, {
         status: response.status,
         headers: resHeaders,
       });
     } else {
-      // Stream assets (CSS, JS, images, media)
+      // Stream assets (CSS, JS, images, media) as-is
       return new NextResponse(response.body, {
         status: response.status,
         headers: resHeaders,
