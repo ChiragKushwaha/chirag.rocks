@@ -196,10 +196,7 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
         <meta name="google" content="notranslate" />
-        <meta
-          name="google-site-verification"
-          content="OIk6sJu3nmgUIb9c-yV6DvU_P4KyXctrKxF8ZukWjQE"
-        />
+        <meta name="google-site-verification" content="9Jisn5XzVn5HXT_8R8bY7LCLZJCx3fUIa01-BEmATpM" />
         {/* Additional SEO Meta Tags */}
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
