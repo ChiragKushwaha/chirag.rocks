@@ -197,6 +197,21 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
+    // Intercept cross-origin document navigations from the proxy iframe to keep them in the proxy sandbox
+    if (event.request.mode === 'navigate') {
+        const referrer = event.request.referrer || '';
+        if (referrer.includes('/api/proxy')) {
+            const targetUrl = event.request.url;
+            const targetObj = new URL(targetUrl);
+            if (targetObj.origin !== self.location.origin || !targetObj.pathname.startsWith('/api/proxy')) {
+                event.respondWith(
+                    Response.redirect('/api/proxy?url=' + encodeURIComponent(targetUrl), 302)
+                );
+                return;
+            }
+        }
+    }
+
     event.respondWith((async () => {
         try {
             // 1. OPFS Files (User files)

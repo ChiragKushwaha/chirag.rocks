@@ -88,12 +88,14 @@ async function handleProxy(request: NextRequest) {
       const finalUrl = response.url || url;
 
       // Inject <base> tag to force relative asset URLs (JS, CSS, images) to load directly from target origin
-      if (text.includes("<head>")) {
-        text = text.replace("<head>", `<head><base href="${finalUrl}" />`);
-      } else if (text.includes("<html>")) {
+      const headRegex = /<head(?:\s[^>]*)?>/i;
+      const htmlRegex = /<html(?:\s[^>]*)?>/i;
+      if (headRegex.test(text)) {
+        text = text.replace(headRegex, (match) => `${match}<base href="${finalUrl}" />`);
+      } else if (htmlRegex.test(text)) {
         text = text.replace(
-          "<html>",
-          `<html><head><base href="${finalUrl}" /></head>`
+          htmlRegex,
+          (match) => `${match}<head><base href="${finalUrl}" /></head>`
         );
       }
 
@@ -101,6 +103,7 @@ async function handleProxy(request: NextRequest) {
       const metadataScript = `
         <script>
           (function() {
+            window.__PROXY_FINAL_URL__ = "${finalUrl}";
             // 1. Dispatch page details (title, favicon, current url) back to Safari app UI
             function sendMetadata() {
               try {
@@ -116,7 +119,8 @@ async function handleProxy(request: NextRequest) {
                 if (!icon) {
                   icon = new URL("/favicon.ico", window.location.href).href;
                 }
-                window.parent.postMessage({ type: "safari-metadata", title, icon, url: window.location.href }, "*");
+                const currentUrl = window.__PROXY_FINAL_URL__ || window.location.href;
+                window.parent.postMessage({ type: "safari-metadata", title, icon, url: currentUrl }, "*");
               } catch (e) {
                 console.error("Metadata extraction failed", e);
               }
@@ -237,8 +241,9 @@ async function handleProxy(request: NextRequest) {
         </script>
       `;
 
-      if (text.includes("</body>")) {
-        text = text.replace("</body>", `${metadataScript}</body>`);
+      const bodyCloseRegex = /<\/body>/i;
+      if (bodyCloseRegex.test(text)) {
+        text = text.replace(bodyCloseRegex, (match) => `${metadataScript}${match}`);
       } else {
         text += metadataScript;
       }

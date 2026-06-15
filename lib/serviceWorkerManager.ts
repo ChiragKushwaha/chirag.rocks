@@ -195,12 +195,8 @@ export class ServiceWorkerManager {
 // Auto-register on import (only in browser)
 if (typeof window !== "undefined") {
   window.addEventListener("load", () => {
-    if (process.env.NODE_ENV === "development") {
-      console.log("Development mode detected: Service Worker disabled");
-      ServiceWorkerManager.unregister();
-    } else {
-      ServiceWorkerManager.register();
-    }
+    // Register service worker in both development and production
+    ServiceWorkerManager.register();
   });
 
   // Clear cache on page reload (Cmd+R or F5)
