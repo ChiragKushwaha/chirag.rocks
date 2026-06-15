@@ -75,7 +75,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/(.*)",
+        source: "/((?!api/proxy).*)",
         headers: [
           {
             key: "X-Content-Type-Options",

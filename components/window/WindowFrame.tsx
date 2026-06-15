@@ -27,7 +27,6 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
     // State
     const [isDragging, setIsDragging] = useState(false);
     const [isResizing, setIsResizing] = useState(false);
-    const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
     const [resizeState, setResizeState] = useState<{
       dir: string;
       startX: number;
@@ -40,14 +39,29 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
 
     const [showSnapMenu, setShowSnapMenu] = useState(false);
     const snapTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const dragRef = useRef<{
+      startX: number;
+      startY: number;
+      clientX: number;
+      clientY: number;
+      lastClientX: number;
+      lastClientY: number;
+      hasMoved: boolean;
+    } | null>(null);
 
     // Start Drag (Generic)
     const startDrag = (
       e: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent
     ) => {
+      if (process.isMaximized) return; // Disable dragging if window is maximized
+
       // Get position
       const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
       const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+
+      // Ignore spurious (0,0) trackpad events
+      if (clientX === 0 && clientY === 0) return;
+
       const target = e.target as HTMLElement;
 
       // Stop propagation?
@@ -58,10 +72,15 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
       if (target.closest(".window-titlebar") && !target.closest(".no-drag")) {
         // e.preventDefault(); // Prevent scrolling on touch
         setIsDragging(true);
-        setDragOffset({
-          x: clientX - process.dimension.x,
-          y: clientY - process.dimension.y,
-        });
+        dragRef.current = {
+          startX: process.dimension.x,
+          startY: process.dimension.y,
+          clientX,
+          clientY,
+          lastClientX: clientX,
+          lastClientY: clientY,
+          hasMoved: false,
+        };
       }
     };
 
@@ -92,13 +111,29 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
         const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
         const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
 
-        if (isDragging && windowRef.current) {
+        // Ignore spurious (0,0) trackpad gesture events
+        if (clientX === 0 && clientY === 0) return;
+
+        if (isDragging && windowRef.current && dragRef.current) {
           // Prevent scroll on mobile while dragging
           if (e.cancelable) e.preventDefault();
 
-          const newX = clientX - dragOffset.x;
-          const newY = clientY - dragOffset.y;
-          windowRef.current.style.transform = `translate(${newX}px, ${newY}px)`;
+          const deltaX = clientX - dragRef.current.clientX;
+          const deltaY = clientY - dragRef.current.clientY;
+
+          if (!dragRef.current.hasMoved) {
+            if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+              dragRef.current.hasMoved = true;
+            }
+          }
+
+          if (dragRef.current.hasMoved) {
+            const newX = dragRef.current.startX + deltaX;
+            const newY = Math.max(32, dragRef.current.startY + deltaY);
+            windowRef.current.style.transform = `translate(${newX}px, ${newY}px)`;
+            dragRef.current.lastClientX = clientX;
+            dragRef.current.lastClientY = clientY;
+          }
         }
 
         if (isResizing && resizeState) {
@@ -118,8 +153,10 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
           }
           if (resizeState.dir.includes("s")) newHeight += deltaY;
           if (resizeState.dir.includes("n")) {
-            newHeight -= deltaY;
-            newY += deltaY;
+            const potentialY = resizeState.startTop + deltaY;
+            const maxAllowedY = resizeState.startTop + resizeState.startHeight - 200;
+            newY = Math.max(32, Math.min(potentialY, maxAllowedY));
+            newHeight = (resizeState.startTop + resizeState.startHeight) - newY;
           }
 
           if (newWidth < 300) newWidth = 300;
@@ -130,16 +167,6 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
       };
 
       const handleEnd = (e: MouseEvent | TouchEvent) => {
-        // Touchend keeps clientX/Y in changedTouches? Or just use last known?
-        // For 'mouseup' we have clientX/Y. For 'touchend', we don't have new coords usually needed for final commit if we used them?
-        // IsDragging relies on dragOffset which is constant.
-        // But updateWindowPosition needs generic "final" coords.
-        // Actually we can just track the LAST move position?
-        // Or just use the current style transform?
-
-        // Easier: For dragging, we calculate final pos based on last known clientX?
-        // Wait, 'touchend' doesn't provide clientX of the lifted finger in touches list. It's in changedTouches.
-
         let clientX = 0;
         let clientY = 0;
 
@@ -153,14 +180,21 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
 
         if (isDragging) {
           setIsDragging(false);
-          updateWindowPosition(
-            process.pid,
-            clientX - dragOffset.x,
-            clientY - dragOffset.y
-          );
+          if (dragRef.current && dragRef.current.hasMoved) {
+            // Use last valid coordinates if current are spurious (0,0)
+            const finalClientX = (clientX === 0 && clientY === 0) ? dragRef.current.lastClientX : clientX;
+            const finalClientY = (clientX === 0 && clientY === 0) ? dragRef.current.lastClientY : clientY;
+
+            const deltaX = finalClientX - dragRef.current.clientX;
+            const deltaY = finalClientY - dragRef.current.clientY;
+            const finalX = dragRef.current.startX + deltaX;
+            const finalY = Math.max(32, dragRef.current.startY + deltaY);
+            updateWindowPosition(process.pid, finalX, finalY);
+          }
           if (windowRef.current) {
             windowRef.current.style.transform = "";
           }
+          dragRef.current = null;
         }
         setIsResizing(false);
       };
@@ -181,7 +215,6 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
     }, [
       isDragging,
       isResizing,
-      dragOffset,
       resizeState,
       process.pid,
       updateWindowPosition,
@@ -255,9 +288,11 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
         onTouchStart={startDrag}
         onContextMenu={handleContextMenu}
         style={{
-          transform: process.isMinimizing
-            ? `translate(${targetX}px, ${targetY}px) scale(0.1)`
-            : `translate(${process.dimension.x}px, ${process.dimension.y}px)`,
+          transform: process.isMaximized
+            ? "none"
+            : process.isMinimizing
+              ? `translate(${targetX}px, ${targetY}px) scale(0.1)`
+              : `translate(${process.dimension.x}px, ${process.dimension.y}px)`,
           width: process.isMaximized ? "100vw" : process.dimension.width,
           height: process.isMaximized
             ? "calc(100vh - 2rem)"
@@ -265,9 +300,9 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
           zIndex: process.zIndex,
           willChange:
             isDragging ||
-            isResizing ||
-            process.isMinimizing ||
-            process.isRestoring
+              isResizing ||
+              process.isMinimizing ||
+              process.isRestoring
               ? "transform, opacity"
               : "auto",
           display: process.isMinimized ? "none" : "flex",
@@ -275,7 +310,14 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
           clipPath: process.isMinimizing
             ? "polygon(0 0, 100% 0, 55% 100%, 45% 100%)"
             : "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-          borderRadius: process.isMinimizing ? "0 0 50% 50%" : "12px",
+          borderRadius: process.isMaximized
+            ? "0px"
+            : process.isMinimizing
+              ? "0 0 50% 50%"
+              : "12px",
+          border: process.isMaximized ? "0px" : undefined,
+          top: process.isMaximized ? "2rem" : undefined,
+          left: process.isMaximized ? "0px" : undefined,
           transition: process.isMinimizing
             ? "all 0.5s cubic-bezier(0.25, 1, 0.5, 1)"
             : "none",
@@ -288,41 +330,35 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
         className={`
         window absolute top-0 left-0 flex flex-col pointer-events-auto
         transition-shadow duration-200
-        ${
-          process.isRestoring
+        ${process.isRestoring
             ? "animate-restore-window"
             : !process.isMinimizing && !process.isClosing
-            ? "animate-in fade-in zoom-in-95 slide-in-from-bottom-4 duration-300 ease-out"
-            : ""
-        }
-        ${
-          process.isClosing
+              ? "animate-in fade-in zoom-in-95 slide-in-from-bottom-4 duration-300 ease-out"
+              : ""
+          }
+        ${process.isClosing
             ? "animate-out fade-out zoom-out-95 duration-200 ease-in fill-mode-forwards"
             : ""
-        }
-        ${
-          process.isClosing
+          }
+        ${process.isClosing
             ? "animate-out fade-out zoom-out-95 duration-200 ease-in fill-mode-forwards"
             : ""
-        }
-        ${
-          process.isMaximized
+          }
+        ${process.isMaximized
             ? "transform-none! top-8! left-0! right-0! bottom-0! rounded-none! border-0"
             : "rounded-xl overflow-hidden border border-black/10 dark:border-white/10"
-        }
-        ${
-          process.isFocused
+          }
+        ${process.isFocused
             ? "shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.7)]"
             : "shadow-[0_10px_30px_-5px_rgba(0,0,0,0.2)] dark:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.5)] opacity-95"
-        }
-        ${
-          isDragging ||
-          isResizing ||
-          process.isMinimizing ||
-          process.isRestoring
+          }
+        ${isDragging ||
+            isResizing ||
+            process.isMinimizing ||
+            process.isRestoring
             ? "backdrop-blur-none shadow-none"
             : "backdrop-blur-[50px] backdrop-saturate-150"
-        }
+          }
         bg-white/85 dark:bg-[#1e1e1e]/85
       `}
       >
