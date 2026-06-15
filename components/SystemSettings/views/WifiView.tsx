@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Wifi, Lock, MoreHorizontal, HelpCircle } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { Toggle } from "../../Toggle";
+import { ViewHeader } from "../ViewHeader";
 import { useTranslations } from "next-intl";
 
 const CheckIcon = () => (
@@ -27,23 +28,14 @@ export const WifiView = () => {
   const t = useTranslations("SystemSettings.Wifi");
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-full bg-[#007AFF] flex items-center justify-center">
-            <Wifi size={32} className="text-white" />
-          </div>
-          <div>
-            <h2 className="text-xl font-semibold dark:text-white">
-              {t("Title")}
-            </h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              {t("Description")}
-            </p>
-          </div>
-        </div>
-        <Toggle checked={wifiEnabled} onChange={setWifiEnabled} />
-      </div>
+    <div className="space-y-5">
+      <ViewHeader
+        icon={Wifi}
+        title={t("Title")}
+        description={t("Description")}
+        color="#007AFF"
+        right={<Toggle checked={wifiEnabled} onChange={setWifiEnabled} />}
+      />
 
       {wifiEnabled && (
         <>

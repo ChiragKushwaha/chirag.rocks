@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import {
@@ -13,6 +13,7 @@ import {
   Baby,
   Library,
   ExternalLink,
+  Loader2,
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 
@@ -36,6 +37,9 @@ export const TV: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [playingShow, setPlayingShow] = useState<Show | null>(null);
   const [heroShow, setHeroShow] = useState<Show | null>(null);
+  const [videoId, setVideoId] = useState<string | null>(null);
+  const [videoLoading, setVideoLoading] = useState(false);
+  const [videoError, setVideoError] = useState(false);
 
   // Library state remains local
   const [library, setLibrary] = useState<Show[]>(() => {
@@ -71,6 +75,37 @@ export const TV: React.FC = () => {
       );
     }
   }, [shows]);
+
+  // Fetch a real YouTube video ID by scraping YouTube search via proxy
+  const fetchVideoId = useCallback(async (show: Show) => {
+    setVideoId(null);
+    setVideoError(false);
+    setVideoLoading(true);
+    const query = encodeURIComponent(`${show.name} official trailer`);
+    try {
+      // Use the proxy to fetch YouTube search results HTML and extract a video ID
+      const proxyUrl = `/api/proxy?url=${encodeURIComponent(`https://www.youtube.com/results?search_query=${query}`)}`;
+      const res = await fetch(proxyUrl);
+      const html = await res.text();
+      // YouTube embeds initial data as a JSON blob in the page
+      const match = html.match(/"videoId":"([a-zA-Z0-9_-]{11})"/);
+      if (match && match[1]) {
+        setVideoId(match[1]);
+      } else {
+        setVideoError(true);
+      }
+    } catch {
+      setVideoError(true);
+    } finally {
+      setVideoLoading(false);
+    }
+  }, []);
+
+  // When a show is selected, resolve its trailer video ID
+  const openShow = useCallback((show: Show) => {
+    setPlayingShow(show);
+    fetchVideoId(show);
+  }, [fetchVideoId]);
 
   const categories = [
     "Drama",
@@ -170,7 +205,7 @@ export const TV: React.FC = () => {
             <div
               key={show.id}
               className="aspect-2/3 relative rounded-xl overflow-hidden cursor-pointer group bg-gray-800 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:z-10"
-              onClick={() => setPlayingShow(show)}
+              onClick={() => openShow(show)}
               role="button"
               tabIndex={0}
               onKeyDown={(e) => {
@@ -241,42 +276,81 @@ export const TV: React.FC = () => {
     <div className="flex h-full bg-[#1e1e1e] text-white font-sans overflow-hidden relative select-none">
       {/* Video Overlay */}
       {playingShow && (
-        <div className="absolute inset-0 z-50 bg-black/90 backdrop-blur-xl flex flex-col items-center justify-center animate-in fade-in duration-300 p-8">
-          <button
-            onClick={() => setPlayingShow(null)}
-            className="absolute top-8 right-8 p-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors z-50 backdrop-blur-md"
-            aria-label={t("Aria.CloseVideo")}
-          >
-            <X size={24} />
-          </button>
-
-          <div className="w-full max-w-5xl aspect-video bg-black rounded-xl overflow-hidden relative shadow-2xl border border-white/10 group">
-            <iframe
-              width="100%"
-              height="100%"
-              src={`https://www.youtube.com/embed?listType=search&list=${encodeURIComponent(
-                playingShow.name + " official trailer"
-              )}&autoplay=1&mute=0`}
-              title={`${playingShow.name} Trailer`}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full"
-            ></iframe>
+        <div className="absolute inset-0 z-50 bg-black flex flex-col animate-in fade-in duration-300">
+          {/* Top bar */}
+          <div className="flex items-center justify-between px-6 py-4 shrink-0">
+            <div>
+              <h2 className="text-white font-bold text-lg leading-tight">{playingShow.name}</h2>
+              <p className="text-gray-400 text-xs mt-0.5">{playingShow.genres.join(' · ')}</p>
+            </div>
+            <button
+              onClick={() => { setPlayingShow(null); setVideoId(null); setVideoError(false); }}
+              className="p-2.5 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
+              aria-label={t("Aria.CloseVideo")}
+            >
+              <X size={20} />
+            </button>
           </div>
 
-          <div className="mt-6 flex gap-4">
-            <a
-              href={`https://www.youtube.com/results?search_query=${encodeURIComponent(
-                playingShow.name + " official trailer"
-              )}`}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2 px-6 py-2 bg-white/10 hover:bg-white/20 rounded-full text-sm font-medium transition-colors"
+          {/* Player area */}
+          <div className="flex-1 flex items-center justify-center px-8 pb-8">
+            <div className="w-full max-w-5xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex items-center justify-center">
+              {videoLoading && (
+                <div className="flex flex-col items-center gap-4">
+                  <Loader2 size={40} className="text-white animate-spin" />
+                  <span className="text-gray-400 text-sm">Loading trailer…</span>
+                </div>
+              )}
+              {!videoLoading && videoError && (
+                <div className="flex flex-col items-center gap-4 text-center px-8">
+                  <Film size={48} className="text-gray-600" />
+                  <p className="text-gray-400 text-sm">Could not load trailer automatically.</p>
+                  <a
+                    href={`https://www.youtube.com/results?search_query=${encodeURIComponent(playingShow.name + ' official trailer')}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2 px-5 py-2 bg-[#FF0000] text-white rounded-lg text-sm font-semibold hover:bg-red-600 transition-colors"
+                  >
+                    <ExternalLink size={15} />
+                    Watch on YouTube
+                  </a>
+                </div>
+              )}
+              {!videoLoading && videoId && (
+                <iframe
+                  key={videoId}
+                  width="100%"
+                  height="100%"
+                  src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
+                  title={`${playingShow.name} Trailer`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              )}
+            </div>
+          </div>
+
+          {/* Bottom actions */}
+          <div className="flex items-center justify-center gap-3 pb-6 shrink-0">
+            {videoId && (
+              <a
+                href={`https://www.youtube.com/watch?v=${videoId}`}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 px-5 py-2 bg-white/10 hover:bg-white/20 rounded-full text-sm font-medium text-white transition-colors"
+              >
+                <ExternalLink size={14} />
+                {t("OpenYouTube")}
+              </a>
+            )}
+            <button
+              onClick={() => toggleLibrary(playingShow)}
+              className="flex items-center gap-2 px-5 py-2 bg-white/10 hover:bg-white/20 rounded-full text-sm font-medium text-white transition-colors"
             >
-              <ExternalLink size={16} />
-              {t("OpenYouTube")}
-            </a>
+              {isInLibrary(playingShow) ? <><Check size={14} className="text-green-400" />{t("Added")}</> : <><Plus size={14} />{t("AddToUpNext")}</>}
+            </button>
           </div>
         </div>
       )}
@@ -380,7 +454,7 @@ export const TV: React.FC = () => {
                   />
                   <div className="flex gap-4">
                     <button
-                      onClick={() => setPlayingShow(heroShow)}
+                      onClick={() => openShow(heroShow)}
                       className="flex items-center gap-2 px-8 py-3 bg-white text-black rounded-lg font-bold hover:bg-gray-200 transition-colors shadow-xl shadow-black/20"
                     >
                       <Play size={20} fill="currentColor" />
@@ -438,7 +512,7 @@ export const TV: React.FC = () => {
                         <div
                           key={show.id}
                           className="shrink-0 w-[220px] aspect-2/3 bg-gray-800 rounded-xl relative group cursor-pointer overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-black/50 hover:z-10 ring-1 ring-white/5"
-                          onClick={() => setPlayingShow(show)}
+                          onClick={() => openShow(show)}
                         >
                           <Image
                             src={show.image?.medium || ""}

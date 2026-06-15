@@ -2,26 +2,15 @@ import React from "react";
 import { Volume2, VolumeX } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
+import { ViewHeader } from "../ViewHeader";
 import { useTranslations } from "next-intl";
 
 export const SoundView = () => {
   const t = useTranslations("SystemSettings.Sound");
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center gap-4">
-        <div className="w-16 h-16 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-          <Volume2 size={32} className="text-pink-500" />
-        </div>
-        <div>
-          <h2 className="text-xl font-semibold dark:text-white">
-            {t("Title")}
-          </h2>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            {t("Description")}
-          </p>
-        </div>
-      </div>
+    <div className="space-y-5">
+      <ViewHeader icon={Volume2} title={t("Title")} description={t("Description")} color="#FF2D55" />
 
       <SettingsGroup title={t("OutputInput")}>
         <div className="flex justify-center py-2 border-b border-gray-100 dark:border-gray-700/50">

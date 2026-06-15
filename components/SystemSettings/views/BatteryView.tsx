@@ -2,26 +2,15 @@ import React from "react";
 import { Battery, Zap, Info } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
+import { ViewHeader } from "../ViewHeader";
 import { useTranslations } from "next-intl";
 
 export const BatteryView = () => {
   const t = useTranslations("SystemSettings.Battery");
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center gap-4">
-        <div className="w-16 h-16 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-          <Battery size={32} className="text-green-500" />
-        </div>
-        <div>
-          <h2 className="text-xl font-semibold dark:text-white">
-            {t("Title")}
-          </h2>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            {t("Description")}
-          </p>
-        </div>
-      </div>
+    <div className="space-y-5">
+      <ViewHeader icon={Battery} title={t("Title")} description={t("Description")} color="#34C759" />
 
       <div className="flex justify-center py-4">
         <div className="w-full h-48 bg-white dark:bg-[#1e1e1e] rounded-xl border border-gray-200 dark:border-gray-700/50 p-4 flex flex-col gap-2">

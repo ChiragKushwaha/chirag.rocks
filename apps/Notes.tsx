@@ -254,17 +254,17 @@ export const Notes: React.FC<NotesProps> = ({
     .sort((a, b) => b.timestamp - a.timestamp);
 
   return (
-    <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans select-none">
+    <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-[-apple-system,BlinkMacSystemFont,'SF_Pro_Text',sans-serif] text-[13px] select-none">
       {/* Folders Sidebar */}
-      <div className="w-56 bg-[#f2f2f7]/90 dark:bg-[#2d2d2d]/90 backdrop-blur-xl border-r border-gray-200 dark:border-black/20 flex flex-col pt-12 px-2">
-        <div className="px-3 mb-2 text-xs font-semibold text-gray-500 dark:text-gray-400">
+      <div className="w-[180px] bg-[#f5f5f7] dark:bg-[#272727] border-r border-gray-200/70 dark:border-black/25 flex flex-col pt-4 px-2 shrink-0">
+        <div className="px-2 mb-2 text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
           {t("Sidebar.iCloud")}
         </div>
         <div
           onClick={() => setActiveFolder("Notes")}
-          className={`flex items-center gap-2 px-3 py-2 rounded-md mb-1 cursor-pointer ${
+          className={`flex items-center gap-2 px-2 py-1.5 rounded-[5px] mb-0.5 cursor-default transition-colors ${
             activeFolder === "Notes"
-              ? "bg-black/10 dark:bg-white/10"
+              ? "bg-[#007AFF]/10 dark:bg-[#007AFF]/15"
               : "hover:bg-black/5 dark:hover:bg-white/5"
           }`}
           role="button"
@@ -277,13 +277,13 @@ export const Notes: React.FC<NotesProps> = ({
           aria-label={t("Sidebar.Notes")}
         >
           <Folder size={16} className="text-[#facc15] fill-[#facc15]" />
-          <span className="text-sm font-medium">{t("Sidebar.Notes")}</span>
+          <span className="text-[13px] font-medium text-gray-700 dark:text-gray-200">{t("Sidebar.Notes")}</span>
         </div>
         <div
           onClick={() => setActiveFolder("Trash")}
-          className={`flex items-center gap-2 px-3 py-2 rounded-md cursor-pointer text-gray-600 dark:text-gray-400 ${
+          className={`flex items-center gap-2 px-2 py-1.5 rounded-[5px] cursor-default text-gray-600 dark:text-gray-400 transition-colors ${
             activeFolder === "Trash"
-              ? "bg-black/10 dark:bg-white/10"
+              ? "bg-[#007AFF]/10 dark:bg-[#007AFF]/15"
               : "hover:bg-black/5 dark:hover:bg-white/5"
           }`}
           role="button"
@@ -296,15 +296,15 @@ export const Notes: React.FC<NotesProps> = ({
           aria-label={t("Sidebar.RecentlyDeleted")}
         >
           <Trash2 size={16} />
-          <span className="text-sm">{t("Sidebar.RecentlyDeleted")}</span>
+          <span className="text-[13px]">{t("Sidebar.RecentlyDeleted")}</span>
         </div>
       </div>
 
       {/* Notes List Sidebar */}
-      <div className="w-72 bg-white dark:bg-[#1e1e1e] border-r border-gray-200 dark:border-black/20 flex flex-col">
+      <div className="w-[240px] bg-white dark:bg-[#1e1e1e] border-r border-gray-200/70 dark:border-black/20 flex flex-col shrink-0">
         <div className="p-4 border-b border-gray-200 dark:border-gray-700/50">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="font-bold text-lg">
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="font-bold text-[17px]">
               {activeFolder === "Trash"
                 ? t("Sidebar.RecentlyDeleted")
                 : t("Sidebar.Notes")}
@@ -329,7 +329,7 @@ export const Notes: React.FC<NotesProps> = ({
               placeholder={t("Search")}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-gray-100 dark:bg-gray-800 border-none rounded-lg pl-8 pr-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#facc15]/50 transition-all"
+              className="w-full bg-[#dcdce0] dark:bg-[#3a3a3a] border-none rounded-[6px] pl-7 pr-3 py-1 text-[12px] placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-[#facc15]/60 transition-all"
               aria-label="Search notes"
             />
           </div>
@@ -339,9 +339,9 @@ export const Notes: React.FC<NotesProps> = ({
             <div
               key={note.id}
               onClick={() => setSelectedNoteId(note.id)}
-              className={`px-5 py-3 border-b border-gray-100 dark:border-gray-800 cursor-pointer transition-colors ${
+              className={`px-4 py-3 border-b border-gray-100 dark:border-white/5 cursor-default transition-colors ${
                 selectedNoteId === note.id
-                  ? "bg-[#facc15] text-white"
+                  ? "bg-[#facc15]/15 dark:bg-[#facc15]/10"
                   : "hover:bg-gray-50 dark:hover:bg-white/5"
               }`}
               role="button"
@@ -354,21 +354,11 @@ export const Notes: React.FC<NotesProps> = ({
               aria-label={`Note: ${note.title}`}
             >
               <h4
-                className={`text-sm font-bold mb-1 truncate ${
-                  selectedNoteId === note.id
-                    ? "text-white"
-                    : "text-gray-900 dark:text-white"
-                }`}
+                className={`text-[13px] font-bold mb-0.5 truncate text-gray-900 dark:text-white`}
               >
                 {note.title || t("NewNote")}
               </h4>
-              <div
-                className={`flex items-center gap-2 text-xs ${
-                  selectedNoteId === note.id
-                    ? "text-white/80"
-                    : "text-gray-500 dark:text-gray-400"
-                }`}
-              >
+              <div className="flex items-center gap-2 text-[11px] text-gray-400 dark:text-gray-500">
                 <span className="shrink-0">{note.date.split(" at")[0]}</span>
                 <span className="truncate">
                   {note.content.substring(0, 30) || t("NoAdditionalText")}
@@ -380,7 +370,7 @@ export const Notes: React.FC<NotesProps> = ({
       </div>
 
       {/* Editor Area */}
-      <div className="flex-1 flex flex-col bg-white dark:bg-[#1e1e1e]">
+      <div className="flex-1 flex flex-col bg-[#fefef5] dark:bg-[#1e1e1e]">
         {selectedNote ? (
           <>
             <div className="h-14 flex items-center justify-between px-6 border-b border-gray-100 dark:border-gray-800">

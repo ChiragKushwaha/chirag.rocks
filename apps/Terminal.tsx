@@ -334,16 +334,21 @@ export const Terminal: React.FC<TerminalProps> = ({ initialPath }) => {
 
   return (
     <div
-      className="h-full w-full bg-black/90 text-green-400 font-mono text-sm p-2 overflow-y-auto"
+      className="h-full w-full bg-[#1e1e1e] text-[#d4d4d4] font-['Menlo','Monaco','Courier_New',monospace] text-[13px] p-3 overflow-y-auto"
       onClick={() => inputRef.current?.focus()}
     >
       {history.map((line, i) => (
-        <div key={i} className="whitespace-pre-wrap wrap-break-word">
+        <div key={i} className="whitespace-pre-wrap break-words leading-5 mb-0.5">
           {line}
         </div>
       ))}
-      <div className="flex">
-        <span className="mr-2 text-blue-400">{currentPath} $</span>
+      <div className="flex items-center mt-1">
+        <span className="mr-2 text-[#5cc8ff] font-semibold shrink-0">
+          <span className="text-[#61c554]">chirag@MacBook-Pro</span>
+          <span className="text-white"> </span>
+          <span className="text-[#cba6f7]">{currentPath.split("/").pop() || "~"}</span>
+          <span className="text-white"> % </span>
+        </span>
         <input
           ref={inputRef}
           type="text"
@@ -377,7 +382,7 @@ export const Terminal: React.FC<TerminalProps> = ({ initialPath }) => {
               }
             }
           }}
-          className="flex-1 bg-transparent outline-none border-none text-green-400"
+          className="flex-1 bg-transparent outline-none border-none text-[#d4d4d4] caret-white"
           aria-label={t("AriaInput")}
           autoFocus
         />

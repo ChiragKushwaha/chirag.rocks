@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-// Verified balanced braces
 import Image from "next/image";
 import {
   Search,
@@ -10,9 +9,34 @@ import {
   MessageSquare,
   Video,
   Camera,
+  MapPin,
+  Globe,
+  ChevronDown,
 } from "lucide-react";
 import { fs } from "../lib/FileSystem";
 import { useTranslations } from "next-intl";
+
+const AVATAR_COLORS = [
+  "from-red-400 to-red-600",
+  "from-orange-400 to-orange-600",
+  "from-amber-400 to-yellow-500",
+  "from-green-400 to-emerald-600",
+  "from-teal-400 to-cyan-600",
+  "from-blue-400 to-blue-600",
+  "from-indigo-400 to-violet-600",
+  "from-purple-400 to-pink-600",
+  "from-pink-400 to-rose-600",
+  "from-gray-400 to-gray-600",
+];
+
+function getAvatarColor(id: string): string {
+  const hash = id.split("").reduce((a, b) => a + b.charCodeAt(0), 0);
+  return AVATAR_COLORS[hash % AVATAR_COLORS.length];
+}
+
+function getInitials(first: string, last: string): string {
+  return `${first?.[0] || ""}${last?.[0] || ""}`.toUpperCase() || "?";
+}
 
 interface Contact {
   id: string;
@@ -195,20 +219,17 @@ export const Contacts: React.FC = () => {
   if (!isLoaded) return null; // Prevent hydration mismatch
 
   return (
-    <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans select-none">
-      {/* Sidebar */}
-      <div className="w-[260px] bg-[#e8e8ed]/80 dark:bg-[#2b2b2b]/90 backdrop-blur-xl border-r border-gray-300/50 dark:border-black/20 flex flex-col">
-        {/* Search Bar */}
-        <div className="p-4 pb-2">
-          <div className="relative group">
-            <Search
-              size={14}
-              className="absolute left-2.5 top-1.5 text-gray-500 dark:text-gray-400 group-focus-within:text-gray-700 dark:group-focus-within:text-gray-200"
-            />
+    <div className="flex h-full bg-white dark:bg-[#1e1e1e] text-[13px] font-[-apple-system,BlinkMacSystemFont,'SF_Pro_Text',sans-serif] text-gray-900 dark:text-gray-100 select-none">
+      {/* ── SIDEBAR ── */}
+      <div className="w-[240px] bg-[#f0f0f5] dark:bg-[#272727] border-r border-gray-300/50 dark:border-black/25 flex flex-col">
+        {/* Search */}
+        <div className="p-3 pb-2">
+          <div className="relative">
+            <Search size={12} className="absolute left-2 top-[7px] text-gray-400" />
             <input
               type="text"
               placeholder={t("SearchPlaceholder")}
-              className="w-full bg-[#dcdce0] dark:bg-[#1e1e1e] border-none rounded-[6px] pl-8 pr-3 py-1 text-[13px] placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+              className="w-full bg-[#dcdce0] dark:bg-[#3a3a3a] border-none rounded-[6px] pl-7 pr-3 py-1 text-[12px] placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500/50"
               aria-label={t("SearchAria")}
             />
           </div>
@@ -217,62 +238,53 @@ export const Contacts: React.FC = () => {
         {/* Contact List */}
         <div className="flex-1 overflow-y-auto px-2 pb-2">
           {sortedLetters.map((letter) => (
-            <div key={letter} className="mb-2">
-              <div className="px-3 py-1 text-[11px] font-semibold text-gray-500 dark:text-gray-400 sticky top-0 bg-[#e8e8ed]/90 dark:bg-[#2b2b2b]/90 backdrop-blur-sm z-10">
+            <div key={letter} className="mb-1">
+              <div className="px-2 py-0.5 text-[11px] font-bold text-gray-500 dark:text-gray-400 sticky top-0 bg-[#f0f0f5]/95 dark:bg-[#272727]/95 backdrop-blur-sm z-10">
                 {letter}
               </div>
-              {groupedContacts[letter].map((contact) => (
-                <div
-                  key={contact.id}
-                  onClick={() => {
-                    setSelectedId(contact.id);
-                    setIsAdding(false);
-                    setIsEditing(false);
-                  }}
-                  className={`px-3 py-1.5 text-[13px] font-medium rounded-[5px] cursor-default flex items-center gap-2.5 transition-colors ${
-                    selectedId === contact.id && !isAdding
-                      ? "bg-[#007AFF] text-white"
-                      : "hover:bg-black/5 dark:hover:bg-white/5 text-gray-900 dark:text-gray-100"
-                  }`}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
+              {groupedContacts[letter].map((contact) => {
+                const isSelected = selectedId === contact.id && !isAdding;
+                return (
+                  <div
+                    key={contact.id}
+                    onClick={() => {
                       setSelectedId(contact.id);
                       setIsAdding(false);
                       setIsEditing(false);
-                    }
-                  }}
-                  aria-label={t("Aria.Contact", {
-                    name: `${contact.firstName} ${contact.lastName}`,
-                  })}
-                >
-                  <span
-                    className={`font-semibold ${
-                      selectedId === contact.id ? "text-white" : ""
+                    }}
+                    className={`px-2 py-1.5 rounded-[5px] cursor-default flex items-center gap-2.5 transition-colors ${
+                      isSelected
+                        ? "bg-[#007AFF] text-white"
+                        : "hover:bg-black/5 dark:hover:bg-white/5"
                     }`}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        setSelectedId(contact.id);
+                        setIsAdding(false);
+                        setIsEditing(false);
+                      }
+                    }}
                   >
-                    {contact.firstName}
-                  </span>
-                  <span
-                    className={`${
-                      selectedId === contact.id
-                        ? "text-white/90"
-                        : "text-gray-900 dark:text-gray-100"
-                    }`}
-                  >
-                    {contact.lastName}
-                  </span>
-                </div>
-              ))}
+                    {/* Mini avatar */}
+                    <div className={`w-7 h-7 rounded-full shrink-0 flex items-center justify-center text-[10px] font-bold text-white bg-gradient-to-br ${getAvatarColor(contact.id)}`}>
+                      {getInitials(contact.firstName, contact.lastName)}
+                    </div>
+                    <span className={`text-[13px] font-medium truncate ${isSelected ? "text-white" : "text-gray-900 dark:text-gray-100"}`}>
+                      {contact.firstName} <span className={isSelected ? "text-white/85" : "text-gray-600 dark:text-gray-300"}>{contact.lastName}</span>
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           ))}
         </div>
 
         {/* Bottom Bar */}
-        <div className="px-4 py-3 border-t border-gray-300/50 dark:border-black/10 flex justify-between items-center text-gray-500">
+        <div className="px-3 py-2.5 border-t border-gray-200/60 dark:border-black/15 flex justify-between items-center">
           <button
-            className="p-1 hover:bg-black/5 dark:hover:bg-white/10 rounded-md transition-colors"
+            className="p-1 hover:bg-black/5 dark:hover:bg-white/10 rounded-md transition-colors text-gray-500"
             onClick={() => {
               setIsAdding(true);
               setIsEditing(false);
@@ -284,7 +296,7 @@ export const Contacts: React.FC = () => {
           >
             <Plus size={16} />
           </button>
-          <span className="text-[11px] font-medium">
+          <span className="text-[11px] text-gray-400 font-medium">
             {t("Count", { count: contacts.length })}
           </span>
         </div>
@@ -420,7 +432,7 @@ export const Contacts: React.FC = () => {
 
             {/* Profile Header */}
             <div className="flex flex-col items-center mb-10">
-              <div className="w-32 h-32 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-5 text-gray-300 dark:text-gray-600 shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden relative">
+              <div className={`w-32 h-32 rounded-full flex items-center justify-center mb-5 shadow-md overflow-hidden relative ${displayImage ? "" : `bg-gradient-to-br ${getAvatarColor(selectedContact.id)}`}`}>
                 {displayImage ? (
                   <Image
                     src={displayImage}
@@ -430,7 +442,9 @@ export const Contacts: React.FC = () => {
                     unoptimized
                   />
                 ) : (
-                  <User size={64} strokeWidth={1.5} />
+                  <span className="text-white text-[44px] font-bold leading-none">
+                    {getInitials(selectedContact.firstName, selectedContact.lastName)}
+                  </span>
                 )}
               </div>
 

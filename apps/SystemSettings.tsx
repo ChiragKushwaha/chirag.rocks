@@ -30,12 +30,9 @@ import { KeyboardView } from "../components/SystemSettings/views/KeyboardView";
 import { TrackpadView } from "../components/SystemSettings/views/TrackpadView";
 import { PrintersScannersView } from "../components/SystemSettings/views/PrintersScannersView";
 import { StorageView } from "../components/SystemSettings/views/StorageView";
-import { Info } from "lucide-react";
 
 import { useSystemStore } from "../store/systemStore";
 import { useTranslations } from "next-intl";
-
-// ... existing imports
 
 export const SystemSettings: React.FC = () => {
   const {
@@ -128,18 +125,25 @@ export const SystemSettings: React.FC = () => {
         return <StorageView />;
       default:
         return (
-          <div className="flex flex-col items-center justify-center h-full text-gray-400">
-            <div className="w-16 h-16 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-4">
-              <Info size={32} />
+          <div className="flex flex-col items-center justify-center h-full gap-3 text-gray-400">
+            <div className="w-16 h-16 rounded-2xl bg-gray-100 flex items-center justify-center text-4xl">
+              ⚙️
             </div>
-            <p>{t("NotImplemented")}</p>
+            <p className="text-sm">{t("NotImplemented")}</p>
           </div>
         );
     }
   };
 
   return (
-    <div className="flex h-full bg-[#f5f5f7] dark:bg-[#1e1e1e] text-gray-900 dark:text-gray-100 font-sans select-none relative">
+    <div
+      className="flex h-full select-none relative overflow-hidden"
+      style={{
+        background: "#ececf0",
+        fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif",
+        color: "#1c1c1e",
+      }}
+    >
       <AvatarEditor
         isOpen={isAvatarEditorOpen}
         onClose={() => setIsAvatarEditorOpen(false)}
@@ -150,15 +154,38 @@ export const SystemSettings: React.FC = () => {
         currentAvatar={currentAvatar}
       />
 
+      {/* Sidebar */}
       <Sidebar
         activeTab={activeTab}
         setActiveTab={handleTabChange}
         currentAvatar={currentAvatar}
       />
 
-      {/* Content Area */}
-      <div className="flex-1 overflow-y-auto p-10">
-        <div className="max-w-2xl mx-auto">{renderContent()}</div>
+      {/* Content Panel */}
+      <div
+        className="flex-1 flex flex-col min-h-0 overflow-hidden"
+        style={{ background: "#f2f2f7" }}
+      >
+        {/* Panel title bar */}
+        <div
+          className="h-[52px] flex items-center px-8 shrink-0 border-b"
+          style={{
+            background: "rgba(242,242,247,0.9)",
+            backdropFilter: "blur(20px)",
+            borderColor: "rgba(0,0,0,0.08)",
+          }}
+        >
+          <h1 className="text-[15px] font-semibold text-gray-900">
+            {activeTab === "Apple Account" ? "Apple Account" : activeTab}
+          </h1>
+        </div>
+
+        {/* Scrollable content */}
+        <div className="flex-1 overflow-y-auto">
+          <div className="max-w-[640px] mx-auto px-8 py-6">
+            {renderContent()}
+          </div>
+        </div>
       </div>
     </div>
   );

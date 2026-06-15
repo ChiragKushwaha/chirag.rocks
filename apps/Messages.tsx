@@ -512,57 +512,29 @@ export const Messages: React.FC = () => {
       />
 
       {/* Sidebar */}
-      <div className="w-72 bg-[#f2f2f7]/90 dark:bg-[#2d2d2d]/90 backdrop-blur-xl border-r border-gray-200/50 dark:border-white/10 flex flex-col">
+      <div className="w-[260px] bg-[#f0f0f5] dark:bg-[#272727] border-r border-gray-300/50 dark:border-black/25 flex flex-col shrink-0">
         {/* Sidebar Header */}
-        <div className="h-12 flex items-center justify-between px-4 border-b border-gray-200/50 dark:border-white/10">
-          <div className="flex items-center gap-2">
-            <button
-              className="p-1.5 hover:bg-black/5 dark:hover:bg-white/10 rounded-md transition-colors"
-              aria-label="New message"
-            >
-              <Plus
-                size={18}
-                className="text-gray-600 dark:text-gray-400"
-                strokeWidth={2}
-              />
-            </button>
-          </div>
-          <span className="text-sm font-semibold text-gray-800 dark:text-gray-200">
-            {t("SidebarTitle")}
-          </span>
-          <button
-            className="p-1.5 hover:bg-black/5 dark:hover:bg-white/10 rounded-md transition-colors"
-            aria-label="Filter"
-          >
-            <ChevronDown
-              size={18}
-              className="text-gray-600 dark:text-gray-400"
-            />
-          </button>
-        </div>
-
-        {/* Search Bar */}
-        <div className="p-3">
+        <div className="h-[52px] flex flex-col justify-center px-3 border-b border-gray-200/60 dark:border-black/15 shrink-0">
           <div className="relative">
             <Search
-              size={14}
-              className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400"
+              size={12}
+              className="absolute left-2.5 top-[7px] text-gray-400"
             />
             <input
               type="text"
               placeholder="Search"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-black/5 dark:bg-white/10 rounded-lg pl-8 pr-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all"
+              className="w-full bg-[#dcdce0] dark:bg-[#3a3a3a] border-none rounded-[6px] pl-7 pr-3 py-1 text-[12px] placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500/50 text-gray-900 dark:text-white transition-all"
               aria-label="Search conversations"
             />
           </div>
         </div>
 
         {/* Conversations List */}
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto px-2 pt-2 pb-2">
           {filteredUsers.length === 0 && (
-            <div className="p-4 text-gray-500 dark:text-gray-400 text-sm text-center">
+            <div className="p-4 text-gray-500 dark:text-gray-400 text-[12px] text-center">
               {searchQuery ? "No results found" : t("NoOnlineUsers")}
             </div>
           )}
@@ -574,9 +546,9 @@ export const Messages: React.FC = () => {
               <div
                 key={chatUser.id}
                 onClick={() => setSelectedUser(chatUser.id)}
-                className={`px-3 py-2.5 cursor-pointer flex items-center gap-3 transition-colors ${
+                className={`px-2 py-1.5 mb-0.5 rounded-[5px] cursor-pointer flex items-center gap-2.5 transition-colors ${
                   isSelected
-                    ? "bg-blue-500"
+                    ? "bg-[#007AFF]"
                     : "hover:bg-black/5 dark:hover:bg-white/5"
                 }`}
                 role="button"
@@ -590,9 +562,9 @@ export const Messages: React.FC = () => {
               >
                 {/* Avatar with gradient */}
                 <div
-                  className={`w-10 h-10 rounded-full bg-gradient-to-br ${getAvatarGradient(
+                  className={`w-[34px] h-[34px] rounded-full bg-gradient-to-br ${getAvatarGradient(
                     chatUser.id
-                  )} flex items-center justify-center text-white font-semibold text-sm shrink-0`}
+                  )} flex items-center justify-center text-white font-semibold text-[11px] shrink-0`}
                 >
                   {chatUser.name.slice(0, 2).toUpperCase()}
                 </div>
@@ -601,7 +573,7 @@ export const Messages: React.FC = () => {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between">
                     <span
-                      className={`font-medium text-sm truncate ${
+                      className={`font-semibold text-[13px] truncate ${
                         isSelected
                           ? "text-white"
                           : "text-gray-900 dark:text-white"
@@ -610,19 +582,19 @@ export const Messages: React.FC = () => {
                       {chatUser.name}
                     </span>
                     <span
-                      className={`text-xs shrink-0 ml-2 ${
+                      className={`text-[11px] shrink-0 ml-2 ${
                         isSelected
-                          ? "text-white/70"
-                          : "text-gray-500 dark:text-gray-400"
+                          ? "text-blue-100"
+                          : "text-gray-400"
                       }`}
                     >
-                      {lastMessage ? "now" : ""}
+                      {lastMessage ? "9:41 AM" : ""}
                     </span>
                   </div>
                   <p
-                    className={`text-xs truncate mt-0.5 ${
+                    className={`text-[12px] truncate ${
                       isSelected
-                        ? "text-white/80"
+                        ? "text-white/90"
                         : "text-gray-500 dark:text-gray-400"
                     }`}
                   >
@@ -642,39 +614,33 @@ export const Messages: React.FC = () => {
         {selectedUser && selectedUserData ? (
           <>
             {/* Chat Header */}
-            <div className="h-12 flex items-center justify-between px-4 border-b border-gray-200/50 dark:border-white/10 bg-white/80 dark:bg-[#1e1e1e]/80 backdrop-blur-sm">
-              <div className="flex items-center gap-3">
+            <div className="h-[52px] flex items-center justify-between px-4 border-b border-gray-200/70 dark:border-black/20 shrink-0 bg-white/80 dark:bg-[#1e1e1e]/80 backdrop-blur-md">
+              <div className="flex items-center gap-2">
                 <div
-                  className={`w-8 h-8 rounded-full bg-gradient-to-br ${getAvatarGradient(
+                  className={`w-7 h-7 rounded-full bg-gradient-to-br ${getAvatarGradient(
                     selectedUser
-                  )} flex items-center justify-center text-white text-xs font-semibold`}
+                  )} flex items-center justify-center text-white text-[10px] font-bold`}
                 >
                   {selectedUserData.name.slice(0, 2).toUpperCase()}
                 </div>
                 <div>
-                  <div className="font-semibold text-sm text-gray-900 dark:text-white">
+                  <div className="font-semibold text-[13px] text-gray-900 dark:text-white leading-none">
                     {selectedUserData.name}
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 text-gray-400">
                 <button
-                  className="p-2 hover:bg-black/5 dark:hover:bg-white/10 rounded-md transition-colors"
+                  className="p-1.5 hover:bg-black/5 dark:hover:bg-white/10 rounded-md transition-colors"
                   aria-label="Video call"
                 >
-                  <Video
-                    size={18}
-                    className="text-gray-600 dark:text-gray-400"
-                  />
+                  <Video size={16} />
                 </button>
                 <button
-                  className="p-2 hover:bg-black/5 dark:hover:bg-white/10 rounded-md transition-colors"
+                  className="p-1.5 hover:bg-black/5 dark:hover:bg-white/10 rounded-md transition-colors"
                   aria-label="Audio call"
                 >
-                  <Phone
-                    size={18}
-                    className="text-gray-600 dark:text-gray-400"
-                  />
+                  <Phone size={16} />
                 </button>
               </div>
             </div>
@@ -696,18 +662,18 @@ export const Messages: React.FC = () => {
                   >
                     <div
                       className={`max-w-[65%] ${
-                        isMedia ? "p-1" : "px-3 py-2"
-                      } text-sm ${
+                        isMedia ? "p-1" : "px-3 py-1.5"
+                      } text-[14px] leading-relaxed shadow-sm ${
                         isMe
-                          ? `bg-gradient-to-br from-blue-500 to-blue-600 text-white ${
+                          ? `bg-[#007AFF] text-white ${
                               showTail
-                                ? "rounded-2xl rounded-br-md"
-                                : "rounded-2xl"
+                                ? "rounded-[18px] rounded-br-[4px]"
+                                : "rounded-[18px]"
                             }`
-                          : `bg-gray-200 dark:bg-[#3a3a3c] text-gray-900 dark:text-white ${
+                          : `bg-[#e9e9eb] dark:bg-[#3a3a3c] text-black dark:text-white ${
                               showTail
-                                ? "rounded-2xl rounded-bl-md"
-                                : "rounded-2xl"
+                                ? "rounded-[18px] rounded-bl-[4px]"
+                                : "rounded-[18px]"
                             }`
                       }`}
                     >
@@ -834,7 +800,7 @@ export const Messages: React.FC = () => {
             )}
 
             {/* Input Area */}
-            <div className="p-3 border-t border-gray-200/50 dark:border-white/10 bg-white dark:bg-[#1e1e1e]">
+            <div className="p-3 border-t border-gray-200/70 dark:border-black/20 bg-white dark:bg-[#1e1e1e]">
               <div className="flex items-center gap-2">
                 {/* Attachment Button */}
                 <button

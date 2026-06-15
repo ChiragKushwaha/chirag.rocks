@@ -284,19 +284,25 @@ export const Trash: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-full w-full bg-white">
-      <div className="h-10 bg-gray-100 border-b border-gray-300 flex items-center px-4 justify-between shrink-0">
-        <span className="font-semibold text-gray-700">Trash</span>
-        <button
-          onClick={emptyTrash}
-          className="px-3 py-1 bg-gray-200 rounded text-sm hover:bg-gray-300 active:bg-gray-400"
-        >
-          Empty
-        </button>
+    <div className="flex flex-col h-full w-full bg-white dark:bg-[#1e1e1e] font-[-apple-system,BlinkMacSystemFont,'SF_Pro_Text',sans-serif] text-[13px] select-none">
+      {/* Toolbar */}
+      <div className="h-[52px] bg-[#f5f5f7] dark:bg-[#272727] border-b border-gray-200/70 dark:border-black/25 flex items-center px-4 justify-between shrink-0 window-drag-handle">
+        <div className="flex items-center gap-2">
+          <span className="text-3xl">🗑️</span>
+          <span className="font-semibold text-[15px] text-gray-900 dark:text-white">Trash</span>
+        </div>
+        {files.length > 0 && (
+          <button
+            onClick={emptyTrash}
+            className="px-4 py-1.5 bg-[#007AFF] hover:bg-[#0063d1] text-white rounded-[6px] text-[12px] font-semibold transition-colors shadow-sm"
+          >
+            Empty Trash
+          </button>
+        )}
       </div>
       <div
         ref={containerRef}
-        className="flex-1 p-4 grid grid-cols-[repeat(auto-fill,minmax(80px,1fr))] gap-4 content-start overflow-y-auto relative"
+        className="flex-1 p-4 grid grid-cols-[repeat(auto-fill,minmax(80px,1fr))] gap-4 content-start overflow-y-auto relative bg-white dark:bg-[#1e1e1e]"
         onMouseDown={handleSelectionStart}
         onMouseMove={handleSelectionMove}
         onMouseUp={handleSelectionEnd}
@@ -317,8 +323,9 @@ export const Trash: React.FC = () => {
         )}
 
         {files.length === 0 && (
-          <div className="col-span-full text-center text-gray-400 mt-10 pointer-events-none">
-            Trash is empty
+          <div className="col-span-full flex flex-col items-center justify-center h-full text-gray-300 dark:text-gray-600 pointer-events-none gap-3">
+            <span className="text-6xl opacity-50">🗑️</span>
+            <span className="text-[14px]">Trash is Empty</span>
           </div>
         )}
         {files.map((file) => (

@@ -96,7 +96,7 @@ const nextConfig: NextConfig = {
           {
             key: "Content-Security-Policy",
             value:
-              "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' blob: https://va.vercel-scripts.com https://unpkg.com https://cdn.jsdelivr.net https://static.cloudflareinsights.com; worker-src 'self' blob: https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https:; font-src 'self' data:; connect-src 'self' blob: https://api.tvmaze.com https://itunes.apple.com https://saurav.tech https://raw.githubusercontent.com https://cdn-icons-png.flaticon.com https://api.bigdatacloud.net https://api.open-meteo.com https://api-bdc.io https://cloudflareinsights.com https://nominatim.openstreetmap.org https://tenor.googleapis.com https://media.tenor.com; media-src 'self' https://audio-ssl.itunes.apple.com; frame-src 'self' https://www.google.com https://www.youtube.com https://github1s.com https://maps.google.com; upgrade-insecure-requests;",
+              "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' blob: https://va.vercel-scripts.com https://unpkg.com https://cdn.jsdelivr.net https://static.cloudflareinsights.com; worker-src 'self' blob: https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https:; font-src 'self' data:; connect-src 'self' blob: https://api.tvmaze.com https://itunes.apple.com https://saurav.tech https://raw.githubusercontent.com https://cdn-icons-png.flaticon.com https://api.bigdatacloud.net https://api.open-meteo.com https://api-bdc.io https://cloudflareinsights.com https://nominatim.openstreetmap.org https://tenor.googleapis.com https://media.tenor.com https://www.youtube.com https://www.youtube-nocookie.com; media-src 'self' https://audio-ssl.itunes.apple.com https://www.youtube-nocookie.com; frame-src 'self' https://www.google.com https://www.youtube.com https://www.youtube-nocookie.com https://github1s.com https://maps.google.com; upgrade-insecure-requests;",
           },
           {
             key: "Cross-Origin-Opener-Policy",
@@ -104,7 +104,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Cross-Origin-Embedder-Policy",
-            value: "credentialless",
+            value: "unsafe-none",
           },
         ],
       },
