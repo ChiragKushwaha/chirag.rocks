@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"tsx server/server.ts\" \"next dev\"",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "server": "tsx server/server.ts",
     "lint": "eslint"
   },
   "browserslist": [
