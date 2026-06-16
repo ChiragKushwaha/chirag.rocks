@@ -27,6 +27,7 @@ import {
   Network,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useSystemStore } from "../../store/systemStore";
 
 interface SidebarProps {
   activeTab: string;
@@ -76,6 +77,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   currentAvatar,
 }) => {
   const t = useTranslations("SystemSettings.Sidebar");
+  const isDark = useSystemStore((s) => s.isDark);
   const [searchQuery, setSearchQuery] = useState("");
 
   const filtered = searchQuery.trim()
@@ -88,10 +90,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <div
       className="w-[240px] shrink-0 flex flex-col overflow-hidden border-r"
       style={{
-        background: "rgba(236,236,240,0.92)",
+        background: isDark ? "rgba(30,30,30,0.92)" : "rgba(236,236,240,0.92)",
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
-        borderColor: "rgba(0,0,0,0.1)",
+        borderColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
         fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif",
       }}
     >
@@ -115,9 +117,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full rounded-[7px] pl-8 pr-3 py-1.5 text-[13px] focus:outline-none focus:ring-2 focus:ring-blue-500/40"
             style={{
-              background: "rgba(255,255,255,0.7)",
-              border: "1px solid rgba(0,0,0,0.10)",
-              color: "#1c1c1e",
+              background: isDark
+                ? "rgba(255,255,255,0.08)"
+                : "rgba(255,255,255,0.7)",
+              border: isDark
+                ? "1px solid rgba(255,255,255,0.12)"
+                : "1px solid rgba(0,0,0,0.10)",
+              color: isDark ? "#f5f5f7" : "#1c1c1e",
             }}
             aria-label="Search settings"
           />
@@ -136,8 +142,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
         }}
         onMouseEnter={(e) => {
           if (activeTab !== "Apple Account")
-            (e.currentTarget as HTMLButtonElement).style.background =
-              "rgba(0,0,0,0.05)";
+            (e.currentTarget as HTMLButtonElement).style.background = isDark
+              ? "rgba(255,255,255,0.06)"
+              : "rgba(0,0,0,0.05)";
         }}
         onMouseLeave={(e) => {
           if (activeTab !== "Apple Account")
@@ -149,7 +156,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {currentAvatar}
         </div>
         <div className="flex flex-col min-w-0">
-          <span className="text-[13px] font-semibold text-gray-900 leading-tight">
+          <span className="text-[13px] font-semibold text-gray-900 dark:text-gray-100 leading-tight">
             Chirag
           </span>
           <span className="text-[11px] text-blue-600 truncate">
@@ -160,7 +167,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       <div
         className="mx-4 mb-3 border-t"
-        style={{ borderColor: "rgba(0,0,0,0.08)" }}
+        style={{
+          borderColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.08)",
+        }}
       />
 
       {/* Settings list */}
@@ -177,12 +186,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 background: isActive
                   ? "rgba(0,122,255,0.18)"
                   : "transparent",
-                color: isActive ? "#0A84FF" : "#1c1c1e",
+                color: isActive ? "#0A84FF" : isDark ? "#f5f5f7" : "#1c1c1e",
               }}
               onMouseEnter={(e) => {
                 if (!isActive)
-                  (e.currentTarget as HTMLButtonElement).style.background =
-                    "rgba(0,0,0,0.05)";
+                  (e.currentTarget as HTMLButtonElement).style.background = isDark
+                    ? "rgba(255,255,255,0.06)"
+                    : "rgba(0,0,0,0.05)";
               }}
               onMouseLeave={(e) => {
                 if (!isActive)
@@ -199,7 +209,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               </div>
               <span
                 className="text-[13px] font-medium truncate"
-                style={{ color: isActive ? "#0A84FF" : "#1c1c1e" }}
+                style={{ color: isActive ? "#0A84FF" : isDark ? "#f5f5f7" : "#1c1c1e" }}
               >
                 {item.id}
               </span>

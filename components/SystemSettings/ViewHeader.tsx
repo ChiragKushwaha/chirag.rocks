@@ -29,7 +29,7 @@ export const ViewHeader: React.FC<ViewHeaderProps> = ({
         <Icon size={30} color="white" />
       </div>
       <div>
-        <h2 className="text-[18px] font-semibold text-gray-900">{title}</h2>
+        <h2 className="text-[18px] font-semibold text-gray-900 dark:text-gray-100">{title}</h2>
         {description && (
           <p className="text-[12px] text-gray-500 mt-0.5 leading-snug max-w-sm">
             {description}

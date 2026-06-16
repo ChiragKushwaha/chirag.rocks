@@ -18,7 +18,7 @@ export const SettingsGroup: React.FC<SettingsGroupProps> = ({
       </h3>
     )}
     <div
-      className="rounded-xl overflow-hidden border"
+      className="settings-group-card rounded-xl overflow-hidden border"
       style={{
         background: "rgba(255,255,255,0.92)",
         borderColor: "rgba(0,0,0,0.10)",

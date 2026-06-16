@@ -352,7 +352,7 @@ export const Trash: React.FC = () => {
               className={`text-xs text-center w-full px-1 rounded wrap-break-word line-clamp-2 ${
                 selectedItems.includes(file.name)
                   ? "bg-blue-600 text-white"
-                  : "text-gray-600 group-hover:bg-blue-100"
+                  : "text-gray-600 dark:text-gray-300 group-hover:bg-blue-100 dark:group-hover:bg-blue-500/25"
               }`}
             >
               {file.name}

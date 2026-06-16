@@ -40,6 +40,7 @@ export const SystemSettings: React.FC = () => {
     setSettingsTab: setActiveTab,
     settingsSubTab: generalSubView,
     setSettingsSubTab: setGeneralSubView,
+    isDark,
   } = useSystemStore();
 
   const [isAvatarEditorOpen, setIsAvatarEditorOpen] = useState(false);
@@ -126,7 +127,7 @@ export const SystemSettings: React.FC = () => {
       default:
         return (
           <div className="flex flex-col items-center justify-center h-full gap-3 text-gray-400">
-            <div className="w-16 h-16 rounded-2xl bg-gray-100 flex items-center justify-center text-4xl">
+            <div className="w-16 h-16 rounded-2xl bg-gray-100 dark:bg-white/10 flex items-center justify-center text-4xl">
               ⚙️
             </div>
             <p className="text-sm">{t("NotImplemented")}</p>
@@ -139,9 +140,9 @@ export const SystemSettings: React.FC = () => {
     <div
       className="flex h-full select-none relative overflow-hidden"
       style={{
-        background: "#ececf0",
+        background: isDark ? "#1e1e1e" : "#ececf0",
         fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif",
-        color: "#1c1c1e",
+        color: isDark ? "#f5f5f7" : "#1c1c1e",
       }}
     >
       <AvatarEditor
@@ -164,18 +165,18 @@ export const SystemSettings: React.FC = () => {
       {/* Content Panel */}
       <div
         className="flex-1 flex flex-col min-h-0 overflow-hidden"
-        style={{ background: "#f2f2f7" }}
+        style={{ background: isDark ? "#252527" : "#f2f2f7" }}
       >
         {/* Panel title bar */}
         <div
           className="h-[52px] flex items-center px-8 shrink-0 border-b"
           style={{
-            background: "rgba(242,242,247,0.9)",
+            background: isDark ? "rgba(37,37,39,0.9)" : "rgba(242,242,247,0.9)",
             backdropFilter: "blur(20px)",
-            borderColor: "rgba(0,0,0,0.08)",
+            borderColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.08)",
           }}
         >
-          <h1 className="text-[15px] font-semibold text-gray-900">
+          <h1 className="text-[15px] font-semibold text-gray-900 dark:text-gray-100">
             {activeTab === "Apple Account" ? "Apple Account" : activeTab}
           </h1>
         </div>

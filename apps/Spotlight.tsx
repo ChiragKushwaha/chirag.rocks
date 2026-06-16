@@ -332,12 +332,12 @@ export const Spotlight: React.FC = () => {
                     </div>
                   ) : (
                     <div
-                      className={`w-8 h-8 rounded shadow-sm border border-black/5 flex items-center justify-center bg-white ${
+                      className={`w-8 h-8 rounded shadow-sm border border-black/5 dark:border-white/10 flex items-center justify-center bg-white dark:bg-[#2b2b2b] ${
                         idx === selectedIndex ? "opacity-100" : "opacity-90"
                       }`}
                     >
                       <File
-                        className="w-5 h-5 text-gray-500"
+                        className="w-5 h-5 text-gray-500 dark:text-gray-300"
                         strokeWidth={1.5}
                       />
                     </div>

@@ -17,14 +17,14 @@ const ACCENT_COLORS = [
 ];
 
 export const AppearanceView = () => {
-  const { theme, setTheme } = useSystemStore();
+  const { theme, setTheme, isDark } = useSystemStore();
   const t = useTranslations("SystemSettings.Appearance");
 
   return (
     <div className="space-y-5">
       {/* Page header */}
       <div>
-        <h2 className="text-[22px] font-semibold text-gray-900 mb-1">
+        <h2 className="text-[22px] font-semibold text-gray-900 dark:text-gray-100 mb-1">
           {t("Title")}
         </h2>
         <p className="text-[13px] text-gray-500">{t("Description")}</p>
@@ -89,7 +89,7 @@ export const AppearanceView = () => {
                   </div>
                   <span
                     className="text-[12px] font-medium"
-                    style={{ color: isSelected ? "#007AFF" : "#3c3c43" }}
+                    style={{ color: isSelected ? "#007AFF" : isDark ? "#ebebf5" : "#3c3c43" }}
                   >
                     {label}
                   </span>
@@ -103,7 +103,7 @@ export const AppearanceView = () => {
       {/* Accent Color */}
       <SettingsGroup>
         <div className="px-4 py-3 flex items-center justify-between border-b border-black/[0.06]">
-          <span className="text-[13px] text-gray-900">{t("AccentColor")}</span>
+          <span className="text-[13px] text-gray-900 dark:text-gray-100">{t("AccentColor")}</span>
           <div className="flex gap-2">
             {ACCENT_COLORS.map(({ color, label }) => (
               <button
@@ -141,7 +141,7 @@ export const AppearanceView = () => {
                 defaultChecked={defaultChecked}
                 className="accent-blue-500 w-3.5 h-3.5"
               />
-              <label htmlFor={id} className="text-[13px] text-gray-900 cursor-pointer">
+              <label htmlFor={id} className="text-[13px] text-gray-900 dark:text-gray-100 cursor-pointer">
                 {label}
               </label>
             </div>
@@ -164,7 +164,7 @@ export const AppearanceView = () => {
                 defaultChecked={defaultChecked}
                 className="accent-blue-500 w-3.5 h-3.5"
               />
-              <label htmlFor={id} className="text-[13px] text-gray-900 cursor-pointer">
+              <label htmlFor={id} className="text-[13px] text-gray-900 dark:text-gray-100 cursor-pointer">
                 {label}
               </label>
             </div>
