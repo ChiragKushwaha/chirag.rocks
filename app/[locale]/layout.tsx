@@ -36,7 +36,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "SEO" });
 
   return {
-    metadataBase: new URL("https://chirag-rocks.vercel.app"),
+    metadataBase: new URL("https://chirag.rocks"),
     alternates: {
       canonical: `/${locale}`,
     },
@@ -63,7 +63,7 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       locale: locale === "en" ? "en_US" : locale,
-      url: "https://chirag-rocks.vercel.app",
+      url: "https://chirag.rocks",
       siteName: "macOS Big Sur Clone",
       title: t("Title"),
       description: t("Description"),
@@ -123,7 +123,7 @@ export default async function RootLayout({
         name: "Chirag Kushwaha",
         jobTitle: t("StructuredData.JobTitle"),
         url: "https://chirag.rocks",
-        image: "https://chirag-rocks.vercel.app/apple-icon.png",
+        image: "https://chirag.rocks/apple-icon.png",
         sameAs: [
           "https://github.com/chirag-kushwaha",
           "https://linkedin.com/in/chirag-kushwaha",
@@ -155,11 +155,11 @@ export default async function RootLayout({
       },
       {
         "@type": "WebApplication",
-        "@id": "https://chirag-rocks.vercel.app/#webapplication",
+        "@id": "https://chirag.rocks/#webapplication",
         name: t("Title"),
         alternateName: t("StructuredData.AlternateName"),
         description: t("StructuredData.Description"),
-        url: "https://chirag-rocks.vercel.app",
+        url: "https://chirag.rocks",
         applicationCategory: "Portfolio",
         operatingSystem: "Web Browser",
         author: {
@@ -176,8 +176,8 @@ export default async function RootLayout({
       },
       {
         "@type": "WebSite",
-        "@id": "https://chirag-rocks.vercel.app/#website",
-        url: "https://chirag-rocks.vercel.app",
+        "@id": "https://chirag.rocks/#website",
+        url: "https://chirag.rocks",
         name: t("Title"),
         description: t("Description"),
         publisher: {
