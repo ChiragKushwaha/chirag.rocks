@@ -6,9 +6,8 @@ interface SpeakSpanishIconProps {
 }
 
 /**
- * sp4nish / SpeakSpanish — learn Spanish, one swipe at a time.
- * A friendly chat bubble greeting "¡Hola!" set on Spanish-flag red with a
- * golden accent bar.
+ * Official SpeakSpanish "Paco the parrot" logo
+ * (from https://sp4nish.vercel.app/icon.svg).
  */
 export const SpeakSpanishIcon: React.FC<SpeakSpanishIconProps> = ({
   size = 112,
@@ -16,37 +15,53 @@ export const SpeakSpanishIcon: React.FC<SpeakSpanishIconProps> = ({
 }) => {
   return (
     <div
-      className={`relative rounded-[22%] overflow-hidden shadow-2xl bg-linear-to-b from-[#e11d2e] via-[#c60b1e] to-[#8f0616] flex items-center justify-center ${className}`}
+      className={`relative overflow-hidden rounded-[22%] ${className}`}
       style={{ width: size, height: size }}
     >
       <svg
-        viewBox="0 0 100 100"
-        className="absolute inset-0 h-full w-full"
+        viewBox="0 0 512 512"
+        className="h-full w-full"
+        fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Speech bubble */}
-        <path
-          d="M22 24 H78 A10 10 0 0 1 88 34 V60 A10 10 0 0 1 78 70 H44 L30 82 L32 70 H22 A10 10 0 0 1 12 60 V34 A10 10 0 0 1 22 24 Z"
-          fill="#ffffff"
-        />
-        {/* Greeting */}
-        <text
-          x="50"
-          y="52"
-          textAnchor="middle"
-          fontFamily="Georgia, 'Times New Roman', serif"
-          fontSize="26"
-          fontWeight="700"
-          fill="#c60b1e"
-        >
-          ¡Hola!
-        </text>
-        {/* Spanish-flag gold accent */}
-        <rect x="34" y="58" width="32" height="4" rx="2" fill="#f5b301" />
-      </svg>
+        <defs>
+          <linearGradient id="sp-bg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#63d406" />
+            <stop offset="1" stopColor="#46a302" />
+          </linearGradient>
+          <linearGradient id="sp-belly" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#ffe27a" />
+            <stop offset="1" stopColor="#ffc800" />
+          </linearGradient>
+        </defs>
 
-      {/* Gloss */}
-      <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-white/15 to-transparent" />
+        {/* full-bleed background */}
+        <rect width="512" height="512" fill="url(#sp-bg)" />
+
+        {/* tuft feathers */}
+        <path d="M236 118 Q228 78 256 74 Q264 100 254 126Z" fill="#ff4b4b" />
+        <path d="M264 118 Q282 82 306 88 Q292 116 276 132Z" fill="#1cb0f6" />
+
+        {/* body */}
+        <ellipse cx="256" cy="288" rx="150" ry="158" fill="#eafcd8" />
+        <ellipse cx="256" cy="300" rx="118" ry="130" fill="#63d406" />
+        <ellipse cx="256" cy="318" rx="82" ry="96" fill="url(#sp-belly)" />
+
+        {/* cheeks */}
+        <circle cx="180" cy="290" r="24" fill="#ff8fab" opacity="0.85" />
+        <circle cx="332" cy="290" r="24" fill="#ff8fab" opacity="0.85" />
+
+        {/* eyes */}
+        <circle cx="204" cy="250" r="34" fill="#fff" />
+        <circle cx="308" cy="250" r="34" fill="#fff" />
+        <circle cx="214" cy="256" r="16" fill="#3c3c3c" />
+        <circle cx="318" cy="256" r="16" fill="#3c3c3c" />
+        <circle cx="221" cy="249" r="6" fill="#fff" />
+        <circle cx="325" cy="249" r="6" fill="#fff" />
+
+        {/* beak */}
+        <path d="M226 286 L286 286 L256 330Z" fill="#ff9600" />
+      </svg>
     </div>
   );
 };

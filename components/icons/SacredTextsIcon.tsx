@@ -6,8 +6,7 @@ interface SacredTextsIconProps {
 }
 
 /**
- * Sacred Texts — the world's sacred literature, beautifully read.
- * A golden open book haloed by radiant light on a deep, mystical field.
+ * Official Sacred Texts logo (from https://sacred-texts.vercel.app/icon.svg).
  */
 export const SacredTextsIcon: React.FC<SacredTextsIconProps> = ({
   size = 112,
@@ -15,67 +14,33 @@ export const SacredTextsIcon: React.FC<SacredTextsIconProps> = ({
 }) => {
   return (
     <div
-      className={`relative rounded-[22%] overflow-hidden shadow-2xl bg-linear-to-b from-[#3a2a63] via-[#241748] to-[#0e0a1f] flex items-center justify-center ${className}`}
+      className={`relative overflow-hidden rounded-[22%] ${className}`}
       style={{ width: size, height: size }}
     >
       <svg
-        viewBox="0 0 100 100"
-        className="absolute inset-0 h-full w-full"
+        viewBox="0 0 512 512"
+        className="h-full w-full"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <radialGradient id="st-glow" cx="50%" cy="30%" r="44%">
-            <stop offset="0%" stopColor="#ffe9a8" stopOpacity="0.9" />
-            <stop offset="55%" stopColor="#f7c34b" stopOpacity="0.22" />
-            <stop offset="100%" stopColor="#f7c34b" stopOpacity="0" />
-          </radialGradient>
-          <linearGradient id="st-gold" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#ffe7a0" />
-            <stop offset="55%" stopColor="#f6c453" />
-            <stop offset="100%" stopColor="#d99a2b" />
+          <linearGradient id="st-bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#e7c079" />
+            <stop offset="1" stopColor="#b07d2b" />
           </linearGradient>
         </defs>
-
-        {/* Divine halo */}
-        <circle cx="50" cy="30" r="30" fill="url(#st-glow)" />
-
-        {/* Sparkle above the book */}
-        <path
-          d="M50 8 L52.4 17.6 L62 20 L52.4 22.4 L50 32 L47.6 22.4 L38 20 L47.6 17.6 Z"
-          fill="#fff6da"
-          opacity="0.95"
-        />
-
-        {/* Open book */}
-        <g strokeLinejoin="round" strokeLinecap="round">
+        <rect width="512" height="512" rx="112" fill="url(#st-bg)" />
+        <g transform="translate(76 82) scale(15)" fill="#3a2708">
+          <path d="M12 3c1.7 2 1.7 4.6 0 7-1.7-2.4-1.7-5 0-7Z" />
           <path
-            d="M50 44 C41 38 30 36 20 38 L20 74 C30 72 41 74 50 80 Z"
-            fill="url(#st-gold)"
-            stroke="#b9791f"
-            strokeWidth="1.4"
+            d="M12 10.5c-2-1.6-4.4-1.9-6.7-.9 1 2.4 2.9 3.9 5.4 4.4M12 10.5c2-1.6 4.4-1.9 6.7-.9-1 2.4-2.9 3.9-5.4 4.4"
+            opacity="0.6"
           />
           <path
-            d="M50 44 C59 38 70 36 80 38 L80 74 C70 72 59 74 50 80 Z"
-            fill="url(#st-gold)"
-            stroke="#b9791f"
-            strokeWidth="1.4"
+            d="M4 13c-.6 2.3.2 4.4 2 6 2.3-.7 3.9-2.2 4.6-4.4M20 13c.6 2.3-.2 4.4-2 6-2.3-.7-3.9-2.2-4.6-4.4"
+            opacity="0.4"
           />
-          {/* Spine */}
-          <path d="M50 44 L50 80" stroke="#a9691a" strokeWidth="1.6" />
-          {/* Text lines */}
-          <g stroke="#9a5f16" strokeWidth="1.5" opacity="0.7">
-            <path d="M27 47 L44 50" />
-            <path d="M27 54 L44 57" />
-            <path d="M27 61 L44 64" />
-            <path d="M56 50 L73 47" />
-            <path d="M56 57 L73 54" />
-            <path d="M56 64 L73 61" />
-          </g>
         </g>
       </svg>
-
-      {/* Gloss */}
-      <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-white/15 to-transparent" />
     </div>
   );
 };

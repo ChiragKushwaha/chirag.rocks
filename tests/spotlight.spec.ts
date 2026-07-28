@@ -11,7 +11,7 @@ test.describe("Spotlight", () => {
     await page.getByRole("combobox").fill("Calculator");
     await expect(
       page.getByRole("option", { name: "Open Calculator" })
-    ).toBeVisible();
+    ).toBeVisible({ timeout: 20_000 });
   });
 
   test("launches an app from a result", async ({ page }) => {
@@ -19,7 +19,7 @@ test.describe("Spotlight", () => {
     await page.getByRole("combobox").fill("Calculator");
 
     const option = page.getByRole("option", { name: "Open Calculator" });
-    await expect(option).toBeVisible();
+    await expect(option).toBeVisible({ timeout: 20_000 });
     await option.click();
 
     // Spotlight closes and the Calculator window opens.

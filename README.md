@@ -61,7 +61,7 @@ This project includes a suite of functional applications, each showcasing differ
 
 ### 🔗 Portfolio Web Apps
 
-The Launchpad also links out to a set of standalone web apps, each with a custom macOS-style icon:
+The Launchpad also links out to a set of standalone web apps, each shown with its official site logo:
 
 | App | Description | Link |
 | :--- | :--- | :--- |

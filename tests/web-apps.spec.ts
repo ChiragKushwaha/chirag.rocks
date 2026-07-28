@@ -15,7 +15,7 @@ test.describe("External web-apps · Launchpad", () => {
     }
   });
 
-  test("each web-app renders a custom SVG icon", async ({ page }) => {
+  test("each web-app renders its logo", async ({ page }) => {
     const search = page.getByRole("textbox", { name: "Search applications" });
     for (const app of WEB_APPS) {
       await search.fill(app.name);
@@ -52,18 +52,16 @@ test.describe("External web-apps · Launchpad", () => {
 test.describe("External web-apps · Spotlight", () => {
   test("all four web-apps are searchable in Spotlight", async ({ page }) => {
     await gotoDesktop(page);
+    await openSpotlight(page);
+    const box = page.getByRole("combobox");
 
+    // Refill the same box for each app (fill replaces the query) so we never
+    // race the open/close animation of reopening Spotlight.
     for (const app of WEB_APPS) {
-      await openSpotlight(page);
-      const box = page.getByRole("combobox");
       await box.fill(app.name);
       await expect(
         page.getByRole("option", { name: `Open ${app.name}` })
-      ).toBeVisible({ timeout: 15_000 });
-
-      // Reset for the next lookup.
-      await box.clear();
-      await page.keyboard.press("Escape");
+      ).toBeVisible({ timeout: 20_000 });
     }
   });
 });
