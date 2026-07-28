@@ -133,10 +133,17 @@ const TimerTab = () => {
 
   useEffect(() => {
     if (!running) return;
-    if (remaining <= 0) { setRunning(false); return; }
-    const id = setInterval(() => setRemaining(r => Math.max(0, r - 1)), 1000);
+    const id = setInterval(() => {
+      setRemaining((r) => {
+        if (r <= 1) {
+          setRunning(false);
+          return 0;
+        }
+        return r - 1;
+      });
+    }, 1000);
     return () => clearInterval(id);
-  }, [running, remaining]);
+  }, [running]);
 
   const start = () => {
     const t = parseInt(inputH) * 3600 + parseInt(inputM) * 60 + parseInt(inputS);

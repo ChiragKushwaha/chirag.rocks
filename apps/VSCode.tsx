@@ -183,7 +183,7 @@ function renderMarkdown(md: string): React.ReactNode[] {
     const numbered = line.match(/^(\d+)\. (.+)/);
     if (numbered) {
       const items: string[] = [];
-      let num = parseInt(numbered[1]);
+      const num = parseInt(numbered[1]);
       while (i < lines.length && lines[i].match(/^\d+\. .+/)) {
         const m = lines[i].match(/^\d+\. (.+)/);
         if (m) items.push(m[1]);

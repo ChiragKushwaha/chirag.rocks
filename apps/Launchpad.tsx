@@ -99,7 +99,12 @@ const PDFViewer = dynamic(
 import { ChessIcon } from "../components/icons/ChessIcon";
 import { StocksIcon } from "../components/icons/StocksIcon";
 import { BooksIcon } from "../components/icons/BooksIcon";
+import { SacredTextsIcon } from "../components/icons/SacredTextsIcon";
+import { AlgoVizIcon } from "../components/icons/AlgoVizIcon";
+import { SpeakSpanishIcon } from "../components/icons/SpeakSpanishIcon";
+import { ToonflixIcon } from "../components/icons/ToonflixIcon";
 import { PlaceholderApp } from "./PlaceholderApp";
+import { WebLinkApp } from "./WebLinkApp";
 import { SocialApp } from "./SocialApp";
 import { ExternalLinkDialog } from "../components/ExternalLinkDialog";
 
@@ -458,6 +463,62 @@ export const APPS: AppDef[] = [
     ),
     component: LeetCode,
     url: "https://leetcode.com/u/ChiragKushwaha/",
+  },
+  {
+    id: "sacred-texts",
+    name: "Sacred Texts",
+    icon: SacredTextsIcon,
+    component: () => (
+      <WebLinkApp
+        title="Sacred Texts"
+        url="https://sacred-texts.vercel.app/"
+        description="The world's sacred literature — scripture, myth & the esoteric, beautifully read."
+        icon={<SacredTextsIcon className="h-full w-full" />}
+      />
+    ),
+    url: "https://sacred-texts.vercel.app/",
+  },
+  {
+    id: "algoviz",
+    name: "AlgoViz",
+    icon: AlgoVizIcon,
+    component: () => (
+      <WebLinkApp
+        title="AlgoViz"
+        url="https://alg0.vercel.app/"
+        description="Algorithms you can see — every problem stepped through, one frame at a time."
+        icon={<AlgoVizIcon className="h-full w-full" />}
+      />
+    ),
+    url: "https://alg0.vercel.app/",
+  },
+  {
+    id: "speakspanish",
+    name: "SpeakSpanish",
+    icon: SpeakSpanishIcon,
+    component: () => (
+      <WebLinkApp
+        title="SpeakSpanish"
+        url="https://sp4nish.vercel.app/"
+        description="Learn Spanish one swipe at a time — 700+ words across 90 topics."
+        icon={<SpeakSpanishIcon className="h-full w-full" />}
+      />
+    ),
+    url: "https://sp4nish.vercel.app/",
+  },
+  {
+    id: "toonflix",
+    name: "Toonflix",
+    icon: ToonflixIcon,
+    component: () => (
+      <WebLinkApp
+        title="Toonflix"
+        url="https://t00nflix.vercel.app/"
+        description="Stream comics, manga & toons — a Netflix-style reader for the public domain."
+        icon={<ToonflixIcon className="h-full w-full" />}
+      />
+    ),
+    url: "https://t00nflix.vercel.app/",
   },
   {
     id: "x",

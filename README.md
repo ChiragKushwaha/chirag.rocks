@@ -59,6 +59,17 @@ This project includes a suite of functional applications, each showcasing differ
 | **Music** | Audio player with playlist management. | HTML5 Audio |
 | **Chess** | Full chess game with AI opponent and move validation. | `chess.js`, `react-chessboard` |
 
+### 🔗 Portfolio Web Apps
+
+The Launchpad also links out to a set of standalone web apps, each with a custom macOS-style icon:
+
+| App | Description | Link |
+| :--- | :--- | :--- |
+| **Sacred Texts** | The world's sacred literature — scripture, myth & the esoteric. | [sacred-texts.vercel.app](https://sacred-texts.vercel.app/) |
+| **AlgoViz** | Algorithms you can see — animated, step-by-step visualizations. | [alg0.vercel.app](https://alg0.vercel.app/) |
+| **SpeakSpanish** | Learn Spanish one swipe at a time, across 90+ topics. | [sp4nish.vercel.app](https://sp4nish.vercel.app/) |
+| **Toonflix** | A Netflix-style reader for public-domain comics, manga & toons. | [t00nflix.vercel.app](https://t00nflix.vercel.app/) |
+
 ## 🛠️ Tech Stack
 
 * **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
@@ -101,7 +112,28 @@ This project includes a suite of functional applications, each showcasing differ
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 🤝 Contributing
+## � Testing
+
+End-to-end tests are written with [Playwright](https://playwright.dev/) and live in the [`tests/`](tests) folder. They cover routing & SEO, the boot/setup flow, the desktop shell, Launchpad, Spotlight, the API routes, and the external web-apps.
+
+```bash
+# Install the browser binary once
+pnpm exec playwright install chromium
+
+# Run the full suite (auto-starts the dev server)
+pnpm test
+
+# Interactive UI mode / headed mode
+pnpm test:ui
+pnpm test:headed
+
+# Open the HTML report from the last run
+pnpm test:report
+```
+
+By default the suite boots a local dev server on port 3000. Set `PLAYWRIGHT_WEB_SERVER="pnpm build && pnpm start"` to test a production build, or `PLAYWRIGHT_BASE_URL=https://…` to run against a deployed URL.
+
+## �🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
