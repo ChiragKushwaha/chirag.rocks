@@ -471,12 +471,12 @@ export const APPS: AppDef[] = [
     component: () => (
       <WebLinkApp
         title="Sacred Texts"
-        url="https://sacred-texts.vercel.app/"
+        url="https://sacred-texts.xyz/"
         description="The world's sacred literature — scripture, myth & the esoteric, beautifully read."
         icon={<SacredTextsIcon className="h-full w-full" />}
       />
     ),
-    url: "https://sacred-texts.vercel.app/",
+    url: "https://sacred-texts.xyz/",
   },
   {
     id: "algoviz",
@@ -485,12 +485,12 @@ export const APPS: AppDef[] = [
     component: () => (
       <WebLinkApp
         title="AlgoViz"
-        url="https://alg0.vercel.app/"
-        description="Algorithms you can see — every problem stepped through, one frame at a time."
+        url="https://algorithms.sacred-texts.xyz/"
+        description="Algorithms you can see — animated, step-by-step visualizations."
         icon={<AlgoVizIcon className="h-full w-full" />}
       />
     ),
-    url: "https://alg0.vercel.app/",
+    url: "https://algorithms.sacred-texts.xyz/",
   },
   {
     id: "speakspanish",

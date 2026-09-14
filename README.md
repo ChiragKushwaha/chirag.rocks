@@ -65,8 +65,8 @@ The Launchpad also links out to a set of standalone web apps, each shown with it
 
 | App | Description | Link |
 | :--- | :--- | :--- |
-| **Sacred Texts** | The world's sacred literature — scripture, myth & the esoteric. | [sacred-texts.vercel.app](https://sacred-texts.vercel.app/) |
-| **AlgoViz** | Algorithms you can see — animated, step-by-step visualizations. | [alg0.vercel.app](https://alg0.vercel.app/) |
+| **Sacred Texts** | The world's sacred literature — scripture, myth & the esoteric. | [sacred-texts.xyz](https://sacred-texts.xyz/) |
+| **AlgoViz** | Algorithms you can see — animated, step-by-step visualizations. | [algorithms.sacred-texts.xyz](https://algorithms.sacred-texts.xyz/) |
 | **SpeakSpanish** | Learn Spanish one swipe at a time, across 90+ topics. | [sp4nish.vercel.app](https://sp4nish.vercel.app/) |
 | **Toonflix** | A Netflix-style reader for public-domain comics, manga & toons. | [t00nflix.vercel.app](https://t00nflix.vercel.app/) |
 

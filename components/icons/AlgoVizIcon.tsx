@@ -6,7 +6,7 @@ interface AlgoVizIconProps {
 }
 
 /**
- * Official AlgoViz "Merlin" logo (from https://alg0.vercel.app/icon.svg).
+ * Official AlgoViz "Merlin" logo (from https://algorithms.sacred-texts.xyz/icon.svg).
  */
 export const AlgoVizIcon: React.FC<AlgoVizIconProps> = ({
   size = 112,

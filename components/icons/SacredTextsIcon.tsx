@@ -6,7 +6,7 @@ interface SacredTextsIconProps {
 }
 
 /**
- * Official Sacred Texts logo (from https://sacred-texts.vercel.app/icon.svg).
+ * Official Sacred Texts logo (from https://sacred-texts.xyz/icon.svg).
  */
 export const SacredTextsIcon: React.FC<SacredTextsIconProps> = ({
   size = 112,

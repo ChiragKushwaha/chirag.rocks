@@ -5,14 +5,14 @@ export const WEB_APPS = [
   {
     id: "sacred-texts",
     name: "Sacred Texts",
-    domain: "sacred-texts.vercel.app",
-    url: "https://sacred-texts.vercel.app/",
+    domain: "sacred-texts.xyz",
+    url: "https://sacred-texts.xyz/",
   },
   {
     id: "algoviz",
     name: "AlgoViz",
-    domain: "alg0.vercel.app",
-    url: "https://alg0.vercel.app/",
+    domain: "algorithms.sacred-texts.xyz",
+    url: "https://algorithms.sacred-texts.xyz/",
   },
   {
     id: "speakspanish",
