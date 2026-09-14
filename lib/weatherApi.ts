@@ -99,45 +99,76 @@ export const getWeatherInfo = (code: number, isDay: boolean = true) => {
   };
 };
 
-export const getUserLocation = (): Promise<{
+export const getUserLocation = async (): Promise<{
   lat: number;
   lon: number;
   name: string;
 }> => {
-  return new Promise((resolve, reject) => {
-    if (!navigator.geolocation) {
-      reject(new Error("Geolocation is not supported by your browser"));
-    } else {
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const { latitude, longitude } = position.coords;
-          try {
-            // Reverse geocoding to get city name
-            const res = await fetch(
-              `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
-            );
-            const data = await res.json();
-            resolve({
-              lat: latitude,
-              lon: longitude,
-              name: data.city || data.locality || "Unknown Location",
-            });
-          } catch {
-            // Fallback if reverse geocoding fails
-            resolve({
-              lat: latitude,
-              lon: longitude,
-              name: "Current Location",
-            });
-          }
-        },
-        (error) => {
-          reject(error);
-        }
-      );
+  // 1. Try internal server API route (handles Vercel geo headers & server-side lookup)
+  try {
+    const res = await fetch("/api/location");
+    if (res.ok) {
+      const data = await res.json();
+      if (typeof data.lat === "number" && typeof data.lon === "number") {
+        return {
+          lat: data.lat,
+          lon: data.lon,
+          name: data.name || "Current Location",
+        };
+      }
     }
-  });
+  } catch (error) {
+    console.warn("Failed to fetch location from /api/location:", error);
+  }
+
+  // 2. Direct client fallback via ipwho.is
+  try {
+    const res = await fetch("https://ipwho.is/");
+    if (res.ok) {
+      const data = await res.json();
+      if (
+        data.success &&
+        typeof data.latitude === "number" &&
+        typeof data.longitude === "number"
+      ) {
+        return {
+          lat: data.latitude,
+          lon: data.longitude,
+          name: data.city || data.region || data.country || "Current Location",
+        };
+      }
+    }
+  } catch (error) {
+    console.warn("Failed to fetch location from ipwho.is:", error);
+  }
+
+  // 3. Direct client fallback via geojs.io
+  try {
+    const res = await fetch("https://get.geojs.io/v1/ip/geo.json");
+    if (res.ok) {
+      const data = await res.json();
+      const lat = parseFloat(data.latitude);
+      const lon = parseFloat(data.longitude);
+      if (!isNaN(lat) && !isNaN(lon)) {
+        return {
+          lat,
+          lon,
+          name: data.city || data.region || data.country || "Current Location",
+        };
+      }
+    }
+  } catch (error) {
+    console.warn("Failed to fetch location from geojs.io:", error);
+  }
+
+  // 4. Default fallback location
+  return {
+    lat: 28.6139,
+    lon: 77.209,
+    name: "New Delhi",
+  };
 };
+
 
 export const fetchWeather = async (
   lat: number,
