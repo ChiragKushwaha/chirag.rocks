@@ -1,911 +1,108 @@
-import React, { useEffect, useState, useRef } from "react";
-import { fs } from "../lib/FileSystem";
-import { useMenuStore } from "../store/menuStore";
-import { useProcessStore } from "../store/processStore";
-import { ImportUtils } from "../lib/ImportUtils";
-import { useSystemStore } from "../store/systemStore";
-import { useFileCopyStore } from "../store/fileCopyStore";
+"use client";
+import React, { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-
-import dynamic from "next/dynamic";
-import NextImage from "next/image";
-import { MacFileEntry } from "../lib/types";
-import { Dock } from "./Dock";
-import { DesktopIcon } from "./DesktopIcon";
-import { useFileSeeder } from "./hooks/useFileSeeder"; // Import Seeder
 import { MenuBar } from "./MenuBar";
-import { ContextMenu } from "./Menus";
+import { Dock } from "./Dock";
 import { WindowManager } from "./WindowManager";
-
-// Dynamic Imports for Apps (Code Splitting)
-const Calculator = dynamic(() =>
-  import("../apps/Calculator").then((mod) => mod.Calculator)
-);
-const FaceTime = dynamic(() =>
-  import("../apps/FaceTime").then((mod) => mod.FaceTime)
-);
-const Finder = dynamic(() =>
-  import("../apps/Finder/Finder").then((mod) => mod.Finder)
-);
-const MediaPlayer = dynamic(() =>
-  import("../apps/MediaPlayer").then((mod) => mod.MediaPlayer)
-);
-const Messages = dynamic(() =>
-  import("../apps/Messages").then((mod) => mod.Messages)
-);
-const Notes = dynamic(() => import("../apps/Notes").then((mod) => mod.Notes));
-const Spotlight = dynamic(() =>
-  import("../apps/Spotlight").then((mod) => mod.Spotlight)
-);
-const Terminal = dynamic(() =>
-  import("../apps/Terminal").then((mod) => mod.Terminal)
-);
-const TextEdit = dynamic(() =>
-  import("../apps/TextEdit").then((mod) => mod.TextEdit)
-);
-const Trash = dynamic(() => import("../apps/Trash").then((mod) => mod.Trash));
-const SystemSettings = dynamic(() =>
-  import("../apps/SystemSettings").then((mod) => mod.SystemSettings)
-);
-const Photos = dynamic(() =>
-  import("../apps/Photos").then((mod) => mod.Photos)
-);
-const V86 = dynamic(() => import("../apps/V86").then((mod) => mod.V86), {
-  ssr: false,
-});
-
-const PDFViewer = dynamic(
-  () => import("../apps/PDFViewer").then((mod) => mod.PDFViewer),
-  { ssr: false }
-);
-
-import { useReminderStore } from "../store/reminderStore";
-import { useStickyNoteStore } from "../store/stickyNoteStore";
-import { BootScreen } from "./BootScreen";
-import { useAsset, useIconManager } from "./hooks/useIconManager";
-import { NotificationCenter } from "./NotificationCenter";
 import { StickyNote } from "./StickyNote";
-
-import { WallpaperManager } from "../lib/WallpaperManager";
-import { FileCopyWindow } from "./FileCopyWindow";
+import { BootScreen } from "./BootScreen";
+import { DesktopIconGrid } from "./desktop/DesktopIconGrid";
+import { DesktopSelectionBox } from "./desktop/DesktopSelectionBox";
+import { DesktopWallpaper } from "./desktop/DesktopWallpaper";
+import { DesktopOverlays } from "./desktop/DesktopOverlays";
+import { useDesktopState } from "./desktop/useDesktopState";
+import { useDesktopSelection } from "./desktop/useDesktopSelection";
+import { useWallpaperLoader } from "./desktop/useWallpaperLoader";
+import { useSpotlightShortcut } from "./desktop/useSpotlightShortcut";
+import { handleDesktopContextMenu } from "./desktop/DesktopContextMenu";
+import { useFileSeeder } from "./hooks/useFileSeeder";
 
 export const Desktop: React.FC = () => {
   const t = useTranslations("Desktop");
-  const tApps = useTranslations("Apps");
-  // Initialize File Seeding (Lazy Loading Assets to OPFS)
   useFileSeeder();
+  useSpotlightShortcut();
 
   const {
-    wallpaperName,
-    isBooting,
-    setBooting,
-    setSelectedFile,
-    user,
-    setTrashCount,
-    brightness,
-    isDark,
-    iconPositions,
-    setIconPosition,
-    selectedFiles = [],
-    setSelectedFiles,
-  } = useSystemStore();
+    assetsReady,
+    system,
+    notes,
+    openContextMenu,
+    launchProcess,
+    bootProgress,
+    setBootProgress,
+    wallpaper,
+    wallpaperUrl,
+    files,
+    refreshFiles,
+    ops,
+  } = useDesktopState();
 
-  const wallpaper = WallpaperManager.getWallpaperPath(
-    wallpaperName,
-    isDark ? "dark" : "light"
-  );
-  const { notes } = useStickyNoteStore();
-  const { openContextMenu } = useMenuStore();
-  const { launchProcess } = useProcessStore();
-  const [files, setFiles] = useState<MacFileEntry[]>([]);
-  const constraintsRef = React.useRef<HTMLDivElement>(null);
-  const [lastClickTime, setLastClickTime] = useState(0);
-  const [lastClickId, setLastClickId] = useState<string | null>(null);
-
-  // Selection Box State
-  const [selectionBox, setSelectionBox] = useState<{
-    startX: number;
-    startY: number;
-    currentX: number;
-    currentY: number;
-    isVisible: boolean;
-  } | null>(null);
-
+  const constraintsRef = useRef<HTMLDivElement>(null);
   const fileRefs = useRef<Map<string, HTMLDivElement>>(new Map());
-  const containerRef = useRef<HTMLDivElement>(null);
-  const dragStartPositions = useRef<Map<string, { x: number; y: number }>>(
-    new Map()
-  );
-
-  const startSelection = (e: React.MouseEvent | React.TouchEvent) => {
-    // Check for Touch: Require 2 fingers
-    if ("touches" in e) {
-      if (e.touches.length !== 2) return;
-    } else {
-      // Mouse: Only left click
-      if (e.button !== 0) return;
-    }
-
-    const clientX =
-      "touches" in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
-    const clientY =
-      "touches" in e ? e.touches[0].clientY : (e as React.MouseEvent).clientY;
-
-    setSelectionBox({
-      startX: clientX,
-      startY: clientY,
-      currentX: clientX,
-      currentY: clientY,
-      isVisible: true,
-    });
-
-    if (!e.shiftKey && !e.metaKey) {
-      setSelectedFiles([]);
-    }
-  };
-
-  const moveSelection = (e: React.MouseEvent | React.TouchEvent) => {
-    if (!selectionBox?.isVisible) return;
-
-    const clientX =
-      "touches" in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
-    const clientY =
-      "touches" in e ? e.touches[0].clientY : (e as React.MouseEvent).clientY;
-
-    const newBox = {
-      ...selectionBox,
-      currentX: clientX,
-      currentY: clientY,
-    };
-    setSelectionBox(newBox);
-
-    // Calculate intersection
-    const left = Math.min(newBox.startX, newBox.currentX);
-    const top = Math.min(newBox.startY, newBox.currentY);
-    const width = Math.abs(newBox.currentX - newBox.startX);
-    const height = Math.abs(newBox.currentY - newBox.startY);
-
-    const newSelected: string[] = [];
-
-    fileRefs.current.forEach((el, name) => {
-      const rect = el.getBoundingClientRect();
-      // Check intersection
-      if (
-        rect.left < left + width &&
-        rect.right > left &&
-        rect.top < top + height &&
-        rect.bottom > top
-      ) {
-        newSelected.push(name);
-      }
-    });
-
-    setSelectedFiles(newSelected);
-  };
-
-  const endSelection = () => {
-    if (selectionBox?.isVisible) {
-      setSelectionBox(null);
-    }
-  };
-
-  // Reminder Worker
-  const { reminders, markNotified } = useReminderStore();
-
-  const userName = user?.name || t("Guest");
-  const userHome = `/Users/${userName}`;
-  const desktopPath = `${userHome}/Desktop`;
-  const trashPath = `${userHome}/.Trash`;
-
-  // --- DESKTOP FILES RELOAD ---
-  // Reload desktop files when component mounts (fixes files disappearing after unlock)
-  useEffect(() => {
-    const reloadFiles = async () => {
-      try {
-        const entries = await fs.ls(desktopPath);
-        setFiles(entries);
-      } catch (error) {
-        console.error("[Desktop] Failed to reload files:", error);
-      }
-    };
-
-    reloadFiles();
-  }, [desktopPath, setFiles]); // Run once on mount, re-run if desktopPath or setFiles changes
-
-  // File watcher for desktop changes
-  useEffect(() => {
-    const checkReminders = () => {
-      const now = Date.now();
-      reminders.forEach((r) => {
-        if (r.dueTime && r.dueTime <= now && !r.notified && !r.completed) {
-          // Try Web Notification API first
-          if (
-            "Notification" in window &&
-            Notification.permission === "granted"
-          ) {
-            new Notification("Reminder", {
-              body: r.text,
-              icon: "/icons/reminders.webp",
-            });
-          } else if (
-            "Notification" in window &&
-            Notification.permission !== "denied"
-          ) {
-            Notification.requestPermission().then((permission) => {
-              if (permission === "granted") {
-                new Notification("Reminder", {
-                  body: r.text,
-                  icon: "/icons/reminders.webp",
-                });
-              } else {
-                alert(`Reminder: ${r.text}`);
-              }
-            });
-          } else {
-            // Fallback to alert
-            alert(`Reminder: ${r.text}`);
-          }
-          markNotified(r.id);
-        }
-      });
-    };
-
-    const interval = setInterval(checkReminders, 10000); // Check every 10 seconds
-    return () => clearInterval(interval);
-  }, [reminders, markNotified]);
-
-  // Force update wallpaper if it's the old default
-
-  // Initialize Icon System (Cache icons to OPFS)
-  const { isReady: assetsReady } = useIconManager();
-
-  // Load wallpaper from OPFS
-  const wallpaperUrl = useAsset(wallpaper);
-
+  const dragStartPositions = useRef<Map<string, { x: number; y: number }>>(new Map());
   const [renamingFile, setRenamingFile] = useState<string | null>(null);
+  const [lastClickId, setLastClickId] = useState<string | null>(null);
+  const [lastClickTime, setLastClickTime] = useState(0);
 
-  const handleRename = async (file: MacFileEntry, newName: string) => {
-    console.log("handleRename called:", file.name, "->", newName);
-    setRenamingFile(null);
-    if (!newName || newName === file.name) {
-      console.log("Rename cancelled or identical name");
-      return;
-    }
+  const { selectionBox, startSelection, updateSelection, endSelection } =
+    useDesktopSelection(files, fileRefs, system.setSelectedFiles);
 
-    try {
-      console.log("Executing fs.rename...");
-      await fs.rename(desktopPath, file.name, newName);
-      console.log("fs.rename success, refreshing list...");
-      const f = await fs.ls(desktopPath);
-      setFiles(f);
-    } catch (err) {
-      console.error("Failed to rename:", err);
-      alert("Failed to rename: " + err);
-    }
-  };
+  useWallpaperLoader({
+    wallpaperUrl,
+    assetsReady,
+    isBooting: system.isBooting,
+    setBooting: system.setBooting,
+    setBootProgress,
+  });
 
-  // Boot Logic
-  const [bootProgress, setBootProgress] = useState(0);
-
-  useEffect(() => {
-    const load = async () => {
-      // 1. Wait for Icon System (20%)
-      if (!assetsReady) {
-        setBootProgress(10);
-        return;
-      }
-      setBootProgress(20);
-
-      // 2. Load Resume.pdf to Desktop (30%)
-      const { hasSeededResume, setHasSeededResume } = useSystemStore.getState();
-
-      if (!hasSeededResume) {
-        try {
-          // Only create if not already seeded
-          const resumeRes = await fetch("/Resume.pdf");
-          const resumeBlob = await resumeRes.blob();
-          await fs.writeFile(desktopPath, "Resume.pdf", resumeBlob);
-          console.log("Resume.pdf loaded to Desktop ✅");
-          setHasSeededResume(true);
-        } catch (error) {
-          console.error("Failed to load Resume.pdf:", error);
-        }
-      } else {
-        console.log("Resume.pdf already seeded, skipping.");
-      }
-      setBootProgress(30);
-
-      // 3. Load Desktop Files (50%)
-      const f = await fs.ls(desktopPath);
-      setFiles(f);
-      setBootProgress(50);
-
-      // 4. Preload Wallpaper (100%)
-      if (!wallpaperUrl) {
-        // If no wallpaper URL after 3 seconds, just continue
-        setTimeout(() => {
-          setBootProgress(100);
-          setTimeout(() => setBooting(false), 500);
-        }, 3000);
-        return;
-      }
-
-      const img = new Image();
-      img.src = wallpaperUrl;
-
-      // Timeout fallback in case image never loads
-      const timeout = setTimeout(() => {
-        console.warn("Wallpaper load timeout, continuing anyway");
-        setBootProgress(100);
-        setTimeout(() => setBooting(false), 500);
-      }, 5000); // 5 second timeout
-
-      img.onload = () => {
-        clearTimeout(timeout);
-        setBootProgress(100);
-        // Small delay to show 100% before transition
-        setTimeout(() => setBooting(false), 500);
-      };
-
-      img.onerror = () => {
-        clearTimeout(timeout);
-        console.error("Failed to load wallpaper:", wallpaperUrl);
-        // Only proceed if we really fail, but ideally we shouldn't
-        setBootProgress(100);
-        setTimeout(() => setBooting(false), 500);
-      };
-    };
-
-    if (isBooting) {
-      load();
-    }
-  }, [isBooting, setBooting, assetsReady, wallpaperUrl, desktopPath]);
-
-  // Spotlight Hotkey (Cmd+K / Ctrl+K)
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        e.preventDefault();
-        useSystemStore.getState().toggleSpotlight();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
-  // --- ACTIONS ---
-  const createFolder = async (x?: number, y?: number) => {
-    const baseName = t("UntitledFolder");
-    let name = baseName;
-    let counter = 2;
-
-    // Find unique name
-    while (await fs.exists(`${desktopPath}/${name}`)) {
-      name = `${baseName} ${counter}`;
-      counter++;
-    }
-
-    await fs.mkdir(`${desktopPath}/${name}`);
-
-    // If coordinates provided, set absolute position
-    if (x !== undefined && y !== undefined) {
-      // Adjust for grid container padding (pt-[34px] = 34px)
-      // The grid container is relative, so (0,0) is top-left of container.
-      // e.clientY includes menu bar height?
-      // If clientY is from the top of the viewport, and the icon container starts at 0,0 of the screen,
-      // then clientY is already the correct Y coordinate relative to the screen.
-      // The `pt-[34px]` on the grid container means the grid items start 34px down *within that container*.
-      // If we set `position: absolute` on an icon, its `top` and `left` are relative to the *nearest positioned ancestor*.
-      // In this case, the `main` element, which is `h-screen w-screen relative`.
-      // So, `x` and `y` from `e.clientX`, `e.clientY` are already correct relative to the `main` element.
-      // We just need to center the icon on the cursor. Icon is roughly 100x104.
-      const adjustedX = x - 50; // Center horizontally
-      const adjustedY = y - 52; // Center vertically (104/2)
-
-      setIconPosition(name, adjustedX, adjustedY, true);
-    }
-
-    // Refresh files
-    const f = await fs.ls(desktopPath);
-    setFiles(f);
-  };
-
-  // ...
-
-  const openFile = (file: MacFileEntry) => {
-    if (file.kind === "directory") {
-      launchProcess(
-        `finder-${file.name}`,
-        file.name,
-        "finder",
-        <Finder initialPath={file.path} />,
-        {
-          width: 900,
-          height: 600,
-          x: 75,
-          y: 75,
-        }
-      );
-      return;
-    }
-
-    const ext = file.name.split(".").pop()?.toLowerCase();
-
-    // ... imports already at top ...
-
-    // ...
-
-    interface AppDefinition {
-      id: string;
-      name: string;
-      icon: string;
-      component: React.ComponentType<{
-        initialPath?: string;
-        initialFilename?: string;
-      }>;
-    }
-
-    // App Registry
-    const apps: Record<string, AppDefinition> = {
-      note: {
-        id: "notes",
-        name: tApps("Notes"),
-        icon: "notes",
-        component: Notes,
-      },
-      txt: {
-        id: "textedit",
-        name: tApps("TextEdit"),
-        icon: "📝",
-        component: TextEdit,
-      },
-      md: {
-        id: "textedit",
-        name: tApps("TextEdit"),
-        icon: "📝",
-        component: TextEdit,
-      },
-      mp4: {
-        id: "player",
-        name: tApps("MediaPlayer"),
-        icon: "▶️",
-        component: MediaPlayer,
-      },
-      mp3: {
-        id: "player",
-        name: tApps("MediaPlayer"),
-        icon: "🎵",
-        component: MediaPlayer,
-      },
-      mov: {
-        id: "player",
-        name: tApps("MediaPlayer"),
-        icon: "▶️",
-        component: MediaPlayer,
-      },
-      pdf: {
-        id: "preview",
-        name: tApps("Preview"),
-        icon: "📄",
-        component: PDFViewer,
-      },
-      // System Apps (no extension mapping needed usually, but good to have)
-      terminal: {
-        id: "terminal",
-        name: tApps("Terminal"),
-        icon: "terminal",
-        component: Terminal,
-      },
-      calculator: {
-        id: "calculator",
-        name: tApps("Calculator"),
-        icon: "calculator",
-        component: Calculator,
-      },
-      trash: {
-        id: "trash",
-        name: tApps("Trash"),
-        icon: "trash",
-        component: Trash,
-      },
-      messages: {
-        id: "messages",
-        name: tApps("Messages"),
-        icon: "messages",
-        component: Messages,
-      },
-      facetime: {
-        id: "facetime",
-        name: tApps("FaceTime"),
-        icon: "facetime",
-        component: FaceTime,
-      },
-      // Photos App Mappings
-      jpg: {
-        id: "photos",
-        name: tApps("Photos"),
-        icon: "photos",
-        component: Photos,
-      },
-      jpeg: {
-        id: "photos",
-        name: tApps("Photos"),
-        icon: "photos",
-        component: Photos,
-      },
-      png: {
-        id: "photos",
-        name: tApps("Photos"),
-        icon: "photos",
-        component: Photos,
-      },
-      gif: {
-        id: "photos",
-        name: tApps("Photos"),
-        icon: "photos",
-        component: Photos,
-      },
-      webp: {
-        id: "photos",
-        name: tApps("Photos"),
-        icon: "photos",
-        component: Photos,
-      },
-      svg: {
-        id: "photos",
-        name: tApps("Photos"),
-        icon: "photos",
-        component: Photos,
-      },
-      ico: {
-        id: "photos",
-        name: tApps("Photos"),
-        icon: "photos",
-        component: Photos,
-      },
-      heic: {
-        id: "photos",
-        name: tApps("Photos"),
-        icon: "photos",
-        component: Photos,
-      },
-      psd: {
-        id: "photos",
-        name: tApps("Photos"),
-        icon: "photos",
-        component: Photos,
-      },
-      ai: {
-        id: "photos",
-        name: tApps("Photos"),
-        icon: "photos",
-        component: Photos,
-      },
-      tiff: {
-        id: "photos",
-        name: tApps("Photos"),
-        icon: "photos",
-        component: Photos,
-      },
-      tif: {
-        id: "photos",
-        name: tApps("Photos"),
-        icon: "photos",
-        component: Photos,
-      },
-      // V86 Emulator
-      iso: {
-        id: "v86",
-        name: tApps("VirtualMachine"),
-        icon: "disk_image",
-        component: V86,
-      },
-      img: {
-        id: "v86",
-        name: tApps("VirtualMachine"),
-        icon: "disk_image",
-        component: V86,
-      },
-    };
-
-    const app = ext ? apps[ext] : null;
-
-    if (app) {
-      // Special window sizing
-      let windowConfig = undefined;
-
-      if (app.id === "preview") {
-        windowConfig = { width: 1000, height: 700, x: 100, y: 50 };
-      } else if (app.id === "v86") {
-        // Fixed size for V86 (standard VGA + chrome)
-        windowConfig = {
-          width: 1280,
-          height: 720,
-          x: 100,
-          y: 100,
-          resizable: false,
-        };
-      }
-
-      launchProcess(
-        `${app.id}-${file.name}`,
-        file.name,
-        app.icon,
-        <app.component initialPath={desktopPath} initialFilename={file.name} />,
-        windowConfig
-      );
-    } else {
-      alert(t("NoAppAvailable", { ext: ext || "unknown" }));
-    }
-  };
-
-  // Listen for external FS changes (e.g. from Trash Put Back)
-  useEffect(() => {
-    const handleRefresh = () => {
-      fs.ls(desktopPath).then(setFiles);
-    };
-    window.addEventListener("file-system-change", handleRefresh);
-    return () =>
-      window.removeEventListener("file-system-change", handleRefresh);
-  }, [desktopPath]);
-
-  const moveToBin = async (file: MacFileEntry) => {
-    // Ensure trash exists
-    if (!(await fs.exists(trashPath))) {
-      await fs.mkdir(trashPath);
-    }
-
-    const store = useFileCopyStore.getState();
-
-    // 1. Start Progress (Moving)
-    // Calculate full recursive size for accurate progress
-    let totalBytes = await fs.getSize(file.path);
-    if (totalBytes === 0 && file.size) {
-      totalBytes = file.size;
-    }
-    store.startCopy(1, totalBytes, "Desktop", "Trash", "move");
-
-    // Read and write to move (simplification)
-    // TODO: Add fs.move to FileSystem
-    try {
-      // Simulate progress for better UX (since fs.move is instant)
-      // This prevents the "0 to 100% in 1ms" jump that looks like a glitch
-      const steps = 10;
-      const duration = 800; // 0.8s duration
-      const stepTime = duration / steps;
-
-      for (let i = 1; i <= steps; i++) {
-        if (useFileCopyStore.getState().isCancelled) break;
-        await new Promise((r) => setTimeout(r, stepTime));
-        const simulatedBytes = Math.floor(totalBytes * 0.9 * (i / steps));
-        store.updateProgress(0, simulatedBytes, file.name);
-      }
-
-      if (useFileCopyStore.getState().isCancelled) {
-        store.endCopy();
-        return;
-      }
-
-      await fs.move(desktopPath, file.name, trashPath, file.name);
-
-      // 2. Update Progress to 100%
-      store.updateProgress(1, totalBytes, file.name);
-
-      // Refresh Desktop Files
-      const f = await fs.ls(desktopPath);
-      setFiles(f);
-
-      // Refresh Trash Count & Notify Trash App
-      const trashFiles = await fs.ls(trashPath);
-      setTrashCount(trashFiles.length);
-      window.dispatchEvent(new Event("trash-updated"));
-
-      // 3. End Progress after short delay
-      setTimeout(() => {
-        store.endCopy();
-      }, 500);
-    } catch (e) {
-      console.error("Failed to move to bin", e);
-      alert(t("MoveToBin.NotSupported"));
-      store.endCopy();
-    }
-  };
-
-  // --- RIGHT CLICK HANDLER ---
-  const handleContextMenu = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const x = e.clientX;
-    const y = e.clientY;
-
-    openContextMenu(e.clientX, e.clientY, [
-      {
-        label: t("ContextMenu.NewFolder"),
-        icon: "📁", // TODO: Use better icon
-        action: () => createFolder(x, y),
-      },
-      { separator: true },
-      { label: t("ContextMenu.GetInfo"), icon: "ℹ️", disabled: false },
-      {
-        label: t("ContextMenu.ChangeWallpaper"),
-        action: () => {
-          // Launch System Settings with wallpaper panel
-          launchProcess(
-            "settings",
-            tApps("SystemSettings"),
-            "settings",
-            <SystemSettings />,
-            { width: 900, height: 600, x: 100, y: 100 }
-          );
-        },
-      },
-      { label: t("ContextMenu.EditWidgets"), disabled: true },
-      { separator: true },
-      { label: t("ContextMenu.UseStacks"), icon: "📚", disabled: true },
-      {
-        label: t("ContextMenu.SortBy"),
-        icon: "⇅",
-        submenu: [
-          { label: t("ContextMenu.None"), icon: "✓" },
-          { separator: true },
-          { label: t("ContextMenu.SnapToGrid") },
-          { separator: true },
-          { label: t("ContextMenu.Name") },
-          { label: t("ContextMenu.Kind") },
-          { label: t("ContextMenu.DateLastOpened") },
-          { label: t("ContextMenu.DateAdded") },
-          { label: t("ContextMenu.DateModified") },
-          { label: t("ContextMenu.DateCreated") },
-          { label: t("ContextMenu.Size") },
-          { label: t("ContextMenu.Tags") },
-        ],
-      },
-      { label: t("ContextMenu.CleanUp"), disabled: false },
-      {
-        label: t("ContextMenu.CleanUpBy"),
-        disabled: false,
-        submenu: [
-          { label: t("ContextMenu.Name") },
-          { label: t("ContextMenu.Kind") },
-          { label: t("ContextMenu.DateModified") },
-          { label: t("ContextMenu.DateCreated") },
-          { label: t("ContextMenu.Size") },
-          { label: t("ContextMenu.Tags") },
-        ],
-      },
-      { label: t("ContextMenu.ShowViewOptions"), icon: "⚙️", disabled: true },
-    ]);
-  };
-
-  // File Drop Handler
-  const handleDragOver = (e: React.DragEvent) => {
-    // Allow drop if it contains files
-    if (e.dataTransfer.types.includes("Files")) {
-      e.preventDefault();
-      e.dataTransfer.dropEffect = "copy";
-    }
-  };
-
-  const handleDrop = async (e: React.DragEvent) => {
-    // Check if it's an internal drag (we might want to ignore or handle differently)
-    // For now, if it has "Files" and no internal ID, treat as external import
-    if (e.dataTransfer.types.includes("Files")) {
-      e.preventDefault();
-
-      // Check if it's internal drag (usually we set some text/plain data)
-      // But browsers might add "Files" even for internal image drags?
-      // Let's assume if we have DataTransferItems of kind 'file', it's an import.
-
-      try {
-        await ImportUtils.importItems(e.dataTransfer.items, desktopPath);
-        // Refresh
-        const f = await fs.ls(desktopPath);
-        setFiles(f);
-      } catch (err) {
-        console.error("Import failed:", err);
-        alert("Failed to import files");
-      }
-    }
-  };
-
-  if (isBooting) return <BootScreen progress={bootProgress} />;
+  if (system.isBooting) return <BootScreen progress={bootProgress} />;
 
   return (
     <div
       ref={constraintsRef}
-      className="h-screen w-screen overflow-hidden relative"
-      style={{
-        backgroundImage: `url(${wallpaperUrl})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-      onContextMenu={handleContextMenu}
+      className="h-screen w-screen overflow-hidden relative select-none"
+      onContextMenu={(e) =>
+        handleDesktopContextMenu(e, {
+          openContextMenu,
+          onCreateFolder: ops.createNewFolder,
+          onRefresh: refreshFiles,
+          onOpenSettings: () => launchProcess("settings", "System Settings", "settings", null),
+          t,
+        })
+      }
       onMouseDown={startSelection}
       onTouchStart={startSelection}
-      onMouseMove={moveSelection}
-      onTouchMove={moveSelection}
+      onMouseMove={updateSelection}
+      onTouchMove={updateSelection}
       onMouseUp={endSelection}
       onTouchEnd={endSelection}
       onMouseLeave={endSelection}
-      onDragOver={handleDragOver}
-      onDrop={handleDrop}
     >
-      {/* Boot Screen Overlay */}
-      {selectionBox?.isVisible && (
-        <div
-          className="absolute border border-blue-500/50 bg-blue-400/20 z-50 pointer-events-none"
-          style={{
-            left: Math.min(selectionBox.startX, selectionBox.currentX),
-            top: Math.min(selectionBox.startY, selectionBox.currentY),
-            width: Math.abs(selectionBox.currentX - selectionBox.startX),
-            height: Math.abs(selectionBox.currentY - selectionBox.startY),
-          }}
-        />
-      )}
-      {/* Wallpaper Layer (z-0) */}
-      <div className="absolute inset-0 z-0">
-        <NextImage
-          src={wallpaperUrl || wallpaper}
-          alt="Wallpaper"
-          fill
-          priority
-          className="object-cover transition-all duration-1000 ease-in-out"
-          style={{
-            filter: `brightness(${brightness}%)`,
-          }}
-          unoptimized={!!wallpaperUrl?.startsWith("blob:")}
-          quality={90}
-        />
-      </div>
-
-      {/* Menu Bar (z-40) */}
-      <div className="relative z-40">
-        <MenuBar />
-      </div>
-
-      {/* GLOBAL CONTEXT MENU LAYER (z-50) */}
-      <ContextMenu />
-      <Spotlight />
-      <NotificationCenter />
-      <FileCopyWindow />
-
-      {/* Desktop Icons (z-10) */}
-      <div
-        ref={containerRef}
-        className="pt-[34px] px-1 grid grid-flow-col grid-rows-[repeat(auto-fill,104px)] gap-y-1 gap-x-0 content-start justify-end h-full pb-20 z-10 relative pointer-events-none direction-rtl"
-        style={{ direction: "rtl" }}
-      >
-        {files.map(
-          (file) =>
-            !file.isHidden && (
-              <DesktopIcon
-                key={file.name}
-                file={file}
-                files={files}
-                constraintsRef={constraintsRef}
-                fileRefs={fileRefs}
-                selectedFiles={selectedFiles}
-                setSelectedFiles={setSelectedFiles}
-                dragStartPositions={dragStartPositions}
-                iconPositions={iconPositions}
-                setIconPosition={setIconPosition}
-                renamingFile={renamingFile}
-                setRenamingFile={setRenamingFile}
-                handleRename={handleRename}
-                openFile={openFile}
-                setSelectedFile={setSelectedFile}
-                setLastClickId={setLastClickId}
-                setLastClickTime={setLastClickTime}
-                lastClickId={lastClickId}
-                lastClickTime={lastClickTime}
-                openContextMenu={openContextMenu}
-                moveToBin={moveToBin}
-              />
-            )
-        )}
-      </div>
-
-      {/* Sticky Notes (z-0) */}
+      <DesktopSelectionBox selectionBox={selectionBox} />
+      <DesktopWallpaper src={wallpaperUrl || wallpaper} brightness={system.brightness} />
+      <div className="relative z-40"><MenuBar /></div>
+      <DesktopOverlays />
+      <DesktopIconGrid
+        files={files}
+        constraintsRef={constraintsRef}
+        fileRefs={fileRefs}
+        selectedFiles={system.selectedFiles}
+        setSelectedFiles={system.setSelectedFiles}
+        dragStartPositions={dragStartPositions}
+        iconPositions={system.iconPositions}
+        setIconPosition={system.setIconPosition}
+        renamingFile={renamingFile}
+        setRenamingFile={setRenamingFile}
+        handleRename={ops.handleRename}
+        openFile={ops.openFile}
+        setSelectedFile={system.setSelectedFile}
+        setLastClickId={setLastClickId}
+        setLastClickTime={setLastClickTime}
+        lastClickId={lastClickId}
+        lastClickTime={lastClickTime}
+        openContextMenu={openContextMenu}
+        moveToBin={ops.moveToBin}
+      />
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         {notes.map((note) => (
           <div key={note.id} className="pointer-events-auto">
@@ -913,16 +110,8 @@ export const Desktop: React.FC = () => {
           </div>
         ))}
       </div>
-
-      {/* Window Manager (z-20) */}
-      <div className="absolute inset-0 z-20 pointer-events-none">
-        <WindowManager />
-      </div>
-
-      {/* Dock (z-30) */}
-      <div className="relative z-30">
-        <Dock />
-      </div>
+      <div className="absolute inset-0 z-20 pointer-events-none"><WindowManager /></div>
+      <div className="relative z-30"><Dock /></div>
     </div>
   );
 };

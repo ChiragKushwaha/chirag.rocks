@@ -30,7 +30,8 @@
       "Title": "اختر لغتك",
       "Description": "اختر اللغة التي تود استخدامها لجهاز Mac الخاص بك.",
       "TableLabel": "اللغة",
-      "Primary": "الأساسية"
+      "Primary": "الأساسية",
+      "LanguageColumn": "Language"
     },
     "Region": {
       "Title": "اختر دولتك أو منطقتك"
@@ -1275,7 +1276,8 @@
       "ReadArticle": "قراءة المقال: {title}",
       "Share": "مشاركة",
       "Like": "إعجاب",
-      "ReadTopStory": "Read top story: {title}"
+      "ReadTopStory": "Read top story: {title}",
+      "ActivateSearch": "Activate search"
     },
     "Refresh": "تحديث",
     "TopStory": "قصة رئيسية"
@@ -1436,7 +1438,15 @@
     "Loading": "Loading...",
     "NoPDF": "No PDF",
     "FailedToLoad": "Failed to load PDF",
-    "NoPDFLoaded": "No PDF loaded"
+    "NoPDFLoaded": "No PDF loaded",
+    "FitWidth": "Fit Width",
+    "FitPage": "Fit Page",
+    "Download": "Download",
+    "Previous": "Previous Page",
+    "Next": "Next Page",
+    "Aria": {
+      "Download": "Download PDF"
+    }
   },
   "Applications": {
     "Finder": "Finder",

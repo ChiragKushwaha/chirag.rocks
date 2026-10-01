@@ -30,7 +30,8 @@
       "Title": "언어 선택",
       "Description": "Mac에서 사용할 언어를 선택하십시오.",
       "TableLabel": "언어",
-      "Primary": "기본"
+      "Primary": "기본",
+      "LanguageColumn": "Language"
     },
     "Region": {
       "Title": "국가 또는 지역 선택"
@@ -1496,7 +1497,8 @@
       "ReadTopStory": "Read top story: {title}",
       "ReadArticle": "Read article: {title}",
       "Share": "Share article",
-      "Like": "Like article"
+      "Like": "Like article",
+      "ActivateSearch": "Activate search"
     }
   },
   "Music": {
@@ -1633,7 +1635,15 @@
     "Loading": "Loading...",
     "NoPDF": "No PDF",
     "FailedToLoad": "Failed to load PDF",
-    "NoPDFLoaded": "No PDF loaded"
+    "NoPDFLoaded": "No PDF loaded",
+    "FitWidth": "Fit Width",
+    "FitPage": "Fit Page",
+    "Download": "Download",
+    "Previous": "Previous Page",
+    "Next": "Next Page",
+    "Aria": {
+      "Download": "Download PDF"
+    }
   },
   "Spotlight": {
     "Placeholder": "Spotlight Search",

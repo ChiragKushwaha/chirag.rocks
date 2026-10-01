@@ -10,7 +10,7 @@ test.describe("Spotlight", () => {
     await openSpotlight(page);
     await page.getByRole("combobox").fill("Calculator");
     await expect(
-      page.getByRole("option", { name: "Open Calculator" })
+      page.getByRole("option", { name: "Open Calculator", exact: true })
     ).toBeVisible({ timeout: 20_000 });
   });
 
@@ -18,7 +18,7 @@ test.describe("Spotlight", () => {
     await openSpotlight(page);
     await page.getByRole("combobox").fill("Calculator");
 
-    const option = page.getByRole("option", { name: "Open Calculator" });
+    const option = page.getByRole("option", { name: "Open Calculator", exact: true });
     await expect(option).toBeVisible({ timeout: 20_000 });
     await option.click();
 

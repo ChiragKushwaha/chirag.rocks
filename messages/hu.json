@@ -15,7 +15,8 @@
       "Title": "Válasszon nyelvet",
       "Description": "Válassza ki a Macen használni kívánt nyelvet.",
       "TableLabel": "Nyelv",
-      "Primary": "Elsődleges"
+      "Primary": "Elsődleges",
+      "LanguageColumn": "Language"
     },
     "Region": {
       "Title": "Válasszon országot vagy régiót"
@@ -1142,7 +1143,8 @@
       "ReadTopStory": "Kiemelt hír olvasása: {title}",
       "ReadArticle": "Cikk olvasása: {title}",
       "Share": "Cikk megosztása",
-      "Like": "Cikk kedvelése"
+      "Like": "Cikk kedvelése",
+      "ActivateSearch": "Activate search"
     }
   },
   "Music": {
@@ -1279,7 +1281,15 @@
     "Loading": "Betöltés...",
     "NoPDF": "Nincs PDF",
     "FailedToLoad": "Nem sikerült betölteni a PDF-et",
-    "NoPDFLoaded": "Nincs betöltött PDF"
+    "NoPDFLoaded": "Nincs betöltött PDF",
+    "FitWidth": "Fit Width",
+    "FitPage": "Fit Page",
+    "Download": "Download",
+    "Previous": "Previous Page",
+    "Next": "Next Page",
+    "Aria": {
+      "Download": "Download PDF"
+    }
   },
   "Spotlight": {
     "Placeholder": "Spotlight keresés",

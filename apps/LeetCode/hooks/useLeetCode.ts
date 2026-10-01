@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { apiClient } from "../../../lib/apiClient";
 import { LeetCodeData } from "../types";
 
 export const useLeetCode = () => {
@@ -13,11 +14,11 @@ export const useLeetCode = () => {
   } = useQuery({
     queryKey: ["leetcode", username],
     queryFn: async () => {
-      const res = await fetch(`/api/leetcode?username=${username}`);
-      if (!res.ok) throw new Error("Failed to fetch data");
-      const json = await res.json();
-      if (json.error) throw new Error(json.error);
-      return json as LeetCodeData;
+      const response = await apiClient.get<LeetCodeData & { error?: string }>(
+        `/api/leetcode?username=${username}`
+      );
+      if (response.data.error) throw new Error(response.data.error);
+      return response.data;
     },
     staleTime: 1000 * 60 * 60, // 1 hour
   });

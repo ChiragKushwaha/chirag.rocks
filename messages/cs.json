@@ -30,7 +30,8 @@
       "Title": "Vyberte svůj jazyk",
       "Description": "Vyberte jazyk, který chcete používat pro svůj Mac.",
       "TableLabel": "Jazyk",
-      "Primary": "Primární"
+      "Primary": "Primární",
+      "LanguageColumn": "Language"
     },
     "Region": {
       "Title": "Vyberte svou zemi nebo region"
@@ -1275,7 +1276,8 @@
       "ReadArticle": "Přečíst článek: {title}",
       "Share": "Sdílet",
       "Like": "To se mi líbí",
-      "ReadTopStory": "Read top story: {title}"
+      "ReadTopStory": "Read top story: {title}",
+      "ActivateSearch": "Activate search"
     },
     "Refresh": "Obnovit",
     "TopStory": "Hlavní příběh"
@@ -1436,7 +1438,15 @@
     "Loading": "Loading...",
     "NoPDF": "No PDF",
     "FailedToLoad": "Failed to load PDF",
-    "NoPDFLoaded": "No PDF loaded"
+    "NoPDFLoaded": "No PDF loaded",
+    "FitWidth": "Fit Width",
+    "FitPage": "Fit Page",
+    "Download": "Download",
+    "Previous": "Previous Page",
+    "Next": "Next Page",
+    "Aria": {
+      "Download": "Download PDF"
+    }
   },
   "Applications": {
     "Finder": "Finder",

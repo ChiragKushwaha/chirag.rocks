@@ -30,7 +30,8 @@
       "Title": "আপনার ভাষা নির্বাচন করুন",
       "Description": "আপনার ম্যাকের জন্য আপনি যে ভাষাটি ব্যবহার করতে চান তা নির্বাচন করুন।",
       "TableLabel": "ভাষা",
-      "Primary": "প্রাথমিক"
+      "Primary": "প্রাথমিক",
+      "LanguageColumn": "Language"
     },
     "Region": {
       "Title": "আপনার দেশ বা অঞ্চল নির্বাচন করুন"
@@ -1275,7 +1276,8 @@
       "ReadArticle": "নিবন্ধ পড়ুন: {title}",
       "Share": "শেয়ার",
       "Like": "লাইক",
-      "ReadTopStory": "Read top story: {title}"
+      "ReadTopStory": "Read top story: {title}",
+      "ActivateSearch": "Activate search"
     },
     "Refresh": "রিফ্রেশ",
     "TopStory": "প্রধান গল্প"
@@ -1436,7 +1438,15 @@
     "Loading": "Loading...",
     "NoPDF": "No PDF",
     "FailedToLoad": "Failed to load PDF",
-    "NoPDFLoaded": "No PDF loaded"
+    "NoPDFLoaded": "No PDF loaded",
+    "FitWidth": "Fit Width",
+    "FitPage": "Fit Page",
+    "Download": "Download",
+    "Previous": "Previous Page",
+    "Next": "Next Page",
+    "Aria": {
+      "Download": "Download PDF"
+    }
   },
   "Applications": {
     "Finder": "Finder",

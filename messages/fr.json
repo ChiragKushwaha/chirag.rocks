@@ -30,7 +30,8 @@
       "Title": "Choisissez votre langue",
       "Description": "Sélectionnez la langue que vous souhaitez utiliser sur votre Mac.",
       "TableLabel": "Langue",
-      "Primary": "Principale"
+      "Primary": "Principale",
+      "LanguageColumn": "Language"
     },
     "Region": {
       "Title": "Configuration du pays ou de la région"
@@ -1275,7 +1276,8 @@
       "ReadArticle": "Lire article",
       "Share": "Partager",
       "Like": "J'aime",
-      "ReadTopStory": "Lire article à la une"
+      "ReadTopStory": "Lire article à la une",
+      "ActivateSearch": "Activate search"
     },
     "Refresh": "Actualiser",
     "TopStory": "À la une"
@@ -1436,7 +1438,15 @@
     "Loading": "Chargement...",
     "NoPDF": "Pas de PDF",
     "FailedToLoad": "Échec du chargement du PDF",
-    "NoPDFLoaded": "Aucun PDF chargé"
+    "NoPDFLoaded": "Aucun PDF chargé",
+    "FitWidth": "Fit Width",
+    "FitPage": "Fit Page",
+    "Download": "Download",
+    "Previous": "Previous Page",
+    "Next": "Next Page",
+    "Aria": {
+      "Download": "Download PDF"
+    }
   },
   "Applications": {
     "Finder": "Finder",

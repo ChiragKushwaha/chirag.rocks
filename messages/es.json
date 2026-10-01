@@ -1073,7 +1073,8 @@
       "ReadTopStory": "Leer noticia destacada: {title}",
       "ReadArticle": "Leer artículo: {title}",
       "Share": "Compartir artículo",
-      "Like": "Me gusta el artículo"
+      "Like": "Me gusta el artículo",
+      "ActivateSearch": "Activate search"
     }
   },
   "Music": {
@@ -1210,7 +1211,15 @@
     "Loading": "Cargando...",
     "NoPDF": "Sin PDF",
     "FailedToLoad": "Error al cargar PDF",
-    "NoPDFLoaded": "Ningún PDF cargado"
+    "NoPDFLoaded": "Ningún PDF cargado",
+    "FitWidth": "Fit Width",
+    "FitPage": "Fit Page",
+    "Download": "Download",
+    "Previous": "Previous Page",
+    "Next": "Next Page",
+    "Aria": {
+      "Download": "Download PDF"
+    }
   },
   "Spotlight": {
     "Placeholder": "Búsqueda Spotlight",

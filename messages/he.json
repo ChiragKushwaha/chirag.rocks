@@ -30,7 +30,8 @@
       "Title": "בחר את השפה שלך",
       "Description": "בחר את השפה שבה תרצה להשתמש ב-Mac שלך.",
       "TableLabel": "שפה",
-      "Primary": "ראשי"
+      "Primary": "ראשי",
+      "LanguageColumn": "Language"
     },
     "Region": {
       "Title": "בחר את המדינה או האזור שלך"
@@ -1275,7 +1276,8 @@
       "ReadArticle": "קרא כתבה: {title}",
       "Share": "שתף",
       "Like": "אהבתי",
-      "ReadTopStory": "Read top story: {title}"
+      "ReadTopStory": "Read top story: {title}",
+      "ActivateSearch": "Activate search"
     },
     "Refresh": "רענן",
     "TopStory": "כתבה מובילה"
@@ -1436,7 +1438,15 @@
     "Loading": "Loading...",
     "NoPDF": "No PDF",
     "FailedToLoad": "Failed to load PDF",
-    "NoPDFLoaded": "No PDF loaded"
+    "NoPDFLoaded": "No PDF loaded",
+    "FitWidth": "Fit Width",
+    "FitPage": "Fit Page",
+    "Download": "Download",
+    "Previous": "Previous Page",
+    "Next": "Next Page",
+    "Aria": {
+      "Download": "Download PDF"
+    }
   },
   "Applications": {
     "Finder": "Finder",

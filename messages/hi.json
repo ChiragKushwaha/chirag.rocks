@@ -15,7 +15,8 @@
       "Title": "अपनी भाषा चुनें",
       "Description": "वह भाषा चुनें जिसे आप अपने Mac के लिए उपयोग करना चाहते हैं।",
       "TableLabel": "भाषा",
-      "Primary": "प्राथमिक"
+      "Primary": "प्राथमिक",
+      "LanguageColumn": "Language"
     },
     "Region": {
       "Title": "अपना देश या क्षेत्र चुनें"
@@ -1072,7 +1073,8 @@
       "ReadTopStory": "शीर्ष कहानी पढ़ें: {title}",
       "ReadArticle": "लेख पढ़ें: {title}",
       "Share": "लेख साझा करें",
-      "Like": "लेख पसंद करें"
+      "Like": "लेख पसंद करें",
+      "ActivateSearch": "Activate search"
     }
   },
   "Music": {
@@ -1209,7 +1211,15 @@
     "Loading": "लोड हो रहा है...",
     "NoPDF": "कोई PDF नहीं",
     "FailedToLoad": "PDF लोड करने में विफल",
-    "NoPDFLoaded": "कोई PDF लोड नहीं हुआ"
+    "NoPDFLoaded": "कोई PDF लोड नहीं हुआ",
+    "FitWidth": "Fit Width",
+    "FitPage": "Fit Page",
+    "Download": "Download",
+    "Previous": "Previous Page",
+    "Next": "Next Page",
+    "Aria": {
+      "Download": "Download PDF"
+    }
   },
   "Spotlight": {
     "Placeholder": "Spotlight खोज",

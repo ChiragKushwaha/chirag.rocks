@@ -30,7 +30,8 @@
       "Title": "Vælg dit sprog",
       "Description": "Vælg det sprog, du vil bruge på din Mac.",
       "TableLabel": "Sprog",
-      "Primary": "Primær"
+      "Primary": "Primær",
+      "LanguageColumn": "Language"
     },
     "Region": {
       "Title": "Vælg dit land eller område"
@@ -1275,7 +1276,8 @@
       "ReadArticle": "Læs artikel: {title}",
       "Share": "Del",
       "Like": "Synes godt om",
-      "ReadTopStory": "Read top story: {title}"
+      "ReadTopStory": "Read top story: {title}",
+      "ActivateSearch": "Activate search"
     },
     "Refresh": "Opdater",
     "TopStory": "Tophistorie"
@@ -1436,7 +1438,15 @@
     "Loading": "Loading...",
     "NoPDF": "No PDF",
     "FailedToLoad": "Failed to load PDF",
-    "NoPDFLoaded": "No PDF loaded"
+    "NoPDFLoaded": "No PDF loaded",
+    "FitWidth": "Fit Width",
+    "FitPage": "Fit Page",
+    "Download": "Download",
+    "Previous": "Previous Page",
+    "Next": "Next Page",
+    "Aria": {
+      "Download": "Download PDF"
+    }
   },
   "Applications": {
     "Finder": "Finder",

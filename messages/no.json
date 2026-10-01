@@ -30,7 +30,8 @@
       "Title": "Velg språk",
       "Description": "Velg språket du vil bruke på denne Macen.",
       "TableLabel": "Språk",
-      "Primary": "Primært"
+      "Primary": "Primært",
+      "LanguageColumn": "Language"
     },
     "Region": {
       "Title": "Velg land eller region"
@@ -1496,7 +1497,8 @@
       "ReadTopStory": "Read top story: {title}",
       "ReadArticle": "Read article: {title}",
       "Share": "Share article",
-      "Like": "Like article"
+      "Like": "Like article",
+      "ActivateSearch": "Activate search"
     }
   },
   "Music": {
@@ -1633,7 +1635,15 @@
     "Loading": "Loading...",
     "NoPDF": "No PDF",
     "FailedToLoad": "Failed to load PDF",
-    "NoPDFLoaded": "No PDF loaded"
+    "NoPDFLoaded": "No PDF loaded",
+    "FitWidth": "Fit Width",
+    "FitPage": "Fit Page",
+    "Download": "Download",
+    "Previous": "Previous Page",
+    "Next": "Next Page",
+    "Aria": {
+      "Download": "Download PDF"
+    }
   },
   "Spotlight": {
     "Placeholder": "Spotlight Search",

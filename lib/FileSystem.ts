@@ -184,9 +184,11 @@ export class MacFileSystem {
         console.log(`[FS] Persisted: ${fullPath}`);
       } catch (e) {
         console.error(`[FS] Flush Error for ${fullPath}:`, e);
-        // Re-add to queue to retry later? Or just log error
-        // this.flushQueue.add(fullPath);
       }
+    }
+
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new Event("file-system-change"));
     }
   }
 
@@ -280,15 +282,24 @@ export class MacFileSystem {
         });
       }
 
-      // 2. Merge Memory Cache entries (that might not be flushed yet)
-      // This is a simplified merge. Ideally we'd parse the memory cache keys to find children of 'path'
-      // For now, we rely on the fact that `ls` usually happens after some interaction,
-      // and we want to show what's on disk + what's in memory.
-      // A full in-memory directory tree structure would be better for `ls` performance and correctness.
-
-      // For this iteration, we'll assume `ls` mostly reads from disk,
-      // as `flush` happens relatively quickly (2s).
-      // If immediate `ls` consistency is required, we'd need to iterate `this.memoryCache.keys()`
+      // 2. Merge Memory Cache entries (that might not be flushed to disk yet)
+      const targetDir = path.replace(/\/+$/, "") || "/";
+      for (const fullPath of this.memoryCache.keys()) {
+        const lastSlashIndex = fullPath.lastIndexOf("/");
+        const dir = (fullPath.substring(0, lastSlashIndex) || "/").replace(/\/+$/, "") || "/";
+        const name = fullPath.substring(lastSlashIndex + 1);
+        if (dir === targetDir && !onDiskNames.has(name)) {
+          onDiskNames.add(name);
+          entries.push({
+            name,
+            kind: "file",
+            isHidden: name.startsWith("."),
+            path: fullPath,
+            isEmpty: false,
+            size: 1024,
+          });
+        }
+      }
 
       return entries.sort((a, b) => {
         if (a.kind === b.kind) return a.name.localeCompare(b.name);

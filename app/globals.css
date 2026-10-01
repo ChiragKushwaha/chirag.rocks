@@ -331,6 +331,90 @@ body {
   .animate-shake {
     animation: shake 0.2s ease-in-out 3;
   }
+
+  /* macOS Smooth Window Animations */
+  @keyframes window-open {
+    0% {
+      opacity: 0;
+      transform: scale(0.92) translateY(8px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes window-close {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.92);
+    }
+  }
+
+  @keyframes popover-enter {
+    0% {
+      opacity: 0;
+      transform: scale(0.96) translateY(-4px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .animate-window-open {
+    animation: window-open 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-window-close {
+    animation: window-close 0.18s cubic-bezier(0.2, 0, 0.8, 0.2) forwards;
+  }
+
+  .animate-popover {
+    animation: popover-enter 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Tailwind CSS Animate Compatibility Utilities */
+  .animate-in {
+    animation-duration: 0.2s;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    animation-fill-mode: both;
+  }
+
+  .animate-out {
+    animation-duration: 0.18s;
+    animation-timing-function: cubic-bezier(0.2, 0, 0.8, 0.2);
+    animation-fill-mode: both;
+  }
+
+  .fade-in {
+    animation-name: fade-in;
+  }
+
+  .fade-out {
+    animation-name: fade-out;
+  }
+
+  .zoom-in-95 {
+    animation-name: window-open;
+  }
+
+  .zoom-out-95 {
+    animation-name: window-close;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes dock-bounce {
@@ -345,7 +429,7 @@ body {
 }
 
 .animate-dock-bounce {
-  animation: dock-bounce 1s ease-in-out 1;
+  animation: dock-bounce 0.8s ease-in-out 1;
 }
 
 @keyframes restore-window {
@@ -361,7 +445,7 @@ body {
 }
 
 .animate-restore-window {
-  animation: restore-window 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation: restore-window 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Disable image dragging globally */

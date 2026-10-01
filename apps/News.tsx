@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Search, Layout, Heart, Share, RefreshCw } from "lucide-react";
 import { useTranslations, useFormatter } from "next-intl";
-import { useQuery } from "@tanstack/react-query";
+import { useNews } from "../hooks/useNews";
 
 interface Article {
   source: {
@@ -18,11 +18,6 @@ interface Article {
   content: string | null;
 }
 
-interface NewsResponse {
-  status: string;
-  totalResults: number;
-  articles: Article[];
-}
 
 const CATEGORIES = [
   { id: "general", label: "Top Stories" },
@@ -43,24 +38,7 @@ export const News: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchActive, setIsSearchActive] = useState(false);
 
-  const {
-    data: articles = [],
-    isLoading: loading,
-    error,
-    refetch,
-  } = useQuery({
-    queryKey: ["news", activeCategory],
-    queryFn: async () => {
-      // Using saurav.tech NewsAPI proxy (Open Source & Free)
-      const response = await fetch(
-        `https://saurav.tech/NewsAPI/top-headlines/category/${activeCategory}/us.json`
-      );
-      if (!response.ok) throw new Error("Failed to fetch news");
-      const data: NewsResponse = await response.json();
-      return data.articles;
-    },
-    staleTime: 1000 * 60 * 10, // 10 minutes
-  });
+  const { articles, loading, error, refetch } = useNews(activeCategory);
 
   // Note: we replaced `articles` state with the `data` from useQuery.
   // We need to ensure we remove the `useState` for articles and loading if we replace them fully.

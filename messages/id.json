@@ -30,7 +30,8 @@
       "Title": "Pilih Bahasa Anda",
       "Description": "Pilih bahasa yang ingin Anda gunakan di Mac Anda.",
       "TableLabel": "Bahasa",
-      "Primary": "Utama"
+      "Primary": "Utama",
+      "LanguageColumn": "Language"
     },
     "Region": {
       "Title": "Pilih Negara atau Wilayah Anda"
@@ -1275,7 +1276,8 @@
       "ReadArticle": "Baca Artikel: {title}",
       "Share": "Bagikan",
       "Like": "Suka",
-      "ReadTopStory": "Read top story: {title}"
+      "ReadTopStory": "Read top story: {title}",
+      "ActivateSearch": "Activate search"
     },
     "Refresh": "Segarkan",
     "TopStory": "Berita Utama"
@@ -1436,7 +1438,15 @@
     "Loading": "Loading...",
     "NoPDF": "No PDF",
     "FailedToLoad": "Failed to load PDF",
-    "NoPDFLoaded": "No PDF loaded"
+    "NoPDFLoaded": "No PDF loaded",
+    "FitWidth": "Fit Width",
+    "FitPage": "Fit Page",
+    "Download": "Download",
+    "Previous": "Previous Page",
+    "Next": "Next Page",
+    "Aria": {
+      "Download": "Download PDF"
+    }
   },
   "Applications": {
     "Finder": "Finder",

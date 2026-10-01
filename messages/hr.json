@@ -15,7 +15,8 @@
       "Title": "Odaberite svoj jezik",
       "Description": "Odaberite jezik koji želite koristiti za svoj Mac.",
       "TableLabel": "Jezik",
-      "Primary": "Primarni"
+      "Primary": "Primarni",
+      "LanguageColumn": "Language"
     },
     "Region": {
       "Title": "Odaberite svoju državu ili regiju"
@@ -1106,7 +1107,8 @@
       "ReadTopStory": "Read top story: {title}",
       "ReadArticle": "Read article: {title}",
       "Share": "Share article",
-      "Like": "Like article"
+      "Like": "Like article",
+      "ActivateSearch": "Activate search"
     }
   },
   "Music": {
@@ -1243,7 +1245,15 @@
     "Loading": "Loading...",
     "NoPDF": "No PDF",
     "FailedToLoad": "Failed to load PDF",
-    "NoPDFLoaded": "No PDF loaded"
+    "NoPDFLoaded": "No PDF loaded",
+    "FitWidth": "Fit Width",
+    "FitPage": "Fit Page",
+    "Download": "Download",
+    "Previous": "Previous Page",
+    "Next": "Next Page",
+    "Aria": {
+      "Download": "Download PDF"
+    }
   },
   "Spotlight": {
     "Placeholder": "Spotlight Search",
