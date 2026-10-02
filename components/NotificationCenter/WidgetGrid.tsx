@@ -63,7 +63,7 @@ export const WidgetGrid: React.FC = () => {
           {!activeWidgets.some((w) => w.type === "notes") && (
             <button
               onClick={() => addWidget({ id: "not", size: "medium", type: "notes" })}
-              className="px-3 py-1 rounded-full text-[11px] font-medium text-white/90 bg-white/20 hover:bg-white/30 flex items-center gap-1.5 shadow-xs transition-colors"
+              className="px-3 py-1 rounded-full text-[11px] font-medium text-gray-800 dark:text-white/90 bg-black/10 hover:bg-black/15 dark:bg-white/20 dark:hover:bg-white/30 flex items-center gap-1.5 shadow-xs transition-colors"
             >
               <PlusCircle size={13} />
               <span>Add Notes</span>
@@ -71,7 +71,7 @@ export const WidgetGrid: React.FC = () => {
           )}
           <button
             onClick={() => setActiveWidgets(DEFAULT_WIDGETS)}
-            className="px-3 py-1 rounded-full text-[11px] font-medium text-white/70 hover:text-white bg-white/10 hover:bg-white/20 flex items-center gap-1.5 transition-colors"
+            className="px-3 py-1 rounded-full text-[11px] font-medium text-gray-700 hover:text-black dark:text-white/70 dark:hover:text-white bg-black/5 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 flex items-center gap-1.5 transition-colors"
           >
             <RotateCcw size={12} />
             <span>Reset</span>
@@ -83,7 +83,7 @@ export const WidgetGrid: React.FC = () => {
       <div className="flex justify-center pt-2 pb-6">
         <button
           onClick={() => setIsEditing(!isEditing)}
-          className="px-4 py-1.5 rounded-full text-[12px] font-medium text-white/90 bg-white/20 hover:bg-white/30 dark:bg-white/10 dark:hover:bg-white/20 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-sm transition-all focus:outline-none"
+          className="px-4 py-1.5 rounded-full text-[12px] font-medium text-gray-800 dark:text-white/90 bg-black/10 hover:bg-black/15 dark:bg-white/10 dark:hover:bg-white/20 backdrop-blur-md border border-black/10 dark:border-white/10 shadow-sm transition-all focus:outline-none"
         >
           {isEditing ? t("Done") || "Done" : t("EditWidgets") || "Edit Widgets"}
         </button>

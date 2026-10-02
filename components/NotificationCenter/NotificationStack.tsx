@@ -30,12 +30,12 @@ export const NotificationStack: React.FC<NotificationStackProps> = ({
     <div className="mb-4">
       {/* Big Sur Notification Section Header */}
       <div className="flex justify-between items-center mb-2 px-1">
-        <h3 className="text-[11px] font-semibold text-white/80 uppercase tracking-wider drop-shadow-xs">
+        <h3 className="text-[11px] font-semibold text-gray-700 dark:text-white/80 uppercase tracking-wider">
           {title}
         </h3>
         <button
           onClick={clearAll}
-          className="text-[11px] font-medium text-white/80 hover:text-white bg-white/15 hover:bg-white/25 px-2.5 py-0.5 rounded-full transition-all flex items-center gap-1 shadow-xs"
+          className="text-[11px] font-medium text-gray-700 hover:text-black dark:text-white/80 dark:hover:text-white bg-black/10 hover:bg-black/15 dark:bg-white/15 dark:hover:bg-white/25 px-2.5 py-0.5 rounded-full transition-all flex items-center gap-1 shadow-xs"
         >
           <X size={10} />
           <span>Clear All</span>
@@ -101,7 +101,7 @@ export const NotificationStack: React.FC<NotificationStackProps> = ({
               {hasMultiple && !isExp && (
                 <button
                   onClick={() => toggleStack(app)}
-                  className="w-full py-1 text-center text-[11px] font-medium text-white/70 hover:text-white flex items-center justify-center gap-1 transition-colors"
+                  className="w-full py-1 text-center text-[11px] font-medium text-gray-700 hover:text-black dark:text-white/70 dark:hover:text-white flex items-center justify-center gap-1 transition-colors"
                 >
                   <span>{notes.length - 1} more notifications</span>
                   <ChevronDown size={12} />

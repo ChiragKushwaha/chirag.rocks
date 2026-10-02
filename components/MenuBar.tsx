@@ -31,7 +31,7 @@ const WifiDisplay = () => {
   const { wifiEnabled, toggleWifi } = useSystemStore();
 
   const wifiIcon = (
-    <div className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default">
+    <div className="opacity-90 hover:bg-black/10 dark:hover:bg-white/10 p-1 rounded cursor-default">
       {wifiEnabled ? (
         <Wifi size={16} strokeWidth={2.5} />
       ) : (
@@ -123,8 +123,8 @@ const MenuButton: React.FC<{
           h-full px-3 text-[13px] rounded transition-colors
           ${
             isActive
-              ? "bg-white/20 text-white"
-              : "hover:bg-white/10 active:bg-white/20"
+              ? "bg-black/15 text-black dark:bg-white/20 dark:text-white"
+              : "hover:bg-black/10 active:bg-black/20 dark:hover:bg-white/10 dark:active:bg-white/20"
           }
           ${bold ? "font-bold" : "font-normal"}
         `}
@@ -174,7 +174,7 @@ const BatteryDisplay = () => {
   // Fallback for SSR or unsupported browsers
   if (!supported || loading || level === null) {
     return (
-      <div className="flex items-center gap-1.5 opacity-90 hover:bg-white/10 px-1.5 py-0.5 rounded cursor-default">
+      <div className="flex items-center gap-1.5 opacity-90 hover:bg-black/10 dark:hover:bg-white/10 px-1.5 py-0.5 rounded cursor-default">
         <Battery size={22} strokeWidth={2} className="rotate-0 text-gray-400" />
       </div>
     );
@@ -255,8 +255,8 @@ const WeatherDisplay = () => {
 
   if (loading || !weather) {
     return (
-      <div className="flex items-center gap-1.5 opacity-90 hover:bg-white/10 px-1.5 py-0.5 rounded cursor-default">
-        <Cloud size={16} strokeWidth={2} className="text-white/90" />
+      <div className="flex items-center gap-1.5 opacity-90 hover:bg-black/10 dark:hover:bg-white/10 px-1.5 py-0.5 rounded cursor-default">
+        <Cloud size={16} strokeWidth={2} className="text-current opacity-90" />
         <span>--°</span>
       </div>
     );
@@ -269,8 +269,8 @@ const WeatherDisplay = () => {
         role="button"
         tabIndex={0}
         aria-label="Weather"
-        className={`flex items-center gap-1.5 opacity-90 hover:bg-white/10 px-1.5 py-0.5 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${
-          isOpen ? "bg-white/20" : ""
+        className={`flex items-center gap-1.5 opacity-90 hover:bg-black/10 dark:hover:bg-white/10 px-1.5 py-0.5 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${
+          isOpen ? "bg-black/15 dark:bg-white/20" : ""
         }`}
         onClick={() => setIsOpen(!isOpen)}
         onKeyDown={(e) => {
@@ -280,7 +280,7 @@ const WeatherDisplay = () => {
           }
         }}
       >
-        <weather.current.icon size={16} className="text-white/90" />
+        <weather.current.icon size={16} className="text-current opacity-90" />
         <span>{weather.current.temp}°</span>
       </div>
       <WeatherDropdown
@@ -477,7 +477,7 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
               role="button"
               tabIndex={0}
               aria-label={t("Aria.MediaPlayer")}
-              className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+              className="opacity-90 hover:bg-black/10 dark:hover:bg-white/10 p-1 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   // Placeholder action
@@ -502,7 +502,7 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
               role="button"
               tabIndex={0}
               aria-label={t("Aria.Spotlight")}
-              className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default active:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+              className="opacity-90 hover:bg-black/10 dark:hover:bg-white/10 p-1 rounded cursor-default active:bg-black/20 dark:active:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
               onClick={() => useSystemStore.getState().toggleSpotlight()}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
@@ -534,8 +534,8 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
               role="button"
               tabIndex={0}
               aria-label={t("Aria.ControlCenter")}
-              className={`opacity-90 hover:bg-white/10 p-1 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${
-                isControlCenterOpen ? "bg-white/20" : ""
+              className={`opacity-90 hover:bg-black/10 dark:hover:bg-white/10 p-1 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${
+                isControlCenterOpen ? "bg-black/15 dark:bg-white/20" : ""
               }`}
               onClick={() => setIsControlCenterOpen(!isControlCenterOpen)}
               onKeyDown={(e) => {
@@ -553,7 +553,7 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
               role="button"
               tabIndex={0}
               aria-label={t("Aria.Siri")}
-              className="opacity-90 hover:bg-white/10 p-1 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+              className="opacity-90 hover:bg-black/10 dark:hover:bg-white/10 p-1 rounded cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
               onKeyDown={(e) => {
                 e.preventDefault();
                 // Placeholder for Siri activation
@@ -570,7 +570,7 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
           role="button"
           tabIndex={!lockScreenMode ? 0 : -1}
           aria-label={t("Aria.Clock")}
-          className="opacity-90 hover:bg-white/10 px-2 py-0.5 rounded cursor-default active:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+          className="opacity-90 hover:bg-black/10 dark:hover:bg-white/10 px-2 py-0.5 rounded cursor-default active:bg-black/20 dark:active:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
           onClick={!lockScreenMode ? toggleNotificationCenter : undefined}
           onKeyDown={(e) => {
             if (!lockScreenMode && (e.key === "Enter" || e.key === " ")) {

@@ -202,8 +202,8 @@ export const DockItem: React.FC<DockItemProps> = ({
     <div className="group relative flex flex-col items-center">
       {/* Tooltip */}
       <div
-        className="absolute -top-12 px-3 py-1 rounded-md bg-gray-800/90 text-gray-200 text-xs 
-                   backdrop-blur-md border border-gray-600/50 opacity-0 group-hover:opacity-100 
+        className="absolute -top-12 px-3 py-1 rounded-md bg-white/90 dark:bg-[#1e1e1e]/90 text-gray-900 dark:text-gray-100 text-xs 
+                   backdrop-blur-md border border-black/10 dark:border-white/15 shadow-xl opacity-0 group-hover:opacity-100 
                    transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50 font-medium"
       >
         {displayName}

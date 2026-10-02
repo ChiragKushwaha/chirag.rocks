@@ -1,9 +1,45 @@
 allowBuilds:
+  '@parcel/watcher': true
   '@swc/core': true
   esbuild: true
   sharp: true
   unrs-resolver: true
 
+onlyBuiltDependencies:
+  - "@parcel/watcher"
+  - "@swc/core"
+  - "esbuild"
+  - "sharp"
+  - "unrs-resolver"
+
+minimumReleaseAgeExclude:
+  - shell-quote@1.12.0
+
 overrides:
   "@types/react": "19.2.7"
   "@types/react-dom": "19.2.3"
+  "baseline-browser-mapping": "^2.11.26"
+  "sharp": "^0.35.5"
+  "minimatch@^9.0.0": "9.0.7"
+  "minimatch@^3.0.0": "3.1.5"
+  "brace-expansion@^2.0.0": "2.1.7"
+  "brace-expansion@^1.0.0": "1.1.21"
+  "picomatch@^2.0.0": "2.3.2"
+  "picomatch@^4.0.0": "4.0.4"
+  "ws": "^8.22.0"
+  "shell-quote": "^1.12.0"
+  "browserslist": "^4.29.3"
+  "engine.io": "^6.6.11"
+  "socket.io-parser": "^4.2.7"
+  "js-yaml": "^4.3.2"
+  "nanoid": "^3.3.19"
+  "qs": "^6.16.0"
+  "@humanfs/node": "^0.16.8"
+  "flatted": "^3.4.2"
+  "path-to-regexp": "^8.4.0"
+  "body-parser": "^2.3.0"
+  "@babel/core": "^7.29.7"
+  "ajv": "^6.14.0"
+  "diff": "^4.0.4"
+  "esbuild": "^0.28.1"
+  "postcss": "^8.5.28"

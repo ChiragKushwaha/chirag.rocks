@@ -16,7 +16,12 @@ const MenuList: React.FC<{ items: MenuItem[]; onClose: () => void }> = ({
     <div className="flex flex-col px-1 py-1 relative">
       {items.map((item, idx) => {
         if (item.separator || item.type === "separator") {
-          return <div key={idx} className="h-[1px] bg-white/10 my-1 mx-2" />;
+          return (
+            <div
+              key={idx}
+              className="h-[1px] bg-black/10 dark:bg-white/10 my-1 mx-2"
+            />
+          );
         }
 
         if (item.type === "tags") {
@@ -42,7 +47,7 @@ const MenuList: React.FC<{ items: MenuItem[]; onClose: () => void }> = ({
                 ].map((color, i) => (
                   <div
                     key={i}
-                    className="w-3 h-3 rounded-full border border-white/10 hover:scale-125 transition-transform cursor-pointer"
+                    className="w-3 h-3 rounded-full border border-black/10 dark:border-white/10 hover:scale-125 transition-transform cursor-pointer"
                     style={{ backgroundColor: color }}
                     onClick={(e) => {
                       e.stopPropagation();

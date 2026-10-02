@@ -491,7 +491,7 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
   };
 
   return (
-    <div className="flex h-full w-full text-gray-800 font-sans bg-white dark:bg-[#1E1E1E] rounded-xl overflow-hidden shadow-2xl border border-black/10 dark:border-white/10">
+    <div className="flex h-full w-full text-gray-800 dark:text-gray-200 font-sans bg-white dark:bg-[#1E1E1E] rounded-xl overflow-hidden shadow-2xl border border-black/10 dark:border-white/10">
       {/* SIDEBAR - Full Height */}
       <div className="w-[220px] bg-[#F5F5F5]/80 dark:bg-[#282828]/80 backdrop-blur-2xl border-r border-[#D1D1D6] dark:border-black/50 shrink-0 flex flex-col pt-10">
         <Sidebar currentPath={currentPath} onNavigate={handleNavigate} />
@@ -623,6 +623,7 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
                         <FileIcon
                           name={file.name}
                           kind={file.kind}
+                          variant="window"
                           selected={selectedItems.includes(file.name)}
                           onClick={(e) => handleFileClick(e, file)}
                           onDoubleClick={() => {

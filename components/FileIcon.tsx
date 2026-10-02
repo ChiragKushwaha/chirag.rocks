@@ -12,6 +12,7 @@ interface FileIconProps {
   kind: "file" | "directory";
   path?: string; // New prop for custom path
   showLabel?: boolean; // New prop to toggle label
+  variant?: "desktop" | "window"; // Desktop (white text with shadow) vs Window (adaptive dark/light text)
   isRenaming?: boolean;
   selected?: boolean;
   onRename?: (newName: string) => void;
@@ -26,6 +27,7 @@ export const FileIcon: React.FC<FileIconProps> = ({
   kind,
   path,
   showLabel = true,
+  variant = "desktop",
   isRenaming,
   selected,
   onRename,
@@ -344,16 +346,21 @@ export const FileIcon: React.FC<FileIconProps> = ({
         ) : (
           <span
             className={`
-              text-[12px] font-medium text-white text-center leading-tight px-1.5 py-0.5 rounded-[3px]
+              text-[12px] font-medium text-center leading-tight px-1.5 py-0.5 rounded-[3px]
               ${
                 isSelected
-                  ? "bg-[#0058D0]"
-                  : "drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
+                  ? "bg-[#007AFF] text-white"
+                  : variant === "window"
+                  ? "text-gray-800 dark:text-gray-200"
+                  : "text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
               }
               line-clamp-2 wrap-break-word w-full
             `}
             style={{
-              textShadow: isSelected ? "none" : "0 1px 2px rgba(0,0,0,0.5)",
+              textShadow:
+                isSelected || variant === "window"
+                  ? "none"
+                  : "0 1px 2px rgba(0,0,0,0.5)",
             }}
           >
             {name.replace(".note", "")}

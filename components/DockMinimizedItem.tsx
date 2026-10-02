@@ -138,7 +138,7 @@ export const DockMinimizedItem: React.FC<DockMinimizedItemProps> = ({
       aria-label={`Restore ${process.title}`}
     >
       {/* macOS Big Sur Tooltip */}
-      <div className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-black/80 dark:bg-[#1e1e1e]/90 backdrop-blur-md px-2.5 py-1 text-[11px] font-medium text-white shadow-xl opacity-0 transition-opacity duration-150 group-hover:opacity-100 z-50 border border-white/15">
+      <div className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-white/90 dark:bg-[#1e1e1e]/90 backdrop-blur-md px-2.5 py-1 text-[11px] font-medium text-gray-900 dark:text-gray-100 shadow-xl opacity-0 transition-opacity duration-150 group-hover:opacity-100 z-50 border border-black/10 dark:border-white/15">
         {process.title}
       </div>
 

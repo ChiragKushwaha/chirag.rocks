@@ -52,5 +52,8 @@ test.describe("Window Traffic Lights & Snap Menu Light/Dark Mode", () => {
     await expect(leftBtn).toBeVisible();
     await expect(rightBtn).toBeVisible();
     await expect(fullBtn).toBeVisible();
+
+    // Take screenshot of snap menu in dark mode
+    await windowFrame.screenshot({ path: "tests/snap_menu_dark_test.png" });
   });
 });
