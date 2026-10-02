@@ -1,5 +1,6 @@
 "use client";
 import React, { useRef } from "react";
+import "../../lib/pdfConfig"; // must be imported before react-pdf to configure the worker URL
 import { Document, Page } from "react-pdf";
 import { useTranslations } from "next-intl";
 import { RefreshCw, AlertCircle } from "lucide-react";
