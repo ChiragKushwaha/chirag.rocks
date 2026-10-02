@@ -18,7 +18,7 @@ export const NetworkView = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
-        <div className="w-16 h-16 rounded-full bg-[#007AFF] flex items-center justify-center">
+        <div className="w-14 h-14 rounded-full shrink-0 aspect-square shadow-sm bg-[#007AFF] flex items-center justify-center">
           <Globe size={32} className="text-white" />
         </div>
         <div>

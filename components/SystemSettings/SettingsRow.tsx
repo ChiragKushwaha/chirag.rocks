@@ -1,4 +1,5 @@
 import React from "react";
+import { MacToggle } from "./MacToggle";
 
 interface SettingsRowProps {
   icon?: React.ElementType;
@@ -91,42 +92,3 @@ export const SettingsRow: React.FC<SettingsRowProps> = ({
   </div>
 );
 
-// macOS-style toggle switch
-const MacToggle = ({
-  checked,
-  onChange,
-  onClick,
-}: {
-  checked: boolean;
-  onChange: (v: boolean) => void;
-  onClick?: () => void;
-}) => (
-  <button
-    role="switch"
-    aria-checked={checked}
-    onClick={(e) => {
-      e.stopPropagation();
-      if (onClick) onClick();
-      else onChange(!checked);
-    }}
-    className="relative shrink-0 focus:outline-none focus:ring-2 focus:ring-blue-500/50 rounded-full"
-    style={{
-      width: 38,
-      height: 22,
-      background: checked ? "#34C759" : "rgba(120,120,128,0.32)",
-      transition: "background 0.2s ease",
-    }}
-  >
-    <span
-      className="absolute rounded-full bg-white shadow"
-      style={{
-        width: 18,
-        height: 18,
-        top: 2,
-        left: checked ? 18 : 2,
-        transition: "left 0.18s ease",
-        boxShadow: "0 1px 3px rgba(0,0,0,0.3)",
-      }}
-    />
-  </button>
-);

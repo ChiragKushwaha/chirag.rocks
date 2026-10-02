@@ -1,38 +1,8 @@
 import React, { useState } from "react";
 import { AvatarEditor } from "../components/AvatarEditor";
 import { Sidebar } from "../components/SystemSettings/Sidebar";
-
-// Views
-import { WifiView } from "../components/SystemSettings/views/WifiView";
-import { BluetoothView } from "../components/SystemSettings/views/BluetoothView";
-import { NetworkView } from "../components/SystemSettings/views/NetworkView";
-import { GeneralView } from "../components/SystemSettings/views/GeneralView";
-import { AppleAccountView } from "../components/SystemSettings/views/AppleAccountView";
-import { LanguageRegionView } from "../components/SystemSettings/views/LanguageRegionView";
-import { AppearanceView } from "../components/SystemSettings/views/AppearanceView";
-import { AccessibilityView } from "../components/SystemSettings/views/AccessibilityView";
-import { MenuBarView } from "../components/SystemSettings/views/MenuBarView";
-import { DesktopDockView } from "../components/SystemSettings/views/DesktopDockView";
-import { DisplaysView } from "../components/SystemSettings/views/DisplaysView";
-import { SpotlightView } from "../components/SystemSettings/views/SpotlightView";
-import { WallpaperView } from "../components/SystemSettings/views/WallpaperView";
-import { ScreenSaverView } from "../components/SystemSettings/views/ScreenSaverView";
-import { BatteryView } from "../components/SystemSettings/views/BatteryView";
-import { SoundView } from "../components/SystemSettings/views/SoundView";
-import { NotificationsView } from "../components/SystemSettings/views/NotificationsView";
-import { FocusView } from "../components/SystemSettings/views/FocusView";
-import { ScreenTimeView } from "../components/SystemSettings/views/ScreenTimeView";
-import { PrivacySecurityView } from "../components/SystemSettings/views/PrivacySecurityView";
-import { LockScreenView } from "../components/SystemSettings/views/LockScreenView";
-import { TouchIDPasswordView } from "../components/SystemSettings/views/TouchIDPasswordView";
-import { UsersGroupsView } from "../components/SystemSettings/views/UsersGroupsView";
-import { KeyboardView } from "../components/SystemSettings/views/KeyboardView";
-import { TrackpadView } from "../components/SystemSettings/views/TrackpadView";
-import { PrintersScannersView } from "../components/SystemSettings/views/PrintersScannersView";
-import { StorageView } from "../components/SystemSettings/views/StorageView";
-
+import { SettingsContentRouter } from "../components/SystemSettings/SettingsContentRouter";
 import { useSystemStore } from "../store/systemStore";
-import { useTranslations } from "next-intl";
 
 export const SystemSettings: React.FC = () => {
   const {
@@ -45,7 +15,6 @@ export const SystemSettings: React.FC = () => {
 
   const [isAvatarEditorOpen, setIsAvatarEditorOpen] = useState(false);
   const [currentAvatar, setCurrentAvatar] = useState("🦅");
-  const t = useTranslations("SystemSettings.Sidebar");
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
@@ -54,94 +23,11 @@ export const SystemSettings: React.FC = () => {
     }
   };
 
-  const renderContent = () => {
-    switch (activeTab) {
-      case "Wi-Fi":
-        return <WifiView />;
-      case "Bluetooth":
-        return <BluetoothView />;
-      case "Network":
-        return <NetworkView />;
-      case "General":
-        if (generalSubView === "language") {
-          return (
-            <LanguageRegionView onBack={() => setGeneralSubView("main")} />
-          );
-        }
-        return (
-          <GeneralView
-            onNavigate={(view: string) =>
-              setGeneralSubView(view as "main" | "language")
-            }
-          />
-        );
-      case "Apple Account":
-        return (
-          <AppleAccountView
-            currentAvatar={currentAvatar}
-            onEditAvatar={() => setIsAvatarEditorOpen(true)}
-          />
-        );
-      case "Appearance":
-        return <AppearanceView />;
-      case "Accessibility":
-        return <AccessibilityView />;
-      case "Menu Bar":
-        return <MenuBarView />;
-      case "Desktop & Dock":
-        return <DesktopDockView />;
-      case "Displays":
-        return <DisplaysView />;
-      case "Spotlight":
-        return <SpotlightView />;
-      case "Wallpaper":
-        return <WallpaperView />;
-      case "Screen Saver":
-        return <ScreenSaverView />;
-      case "Battery":
-        return <BatteryView />;
-      case "Sound":
-        return <SoundView />;
-      case "Notifications":
-        return <NotificationsView />;
-      case "Focus":
-        return <FocusView />;
-      case "Screen Time":
-        return <ScreenTimeView />;
-      case "Privacy & Security":
-        return <PrivacySecurityView />;
-      case "Lock Screen":
-        return <LockScreenView />;
-      case "Touch ID & Password":
-        return <TouchIDPasswordView />;
-      case "Users & Groups":
-        return <UsersGroupsView />;
-      case "Keyboard":
-        return <KeyboardView />;
-      case "Trackpad":
-        return <TrackpadView />;
-      case "Printers & Scanners":
-        return <PrintersScannersView />;
-      case "Storage":
-        return <StorageView />;
-      default:
-        return (
-          <div className="flex flex-col items-center justify-center h-full gap-3 text-gray-400">
-            <div className="w-16 h-16 rounded-2xl bg-gray-100 dark:bg-white/10 flex items-center justify-center text-4xl">
-              ⚙️
-            </div>
-            <p className="text-sm">{t("NotImplemented")}</p>
-          </div>
-        );
-    }
-  };
-
   return (
     <div
-      className="flex h-full select-none relative overflow-hidden"
+      className="flex h-full select-none relative overflow-hidden font-sans"
       style={{
         background: isDark ? "#1e1e1e" : "#ececf0",
-        fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif",
         color: isDark ? "#f5f5f7" : "#1c1c1e",
       }}
     >
@@ -155,7 +41,7 @@ export const SystemSettings: React.FC = () => {
         currentAvatar={currentAvatar}
       />
 
-      {/* Sidebar */}
+      {/* Big Sur Translucent Sidebar */}
       <Sidebar
         activeTab={activeTab}
         setActiveTab={handleTabChange}
@@ -167,24 +53,31 @@ export const SystemSettings: React.FC = () => {
         className="flex-1 flex flex-col min-h-0 overflow-hidden"
         style={{ background: isDark ? "#252527" : "#f2f2f7" }}
       >
-        {/* Panel title bar */}
+        {/* Big Sur Inset Header */}
         <div
-          className="h-[52px] flex items-center px-8 shrink-0 border-b"
+          className="h-[52px] flex items-center px-8 shrink-0 border-b select-none"
           style={{
             background: isDark ? "rgba(37,37,39,0.9)" : "rgba(242,242,247,0.9)",
             backdropFilter: "blur(20px)",
-            borderColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.08)",
+            WebkitBackdropFilter: "blur(20px)",
+            borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)",
           }}
         >
-          <h1 className="text-[15px] font-semibold text-gray-900 dark:text-gray-100">
-            {activeTab === "Apple Account" ? "Apple Account" : activeTab}
+          <h1 className="text-[15px] font-semibold text-gray-900 dark:text-gray-100 tracking-tight">
+            {activeTab}
           </h1>
         </div>
 
-        {/* Scrollable content */}
-        <div className="flex-1 overflow-y-auto">
+        {/* Scrollable content container */}
+        <div className="flex-1 overflow-y-auto no-scrollbar">
           <div className="max-w-[640px] mx-auto px-8 py-6">
-            {renderContent()}
+            <SettingsContentRouter
+              activeTab={activeTab}
+              generalSubView={generalSubView}
+              setGeneralSubView={setGeneralSubView}
+              currentAvatar={currentAvatar}
+              onEditAvatar={() => setIsAvatarEditorOpen(true)}
+            />
           </div>
         </div>
       </div>

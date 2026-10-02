@@ -23,7 +23,7 @@ export const ViewHeader: React.FC<ViewHeaderProps> = ({
   <div className="flex items-center justify-between mb-5">
     <div className="flex items-center gap-4">
       <div
-        className="w-14 h-14 rounded-[14px] flex items-center justify-center shadow-sm shrink-0"
+        className="w-14 h-14 rounded-[14px] flex items-center justify-center shadow-sm shrink-0 aspect-square"
         style={{ background: color }}
       >
         <Icon size={30} color="white" />

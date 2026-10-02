@@ -111,10 +111,32 @@
   --color-tertiary-fill: var(--tertiary-fill);
   --color-quaternary-fill: var(--quaternary-fill);
 
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text",
-    "Helvetica Neue", sans-serif;
-  --font-mono: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "SF Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+@font-face {
+  font-family: "SF Pro Text";
+  src: local("SF Pro Text"), local(".AppleSystemUIFont"), local(".SF NS"), local("SF Pro"),
+       url("/assets/System/Library/Fonts/SFNS.ttf") format("truetype");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: local("SF Pro Display"), local(".AppleSystemUIFont"), local(".SF NS Display"), local("SF Pro"),
+       url("/assets/System/Library/Fonts/SFNS.ttf") format("truetype");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Mono";
+  src: local("SF Mono"), local(".SF NS Mono"),
+       url("/assets/System/Library/Fonts/SFNSMono.ttf") format("truetype");
+  font-weight: 100 900;
+  font-display: swap;
 }
 
 /* Performance Optimizations */
@@ -133,6 +155,12 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
 
+  /* macOS Global Interaction Rules: Disable Text Selection everywhere except editable inputs & document readers */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
   /* Firefox Scrollbar */
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) transparent;
@@ -142,8 +170,36 @@ body {
   overflow: hidden;
 }
 
+/* Allow text selection only in user-editable elements and explicit reader content */
+input,
+textarea,
+[contenteditable="true"],
+.selectable,
+.selectable-text,
+.select-text,
+.prose,
+pre,
+code {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Native macOS Selection Colors */
+::selection {
+  background-color: rgba(0, 122, 255, 0.35);
+  color: inherit;
+}
+
 /* Optimization: GPU acceleration for frequently animated elements */
-.window,
+/* NOTE: .window must NOT have `transform: translateZ(0)` here — it conflicts
+   with the inline `transform: translate(x, y)` set by React during drag/drop
+   and can cause windows to snap to (0,0) behind the menu bar. */
+.window {
+  will-change: transform;
+}
+
 .dock,
 .menu-bar,
 .sticky-note {
@@ -336,22 +392,22 @@ body {
   @keyframes window-open {
     0% {
       opacity: 0;
-      transform: scale(0.92) translateY(8px);
+      scale: 0.95;
     }
     100% {
       opacity: 1;
-      transform: scale(1) translateY(0);
+      scale: 1;
     }
   }
 
   @keyframes window-close {
     0% {
       opacity: 1;
-      transform: scale(1);
+      scale: 1;
     }
     100% {
       opacity: 0;
-      transform: scale(0.92);
+      scale: 0.95;
     }
   }
 
@@ -476,4 +532,30 @@ img {
 
 .animate-draw-hello {
   animation: draw-hello 5s linear forwards;
+}
+
+/* Butter-Smooth Hardware Accelerated Transitions */
+.window-frame {
+  will-change: transform, width, height;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* WCAG AAA High-Contrast Visible Focus Rings */
+:focus-visible {
+  outline: 2px solid #007aff !important;
+  outline-offset: 2px !important;
+}
+
+/* WCAG AAA Prefers-Reduced-Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

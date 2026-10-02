@@ -90,6 +90,9 @@ interface SystemState {
   airdropEnabled: boolean;
   toggleAirdrop: () => void;
 
+  isScreenMirroring: boolean;
+  setScreenMirroring: (status: boolean) => void;
+
   isNotificationCenterOpen: boolean;
   toggleNotificationCenter: () => void;
 
@@ -241,6 +244,9 @@ export const useSystemStore = create(
       airdropEnabled: false,
       toggleAirdrop: () =>
         set((state) => ({ airdropEnabled: !state.airdropEnabled })),
+
+      isScreenMirroring: false,
+      setScreenMirroring: (status) => set({ isScreenMirroring: status }),
 
       isNotificationCenterOpen: false,
       toggleNotificationCenter: () =>

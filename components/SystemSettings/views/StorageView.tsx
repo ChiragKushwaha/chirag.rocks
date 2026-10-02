@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { HardDrive, Info } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
@@ -6,11 +6,38 @@ import { useTranslations } from "next-intl";
 
 export const StorageView = () => {
   const t = useTranslations("SystemSettings.Storage");
+  const [storageData, setStorageData] = useState({
+    totalGB: 494,
+    availableGB: 245,
+    usedGB: 249,
+    appsGB: 120,
+    docsGB: 45,
+    systemGB: 30,
+    macosGB: 15,
+  });
+
+  useEffect(() => {
+    if (typeof navigator !== "undefined" && navigator.storage?.estimate) {
+      navigator.storage.estimate().then((est) => {
+        if (est.quota) {
+          const quotaGB = Math.round((est.quota / (1024 * 1024 * 1024)) * 10) / 10;
+          const usageGB = Math.round(((est.usage || 0) / (1024 * 1024 * 1024)) * 10) / 10;
+          const availGB = Math.max(0, Math.round((quotaGB - usageGB) * 10) / 10);
+          setStorageData((prev) => ({
+            ...prev,
+            totalGB: quotaGB > 10 ? Math.round(quotaGB) : 494,
+            availableGB: availGB > 1 ? Math.round(availGB) : 245,
+            usedGB: Math.round(usageGB),
+          }));
+        }
+      }).catch(() => {});
+    }
+  }, []);
 
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
-        <div className="w-16 h-16 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+        <div className="w-14 h-14 rounded-full shrink-0 aspect-square shadow-sm bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
           <HardDrive size={32} className="text-gray-500" />
         </div>
         <div>
@@ -23,10 +50,10 @@ export const StorageView = () => {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-[#1e1e1e] rounded-xl border border-gray-200 dark:border-gray-700/50 p-6">
+      <div className="bg-white dark:bg-[#1e1e1e] rounded-xl border border-gray-200 dark:border-gray-700/50 p-6 shadow-xs">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+            <div className="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded-lg flex items-center justify-center shrink-0 aspect-square">
               <HardDrive size={24} className="text-gray-500" />
             </div>
             <div>
@@ -34,7 +61,7 @@ export const StorageView = () => {
                 {t("MacintoshHD")}
               </div>
               <div className="text-sm text-gray-500">
-                {t("AvailableSpace", { available: 245, total: 494 })}
+                {t("AvailableSpace", { available: storageData.availableGB, total: storageData.totalGB })}
               </div>
             </div>
           </div>

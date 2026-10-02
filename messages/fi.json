@@ -1512,7 +1512,8 @@
       "DateAdded": "Date Added",
       "DateModified": "Date Modified",
       "DateCreated": "Date Created",
-      "Size": "Size"
+      "Size": "Size",
+      "SetDesktopPicture": "Set Desktop Picture"
     },
     "SortOptions": {
       "Name": "Nimi",

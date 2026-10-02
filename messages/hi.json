@@ -1263,7 +1263,8 @@
       "DateAdded": "जोड़ी गई तारीख",
       "DateModified": "संशोधन की तारीख",
       "DateCreated": "बनाने की तारीख",
-      "Size": "आकार"
+      "Size": "आकार",
+      "SetDesktopPicture": "Set Desktop Picture"
     }
   },
   "MenuBar": {

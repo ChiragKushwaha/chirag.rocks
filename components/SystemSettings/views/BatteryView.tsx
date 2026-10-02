@@ -4,24 +4,43 @@ import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
 import { ViewHeader } from "../ViewHeader";
 import { useTranslations } from "next-intl";
+import { useBattery } from "../../../hooks/useBattery";
 
 export const BatteryView = () => {
   const t = useTranslations("SystemSettings.Battery");
+  const { level, charging, supported } = useBattery();
+
+  const batteryPercent =
+    supported && level !== null ? Math.round(level * 100) : 85;
+  const isCharging = supported && charging !== null ? charging : false;
 
   return (
     <div className="space-y-5">
-      <ViewHeader icon={Battery} title={t("Title")} description={t("Description")} color="#34C759" />
+      <ViewHeader
+        icon={Battery}
+        title={t("Title")}
+        description={t("Description")}
+        color="#34C759"
+      />
 
       <div className="flex justify-center py-4">
-        <div className="w-full h-48 bg-white dark:bg-[#1e1e1e] rounded-xl border border-gray-200 dark:border-gray-700/50 p-4 flex flex-col gap-2">
+        <div className="w-full h-48 bg-white dark:bg-[#1e1e1e] rounded-xl border border-gray-200 dark:border-gray-700/50 p-4 flex flex-col gap-2 shadow-xs">
           <div className="flex justify-between items-end">
             <div>
               <div className="text-sm text-gray-500">{t("BatteryLevel")}</div>
-              <div className="text-2xl font-semibold dark:text-white">85%</div>
+              <div className="text-2xl font-semibold dark:text-white flex items-center gap-2">
+                <span>{batteryPercent}%</span>
+                {isCharging && (
+                  <span className="text-xs font-normal text-green-500 bg-green-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
+                    <Zap size={10} className="fill-green-500" />
+                    Charging
+                  </span>
+                )}
+              </div>
             </div>
             <div className="text-xs text-gray-500 flex items-center gap-1">
               <Zap size={12} className="text-yellow-500" />
-              <span>{t("LastCharged")}</span>
+              <span>{isCharging ? "Power Source: Power Adapter" : "Power Source: Battery"}</span>
             </div>
           </div>
           <div className="flex-1 flex items-end gap-1 pt-4">

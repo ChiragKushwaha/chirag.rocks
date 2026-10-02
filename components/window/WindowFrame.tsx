@@ -3,6 +3,7 @@ import { useProcessStore } from "../../store/processStore";
 import { useMenuStore } from "../../store/menuStore";
 import { Process } from "../../types/process";
 import { useTranslations } from "next-intl";
+import { useWindowThumbnail } from "../hooks/useWindowThumbnail";
 
 interface WindowFrameProps {
   process: Process;
@@ -13,7 +14,6 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
     const t = useTranslations("Window");
     const {
       closeProcess,
-      minimizeProcess,
       maximizeProcess,
       focusProcess,
       updateWindowPosition,
@@ -21,24 +21,17 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
       snapWindow,
     } = useProcessStore();
 
+    const captureAndMinimize = useWindowThumbnail();
     const { openContextMenu, closeContextMenu } = useMenuStore();
     const windowRef = useRef<HTMLDivElement>(null);
 
     // State
     const [isDragging, setIsDragging] = useState(false);
     const [isResizing, setIsResizing] = useState(false);
-    const [resizeState, setResizeState] = useState<{
-      dir: string;
-      startX: number;
-      startY: number;
-      startWidth: number;
-      startHeight: number;
-      startLeft: number;
-      startTop: number;
-    } | null>(null);
-
+    const [isOpening, setIsOpening] = useState(true);
     const [showSnapMenu, setShowSnapMenu] = useState(false);
     const snapTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
     const dragRef = useRef<{
       startX: number;
       startY: number;
@@ -49,28 +42,53 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
       hasMoved: boolean;
     } | null>(null);
 
-    // Start Drag (Generic)
+    const resizeRef = useRef<{
+      dir: string;
+      startX: number;
+      startY: number;
+      startWidth: number;
+      startHeight: number;
+      startLeft: number;
+      startTop: number;
+      lastWidth: number;
+      lastHeight: number;
+      lastX: number;
+      lastY: number;
+      hasMoved: boolean;
+    } | null>(null);
+
+    // Start Drag
     const startDrag = (
       e: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent
     ) => {
-      if (process.isMaximized) return; // Disable dragging if window is maximized
+      if (process.isMaximized) return;
 
-      // Get position
       const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
       const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
 
-      // Ignore spurious (0,0) trackpad events
       if (clientX === 0 && clientY === 0) return;
 
       const target = e.target as HTMLElement;
 
-      // Stop propagation?
       e.stopPropagation();
       closeContextMenu();
       focusProcess(process.pid);
 
-      if (target.closest(".window-titlebar") && !target.closest(".no-drag")) {
-        // e.preventDefault(); // Prevent scrolling on touch
+      // Allow dragging if clicked on window titlebar or custom drag handles
+      const isHeader =
+        Boolean(target.closest(".window-titlebar")) ||
+        Boolean(target.closest(".window-drag-handle"));
+
+      // Do NOT start window drag if user clicked on interactive elements
+      const isInteractive =
+        Boolean(target.closest(".no-drag")) ||
+        Boolean(target.closest("button")) ||
+        Boolean(target.closest("input")) ||
+        Boolean(target.closest("textarea")) ||
+        Boolean(target.closest("select")) ||
+        Boolean(target.closest("a"));
+
+      if (isHeader && !isInteractive) {
         setIsDragging(true);
         dragRef.current = {
           startX: process.dimension.x,
@@ -84,18 +102,22 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
       }
     };
 
-    // Resize Start (Generic)
+    // Start Resize
     const startResize = (
       e: React.MouseEvent | React.TouchEvent,
       dir: string
     ) => {
+      if (process.isMaximized || process.dimension.resizable === false) return;
+
       const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
       const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
 
-      // e.preventDefault();
       e.stopPropagation();
+      closeContextMenu();
+      focusProcess(process.pid);
       setIsResizing(true);
-      setResizeState({
+
+      resizeRef.current = {
         dir,
         startX: clientX,
         startY: clientY,
@@ -103,7 +125,12 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
         startHeight: process.dimension.height,
         startLeft: process.dimension.x,
         startTop: process.dimension.y,
-      });
+        lastWidth: process.dimension.width,
+        lastHeight: process.dimension.height,
+        lastX: process.dimension.x,
+        lastY: process.dimension.y,
+        hasMoved: false,
+      };
     };
 
     useEffect(() => {
@@ -111,58 +138,75 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
         const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
         const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
 
-        // Ignore spurious (0,0) trackpad gesture events
         if (clientX === 0 && clientY === 0) return;
 
+        // --- DRAG LOGIC ---
         if (isDragging && windowRef.current && dragRef.current) {
-          // Prevent scroll on mobile while dragging
           if (e.cancelable) e.preventDefault();
 
           const deltaX = clientX - dragRef.current.clientX;
           const deltaY = clientY - dragRef.current.clientY;
 
           if (!dragRef.current.hasMoved) {
-            if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+            if (Math.abs(deltaX) > 2 || Math.abs(deltaY) > 2) {
               dragRef.current.hasMoved = true;
             }
           }
 
           if (dragRef.current.hasMoved) {
             const newX = dragRef.current.startX + deltaX;
-            const newY = Math.max(32, dragRef.current.startY + deltaY);
+            // Safe area: cannot go above menu bar (y = 0 in container)
+            const newY = Math.max(0, dragRef.current.startY + deltaY);
             windowRef.current.style.transform = `translate(${newX}px, ${newY}px)`;
+            windowRef.current.style.setProperty("--restore-to-x", `${newX}px`);
+            windowRef.current.style.setProperty("--restore-to-y", `${newY}px`);
             dragRef.current.lastClientX = clientX;
             dragRef.current.lastClientY = clientY;
           }
         }
 
-        if (isResizing && resizeState) {
+        // --- RESIZE LOGIC ---
+        if (isResizing && windowRef.current && resizeRef.current) {
           if (e.cancelable) e.preventDefault();
 
-          let newWidth = resizeState.startWidth;
-          let newHeight = resizeState.startHeight;
-          let newX = resizeState.startLeft;
-          let newY = resizeState.startTop;
-          const deltaX = clientX - resizeState.startX;
-          const deltaY = clientY - resizeState.startY;
+          const r = resizeRef.current;
+          const deltaX = clientX - r.startX;
+          const deltaY = clientY - r.startY;
 
-          if (resizeState.dir.includes("e")) newWidth += deltaX;
-          if (resizeState.dir.includes("w")) {
-            newWidth -= deltaX;
-            newX += deltaX;
+          let newWidth = r.startWidth;
+          let newHeight = r.startHeight;
+          let newX = r.startLeft;
+          let newY = r.startTop;
+
+          if (r.dir.includes("e")) {
+            newWidth = Math.max(300, r.startWidth + deltaX);
           }
-          if (resizeState.dir.includes("s")) newHeight += deltaY;
-          if (resizeState.dir.includes("n")) {
-            const potentialY = resizeState.startTop + deltaY;
-            const maxAllowedY = resizeState.startTop + resizeState.startHeight - 200;
-            newY = Math.max(32, Math.min(potentialY, maxAllowedY));
-            newHeight = (resizeState.startTop + resizeState.startHeight) - newY;
+          if (r.dir.includes("w")) {
+            const rawWidth = r.startWidth - deltaX;
+            newWidth = Math.max(300, rawWidth);
+            newX = r.startLeft + (r.startWidth - newWidth);
+          }
+          if (r.dir.includes("s")) {
+            newHeight = Math.max(200, r.startHeight + deltaY);
+          }
+          if (r.dir.includes("n")) {
+            const rawHeight = r.startHeight - deltaY;
+            const maxHeight = r.startTop + r.startHeight; // Cannot go above top: 0
+            newHeight = Math.max(200, Math.min(rawHeight, maxHeight));
+            newY = Math.max(0, r.startTop + (r.startHeight - newHeight));
           }
 
-          if (newWidth < 300) newWidth = 300;
-          if (newHeight < 200) newHeight = 200;
+          windowRef.current.style.width = `${newWidth}px`;
+          windowRef.current.style.height = `${newHeight}px`;
+          windowRef.current.style.transform = `translate(${newX}px, ${newY}px)`;
+          windowRef.current.style.setProperty("--restore-to-x", `${newX}px`);
+          windowRef.current.style.setProperty("--restore-to-y", `${newY}px`);
 
-          resizeProcess(process.pid, newWidth, newHeight, newX, newY);
+          r.lastWidth = newWidth;
+          r.lastHeight = newHeight;
+          r.lastX = newX;
+          r.lastY = newY;
+          r.hasMoved = true;
         }
       };
 
@@ -181,22 +225,37 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
         if (isDragging) {
           setIsDragging(false);
           if (dragRef.current && dragRef.current.hasMoved) {
-            // Use last valid coordinates if current are spurious (0,0)
-            const finalClientX = (clientX === 0 && clientY === 0) ? dragRef.current.lastClientX : clientX;
-            const finalClientY = (clientX === 0 && clientY === 0) ? dragRef.current.lastClientY : clientY;
+            const finalClientX =
+              clientX === 0 && clientY === 0
+                ? dragRef.current.lastClientX
+                : clientX;
+            const finalClientY =
+              clientX === 0 && clientY === 0
+                ? dragRef.current.lastClientY
+                : clientY;
 
             const deltaX = finalClientX - dragRef.current.clientX;
             const deltaY = finalClientY - dragRef.current.clientY;
             const finalX = dragRef.current.startX + deltaX;
-            const finalY = Math.max(32, dragRef.current.startY + deltaY);
+            const finalY = Math.max(0, dragRef.current.startY + deltaY);
             updateWindowPosition(process.pid, finalX, finalY);
-          }
-          if (windowRef.current) {
-            windowRef.current.style.transform = "";
           }
           dragRef.current = null;
         }
-        setIsResizing(false);
+
+        if (isResizing) {
+          setIsResizing(false);
+          if (resizeRef.current && resizeRef.current.hasMoved) {
+            resizeProcess(
+              process.pid,
+              resizeRef.current.lastWidth,
+              resizeRef.current.lastHeight,
+              resizeRef.current.lastX,
+              resizeRef.current.lastY
+            );
+          }
+          resizeRef.current = null;
+        }
       };
 
       if (isDragging || isResizing) {
@@ -215,7 +274,6 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
     }, [
       isDragging,
       isResizing,
-      resizeState,
       process.pid,
       updateWindowPosition,
       resizeProcess,
@@ -231,20 +289,20 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
           label: process.title,
           disabled: true,
         },
-        { separator: true },
-        {
-          label: t("Minimize"),
-          action: () => minimizeProcess(process.pid),
-        },
-        {
-          label: process.isMaximized ? t("Restore") : t("Maximize"),
-          action: () => maximizeProcess(process.pid),
-        },
-        { separator: true },
+        { type: "separator" },
         {
           label: t("Close"),
           action: () => closeProcess(process.pid),
-          danger: true,
+          shortcut: "⌘W",
+        },
+        {
+          label: t("Minimize"),
+          action: () => captureAndMinimize(process.pid, windowRef.current),
+          shortcut: "⌘M",
+        },
+        {
+          label: process.isMaximized ? t("ExitFullScreen") : t("Zoom"),
+          action: () => maximizeProcess(process.pid),
         },
       ]);
     };
@@ -254,7 +312,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
       y: number;
     } | null>(null);
 
-    // Use useLayoutEffect to ensure coordinates are ready before first paint
+    // Calculate minimized dock target coords
     useLayoutEffect(() => {
       if (process.isMinimizing || process.isRestoring) {
         const dockItem = document.getElementById(
@@ -262,11 +320,10 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
         );
         if (dockItem) {
           const rect = dockItem.getBoundingClientRect();
+          const MENU_BAR_HEIGHT = 30;
           const targetX = rect.x + rect.width / 2 - process.dimension.width / 2;
           const targetY =
-            rect.y + rect.height / 2 - process.dimension.height / 2;
-          // Set immediately without RAF to prevent frame 1 jitter
-          // eslint-disable-next-line
+            rect.y - MENU_BAR_HEIGHT + rect.height / 2 - process.dimension.height / 2;
           setMinimizedCoords({ x: targetX, y: targetY });
         }
       }
@@ -277,16 +334,20 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
       process.dimension,
     ]);
 
-    // Fallback if coords not yet found (shouldn't happen often due to layout effect)
+    // Fallback if coords not yet found
     const targetX = minimizedCoords?.x ?? window.innerWidth / 2;
-    const targetY = minimizedCoords?.y ?? window.innerHeight;
+    const targetY = minimizedCoords?.y ?? (window.innerHeight - 30);
 
     return (
       <div
         ref={windowRef}
+        id={`process-${process.pid}`}
         onMouseDown={startDrag}
         onTouchStart={startDrag}
         onContextMenu={handleContextMenu}
+        onAnimationEnd={() => {
+          if (isOpening) setIsOpening(false);
+        }}
         style={{
           transform: process.isMaximized
             ? "none"
@@ -295,14 +356,14 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
               : `translate(${process.dimension.x}px, ${process.dimension.y}px)`,
           width: process.isMaximized ? "100vw" : process.dimension.width,
           height: process.isMaximized
-            ? "calc(100vh - 2rem)"
+            ? "100%"
             : process.dimension.height,
           zIndex: process.zIndex,
           willChange:
             isDragging ||
-              isResizing ||
-              process.isMinimizing ||
-              process.isRestoring
+            isResizing ||
+            process.isMinimizing ||
+            process.isRestoring
               ? "transform, opacity"
               : "auto",
           display: process.isMinimized ? "none" : "flex",
@@ -316,36 +377,32 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
               ? "0 0 50% 50%"
               : "12px",
           border: process.isMaximized ? "0px" : undefined,
-          top: process.isMaximized ? "2rem" : undefined,
-          left: process.isMaximized ? "0px" : undefined,
+          top: process.isMaximized ? "0" : undefined,
+          left: process.isMaximized ? "0" : undefined,
           transition: process.isMinimizing
             ? "all 0.5s cubic-bezier(0.25, 1, 0.5, 1)"
             : "none",
-          // @ts-expect-error - Interactable is not typed correctly with React ref
+          // @ts-expect-error - Custom CSS properties for animation keyframes
           "--restore-from-x": `${targetX}px`,
           "--restore-from-y": `${targetY}px`,
           "--restore-to-x": `${process.dimension.x}px`,
           "--restore-to-y": `${process.dimension.y}px`,
         }}
         className={`
-        window absolute top-0 left-0 flex flex-col pointer-events-auto
+        window window-frame absolute top-0 left-0 flex flex-col pointer-events-auto
         transition-shadow duration-200
         ${process.isRestoring
             ? "animate-restore-window"
-            : !process.isMinimizing && !process.isClosing
-              ? "animate-in fade-in zoom-in-95 slide-in-from-bottom-4 duration-300 ease-out"
+            : isOpening && !process.isMinimizing && !process.isClosing
+              ? "animate-window-open"
               : ""
           }
         ${process.isClosing
-            ? "animate-out fade-out zoom-out-95 duration-200 ease-in fill-mode-forwards"
-            : ""
-          }
-        ${process.isClosing
-            ? "animate-out fade-out zoom-out-95 duration-200 ease-in fill-mode-forwards"
+            ? "animate-window-close"
             : ""
           }
         ${process.isMaximized
-            ? "transform-none! top-8! left-0! right-0! bottom-0! rounded-none! border-0"
+            ? "transform-none! top-0! left-0! right-0! bottom-0! rounded-none! border-0"
             : "rounded-xl overflow-hidden border border-black/10 dark:border-white/10"
           }
         ${process.isFocused
@@ -362,49 +419,57 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
         bg-white/85 dark:bg-[#1e1e1e]/85
       `}
       >
-        {/* --- RESIZE HANDLES (Invisible but clickable) --- */}
+        {/* --- RESIZE HANDLES (Generous hit zones) --- */}
         {!process.isMaximized && process.dimension.resizable !== false && (
           <>
+            {/* North Edge */}
             <div
               onMouseDown={(e) => startResize(e, "n")}
               onTouchStart={(e) => startResize(e, "n")}
-              className="no-drag absolute top-0 left-0 w-full h-1 cursor-ns-resize z-50"
+              className="no-drag absolute top-0 left-6 right-6 h-2 cursor-ns-resize z-40"
             />
+            {/* South Edge */}
             <div
               onMouseDown={(e) => startResize(e, "s")}
               onTouchStart={(e) => startResize(e, "s")}
-              className="no-drag absolute bottom-0 left-0 w-full h-1 cursor-ns-resize z-50"
+              className="no-drag absolute -bottom-1 left-6 right-6 h-3 cursor-ns-resize z-40"
             />
+            {/* East Edge */}
             <div
               onMouseDown={(e) => startResize(e, "e")}
               onTouchStart={(e) => startResize(e, "e")}
-              className="no-drag absolute top-0 right-0 w-1 h-full cursor-ew-resize z-50"
+              className="no-drag absolute -right-1 top-6 bottom-6 w-3 cursor-ew-resize z-40"
             />
+            {/* West Edge */}
             <div
               onMouseDown={(e) => startResize(e, "w")}
               onTouchStart={(e) => startResize(e, "w")}
-              className="no-drag absolute top-0 left-0 w-1 h-full cursor-ew-resize z-50"
+              className="no-drag absolute -left-1 top-6 bottom-6 w-3 cursor-ew-resize z-40"
             />
 
+            {/* North-East Corner */}
             <div
               onMouseDown={(e) => startResize(e, "ne")}
               onTouchStart={(e) => startResize(e, "ne")}
-              className="no-drag absolute top-0 right-0 w-3 h-3 cursor-ne-resize z-50"
+              className="no-drag absolute -top-1 -right-1 w-6 h-6 cursor-ne-resize z-50"
             />
+            {/* North-West Corner */}
             <div
               onMouseDown={(e) => startResize(e, "nw")}
               onTouchStart={(e) => startResize(e, "nw")}
-              className="no-drag absolute top-0 left-0 w-3 h-3 cursor-nw-resize z-50"
+              className="no-drag absolute -top-1 -left-1 w-4 h-4 cursor-nw-resize z-50"
             />
+            {/* South-East Corner */}
             <div
               onMouseDown={(e) => startResize(e, "se")}
               onTouchStart={(e) => startResize(e, "se")}
-              className="no-drag absolute bottom-0 right-0 w-3 h-3 cursor-se-resize z-50"
+              className="no-drag absolute -bottom-1 -right-1 w-6 h-6 cursor-se-resize z-50"
             />
+            {/* South-West Corner */}
             <div
               onMouseDown={(e) => startResize(e, "sw")}
               onTouchStart={(e) => startResize(e, "sw")}
-              className="no-drag absolute bottom-0 left-0 w-3 h-3 cursor-sw-resize z-50"
+              className="no-drag absolute -bottom-1 -left-1 w-6 h-6 cursor-sw-resize z-50"
             />
           </>
         )}
@@ -412,24 +477,26 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
         {/* --- TITLE BAR --- */}
         <div
           className="window-titlebar h-10 bg-linear-to-b from-white/10 to-transparent border-b border-black/10 flex items-center px-4 cursor-default select-none shrink-0"
-          onDoubleClick={() => maximizeProcess(process.pid)} // Double click titlebar to maximize
+          onDoubleClick={() => maximizeProcess(process.pid)}
         >
           {/* Traffic Lights */}
           <div className="flex space-x-2 group relative no-drag">
             {/* Close */}
             <button
               onClick={() => closeProcess(process.pid)}
-              className="w-3 h-3 rounded-full bg-[#FF5F56] hover:brightness-75 flex items-center justify-center text-[8px] text-black/50 opacity-100 shadow-sm border border-[#E0443E]"
+              className="w-3 h-3 rounded-full bg-[#FF5F56] hover:brightness-90 active:brightness-75 flex items-center justify-center text-[7px] font-bold text-[#4c0000] opacity-100 shadow-xs border border-[#E0443E] transition-all cursor-default"
+              aria-label="Close"
             >
-              <span className="hidden group-hover:block">x</span>
+              <span className="hidden group-hover:block leading-none">✕</span>
             </button>
 
             {/* Minimize */}
             <button
-              onClick={() => minimizeProcess(process.pid)}
-              className="w-3 h-3 rounded-full bg-[#FFBD2E] hover:brightness-75 flex items-center justify-center text-[8px] text-black/50 opacity-100 shadow-sm border border-[#DEA123]"
+              onClick={() => captureAndMinimize(process.pid, windowRef.current)}
+              className="w-3 h-3 rounded-full bg-[#FFBD2E] hover:brightness-90 active:brightness-75 flex items-center justify-center text-[7px] font-bold text-[#5a3a00] opacity-100 shadow-xs border border-[#DEA123] transition-all cursor-default"
+              aria-label="Minimize"
             >
-              <span className="hidden group-hover:block">-</span>
+              <span className="hidden group-hover:block leading-none">−</span>
             </button>
 
             {/* Maximize / Split Screen Trigger */}
@@ -444,63 +511,59 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
               onMouseLeave={() => {
                 if (snapTimeoutRef.current)
                   clearTimeout(snapTimeoutRef.current);
-                // Small delay to allow moving mouse to the menu
-                setTimeout(() => {
-                  // Check if we are actually hovering the menu (handled by menu mouse events)
-                  // For simplicity in this demo, we just close it quickly if mouse leaves button
-                  // In a real robust app, we'd check refs.
-                }, 200);
+                setTimeout(() => {}, 200);
               }}
             >
               <button
                 onClick={() => maximizeProcess(process.pid)}
-                className="w-3 h-3 rounded-full bg-[#27C93F] hover:brightness-75 flex items-center justify-center text-[8px] text-black/50 opacity-100 shadow-sm border border-[#1AAB29]"
+                className="w-3 h-3 rounded-full bg-[#27C93F] hover:brightness-90 active:brightness-75 flex items-center justify-center text-[7px] font-bold text-[#004d00] opacity-100 shadow-xs border border-[#1AAB29] transition-all cursor-default"
+                aria-label="Zoom or Fullscreen"
               >
-                <span className="hidden group-hover:block">+</span>
+                <span className="hidden group-hover:block leading-none">＋</span>
               </button>
 
               {/* Split Screen Menu (MacOS Style) */}
               {showSnapMenu && (
                 <div
-                  className="absolute top-5 left-0 w-40 bg-white/90 backdrop-blur-md rounded-lg shadow-xl border border-gray-200/50 py-1 flex flex-col z-100 animate-in fade-in zoom-in-95 duration-100"
+                  className="absolute top-5 left-0 w-44 bg-[rgba(246,246,246,0.96)] dark:bg-[rgba(40,40,40,0.96)] backdrop-blur-xl rounded-lg shadow-2xl border border-black/10 dark:border-white/10 py-1.5 flex flex-col z-100 animate-in fade-in zoom-in-95 duration-100 text-gray-800 dark:text-gray-100"
                   onMouseEnter={() => {
                     if (snapTimeoutRef.current)
                       clearTimeout(snapTimeoutRef.current);
                   }}
                   onMouseLeave={() => setShowSnapMenu(false)}
                 >
-                  <div className="px-2 py-1 text-[10px] text-gray-500 font-semibold border-b border-gray-200/50 mb-1">
+                  <div className="px-3 py-1 text-[11px] text-gray-500 dark:text-gray-400 font-semibold border-b border-black/5 dark:border-white/10 mb-1 select-none">
                     {t("MoveTo")}
                   </div>
                   <button
-                    className="px-3 py-1.5 text-xs text-left hover:bg-blue-500 hover:text-white flex items-center gap-2"
+                    className="px-3 py-1.5 text-xs text-left text-gray-800 dark:text-gray-100 hover:bg-[#007AFF] hover:text-white dark:hover:bg-[#0A84FF] dark:hover:text-white flex items-center gap-2 rounded-sm mx-1 transition-colors cursor-default"
                     onClick={() => {
                       snapWindow(process.pid, "left");
                       setShowSnapMenu(false);
                     }}
                   >
-                    <div className="w-3 h-2 border border-current rounded-[1px] bg-linear-to-r from-current to-transparent to-50%" />
-                    {t("LeftSide")}
+                    <div className="w-3.5 h-2.5 border border-current rounded-[1px] bg-linear-to-r from-current to-transparent to-50%" />
+                    <span>{t("LeftSide")}</span>
                   </button>
                   <button
-                    className="px-3 py-1.5 text-xs text-left hover:bg-blue-500 hover:text-white flex items-center gap-2"
+                    className="px-3 py-1.5 text-xs text-left text-gray-800 dark:text-gray-100 hover:bg-[#007AFF] hover:text-white dark:hover:bg-[#0A84FF] dark:hover:text-white flex items-center gap-2 rounded-sm mx-1 transition-colors cursor-default"
                     onClick={() => {
                       snapWindow(process.pid, "right");
                       setShowSnapMenu(false);
                     }}
                   >
-                    <div className="w-3 h-2 border border-current rounded-[1px] bg-linear-to-l from-current to-transparent to-50%" />
-                    {t("RightSide")}
+                    <div className="w-3.5 h-2.5 border border-current rounded-[1px] bg-linear-to-l from-current to-transparent to-50%" />
+                    <span>{t("RightSide")}</span>
                   </button>
                   <button
-                    className="px-3 py-1.5 text-xs text-left hover:bg-blue-500 hover:text-white flex items-center gap-2"
+                    className="px-3 py-1.5 text-xs text-left text-gray-800 dark:text-gray-100 hover:bg-[#007AFF] hover:text-white dark:hover:bg-[#0A84FF] dark:hover:text-white flex items-center gap-2 rounded-sm mx-1 transition-colors cursor-default"
                     onClick={() => {
                       maximizeProcess(process.pid);
                       setShowSnapMenu(false);
                     }}
                   >
-                    <div className="w-3 h-2 border border-current rounded-[1px] bg-current" />
-                    {t("EnterFullScreen")}
+                    <div className="w-3.5 h-2.5 border border-current rounded-[1px] bg-current" />
+                    <span>{t("EnterFullScreen")}</span>
                   </button>
                 </div>
               )}
@@ -508,7 +571,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
           </div>
 
           {/* Window Title */}
-          <div className="flex-1 text-center text-[13px] font-medium text-gray-400/90 pointer-events-none">
+          <div className="flex-1 text-center text-[13px] font-medium text-gray-700 dark:text-gray-200 pointer-events-none select-none">
             {process.title}
           </div>
 
@@ -517,7 +580,7 @@ export const WindowFrame: React.FC<WindowFrameProps> = React.memo(
         </div>
 
         {/* App Content Area */}
-        <div className="flex-1 overflow-hidden relative">
+        <div className="flex-1 overflow-hidden relative select-none">
           {process.component}
         </div>
       </div>

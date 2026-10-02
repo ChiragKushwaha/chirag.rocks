@@ -3,6 +3,7 @@ import {
   Clipboard,
   Cloud,
   Lock,
+  Monitor,
   PlayCircle,
   Search,
   Wifi,
@@ -19,6 +20,11 @@ import { useSystemStore } from "../store/systemStore";
 import { Clock } from "./Clock";
 import { TopDropdown } from "./Menus";
 import { WeatherDropdown } from "./WeatherDropdown";
+import dynamic from "next/dynamic";
+
+const SystemSettings = dynamic(() =>
+  import("../apps/SystemSettings").then((mod) => mod.SystemSettings)
+);
 
 const WifiDisplay = () => {
   const t = useTranslations("MenuBar.Wifi");
@@ -293,7 +299,12 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
   lockScreenMode = false,
 }) => {
   const t = useTranslations("MenuBar");
-  const { activeApp, toggleNotificationCenter } = useSystemStore();
+  const {
+    activeApp,
+    toggleNotificationCenter,
+    isScreenMirroring,
+    setScreenMirroring,
+  } = useSystemStore();
   const { launchProcess } = useProcessStore();
   const [isControlCenterOpen, setIsControlCenterOpen] = React.useState(false);
   const controlCenterRef = React.useRef<HTMLDivElement>(null);
@@ -312,7 +323,16 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
         }),
     },
     { separator: true },
-    { label: t("Apple.SystemSettings"), disabled: true },
+    {
+      label: t("Apple.SystemSettings"),
+      action: () =>
+        launchProcess(
+          "settings",
+          t("Apple.SystemSettings") || "System Settings",
+          "settings",
+          <SystemSettings />
+        ),
+    },
     { label: t("Apple.AppStore"), disabled: true },
     { separator: true },
     { label: t("Apple.RecentItems"), submenu: [] }, // Submenus can be expanded later
@@ -354,6 +374,9 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
 
   return (
     <header
+      id="main-menubar"
+      role="banner"
+      aria-label="macOS Menu Bar"
       className={`h-[30px] ${
         lockScreenMode
           ? "bg-transparent"
@@ -490,6 +513,20 @@ export const MenuBar: React.FC<{ lockScreenMode?: boolean }> = ({
             >
               <Search size={15} strokeWidth={2.5} />
             </div>
+
+            {/* Screen Mirroring Indicator */}
+            {isScreenMirroring && (
+              <div
+                role="button"
+                tabIndex={0}
+                aria-label="Screen Mirroring Active"
+                onClick={() => setScreenMirroring(false)}
+                className="opacity-100 bg-blue-500/80 hover:bg-blue-600 text-white p-1 rounded cursor-pointer transition-colors flex items-center justify-center animate-pulse"
+                title="Screen Mirroring Active - Click to disconnect"
+              >
+                <Monitor size={15} />
+              </div>
+            )}
 
             {/* Control Center */}
             <div

@@ -29,6 +29,9 @@ export interface Process {
   // Simulated System Resources (for Activity Monitor later)
   memoryUsage: number; // in MB
 
+  // Minimized window thumbnail (base64 data URL captured before minimize)
+  thumbnail?: string;
+
   // Window Configuration
   windowRequired?: boolean; // If false, renders without WindowFrame (e.g. Launchpad)
 }

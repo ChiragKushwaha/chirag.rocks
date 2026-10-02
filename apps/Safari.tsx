@@ -827,8 +827,8 @@ export const Safari: React.FC<SafariProps> = ({ initialUrl }) => {
                           setWallpaper(wp.id);
                           setShowWallpaperMenu(false);
                         }}
-                        className={`px-3 py-1.5 text-xs text-left hover:bg-blue-500 hover:text-white transition-colors flex items-center gap-2 ${
-                          wallpaper === wp.id ? "font-bold text-blue-500" : ""
+                        className={`px-3 py-1.5 text-xs text-left text-gray-800 dark:text-gray-200 hover:bg-blue-500 hover:text-white transition-colors flex items-center gap-2 ${
+                          wallpaper === wp.id ? "font-bold text-blue-500 dark:text-blue-400" : ""
                         }`}
                       >
                         <div className={`w-3 h-3 rounded-full border border-gray-300 ${wp.css}`} />

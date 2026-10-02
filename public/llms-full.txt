@@ -1,0 +1,53 @@
+# Chirag Kushwaha - Complete Engineering Dossier & Portfolio Architecture
+
+## Professional Summary
+Chirag Kushwaha is a Full Stack Engineer specialized in crafting resilient web architectures, native-fidelity browser interfaces, and scalable distributed applications.
+
+- **Primary URL**: https://chirag.rocks
+- **Canonical API**: https://chirag.rocks/api
+- **Source Code / Repositories**: https://github.com/chirag-kushwaha
+- **Professional Network**: https://linkedin.com/in/chirag-kushwaha
+
+## Core Competencies
+- **Frontend Systems**: React 19, Next.js (App Router, Server Components, Turbopack, i18n), TypeScript 5.8, Tailwind CSS v4, Web Workers, Canvas, Service Workers, Web Audio, Web Speech.
+- **Client Storage & Offline**: Origin Private File System (OPFS), IndexedDB, Cache Storage, Service Worker caching strategies (Cache-First, Network-First, Stale-While-Revalidate).
+- **Web Platform Capabilities**:
+  - Presentation API / Remote Playback / WebRTC getDisplayMedia (AirPlay & Cast Display).
+  - Web Bluetooth API (Bluetooth accessory discovery and pairing).
+  - Web Battery API (Hardware level monitoring and power event triggers).
+  - Fullscreen API & Window Controls Overlay.
+  - Web Speech API (VoiceOver synthesis and screen voice feedback).
+  - Storage Estimate API (Quota tracking and disk partition telemetry).
+- **Accessibility & Compliance**:
+  - WCAG AAA standard compliance:
+    - 7:1 normal text contrast ratio, 4.5:1 large text contrast ratio.
+    - Keyboard traps prevention and focus visible states.
+    - Skip links (`#main-desktop-area`, `#main-menubar`, `#main-dock`).
+    - Semantic landmarks (`banner`, `main`, `navigation`, `region`, `dialog`).
+    - `@media (prefers-reduced-motion)` motion smoothing and graceful fallbacks.
+  - PWA Builder:
+    - Web App Manifest v3.
+    - Offline fallback with custom service worker.
+    - Dual form-factor screenshots (wide & narrow).
+    - Window-controls-overlay and standalone display modes.
+
+## Apps Available in macOS Big Sur Clone
+1. **Finder**: File manager exploring Desktop, Documents, Applications, Pictures, and Trash using OPFS sandboxed storage.
+2. **Terminal**: Interactive shell with built-in commands (ls, cat, pwd, clear, help, open, neofetch, theme).
+3. **PDF Viewer (Resume)**: High fidelity PDF document previewer with zoom, page navigation, and download.
+4. **Calculator**: macOS Big Sur arithmetic engine supporting chained computations and floating-point logic.
+5. **System Settings**: Modular macOS Ventura/Big Sur settings suite including Wallpaper, Displays, Battery, Bluetooth, Accessibility, Storage, General Hardware, and Appearance.
+6. **Notification Center**: Slide-out widget sidebar featuring real-time financial market tickers, live meteorological forecasting, reminders, notes, and calendar.
+7. **Spotlight Search**: Universal application, file, and external app search launched via Cmd+Space or Menu Bar icon.
+8. **Launchpad**: Full-screen application dashboard with instant search filter.
+
+## External Featured Engineering Projects
+- **Sacred Texts** (https://sacred-texts.xyz): Research and translation engine for historical and philosophical literature.
+- **AlgoViz** (https://algorithms.sacred-texts.xyz): Visual dynamic programming, graph algorithms, and sorting simulator.
+- **SpeakSpanish** (https://sp4nish.vercel.app): Interactive audio and conversational language instruction platform.
+- **Toonflix** (https://t00nflix.vercel.app): Animated video streaming interface.
+
+## Contact & Inquiry
+- Email: Available via resume at https://chirag.rocks/Resume.pdf
+- GitHub: https://github.com/chirag-kushwaha
+- LinkedIn: https://linkedin.com/in/chirag-kushwaha

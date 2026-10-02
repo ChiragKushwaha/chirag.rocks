@@ -29,21 +29,35 @@ interface FileMenuCallbacks {
   openContextMenu: (x: number, y: number, items: MenuItem[]) => void;
   onOpenFile: (file: MacFileEntry) => void;
   onDeleteFile: (file: MacFileEntry) => void;
+  onSetWallpaper?: (file: MacFileEntry) => void;
   t: (key: string) => string;
 }
 
 export function handleFileContextMenu(
   e: React.MouseEvent,
   file: MacFileEntry,
-  { openContextMenu, onOpenFile, onDeleteFile, t }: FileMenuCallbacks
+  { openContextMenu, onOpenFile, onDeleteFile, onSetWallpaper, t }: FileMenuCallbacks
 ) {
   e.preventDefault();
   e.stopPropagation();
-  openContextMenu(e.clientX, e.clientY, [
+  const isImage = /\.(png|jpe?g|webp|gif|svg)$/i.test(file.name);
+  const items: MenuItem[] = [
     { label: t("ContextMenu.Open"), action: () => onOpenFile(file) },
+  ];
+
+  if (isImage && onSetWallpaper) {
+    items.push({
+      label: t("ContextMenu.SetDesktopPicture") || "Set Desktop Picture",
+      action: () => onSetWallpaper(file),
+    });
+  }
+
+  items.push(
     { type: "separator" },
     { label: t("ContextMenu.MoveToTrash"), action: () => onDeleteFile(file) },
     { type: "separator" },
-    { label: t("ContextMenu.GetInfo"), disabled: true },
-  ]);
+    { label: t("ContextMenu.GetInfo"), disabled: true }
+  );
+
+  openContextMenu(e.clientX, e.clientY, items);
 }

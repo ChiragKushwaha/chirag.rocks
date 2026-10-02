@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Info,
   RefreshCw,
@@ -13,6 +13,7 @@ import {
   Briefcase,
   ArrowRightCircle,
   Settings,
+  Laptop,
 } from "lucide-react";
 import { SettingsGroup } from "../SettingsGroup";
 import { SettingsRow } from "../SettingsRow";
@@ -24,13 +25,22 @@ interface GeneralViewProps {
 
 export const GeneralView: React.FC<GeneralViewProps> = ({ onNavigate }) => {
   const t = useTranslations("SystemSettings.General");
+  const [showAboutModal, setShowAboutModal] = useState(false);
+
+  const cores =
+    typeof navigator !== "undefined" ? navigator.hardwareConcurrency || 8 : 8;
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+  const memory =
+    typeof navigator !== "undefined" && (navigator as any).deviceMemory
+      ? (navigator as any).deviceMemory
+      : 16;
 
   return (
     <div className="pt-8 px-4 max-w-2xl mx-auto pb-12">
       {/* Header */}
       <div className="flex flex-col items-center mb-8 text-center">
-        <div className="w-16 h-16 rounded-full bg-gray-400/20 flex items-center justify-center mb-4">
-          <Settings className="w-10 h-10 text-gray-500" />
+        <div className="w-14 h-14 rounded-full shrink-0 aspect-square shadow-sm bg-gray-400/20 flex items-center justify-center mb-4">
+          <Settings className="w-8 h-8 text-gray-500" />
         </div>
         <h1 className="text-2xl font-bold dark:text-white mb-2">
           {t("Title")}
@@ -40,12 +50,40 @@ export const GeneralView: React.FC<GeneralViewProps> = ({ onNavigate }) => {
         </p>
       </div>
 
+      {showAboutModal && (
+        <div className="mb-6 p-5 rounded-2xl bg-white dark:bg-[#1e1e1e] border border-gray-200 dark:border-gray-700/60 shadow-lg flex items-center gap-6">
+          <div className="w-20 h-20 rounded-2xl bg-linear-to-tr from-blue-500 to-indigo-600 flex items-center justify-center text-white shrink-0 shadow-md">
+            <Laptop size={40} />
+          </div>
+          <div className="space-y-1 text-sm">
+            <h3 className="text-lg font-bold dark:text-white">MacBook Pro</h3>
+            <p className="text-xs text-gray-500">16-inch, Apple Silicon</p>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 pt-2 text-xs">
+              <span className="text-gray-500">Chip:</span>
+              <span className="font-medium dark:text-gray-200">Apple Silicon ({cores} Cores)</span>
+              <span className="text-gray-500">Memory:</span>
+              <span className="font-medium dark:text-gray-200">{memory} GB Unified</span>
+              <span className="text-gray-500">macOS:</span>
+              <span className="font-medium dark:text-gray-200">Big Sur 11.7.10</span>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Group 1 */}
       <SettingsGroup>
-        <SettingsRow icon={Info} label={t("About")} color="#8E8E93" />
+        <div onClick={() => setShowAboutModal(!showAboutModal)} className="cursor-pointer">
+          <SettingsRow
+            icon={Info}
+            label={t("About")}
+            value={showAboutModal ? "Hide Info" : "MacBook Pro"}
+            color="#8E8E93"
+          />
+        </div>
         <SettingsRow
           icon={RefreshCw}
           label={t("SoftwareUpdate")}
+          value="macOS 11.7.10 Up to date"
           color="#8E8E93"
         />
         <SettingsRow

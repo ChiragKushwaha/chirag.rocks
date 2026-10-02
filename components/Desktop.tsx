@@ -16,6 +16,11 @@ import { useWallpaperLoader } from "./desktop/useWallpaperLoader";
 import { useSpotlightShortcut } from "./desktop/useSpotlightShortcut";
 import { handleDesktopContextMenu } from "./desktop/DesktopContextMenu";
 import { useFileSeeder } from "./hooks/useFileSeeder";
+import dynamic from "next/dynamic";
+
+const SystemSettings = dynamic(() =>
+  import("../apps/SystemSettings").then((mod) => mod.SystemSettings)
+);
 
 export const Desktop: React.FC = () => {
   const t = useTranslations("Desktop");
@@ -58,7 +63,8 @@ export const Desktop: React.FC = () => {
   if (system.isBooting) return <BootScreen progress={bootProgress} />;
 
   return (
-    <div
+    <main
+      id="main-desktop-area"
       ref={constraintsRef}
       className="h-screen w-screen overflow-hidden relative select-none"
       onContextMenu={(e) =>
@@ -66,7 +72,10 @@ export const Desktop: React.FC = () => {
           openContextMenu,
           onCreateFolder: ops.createNewFolder,
           onRefresh: refreshFiles,
-          onOpenSettings: () => launchProcess("settings", "System Settings", "settings", null),
+          onOpenSettings: () => {
+            system.setSettingsTab("Wallpaper");
+            launchProcess("settings", "System Settings", "settings", <SystemSettings />);
+          },
           t,
         })
       }
@@ -83,25 +92,14 @@ export const Desktop: React.FC = () => {
       <div className="relative z-40"><MenuBar /></div>
       <DesktopOverlays />
       <DesktopIconGrid
-        files={files}
-        constraintsRef={constraintsRef}
-        fileRefs={fileRefs}
-        selectedFiles={system.selectedFiles}
-        setSelectedFiles={system.setSelectedFiles}
-        dragStartPositions={dragStartPositions}
-        iconPositions={system.iconPositions}
-        setIconPosition={system.setIconPosition}
-        renamingFile={renamingFile}
-        setRenamingFile={setRenamingFile}
-        handleRename={ops.handleRename}
-        openFile={ops.openFile}
-        setSelectedFile={system.setSelectedFile}
-        setLastClickId={setLastClickId}
-        setLastClickTime={setLastClickTime}
-        lastClickId={lastClickId}
-        lastClickTime={lastClickTime}
-        openContextMenu={openContextMenu}
-        moveToBin={ops.moveToBin}
+        files={files} constraintsRef={constraintsRef} fileRefs={fileRefs}
+        selectedFiles={system.selectedFiles} setSelectedFiles={system.setSelectedFiles}
+        dragStartPositions={dragStartPositions} iconPositions={system.iconPositions}
+        setIconPosition={system.setIconPosition} renamingFile={renamingFile}
+        setRenamingFile={setRenamingFile} handleRename={ops.handleRename} openFile={ops.openFile}
+        setSelectedFile={system.setSelectedFile} setLastClickId={setLastClickId}
+        setLastClickTime={setLastClickTime} lastClickId={lastClickId} lastClickTime={lastClickTime}
+        openContextMenu={openContextMenu} moveToBin={ops.moveToBin}
       />
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         {notes.map((note) => (
@@ -110,8 +108,9 @@ export const Desktop: React.FC = () => {
           </div>
         ))}
       </div>
-      <div className="absolute inset-0 z-20 pointer-events-none"><WindowManager /></div>
+      {/* Safe area: WindowManager starts below the 30px menu bar so no window can go behind the header */}
+      <div className="absolute top-[30px] inset-x-0 bottom-0 z-20 pointer-events-none"><WindowManager /></div>
       <div className="relative z-30"><Dock /></div>
-    </div>
+    </main>
   );
 };

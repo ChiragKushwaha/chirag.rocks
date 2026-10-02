@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import {
+  Accessibility,
   ScanFace,
   ZoomIn,
   Type,
@@ -22,17 +23,32 @@ import { useTranslations } from "next-intl";
 
 export const AccessibilityView = () => {
   const t = useTranslations("SystemSettings.Accessibility");
+  const [voiceOverActive, setVoiceOverActive] = useState(false);
+
+  const toggleVoiceOver = () => {
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      if (!voiceOverActive) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(
+          "VoiceOver on System Settings. Accessibility features active."
+        );
+        utterance.rate = 1.0;
+        window.speechSynthesis.speak(utterance);
+        setVoiceOverActive(true);
+      } else {
+        window.speechSynthesis.cancel();
+        setVoiceOverActive(false);
+      }
+    } else {
+      setVoiceOverActive((prev) => !prev);
+    }
+  };
 
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
-        <div className="w-16 h-16 rounded-full bg-[#007AFF] flex items-center justify-center">
-          <div className="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center">
-            <div className="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center">
-              <div className="w-2 h-8 bg-white absolute"></div>
-              <div className="w-8 h-2 bg-white absolute"></div>
-            </div>
-          </div>
+        <div className="w-14 h-14 rounded-full bg-[#007AFF] flex items-center justify-center shrink-0 aspect-square shadow-sm">
+          <Accessibility size={30} className="text-white" />
         </div>
         <div>
           <h2 className="text-xl font-semibold dark:text-white">
@@ -40,7 +56,7 @@ export const AccessibilityView = () => {
           </h2>
           <p className="text-sm text-gray-500 dark:text-gray-400">
             {t("Description")}{" "}
-            <span className="text-blue-500 cursor-pointer">
+            <span className="text-blue-500 hover:underline cursor-pointer">
               {t("LearnMore")}
             </span>
           </p>
@@ -48,7 +64,14 @@ export const AccessibilityView = () => {
       </div>
 
       <SettingsGroup title={t("Vision")}>
-        <SettingsRow icon={ScanFace} label={t("VoiceOver")} color="#8E8E93" />
+        <div onClick={toggleVoiceOver} className="cursor-pointer">
+          <SettingsRow
+            icon={ScanFace}
+            label={t("VoiceOver")}
+            value={voiceOverActive ? "On" : "Off"}
+            color="#8E8E93"
+          />
+        </div>
         <SettingsRow icon={ZoomIn} label={t("Zoom")} color="#007AFF" />
         <SettingsRow icon={Type} label={t("HoverText")} color="#007AFF" />
         <SettingsRow icon={Monitor} label={t("Display")} color="#007AFF" />

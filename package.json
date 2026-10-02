@@ -30,6 +30,7 @@
     "express": "^5.2.1",
     "framer-motion": "^12.23.25",
     "heic2any": "^0.0.4",
+    "html2canvas-pro": "^2.5.0",
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.2",
     "lucide-react": "^0.555.0",

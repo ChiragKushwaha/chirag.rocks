@@ -1273,6 +1273,7 @@
       "NewFolder": "New Folder",
       "GetInfo": "Get Info",
       "ChangeWallpaper": "Change Wallpaper...",
+      "SetDesktopPicture": "Set Desktop Picture",
       "EditWidgets": "Edit Widgets...",
       "UseStacks": "Use Stacks",
       "SortBy": "Sort By",
@@ -1395,6 +1396,7 @@
     "Widgets": "Widgets",
     "Done": "Done",
     "Edit": "Edit",
+    "EditWidgets": "Edit Widgets",
     "AddWidget": "Add Widget"
   },
   "Widgets": {

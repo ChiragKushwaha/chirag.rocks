@@ -1263,7 +1263,8 @@
       "DateAdded": "Fecha de inclusión",
       "DateModified": "Fecha de modificación",
       "DateCreated": "Fecha de creación",
-      "Size": "Tamaño"
+      "Size": "Tamaño",
+      "SetDesktopPicture": "Set Desktop Picture"
     }
   },
   "MenuBar": {

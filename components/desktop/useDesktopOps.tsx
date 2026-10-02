@@ -87,5 +87,22 @@ export function useDesktopOps({
     [desktopPath, trashPath, refreshFiles]
   );
 
-  return { openFile, createNewFolder, handleRename, moveToBin };
+  const setAsWallpaper = useCallback(
+    async (file: MacFileEntry) => {
+      try {
+        const blob = await fs.readBlob(desktopPath, file.name);
+        if (!blob) return;
+        const url = URL.createObjectURL(blob);
+        const { setWallpaperName } = await import("../../store/systemStore").then(
+          (m) => m.useSystemStore.getState()
+        );
+        setWallpaperName(url);
+      } catch (err) {
+        console.error("[useDesktopOps] Failed to set wallpaper:", err);
+      }
+    },
+    [desktopPath]
+  );
+
+  return { openFile, createNewFolder, handleRename, moveToBin, setAsWallpaper };
 }

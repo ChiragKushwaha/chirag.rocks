@@ -28,6 +28,7 @@ interface ProcessState {
     y: number
   ) => void; // New Action
   updateWindowPosition: (pid: number, x: number, y: number) => void;
+  setThumbnail: (pid: number, dataUrl: string) => void;
   snapWindow: (pid: number, type: "left" | "right" | "reset") => void; // New Action for Split Screen
 }
 
@@ -71,13 +72,17 @@ export const useProcessStore = create<ProcessState>((set, get) => ({
       isMaximized: false,
       isFocused: true,
       zIndex: maxZIndex + 1,
-      // Use provided dimension or default waterfall position
-      dimension: initDimension || {
-        width: 700,
-        height: 500,
-        x: 100 + processes.length * 30,
-        y: 60 + processes.length * 30,
-      },
+      // Use provided dimension or default waterfall position.
+      // All y values are relative to the WindowManager container (starts 30px below viewport top).
+      // y=0 means right below the menu bar.
+      dimension: initDimension
+        ? { ...initDimension, y: Math.max(0, (initDimension.y ?? 30) - 30) }
+        : {
+            width: 700,
+            height: 500,
+            x: 100 + processes.length * 30,
+            y: 30 + processes.length * 30,
+          },
       memoryUsage: Math.floor(Math.random() * 200) + 50,
       windowRequired,
     };
@@ -182,14 +187,21 @@ export const useProcessStore = create<ProcessState>((set, get) => ({
       ),
     })),
 
+  setThumbnail: (pid, dataUrl) =>
+    set((state) => ({
+      processes: state.processes.map((p) =>
+        p.pid === pid ? { ...p, thumbnail: dataUrl } : p
+      ),
+    })),
+
   // Split Screen / Snapping Logic
   snapWindow: (pid, type) =>
     set((state) => {
       if (type === "reset") return state; // Handle in component usually, or reset to default logic here
 
       const width = window.innerWidth / 2;
-      const height = window.innerHeight - 32; // Minus menubar
-      const y = 32;
+      const height = window.innerHeight - 30; // Container height (viewport minus menubar)
+      const y = 0; // Top of container = right below menu bar
       const x = type === "left" ? 0 : width;
 
       return {

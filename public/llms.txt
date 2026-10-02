@@ -1,0 +1,53 @@
+# Chirag Kushwaha - Portfolio & macOS Web Desktop
+> Full Stack Engineer building high-performance web applications and native-fidelity browser experiences.
+
+## Overview
+- **Name**: Chirag Kushwaha
+- **Role**: Full Stack Engineer / Systems & Frontend Architect
+- **Website**: https://chirag.rocks
+- **Location**: Bengaluru, Karnataka, India
+- **GitHub**: https://github.com/chirag-kushwaha
+- **LinkedIn**: https://linkedin.com/in/chirag-kushwaha
+- **Tech Stack**: TypeScript, React, Next.js, Web APIs, Tailwind CSS, Node.js, WebAssembly, OPFS, PWA
+
+## Key Projects
+1. **macOS Big Sur Web Desktop** (Current Project):
+   - Pixel-perfect recreation of macOS Big Sur running in the browser.
+   - Features: Window management, traffic lights, dock minimization with live window thumbnails, Launchpad, Spotlight search, Notification Center with live stocks and weather widgets, System Settings, Terminal, Calculator, PDF Viewer with resume preview.
+   - Web API Integrations:
+     - **Presentation API & Remote Playback / Cast**: Screen Mirroring & Cast to wireless displays.
+     - **Web Bluetooth API**: Device scanning & pairing in System Settings > Bluetooth.
+     - **Web Battery API**: Live hardware battery level and charging status in Menu Bar and System Settings.
+     - **Origin Private File System (OPFS)**: High-performance sandboxed local file storage with Service Worker caching.
+     - **Web Speech Synthesis API**: VoiceOver accessibility reader in System Settings > Accessibility.
+     - **Web Fullscreen API**: Windowed / Full-screen switching in System Settings > Displays.
+     - **Web Storage Estimate API**: Real-time quota and disk usage calculation.
+
+2. **Sacred Texts** (https://sacred-texts.xyz):
+   - Ancient text exploration and restoration platform.
+
+3. **AlgoViz** (https://algorithms.sacred-texts.xyz):
+   - Interactive algorithm and data structure visualizer.
+
+4. **SpeakSpanish** (https://sp4nish.vercel.app):
+   - Language learning application with conversational voice drills.
+
+5. **Toonflix** (https://t00nflix.vercel.app):
+   - Streaming catalog and media experience for animated features.
+
+## Navigating This Website (For AI Agents & Web Crawlers)
+- **Home**: https://chirag.rocks/en
+- **Resume (Direct PDF)**: https://chirag.rocks/Resume.pdf
+- **Terminal App**: https://chirag.rocks/en?app=terminal
+- **PDF Resume Viewer**: https://chirag.rocks/en?app=preview
+- **System Settings**: https://chirag.rocks/en?app=settings
+- **Calculator**: https://chirag.rocks/en?app=calc
+- **Launchpad**: Accessible from the Dock (Rocket icon) or shortcut
+- **Spotlight Search**: Cmd+Space or Menu Bar search icon
+- **Sitemap**: https://chirag.rocks/sitemap.xml
+- **Robots**: https://chirag.rocks/robots.txt
+- **LLM Full Context**: https://chirag.rocks/llms-full.txt
+
+## Accessibility & Standards
+- Built to WCAG AAA standards with skip-navigation landmarks, ARIA live regions, keyboard navigation (Tab/Shift+Tab/Enter/Escape/Arrows), high color contrast, and prefers-reduced-motion support.
+- PWA Builder compliant with offline caching, maskable icons, and window controls overlay.

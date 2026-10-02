@@ -12,7 +12,11 @@ export const Dock: React.FC = () => {
   const { processes } = useProcessStore();
 
   return (
-    <nav className="fixed bottom-2 left-0 right-0 flex justify-center z-9000 pointer-events-none">
+    <nav
+      id="main-dock"
+      aria-label={t("AriaLabel")}
+      className="fixed bottom-2 left-0 right-0 flex justify-center z-9000 pointer-events-none"
+    >
       <ul
         aria-label={t("AriaLabel")}
         className="

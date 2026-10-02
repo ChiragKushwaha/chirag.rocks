@@ -40,8 +40,63 @@ export const ControlCenter: React.FC<ControlCenterProps> = ({
     setBrightness,
     volume,
     setVolume,
+    isScreenMirroring,
+    setScreenMirroring,
   } = useSystemStore();
   const t = useTranslations("ControlCenter");
+  const mediaStreamRef = useRef<MediaStream | null>(null);
+
+  const handleToggleScreenMirroring = async () => {
+    if (isScreenMirroring) {
+      if (mediaStreamRef.current) {
+        mediaStreamRef.current.getTracks().forEach((track) => track.stop());
+        mediaStreamRef.current = null;
+      }
+      setScreenMirroring(false);
+      return;
+    }
+
+    try {
+      if (typeof window !== "undefined" && "PresentationRequest" in window) {
+        try {
+          /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+          const pr = new (window as any).PresentationRequest(["https://chirag.rocks"]);
+          const connection = await pr.start();
+          setScreenMirroring(true);
+          connection.addEventListener("terminate", () => setScreenMirroring(false));
+          connection.addEventListener("close", () => setScreenMirroring(false));
+          return;
+        } catch (e: unknown) {
+          const err = e as Error;
+          if (err.name === "NotAllowedError") return;
+        }
+      }
+
+      if (
+        typeof navigator !== "undefined" &&
+        navigator.mediaDevices?.getDisplayMedia
+      ) {
+        const stream = await navigator.mediaDevices.getDisplayMedia({
+          video: true,
+          audio: true,
+        });
+        mediaStreamRef.current = stream;
+        setScreenMirroring(true);
+
+        stream.getVideoTracks()[0]?.addEventListener("ended", () => {
+          setScreenMirroring(false);
+          mediaStreamRef.current = null;
+        });
+      } else {
+        setScreenMirroring(true);
+      }
+    } catch (err: unknown) {
+      const error = err as Error;
+      if (error.name !== "AbortError" && error.name !== "NotAllowedError") {
+        console.warn("[ScreenMirroring] Could not start cast:", error);
+      }
+    }
+  };
 
   const ref = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = React.useState(false);
@@ -170,24 +225,46 @@ export const ControlCenter: React.FC<ControlCenterProps> = ({
             </span>
           </div>
 
-          {/* Screen Mirroring (Mock) */}
+          {/* Screen Mirroring / Web Cast */}
           <div
             role="button"
             tabIndex={0}
             aria-label={t("ScreenMirroring")}
-            className="flex-1 bg-white/50 dark:bg-[#2b2b2b]/50 rounded-xl p-3 flex items-center gap-3 shadow-sm border border-black/5 dark:border-white/5 cursor-pointer hover:bg-white/60 dark:hover:bg-[#2b2b2b]/70 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onClick={handleToggleScreenMirroring}
+            className={`flex-1 rounded-xl p-3 flex items-center gap-3 shadow-sm border transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              isScreenMirroring
+                ? "bg-blue-500 text-white border-blue-600 shadow-md"
+                : "bg-white/50 dark:bg-[#2b2b2b]/50 border-black/5 dark:border-white/5 hover:bg-white/60 dark:hover:bg-[#2b2b2b]/70"
+            }`}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
-                // Placeholder action
+                handleToggleScreenMirroring();
               }
             }}
           >
-            <div className="w-8 h-8 rounded-full bg-transparent border border-gray-400/50 flex items-center justify-center">
+            <div
+              className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
+                isScreenMirroring
+                  ? "bg-white/20 text-white"
+                  : "bg-transparent border border-gray-400/50 text-current"
+              }`}
+            >
               <Monitor size={16} />
             </div>
-            <span className="text-[13px] font-semibold">
-              {t("ScreenMirroring")}
-            </span>
+            <div className="flex flex-col leading-tight">
+              <span className="text-[13px] font-semibold">
+                {t("ScreenMirroring")}
+              </span>
+              <span
+                className={`text-[11px] ${
+                  isScreenMirroring
+                    ? "text-white/80 font-medium"
+                    : "text-gray-500 dark:text-gray-400"
+                }`}
+              >
+                {isScreenMirroring ? "Mirroring Active" : "AirPlay / Cast"}
+              </span>
+            </div>
           </div>
         </div>
       </div>

@@ -221,12 +221,33 @@ export const DesktopIcon = React.memo(
                 },
               ]);
             } else {
-              // Single-select Context Menu
+              const isImage = /\.(png|jpe?g|webp|gif|svg)$/i.test(file.name);
               openContextMenu(e.clientX, e.clientY, [
                 {
                   label: "Open",
                   action: () => openFile(file),
                 },
+                ...(isImage
+                  ? [
+                      {
+                        label: "Set Desktop Picture",
+                        action: async () => {
+                          try {
+                            const { fs } = await import("../lib/FileSystem");
+                            const { useSystemStore } = await import("../store/systemStore");
+                            const dir = file.path.substring(0, file.path.lastIndexOf("/")) || "/Users/Guest/Desktop";
+                            const blob = await fs.readBlob(dir, file.name);
+                            if (blob) {
+                              const url = URL.createObjectURL(blob);
+                              useSystemStore.getState().setWallpaperName(url);
+                            }
+                          } catch (err) {
+                            console.error("Failed to set desktop picture", err);
+                          }
+                        },
+                      },
+                    ]
+                  : []),
                 {
                   label: "Move to Bin",
                   icon: "🗑️",

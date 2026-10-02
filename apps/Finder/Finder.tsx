@@ -363,11 +363,33 @@ export const Finder: React.FC<FinderProps> = ({ initialPath }) => {
         },
       ]);
     } else {
+      const isImage = /\.(png|jpe?g|webp|gif|svg)$/i.test(file.name);
       openContextMenu(e.clientX, e.clientY, [
         {
           label: tMenu("Open"),
           action: () => openFile(file),
         },
+        ...(isImage
+          ? [
+              {
+                label: "Set Desktop Picture",
+                action: async () => {
+                  try {
+                    const blob = await fs.readBlob(currentPath, file.name);
+                    if (blob) {
+                      const url = URL.createObjectURL(blob);
+                      const { useSystemStore } = await import(
+                        "../../store/systemStore"
+                      );
+                      useSystemStore.getState().setWallpaperName(url);
+                    }
+                  } catch (err) {
+                    console.error("Failed to set desktop picture", err);
+                  }
+                },
+              },
+            ]
+          : []),
         {
           label: tMenu("MoveToBin"),
           danger: true,

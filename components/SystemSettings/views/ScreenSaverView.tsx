@@ -10,7 +10,7 @@ export const ScreenSaverView = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
-        <div className="w-16 h-16 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+        <div className="w-14 h-14 rounded-full shrink-0 aspect-square shadow-sm bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
           <Monitor size={32} className="text-blue-500" />
         </div>
         <div>

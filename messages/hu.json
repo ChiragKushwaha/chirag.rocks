@@ -1333,7 +1333,8 @@
       "DateAdded": "Hozzáadás dátuma",
       "DateModified": "Módosítás dátuma",
       "DateCreated": "Létrehozás dátuma",
-      "Size": "Méret"
+      "Size": "Méret",
+      "SetDesktopPicture": "Set Desktop Picture"
     }
   },
   "MenuBar": {

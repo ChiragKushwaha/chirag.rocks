@@ -28,7 +28,7 @@ export const AppleAccountView: React.FC<AppleAccountViewProps> = ({
       {/* Header Profile */}
       <div className="flex flex-col items-center mb-8">
         <div className="relative group cursor-pointer" onClick={onEditAvatar}>
-          <div className="w-24 h-24 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-6xl overflow-hidden border-4 border-transparent group-hover:border-gray-300 dark:group-hover:border-gray-600 transition-all">
+          <div className="w-24 h-24 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-6xl overflow-hidden border-4 border-transparent group-hover:border-gray-300 dark:group-hover:border-gray-600 transition-all shrink-0 aspect-square">
             {currentAvatar}
           </div>
           <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 rounded-full transition-opacity text-white text-xs font-medium">

@@ -22,7 +22,7 @@ export const TouchIDPasswordView = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
-        <div className="w-16 h-16 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+        <div className="w-14 h-14 rounded-full shrink-0 aspect-square shadow-sm bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
           <Fingerprint size={32} className="text-red-500" />
         </div>
         <div>
@@ -38,7 +38,7 @@ export const TouchIDPasswordView = () => {
       <SettingsGroup title={t("TouchID")}>
         <div className="p-4 flex gap-4">
           <div className="flex flex-col items-center gap-2">
-            <div className="w-16 h-16 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center border border-gray-200 dark:border-gray-600">
+            <div className="w-14 h-14 rounded-full shrink-0 aspect-square shadow-sm bg-gray-100 dark:bg-gray-800 flex items-center justify-center border border-gray-200 dark:border-gray-600">
               <Fingerprint size={24} className="text-gray-400" />
             </div>
             <span className="text-xs font-medium dark:text-gray-300">
@@ -46,7 +46,7 @@ export const TouchIDPasswordView = () => {
             </span>
           </div>
           <button className="flex flex-col items-center gap-2 group">
-            <div className="w-16 h-16 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center border border-dashed border-gray-300 dark:border-gray-600 group-hover:border-gray-400 transition-colors">
+            <div className="w-14 h-14 rounded-full shrink-0 aspect-square shadow-sm bg-gray-100 dark:bg-gray-800 flex items-center justify-center border border-dashed border-gray-300 dark:border-gray-600 group-hover:border-gray-400 transition-colors">
               <Plus size={24} className="text-gray-400" />
             </div>
             <span className="text-xs font-medium text-blue-500">

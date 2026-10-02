@@ -99,6 +99,14 @@ export const useAsset = (path: string) => {
     queryKey: ["asset", path],
     enabled: !!path,
     queryFn: async () => {
+      if (
+        path.startsWith("blob:") ||
+        path.startsWith("data:") ||
+        path.startsWith("http://") ||
+        path.startsWith("https://")
+      ) {
+        return path;
+      }
       // Try OPFS
       const parts = path.split("/");
       const filename = parts.pop();
