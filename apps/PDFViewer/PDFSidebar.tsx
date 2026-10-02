@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import "../../lib/pdfConfig";
 import { Document, Page } from "react-pdf";
 import { useTranslations } from "next-intl";
 import { PDFSidebarProps } from "./types";

@@ -1,9 +1,9 @@
 // macOS Clone Service Worker with Full Offline Support
 // Version: 2.0.0
 
-const CACHE_VERSION = 'macos-v4';
+const CACHE_VERSION = 'macos-v5';
 const API_CACHE = 'macos-api-cache-v3';
-const STATIC_CACHE = 'macos-static-v3';
+const STATIC_CACHE = 'macos-static-v4';
 const IMAGE_CACHE = 'macos-images-v3';
 const FONT_CACHE = 'macos-fonts-v3';
 
@@ -162,8 +162,7 @@ self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(STATIC_CACHE).then(cache => {
             return cache.addAll([
-                '/',
-                '/pdf.worker.min.mjs'
+                '/'
             ].filter(Boolean));
         }).then(() => self.skipWaiting())
     );
@@ -320,6 +319,22 @@ self.addEventListener('fetch', (event) => {
                     const stale = await caches.match(event.request);
                     if (stale) return stale;
                     throw new Error('Network unavailable');
+                }
+            }
+
+            // 4.5. PDF Worker - ensure application/javascript MIME type even if host returns text/plain
+            if (url.pathname === '/pdf.worker.min.mjs' || url.pathname === '/api/pdf-worker') {
+                try {
+                    const response = await fetch(event.request);
+                    const headers = new Headers(response.headers);
+                    headers.set('Content-Type', 'application/javascript; charset=utf-8');
+                    return new Response(response.body, {
+                        status: response.status,
+                        statusText: response.statusText,
+                        headers
+                    });
+                } catch {
+                    return fetch(event.request);
                 }
             }
 

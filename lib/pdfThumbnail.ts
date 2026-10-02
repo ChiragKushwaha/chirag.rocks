@@ -1,25 +1,25 @@
 // No top-level import to avoid SSR issues
 // import * as pdfjsLib from "pdfjs-dist";
+import { PDF_WORKER_URL } from "./pdfConfig";
 
 export const generatePDFThumbnail = async (blob: Blob): Promise<string> => {
   try {
     // Dynamic import to avoid SSR issues
     const pdfjsLib = await import("pdfjs-dist");
 
-    // Set worker source
+    // Set worker source to same-origin API route to prevent MIME type errors
     if (
       typeof window !== "undefined" &&
       !pdfjsLib.GlobalWorkerOptions.workerSrc
     ) {
-      // Use the local worker file we copied to public/
-      pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
+      pdfjsLib.GlobalWorkerOptions.workerSrc = PDF_WORKER_URL;
     }
 
     const arrayBuffer = await blob.arrayBuffer();
     // Load the PDF document
     const loadingTask = pdfjsLib.getDocument({
       data: arrayBuffer,
-      cMapUrl: "https://cdn.jsdelivr.net/npm/pdfjs-dist@5.4.449/cmaps/",
+      cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/cmaps/`,
       cMapPacked: true,
     });
 

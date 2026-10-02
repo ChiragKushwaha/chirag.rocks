@@ -17,6 +17,7 @@ const eslintConfig = defineConfig([
     "**/pdf.worker.mjs",
     "**/pdf.worker.min.mjs",
     "**/public/lib/**",
+    "server.js",
   ]),
 ]);
 

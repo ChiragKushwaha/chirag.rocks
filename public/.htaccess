@@ -1,0 +1,10 @@
+<IfModule mod_mime.c>
+    AddType application/javascript .mjs .js
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.(mjs|js)$">
+        Header set Content-Type "application/javascript; charset=utf-8"
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+</IfModule>

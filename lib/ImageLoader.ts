@@ -88,12 +88,13 @@ export const ImageLoader = {
       if (ext === "ai") {
         // @ts-expect-error: pdfjs-dist types mismatch
         const pdfjsLib = await import("pdfjs-dist/build/pdf");
+        const { PDF_WORKER_URL } = await import("./pdfConfig");
 
         if (
           pdfjsLib.GlobalWorkerOptions &&
           !pdfjsLib.GlobalWorkerOptions.workerSrc
         ) {
-          pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+          pdfjsLib.GlobalWorkerOptions.workerSrc = PDF_WORKER_URL;
         }
 
         const arrayBuffer = await file.arrayBuffer();
