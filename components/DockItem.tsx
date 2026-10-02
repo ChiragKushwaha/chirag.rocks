@@ -88,7 +88,7 @@ export const DockItem: React.FC<DockItemProps> = ({
     displayIcon = "trash_full";
   }
 
-  const iconUrl = useIcon(displayIcon); // Get Blob URL from OPFS
+  const iconUrl = useIcon(name === "Calendar" ? "" : displayIcon); // Get Blob URL from OPFS
 
   const [isBouncing, setIsBouncing] = React.useState(false);
 

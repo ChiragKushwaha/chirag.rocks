@@ -91,7 +91,7 @@ export const useIconManager = () => {
 };
 
 export const useIcon = (iconName: string) => {
-  return useAsset(`/icons/${iconName}.webp`);
+  return useAsset(iconName ? `/icons/${iconName}.webp` : "");
 };
 
 export const useAsset = (path: string) => {
