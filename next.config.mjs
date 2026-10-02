@@ -56,6 +56,20 @@ const nextConfig = {
           },
         ],
       },
+      // Ensure .mjs files are served with correct MIME type for Web Workers
+      {
+        source: "/:path*.mjs",
+        headers: [
+          {
+            key: "Content-Type",
+            value: "application/javascript; charset=utf-8",
+          },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
       // Cache static assets (images, fonts, etc.)
       {
         source: "/(.*)\\.(jpg|jpeg|png|webp|svg|gif|ico|woff|woff2|ttf|eot)",

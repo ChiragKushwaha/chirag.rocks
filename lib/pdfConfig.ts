@@ -5,14 +5,9 @@ let isWorkerConfigured = false;
 export function configurePdfWorker(): void {
   if (typeof window === "undefined" || isWorkerConfigured) return;
 
-  try {
-    // Prefer local minified worker matching pdfjs-dist 5.4.296
-    const origin = window.location.origin;
-    pdfjs.GlobalWorkerOptions.workerSrc = `${origin}/pdf.worker.min.mjs`;
-    isWorkerConfigured = true;
-  } catch (error) {
-    console.warn("[PDF] Failed to configure local worker, using unpkg fallback:", error);
-    pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
-    isWorkerConfigured = true;
-  }
+  // Use CDN as primary source — avoids MIME type issues on any hosting environment.
+  // The version must match pdfjs-dist exactly (react-pdf@10.5.0 ships 5.4.296).
+  const version = pdfjs.version;
+  pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${version}/build/pdf.worker.min.mjs`;
+  isWorkerConfigured = true;
 }
