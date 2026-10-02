@@ -40,7 +40,7 @@
   --foreground: #000000;
 }
 
-@variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root:where(.dark) {
   /* Big Sur System Colors - Dark Mode */
