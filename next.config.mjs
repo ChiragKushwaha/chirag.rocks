@@ -1,16 +1,10 @@
-import type { NextConfig } from "next";
-
 import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
-const nextConfig: NextConfig = {
-  // Enable SWC minification explicitly for better optimization
-
-  // Attempt to transpile dependencies that might be shipping polyfills
+const nextConfig = {
   transpilePackages: ["next-intl", "framer-motion"],
-  // ... existing config code ...
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
